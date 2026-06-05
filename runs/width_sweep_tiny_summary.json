@@ -1,0 +1,62 @@
+{
+  "experiment": "N1-width on tiny LM",
+  "k": 24,
+  "d_model": 128,
+  "sweep": [
+    {
+      "width": 128,
+      "over_complete": 1.0,
+      "host_cov95": 0.6153846153846154,
+      "forged_cov95": 0.0,
+      "host_token": 0.8823529411764706,
+      "forged_token": 0.0,
+      "host_mauc": 0.9204228936639768,
+      "forged_mauc": 0.6144611053578795,
+      "retained_cov95": 0.0
+    },
+    {
+      "width": 256,
+      "over_complete": 2.0,
+      "host_cov95": 0.6153846153846154,
+      "forged_cov95": 0.038461538461538464,
+      "host_token": 0.8823529411764706,
+      "forged_token": 0.058823529411764705,
+      "host_mauc": 0.9158840086720865,
+      "forged_mauc": 0.8106492547944277,
+      "retained_cov95": 0.062
+    },
+    {
+      "width": 512,
+      "over_complete": 4.0,
+      "host_cov95": 0.6538461538461539,
+      "forged_cov95": 0.11538461538461539,
+      "host_token": 0.9411764705882353,
+      "forged_token": 0.17647058823529413,
+      "host_mauc": 0.9301270267386331,
+      "forged_mauc": 0.8490322626180885,
+      "retained_cov95": 0.176
+    },
+    {
+      "width": 1024,
+      "over_complete": 8.0,
+      "host_cov95": 0.6923076923076923,
+      "forged_cov95": 0.038461538461538464,
+      "host_token": 1.0,
+      "forged_token": 0.058823529411764705,
+      "host_mauc": 0.9251808506392228,
+      "forged_mauc": 0.8559987927791545,
+      "retained_cov95": 0.056
+    },
+    {
+      "width": 2048,
+      "over_complete": 16.0,
+      "host_cov95": 0.6923076923076923,
+      "forged_cov95": 0.15384615384615385,
+      "host_token": 1.0,
+      "forged_token": 0.23529411764705882,
+      "host_mauc": 0.9205640920235318,
+      "forged_mauc": 0.8655382517159732,
+      "retained_cov95": 0.222
+    }
+  ]
+}

@@ -94,9 +94,29 @@ the forged residual is directly decodable (`scripts/train_tiny_gpt.py`,
 
 **The cov95 forge tax replicates on a language model**, with the canonical
 signature: **mAUC robust (91% retained), cov95 collapses (~18% retained), sharp
-one-token detectors hit hardest.** This is the trainable-host arm (econ's
-*concentrate* regime); the SAE is 4× over-complete, so whether this tax is emergent
-or over-completeness-driven is the next probe (sweep `--width` → N1-width on the LM).
+one-token detectors hit hardest.**
+
+### N1-width on the LM (`scripts/width_sweep_tiny.py`): the tax is EMERGENT, not over-completeness-driven
+
+Sweeping SAE width 1×–16× over-complete settles which regime the LM is in:
+
+| over-complete | 1× | 2× | 4× | 8× | 16× |
+|---|---|---|---|---|---|
+| host cov95 | 0.615 | 0.615 | 0.654 | 0.692 | 0.692 |
+| **forged cov95** | **0.00** | 0.04 | 0.12 | 0.04 | 0.15 |
+| mAUC retained | 0.67 | 0.88 | 0.91 | 0.93 | 0.94 |
+
+**Forged cov95 stays collapsed at every width — including 1× (no over-completeness
+at all, where it's 0.00).** So over-completeness is **exonerated** for cov95; if
+anything it mildly *helps* (via redundancy) and clearly helps mAUC retention (rises
+0.67→0.94). ⇒ **the LM's cov95 tax is EMERGENT — bio's regime, not econ's.**
+
+This **corrects the earlier guess** that a trainable host → econ's *concentrate*
+regime. The regime is set by **host architecture, not trainability**: a *deep
+transformer forward* (bio's ESM-2, this tiny GPT) → **emergent** tax → **preserve**
+lever; econ's *shallow dense fc1/fc2 bridge* → rank/over-completeness tax →
+concentrate. **Real LLMs are deep transformers, so the LM target is the
+emergent/preserve regime** — preserve-verbatim is the lever, not concentrate.
 
 ## Honest caveats (this is an MVP)
 
