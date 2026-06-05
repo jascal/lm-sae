@@ -158,3 +158,7 @@ emergent cov95 tax, by construction, at small K.
 - Add the **spaCy** syntactic/semantic tiers (POS/NER/dep) for a richer oracle.
 - **Recipe B** (planted synthetic corpus + from-scratch nanochat LM) for a *perfect*
   oracle and the *concentrate* / trainable-host arm.
+
+## License
+
+Apache License 2.0 — see [LICENSE](LICENSE).
