@@ -77,6 +77,27 @@ sensitivity — a caveat, not a clean exoneration.)
   re-score the lexical oracle. That's the lm-sae "whole loop" for text (the bio
   whole-loop analog); it needs a GPU, not this CPU MVP.
 
+## Whole loop on a tiny trainable GPT (CPU) — the forge tax replicates on an LM
+
+The GPT-2 + 24k-SAELens forge is GPU-scale (over-completeness wall). A **tiny
+GPT-2-config model trained from scratch** (`n_embd=128, 4 layers, 7.2M params`, the
+CPU-feasible nanochat stand-in; reuses the existing `GPT2Adapter`) makes the whole
+loop tractable: train → SAE → **forge** → forged-cov95. SAE on the **final** layer so
+the forged residual is directly decodable (`scripts/train_tiny_gpt.py`,
+`scripts/whole_loop_tiny.py`).
+
+| | cov95 (all) | token tier | lexical | mAUC |
+|---|---|---|---|---|
+| host | 0.654 | 0.94 | 0.11 | 0.930 |
+| **forged** | **0.115** | **0.18** | 0.00 | 0.849 |
+| **tax** | **0.65 → 0.12** | 0.94 → 0.18 | — | 0.93 → 0.85 |
+
+**The cov95 forge tax replicates on a language model**, with the canonical
+signature: **mAUC robust (91% retained), cov95 collapses (~18% retained), sharp
+one-token detectors hit hardest.** This is the trainable-host arm (econ's
+*concentrate* regime); the SAE is 4× over-complete, so whether this tax is emergent
+or over-completeness-driven is the next probe (sweep `--width` → N1-width on the LM).
+
 ## Honest caveats (this is an MVP)
 
 1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is
