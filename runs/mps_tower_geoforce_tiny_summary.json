@@ -1,0 +1,71 @@
+{
+  "experiment": "MPS tower + geometry-forcing retrain (corrected Phase 1b)",
+  "fixed_v0_core": 0.239,
+  "orig_lm_loss": 6.463178515434265,
+  "geo_lm_loss": 5.931949663162231,
+  "adapt_rounds": [
+    {
+      "round": 0,
+      "harvest_mono": 0.9904114713989358,
+      "ft_loss_bottlenecked": 5.087264060974121
+    },
+    {
+      "round": 1,
+      "harvest_mono": 0.9951030876779224,
+      "ft_loss_bottlenecked": 5.066937446594238
+    },
+    {
+      "round": 2,
+      "harvest_mono": 0.9925287122531051,
+      "ft_loss_bottlenecked": 5.741130828857422
+    },
+    {
+      "round": 3,
+      "harvest_mono": 0.9955836515076261,
+      "ft_loss_bottlenecked": 4.596619606018066
+    }
+  ],
+  "fixed_decomp_of_geoforced": [
+    {
+      "round": 0,
+      "mono": 0.9968660793866412,
+      "core": 0.7492620078678016
+    },
+    {
+      "round": 1,
+      "mono": 0.9871419605380893,
+      "core": 0.647759492561909
+    },
+    {
+      "round": 2,
+      "mono": 0.9717205612730572,
+      "core": 0.5797022635447528
+    },
+    {
+      "round": 3,
+      "mono": 0.9245666039871084,
+      "core": 0.5581102875532172
+    },
+    {
+      "round": 4,
+      "mono": 0.8866811081432825,
+      "core": 0.560380287719923
+    },
+    {
+      "round": 5,
+      "mono": 0.8422244949958181,
+      "core": 0.5169941252187126
+    },
+    {
+      "round": 6,
+      "mono": 0.7993844206059131,
+      "core": 0.5055896080606128
+    },
+    {
+      "round": 7,
+      "mono": 0.775256020170381,
+      "core": 0.5088442007151321
+    }
+  ],
+  "geoforced_core": 0.5088442007151321
+}

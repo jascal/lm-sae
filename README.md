@@ -210,6 +210,30 @@ right Phase 1b is **harvest + geometry-forcing retrain**; harvest + complement-r
 re-entangles. (The fixed-model v0 tower — taper, dial, convergence — still stands; this
 is about how to *improve* it.)
 
+### Corrected retrain = geometry-forcing (`scripts/mps_tower_geoforce_tiny.py`) — better, but a NO-GO
+
+Harvest + retrain *through* an SAE bottleneck (forgeability pressure, basis refreshed
+each round), then fixed-decompose the adapted model:
+
+```
+entangled core:  original 0.24  ->  geo-forcing 0.51  ->  (complement-routing 0.75)
+LM loss:         6.46 -> 5.93  (capability UP)  while core 0.24 -> 0.51  (entanglement UP)
+```
+
+Geometry-forcing is the **better** lever (0.51 < complement's 0.75, as predicted) but
+**still can't drive the core below the original.** The reason is the punchline of the
+whole thread: **training toward capability inherently increases entanglement.** The
+original tiny model is forgeable (core 0.24) partly *because* it's weak; making it more
+capable (LM loss 6.46→5.93) raised the core to 0.51 *at the same time*. The bottleneck
+slows it (it pressures faithfulness/mAUC, not monosemanticity/cov95) but can't make
+capability free of entanglement.
+
+**No-go:** there is no training trick that makes a capable model globally low-χ — you
+move *along* the capability↔interpretability frontier, never off it. **So the tower is
+the correct response, not a workaround:** don't train the entanglement away (you can't)
+— *decompose* a trained model into a low-χ interpretable core + a high-χ capable tail
+and choose your truncation. The retrain negatives are the proof there's no shortcut.
+
 ## Honest caveats (this is an MVP)
 
 1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is
