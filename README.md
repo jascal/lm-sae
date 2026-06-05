@@ -62,6 +62,21 @@ with the real dictionary (token tier 71% of host at 17% rank-fraction, vs bio's 
 concentrated. (N1-LN drops 0.64→0.46, likely the raw-trained SAE's input-scale
 sensitivity — a caveat, not a clean exoneration.)
 
+### The forge (GPT2Adapter): machinery verified; faithful forge is GPU-scale
+
+- The GPT-2 forge **runs end-to-end** (forge → next-token logits; `native_in_basis`).
+- **Raw slices of the 24k SAELens SAE are numerically DEGENERATE** — meanKL(host‖forged)
+  = 58 (N=256), **17245** (N=768), 15 (N=1536): garbage, non-monotonic. You cannot
+  naively forge a 32×-over-complete basis (`scripts/forge_gpt2.py`, a negative
+  control). This is the GPT-2 over-completeness wall.
+- The repo's **polygram path works**: slice 64 → polygram-compress to **11 kept** →
+  forge a 124M-param GPT-2 → faithfulness **KL 21.1** (`runs/forge_example_summary.json`).
+  Sane KL — but 11 features is a heavily-compressed *smoke*, not a faithful forge.
+- **Next (GPU-scale):** a faithful forge (hundreds–thousands of features + polygram
+  tuning) and the **forged-cov95 tax** — hook the forged layer-8 residual, decode,
+  re-score the lexical oracle. That's the lm-sae "whole loop" for text (the bio
+  whole-loop analog); it needs a GPU, not this CPU MVP.
+
 ## Honest caveats (this is an MVP)
 
 1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is
