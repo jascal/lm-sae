@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+# Generated activation bundles (large); keep only small summary JSONs.
+data/*.npz
+data/*.json
+runs/*
+!runs/*_summary.json
