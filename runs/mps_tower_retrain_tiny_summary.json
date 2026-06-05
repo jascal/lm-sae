@@ -1,0 +1,77 @@
+{
+  "experiment": "MPS tower + retrain (Phase 1b)",
+  "fixed_v0_core": 0.239,
+  "adapt_rounds": [
+    {
+      "round": 0,
+      "n_banked": 24,
+      "mean_monosemanticity": 0.9964433574928205,
+      "entangled_core_frac": 0.8492560068064878,
+      "ft_loss": 5.107837200164795
+    },
+    {
+      "round": 1,
+      "n_banked": 48,
+      "mean_monosemanticity": 0.9975357760901167,
+      "entangled_core_frac": 0.7388955790566031,
+      "ft_loss": 5.266014099121094
+    },
+    {
+      "round": 2,
+      "n_banked": 72,
+      "mean_monosemanticity": 0.9919735332803374,
+      "entangled_core_frac": 0.595698564392874,
+      "ft_loss": 5.84715461730957
+    },
+    {
+      "round": 3,
+      "n_banked": 96,
+      "mean_monosemanticity": 0.9858419138170804,
+      "entangled_core_frac": 0.5980693595755309,
+      "ft_loss": 5.15099573135376
+    }
+  ],
+  "fixed_decomp_of_adapted": [
+    {
+      "round": 0,
+      "mono": 0.9948631471108688,
+      "core": 0.8998485075885345
+    },
+    {
+      "round": 1,
+      "mono": 0.9786414214882786,
+      "core": 0.8332778664188084
+    },
+    {
+      "round": 2,
+      "mono": 0.9165920062550756,
+      "core": 0.788862047810901
+    },
+    {
+      "round": 3,
+      "mono": 0.859838056870332,
+      "core": 0.7610015516277076
+    },
+    {
+      "round": 4,
+      "mono": 0.8317106120888073,
+      "core": 0.771799882134753
+    },
+    {
+      "round": 5,
+      "mono": 0.8142330046276475,
+      "core": 0.7547289075963024
+    },
+    {
+      "round": 6,
+      "mono": 0.7789726219490524,
+      "core": 0.7580066051785833
+    },
+    {
+      "round": 7,
+      "mono": 0.7605618072145823,
+      "core": 0.7467711015128621
+    }
+  ],
+  "adapted_model_core": 0.7467711015128621
+}

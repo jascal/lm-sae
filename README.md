@@ -187,6 +187,29 @@ bounded entangled tail — the optimistic, falsifiable claim, here confirmed. (v
 fixed-model; the from-scratch *retrain-between-rounds* loop is the next step, and should
 push the residual core lower.)
 
+### Retrain-between-rounds (`scripts/mps_tower_retrain_tiny.py`) — the complement-routing version BACKFIRES
+
+Phase 1b: after harvesting a level, freeze that subspace and fine-tune the model with
+gradients routed only through the *complement* (re-express computation in the freed
+capacity), then re-harvest. Then a fixed v0 decomposition of the adapted model:
+
+```
+entangled core:  original model 0.24  ->  adapted model 0.75   (3x WORSE)
+```
+
+It makes the model **less** forgeable. Diagnosis: freezing the clean directions and
+forcing gradients into the complement teaches the model to predict from the *leftover
+(entangled) directions* — i.e. it learns to **entangle**. **Freeing capacity by removing
+forgeable features does not pressure toward forgeability; it pressures toward using
+whatever's left, which is the messy subspace.**
+
+So this disambiguates the algorithm: **"retrain until stable" needs explicit
+*forgeability pressure* (geometry-forcing — train *through* the basis, the
+`forge_aware_train_tiny.py` lever that *halved* the tax), not just freed capacity.** The
+right Phase 1b is **harvest + geometry-forcing retrain**; harvest + complement-routing
+re-entangles. (The fixed-model v0 tower — taper, dial, convergence — still stands; this
+is about how to *improve* it.)
+
 ## Honest caveats (this is an MVP)
 
 1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is
