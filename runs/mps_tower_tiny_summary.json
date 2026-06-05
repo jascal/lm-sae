@@ -1,0 +1,139 @@
+{
+  "experiment": "MPS tower (Phase 1, fixed-model v0)",
+  "rounds": [
+    {
+      "round": 0,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.9938122798501047,
+      "var_captured_frac": 0.3570913956863197,
+      "residual_var_frac": 0.6429086043136804
+    },
+    {
+      "round": 1,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.9761065426847576,
+      "var_captured_frac": 0.14284333725912224,
+      "residual_var_frac": 0.500065267054558
+    },
+    {
+      "round": 2,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.9570099881156153,
+      "var_captured_frac": 0.06849382681085965,
+      "residual_var_frac": 0.43157144024369837
+    },
+    {
+      "round": 3,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.9057940289310388,
+      "var_captured_frac": 0.08479699992903632,
+      "residual_var_frac": 0.3467744403146621
+    },
+    {
+      "round": 4,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.8702797641542261,
+      "var_captured_frac": 0.05865154277645074,
+      "residual_var_frac": 0.28812289753821135
+    },
+    {
+      "round": 5,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.812922995606766,
+      "var_captured_frac": 0.030850198600648308,
+      "residual_var_frac": 0.25727269893756305
+    },
+    {
+      "round": 6,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.7875116712249423,
+      "var_captured_frac": 0.009293698978578735,
+      "residual_var_frac": 0.2479789999589843
+    },
+    {
+      "round": 7,
+      "n_harvested": 24,
+      "mean_monosemanticity": 0.7696409560093418,
+      "var_captured_frac": 0.009276954968011005,
+      "residual_var_frac": 0.23870204499097328
+    }
+  ],
+  "dial": [
+    {
+      "keep_levels": 1,
+      "n_atoms": 24,
+      "cov95": 0.46153846153846156,
+      "token_cov95": 0.7058823529411765,
+      "fidelity": 0.35709139568631965
+    },
+    {
+      "keep_levels": 2,
+      "n_atoms": 48,
+      "cov95": 0.6153846153846154,
+      "token_cov95": 0.8823529411764706,
+      "fidelity": 0.499934732945442
+    },
+    {
+      "keep_levels": 3,
+      "n_atoms": 72,
+      "cov95": 0.6538461538461539,
+      "token_cov95": 0.9411764705882353,
+      "fidelity": 0.5684285597563017
+    },
+    {
+      "keep_levels": 4,
+      "n_atoms": 96,
+      "cov95": 0.6538461538461539,
+      "token_cov95": 0.9411764705882353,
+      "fidelity": 0.6532255596853379
+    },
+    {
+      "keep_levels": 5,
+      "n_atoms": 120,
+      "cov95": 0.6538461538461539,
+      "token_cov95": 0.9411764705882353,
+      "fidelity": 0.7118771024617887
+    },
+    {
+      "keep_levels": 6,
+      "n_atoms": 144,
+      "cov95": 0.6538461538461539,
+      "token_cov95": 0.9411764705882353,
+      "fidelity": 0.7427273010624369
+    },
+    {
+      "keep_levels": 7,
+      "n_atoms": 168,
+      "cov95": 0.6538461538461539,
+      "token_cov95": 0.9411764705882353,
+      "fidelity": 0.7520210000410157
+    },
+    {
+      "keep_levels": 8,
+      "n_atoms": 192,
+      "cov95": 0.6538461538461539,
+      "token_cov95": 0.9411764705882353,
+      "fidelity": 0.7612979550090267
+    }
+  ],
+  "taper_monosemanticity": [
+    0.9938122798501047,
+    0.9761065426847576,
+    0.9570099881156153,
+    0.9057940289310388,
+    0.8702797641542261,
+    0.812922995606766,
+    0.7875116712249423,
+    0.7696409560093418
+  ],
+  "taper_var_captured": [
+    0.3570913956863197,
+    0.14284333725912224,
+    0.06849382681085965,
+    0.08479699992903632,
+    0.05865154277645074,
+    0.030850198600648308,
+    0.009293698978578735,
+    0.009276954968011005
+  ]
+}
