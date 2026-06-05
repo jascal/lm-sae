@@ -118,6 +118,22 @@ lever; econ's *shallow dense fc1/fc2 bridge* → rank/over-completeness tax →
 concentrate. **Real LLMs are deep transformers, so the LM target is the
 emergent/preserve regime** — preserve-verbatim is the lever, not concentrate.
 
+### P1 on the LM (`scripts/preserve_hybrid_tiny.py`): preserve-verbatim recovers the tax
+
+The width sweep said the LM is emergent → the lever is **preserve-verbatim**. This
+confirms it constructively: keep the top-K oracle-reading SAE atoms **verbatim**
+(host readout) + the rest forged, sweep K.
+
+| K verbatim (of 512) | 0 | 8 | 16 | 32 | 64 | 128 |
+|---|---|---|---|---|---|---|
+| combined cov95 | 0.12 | 0.31 | 0.46 | **0.62** | **0.65** | 0.65 |
+| token tier | 0.18 | 0.47 | 0.71 | 0.94 | 0.94 | 0.94 |
+
+Preserving **K≈32–64 atoms (6–12% of the basis) fully recovers host cov95** (0.12 →
+0.65); the sharp one-token detectors snap back 0.18 → 0.94. **The lm-sae analog of
+bio's P1 knee** (K≈160/1024 = 16%) — preserve-verbatim is the lever for the LM's
+emergent cov95 tax, by construction, at small K.
+
 ## Honest caveats (this is an MVP)
 
 1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is
