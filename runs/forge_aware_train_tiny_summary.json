@@ -1,0 +1,15 @@
+{
+  "free": {
+    "host_cov95": 0.64,
+    "forged_cov95": 0.08,
+    "lm_loss": 6.531599867343902
+  },
+  "geo_forced": {
+    "host_cov95": 0.6,
+    "forged_cov95": 0.16,
+    "lm_loss": 5.663982248306274,
+    "lm_loss_through_bottleneck": 4.511986464262009
+  },
+  "tax_free": 0.56,
+  "tax_geo": 0.44
+}
