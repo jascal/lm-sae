@@ -134,6 +134,32 @@ Preserving **K≈32–64 atoms (6–12% of the basis) fully recovers host cov95*
 bio's P1 knee** (K≈160/1024 = 16%) — preserve-verbatim is the lever for the LM's
 emergent cov95 tax, by construction, at small K.
 
+### Label-free residual selector (`scripts/residual_selector_tiny.py`): FALSIFIED
+
+The algorithm hoped the preserve set could be picked **label-free** from the
+*post-training residual* — "the atoms fine-tuning can't recover are the ones to
+preserve." It doesn't work. Comparing selectors by their preserve-hybrid cov95
+recovery (real projection tax; diffuse = projection forge):
+
+| selector | reaches host cov95 (0.68) at K≈ | overlap w/ oracle top-64 |
+|---|---|---|
+| **oracle** (host strength, labels) | **64** (12% of atoms) | 1.00 |
+| random / norm / frag_proj (static P2 signals) | ~256–512 (50–100%) | 0.11–0.16 |
+| **frag_train** (post-training residual) | **512** (100% — i.e. useless) | **0.00** |
+
+The post-training residual is the **worst** selector — *anti*-informative (overlap
+0.00). Reconstruction-residual ranks atoms by how hard they are to *reproduce*,
+which is orthogonal-to-anti-correlated with how *valuable* they are as detectors
+(the sharp detectors are high-variance, **easy** to reconstruct; the residual-hard
+atoms are noise). ⇒ **preserve-selection genuinely needs a *value* signal (labels /
+downstream importance), not reconstruction fidelity** — sharpening P2. The "what
+training can't recover" shortcut is dead.
+
+*(Secondary, caveated: fine-tuning the tiny forged model over-recovered cov95
+0.16 → 0.60 — a same-data / tiny-model artifact where distillation nearly copies the
+host; it does NOT generalize to a frozen, held-out LLM, where bio showed distillation
+leaves cov95 floored. So preserve remains the lever for the real target.)*
+
 ## Honest caveats (this is an MVP)
 
 1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is
