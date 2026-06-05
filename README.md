@@ -40,9 +40,27 @@ First result (gpt2 layer 6, 16k tokens, self-trained TopK SAE w2048/k32):
 | N1-LayerNorm | exonerated (0.607 ≈ host) |
 | N1-TopK | exonerated (flat across k) |
 
-The oracle is real and the sharp/diffuse split reproduces bio's shape. LayerNorm and
-TopK are exonerated — **consistent with bio *and* econ** (a robust cross-substrate
-finding).
+The oracle is real and the sharp/diffuse split reproduces bio's shape.
+
+### With a real SAELens dictionary (`scripts/sae_lens_eval.py`)
+
+Swapping the self-trained SAE for a published **SAELens** SAE
+(`jbloom/GPT2-Small-SAEs-Reformatted`, `blocks.8.hook_resid_pre`, 24576 feats,
+layer 8) resolves the main caveat:
+
+| metric | self-trained | **SAELens** |
+|---|---|---|
+| host cov95 (all) | 0.607 | **0.643** |
+| token tier | 0.89 | 0.89 (mAUC 0.98) |
+| lexical tier | **0.00** | **0.11** (mAUC 0.79) |
+| host mAUC | 0.874 | 0.918 |
+
+The real dictionary partly recovers the lexical tier (0.00 → 0.11) — so that tier is
+genuinely *diffuse*, not just a training artifact. N1-rank stays **rank-sensitive**
+with the real dictionary (token tier 71% of host at 17% rank-fraction, vs bio's Pfam
+96% at 40%) — GPT-2's lexical/token features are high-dimensional, not low-rank
+concentrated. (N1-LN drops 0.64→0.46, likely the raw-trained SAE's input-scale
+sensitivity — a caveat, not a clean exoneration.)
 
 ## Honest caveats (this is an MVP)
 
