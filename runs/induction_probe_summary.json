@@ -1,0 +1,45 @@
+{
+  "experiment": "induction pair-probe",
+  "model": "gpt2",
+  "layer": 6,
+  "is_repeat_rate": 0.31908333333333333,
+  "per_tier": {
+    "unary_cur": {
+      "n": 17,
+      "single_cov95": 1.0,
+      "pair_cov95": 1.0,
+      "single_mauc": 0.9943370765252034,
+      "pair_mauc": 0.9944209940446292
+    },
+    "unary_balanced": {
+      "n": 4,
+      "single_cov95": 1.0,
+      "pair_cov95": 1.0,
+      "single_mauc": 0.9935448192068422,
+      "pair_mauc": 0.9935448192068422
+    },
+    "relational_isrepeat": {
+      "n": 1,
+      "single_cov95": 0.0,
+      "pair_cov95": 0.0,
+      "single_mauc": 0.7594891180642904,
+      "pair_mauc": 0.8089323346019957
+    },
+    "relational_distk": {
+      "n": 4,
+      "single_cov95": 0.25,
+      "pair_cov95": 0.25,
+      "single_mauc": 0.8414830404412981,
+      "pair_mauc": 0.8531576778642305
+    },
+    "relational_pertoken": {
+      "n": 4,
+      "single_cov95": 1.0,
+      "pair_cov95": 1.0,
+      "single_mauc": 0.9938631076306397,
+      "pair_mauc": 0.9938631076306397
+    }
+  },
+  "pertoken_pair_gain": 0.0,
+  "unary_pair_gain": 0.0
+}
