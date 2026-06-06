@@ -1,0 +1,33 @@
+{
+  "model": "tiny-gpt (d=128, 4 layers)",
+  "d_model": 128,
+  "sae_width": 512,
+  "over_complete": 4.0,
+  "comp_rank": 12,
+  "assert_k": 48,
+  "induction_pred_rate": 0.060547368421052634,
+  "host_cov95": 0.6538461538461539,
+  "configs": {
+    "single": {
+      "global_kl": 5.061537229718866,
+      "induction_kl": 6.479230103454654,
+      "complement_kl": 4.970167457738222,
+      "cov95": 0.11538461538461539,
+      "token_cov95": 0.17647058823529413
+    },
+    "composition": {
+      "global_kl": 5.066212184174014,
+      "induction_kl": 6.46873104016298,
+      "complement_kl": 4.975820371924454,
+      "cov95": 0.07692307692307693,
+      "token_cov95": 0.11764705882352941
+    },
+    "two_basis": {
+      "global_kl": 5.060034966037903,
+      "induction_kl": 6.463251314323584,
+      "complement_kl": 4.969598200672415,
+      "cov95": 0.19230769230769232,
+      "token_cov95": 0.29411764705882354
+    }
+  }
+}

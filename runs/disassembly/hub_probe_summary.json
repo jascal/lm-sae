@@ -1,0 +1,23 @@
+{
+  "experiment": "hub probe",
+  "model": "gpt2",
+  "hub": [
+    0,
+    11
+  ],
+  "control_writer": [
+    2,
+    4
+  ],
+  "prev_token_head": [
+    4,
+    11
+  ],
+  "hub_output_position_R2": 0.8126108254932157,
+  "hub_output_content_R2": 0.27090030802515025,
+  "delta1_clean": 0.9558690992150211,
+  "delta1_patched_hub": 0.9551737705181534,
+  "drop_hub": 0.0007274308767158936,
+  "delta1_patched_ctrl": 0.9549551844962989,
+  "drop_ctrl": 0.0009561086549117219
+}

@@ -1,26 +1,30 @@
-# lm-sae runtime dependencies.
+# lm-sae runtime dependencies (standalone — no bio-sae path required).
 #
-# sae-forge provides the forge pipeline (FeatureBasis / SubspaceProjector /
-# ForgePipeline / NativeModel), the two-basis forge (composition_preserve /
-# assertion_preserve) + circuit-faithfulness eval, and — as of v0.14.0 — the
-# writer-output composition subspace: saeforge.circuit_heads (behavioral
-# prev-token / duplicate-token writer detection) and
-# saeforge.composition_subspace.extract_writer_subspace (the OV-output U_C).
-# lm-sae's two_basis_single_layer experiment consumes >= 0.14.0.
-sae-forge @ git+https://github.com/jascal/sae-forge@v0.14.0
+# Quick start:
+#   python3.12 -m venv .venv
+#   .venv/bin/pip install -r requirements.txt
+#   # GPU (NVIDIA Blackwell / RTX 50-series, e.g. the RTX 5050 used here) needs the cu128 wheel:
+#   .venv/bin/pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+#
+# Versions below are the ones the committed results were produced with. For EXACT recreation of the
+# GPU environment (full freeze, pins torch==2.11.0+cu128), see constraints-gpu.txt.
 
-torch>=2.1
-transformers>=4.40
-numpy>=1.26
+# sae-forge provides the forge pipeline (FeatureBasis / SubspaceProjector / NativeModel /
+# adapters), the two-basis forge (composition_preserve / assertion_preserve) + circuit-
+# faithfulness eval, and the writer-output composition subspace (saeforge.circuit_heads +
+# saeforge.composition_subspace.extract_writer_subspace, used by the two_basis_forge scripts).
+# Installed from PyPI (not git). lm-sae's two-basis experiments consume >= 0.14.0.
+sae-forge==0.14.0
+
+# torch is NOT pulled in transitively by sae-forge — install it explicitly.
+# Default wheel works on CPU; for the RTX 5050 (Blackwell, sm_120) use the cu128 index above.
+torch==2.11.0
+transformers==5.10.1
+numpy==1.26.4
 matplotlib>=3.7
 
 # The SAE-operand disassembly scripts (sae_opcode_table.py, sae_lens_eval.py) load published
 # SAELens GPT-2 SAEs directly from the Hub by their safetensors — via huggingface_hub +
-# safetensors (both ship with transformers), NOT the sae_lens package (which is not required).
+# safetensors, NOT the sae_lens package (which is not required).
 huggingface_hub>=0.20
 safetensors>=0.4
-
-# NOTE: the shared bio-sae venv currently has an older sae-forge installed and no
-# pip. Until it is re-synced, run lm-sae scripts that need the two-basis /
-# writer-output API with the local 0.14.0 checkout on the path, e.g.:
-#   PYTHONPATH=/home/allans/code/sae-forge /home/allans/code/bio-sae/.venv/bin/python scripts/<script>.py

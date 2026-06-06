@@ -4,5 +4,15 @@ __pycache__/
 # Generated activation bundles (large); keep only small summary JSONs.
 data/*.npz
 data/*.json
-runs/*
-!runs/*_summary.json
+# runs/: keep only the small summaries + the index (at any depth); ignore big artifacts
+# (disassembly .txt/.json, *.log, tiny_gpt.pt, forge_example/) and the shared tiny_gpt.pt.
+runs/**
+!runs/**/
+!runs/**/*_summary.json
+!runs/README.md
+# the polygram forge-smoke output tree is a bulky internal artifact (keep only its top-level summary)
+runs/**/forge_example/**
+
+# editor swap files
+*.swp
+*.swo

@@ -1,0 +1,74 @@
+{
+  "experiment": "single-layer U_C: readers vs writers vs attribution",
+  "layer": 5,
+  "uc_layers": [
+    5,
+    6,
+    7
+  ],
+  "writers": [
+    [
+      4,
+      11
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      7
+    ]
+  ],
+  "writer_scores": [
+    0.96243623046875,
+    0.5383430574115954,
+    0.3773182408383018,
+    0.362274658203125
+  ],
+  "n_features": 2048,
+  "sae_forge_version": "0.14.0",
+  "overlap_attribution_writers": 0.05454324120744373,
+  "host_cov95": 0.6153846153846154,
+  "configs": {
+    "single": {
+      "induction_kl": 3.9006469216565596,
+      "complement_kl": 3.257257685455296,
+      "global_kl": 3.2962132105777138,
+      "cov95": 0.6153846153846154,
+      "excess": 0.6433892362012634
+    },
+    "uc_readers": {
+      "induction_kl": 4.14728204945364,
+      "complement_kl": 3.5454998002679767,
+      "global_kl": 3.581936131818671,
+      "cov95": 0.6153846153846154,
+      "excess": 0.6017822491856633
+    },
+    "uc_writers": {
+      "induction_kl": 3.956071300201522,
+      "complement_kl": 4.024313991109972,
+      "global_kl": 4.020182075761494,
+      "cov95": 0.5769230769230769,
+      "excess": -0.06824269090845014
+    },
+    "uc_attribution": {
+      "induction_kl": 2.7126920055779364,
+      "complement_kl": 1.9796766523991747,
+      "global_kl": 2.024058803046377,
+      "cov95": 0.5769230769230769,
+      "excess": 0.7330153531787618
+    },
+    "two_basis_wr": {
+      "induction_kl": 4.034971766909571,
+      "complement_kl": 4.186183324805636,
+      "global_kl": 4.177027862900182,
+      "cov95": 0.5769230769230769,
+      "excess": -0.15121155789606533
+    }
+  }
+}

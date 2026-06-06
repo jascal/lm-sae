@@ -1,0 +1,24 @@
+{
+  "experiment": "narrow-write-bus check",
+  "model": "gpt2",
+  "n_neurons": 36864,
+  "raw_768": {
+    "read_raw_768": 428.83941147768417,
+    "write_raw_768": 484.44936520751986,
+    "random_raw_768": 752.35973375223
+  },
+  "feature_48": {
+    "read_feat_48": 10.461876720191471,
+    "write_feat_48": 2.5491473860167284
+  },
+  "top_write_pc_tokens": [
+    "_for",
+    "First",
+    "_he",
+    "And",
+    "The",
+    "_him"
+  ],
+  "pc1_vs_meanwrite_cos": 0.9976411463716565,
+  "write_feat_participation_minus_pc1": 21.514632887778465
+}

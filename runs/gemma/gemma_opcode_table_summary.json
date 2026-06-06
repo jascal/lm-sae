@@ -1,0 +1,163 @@
+{
+  "experiment": "Gemma-2 QK opcode table (Gemma Scope operands, RoPE/GQA)",
+  "model": "google/gemma-2-2b",
+  "head_layer": 12,
+  "sae_layer": 12,
+  "n_operands": 48,
+  "supported_cells": 1916,
+  "n_legible_z2": 7,
+  "heads": [
+    {
+      "head": "12.0",
+      "kv_head": 0,
+      "offdiag_legibility": 0.11299312628409434,
+      "leg_z": 6.787746910567104,
+      "top_bind": {
+        "q": [
+          "_art",
+          "st",
+          "_Art"
+        ],
+        "k": [
+          "_Arsenal",
+          "_troops",
+          "_missions"
+        ],
+        "value": 0.0002817417620268095
+      }
+    },
+    {
+      "head": "12.1",
+      "kv_head": 0,
+      "offdiag_legibility": 0.0829743569559562,
+      "leg_z": 2.954210036468576,
+      "top_bind": {
+        "q": [
+          "_Chronicles",
+          "ria",
+          "<unk>"
+        ],
+        "k": [
+          "3",
+          "1",
+          "_game"
+        ],
+        "value": 0.0007582644171836676
+      }
+    },
+    {
+      "head": "12.2",
+      "kv_head": 1,
+      "offdiag_legibility": 0.13915564748842102,
+      "leg_z": 5.364712028318085,
+      "top_bind": {
+        "q": [
+          "_their",
+          "_her",
+          "_its"
+        ],
+        "k": [
+          "_were",
+          "_and",
+          "-@"
+        ],
+        "value": 0.0004316356127177277
+      }
+    },
+    {
+      "head": "12.3",
+      "kv_head": 1,
+      "offdiag_legibility": 0.06325989085484403,
+      "leg_z": 3.081131862762307,
+      "top_bind": {
+        "q": [
+          "6",
+          "8",
+          "4"
+        ],
+        "k": [
+          "5",
+          "_previous",
+          "6"
+        ],
+        "value": 0.0007688857346721856
+      }
+    },
+    {
+      "head": "12.4",
+      "kv_head": 2,
+      "offdiag_legibility": 0.0552366336790165,
+      "leg_z": 2.7035403151249326,
+      "top_bind": {
+        "q": [
+          "_such",
+          "_III",
+          "_this"
+        ],
+        "k": [
+          "_were",
+          "_and",
+          "-@"
+        ],
+        "value": 0.0004251420430749568
+      }
+    },
+    {
+      "head": "12.5",
+      "kv_head": 2,
+      "offdiag_legibility": 0.08177009886024555,
+      "leg_z": 2.8927784195152557,
+      "top_bind": {
+        "q": [
+          "_first",
+          "_from",
+          "1"
+        ],
+        "k": [
+          "2",
+          "_",
+          "1"
+        ],
+        "value": 0.0008584787069677671
+      }
+    },
+    {
+      "head": "12.6",
+      "kv_head": 3,
+      "offdiag_legibility": 0.04218868735261915,
+      "leg_z": 1.1918007256165037,
+      "top_bind": {
+        "q": [
+          "ria",
+          "_Chronicles",
+          "s"
+        ],
+        "k": [
+          "_Rock",
+          "_Chronicles",
+          "_Building"
+        ],
+        "value": 0.0005181210374492699
+      }
+    },
+    {
+      "head": "12.7",
+      "kv_head": 3,
+      "offdiag_legibility": 0.0890572567511716,
+      "leg_z": 2.8831093073585587,
+      "top_bind": {
+        "q": [
+          "3",
+          "1",
+          "_game"
+        ],
+        "k": [
+          "_began",
+          "_took",
+          "_became"
+        ],
+        "value": 0.0004113632596984639
+      }
+    }
+  ]
+}
