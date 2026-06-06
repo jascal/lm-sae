@@ -56,11 +56,13 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--pretrained", default="gpt2")
     p.add_argument("--corpora", default="shakespeare,wikitext")
-    p.add_argument("--max-tokens", type=int, default=8000)
+    p.add_argument("--max-tokens", type=int, default=20000, help="per corpus; needs to be large enough that "
+                   "enough token types clear --op-min-freq in BOTH corpora (8k -> only ~9 shared operands)")
     p.add_argument("--ctx", type=int, default=96)
-    p.add_argument("--n-operands", type=int, default=40)
-    p.add_argument("--n-chars", type=int, default=400000)
-    p.add_argument("--min-count", type=int, default=12)
+    p.add_argument("--n-operands", type=int, default=80)
+    p.add_argument("--n-chars", type=int, default=600000)
+    p.add_argument("--op-min-freq", type=int, default=20, help="min per-corpus token freq to be a shared operand")
+    p.add_argument("--min-count", type=int, default=12, help="min ordered (i->j) pairs to score an opcode cell")
     p.add_argument("--n-perm", type=int, default=15)
     p.add_argument("--top-k", type=int, default=5, help="top-k heads for the identity-overlap check")
     p.add_argument("--local-max", type=int, default=8)
@@ -77,27 +79,33 @@ def main(argv=None):
     tok = GPT2TokenizerFast.from_pretrained("gpt2")
     corpora = args.corpora.split(",")
 
-    # ---- SHARED operand set: COMMON single-tokens (fixed for both corpora -> apples-to-apples opcode) ----
-    ops = []
-    seen = set()
-    for c in COMMON:
-        t = tok(c, add_special_tokens=False)["input_ids"]
-        if len(t) == 1 and t[0] not in seen:
-            seen.add(t[0]); ops.append(t[0])
-        if len(ops) >= args.n_operands:
-            break
+    # ---- tokenize both corpora up front (also drives the shared operand set) ----
+    from collections import Counter
+    data = {}
+    for name in corpora:
+        ids = tok(_fetch(CORPORA[name], args.n_chars))["input_ids"][: args.max_tokens]
+        chunks = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
+        data[name] = {"chunks": chunks, "cnt": Counter(t for c in chunks for t in c)}
+
+    # ---- SHARED operand set: tokens FREQUENT IN BOTH corpora (apples-to-apples; corpus-agnostic).
+    # COMMON single-tokens seed it, then fill by min cross-corpus frequency. ----
+    cnts = [data[n]["cnt"] for n in corpora]
+    common_ids = {tok(c, add_special_tokens=False)["input_ids"][0] for c in COMMON
+                  if len(tok(c, add_special_tokens=False)["input_ids"]) == 1}
+    shared = [t for t in set().union(*[set(c) for c in cnts])
+              if all(cnts_i.get(t, 0) >= args.op_min_freq for cnts_i in cnts)]
+    shared.sort(key=lambda t: (t not in common_ids, -min(c.get(t, 0) for c in cnts)))  # COMMON first, then freq
+    ops = shared[: args.n_operands]
     nt = len(ops)
     op2i = {t: i for i, t in enumerate(ops)}
-    print(f"{args.pretrained}: {nt} shared operands, corpora={corpora}")
+    print(f"{args.pretrained}: {nt} shared operands (freq>={args.op_min_freq} in all corpora), corpora={corpora}")
 
     rng = np.random.default_rng(0)
     perms = [rng.permutation(nt) for _ in range(args.n_perm)]
     offmask = ~np.eye(nt, dtype=bool)
 
     def measure(name):
-        txt = _fetch(CORPORA[name], args.n_chars)
-        ids = tok(txt)["input_ids"][: args.max_tokens]
-        chunks = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
+        chunks = data[name]["chunks"]
         # behavioral
         pt = np.zeros((nL, H)); ptn = 0
         dup = np.zeros((nL, H)); dupn = 0; dupb = 0.0
