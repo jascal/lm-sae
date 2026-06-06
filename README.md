@@ -15,7 +15,7 @@ program's terminal target, though, is real LLMs — and a real LLM has **no orac
    model's computation. The disassembler reads the model's attention as a small, reused
    **instruction set** in the right (QK/OV-in-operand) basis, scores how much of it a named
    op-catalog explains, **causally validates** the named operators, and shows the same
-   reading **ports to a recent model** (Gemma-2-2B), at matched detail.
+   reading **ports across four model families** (Gemma-2, Llama-3, Qwen-2.5), at matched detail.
 
 The throughline: **a language model is legible in the right basis even where it is *not*
 legible as single SAE features.** Most of attention is positional plumbing; the
@@ -24,7 +24,7 @@ the part the SAE forge destroys (monosemanticity / cov95) is exactly the part yo
 *preserve* rather than re-learn.
 
 > **Status.** A CPU/single-GPU research MVP. GPT-2-small and a from-scratch tiny GPT for the
-> CPU loops; Gemma-2-2B (bf16, one RTX 5050) for the cross-model port. Every table below is
+> CPU loops; Gemma-2-2B / Llama-3.2-1B / Qwen2.5-1.5B (bf16, one RTX 5050) for the cross-model ports. Every table below is
 > backed by a tracked `runs/*_summary.json` (see [`runs/README.md`](runs/README.md)).
 
 ---
@@ -42,8 +42,8 @@ the part the SAE forge destroys (monosemanticity / cov95) is exactly the part yo
 | 3 | …and you **cannot train the entanglement away** | every retrain raises the entangled core | §3 |
 | 4 | GPT-2 attention is a reused **op-catalog**; 8/8 literature idioms recovered from weights | ~99% of content mass legible, ~2% dark | §4 |
 | 4 | The named heads are **causally load-bearing** and **corpus-robust** | induction-NLL z=8.6; head identities ρ≈0.84 across corpora | §4 |
-| 5 | The disassembler **ports whole to Gemma-2-2B** (RoPE/GQA/RMSNorm), at GPT-2 parity | induction-NLL z=8.3; 7/8 QK opcodes legible | §5 |
-| 5 | Plumbing fraction is **model-invariant** (~87%); its *composition* is not | attention-sink 46% (GPT-2) vs 4% (Gemma) | §5 |
+| 5 | The disassembler **ports across 4 families** (GPT-2, Gemma-2, Llama-3, Qwen-2.5) at parity | induction causal in all 4 (z 8.3–27.3) | §5 |
+| 5 | Plumbing fraction **model-invariant** (~87%); but the sink is **not** GPT-2-specific | sink 44–55% in GPT-2/Llama/Qwen, **4% Gemma** (the outlier) | §5 |
 | 6 | The two-basis writer-output `U_C` circuit-preservation claim was **RETRACTED** | writer-OV ≈ random-OV at matched compression (0/6) | §6 |
 
 ---
@@ -167,27 +167,29 @@ coverage scorecard → causal validation → corpus robustness.
   (prev-token ρ=0.99, mean ρ≈0.84 across Shakespeare/WikiText); the coverage *percentages* are
   corpus-conditioned (report the prose baseline for general text).
 
-## 5. Cross-model — the same disassembler on Gemma-2-2B
+## 5. Cross-model — the same disassembler across four families
 
-The whole framework **ports to a recent RoPE / GQA / RMSNorm model** (`gemma/`), at GPT-2
-parity. The architecture handling: GQA (query head `h` → kv head `h//(H/n_kv)`), content
-opcode `M_h = W_Q^h⊤ W_K^{kv} / √query_pre_attn_scalar`, RMSNorm gain-fold (`1+weight`, no
-mean-sub), and reading the **unrotated** content-QK (R₀) so RoPE's positional axis is
-separated from the content binding.
+The whole framework **ports across the RoPE / GQA / RMSNorm / gated-MLP family** (`gemma/`), at GPT-2
+parity. The weight-space disassembler is **arch-generic**: the per-architecture constants (RMSNorm gain
+offset, QK scale, whether a feature SAE exists) live in `arch_config.py`, so one `--model` flag runs
+Gemma-2-2B, Llama-3.2-1B, and Qwen2.5-1.5B. (Shared handling: GQA `h → h//(H/n_kv)`, the content opcode
+`M_h = W_Q^h⊤ W_K^{kv}/scale`, and reading the **unrotated** content-QK (R₀) so RoPE's positional axis is
+separated from the content binding.)
 
-- **Behavioral + coverage** (`disasm_portable.py`, same Shakespeare corpus as GPT-2):
+- **Behavioral + coverage** (`disasm_portable.py`, same Shakespeare corpus for all four):
 
-  | | GPT-2-small | Gemma-2-2B |
-  |---|---|---|
-  | plumbing fraction | 86.7% | 87.7% |
-  | attention-sink | **45.6%** | **3.9%** |
-  | content (long-range) | 13.3% | 12.3% |
+  | | GPT-2 | Gemma-2-2B | Llama-3.2-1B | Qwen2.5-1.5B |
+  |---|---|---|---|---|
+  | plumbing fraction | 86.7% | 87.7% | 89.4% | 86.6% |
+  | **attention-sink** | 45.6% | **3.9%** | 55.0% | 44.4% |
+  | content (long-range) | 13.3% | 12.3% | 10.6% | 13.4% |
 
-  The **plumbing fraction is model-invariant (~87%)**, but its *composition* is not: the heavy
-  attention-sink is **GPT-2-family-specific**, not universal — Gemma plumbs via self/local/prev
-  instead. A clean cross-model dissociation.
-- **Causal** (`gemma_causal.py`): ablating Gemma's induction heads raises induction-NLL at
-  **z=8.3** — replicating GPT-2's z=8.6. The induction mechanism is causal in both.
+  The **plumbing fraction is model-invariant (~87%)**, but its *composition* is not: the attention-sink is
+  high (44–55%) in GPT-2, Llama, and Qwen, while **Gemma-2 is a striking low-sink (~4%) outlier**. (This
+  *corrects* the earlier two-model reading that the sink was "GPT-2-family-specific" — with four models it is
+  near-universal, and Gemma is the exception.)
+- **Causal** (`gemma_causal.py`): ablating induction heads raises induction-NLL with z = **8.3 / 27.3 / 14.9**
+  (Gemma / Llama / Qwen), replicating GPT-2's z=8.6 — **induction is causally load-bearing in all four**.
 - **Content opcodes** (`gemma_opcode_table.py`): **7/8** QK content bindings legible (z>2) at
   layer 12 in Gemma Scope feature coords; legibility **peaks mid-network**
   (`gemma_layer_sweep.py`).

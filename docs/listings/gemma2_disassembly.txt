@@ -1,5 +1,5 @@
-GEMMA-2-2B DISASSEMBLY  (26 layers x 8 heads + GeGLU MLP; GQA n_kv=4, RoPE, RMSNorm)
-corpus=wikitext  tokens=10000  token-operands=40  SAE-layer=12 (Gemma Scope, 48 content operands)
+google/gemma-2-2b DISASSEMBLY  (26 layers x 8 heads + gated MLP; GQA n_kv=4, RoPE, RMSNorm)
+corpus=wikitext  tokens=10000  token-operands=40  SAE-layer=12 (48 SAE-feature operands)
 ; addr=where-to-read (attn bucket)  WRITE=copy/transform (OV diag)  bind=top QK token binding  idioms=behavioral role  QK/OV[...]=SAE-feature opcode (SAE layer only)
 
 attention budget (mean per-head mass): self 29%  sink 2%  prev 17%  structural 14%  local 21%  long_range 17%

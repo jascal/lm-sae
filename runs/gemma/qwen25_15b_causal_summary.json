@@ -1,0 +1,68 @@
+{
+  "experiment": "causal validation (induction-NLL mean-ablation): Qwen/Qwen2.5-1.5B",
+  "model": "Qwen/Qwen2.5-1.5B",
+  "baseline_ind_nll": 0.4137252555988359,
+  "baseline_comp_nll": 3.844441900574992,
+  "sets": [
+    {
+      "set": "induction",
+      "heads": [
+        [
+          14,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          19,
+          3
+        ],
+        [
+          14,
+          0
+        ],
+        [
+          14,
+          4
+        ],
+        [
+          19,
+          2
+        ]
+      ],
+      "delta_ind": 0.5781278800985492,
+      "delta_comp": -0.0014062036757107599,
+      "delta_ind_random_mean": 0.03859194172612321,
+      "z": 14.865372314427121,
+      "load_bearing": true
+    },
+    {
+      "set": "prev_token",
+      "heads": [
+        [
+          13,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          18,
+          8
+        ]
+      ],
+      "delta_ind": 0.33661422265548235,
+      "delta_comp": 0.22714985545493604,
+      "delta_ind_random_mean": 0.1320887989965631,
+      "z": 1.5927034661736321,
+      "load_bearing": false
+    }
+  ]
+}

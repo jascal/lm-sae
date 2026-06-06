@@ -32,9 +32,11 @@ assemble a catalog of weight-grounded **idioms** (induction, previous-token, dup
 name-mover families, copy-suppression, S-inhibition), quantify the fraction of attention it
 explains, and show the named operators are **causally load-bearing** (mean-ablation;
 induction-NLL z=8.6) and **corpus-robust** (head identities ρ≈0.84 across verse and prose). We
-then port the entire reading to **Gemma-2-2B** (RoPE/GQA/RMSNorm) and find the mechanisms and
-their legibility are **architecture-invariant**, while one piece of the plumbing — the
-attention-sink, 46% of GPT-2's attention mass — is **GPT-2-family-specific** (≈4% in Gemma).
+then port the entire reading to three more architectures — **Gemma-2-2B, Llama-3.2-1B, and
+Qwen2.5-1.5B** (RoPE/GQA/RMSNorm) — and find the mechanisms are **architecture-invariant**
+(induction is causally load-bearing in all four, mean-ablation z=8.3–27.3) and the plumbing
+*fraction* is invariant (~87%), but its *composition* is not: the attention-sink is high
+(44–55%) in GPT-2, Llama, and Qwen, while **Gemma-2 is a low-sink (~4%) outlier**.
 Most of attention is positional plumbing; the content-carrying minority is largely named,
 causal, and shared across models.
 
@@ -82,8 +84,10 @@ basis / idiom* are load-bearing; U_A·U_C and χ can be omitted entirely.
    the selection provably needs a *value* signal (label-free selection is anti-informative). *(A)*
 4. **A weight-grounded, causally-validated, corpus-robust op-catalog** for GPT-2 attention,
    with a coverage scorecard ("% of attention explained"). *(B)*
-5. **The catalog ports to Gemma-2-2B at matched detail**; mechanisms/legibility are
-   architecture-invariant, the attention-sink is architecture-specific. *(B)*
+5. **The catalog ports across four families** (GPT-2, Gemma-2, Llama-3.2, Qwen-2.5) at matched detail;
+   the idioms + induction-causality are architecture-invariant, but the attention-sink is
+   family-dependent (44–55% in GPT-2/Llama/Qwen, ~4% in Gemma — Gemma the low outlier), *not*
+   GPT-2-specific. *(B)*
 6. **An honest retraction**: a specific two-basis "writer-output `U_C`" circuit-preservation
    claim is falsified under compression control — a methodological caution about gameable
    circuit metrics. *(both)*
@@ -135,7 +139,7 @@ Anchor citations the writer should fetch and cite:
 - **Copy-suppression**: McDougall et al. (2023).
 - **Successor heads / greater-than**: Gould et al. (2023); Hanna et al. (2023).
 - **Attention-sink**: Xiao et al., *Efficient Streaming LMs with Attention Sinks* (2023) — our
-  cross-model result (sink is GPT-2-family-specific) is a direct, citable contrast.
+  cross-model result (sink is high in GPT-2/Llama/Qwen but ~absent in Gemma-2) is a direct, citable contrast.
 - **SAEs / monosemanticity**: Bricken et al. (2023); Cunningham et al. (2023). **Gemma Scope**:
   Lieberum et al. (2024) — the JumpReLU SAE suite we use as the Gemma operand basis.
 - **What transformers can compute (op-set framings)**: Weiss et al. RASP (2021); Lindner et al.
@@ -241,18 +245,25 @@ split (named / token-legible / sae-only / dark) from the two `coverage_scorecard
 
 ## Results — cross-model parity (the headline of B)
 
-| axis | GPT-2-small | Gemma-2-2B | source |
-|------|-------------|------------|--------|
-| plumbing fraction (Shakespeare) | 86.7% | 87.7% | `disasm_portable_summary.json`, `disasm_portable_gemma2_summary.json` |
-| **attention-sink** | **45.6%** | **3.9%** | same |
-| self / local / prev plumbing | 8 / 12 / 9% | 31 / 21 / 18% | same |
-| induction causal (induction-NLL) | z=8.6 | z=8.3 | `causal_validation_summary.json`, `gemma_causal_summary.json` |
-| QK content-opcode legibility | most heads z>2 | 7/8 at L12; peaks mid-network | `gemma_opcode_table_summary.json`, `gemma_layer_sweep_summary.json` |
-| OV write copy/transform | mostly transform | 52 copy / 156 transform | `gemma2_disassembly.json` (write_hist) |
+All on the same Shakespeare corpus (`disasm_portable.py`); induction-causal z from each model's
+`*_causal_summary.json`. Sources: `disasm_portable{_summary, _gemma2_summary, _llama32_1b_summary,
+_qwen25_15b_summary}.json` and `{causal_validation, gemma_causal, llama32_1b_causal, qwen25_15b_causal}_summary.json`.
 
-**Figure C1** (cross-model plumbing composition): grouped bars of the 6 buckets for both models
-from the two `disasm_portable_*` JSONs — visually carries "sink is GPT-2-specific." **Figure C2**
-(legibility vs depth): mean z and n-legible per layer from `gemma_layer_sweep_summary.json`.
+| axis | GPT-2 | Gemma-2-2B | Llama-3.2-1B | Qwen2.5-1.5B | invariant? |
+|------|-------|------------|--------------|--------------|------------|
+| plumbing fraction | 86.7% | 87.7% | 89.4% | 86.6% | **yes (~87%)** |
+| **attention-sink** | 45.6% | **3.9%** | 55.0% | 44.4% | **no — Gemma the low outlier** |
+| induction causal (induction-NLL z) | 8.6 | 8.3 | 27.3 | 14.9 | **yes (load-bearing in all 4)** |
+| universal idioms (prev/dup/induction) | yes | yes | yes | yes | **yes** |
+
+Gemma-only extras (need a per-layer SAE / are threshold-defined, so not cross-model invariants): QK
+content-opcode legibility 7/8 at L12, peaks mid-network (`gemma_opcode_table_summary.json`,
+`gemma_layer_sweep_summary.json`); OV copy/transform split.
+
+**Figure C1** (cross-model plumbing composition): grouped bars of the 6 attention buckets for all four
+models from the `disasm_portable_*` JSONs — visually carries "**sink is high in 3/4; Gemma is the low
+outlier**" (the corrected n=4 finding). **Figure C2** (legibility vs depth, Gemma): mean z and n-legible
+per layer from `gemma_layer_sweep_summary.json`.
 The full per-head listings are committed under [`listings/`](listings/)
 (`gpt2_disassembly.txt`, `gemma2_disassembly.txt`, `gemma2_disassembly_L6.txt`) as the qualitative
 appendix; regenerate via `disassemble_{gpt2,gemma}.py` (the `runs/` copies + per-head `.json` are
@@ -324,9 +335,9 @@ coverage: sink 45.5%, content 13.7%, ~2% dark       runs/coverage_scorecard_summ
 causal induction-NLL z=8.6                           runs/causal_validation_summary.json
 IOI neg name-movers z=62                             runs/ioi_causal_summary.json
 corpus-robust head identities (prev rho 0.99)       runs/corpus_robustness_summary.json
-GPT-2 sink 45.6% vs Gemma 3.9% (same corpus)        runs/disasm_portable{,_gemma2}_summary.json
-Gemma induction causal z=8.3                         runs/gemma_causal_summary.json
-Gemma 7/8 QK opcodes legible at L12                  runs/gemma_opcode_table_summary.json
-Gemma OV write 52 copy / 156 transform              runs/gemma2_disassembly.json (write_hist)
+plumbing ~87% all 4 models (invariant)              runs/gemma/disasm_portable{,_gemma2,_llama32_1b,_qwen25_15b}_summary.json
+sink 45.6/3.9/55.0/44.4% (GPT2/Gemma/Llama/Qwen)    same (Gemma the low outlier; NOT GPT-2-specific)
+induction causal z 8.6/8.3/27.3/14.9 (all 4)        runs/{disassembly/causal_validation,gemma/{gemma,llama32_1b,qwen25_15b}_causal}_summary.json
+Gemma 7/8 QK opcodes legible at L12                  runs/gemma/gemma_opcode_table_summary.json
 writer-output U_C RETRACTED (0/6)                    runs/forge_revalidate_broad_summary.json
 ```

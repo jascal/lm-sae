@@ -1,18 +1,23 @@
-"""Gemma-2-2B disassembly — the unified per-head decode (the recent-model analog of disassemble_gpt2.py).
+"""Cross-model attention disassembly — the unified per-head decode (the recent-model analog of disassemble_gpt2.py).
 
-Combines every channel into one listing, at GPT-2-disassembly parity. For ALL 208 heads (26L x 8H):
+Runs on ANY RoPE / GQA / RMSNorm / gated-MLP HF causal LM via `--model` (Gemma-2, Llama-3, Qwen2.5, …);
+the per-architecture constants (RMSNorm gain offset, QK scale, whether a feature SAE exists) live in
+arch_config.py, so the disassembly math itself is model-generic. (Kept the historical filename;
+despite the name it is not Gemma-specific.)
+
+Combines every channel into one listing, at GPT-2-disassembly parity. For ALL heads (n_layers x n_heads):
   - ADDRESSING profile (attention-bucket split self/sink/prev/structural/local/long_range -> dominant mode);
   - IDIOM tags (prev-token / duplicate / induction, z>1.5);
   - QK token-operand BIND + OV WRITE (copy vs transform), computed in a *universal* per-layer token-centroid
-    operand basis (GQA + RMSNorm-fold + unrotated content-QK), exactly as disassemble_gpt2.py — this is the
-    detail that previously existed only at the SAE layer, now at every layer.
-Plus a per-layer GeGLU MLP catalog (top neurons: read-tokens -> write-tokens, weight-only / first-order).
-For the Gemma Scope SAE layer (12): the additional feature-native CONTENT opcode (QK B_h legibility + OV
-write in Gemma Scope decoder coords) — the analog of GPT-2's separate sae_opcode_table. Reads
-gemma_causal_summary.json if present to annotate which idiom heads are causally load-bearing.
+    operand basis (GQA + RMSNorm-fold + unrotated content-QK), exactly as disassemble_gpt2.py.
+Plus a per-layer gated-MLP catalog (top neurons: read-tokens -> write-tokens, weight-only / first-order).
+Where a per-layer residual SAE exists (Gemma Scope), it ALSO emits the feature-native CONTENT opcode at the
+SAE layer (the analog of GPT-2's separate sae_opcode_table); for models without one (Llama/Qwen) that step
+is skipped and the universal token-operand bind carries the per-head decode. Reads the model's
+*_causal_summary.json if present to annotate which idiom heads are causally load-bearing.
 
-Writes a human-readable listing to runs/gemma/gemma2_disassembly.txt + a JSON. Runs on cuda (bf16). The headline:
-the GPT-2 disassembly framework, ported whole to a RoPE/GQA/RMSNorm model, at matched detail.
+Writes a human-readable listing + JSON (default runs/gemma/…; override --output/--txt per model). Runs on
+cuda (bf16). The headline: the GPT-2 disassembly framework, ported whole across RoPE/GQA/RMSNorm models.
 """
 from __future__ import annotations
 
@@ -25,6 +30,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from arch_config import has_feature_sae, norm_gain, qk_scale  # noqa: E402
 from scope_loader import scope_npz  # noqa: E402
 
 BUCKETS = ["self", "sink", "prev", "structural", "local", "long_range"]
@@ -52,6 +58,74 @@ def _spear(a, b):
     ra -= ra.mean(); rb -= rb.mean()
     den = np.sqrt((ra ** 2).sum() * (rb ** 2).sum())
     return float((ra * rb).sum() / den) if den else float("nan")
+
+
+def sae_feature_opcode(model, dev, SL, Xh, all_ids, chunks, off, tok, args, H, n_kv, hd, qscale):
+    """Feature-native QK/OV opcode at the SAE layer, over per-layer SAE decoder directions (Gemma Scope).
+
+    Returns (sae_op: {head -> {qk_z, qk_bind, ov_write}}, nt). Only meaningful where a per-layer residual
+    SAE exists; for other models the caller skips this and uses the universal token-operand bind instead."""
+    import torch
+    P = len(all_ids)
+    sae = np.load(scope_npz(SL, scope_path=args.scope_path))
+    Wenc = torch.tensor(sae["W_enc"], device=dev, dtype=torch.float32); benc = torch.tensor(sae["b_enc"], device=dev, dtype=torch.float32)
+    bdec = torch.tensor(sae["b_dec"], device=dev, dtype=torch.float32); thr = torch.tensor(sae["threshold"], device=dev, dtype=torch.float32)
+    Wdec = sae["W_dec"].astype(np.float64)
+    Xc = torch.tensor(Xh, device=dev) - bdec
+    mass = torch.zeros(Wenc.shape[1], device=dev)
+    for i in range(0, P, 2048):
+        pre = Xc[i:i + 2048] @ Wenc + benc
+        mass += torch.where(pre > thr, pre, torch.zeros_like(pre)).sum(0)
+    feats, gloss, seen = [], [], set()
+    for f in mass.argsort(descending=True).cpu().numpy():
+        if len(feats) >= args.n_operands:
+            break
+        active = ((Xc @ Wenc[:, f] + benc[f]) > thr[f]).cpu().numpy()
+        if active.sum() < args.min_count:
+            continue
+        cand = [tok.convert_ids_to_tokens(t).replace("Ġ", "_").replace("▁", "_")
+                for t, _ in Counter(all_ids[active].tolist()).most_common(12)]
+        g = [c for c in cand if not _struct(c)][:3]  # drop special/byte-fallback tokens (e.g. <unk>) from the label
+        if not g or g[0].lstrip("_").lower() in STOP or g[0] in seen:
+            continue
+        seen.add(g[0]); feats.append(int(f)); gloss.append(g)
+    nt = len(feats)
+    ln_gain = norm_gain(model.model.layers[SL].input_layernorm.weight.detach().float().cpu().numpy().astype(np.float64), model.config.model_type)
+    D = Wdec[feats] * ln_gain; D = D / (np.linalg.norm(D, axis=1, keepdims=True) + 1e-9)
+    preO = (Xc @ Wenc[:, feats] + benc[feats])
+    actO = torch.where(preO > thr[feats], preO, torch.zeros_like(preO)); mx, am = actO.max(1)
+    pos_op = torch.where(mx > 0, am, torch.full_like(am, -1)).cpu().numpy()
+
+    asum = np.zeros((H, nt * nt)); acnt = np.zeros(nt * nt)
+    with torch.no_grad():
+        for ci, c in enumerate(chunks):
+            aL = model(input_ids=torch.tensor([c], device=dev), output_attentions=True).attentions[SL][0].float().cpu().numpy()
+            poc = pos_op[off[ci]:off[ci + 1]]; ti, si = np.tril_indices(len(c), k=-1)
+            m = (poc[ti] >= 0) & (poc[si] >= 0); flat = poc[ti[m]] * nt + poc[si[m]]
+            np.add.at(acnt, flat, 1.0)
+            for h in range(H):
+                np.add.at(asum[h], flat, aL[h][ti[m], si[m]])
+    cnt2 = acnt.reshape(nt, nt); offm = ~np.eye(nt, dtype=bool); supp = (cnt2 >= args.min_count) & offm
+    rng = np.random.default_rng(0); perms = [rng.permutation(nt) for _ in range(args.n_perm)]
+    Wq = model.model.layers[SL].self_attn.q_proj.weight.detach().float().cpu().numpy().astype(np.float64)
+    Wk = model.model.layers[SL].self_attn.k_proj.weight.detach().float().cpu().numpy().astype(np.float64)
+    Wv = model.model.layers[SL].self_attn.v_proj.weight.detach().float().cpu().numpy().astype(np.float64)
+    Wo = model.model.layers[SL].self_attn.o_proj.weight.detach().float().cpu().numpy().astype(np.float64)
+    sae_op = {}
+    for h in range(H):
+        kv = h // (H // n_kv)
+        Mh = (Wq[h * hd:(h + 1) * hd].T @ Wk[kv * hd:(kv + 1) * hd]) / qscale
+        B = D @ Mh @ D.T; A = asum[h].reshape(nt, nt) / np.maximum(cnt2, 1)
+        leg = _spear(B[supp], A[supp]) if supp.sum() >= 4 else float("nan")
+        null = [_spear(B[np.ix_(pp, pp)][supp], A[supp]) for pp in perms] if supp.sum() >= 4 else [0]
+        z = (leg - np.nanmean(null)) / (np.nanstd(null) + 1e-9) if np.isfinite(leg) else float("nan")
+        Bo = B.copy(); np.fill_diagonal(Bo, -np.inf); qi_, ki_ = np.unravel_index(int(np.argmax(Bo)), Bo.shape)
+        OV = Wo[:, h * hd:(h + 1) * hd] @ Wv[kv * hd:(kv + 1) * hd]            # (d,d) W_O^h W_V^kv
+        V = D @ OV @ D.T; Vo = V.copy(); np.fill_diagonal(Vo, -np.inf)
+        wz, wy = np.unravel_index(int(np.argmax(Vo)), Vo.shape)                # write-feature, source-feature
+        sae_op[h] = {"qk_z": float(z), "qk_bind": [gloss[qi_], gloss[ki_]],
+                     "ov_write": [gloss[wy], gloss[wz]]}                       # source -> written
+    return sae_op, nt
 
 
 def main(argv=None):
@@ -84,9 +158,11 @@ def main(argv=None):
     model = AutoModelForCausalLM.from_pretrained(
         args.model, attn_implementation="eager", dtype=torch.bfloat16).eval().to(dev)
     cfg = model.config
-    nL, H, n_kv, hd = cfg.num_hidden_layers, cfg.num_attention_heads, cfg.num_key_value_heads, cfg.head_dim
-    qscale = float(getattr(cfg, "query_pre_attn_scalar", hd)) ** 0.5
+    nL, H, n_kv = cfg.num_hidden_layers, cfg.num_attention_heads, cfg.num_key_value_heads
+    hd = getattr(cfg, "head_dim", None) or (cfg.hidden_size // cfg.num_attention_heads)
+    qscale = qk_scale(cfg)
     SL = args.sae_layer
+    run_sae = has_feature_sae(cfg.model_type) and 0 <= SL < nL
     import urllib.request
     CORPORA = {"shakespeare": "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
                "wikitext": "https://raw.githubusercontent.com/pytorch/examples/main/word_language_model/data/wikitext-2/train.txt"}
@@ -151,73 +227,18 @@ def main(argv=None):
     frac = bacc / np.maximum(btot, 1e-9)[:, :, None]
     zP, zD, zI = _z(prevv.reshape(-1)), _z(dupv.reshape(-1)), _z(indv.reshape(-1))
 
-    # ---- Gemma Scope operands (diverse content features) for the SAE layer ----
-    sae = np.load(scope_npz(SL, scope_path=args.scope_path))
-    Wenc = torch.tensor(sae["W_enc"], device=dev, dtype=torch.float32); benc = torch.tensor(sae["b_enc"], device=dev, dtype=torch.float32)
-    bdec = torch.tensor(sae["b_dec"], device=dev, dtype=torch.float32); thr = torch.tensor(sae["threshold"], device=dev, dtype=torch.float32)
-    Wdec = sae["W_dec"].astype(np.float64)
-    Xc = torch.tensor(Xh, device=dev) - bdec
-    mass = torch.zeros(Wenc.shape[1], device=dev)
-    for i in range(0, P, 2048):
-        pre = Xc[i:i + 2048] @ Wenc + benc
-        mass += torch.where(pre > thr, pre, torch.zeros_like(pre)).sum(0)
-    feats, gloss, seen = [], [], set()
-    for f in mass.argsort(descending=True).cpu().numpy():
-        if len(feats) >= args.n_operands:
-            break
-        active = ((Xc @ Wenc[:, f] + benc[f]) > thr[f]).cpu().numpy()
-        if active.sum() < args.min_count:
-            continue
-        cand = [tok.convert_ids_to_tokens(t).replace("Ġ", "_").replace("▁", "_")
-                for t, _ in Counter(all_ids[active].tolist()).most_common(12)]
-        g = [c for c in cand if not _struct(c)][:3]  # drop special/byte-fallback tokens (e.g. <unk>) from the label
-        if not g or g[0].lstrip("_").lower() in STOP or g[0] in seen:
-            continue
-        seen.add(g[0]); feats.append(int(f)); gloss.append(g)
-    nt = len(feats)
-    ln_gain = 1.0 + model.model.layers[SL].input_layernorm.weight.detach().float().cpu().numpy().astype(np.float64)
-    D = Wdec[feats] * ln_gain; D = D / (np.linalg.norm(D, axis=1, keepdims=True) + 1e-9)
-    preO = (Xc @ Wenc[:, feats] + benc[feats])
-    actO = torch.where(preO > thr[feats], preO, torch.zeros_like(preO)); mx, am = actO.max(1)
-    pos_op = torch.where(mx > 0, am, torch.full_like(am, -1)).cpu().numpy()
-
-    # ---- pass 2: empirical content-attn at the SAE layer over operand pairs ----
-    asum = np.zeros((H, nt * nt)); acnt = np.zeros(nt * nt)
-    with torch.no_grad():
-        for ci, c in enumerate(chunks):
-            aL = model(input_ids=torch.tensor([c], device=dev), output_attentions=True).attentions[SL][0].float().cpu().numpy()
-            poc = pos_op[off[ci]:off[ci + 1]]; ti, si = np.tril_indices(len(c), k=-1)
-            m = (poc[ti] >= 0) & (poc[si] >= 0); flat = poc[ti[m]] * nt + poc[si[m]]
-            np.add.at(acnt, flat, 1.0)
-            for h in range(H):
-                np.add.at(asum[h], flat, aL[h][ti[m], si[m]])
-    cnt2 = acnt.reshape(nt, nt); offm = ~np.eye(nt, dtype=bool); supp = (cnt2 >= args.min_count) & offm
-    rng = np.random.default_rng(0); perms = [rng.permutation(nt) for _ in range(args.n_perm)]
-    Wq = model.model.layers[SL].self_attn.q_proj.weight.detach().float().cpu().numpy().astype(np.float64)
-    Wk = model.model.layers[SL].self_attn.k_proj.weight.detach().float().cpu().numpy().astype(np.float64)
-    Wv = model.model.layers[SL].self_attn.v_proj.weight.detach().float().cpu().numpy().astype(np.float64)
-    Wo = model.model.layers[SL].self_attn.o_proj.weight.detach().float().cpu().numpy().astype(np.float64)
-    sae_op = {}
-    for h in range(H):
-        kv = h // (H // n_kv)
-        Mh = (Wq[h * hd:(h + 1) * hd].T @ Wk[kv * hd:(kv + 1) * hd]) / qscale
-        B = D @ Mh @ D.T; A = asum[h].reshape(nt, nt) / np.maximum(cnt2, 1)
-        leg = _spear(B[supp], A[supp]) if supp.sum() >= 4 else float("nan")
-        null = [_spear(B[np.ix_(pp, pp)][supp], A[supp]) for pp in perms] if supp.sum() >= 4 else [0]
-        z = (leg - np.nanmean(null)) / (np.nanstd(null) + 1e-9) if np.isfinite(leg) else float("nan")
-        Bo = B.copy(); np.fill_diagonal(Bo, -np.inf); qi_, ki_ = np.unravel_index(int(np.argmax(Bo)), Bo.shape)
-        OV = Wo[:, h * hd:(h + 1) * hd] @ Wv[kv * hd:(kv + 1) * hd]            # (d,d) W_O^h W_V^kv
-        V = D @ OV @ D.T; Vo = V.copy(); np.fill_diagonal(Vo, -np.inf)
-        wz, wy = np.unravel_index(int(np.argmax(Vo)), Vo.shape)                # write-feature, source-feature
-        sae_op[h] = {"qk_z": float(z), "qk_bind": [gloss[qi_], gloss[ki_]],
-                     "ov_write": [gloss[wy], gloss[wz]]}                       # source -> written
+    # ---- feature-native opcode at the SAE layer (Gemma Scope; skipped for models without a per-layer SAE) ----
+    if run_sae:
+        sae_op, nt = sae_feature_opcode(model, dev, SL, Xh, all_ids, chunks, off, tok, args, H, n_kv, hd, qscale)
+    else:
+        sae_op, nt = {}, 0
 
     # ---- all-layer token-operand QK bind + OV copy/transform (GPT-2 parity: universal token basis) ----
     # operand x->y bilinears computed in head space (low-rank) so all 26x8 heads are cheap.
     tokop = {}; ovdiags = []; offm_t = ~np.eye(n_op, dtype=bool)
     for L in range(nL):
         sa = model.model.layers[L].self_attn
-        lg = 1.0 + model.model.layers[L].input_layernorm.weight.detach().float().cpu().numpy().astype(np.float64)
+        lg = norm_gain(model.model.layers[L].input_layernorm.weight.detach().float().cpu().numpy().astype(np.float64), cfg.model_type)
         Dl = (cen[L] - gm[L]) * lg; Dl = Dl / (np.linalg.norm(Dl, axis=1, keepdims=True) + 1e-9)   # (n_op, d) RMSNorm-folded
         WQ = sa.q_proj.weight.detach().float().cpu().numpy().astype(np.float64)
         WK = sa.k_proj.weight.detach().float().cpu().numpy().astype(np.float64)
@@ -238,7 +259,7 @@ def main(argv=None):
     mlp = {}
     for L in range(nL):
         layer = model.model.layers[L]
-        lg = 1.0 + getattr(layer, "pre_feedforward_layernorm", layer.post_attention_layernorm).weight.detach().float().cpu().numpy().astype(np.float64)
+        lg = norm_gain(getattr(layer, "pre_feedforward_layernorm", layer.post_attention_layernorm).weight.detach().float().cpu().numpy().astype(np.float64), cfg.model_type)
         Dl = (cen[L] - gm[L]) * lg; Dl = Dl / (np.linalg.norm(Dl, axis=1, keepdims=True) + 1e-9)
         Wg = layer.mlp.gate_proj.weight.detach().float().cpu().numpy().astype(np.float64)   # (inter, d)
         Wd = layer.mlp.down_proj.weight.detach().float().cpu().numpy().astype(np.float64)   # (d, inter)
@@ -276,20 +297,21 @@ def main(argv=None):
                    "buckets": {b: float(f[k]) for k, b in enumerate(BUCKETS)}, "idioms": tags,
                    "bind": tp["bind"], "write": "copy" if tp["ov_diag"] >= ov_hi else "transform",
                    "ov_diag": tp["ov_diag"], "causal_load_bearing": causal.get(f"{L}.{h}", [])}
-            if L == SL:
+            if run_sae and L == SL:
                 rec["sae_opcode"] = sae_op[h]
             rows.append(rec)
     budget = {b: float(np.mean(frac[:, :, k])) for k, b in enumerate(BUCKETS)}
     write_hist = dict(Counter(r["write"] for r in rows))
-    out = {"experiment": "Gemma-2-2B disassembly", "model": args.model, "n_layers": nL, "n_heads": H,
+    out = {"experiment": f"{args.model} disassembly", "model": args.model, "n_layers": nL, "n_heads": H,
            "sae_layer": SL, "n_operands": nt, "n_token_operands": n_op, "attention_budget": budget,
            "write_hist": write_hist, "heads": rows, "mlp": mlp}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
 
     # ---- human-readable listing ----
-    lines = [f"GEMMA-2-2B DISASSEMBLY  ({nL} layers x {H} heads + GeGLU MLP; GQA n_kv={n_kv}, RoPE, RMSNorm)",
-             f"corpus={args.corpus}  tokens={P}  token-operands={n_op}  SAE-layer={SL} (Gemma Scope, {nt} content operands)",
+    sae_hdr = f"SAE-layer={SL} ({nt} SAE-feature operands)" if run_sae else "SAE-feature opcode: n/a (token-operand basis only)"
+    lines = [f"{args.model} DISASSEMBLY  ({nL} layers x {H} heads + gated MLP; GQA n_kv={n_kv}, RoPE, RMSNorm)",
+             f"corpus={args.corpus}  tokens={P}  token-operands={n_op}  {sae_hdr}",
              "; addr=where-to-read (attn bucket)  WRITE=copy/transform (OV diag)  bind=top QK token binding  "
              "idioms=behavioral role  QK/OV[...]=SAE-feature opcode (SAE layer only)", ""]
     lines.append("attention budget (mean per-head mass): " + "  ".join(f"{b} {budget[b]:.0%}" for b in BUCKETS))
@@ -317,8 +339,9 @@ def main(argv=None):
     args.txt.write_text("\n".join(lines) + "\n")
     print("\n".join(lines[:6]))
     n_idiom = sum(1 for r in rows if r["idioms"]); n_leg = sum(1 for r in rows if r.get("sae_opcode", {}).get("qk_z", 0) > 2)
+    sae_msg = f"layer-{SL} content opcodes legible (z>2): {n_leg}/{H}" if run_sae else "feature-opcode skipped (no per-layer SAE)"
     print(f"\n[summary] {n_idiom}/{len(rows)} heads carry an idiom tag; WRITE {write_hist}; "
-          f"token operands {n_op}; layer-{SL} content opcodes legible (z>2): {n_leg}/{H}")
+          f"token operands {n_op}; {sae_msg}")
     print(f"[done] {args.txt}  +  {args.output}")
     return out
 

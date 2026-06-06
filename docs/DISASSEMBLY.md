@@ -129,20 +129,24 @@ noisy 0.43–0.75; 38 → stable 0.81); it needs ~20k tokens/corpus for enough s
 - Causal claims are **metric-specific** — confirmed on the metric each idiom serves, not universally.
 - `coreference` overlaps `duplicate_token` (the dup mechanism applied to pronouns), and its SAE *weight*
   binding (9.0) diverges from its raw *attention* signal — weight-binding ≠ attention.
-- Two base models (GPT-2-small + Gemma-2-2B); the GPT-2 SAE-operand table covers layers 1/4/9; greater-than
-  is MLP-dominated (the OV probe sees only the attention-side shadow). Gemma's named *circuit* roles are not
-  ported (no published Gemma IOI head-set) — only the universal idioms + behavioral tags.
+- Four base models (GPT-2-small, Gemma-2-2B, Llama-3.2-1B, Qwen2.5-1.5B); the GPT-2 SAE-operand table covers
+  layers 1/4/9; greater-than is MLP-dominated (the OV probe sees only the attention-side shadow). Named
+  *circuit* roles (IOI name-movers, S-inhibition) are GPT-2-only (no published IOI head-set for the others) —
+  the non-GPT-2 models carry the universal idioms + behavioral tags + causal flags. The feature-native SAE
+  opcode is Gemma-only (Gemma Scope); Llama/Qwen use the universal token-operand bind.
 
-## Cross-model: Gemma-2-2B
+## Cross-model: Gemma-2, Llama-3, Qwen-2.5
 
-The whole framework **ports to a recent RoPE / GQA / RMSNorm model** (`scripts/gemma/`, GPU), at matched
-detail. **Architecture handling**: GQA (query head `h` → kv head `h//(H/n_kv)`); content opcode
-`M_h = W_Q^h⊤ W_K^{kv} / √query_pre_attn_scalar` (=√256); RMSNorm gain-fold (`1+weight`, no mean-subtraction);
-and the **unrotated content-QK** (R₀) reading, which separates RoPE's positional axis from the content
-binding. Operands at the SAE layer = Gemma Scope (`gemma-scope-2b-pt-res`, JumpReLU, width-16k) decoder
-directions; at every other layer = a universal per-layer **token-centroid** basis (the parity move — the same
-kind of basis GPT-2's listing uses, computed low-rank so all 208 heads stay cheap). Gemma-2-2B = 26L × 8H,
-GQA n_kv=4, head_dim 256, GeGLU MLP.
+The whole framework **ports across the RoPE / GQA / RMSNorm / gated-MLP family** (`scripts/gemma/`, GPU). The
+weight-space disassembler is **arch-generic**: the per-architecture constants — RMSNorm gain offset (Gemma's
+zero-centered `1+weight` vs plain `weight` for Llama/Qwen), QK scale (`query_pre_attn_scalar` vs `√head_dim`),
+and whether a per-layer feature SAE exists — live in `arch_config.py`, so one `--model` flag runs **Gemma-2-2B,
+Llama-3.2-1B, and Qwen2.5-1.5B** (GPT-2 keeps its own `disassemble_gpt2.py`). **Shared handling**: GQA (query
+head `h` → kv head `h//(H/n_kv)`); content opcode `M_h = W_Q^h⊤ W_K^{kv} / scale`; the **unrotated content-QK**
+(R₀) reading that separates RoPE's positional axis from the content binding; a universal per-layer
+**token-centroid** operand basis at every layer (low-rank, so all heads stay cheap), plus the feature-native
+Gemma-Scope opcode at the SAE layer where a SAE exists (Gemma only; Llama/Qwen skip it). The Gemma deep-dive
+below is the worked example; the four-model synthesis follows.
 
 ### Idioms & coverage (the portable layer)
 `disasm_portable.py` recovers the universal idioms from Gemma's weights/behavior: **prev-token** (0.0, 20.1,
@@ -174,29 +178,40 @@ feature-native QK/OV opcode — the same fields GPT-2's listing carries. The one
 intrinsic: GPT-2's named *circuit* roles (IOI name-movers, S-inhibition) come from a published head-set with
 no Gemma equivalent, so Gemma carries behavioral idiom tags + causal flags rather than named-circuit tags.
 
-### Cross-model synthesis
+### Cross-model synthesis (four models, four families)
 
-| axis | GPT-2-small | Gemma-2-2B | invariant? |
-|------|-------------|------------|------------|
-| plumbing fraction (same Shakespeare corpus) | 86.7% | 87.7% | **yes (~87%)** |
-| attention-sink | **45.6%** | **3.9%** | **no — sink is GPT-2-family-specific** |
-| universal idioms recovered (prev/dup/induction) | yes | yes | **yes** |
-| induction causal (mean-ablation, induction-NLL) | z = 8.6 | z = 8.3 | **yes (causal in both)** |
-| QK content-opcode legibility (SAE-feature coords) | most heads z>2 | 7/8 at L12; peaks mid-network | **yes (legible in the right basis)** |
-| OV write (copy vs transform) | mostly transform | 156 transform / 52 copy | **yes** |
+All on the **same Shakespeare corpus** for apples-to-apples (`disasm_portable.py`); induction causality from
+each model's `*_causal_summary.json`:
 
-**Conclusion: the mechanisms and their legibility are architecture-invariant; the *composition of the
-plumbing* (the attention-sink) is architecture-specific.**
+| axis | GPT-2-small | Gemma-2-2B | Llama-3.2-1B | Qwen2.5-1.5B | invariant? |
+|------|-------------|------------|--------------|--------------|------------|
+| plumbing fraction | 86.7% | 87.7% | 89.4% | 86.6% | **yes (~87%)** |
+| **attention-sink** | 45.6% | **3.9%** | 55.0% | 44.4% | **no — high (44–55%) in 3/4; Gemma the low outlier** |
+| universal idioms (prev/dup/induction) recovered | yes | yes | yes | yes | **yes** |
+| induction causal (mean-ablation, induction-NLL z) | 8.6 | 8.3 | 27.3 | 14.9 | **yes — load-bearing in all 4** |
+
+**Conclusion: the mechanisms (idioms) and their causal load-bearing-ness are architecture-invariant across
+four models spanning four families, and the plumbing *fraction* is invariant too (~87%) — but its
+*composition* is not. The attention-sink is high (44–55%) in GPT-2, Llama, and Qwen, while Gemma-2 is a
+striking low-sink (~4%) outlier.** This **corrects** the earlier two-model reading that the sink was
+"GPT-2-family-specific": with four models the sink is near-universal and *Gemma* is the exception — a clean
+illustration of why a third/fourth architecture is worth testing. (The SAE-feature opcode legibility and the
+copy/transform WRITE split are reported per-model in the Gemma deep-dive; legibility needs a per-layer SAE
+[Gemma only], and the copy/transform split is threshold-defined, so neither is a cross-model invariant.)
 
 ### The full listings
 The complete per-head listings are committed as reference artifacts (regenerate with the disassemblers):
 
 - [`listings/gpt2_disassembly.txt`](listings/gpt2_disassembly.txt) — all 144 GPT-2 heads + MLP (Shakespeare).
-- [`listings/gemma2_disassembly.txt`](listings/gemma2_disassembly.txt) — all 208 Gemma heads + GeGLU MLP, SAE layer 12 (WikiText).
-- [`listings/gemma2_disassembly_L6.txt`](listings/gemma2_disassembly_L6.txt) — the peak-legibility layer-6 decode.
+- [`listings/gemma2_disassembly.txt`](listings/gemma2_disassembly.txt) — all 208 Gemma heads + MLP, SAE layer 12 (WikiText).
+- [`listings/gemma2_disassembly_L6.txt`](listings/gemma2_disassembly_L6.txt) — the peak-legibility Gemma layer-6 decode.
+- [`listings/llama32_1b_disassembly.txt`](listings/llama32_1b_disassembly.txt) — all 512 Llama-3.2-1B heads + MLP (token-operand basis).
+- [`listings/qwen25_15b_disassembly.txt`](listings/qwen25_15b_disassembly.txt) — all 336 Qwen2.5-1.5B heads + MLP (token-operand basis).
 
-(`scripts/disassembly/disassemble_gpt2.py` → `runs/disassembly/`; `scripts/gemma/disassemble_gemma.py` →
-`runs/gemma/`. The `runs/` copies + the per-head `.json` are git-ignored and regenerated on demand.)
+(`scripts/disassembly/disassemble_gpt2.py` → `runs/disassembly/`; `scripts/gemma/disassemble_gemma.py --model …`
+→ `runs/gemma/` for Gemma/Llama/Qwen. The `runs/` copies + per-head `.json` are git-ignored and regenerated on
+demand. Llama-3.2-1B was run via the ungated `unsloth/Llama-3.2-1B` mirror — identical weights to the gated
+`meta-llama/Llama-3.2-1B`, which the code defaults to once you have access.)
 
 ## Downstream hook (and a retraction)
 
