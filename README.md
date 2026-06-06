@@ -234,6 +234,35 @@ the correct response, not a workaround:** don't train the entanglement away (you
 — *decompose* a trained model into a low-χ interpretable core + a high-χ capable tail
 and choose your truncation. The retrain negatives are the proof there's no shortcut.
 
+### Phase 2: serving the tower (`scripts/serve_tower_tiny.py`) — interpretability dials, capability cliffs
+
+Make the tower a runnable model: reconstruct the residual as an additive cascade
+`h ≈ M0(h)+…+Mn(h)+core(h)`, keep `M0..M_{T-1}`, feed to `lm_head`, measure **real** LM
+loss vs the truncation level T:
+
+| levels kept | cov95 | fidelity | real LM loss |
+|---|---|---|---|
+| M0..M0 | 0.52 | 0.15 | 10.68 (random) |
+| M0..M2 | 0.68 | 0.25 | 10.68 |
+| M0..M5 | 0.72 | 0.32 | 10.67 |
+| **+ entangled core** (exact h) | — | 1.0 | **6.54** |
+
+The **interpretability** dial works at inference (cov95 saturates at ~4 levels). But the
+**capability** dial is a **cliff**: keeping *any* number of monosemantic levels gives
+**random** next-token loss; only the entangled **core** restores prediction. **The
+low-χ interpretable levels are predictively inert — all of the model's prediction lives
+in the entangled core.**
+
+This *refines* v0's "graceful dial": graceful on cov95 and on the reconstruction *proxy*
+(fidelity), but **not** on real capability. So the served tower is an **interpretability
+sidecar** (a dial-able, monosemantic readout of the low-χ features) — *not* a
+capability-truncation of the LM; the capable LM needs the core. It sharpens the frontier
+a final notch: interpretable (low-χ) and capable (high-χ) aren't just different *points*,
+they're different *directions* — capability is irreducibly entangled. (Caveats: tiny weak
+model with a ~0.16-nat capability range; the harvested atoms are *current-token* lexical
+features so they can't predict the *next* token — a richer/next-token oracle and a more
+capable LM are the obvious follow-ups.)
+
 ## Honest caveats (this is an MVP)
 
 1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is

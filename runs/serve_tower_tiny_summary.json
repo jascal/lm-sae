@@ -1,0 +1,49 @@
+{
+  "experiment": "Phase 2: served chi-banded tower",
+  "lm_loss_floor": 6.385098690670991,
+  "lm_loss_full": 6.534596432092637,
+  "dial": [
+    {
+      "levels_kept": 1,
+      "n_atoms": 24,
+      "lm_loss": 10.679551608108282,
+      "cov95": 0.52,
+      "fidelity": 0.1482195803393317
+    },
+    {
+      "levels_kept": 2,
+      "n_atoms": 48,
+      "lm_loss": 10.682462008930687,
+      "cov95": 0.64,
+      "fidelity": 0.21513929609735782
+    },
+    {
+      "levels_kept": 3,
+      "n_atoms": 72,
+      "lm_loss": 10.676509926185396,
+      "cov95": 0.68,
+      "fidelity": 0.2507134034234494
+    },
+    {
+      "levels_kept": 4,
+      "n_atoms": 96,
+      "lm_loss": 10.722628179687993,
+      "cov95": 0.72,
+      "fidelity": 0.2633957320054534
+    },
+    {
+      "levels_kept": 5,
+      "n_atoms": 120,
+      "lm_loss": 10.69174414543626,
+      "cov95": 0.72,
+      "fidelity": 0.2885982528277937
+    },
+    {
+      "levels_kept": 6,
+      "n_atoms": 144,
+      "lm_loss": 10.673999391992385,
+      "cov95": 0.72,
+      "fidelity": 0.31500148372705195
+    }
+  ]
+}
