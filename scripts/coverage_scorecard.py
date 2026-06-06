@@ -15,8 +15,10 @@ Per head, over a corpus, every attention edge (query t -> key s, s<=t) is assign
 
 A head's mass is EXPLAINED if it lands in {self, sink, prev, structural, local} (named positional/
 structural plumbing), OR it is long_range AND the head carries a content mechanism — a validated idiom
-(induction / name-mover / copy-suppression / S-inhibition, from idiom_library_v2_summary.json) or a
-behaviorally-legible content binding (QK off-diagonal z>2, from qk_opcode_table_summary.json). Because
+(induction / name-mover / copy-suppression / S-inhibition, from idiom_library_v2_summary.json), a
+behaviorally-legible TOKEN-operand binding (QK off-diagonal z>2, from qk_opcode_table_summary.json), or a
+legible SAE-FEATURE-operand binding (from sae_opcode_table_summary.json — credits the dark heads that the
+token basis missed but SAE features resolved). Because
 the SINK dominates the attention budget, a single "% explained" is misleadingly high; the honest target is
 the LONG-RANGE (content) mass, split three ways — named-by-idiom / weight-legible-but-unnamed / DARK. We
 report a STRICT coverage (plumbing + named idioms only) and a LEGIBLE coverage (+ legible bindings), and
@@ -52,7 +54,10 @@ def main(argv=None):
     p.add_argument("--local-max", type=int, default=8, help="upper Δ for the 'local' window")
     p.add_argument("--leg-z", type=float, default=2.0, help="content-legibility z to credit long-range mass")
     p.add_argument("--idioms", type=Path, default=Path("runs/idiom_library_v2_summary.json"))
-    p.add_argument("--opcodes", type=Path, default=Path("runs/qk_opcode_table_summary.json"))
+    p.add_argument("--opcodes", type=Path, default=Path("runs/qk_opcode_table_summary.json"),
+                   help="token-operand opcode table (content-legibility credit)")
+    p.add_argument("--sae-opcodes", type=Path, default=Path("runs/sae_opcode_table_summary.json"),
+                   help="SAE-feature opcode table (additional content credit where it ran)")
     p.add_argument("--output", type=Path, default=Path("runs/coverage_scorecard_summary.json"))
     args = p.parse_args(argv)
 
@@ -103,6 +108,14 @@ def main(argv=None):
     per_head_idioms = idi.get("per_head_idioms", {})
     opc = _load(args.opcodes) or {}
     leg = {f"{h['layer']}.{h['head']}": float(h.get("leg_z", 0.0)) for h in opc.get("heads", [])}
+    # SAE-operand legibility (best of dominant / content-weighted), where the SAE opcode table ran.
+    sae = _load(args.sae_opcodes) or {}
+
+    def _z(h, *keys):
+        vals = [h.get(k) for k in keys]
+        vals = [v for v in vals if isinstance(v, (int, float)) and v == v]  # drop None/NaN
+        return max(vals) if vals else float("-inf")
+    sae_leg = {h["head"]: _z(h, "z_dominant", "z_content", "z_sae") for h in sae.get("heads", [])}
 
     def has_content(L, h):
         tags = per_head_idioms.get(f"{L}.{h}", [])
@@ -110,6 +123,8 @@ def main(argv=None):
             return "idiom"
         if leg.get(f"{L}.{h}", 0.0) > args.leg_z:
             return "legible-content"
+        if sae_leg.get(f"{L}.{h}", float("-inf")) > args.leg_z:
+            return "sae-legible"
         return None
 
     rows = []
@@ -129,21 +144,25 @@ def main(argv=None):
 
     budget = {b: float(np.mean(frac[:, :, bi[b]])) for b in buckets}
     plumbing_frac = float(np.mean([r["plumbing"] for r in rows]))
-    # split the long-range (content-candidate) mass three ways
-    lr_named = float(np.mean([r["long_range"] if r["content_src"] == "idiom" else 0.0 for r in rows]))
-    lr_legible = float(np.mean([r["long_range"] if r["content_src"] == "legible-content" else 0.0 for r in rows]))
+    # split the long-range (content-candidate) mass by how it is credited
+    def _lr(src):
+        return float(np.mean([r["long_range"] if r["content_src"] == src else 0.0 for r in rows]))
+    lr_named = _lr("idiom")
+    lr_legible = _lr("legible-content")              # token-operand B_h legible
+    lr_sae = _lr("sae-legible")                      # only the SAE-operand B_h made it legible
     lr_dark = float(np.mean([r["long_range"] if r["content_src"] is None else 0.0 for r in rows]))
     lr_total = budget["long_range"]
-    # two honest coverage numbers: STRICT (named idioms only) and LEGIBLE (+ weight-legible bindings)
     cov_named = plumbing_frac + lr_named
     cov_legible = plumbing_frac + lr_named + lr_legible
+    cov_sae = cov_legible + lr_sae                   # + heads only the SAE operand basis explains
     dark = [r for r in sorted(rows, key=lambda r: -r["long_range"]) if r["content_src"] is None][:15]
 
     out = {"experiment": "attention coverage scorecard", "model": args.pretrained, "n_heads": nL * H,
            "attention_budget": budget, "plumbing_frac": plumbing_frac,
            "long_range_total": lr_total, "long_range_named": lr_named,
-           "long_range_legible_unnamed": lr_legible, "long_range_dark": lr_dark,
-           "coverage_named": cov_named, "coverage_legible": cov_legible,
+           "long_range_legible_unnamed": lr_legible, "long_range_sae_only": lr_sae,
+           "long_range_dark": lr_dark, "coverage_named": cov_named, "coverage_legible": cov_legible,
+           "coverage_with_sae": cov_sae,
            "dark_heads": [{"head": r["head"], "long_range": r["long_range"], "dominant": r["dominant"],
                            "leg_z": r["leg_z"], "idioms": r["idioms"]} for r in dark],
            "heads": rows}
@@ -157,13 +176,18 @@ def main(argv=None):
         print(f"  {b:11} {budget[b]:6.1%}{mark}")
     print(f"\n  plumbing (self+sink+prev+structural+local) = {plumbing_frac:.1%} of all attention")
     print(f"\n[long-range content = {lr_total:.1%} of attention] split:")
-    print(f"  named by a validated idiom   {lr_named/lr_total:6.1%} of long-range  ({lr_named:.1%} abs)")
-    print(f"  weight-legible but unnamed   {lr_legible/lr_total:6.1%} of long-range  ({lr_legible:.1%} abs)")
-    print(f"  DARK (no idiom, not legible) {lr_dark/lr_total:6.1%} of long-range  ({lr_dark:.1%} abs)")
-    print(f"\n[COVERAGE]  named-idiom catalog: {cov_named:.1%}   |   +weight-legible bindings: {cov_legible:.1%}")
-    print("  (most of the 'explained' mass is the positional/structural sink, not named circuits —")
+    print(f"  named by a validated idiom    {lr_named/lr_total:6.1%} of long-range  ({lr_named:.1%} abs)")
+    print(f"  token-operand B_h legible     {lr_legible/lr_total:6.1%} of long-range  ({lr_legible:.1%} abs)")
+    print(f"  SAE-operand B_h legible only  {lr_sae/lr_total:6.1%} of long-range  ({lr_sae:.1%} abs)")
+    print(f"  DARK (no channel explains)    {lr_dark/lr_total:6.1%} of long-range  ({lr_dark:.1%} abs)")
+    print(f"\n[COVERAGE]  named-idiom: {cov_named:.1%}  |  +token-legible: {cov_legible:.1%}  "
+          f"|  +SAE-operand: {cov_sae:.1%}")
+    if lr_sae > 0:
+        print(f"  -> SAE operands shrink dark long-range mass by {lr_sae/max(lr_sae+lr_dark,1e-9):.0%} "
+              f"(where the SAE opcode table ran)")
+    print("  (most 'explained' mass is the positional/structural sink, not named circuits —")
     print("   the honest target is the long-range split above.)")
-    print("\n[dark heads] highest long-range mass with NO idiom + NO legible binding (work-list):")
+    print("\n[dark heads] highest long-range mass with NO channel explaining it (work-list):")
     print(f"  {'head':>6} {'long_rng':>8} {'dominant':>11} {'leg_z':>6}")
     for r in dark:
         print(f"  {r['head']:>6} {r['long_range']:>8.1%} {r['dominant']:>11} {r['leg_z']:>6.2f}")
@@ -171,6 +195,8 @@ def main(argv=None):
         print("\n[warn] idiom summary missing — run idiom_library_v2.py first (no idiom credit applied)")
     if not opc:
         print("[warn] opcode summary missing — run qk_opcode_table.py first (no legibility credit)")
+    if not sae:
+        print("[warn] SAE opcode summary missing — run sae_opcode_table.py for SAE-operand credit")
     print(f"\n[done] {args.output}")
     return out
 

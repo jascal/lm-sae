@@ -14,6 +14,12 @@ transformers>=4.40
 numpy>=1.26
 matplotlib>=3.7
 
+# The SAE-operand disassembly scripts (sae_opcode_table.py, sae_lens_eval.py) load published
+# SAELens GPT-2 SAEs directly from the Hub by their safetensors — via huggingface_hub +
+# safetensors (both ship with transformers), NOT the sae_lens package (which is not required).
+huggingface_hub>=0.20
+safetensors>=0.4
+
 # NOTE: the shared bio-sae venv currently has an older sae-forge installed and no
 # pip. Until it is re-synced, run lm-sae scripts that need the two-basis /
 # writer-output API with the local 0.14.0 checkout on the path, e.g.:
