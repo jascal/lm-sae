@@ -1,11 +1,16 @@
-# Disassembling GPT-2 attention as an instruction set
+# Disassembling attention as an instruction set
 
-This documents the `lm-sae` disassembly thread: a pipeline that reads GPT-2's attention as a small,
-reused **instruction set**, quantifies how completely a catalog of named operators explains the model's
-attention, localizes the gaps, **causally validates** the named operators, and checks that the claims are
-not artifacts of the test corpus.
+This documents the `lm-sae` disassembly thread: a pipeline that reads a transformer's attention as a
+small, reused **instruction set**, quantifies how completely a catalog of named operators explains the
+model's attention, localizes the gaps, **causally validates** the named operators, checks that the claims
+are not artifacts of the test corpus, and **shows the same reading ports across architectures**.
 
-The unifying thesis: GPT-2's computation is **legible in the right basis** — QK/OV in *feature/operand*
+The method is presented on **GPT-2-small** as the primary worked example (§Pipeline–§Corpus robustness),
+then ported whole to **Gemma-2-2B** (RoPE/GQA/RMSNorm) in §Cross-model — where the headline is that the
+mechanisms and their legibility are *architecture-invariant*, while one piece of the plumbing (the
+attention-sink) is *architecture-specific*.
+
+The unifying thesis: the model's computation is **legible in the right basis** — QK/OV in *feature/operand*
 coordinates and a catalog of weight-grounded **idioms** — even though it is *not* legible as single
 residual SAE features (the cov95 tax). Most of attention is positional/structural plumbing; the
 content-carrying minority is largely named, and the named operators are causally load-bearing and
@@ -15,8 +20,8 @@ Caveat on novelty: the published literature has **no** von-Neumann analogy and *
 op-catalog — only a piecemeal list of head types (induction, prev-token, IOI name-movers/S-inhibition,
 copy-suppression, successor, greater-than). The closest formal framings are Elhage et al.'s QK/OV +
 residual-bus picture, Weiss/Lindner's RASP/Tracr (an op set for what transformers *can* compute), and
-Merrill's TC⁰ bound. This thread **assembles, quantifies, causally tests, and corpus-checks** such a
-catalog; it does not reproduce an existing one.
+Merrill's TC⁰ bound. This thread **assembles, quantifies, causally tests, corpus-checks, and
+cross-model-replicates** such a catalog; it does not reproduce an existing one.
 
 ## Pipeline
 
@@ -30,6 +35,12 @@ catalog; it does not reproduce an existing one.
 
 Run order (GPT-2, CPU): idiom library → opcode tables → scorecard (it consumes the idiom/opcode summaries)
 → causal validation → corpus robustness. SAEs for the SAE-operand table download per layer on demand.
+
+The **Gemma-2-2B** port (`scripts/gemma/`, needs a GPU) mirrors this pipeline with an arch-agnostic core:
+`disasm_portable.py` (behavioral idioms + coverage on any HF model) → `gemma_opcode_table.py` (QK opcodes
+in Gemma Scope feature coords) → `gemma_causal.py` (induction-NLL ablation) → `gemma_layer_sweep.py`
+(legibility across depth) → `disassemble_gemma.py` (the unified per-head listing, at GPT-2 parity). See
+§Cross-model.
 
 ## The idiom catalog (weight-grounded, literature-validated)
 
@@ -118,35 +129,74 @@ noisy 0.43–0.75; 38 → stable 0.81); it needs ~20k tokens/corpus for enough s
 - Causal claims are **metric-specific** — confirmed on the metric each idiom serves, not universally.
 - `coreference` overlaps `duplicate_token` (the dup mechanism applied to pronouns), and its SAE *weight*
   binding (9.0) diverges from its raw *attention* signal — weight-binding ≠ attention.
-- Single base model (GPT-2-small); SAE-operand table covers layers 1/4/9; greater-than is MLP-dominated
-  (the OV probe sees only the attention-side shadow).
+- Two base models (GPT-2-small + Gemma-2-2B); the GPT-2 SAE-operand table covers layers 1/4/9; greater-than
+  is MLP-dominated (the OV probe sees only the attention-side shadow). Gemma's named *circuit* roles are not
+  ported (no published Gemma IOI head-set) — only the universal idioms + behavioral tags.
 
-## Cross-model: Gemma-2-2B (parity)
+## Cross-model: Gemma-2-2B
 
-The whole framework **ports to a recent RoPE / GQA / RMSNorm model** (`scripts/gemma/`), at matched detail.
-Architecture handling: GQA (query head `h` → kv head `h//(H/n_kv)`); content opcode
+The whole framework **ports to a recent RoPE / GQA / RMSNorm model** (`scripts/gemma/`, GPU), at matched
+detail. **Architecture handling**: GQA (query head `h` → kv head `h//(H/n_kv)`); content opcode
 `M_h = W_Q^h⊤ W_K^{kv} / √query_pre_attn_scalar` (=√256); RMSNorm gain-fold (`1+weight`, no mean-subtraction);
-and the **unrotated content-QK** (R₀) reading, which separates RoPE's positional axis from the content binding.
-Operands at the SAE layer = Gemma Scope (`gemma-scope-2b-pt-res`, JumpReLU, width-16k) decoder directions; at
-every layer = a universal per-layer **token-centroid** basis (the parity move — the same kind of basis GPT-2's
-listing uses, computed low-rank so all 208 heads stay cheap).
+and the **unrotated content-QK** (R₀) reading, which separates RoPE's positional axis from the content
+binding. Operands at the SAE layer = Gemma Scope (`gemma-scope-2b-pt-res`, JumpReLU, width-16k) decoder
+directions; at every other layer = a universal per-layer **token-centroid** basis (the parity move — the same
+kind of basis GPT-2's listing uses, computed low-rank so all 208 heads stay cheap). Gemma-2-2B = 26L × 8H,
+GQA n_kv=4, head_dim 256, GeGLU MLP.
+
+### Idioms & coverage (the portable layer)
+`disasm_portable.py` recovers the universal idioms from Gemma's weights/behavior: **prev-token** (0.0, 20.1,
+21.6, 21.7, …), **duplicate** (1.4, 3.2, …), **induction** (4.4, 6.1, 6.2, …). On the *same Shakespeare
+corpus* used for GPT-2, the attention budget is: self 31% · sink **3.9%** · prev 17% · structural 14% ·
+local 21% · long-range (content) 12% → **plumbing 87.7%** (vs GPT-2's 86.7%). The plumbing *fraction* matches
+GPT-2; its *composition* does not — Gemma has almost no attention-sink and plumbs via self/local/prev instead.
+
+### QK content opcodes, across depth
+`gemma_opcode_table.py`: at layer 12, **7/8 heads have a behaviorally-legible content binding (z>2)** in
+Gemma Scope feature coords (e.g. pronoun→verb, title-numeral completion). `gemma_layer_sweep.py` shows
+legibility **peaks mid-network** — L6 **7/8** (mean z≈3.8), L12 5/8, weak early/late (L0 0/8) — i.e. content-
+addressing concentrates in the induction/composition band, with early layers positional and late layers
+output-formatting. The richest single layer is **L6**: head 6.0 binds verb→verb (tense/voice) at z=16.7,
+6.4 does title-numeral completion at z=8.0, and the causal induction heads 6.2/6.3 bind number→noun and
+OV-write proper-noun completions — consistent with induction-copying repeated wikitext entities.
+
+### Causal validation
+`gemma_causal.py` mean-ablates the recovered idiom heads (induction-NLL baseline 4.47): **induction is
+load-bearing, z=8.3** (heads 4.4/6.2/6.3/22.2/22.3/22.4) — replicating GPT-2's z=8.6 — and **prev-token is
+load-bearing, z=7.0** (0.0/20.1/21.6/21.7). Both are induction-specific (the complement barely moves). The
+induction mechanism is causal in both architectures.
+
+### The unified listing, at GPT-2 parity
+`disassemble_gemma.py` emits, for **all 208 heads**: an addressing bucket + behavioral idiom tags + `*CAUSAL*`
+flag + a **QK token-operand binding** + an **OV copy/transform WRITE** class (histogram **156 transform / 52
+copy**), plus a per-layer **GeGLU MLP catalog** (read-tokens → write-tokens) and, at the SAE layer, the
+feature-native QK/OV opcode — the same fields GPT-2's listing carries. The one residual non-parity is
+intrinsic: GPT-2's named *circuit* roles (IOI name-movers, S-inhibition) come from a published head-set with
+no Gemma equivalent, so Gemma carries behavioral idiom tags + causal flags rather than named-circuit tags.
+
+### Cross-model synthesis
 
 | axis | GPT-2-small | Gemma-2-2B | invariant? |
 |------|-------------|------------|------------|
 | plumbing fraction (same Shakespeare corpus) | 86.7% | 87.7% | **yes (~87%)** |
 | attention-sink | **45.6%** | **3.9%** | **no — sink is GPT-2-family-specific** |
-| induction causal (mean-ablation, induction-NLL) | z = 8.6 | z = 8.3 | **yes (mechanism is causal in both)** |
+| universal idioms recovered (prev/dup/induction) | yes | yes | **yes** |
+| induction causal (mean-ablation, induction-NLL) | z = 8.6 | z = 8.3 | **yes (causal in both)** |
 | QK content-opcode legibility (SAE-feature coords) | most heads z>2 | 7/8 at L12; peaks mid-network | **yes (legible in the right basis)** |
-| OV write (copy vs transform) | mostly transform | 52 copy / 156 transform | **yes** |
+| OV write (copy vs transform) | mostly transform | 156 transform / 52 copy | **yes** |
 
-`disasm_portable.py` (behavioral + coverage on any HF model), `gemma_opcode_table.py` (QK opcode table with
-Gemma Scope operands), `gemma_causal.py` (induction-NLL ablation), `gemma_layer_sweep.py` (legibility across
-depth), and `disassemble_gemma.py` (the unified per-head listing at GPT-2 parity: all-layer QK token-bind + OV
-WRITE + GeGLU MLP catalog + SAE-layer feature opcode). The one residual non-parity is intrinsic: GPT-2's named
-*circuit* roles (IOI name-movers, S-inhibition) come from a published head-set with no Gemma equivalent, so
-Gemma carries the behavioral idiom tags + causal flags rather than named-circuit tags. Conclusion: **mechanisms
-and legibility are architecture-invariant; the *composition of the plumbing* (the attention-sink) is
-architecture-specific.**
+**Conclusion: the mechanisms and their legibility are architecture-invariant; the *composition of the
+plumbing* (the attention-sink) is architecture-specific.**
+
+### The full listings
+The complete per-head listings are committed as reference artifacts (regenerate with the disassemblers):
+
+- [`listings/gpt2_disassembly.txt`](listings/gpt2_disassembly.txt) — all 144 GPT-2 heads + MLP (Shakespeare).
+- [`listings/gemma2_disassembly.txt`](listings/gemma2_disassembly.txt) — all 208 Gemma heads + GeGLU MLP, SAE layer 12 (WikiText).
+- [`listings/gemma2_disassembly_L6.txt`](listings/gemma2_disassembly_L6.txt) — the peak-legibility layer-6 decode.
+
+(`scripts/disassembly/disassemble_gpt2.py` → `runs/disassembly/`; `scripts/gemma/disassemble_gemma.py` →
+`runs/gemma/`. The `runs/` copies + the per-head `.json` are git-ignored and regenerated on demand.)
 
 ## Downstream hook (and a retraction)
 

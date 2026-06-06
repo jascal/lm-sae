@@ -3,7 +3,7 @@
 The scripts are grouped by **research thread**, not by file type. Each group is one arc of
 the project; read top-to-bottom within a group. The full narrative (what each result means)
 is in the top-level [`README.md`](../README.md); the disassembly thread has its own deep-dive
-in [`docs/disassembly.md`](../docs/disassembly.md).
+in [`docs/DISASSEMBLY.md`](../docs/DISASSEMBLY.md).
 
 ## How to run
 
@@ -63,7 +63,7 @@ The core finding: forging an SAE basis preserves mAUC but collapses cov95 (monos
 
 ## `disassembly/` — GPT-2 attention as an instruction set
 Reads GPT-2's attention as a reused **op-catalog**, scores coverage, **causally validates**, and
-checks corpus-robustness. Full write-up in [`docs/disassembly.md`](../docs/disassembly.md).
+checks corpus-robustness. Full write-up in [`docs/DISASSEMBLY.md`](../docs/DISASSEMBLY.md).
 Run order: idiom library → opcode tables → scorecard → causal validation → corpus robustness.
 
 | script | role |

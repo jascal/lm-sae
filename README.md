@@ -148,7 +148,7 @@ response is to *decompose and choose a truncation*, not to train the entanglemen
 ## 4. Disassembly — GPT-2 attention as an instruction set
 
 If the SAE misses the composition, read the composition directly. Full write-up:
-[`docs/disassembly.md`](docs/disassembly.md). Pipeline (CPU): idiom library → opcode tables →
+[`docs/DISASSEMBLY.md`](docs/DISASSEMBLY.md). Pipeline (CPU): idiom library → opcode tables →
 coverage scorecard → causal validation → corpus robustness.
 
 - **Idiom catalog** (`disassembly/idiom_library_v2.py`): **8/8** literature idioms recovered
@@ -234,8 +234,9 @@ lm-sae/
 ├── README.md            ← you are here (theory + results guide)
 ├── requirements.txt     ← standalone deps (sae-forge from PyPI, torch, transformers)
 ├── docs/
-│   ├── disassembly.md   ← the GPT-2 disassembly thread, in depth
-│   └── PAPER.md         ← self-contained kit for a short NEMI-workshop paper
+│   ├── DISASSEMBLY.md   ← the disassembly thread (GPT-2 + Gemma cross-model), in depth
+│   ├── PAPER.md         ← self-contained kit for a short NEMI-workshop paper
+│   └── listings/        ← committed full per-head disassembly listings (GPT-2 + Gemma)
 ├── scripts/             ← grouped by research thread — see scripts/README.md
 │   ├── common/          ← shared substrate + the core cov95/forge instrument
 │   ├── substrate/       ← the models under test (tiny GPT, SAELens eval)

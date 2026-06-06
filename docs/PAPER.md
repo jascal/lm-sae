@@ -207,7 +207,7 @@ split (named / token-legible / sae-only / dark) from the two `coverage_scorecard
 **Figure B2** (causal): ΔNLL (induction set vs complement vs random) from
 `causal_validation_summary.json`; ΔlogitDiff per idiom from `ioi_causal_summary.json`.
 **Table B1** (idiom catalog): idiom → recovered heads → reading, from
-`idiom_library_v2_summary.json` (and `docs/disassembly.md`).
+`idiom_library_v2_summary.json` (and `docs/DISASSEMBLY.md`).
 
 ## Results — cross-model parity (the headline of B)
 
@@ -223,8 +223,10 @@ split (named / token-legible / sae-only / dark) from the two `coverage_scorecard
 **Figure C1** (cross-model plumbing composition): grouped bars of the 6 buckets for both models
 from the two `disasm_portable_*` JSONs — visually carries "sink is GPT-2-specific." **Figure C2**
 (legibility vs depth): mean z and n-legible per layer from `gemma_layer_sweep_summary.json`.
-The full per-head listings (`gpt2_disassembly.txt`, `gemma2_disassembly.txt`) are the qualitative
-appendix; regenerate via `disassemble_{gpt2,gemma}.py` (git-ignored, not tracked).
+The full per-head listings are committed under [`listings/`](listings/)
+(`gpt2_disassembly.txt`, `gemma2_disassembly.txt`, `gemma2_disassembly_L6.txt`) as the qualitative
+appendix; regenerate via `disassemble_{gpt2,gemma}.py` (the `runs/` copies + per-head `.json` are
+git-ignored).
 
 ## Limitations (state these explicitly)
 

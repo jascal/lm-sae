@@ -1,0 +1,322 @@
+GEMMA-2-2B DISASSEMBLY  (26 layers x 8 heads + GeGLU MLP; GQA n_kv=4, RoPE, RMSNorm)
+corpus=wikitext  tokens=12000  token-operands=40  SAE-layer=6 (Gemma Scope, 48 content operands)
+; addr=where-to-read (attn bucket)  WRITE=copy/transform (OV diag)  bind=top QK token binding  idioms=behavioral role  QK/OV[...]=SAE-feature opcode (SAE layer only)
+
+attention budget (mean per-head mass): self 29%  sink 1%  prev 17%  structural 14%  local 21%  long_range 17%
+  plumbing 83% | content (long-range) 17%
+causally load-bearing (induction-NLL ablation): 0.0, 4.4, 6.2, 6.3, 20.1, 21.6, 21.7, 22.2, 22.3, 22.4
+
+--- layer 0 ---
+    0.0  addr=prev        WRITE=transform bind '2'->'_@' idioms[prev-token] *CAUSAL*
+    0.1  addr=long_range  WRITE=transform bind '_were'->'_was' idioms[duplicate]
+    0.2  addr=long_range  WRITE=transform bind '_to'->'_for' idioms[duplicate]
+    0.3  addr=long_range  WRITE=copy      bind '_of'->'_the'
+    0.4  addr=local       WRITE=transform bind '_of'->'_as'
+    0.5  addr=local       WRITE=transform bind '_,'->'_.' idioms[duplicate]
+    0.6  addr=long_range  WRITE=transform bind '_The'->'_,'
+    0.7  addr=long_range  WRITE=transform bind 's'->"_'"
+  0.MLP.n7972  reads {_were,_=,_Little} -> writes {_were,_@,_a}
+  0.MLP.n5397  reads {_was,0,_,} -> writes {_was,_were,_Valky}
+  0.MLP.n8712  reads {_that,_Little,_the} -> writes {_that,_with,_the}
+--- layer 1 ---
+    1.0  addr=long_range  WRITE=transform bind '6'->'_Rock'
+    1.1  addr=long_range  WRITE=transform bind '\n'->'_,'
+    1.2  addr=prev        WRITE=copy      bind "_'"->'_Rock' idioms[prev-token]
+    1.3  addr=local       WRITE=transform bind '1'->'3'
+    1.4  addr=self        WRITE=transform bind '_were'->'_was' idioms[duplicate]
+    1.5  addr=prev        WRITE=transform bind '4'->'3' idioms[duplicate]
+    1.6  addr=long_range  WRITE=transform bind '_.'->'\n'
+    1.7  addr=prev        WRITE=transform bind '_were'->'_that'
+  1.MLP.n3670  reads {_with,_the,s} -> writes {_with,_to,_the}
+  1.MLP.n887   reads {_a,s,_'} -> writes {_a,_The,_the}
+  1.MLP.n4062  reads {s,_',_,} -> writes {s,_to,_'}
+--- layer 2 ---
+    2.0  addr=prev        WRITE=transform bind '_was'->'_that'
+    2.1  addr=prev        WRITE=transform bind '_,'->'_"'
+    2.2  addr=prev        WRITE=copy      bind '\n'->'_='
+    2.3  addr=self        WRITE=transform bind '_"'->"_'" idioms[duplicate]
+    2.4  addr=prev        WRITE=transform bind '_.'->'\n'
+    2.5  addr=self        WRITE=transform bind '1'->'9'
+    2.6  addr=prev        WRITE=transform bind '_The'->'_' idioms[prev-token]
+    2.7  addr=local       WRITE=transform bind '_Chronicles'->'_'
+  2.MLP.n6527  reads {_in,_,_the} -> writes {_in,_',_to}
+  2.MLP.n6354  reads {_for,4,_by} -> writes {_for,4,_and}
+  2.MLP.n2790  reads {_that,_at,_to} -> writes {_that,6,_at}
+--- layer 3 ---
+    3.0  addr=local       WRITE=transform bind '8'->'_was'
+    3.1  addr=local       WRITE=transform bind '9'->'8' idioms[duplicate]
+    3.2  addr=self        WRITE=transform bind '_was'->'_were' idioms[duplicate]
+    3.3  addr=local       WRITE=transform bind '_.'->'\n'
+    3.4  addr=local       WRITE=transform bind 's'->'_game'
+    3.5  addr=prev        WRITE=transform bind '-@'->'_,' idioms[prev-token]
+    3.6  addr=prev        WRITE=copy      bind '_of'->'_game' idioms[prev-token]
+    3.7  addr=prev        WRITE=transform bind '_for'->'_Chronicles' idioms[prev-token]
+  3.MLP.n414   reads {_at,_@,-@} -> writes {_at,_@,-@}
+  3.MLP.n7999  reads {_of,_for,_to} -> writes {_of,_was,1}
+  3.MLP.n4469  reads {_by,_Chronicles,_of} -> writes {_by,_=,s}
+--- layer 4 ---
+    4.0  addr=local       WRITE=transform bind "_'"->'_"'
+    4.1  addr=prev        WRITE=copy      bind '_The'->'_.' idioms[prev-token]
+    4.2  addr=local       WRITE=transform bind '_was'->'2'
+    4.3  addr=local       WRITE=transform bind '_'->'1'
+    4.4  addr=long_range  WRITE=transform bind "_'"->'s' idioms[induction] *CAUSAL*
+    4.5  addr=self        WRITE=transform bind '_.'->'_'
+    4.6  addr=local       WRITE=copy      bind '\n'->'_.'
+    4.7  addr=structural  WRITE=transform bind '_.'->'\n'
+  4.MLP.n6924  reads {_and,_as,2} -> writes {_and,_.,ria}
+  4.MLP.n3358  reads {_game,_and,_,} -> writes {_game,_',_that}
+  4.MLP.n9090  reads {1,2,0} -> writes {2,4,3}
+--- layer 5 ---
+    5.0  addr=prev        WRITE=transform bind '_,'->'_game' idioms[prev-token]
+    5.1  addr=local       WRITE=transform bind 's'->'_with'
+    5.2  addr=long_range  WRITE=transform bind '9'->'8'
+    5.3  addr=local       WRITE=transform bind '_were'->'8'
+    5.4  addr=self        WRITE=transform bind '_was'->'_were'
+    5.5  addr=local       WRITE=transform bind '_.'->'\n'
+    5.6  addr=long_range  WRITE=transform bind '4'->'6'
+    5.7  addr=local       WRITE=transform bind '_and'->'3'
+  5.MLP.n5411  reads {_of,_to,_for} -> writes {_of,_to,_for}
+  5.MLP.n7736  reads {_of,_that,_and} -> writes {_of,_that,_was}
+  5.MLP.n341   reads {_,,_.,_"} -> writes {_.,_,_,}
+--- layer 6 ---
+    6.0  addr=self        WRITE=transform bind 'ria'->'_Chronicles'  QK[_Building/_as->_C/3/_original z2.2]  OV[5/6/3=>0/2/_and]
+    6.1  addr=self        WRITE=transform bind '_Little'->'_Rock' idioms[induction]  QK[4/_and/0->3/_of/_III z1.8]  OV[3/_of/_III=>0/2/_and]
+    6.2  addr=self        WRITE=transform bind '_Little'->'_Rock' idioms[induction] *CAUSAL*  QK[_Rock/_of/_Arkansas->3/_of/_III z3.3]  OV[5/6/3=>9/0/_for]
+    6.3  addr=self        WRITE=transform bind '_Little'->'_Rock' idioms[induction] *CAUSAL*  QK[3/_of/_III->4/_and/0 z2.5]  OV[_Little/_Valky/_game=>ō/S]
+    6.4  addr=self        WRITE=transform bind "_'"->'s'  QK[_Valky/ria/_Rock->_Little/_Valky/_game z3.2]  OV[_who/1/_was=>_maps]
+    6.5  addr=local       WRITE=transform bind '8'->'6'  QK[_Valky/ria/_Rock->_Building/_as z3.0]  OV[3/_of/_III=>0/2/_and]
+    6.6  addr=self        WRITE=transform bind '1'->'2'  QK[_began/_released/_designed->_released/_used/_written z1.1]  OV[_who/1/_was=>_also]
+    6.7  addr=local       WRITE=copy      bind '_The'->'_.'  QK[ria/_Rock/_game->_began/_released/_designed z2.2]  OV[_Building/_as=>_C/3/_original]
+  6.MLP.n7134  reads {_for,_to,_with} -> writes {_for,_to,_with}
+  6.MLP.n3653  reads {_of,_at,_for} -> writes {_of,_the,_@}
+  6.MLP.n5405  reads {_and,_,,_with} -> writes {_and,_at,_,}
+--- layer 7 ---
+    7.0  addr=local       WRITE=transform bind '\n'->'_='
+    7.1  addr=local       WRITE=transform bind '_='->'\n'
+    7.2  addr=long_range  WRITE=transform bind '_.'->'\n'
+    7.3  addr=local       WRITE=transform bind '1'->'_'
+    7.4  addr=self        WRITE=transform bind '_.'->'\n'
+    7.5  addr=long_range  WRITE=copy      bind "_'"->'_"'
+    7.6  addr=long_range  WRITE=copy      bind '_at'->'-@' idioms[induction]
+    7.7  addr=local       WRITE=copy      bind '\n'->'2'
+  7.MLP.n7099  reads {_for,_to,_in} -> writes {_for,_with,_to}
+  7.MLP.n4220  reads {_that,_as,_were} -> writes {_that,_as,_were}
+  7.MLP.n4151  reads {_and,_,,_=} -> writes {_and,_,,_of}
+--- layer 8 ---
+    8.0  addr=long_range  WRITE=transform bind '2'->'4'
+    8.1  addr=self        WRITE=transform bind 'ria'->'_Valky' idioms[duplicate]
+    8.2  addr=long_range  WRITE=transform bind '2'->'6'
+    8.3  addr=long_range  WRITE=transform bind '_game'->'_Chronicles'
+    8.4  addr=long_range  WRITE=transform bind '_='->'\n'
+    8.5  addr=self        WRITE=transform bind '8'->'3'
+    8.6  addr=long_range  WRITE=transform bind 'ria'->'_Chronicles'
+    8.7  addr=long_range  WRITE=transform bind '_Valky'->'ria'
+  8.MLP.n2087  reads {_of,_and,6} -> writes {_of,_@,_for}
+  8.MLP.n4171  reads {_the,_The,_to} -> writes {_the,_The,_was}
+  8.MLP.n2524  reads {_to,_for,_with} -> writes {_to,_for,_@}
+--- layer 9 ---
+    9.0  addr=local       WRITE=transform bind '_.'->'\n'
+    9.1  addr=local       WRITE=transform bind '\n'->'_.'
+    9.2  addr=long_range  WRITE=copy      bind '_Rock'->'_of'
+    9.3  addr=long_range  WRITE=transform bind '8'->'3'
+    9.4  addr=self        WRITE=copy      bind '_.'->'\n'
+    9.5  addr=self        WRITE=transform bind '_Valky'->'ria'
+    9.6  addr=local       WRITE=transform bind '_.'->'\n'
+    9.7  addr=long_range  WRITE=transform bind '8'->'6'
+  9.MLP.n9050  reads {_and,_at,_@} -> writes {_and,_for,_,}
+  9.MLP.n4084  reads {s,_',_=} -> writes {s,_',_were}
+  9.MLP.n7413  reads {_,,_as,_Barker} -> writes {_,,_and,_@}
+--- layer 10 ---
+   10.0  addr=prev        WRITE=copy      bind '_Little'->'_that' idioms[prev-token]
+   10.1  addr=local       WRITE=transform bind '8'->'9'
+   10.2  addr=local       WRITE=transform bind '\n'->'_.'
+   10.3  addr=structural  WRITE=transform bind '\n'->'_.'
+   10.4  addr=long_range  WRITE=transform bind '9'->'8' idioms[duplicate]
+   10.5  addr=self        WRITE=copy      bind '_was'->'_were'
+   10.6  addr=structural  WRITE=transform bind '_.'->'\n'
+   10.7  addr=local       WRITE=transform bind '_.'->'\n'
+  10.MLP.n4928  reads {_for,_in,_with} -> writes {_for,_by,_with}
+  10.MLP.n5420  reads {_,,_and,_'} -> writes {_,,_were,_that}
+  10.MLP.n528   reads {_by,_of,_with} -> writes {_by,_at,ria}
+--- layer 11 ---
+   11.0  addr=long_range  WRITE=copy      bind 's'->'_with'
+   11.1  addr=local       WRITE=transform bind '\n'->'_='
+   11.2  addr=local       WRITE=copy      bind '_game'->'_as'
+   11.3  addr=long_range  WRITE=transform bind '9'->'8'
+   11.4  addr=self        WRITE=transform bind '8'->'2'
+   11.5  addr=local       WRITE=copy      bind '8'->'9'
+   11.6  addr=long_range  WRITE=transform bind '\n'->'_='
+   11.7  addr=long_range  WRITE=transform bind '9'->'8'
+  11.MLP.n1526  reads {_and,_with,_as} -> writes {_and,_with,2}
+  11.MLP.n8302  reads {_of,_were,_@} -> writes {_of,_a,s}
+  11.MLP.n713   reads {_as,_in,_,} -> writes {_as,s,_the}
+--- layer 12 ---
+   12.0  addr=long_range  WRITE=transform bind '8'->'6'
+   12.1  addr=self        WRITE=transform bind '8'->'6'
+   12.2  addr=self        WRITE=transform bind '9'->'8'
+   12.3  addr=self        WRITE=copy      bind '9'->'8'
+   12.4  addr=local       WRITE=transform bind '9'->'3'
+   12.5  addr=long_range  WRITE=transform bind '9'->'8'
+   12.6  addr=self        WRITE=transform bind '_.'->'_,'
+   12.7  addr=local       WRITE=copy      bind '_.'->'\n'
+  12.MLP.n4328  reads {_in,_that,_as} -> writes {_in,_@,_'}
+  12.MLP.n9085  reads {_and,1,8} -> writes {_and,_',_at}
+  12.MLP.n4085  reads {_,,_",_'} -> writes {_,,_,_"}
+--- layer 13 ---
+   13.0  addr=prev        WRITE=transform bind '_,'->'_Rock' idioms[prev-token]
+   13.1  addr=local       WRITE=transform bind 's'->'_,'
+   13.2  addr=local       WRITE=transform bind '\n'->'_='
+   13.3  addr=structural  WRITE=transform bind '9'->'8'
+   13.4  addr=long_range  WRITE=transform bind '1'->'4'
+   13.5  addr=long_range  WRITE=transform bind '\n'->'_='
+   13.6  addr=local       WRITE=copy      bind '\n'->'_='
+   13.7  addr=local       WRITE=transform bind '\n'->'_='
+  13.MLP.n2161  reads {_with,_@,_"} -> writes {_with,_@,_by}
+  13.MLP.n4436  reads {_of,_to,_the} -> writes {_of,_@,-@}
+  13.MLP.n4320  reads {_for,_of,_by} -> writes {_for,_by,_of}
+--- layer 14 ---
+   14.0  addr=self        WRITE=transform bind "_'"->'s' idioms[induction]
+   14.1  addr=self        WRITE=transform bind '1'->'6'
+   14.2  addr=self        WRITE=transform bind '9'->'3'
+   14.3  addr=local       WRITE=transform bind '9'->'3'
+   14.4  addr=self        WRITE=copy      bind '9'->'8'
+   14.5  addr=self        WRITE=transform bind '9'->'8'
+   14.6  addr=local       WRITE=transform bind '9'->'3'
+   14.7  addr=local       WRITE=transform bind '_.'->'\n'
+  14.MLP.n6649  reads {_was,_were,_Chronicles} -> writes {_was,_were,
+}
+  14.MLP.n1834  reads {_a,_The,_the} -> writes {_a,_the,_The}
+  14.MLP.n6698  reads {_in,_at,_@} -> writes {_in,_at,_the}
+--- layer 15 ---
+   15.0  addr=self        WRITE=copy      bind 'ria'->'_Chronicles'
+   15.1  addr=local       WRITE=transform bind '1'->'8'
+   15.2  addr=local       WRITE=transform bind '\n'->'_.'
+   15.3  addr=prev        WRITE=transform bind '1'->'9'
+   15.4  addr=prev        WRITE=copy      bind '_.'->'\n'
+   15.5  addr=long_range  WRITE=transform bind '_Little'->'_Rock'
+   15.6  addr=self        WRITE=transform bind '_.'->'\n'
+   15.7  addr=local       WRITE=copy      bind '\n'->'_='
+  15.MLP.n8822  reads {4,_for,3} -> writes {4,_for,_Barker}
+  15.MLP.n3265  reads {8,_as,1} -> writes {8,_as,_that}
+  15.MLP.n1086  reads {0,3,6} -> writes {0,6,3}
+--- layer 16 ---
+   16.0  addr=self        WRITE=transform bind '_.'->'\n'
+   16.1  addr=self        WRITE=transform bind '9'->'3'
+   16.2  addr=local       WRITE=transform bind '9'->'3'
+   16.3  addr=self        WRITE=copy      bind '9'->'3'
+   16.4  addr=self        WRITE=copy      bind '9'->'3'
+   16.5  addr=self        WRITE=transform bind '9'->'3'
+   16.6  addr=long_range  WRITE=transform bind '9'->'3'
+   16.7  addr=self        WRITE=copy      bind '9'->'3'
+  16.MLP.n9019  reads {_for,4,6} -> writes {_for,9,_and}
+  16.MLP.n1835  reads {_as,1,4} -> writes {_as,_to,9}
+  16.MLP.n2711  reads {_in,_at,_@} -> writes {_in,_at,_@}
+--- layer 17 ---
+   17.0  addr=self        WRITE=copy      bind '1'->'6'
+   17.1  addr=self        WRITE=copy      bind '_of'->'_game'
+   17.2  addr=self        WRITE=transform bind '9'->'8'
+   17.3  addr=self        WRITE=transform bind '9'->'8'
+   17.4  addr=self        WRITE=transform bind '1'->'8'
+   17.5  addr=prev        WRITE=transform bind '_.'->'\n'
+   17.6  addr=self        WRITE=transform bind '9'->'8'
+   17.7  addr=self        WRITE=copy      bind '1'->'9'
+  17.MLP.n8149  reads {_for,4,_as} -> writes {_for,_at,_the}
+  17.MLP.n2460  reads {s,_as,_was} -> writes {s,_as,_was}
+  17.MLP.n3775  reads {_of,_Barker,_in} -> writes {_of,-@,_Little}
+--- layer 18 ---
+   18.0  addr=self        WRITE=transform bind '_.'->'\n'
+   18.1  addr=self        WRITE=transform bind '_.'->'\n'
+   18.2  addr=self        WRITE=transform bind '1'->'8'
+   18.3  addr=self        WRITE=transform bind '1'->'2'
+   18.4  addr=long_range  WRITE=transform bind '1'->'8'
+   18.5  addr=self        WRITE=copy      bind '1'->'8'
+   18.6  addr=self        WRITE=copy      bind '1'->'8' idioms[induction]
+   18.7  addr=self        WRITE=transform bind '1'->'8'
+  18.MLP.n4860  reads {2,1,4} -> writes {2,4,_to}
+  18.MLP.n3379  reads {_was,_were,_@} -> writes {_was,_were,_@}
+  18.MLP.n860   reads {_and,_with,_Barker} -> writes {_and,_Barker,_the}
+--- layer 19 ---
+   19.0  addr=long_range  WRITE=transform bind '9'->'3'
+   19.1  addr=self        WRITE=copy      bind '1'->'8'
+   19.2  addr=long_range  WRITE=transform bind '_.'->'_The'
+   19.3  addr=local       WRITE=transform bind '_and'->'_was'
+   19.4  addr=self        WRITE=transform bind '1'->'6'
+   19.5  addr=self        WRITE=copy      bind '1'->'0'
+   19.6  addr=self        WRITE=copy      bind '_and'->'_as'
+   19.7  addr=self        WRITE=transform bind '_the'->'_of'
+  19.MLP.n8306  reads {_as,_a,_game} -> writes {_as,_and,_at}
+  19.MLP.n3869  reads {_to,9,6} -> writes {_to,_were,_was}
+  19.MLP.n1965  reads {_in,_the,9} -> writes {_in,_with,_for}
+--- layer 20 ---
+   20.0  addr=self        WRITE=transform bind '_was'->'_were'
+   20.1  addr=prev        WRITE=transform bind '2'->'9' idioms[prev-token] *CAUSAL*
+   20.2  addr=self        WRITE=transform bind '9'->'8'
+   20.3  addr=long_range  WRITE=copy      bind '1'->'8'
+   20.4  addr=long_range  WRITE=transform bind '_.'->'\n'
+   20.5  addr=local       WRITE=transform bind '\n'->'_'
+   20.6  addr=self        WRITE=copy      bind '1'->'8'
+   20.7  addr=long_range  WRITE=copy      bind '1'->'8' idioms[induction]
+  20.MLP.n8185  reads {_the,_The,_for} -> writes {_the,_The,_Valky}
+  20.MLP.n4561  reads {_of,s,_.} -> writes {_of,_the,s}
+  20.MLP.n1764  reads {_and,2,s} -> writes {_and,_that,_'}
+--- layer 21 ---
+   21.0  addr=self        WRITE=transform bind '_'->'6'
+   21.1  addr=self        WRITE=transform bind '3'->'2'
+   21.2  addr=self        WRITE=transform bind '_the'->'_@'
+   21.3  addr=prev        WRITE=transform bind '_the'->'_of'
+   21.4  addr=self        WRITE=transform bind '_.'->'\n'
+   21.5  addr=self        WRITE=transform bind '1'->'8'
+   21.6  addr=prev        WRITE=copy      bind '4'->'_as' idioms[prev-token] *CAUSAL*
+   21.7  addr=prev        WRITE=transform bind '_'->'-@' idioms[prev-token] *CAUSAL*
+  21.MLP.n87    reads {_with,3,_for} -> writes {_with,_Chronicles,s}
+  21.MLP.n4246  reads {_a,ria,_The} -> writes {_a,3,_as}
+  21.MLP.n3597  reads {_in,_Rock,_=} -> writes {_in,s,_as}
+--- layer 22 ---
+   22.0  addr=self        WRITE=transform bind '_'->'\n'
+   22.1  addr=self        WRITE=transform bind '_'->'\n'
+   22.2  addr=long_range  WRITE=transform bind '_'->'\n' idioms[induction] *CAUSAL*
+   22.3  addr=long_range  WRITE=copy      bind '1'->'8' idioms[induction] *CAUSAL*
+   22.4  addr=long_range  WRITE=copy      bind '_'->'\n' idioms[induction] *CAUSAL*
+   22.5  addr=self        WRITE=transform bind '1'->'8' idioms[induction]
+   22.6  addr=self        WRITE=transform bind '1'->'8'
+   22.7  addr=long_range  WRITE=transform bind '1'->'8' idioms[induction]
+  22.MLP.n2977  reads {_for,_as,4} -> writes {_for,4,_with}
+  22.MLP.n2719  reads {_of,_@,_'} -> writes {_of,_were,_at}
+  22.MLP.n8075  reads {s,_as,_Chronicles} -> writes {s,_as,_Chronicles}
+--- layer 23 ---
+   23.0  addr=self        WRITE=copy      bind '_.'->'\n'
+   23.1  addr=self        WRITE=transform bind '1'->'8'
+   23.2  addr=long_range  WRITE=transform bind '_.'->'_The'
+   23.3  addr=self        WRITE=copy      bind '_'->'0'
+   23.4  addr=long_range  WRITE=copy      bind '_'->'\n'
+   23.5  addr=self        WRITE=transform bind '_'->'\n' idioms[induction]
+   23.6  addr=structural  WRITE=copy      bind '_'->'\n' idioms[induction]
+   23.7  addr=long_range  WRITE=transform bind '1'->'8' idioms[induction]
+  23.MLP.n3501  reads {_in,9,_@} -> writes {_in,_for,_to}
+  23.MLP.n8337  reads {_that,_of,_at} -> writes {_that,_were,6}
+  23.MLP.n3662  reads {_a,_and,ria} -> writes {_a,_and,_the}
+--- layer 24 ---
+   24.0  addr=local       WRITE=transform bind '_'->'\n'
+   24.1  addr=self        WRITE=copy      bind '_The'->'_the'
+   24.2  addr=self        WRITE=transform bind '9'->'8'
+   24.3  addr=self        WRITE=copy      bind '1'->'9'
+   24.4  addr=self        WRITE=transform bind '2'->'0'
+   24.5  addr=self        WRITE=copy      bind '_'->'\n'
+   24.6  addr=self        WRITE=transform bind '_the'->'_to'
+   24.7  addr=long_range  WRITE=transform bind "_'"->'s'
+  24.MLP.n5245  reads {_,4,6} -> writes {_,6,
+}
+  24.MLP.n5099  reads {_to,_was,_by} -> writes {_to,_was,_.}
+  24.MLP.n6311  reads {_a,ria,9} -> writes {_a,_,,ria}
+--- layer 25 ---
+   25.0  addr=self        WRITE=transform bind '1'->'8'
+   25.1  addr=self        WRITE=copy      bind '_a'->'_at'
+   25.2  addr=long_range  WRITE=copy      bind '8'->'1'
+   25.3  addr=self        WRITE=transform bind '1'->'9'
+   25.4  addr=self        WRITE=copy      bind '_The'->'_the'
+   25.5  addr=self        WRITE=transform bind '4'->'9'
+   25.6  addr=self        WRITE=copy      bind '_in'->'_at'
+   25.7  addr=self        WRITE=transform bind '_The'->'_the'
+  25.MLP.n9059  reads {_in,_by,_to} -> writes {_in,_a,_at}
+  25.MLP.n8966  reads {_to,_was,_and} -> writes {_to,_was,_The}
+  25.MLP.n8456  reads {_of,_in,_with} -> writes {_of,_to,_for}
