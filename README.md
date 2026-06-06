@@ -77,6 +77,11 @@ directly decodable.
 
 ## 2. The cov95 forge tax on a language model
 
+**"Forging"** (program-specific term) = re-expressing a trained model's weights so its residual
+stream is written in a fixed SAE feature basis, producing a runnable model whose computation
+happens *in feature coordinates* (via sae-forge's `native_in_basis`). It asks: can the SAE basis
+carry the model's actual computation, not just label its activations?
+
 Forging an SAE basis into the model **preserves mAUC but collapses cov95** —
 monosemanticity, not accuracy, is what the forge taxes. On the tiny GPT
 (`cov95_forge_tax/whole_loop_tiny.py`):

@@ -21,18 +21,54 @@ The repo holds **two related contributions** that can be one paper or two:
 of what sparse autoencoders miss.*
 
 **Abstract (draft).** Sparse autoencoders (SAEs) recover a model's *features* but not its
-*composition*: forging a model into its SAE basis preserves predictive accuracy (mAUC) yet
-collapses single-latent monosemanticity (cov95) — the "forge tax." We argue the composition is
-nonetheless legible in the right basis. Reading attention as QK/OV bilinears over an operand
-basis, we assemble a catalog of weight-grounded **idioms** (induction, previous-token,
-duplicate, name-mover families, copy-suppression, S-inhibition), quantify the fraction of
-attention it explains, and show the named operators are **causally load-bearing**
-(mean-ablation; induction-NLL z=8.6) and **corpus-robust** (head identities ρ≈0.84 across verse
-and prose). We then port the entire reading to **Gemma-2-2B** (RoPE/GQA/RMSNorm) and find the
-mechanisms and their legibility are **architecture-invariant**, while one piece of the plumbing
-— the attention-sink, 46% of GPT-2's attention mass — is **GPT-2-family-specific** (≈4% in
-Gemma). Most of attention is positional plumbing; the content-carrying minority is largely
-named, causal, and shared across models.
+*composition*. We make this concrete by **re-expressing a model's weights so that its residual
+stream is written in a fixed SAE feature basis** — yielding a runnable model that computes in
+feature coordinates (we call this *forging* the model). Forging preserves predictive accuracy
+(mean best-latent detection AUC) yet collapses single-latent monosemanticity (the fraction of
+known features each detectable by one latent at AUC≥0.95): SAE features survive as readouts but
+the computation over them does not factor through them. We argue the composition is nonetheless
+legible in a *different* basis. Reading attention as QK/OV bilinears over an operand basis, we
+assemble a catalog of weight-grounded **idioms** (induction, previous-token, duplicate,
+name-mover families, copy-suppression, S-inhibition), quantify the fraction of attention it
+explains, and show the named operators are **causally load-bearing** (mean-ablation;
+induction-NLL z=8.6) and **corpus-robust** (head identities ρ≈0.84 across verse and prose). We
+then port the entire reading to **Gemma-2-2B** (RoPE/GQA/RMSNorm) and find the mechanisms and
+their legibility are **architecture-invariant**, while one piece of the plumbing — the
+attention-sink, 46% of GPT-2's attention mass — is **GPT-2-family-specific** (≈4% in Gemma).
+Most of attention is positional plumbing; the content-carrying minority is largely named,
+causal, and shared across models.
+
+> **Writing note — define the coined terms, do not assume them.** "Forge / forging / forge tax",
+> "cov95", "the oracle", "operand basis", "preserve-verbatim", "U_A / U_C", and "χ" are
+> **vocabulary internal to this research program**, not standard ML terms a NEMI reader will
+> know. The abstract above introduces *forging* on first use; the paper must do the same for
+> every coined term (or substitute a standard phrasing). The **Terminology** section below gives
+> a one-line external-facing gloss for each — use it, and prefer the standard term where one
+> exists (e.g. "monosemanticity recovery" over the bare metric name "cov95").
+
+---
+
+## Terminology (project-coined — define on first use, prefer standard phrasing)
+
+These terms are internal to this research program. The right-hand column is the external-facing
+gloss to use in the paper; **none of them should appear unexplained**.
+
+| internal term | what to write for an external reader |
+|---------------|--------------------------------------|
+| **forge / forging** | re-express (project) a trained model's weights so its residual stream is written in a fixed SAE feature basis, producing a runnable model whose computation happens in feature coordinates. (Mechanism: project the host's read/write weights onto the SAE decoder directions; run with `forward_mode=native_in_basis`.) Not a standard term — define it the first time. |
+| **forge tax** | the degradation caused by forging — specifically, the collapse of single-latent monosemanticity (cov95) even though predictive accuracy (mAUC) is largely preserved. Call it "the cost of forcing computation through the SAE basis," then optionally name it. |
+| **cov95** | monosemanticity-recovery score = fraction of *known* (oracle) features for which **some single SAE latent** is a detector at AUC ≥ 0.95. Write "single-latent monosemanticity recovery (cov95)". |
+| **mAUC** | mean over known features of the **best** single-latent detection AUC. Write "mean best-latent detection AUC (mAUC)". Standard-ish, but still gloss it. |
+| **the oracle** | the exact, externally-computed ground-truth feature labels per token (token identity / lexical class / structure). Write "ground-truth feature labels" — the novelty is that they are *exact and external*, unlike a real LLM where features have no answer key. |
+| **operand basis** | the set of directions (token unembeddings / per-layer token centroids, or SAE decoder rows) in which QK/OV bilinears are read; the "operands" the attention opcode binds. Gloss as "a basis of interpretable directions used as the coordinates for the QK/OV bilinear." |
+| **idiom / op-catalog** | a named, weight-grounded attention behavior (induction, prev-token, …) and the catalog of them. Tie to the literature head-type names; "idiom" is our umbrella term. |
+| **preserve-verbatim / preserve set / P1** | keep a chosen subset of SAE atoms as **exact host readouts** (not forged) while forging the rest. Write "verbatim-preserving a subset of features." |
+| **U_A / U_C** | the two subspaces of the "two-basis forge": U_A preserves single-feature *assertions* (recovers cov95), U_C is meant to preserve *composition*/circuits. Only needed for the retraction (§6); define if used. |
+| **χ (chi)** | a monosemanticity score of an entanglement "band" against the oracle (high χ = clean/monosemantic, low χ = entangled). Only needed for the entanglement-tower thread; gloss as "monosemanticity of a residual subspace." |
+| **substrate** | within the program, a dataset/model with a *manufactured* known feature factorization (bio/econ/sm); for this paper just say "a model with ground-truth feature labels." |
+
+For the **B-framing paper** (the op-catalog), only *forge / forge tax / cov95 / mAUC / operand
+basis / idiom* are load-bearing; U_A·U_C and χ can be omitted entirely.
 
 ---
 
