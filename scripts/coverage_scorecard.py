@@ -35,7 +35,7 @@ from pathlib import Path
 import numpy as np
 
 CONTENT_IDIOMS = {"induction", "copy_namemover", "backup_namemover", "negative_namemover",
-                  "copy_suppression", "s_inhibition"}
+                  "copy_suppression", "s_inhibition", "coreference"}
 STRUCT_STR = {".", ",", ";", ":", "!", "?", "Ċ", "\n", "ĊĊ"}
 
 

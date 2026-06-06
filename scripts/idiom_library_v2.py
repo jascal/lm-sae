@@ -10,6 +10,8 @@ copy_score_h = mean_Y (C[Y,Y] - mean_Z C[Z,Y]) / std_Z C[Z,Y]  -- how much atten
 THAT token vs others, in std units. + = copy / name-mover, - = copy-suppression (10.7). No saturation.
 
 ADD:
+  coreference     a pronoun query attending to an earlier number/gender-COMPATIBLE pronoun (same-referent
+                  re-mention) — behavioral; the shadow of the SAE opcode table's 9.0 _their->_they binding
   succession      attending to an ordinal Y boosts its SUCCESSOR succ(Y) (one->two, Mon->Tue, Jan->Feb)
                   = the off-by-one diagonal of C over curated ordinal token lists (Gould et al.)
   s_inhibition    writes into the NAME-MOVERS' QUERY (Q-composition) -- the IOI head class that tells the
@@ -46,6 +48,20 @@ NAMES = [
 # circuit (Hanna et al.) does its COMPARISON in MLPs 8-11; this OV probe reads only the attention-side
 # "boost-greater" shadow, so it is reported as EXPLORATORY.
 NUMBERS = [f" {n}" for n in range(1, 41)]
+
+# pronoun agreement groups (number/gender). The coreference signature = a pronoun query attending to an
+# earlier pronoun in the SAME group (same-referent re-mention) — the behavioral shadow of the SAE binding
+# 9.0 (_their -> _they). Surface + leading-space forms; filtered to single-token at runtime. EXPLORATORY:
+# behaviorally grounded (no canonical GPT-2-small coreference head set to grade against).
+PRONOUN_GROUPS = {
+    "3sg_m": [" he", " him", " his", "He", " He", "Him", "His"],
+    "3sg_f": [" she", " her", " hers", "She", " She", "Her"],
+    "3sg_n": [" it", " its", "It", " It", "Its"],
+    "3pl": [" they", " them", " their", " theirs", "They", " They", "Them", "Their"],
+    "1sg": [" I", " me", " my", " mine", "I", "My"],
+    "2": [" you", " your", " yours", "You", " You", "Your"],
+    "1pl": [" we", " us", " our", " ours", "We", " We", "Our"],
+}
 
 # curated single-token-friendly ordinal sequences (leading space = GPT-2 word-initial BPE)
 ORDINALS = [
@@ -98,31 +114,47 @@ def main(argv=None):
     all_ids = [j for c in chunks for j in c]
     cnt = Counter(all_ids)
 
+    # token id -> pronoun agreement-group index (for the coreference signature)
+    grp2id = {g: i for i, g in enumerate(PRONOUN_GROUPS)}
+    tokgrp = {}
+    for g, forms in PRONOUN_GROUPS.items():
+        for s in forms:
+            tid = tok(s, add_special_tokens=False)["input_ids"]
+            if len(tid) == 1:
+                tokgrp[tid[0]] = grp2id[g]
+
     # ---- behavioural signatures: prev-token, duplicate-token, induction (v1, unchanged — these work) ----
     pt = np.zeros((nL, H)); ptn = 0
     dup = np.zeros((nL, H)); dupn = 0; dup_base = 0.0
     ind = np.zeros((nL, H)); indn = 0; ind_base = 0.0
+    cor = np.zeros((nL, H)); corn = 0; cor_base = 0.0       # coreference: pronoun -> earlier same-group pronoun
     with torch.no_grad():
         for c in chunks:
             o = tr(input_ids=torch.tensor([c]), output_attentions=True)
             Lc = len(c); ca = np.array(c); qi = np.arange(Lc); ptn += Lc - 1
             prevtok = np.full(Lc, -1); prevtok[1:] = ca[:-1]
+            gid = np.array([tokgrp.get(int(t), -1) for t in c])
             DM = (ca[None, :] == ca[:, None]) & (qi[None, :] < qi[:, None])
             IM = (prevtok[None, :] == ca[:, None]) & (qi[None, :] < qi[:, None]) & (qi[None, :] >= 1)
-            dupn += int(DM.any(1).sum()); indn += int(IM.any(1).sum())
-            dq = DM.any(1); iq = IM.any(1)
+            CM = (gid[None, :] == gid[:, None]) & (gid[:, None] >= 0) & (qi[None, :] < qi[:, None])
+            dupn += int(DM.any(1).sum()); indn += int(IM.any(1).sum()); corn += int(CM.any(1).sum())
+            dq = DM.any(1); iq = IM.any(1); cq = CM.any(1)
             if dq.any():
                 dup_base += float((DM.sum(1)[dq] / np.maximum(qi[dq], 1)).sum())
             if iq.any():
                 ind_base += float((IM.sum(1)[iq] / np.maximum(qi[iq], 1)).sum())
+            if cq.any():
+                cor_base += float((CM.sum(1)[cq] / np.maximum(qi[cq], 1)).sum())
             for L in range(nL):
                 aL = o.attentions[L][0].float().numpy()
                 pt[L] += np.diagonal(aL, offset=-1, axis1=1, axis2=2).sum(1)
                 dup[L] += (aL * DM[None]).sum((1, 2))
                 ind[L] += (aL * IM[None]).sum((1, 2))
+                cor[L] += (aL * CM[None]).sum((1, 2))
     prevtok = pt / max(ptn, 1)
     dupv = dup / max(dupn, 1) - dup_base / max(dupn, 1)
     indv = ind / max(indn, 1) - ind_base / max(indn, 1)
+    corv = cor / max(corn, 1) - cor_base / max(corn, 1)
 
     # ---- operand token sets for the OV->unembed copy circuit ----
     wte = tr.wte.weight.detach().numpy().astype(np.float64)        # (vocab, d) tied embed = unembed
@@ -282,14 +314,17 @@ def main(argv=None):
     flat = {"prev_token": prevtok.reshape(-1), "duplicate_token": dupf, "induction": indv.reshape(-1),
             "copy_namemover": copyname_idiom, "backup_namemover": backup,
             "negative_namemover": negative_nm, "copy_suppression": -copyf,
-            "s_inhibition": sinh_filled, "succession": succ.reshape(-1), "greater_than": gtf}
+            "s_inhibition": sinh_filled, "coreference": corv.reshape(-1),
+            "succession": succ.reshape(-1), "greater_than": gtf}
 
     def topk(v, k=6):
         return [(name(i), float(v[i])) for i in np.argsort(-np.nan_to_num(v, nan=-1e9))[:k]]
 
-    # exploratory idioms (reported, but no canonical GPT-2-small head set to grade against)
-    exploratory = {"succession", "greater_than"}
-    out = {"experiment": "idiom library v2 (copy-score repair + IOI family + succession/greater-than)",
+    # exploratory idioms (reported, but no canonical GPT-2-small head set to grade against).
+    # coreference is behaviorally grounded (pronoun -> earlier same-group pronoun) + cross-checks the SAE
+    # opcode table's pronoun bindings (9.0 _their->_they, 4.3 _they->MEN), but has no published head list.
+    exploratory = {"succession", "greater_than", "coreference"}
+    out = {"experiment": "idiom library v2 (copy-score repair + IOI family + coreference + succession/greater-than)",
            "model": args.pretrained, "idioms": {}, "name_movers_used": [name(i) for i in namemovers]}
     print(f"{args.pretrained}: idiom library v2 over {nL*H} heads  (name-movers: {[name(i) for i in namemovers]})\n")
     for idiom, v in flat.items():
