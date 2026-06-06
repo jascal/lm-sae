@@ -1,0 +1,730 @@
+{
+  "experiment": "rung-2(d) path-patch induction key-edge gate",
+  "model": "gpt2",
+  "writers": [
+    [
+      4,
+      11
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      7
+    ]
+  ],
+  "ctrl_writer": [
+    0,
+    1
+  ],
+  "inductors": [
+    [
+      7,
+      11
+    ],
+    [
+      5,
+      0
+    ],
+    [
+      5,
+      5
+    ],
+    [
+      6,
+      9
+    ],
+    [
+      5,
+      1
+    ],
+    [
+      5,
+      8
+    ]
+  ],
+  "ctrl_inductor": [
+    8,
+    7
+  ],
+  "spearman_compdiag_vs_delta": 0.8633053221288516,
+  "median_delta_real_edges": 0.005468628813262436,
+  "median_delta_ctrl_writer": -0.007004900203446886,
+  "median_delta_ctrl_inductor": 2.1930558637869337e-05,
+  "sanity_recompute_err": 9.615807827212386e-07,
+  "edges": [
+    {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "comp_diag": -1.7120506239469544,
+      "A_prevtok": 0.007338037327151373,
+      "B_induct": 0.21247044666908485,
+      "clean_induction": 0.0814374850729067,
+      "patched_induction": 0.08868396666098965,
+      "delta": -0.007246481588082956,
+      "rel_drop": -0.08898213865022431,
+      "is_ctrl_writer": true,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        1
+      ],
+      "comp_diag": -1.906722859138242,
+      "A_prevtok": 0.007338037327151373,
+      "B_induct": 0.07537262355039048,
+      "clean_induction": 0.041165448209698426,
+      "patched_induction": 0.051708072971083305,
+      "delta": -0.01054262476138488,
+      "rel_drop": -0.256103728245113,
+      "is_ctrl_writer": true,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        5
+      ],
+      "comp_diag": -1.7524245002967198,
+      "A_prevtok": 0.007338037327151373,
+      "B_induct": 0.13436579032612803,
+      "clean_induction": 0.05849449595132748,
+      "patched_induction": 0.061943142567817217,
+      "delta": -0.003448646616489734,
+      "rel_drop": -0.058956771238088936,
+      "is_ctrl_writer": true,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        8
+      ],
+      "comp_diag": -2.1213744393719334,
+      "A_prevtok": 0.007338037327151373,
+      "B_induct": 0.07475484046691833,
+      "clean_induction": 0.04098397623963317,
+      "patched_induction": 0.03772525181597287,
+      "delta": 0.003258724423660306,
+      "rel_drop": 0.0795121587179964,
+      "is_ctrl_writer": true,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        6,
+        9
+      ],
+      "comp_diag": -1.938997749884211,
+      "A_prevtok": 0.007338037327151373,
+      "B_induct": 0.1064131552884636,
+      "clean_induction": 0.0502835081699662,
+      "patched_induction": 0.06022004851846303,
+      "delta": -0.00993654034849683,
+      "rel_drop": -0.19761032414265436,
+      "is_ctrl_writer": true,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        7,
+        11
+      ],
+      "comp_diag": -1.3627839369354051,
+      "A_prevtok": 0.007338037327151373,
+      "B_induct": 0.29209703689584343,
+      "clean_induction": 0.10482753383222097,
+      "patched_induction": 0.11159085265103179,
+      "delta": -0.006763318818810815,
+      "rel_drop": -0.06451853412516288,
+      "is_ctrl_writer": true,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        8,
+        7
+      ],
+      "comp_diag": -0.4161987285032822,
+      "A_prevtok": 0.007338037327151373,
+      "B_induct": -0.05756304413166876,
+      "clean_induction": 0.002116031319296054,
+      "patched_induction": 0.001758491786522584,
+      "delta": 0.0003575395327734699,
+      "rel_drop": 0.16896703253542275,
+      "is_ctrl_writer": true,
+      "is_ctrl_inductor": true
+    },
+    {
+      "A": [
+        2,
+        2
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "comp_diag": 2.1623920034078115,
+      "A_prevtok": 0.5375272751680542,
+      "B_induct": 0.21247044666908485,
+      "clean_induction": 0.0814374850729067,
+      "patched_induction": 0.07793470957660507,
+      "delta": 0.0035027754963016244,
+      "rel_drop": 0.043011832857630286,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        2,
+        2
+      ],
+      "B": [
+        5,
+        1
+      ],
+      "comp_diag": 3.056117344104611,
+      "A_prevtok": 0.5375272751680542,
+      "B_induct": 0.07537262355039048,
+      "clean_induction": 0.041165448209698426,
+      "patched_induction": 0.03355212841868729,
+      "delta": 0.007613319791011139,
+      "rel_drop": 0.1849444163034151,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        2,
+        2
+      ],
+      "B": [
+        5,
+        5
+      ],
+      "comp_diag": 2.9863214720457556,
+      "A_prevtok": 0.5375272751680542,
+      "B_induct": 0.13436579032612803,
+      "clean_induction": 0.05849449595132748,
+      "patched_induction": 0.04931411625863013,
+      "delta": 0.009180379692697353,
+      "rel_drop": 0.15694433370852925,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        2,
+        2
+      ],
+      "B": [
+        5,
+        8
+      ],
+      "comp_diag": 2.587448116744605,
+      "A_prevtok": 0.5375272751680542,
+      "B_induct": 0.07475484046691833,
+      "clean_induction": 0.04098397623963317,
+      "patched_induction": 0.03696786297752732,
+      "delta": 0.004016113262105853,
+      "rel_drop": 0.09799227968081115,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        2,
+        2
+      ],
+      "B": [
+        6,
+        9
+      ],
+      "comp_diag": 3.214785995320573,
+      "A_prevtok": 0.5375272751680542,
+      "B_induct": 0.1064131552884636,
+      "clean_induction": 0.0502835081699662,
+      "patched_induction": 0.03845972778635545,
+      "delta": 0.011823780383610746,
+      "rel_drop": 0.23514231233915703,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        2,
+        2
+      ],
+      "B": [
+        7,
+        11
+      ],
+      "comp_diag": 2.4200251761391125,
+      "A_prevtok": 0.5375272751680542,
+      "B_induct": 0.29209703689584343,
+      "clean_induction": 0.10482753383222097,
+      "patched_induction": 0.10057673588048034,
+      "delta": 0.004250797951740631,
+      "rel_drop": 0.040550395457591676,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        2,
+        2
+      ],
+      "B": [
+        8,
+        7
+      ],
+      "comp_diag": 0.3045561550119383,
+      "A_prevtok": 0.5375272751680542,
+      "B_induct": -0.05756304413166876,
+      "clean_induction": 0.002116031319296054,
+      "patched_induction": 0.0020871886968967827,
+      "delta": 2.8842622399271288e-05,
+      "rel_drop": 0.013630527174270012,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": true
+    },
+    {
+      "A": [
+        3,
+        2
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "comp_diag": 2.7115289845705215,
+      "A_prevtok": 0.37605265557757356,
+      "B_induct": 0.21247044666908485,
+      "clean_induction": 0.0814374850729067,
+      "patched_induction": 0.07958433240079779,
+      "delta": 0.001853152672108907,
+      "rel_drop": 0.022755524319665286,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        2
+      ],
+      "B": [
+        5,
+        1
+      ],
+      "comp_diag": 2.6956387192734486,
+      "A_prevtok": 0.37605265557757356,
+      "B_induct": 0.07537262355039048,
+      "clean_induction": 0.041165448209698426,
+      "patched_induction": 0.03884151131431357,
+      "delta": 0.002323936895384855,
+      "rel_drop": 0.056453579311140464,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        2
+      ],
+      "B": [
+        5,
+        5
+      ],
+      "comp_diag": 2.27844676513082,
+      "A_prevtok": 0.37605265557757356,
+      "B_induct": 0.13436579032612803,
+      "clean_induction": 0.05849449595132748,
+      "patched_induction": 0.057113840733510966,
+      "delta": 0.0013806552178165163,
+      "rel_drop": 0.023603164628777068,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        2
+      ],
+      "B": [
+        5,
+        8
+      ],
+      "comp_diag": 2.5462035458464367,
+      "A_prevtok": 0.37605265557757356,
+      "B_induct": 0.07475484046691833,
+      "clean_induction": 0.04098397623963317,
+      "patched_induction": 0.03975283229529602,
+      "delta": 0.0012311439443371541,
+      "rel_drop": 0.03003964127684097,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        2
+      ],
+      "B": [
+        6,
+        9
+      ],
+      "comp_diag": 2.5732280647293537,
+      "A_prevtok": 0.37605265557757356,
+      "B_induct": 0.1064131552884636,
+      "clean_induction": 0.0502835081699662,
+      "patched_induction": 0.045051211478433134,
+      "delta": 0.005232296691533064,
+      "rel_drop": 0.10405591976293849,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        2
+      ],
+      "B": [
+        7,
+        11
+      ],
+      "comp_diag": 2.421031951466111,
+      "A_prevtok": 0.37605265557757356,
+      "B_induct": 0.29209703689584343,
+      "clean_induction": 0.10482753383222097,
+      "patched_induction": 0.10100830389577968,
+      "delta": 0.003819229936441293,
+      "rel_drop": 0.03643346167576606,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        2
+      ],
+      "B": [
+        8,
+        7
+      ],
+      "comp_diag": 0.3889335233745486,
+      "A_prevtok": 0.37605265557757356,
+      "B_induct": -0.05756304413166876,
+      "clean_induction": 0.002116031319296054,
+      "patched_induction": 0.0021010128244195866,
+      "delta": 1.5018494876467385e-05,
+      "rel_drop": 0.00709748231962069,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": true
+    },
+    {
+      "A": [
+        3,
+        7
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "comp_diag": 2.22136336470042,
+      "A_prevtok": 0.3624883410526902,
+      "B_induct": 0.21247044666908485,
+      "clean_induction": 0.0814374850729067,
+      "patched_induction": 0.0723016798384714,
+      "delta": 0.009135805234435301,
+      "rel_drop": 0.11218181929680779,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        7
+      ],
+      "B": [
+        5,
+        1
+      ],
+      "comp_diag": 2.5166114639761465,
+      "A_prevtok": 0.3624883410526902,
+      "B_induct": 0.07537262355039048,
+      "clean_induction": 0.041165448209698426,
+      "patched_induction": 0.03392686150700309,
+      "delta": 0.007238586702695338,
+      "rel_drop": 0.1758413188123615,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        7
+      ],
+      "B": [
+        5,
+        5
+      ],
+      "comp_diag": 2.4418699221579505,
+      "A_prevtok": 0.3624883410526902,
+      "B_induct": 0.13436579032612803,
+      "clean_induction": 0.05849449595132748,
+      "patched_induction": 0.05324294168916307,
+      "delta": 0.005251554262164414,
+      "rel_drop": 0.08977860526457335,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        7
+      ],
+      "B": [
+        5,
+        8
+      ],
+      "comp_diag": 2.304597745540148,
+      "A_prevtok": 0.3624883410526902,
+      "B_induct": 0.07475484046691833,
+      "clean_induction": 0.04098397623963317,
+      "patched_induction": 0.03753958064848174,
+      "delta": 0.0034443955911514362,
+      "rel_drop": 0.08404249434003344,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        7
+      ],
+      "B": [
+        6,
+        9
+      ],
+      "comp_diag": 2.716964003471685,
+      "A_prevtok": 0.3624883410526902,
+      "B_induct": 0.1064131552884636,
+      "clean_induction": 0.0502835081699662,
+      "patched_induction": 0.04459780480560574,
+      "delta": 0.005685703364360459,
+      "rel_drop": 0.11307292532457926,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        7
+      ],
+      "B": [
+        7,
+        11
+      ],
+      "comp_diag": 2.0386449014557435,
+      "A_prevtok": 0.3624883410526902,
+      "B_induct": 0.29209703689584343,
+      "clean_induction": 0.10482753383222097,
+      "patched_induction": 0.10115170325800761,
+      "delta": 0.0036758305742133623,
+      "rel_drop": 0.03506550654999305,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        3,
+        7
+      ],
+      "B": [
+        8,
+        7
+      ],
+      "comp_diag": -0.35877995422456543,
+      "A_prevtok": 0.3624883410526902,
+      "B_induct": -0.05756304413166876,
+      "clean_induction": 0.002116031319296054,
+      "patched_induction": 0.002185165599501934,
+      "delta": -6.913428020587998e-05,
+      "rel_drop": -0.03267167152747014,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": true
+    },
+    {
+      "A": [
+        4,
+        11
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "comp_diag": 2.8423538967933477,
+      "A_prevtok": 0.961887363474039,
+      "B_induct": 0.21247044666908485,
+      "clean_induction": 0.0814374850729067,
+      "patched_induction": 0.05142143945945994,
+      "delta": 0.030016045613446757,
+      "rel_drop": 0.368577757362902,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        4,
+        11
+      ],
+      "B": [
+        5,
+        1
+      ],
+      "comp_diag": 3.6288866572255936,
+      "A_prevtok": 0.961887363474039,
+      "B_induct": 0.07537262355039048,
+      "clean_induction": 0.041165448209698426,
+      "patched_induction": 0.01806499982344344,
+      "delta": 0.023100448386254985,
+      "rel_drop": 0.5611611045403997,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        4,
+        11
+      ],
+      "B": [
+        5,
+        5
+      ],
+      "comp_diag": 3.522302849090004,
+      "A_prevtok": 0.961887363474039,
+      "B_induct": 0.13436579032612803,
+      "clean_induction": 0.05849449595132748,
+      "patched_induction": 0.03761820867924529,
+      "delta": 0.02087628727208219,
+      "rel_drop": 0.35689319024909766,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        4,
+        11
+      ],
+      "B": [
+        5,
+        8
+      ],
+      "comp_diag": 3.4762483579423207,
+      "A_prevtok": 0.961887363474039,
+      "B_induct": 0.07475484046691833,
+      "clean_induction": 0.04098397623963317,
+      "patched_induction": 0.03063933982781033,
+      "delta": 0.010344636411822844,
+      "rel_drop": 0.2524068516763183,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        4,
+        11
+      ],
+      "B": [
+        6,
+        9
+      ],
+      "comp_diag": 3.561673109104291,
+      "A_prevtok": 0.961887363474039,
+      "B_induct": 0.1064131552884636,
+      "clean_induction": 0.0502835081699662,
+      "patched_induction": 0.028522367960683144,
+      "delta": 0.021761140209283054,
+      "rel_drop": 0.4327689336178964,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        4,
+        11
+      ],
+      "B": [
+        7,
+        11
+      ],
+      "comp_diag": 2.8275047259719113,
+      "A_prevtok": 0.961887363474039,
+      "B_induct": 0.29209703689584343,
+      "clean_induction": 0.10482753383222097,
+      "patched_induction": 0.08669285041327512,
+      "delta": 0.01813468341894585,
+      "rel_drop": 0.17299542167967866,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": false
+    },
+    {
+      "A": [
+        4,
+        11
+      ],
+      "B": [
+        8,
+        7
+      ],
+      "comp_diag": 0.4379388562466549,
+      "A_prevtok": 0.961887363474039,
+      "B_induct": -0.05756304413166876,
+      "clean_induction": 0.002116031319296054,
+      "patched_induction": 0.0020762748894532744,
+      "delta": 3.975642984277959e-05,
+      "rel_drop": 0.01878820482487257,
+      "is_ctrl_writer": false,
+      "is_ctrl_inductor": true
+    }
+  ],
+  "median_delta_strong_edges": 0.011084208397716795,
+  "max_rel_drop": 0.5611611045403997
+}
