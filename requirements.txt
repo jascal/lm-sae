@@ -1,18 +1,20 @@
 # lm-sae runtime dependencies.
 #
 # sae-forge provides the forge pipeline (FeatureBasis / SubspaceProjector /
-# ForgePipeline / NativeModel) and, as of v0.13.0, the two-basis forge
-# (composition-subspace preserve: composition_preserve / assertion_preserve)
-# plus the circuit-faithfulness eval (saeforge.eval.circuit_faithfulness).
-# lm-sae's two_basis_forge_oracle experiment requires >= 0.13.0.
-sae-forge @ git+https://github.com/jascal/sae-forge@v0.13.0
+# ForgePipeline / NativeModel), the two-basis forge (composition_preserve /
+# assertion_preserve) + circuit-faithfulness eval, and — as of v0.14.0 — the
+# writer-output composition subspace: saeforge.circuit_heads (behavioral
+# prev-token / duplicate-token writer detection) and
+# saeforge.composition_subspace.extract_writer_subspace (the OV-output U_C).
+# lm-sae's two_basis_single_layer experiment consumes >= 0.14.0.
+sae-forge @ git+https://github.com/jascal/sae-forge@v0.14.0
 
 torch>=2.1
 transformers>=4.40
 numpy>=1.26
 matplotlib>=3.7
 
-# NOTE: the shared bio-sae venv currently has sae-forge 0.12.0 installed and no
-# pip. Until it is re-synced, run lm-sae scripts that need the two-basis API with
-# the local 0.13.0 checkout on the path, e.g.:
+# NOTE: the shared bio-sae venv currently has an older sae-forge installed and no
+# pip. Until it is re-synced, run lm-sae scripts that need the two-basis /
+# writer-output API with the local 0.14.0 checkout on the path, e.g.:
 #   PYTHONPATH=/home/allans/code/sae-forge /home/allans/code/bio-sae/.venv/bin/python scripts/<script>.py
