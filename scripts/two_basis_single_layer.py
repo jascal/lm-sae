@@ -202,7 +202,9 @@ def main(argv=None):
     Patt = Uatt @ Uatt.T
     Uwa = np.linalg.qr(np.concatenate([Uw, Ua], 1))[0]; Pwa = Uwa @ Uwa.T
     print(f"    host cov95 {host_cov['all']['cov95']:.3f}; readers-U_C {Uc.shape[1]}d (layers {uc_layers}); "
-          f"writers-U_C {Uw.shape[1]}d (prev-tok {[f'{a}.{b}' for a, b in writers]}); attribution-U_C {Uatt.shape[1]}d")
+          f"writers-U_C {Uw.shape[1]}d; attribution-U_C {Uatt.shape[1]}d")
+    print(f"    detected writers (released prev_token_heads, Δ=1 score): "
+          f"{', '.join(f'{Li}.{h}={s:.3f}' for (Li, h), s in zip(writers, writer_scores))}")
     print(f"    [science check] subspace overlap(attribution, writers) = {ov_aw:.2f} "
           f"(high => the gradient REDISCOVERS the prev-token writers, no labels needed)")
 
