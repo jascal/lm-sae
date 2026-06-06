@@ -74,6 +74,7 @@ def _joint_uc(model, rank):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--ckpt", type=Path, default=Path("runs/tiny_gpt.pt"))
+    p.add_argument("--gpt2", action="store_true", help="forge REAL gpt2 with a self-trained final-layer SAE (not the tiny ckpt / not SAELens)")
     p.add_argument("--max-tokens", type=int, default=12000)
     p.add_argument("--ctx", type=int, default=96)
     p.add_argument("--width", type=int, default=512)
@@ -96,10 +97,15 @@ def main(argv=None):
     from saeforge.eval.circuit_faithfulness import circuit_kl, induction_predictable
     from saeforge.model import NativeModel
 
-    ck = torch.load(args.ckpt, map_location="cpu", weights_only=False)
-    cfg0 = GPT2Config(**ck["config"])
-    model = GPT2LMHeadModel(cfg0)
-    model.load_state_dict(ck["state_dict"]); model.eval()
+    if args.gpt2:
+        model = GPT2LMHeadModel.from_pretrained("gpt2").eval()
+        cfg0 = model.config
+        print("forging REAL gpt2 (124M) with a self-trained final-layer TopK SAE")
+    else:
+        ck = torch.load(args.ckpt, map_location="cpu", weights_only=False)
+        cfg0 = GPT2Config(**ck["config"])
+        model = GPT2LMHeadModel(cfg0)
+        model.load_state_dict(ck["state_dict"]); model.eval()
     transformer = model.transformer
     tok = GPT2TokenizerFast.from_pretrained("gpt2")
     import urllib.request
