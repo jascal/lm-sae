@@ -80,6 +80,21 @@ def _uc(model, layers, rank):
     return np.linalg.qr(np.concatenate([Ur, Uw], 1))[0]
 
 
+def _writer_uc(model, writer_heads, rank):
+    """The OV OUTPUT subspace of the circuit WRITER heads (e.g. prev-token movers) — the actual
+    predecessor-write the SAE smears. Written subspace of head A = row space of OV_A = W_V^A W_O^A."""
+    tr = model.transformer; cfg = model.config
+    d, Hn = cfg.n_embd, cfg.n_head; hd = d // Hn
+    ovs = []
+    for (L, h) in writer_heads:
+        Wc = tr.h[L].attn.c_attn.weight.detach().numpy().astype(np.float64)
+        Wo = tr.h[L].attn.c_proj.weight.detach().numpy().astype(np.float64)
+        sl = slice(h * hd, (h + 1) * hd)
+        ovs.append(Wc[:, 2 * d:3 * d][:, sl] @ Wo[sl, :])      # (d, d) OV_A
+    Vt = np.linalg.svd(np.concatenate(ovs, 0), full_matrices=False)[2]   # right singular vecs = written dirs
+    return Vt[:rank].T                                                   # (d, rank) orthonormal
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--device", default="cpu")
@@ -100,8 +115,9 @@ def main(argv=None):
     from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 
     dev = args.device
-    model = GPT2LMHeadModel.from_pretrained("gpt2").eval().to(dev)
+    model = GPT2LMHeadModel.from_pretrained("gpt2", attn_implementation="eager").eval().to(dev)
     tr = model.transformer
+    nL = model.config.n_layer; Hn = model.config.n_head
     tok = GPT2TokenizerFast.from_pretrained("gpt2")
     import urllib.request
     txt = urllib.request.urlopen(
@@ -112,14 +128,18 @@ def main(argv=None):
     L = args.layer
 
     # ---- pass 1: layer-L residual (SAE + cov95), host final hidden, induction mask, oracle ----
-    print("[1] host pass: layer-%d residual + induction mask" % L)
+    print("[1] host pass: layer-%d residual + induction mask + prev-token writers" % L)
     X5, all_ids, ind_mask, Hf = [], [], [], []
+    pt = np.zeros((nL, Hn)); ptn = 0
     with torch.no_grad():
         for c in chunks:
-            o = model(input_ids=torch.tensor([c], device=dev), output_hidden_states=True)
+            o = model(input_ids=torch.tensor([c], device=dev), output_hidden_states=True, output_attentions=True)
             X5.append(o.hidden_states[L][0].float().cpu().numpy())
             Hf.append(o.hidden_states[-1][0].float().cpu().numpy())
-            ind_mask.append(_induction_predictable(c)[1:].astype(bool)); all_ids.extend(c)
+            ind_mask.append(_induction_predictable(c)[1:].astype(bool)); all_ids.extend(c); ptn += len(c) - 1
+            for Li in range(nL):
+                pt[Li] += np.diagonal(o.attentions[Li][0].float().cpu().numpy(), offset=-1, axis1=1, axis2=2).sum(1)
+    prevtok = pt / max(ptn, 1)
     X5 = np.concatenate(X5, 0).astype(np.float32)
     W_U = model.lm_head.weight.detach().cpu().numpy().astype(np.float32)
     N, d = X5.shape
@@ -136,14 +156,18 @@ def main(argv=None):
     Wdr = Wd.T                                           # (width, d) atoms-as-rows
 
     uc_layers = [int(x) for x in args.uc_layers.split(",")]
-    Uc = _uc(model, uc_layers, args.comp_rank)           # (d, r)
+    Uc = _uc(model, uc_layers, args.comp_rank)           # readers' geometry (the U_C that failed)
+    # prev-token WRITER heads (Δ=1 movers) BELOW the forged layer: their OV output = the predecessor-write
+    writers = sorted([(Li, h) for Li in range(L) for h in range(Hn)], key=lambda lh: -prevtok[lh])[:4]
+    Uw = _writer_uc(model, writers, Uc.shape[1])          # match dim for a fair head-to-head vs readers
     Za = _encode(Xz, params, args.k)
     atom_auc = np.array([np.nanmax(_best_auc_per_label(Za[:, [j]], Y)) for j in range(args.width)])
-    Ua = np.linalg.qr(Wdr[np.argsort(-atom_auc)[: args.assert_k]].T)[0]   # (d, r_a) orthonormal
-    Puc = Uc @ Uc.T
-    Uac = np.linalg.qr(np.concatenate([Uc, Ua], 1))[0]; Puac = Uac @ Uac.T
-    print(f"    host cov95 {host_cov['all']['cov95']:.3f} mAUC {host_cov['all']['mauc']:.3f}; "
-          f"U_C {Uc.shape[1]}d, U_C∪U_A {Uac.shape[1]}d")
+    Ua = np.linalg.qr(Wdr[np.argsort(-atom_auc)[: args.assert_k]].T)[0]
+    Preaders = Uc @ Uc.T
+    Pwriters = Uw @ Uw.T
+    Uwa = np.linalg.qr(np.concatenate([Uw, Ua], 1))[0]; Pwa = Uwa @ Uwa.T
+    print(f"    host cov95 {host_cov['all']['cov95']:.3f}; readers-U_C {Uc.shape[1]}d (layers {uc_layers}); "
+          f"writers-U_C {Uw.shape[1]}d (prev-tok {[f'{a}.{b}' for a, b in writers]})")
 
     def recon(rz):
         return _encode(rz, params, args.k) @ Wd.T        # (n, d) in z-space
@@ -153,8 +177,9 @@ def main(argv=None):
     r_recon = (rec_z * sd + mu).astype(np.float32)
     forged = {
         "single": r_recon,
-        "uc": (r_recon + (X5 - r_recon) @ Puc).astype(np.float32),
-        "two_basis": (r_recon + (X5 - r_recon) @ Puac).astype(np.float32),
+        "uc_readers": (r_recon + (X5 - r_recon) @ Preaders).astype(np.float32),
+        "uc_writers": (r_recon + (X5 - r_recon) @ Pwriters).astype(np.float32),
+        "two_basis_wr": (r_recon + (X5 - r_recon) @ Pwa).astype(np.float32),
     }
     off = np.cumsum([0] + [len(c) for c in chunks])
 
@@ -187,15 +212,18 @@ def main(argv=None):
 
     print(f"[3] forge layer-{L} residual (alive: blocks {L}-11 host)")
     res = {name: run(name, Rf) for name, Rf in forged.items()}
-    s, u, tb = res["single"], res["uc"], res["two_basis"]
-    out = {"experiment": "single-layer U_C test", "layer": L, "uc_layers": uc_layers,
-           "n_features": args.width, "host_cov95": host_cov["all"]["cov95"], "configs": res}
+    s, ur, uw, tb = res["single"], res["uc_readers"], res["uc_writers"], res["two_basis_wr"]
+    out = {"experiment": "single-layer U_C: readers vs writers", "layer": L, "uc_layers": uc_layers,
+           "writers": [list(w) for w in writers], "n_features": args.width,
+           "host_cov95": host_cov["all"]["cov95"], "configs": res}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
-    red = (s["excess"] - u["excess"]) / max(abs(s["excess"]), 1e-9)
-    print(f"\n[U_C] circuit-specific excess single {s['excess']:+.3f} -> U_C {u['excess']:+.3f} "
-          f"(Δ {s['excess']-u['excess']:+.3f}, {red:.0%}) -> "
-          f"{'U_C PROTECTS induction (alive forge, real GPT-2)' if (s['excess']-u['excess']) > 0.1*abs(s['excess']) and s['excess']>0 else 'no clear protection'}")
+    red_r = s["excess"] - ur["excess"]; red_w = s["excess"] - uw["excess"]
+    print(f"\n[readers vs writers] circuit-specific excess single {s['excess']:+.3f}  ->  "
+          f"readers-U_C {ur['excess']:+.3f} (Δ {red_r:+.3f}, {red_r/max(s['excess'],1e-9):.0%})  |  "
+          f"WRITERS-U_C {uw['excess']:+.3f} (Δ {red_w:+.3f}, {red_w/max(s['excess'],1e-9):.0%})")
+    win = red_w > 0.1 * s["excess"] and red_w > red_r + 1e-3 and s["excess"] > 0
+    print(f"[verdict] {'WRITER-OUTPUT preserve PROTECTS induction where reader-geometry did not — the circuit-critical direction is the prev-token writers OV output (diagnosis confirmed)' if win else 'writer-output preserve does NOT protect either (the fragile direction is elsewhere / not low-rank-preservable)'}")
     print(f"[alive?] global_kl {s['global_kl']:.3f} (<<10.8 = alive)   host cov95 {host_cov['all']['cov95']:.3f}")
     print(f"[done] {args.output}")
     return out
