@@ -1,0 +1,69 @@
+{
+  "experiment": "QK feature-coordinate probe",
+  "model": "gpt2",
+  "layer": 5,
+  "per_head": [
+    {
+      "head": 0,
+      "qk_same_token_binding": -0.005246161033364507,
+      "behavioral_same_token_attn": 0.04052713545261607
+    },
+    {
+      "head": 1,
+      "qk_same_token_binding": -0.0002937410582763214,
+      "behavioral_same_token_attn": 0.04435230336760028
+    },
+    {
+      "head": 2,
+      "qk_same_token_binding": -0.017048578093740142,
+      "behavioral_same_token_attn": 0.03857918513501459
+    },
+    {
+      "head": 3,
+      "qk_same_token_binding": -0.019936770318080436,
+      "behavioral_same_token_attn": 0.05184929091536865
+    },
+    {
+      "head": 4,
+      "qk_same_token_binding": -0.03416825296130978,
+      "behavioral_same_token_attn": 0.03586169759278106
+    },
+    {
+      "head": 5,
+      "qk_same_token_binding": -0.025948746210078116,
+      "behavioral_same_token_attn": 0.04676050491500661
+    },
+    {
+      "head": 6,
+      "qk_same_token_binding": -0.017487886123658283,
+      "behavioral_same_token_attn": 0.04393449958720794
+    },
+    {
+      "head": 7,
+      "qk_same_token_binding": -0.012282794528594865,
+      "behavioral_same_token_attn": 0.041747666474603956
+    },
+    {
+      "head": 8,
+      "qk_same_token_binding": -0.038101230733066156,
+      "behavioral_same_token_attn": 0.036802612062661354
+    },
+    {
+      "head": 9,
+      "qk_same_token_binding": -0.003839931051851201,
+      "behavioral_same_token_attn": 0.05491093003460308
+    },
+    {
+      "head": 10,
+      "qk_same_token_binding": 0.032311689789097806,
+      "behavioral_same_token_attn": 0.06886025143995955
+    },
+    {
+      "head": 11,
+      "qk_same_token_binding": 0.06908954293145401,
+      "behavioral_same_token_attn": 0.10502183969726324
+    }
+  ],
+  "spearman_binding_vs_behavior": 0.6783216783216783,
+  "top_head_by_qk": 11
+}
