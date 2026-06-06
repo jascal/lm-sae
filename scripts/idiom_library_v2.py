@@ -42,6 +42,11 @@ NAMES = [
     " Lisa", " Betty", " Anna", " Tom", " Sam", " Joe", " Jack", " Bill", " Harry", " Alice", " Jane",
 ]
 
+# numeric operands for the greater-than probe (value-ordered). NB: the published GPT-2 greater-than
+# circuit (Hanna et al.) does its COMPARISON in MLPs 8-11; this OV probe reads only the attention-side
+# "boost-greater" shadow, so it is reported as EXPLORATORY.
+NUMBERS = [f" {n}" for n in range(1, 41)]
+
 # curated single-token-friendly ordinal sequences (leading space = GPT-2 word-initial BPE)
 ORDINALS = [
     [" one", " two", " three", " four", " five", " six", " seven", " eight", " nine", " ten"],
@@ -159,6 +164,10 @@ def main(argv=None):
     # name operands (single-token proper names) for the name-mover copy score
     nameids = np.array([t for t in single(NAMES) if t is not None])
 
+    # numeric operands (value-ordered, single-token) for the greater-than probe
+    numpairs = [(v + 1, t) for v, t in enumerate(single(NUMBERS)) if t is not None]
+    numids = np.array([t for _v, t in numpairs]); numvals = np.array([v for v, _t in numpairs])
+
     # succession operand index: consecutive (Y -> succ(Y)) pairs whose BOTH tokens are single-token
     succ_pairs = []
     for seq in ORDINALS:
@@ -176,12 +185,15 @@ def main(argv=None):
     nc = len(copytoks)
     Ename = ext_embed(wte[nameids]); Uname = Uout_full[nameids]    # name operands
     nn = len(nameids)
-    copy = np.zeros((nL, H)); succ = np.zeros((nL, H)); copyname = np.zeros((nL, H))
+    copy = np.zeros((nL, H)); succ = np.zeros((nL, H)); copyname = np.zeros((nL, H)); gt = np.zeros((nL, H))
     if succ_vocab.size:
         Esucc = ext_embed(wte[succ_vocab]); Usucc = Uout_full[succ_vocab]
         sidx = {int(t): i for i, t in enumerate(succ_vocab)}
         srows = [sidx[b] for _a, b in succ_pairs]                 # successor row
         scols = [sidx[a] for a, _b in succ_pairs]                 # attended (ordinal) col
+    if numids.size:
+        Enum = ext_embed(wte[numids]); Unum = Uout_full[numids]
+        gtmask = numvals[:, None] > numvals[None, :]              # [Z,Y] True where val(Z) > val(Y)
     for L in range(nL):
         Wc = tr.h[L].attn.c_attn.weight.detach().numpy().astype(np.float64)
         Wo = tr.h[L].attn.c_proj.weight.detach().numpy().astype(np.float64)
@@ -195,6 +207,13 @@ def main(argv=None):
             if succ_vocab.size:
                 Cs = Usucc @ (Esucc @ OVh).T
                 succ[L, h] = _col_std_at(Cs, srows, scols)         # standardised off-by-one = succession
+            if numids.size:
+                Cn = Unum @ (Enum @ OVh).T                         # (nv, nv) numeric logit-effect
+                cm = Cn.mean(0); cs = Cn.std(0) + 1e-9
+                Zn = (Cn - cm) / cs                                # column-standardised
+                # boost-greater: mean std-effect on numbers > Y minus on numbers < Y, per attended Y
+                hi = np.where(gtmask, Zn, np.nan); lo = np.where(~gtmask & ~np.eye(len(numids), dtype=bool), Zn, np.nan)
+                gt[L, h] = float(np.nanmean(np.nanmean(hi, 0) - np.nanmean(lo, 0)))
 
     heads = [(L, h) for L in range(nL) for h in range(H)]
     layer_of = np.array([L for L, _ in heads])
@@ -250,21 +269,34 @@ def main(argv=None):
                 chain.append((Dd, Ss, Nn, score))
     chain.sort(key=lambda r: -r[3])
 
+    # ---- backup / negative name-movers (IOI self-repair family), greater-than (exploratory) ----
+    cn_late = copyname.reshape(-1).copy(); cn_late[~late] = np.nan
+    primaries = set(namemovers[:3])
+    backup = cn_late.copy()
+    for i in primaries:
+        backup[i] = np.nan                                         # backups = name-copy LATE, minus primaries
+    negative_nm = np.where(late, -copyname.reshape(-1), np.nan)    # most-negative NAME copy, late
+    gtf = gt.reshape(-1)
+
     # ---- assemble idiom rankings ----
     flat = {"prev_token": prevtok.reshape(-1), "duplicate_token": dupf, "induction": indv.reshape(-1),
-            "copy_namemover": copyname_idiom, "copy_suppression": -copyf, "succession": succ.reshape(-1),
-            "s_inhibition": sinh_filled}
+            "copy_namemover": copyname_idiom, "backup_namemover": backup,
+            "negative_namemover": negative_nm, "copy_suppression": -copyf,
+            "s_inhibition": sinh_filled, "succession": succ.reshape(-1), "greater_than": gtf}
 
     def topk(v, k=6):
         return [(name(i), float(v[i])) for i in np.argsort(-np.nan_to_num(v, nan=-1e9))[:k]]
 
-    out = {"experiment": "idiom library v2 (copy-score repair + succession + S-inhibition + IOI chain)",
+    # exploratory idioms (reported, but no canonical GPT-2-small head set to grade against)
+    exploratory = {"succession", "greater_than"}
+    out = {"experiment": "idiom library v2 (copy-score repair + IOI family + succession/greater-than)",
            "model": args.pretrained, "idioms": {}, "name_movers_used": [name(i) for i in namemovers]}
     print(f"{args.pretrained}: idiom library v2 over {nL*H} heads  (name-movers: {[name(i) for i in namemovers]})\n")
     for idiom, v in flat.items():
         members = topk(v)
         out["idioms"][idiom] = members
-        print(f"[{idiom:16}] " + ", ".join(f"{n}({s:+.2f})" for n, s in members))
+        tag = "  (exploratory)" if idiom in exploratory else ""
+        print(f"[{idiom:18}] " + ", ".join(f"{n}({s:+.2f})" for n, s in members) + tag)
 
     out["ioi_chain_top"] = [[name(a), name(b), name(c), float(s)] for a, b, c, s in chain[:6]]
     print("\n[ioi_chain]  duplicate -> S-inhibition -> name-mover  (product of Q-composition scores):")
@@ -275,6 +307,8 @@ def main(argv=None):
     known = {"prev_token": {"4.11"}, "induction": {"5.0", "5.1", "5.5", "6.9", "7.11"},
              "duplicate_token": {"0.1", "0.5", "3.0", "1.5"},
              "copy_namemover": {"9.9", "9.6", "10.0", "10.10", "9.0", "11.3"},
+             "backup_namemover": {"9.0", "9.7", "10.1", "10.2", "10.6", "11.2"},
+             "negative_namemover": {"10.7", "11.10"},
              "copy_suppression": {"10.7", "11.10"},
              "s_inhibition": {"7.3", "7.9", "8.6", "8.10"}}
     print("\n[validation vs literature]")
