@@ -1,0 +1,18 @@
+# lm-sae runtime dependencies.
+#
+# sae-forge provides the forge pipeline (FeatureBasis / SubspaceProjector /
+# ForgePipeline / NativeModel) and, as of v0.13.0, the two-basis forge
+# (composition-subspace preserve: composition_preserve / assertion_preserve)
+# plus the circuit-faithfulness eval (saeforge.eval.circuit_faithfulness).
+# lm-sae's two_basis_forge_oracle experiment requires >= 0.13.0.
+sae-forge @ git+https://github.com/jascal/sae-forge@v0.13.0
+
+torch>=2.1
+transformers>=4.40
+numpy>=1.26
+matplotlib>=3.7
+
+# NOTE: the shared bio-sae venv currently has sae-forge 0.12.0 installed and no
+# pip. Until it is re-synced, run lm-sae scripts that need the two-basis API with
+# the local 0.13.0 checkout on the path, e.g.:
+#   PYTHONPATH=/home/allans/code/sae-forge /home/allans/code/bio-sae/.venv/bin/python scripts/<script>.py
