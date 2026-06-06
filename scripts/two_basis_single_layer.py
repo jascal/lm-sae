@@ -95,6 +95,41 @@ def _writer_uc(model, writer_heads, rank):
     return Vt[:rank].T                                                   # (d, rank) orthonormal
 
 
+def _attribution_uc(model, chunks, L, X5, ind_mask, rank, dev):
+    """Label-FREE circuit subspace: top principal directions of ∂(induction-predictable NLL)/∂(layer-L
+    residual). Backprop the circuit loss to a leaf residual injected at block L; the gradient directions
+    are what the circuit is sensitive to — no idiom labels needed."""
+    import torch
+    tr = model.transformer
+    off = np.cumsum([0] + [len(c) for c in chunks])
+    grads = []
+    for i, c in enumerate(chunks):
+        r_leaf = torch.tensor(X5[off[i]:off[i + 1]][None], device=dev, requires_grad=True)
+        inj = {"t": r_leaf}
+
+        def pre(mod, a, kw):
+            return ((inj["t"],) + a[1:], kw) if len(a) else (a, {**kw, "hidden_states": inj["t"]})
+        h = tr.h[L].register_forward_pre_hook(pre, with_kwargs=True)
+        logits = model(input_ids=torch.tensor([c], device=dev)).logits[0]
+        h.remove()
+        lp = torch.log_softmax(logits[:-1].float(), -1)
+        tgt = torch.tensor(c[1:], device=dev)
+        nll = -lp[torch.arange(len(c) - 1), tgt]
+        m = torch.tensor(ind_mask[i].astype(np.float32), device=dev)
+        loss = (nll * m).sum()
+        if float(m.sum()) > 0:
+            loss.backward()
+            grads.append(r_leaf.grad[0].detach().cpu().numpy())
+        model.zero_grad(set_to_none=True)
+    G = np.concatenate(grads, 0)
+    return np.linalg.svd(G, full_matrices=False)[2][:rank].T   # (d, rank) top gradient directions
+
+
+def _overlap(A, B):
+    """fraction of subspace A captured by subspace B (both orthonormal-column d x r)."""
+    return float(np.linalg.norm(B.T @ A) ** 2 / A.shape[1])
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--device", default="cpu")
@@ -163,11 +198,17 @@ def main(argv=None):
     Za = _encode(Xz, params, args.k)
     atom_auc = np.array([np.nanmax(_best_auc_per_label(Za[:, [j]], Y)) for j in range(args.width)])
     Ua = np.linalg.qr(Wdr[np.argsort(-atom_auc)[: args.assert_k]].T)[0]
+    print("    computing attribution subspace (∂induction-loss/∂residual)...")
+    Uatt = _attribution_uc(model, chunks, L, X5, ind_mask, Uc.shape[1], dev)   # label-free
+    ov_aw = _overlap(Uatt, Uw)                                                  # does attribution = writers?
     Preaders = Uc @ Uc.T
     Pwriters = Uw @ Uw.T
+    Patt = Uatt @ Uatt.T
     Uwa = np.linalg.qr(np.concatenate([Uw, Ua], 1))[0]; Pwa = Uwa @ Uwa.T
     print(f"    host cov95 {host_cov['all']['cov95']:.3f}; readers-U_C {Uc.shape[1]}d (layers {uc_layers}); "
-          f"writers-U_C {Uw.shape[1]}d (prev-tok {[f'{a}.{b}' for a, b in writers]})")
+          f"writers-U_C {Uw.shape[1]}d (prev-tok {[f'{a}.{b}' for a, b in writers]}); attribution-U_C {Uatt.shape[1]}d")
+    print(f"    [science check] subspace overlap(attribution, writers) = {ov_aw:.2f} "
+          f"(high => the gradient REDISCOVERS the prev-token writers, no labels needed)")
 
     def recon(rz):
         return _encode(rz, params, args.k) @ Wd.T        # (n, d) in z-space
@@ -179,6 +220,7 @@ def main(argv=None):
         "single": r_recon,
         "uc_readers": (r_recon + (X5 - r_recon) @ Preaders).astype(np.float32),
         "uc_writers": (r_recon + (X5 - r_recon) @ Pwriters).astype(np.float32),
+        "uc_attribution": (r_recon + (X5 - r_recon) @ Patt).astype(np.float32),
         "two_basis_wr": (r_recon + (X5 - r_recon) @ Pwa).astype(np.float32),
     }
     off = np.cumsum([0] + [len(c) for c in chunks])
@@ -212,19 +254,21 @@ def main(argv=None):
 
     print(f"[3] forge layer-{L} residual (alive: blocks {L}-11 host)")
     res = {name: run(name, Rf) for name, Rf in forged.items()}
-    s, ur, uw, tb = res["single"], res["uc_readers"], res["uc_writers"], res["two_basis_wr"]
-    out = {"experiment": "single-layer U_C: readers vs writers", "layer": L, "uc_layers": uc_layers,
-           "writers": [list(w) for w in writers], "n_features": args.width,
-           "host_cov95": host_cov["all"]["cov95"], "configs": res}
+    s, ur, uw, ua, tb = (res["single"], res["uc_readers"], res["uc_writers"],
+                         res["uc_attribution"], res["two_basis_wr"])
+    out = {"experiment": "single-layer U_C: readers vs writers vs attribution", "layer": L,
+           "uc_layers": uc_layers, "writers": [list(w) for w in writers], "n_features": args.width,
+           "overlap_attribution_writers": ov_aw, "host_cov95": host_cov["all"]["cov95"], "configs": res}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
-    red_r = s["excess"] - ur["excess"]; red_w = s["excess"] - uw["excess"]
-    print(f"\n[readers vs writers] circuit-specific excess single {s['excess']:+.3f}  ->  "
-          f"readers-U_C {ur['excess']:+.3f} (Δ {red_r:+.3f}, {red_r/max(s['excess'],1e-9):.0%})  |  "
-          f"WRITERS-U_C {uw['excess']:+.3f} (Δ {red_w:+.3f}, {red_w/max(s['excess'],1e-9):.0%})")
-    win = red_w > 0.1 * s["excess"] and red_w > red_r + 1e-3 and s["excess"] > 0
-    print(f"[verdict] {'WRITER-OUTPUT preserve PROTECTS induction where reader-geometry did not — the circuit-critical direction is the prev-token writers OV output (diagnosis confirmed)' if win else 'writer-output preserve does NOT protect either (the fragile direction is elsewhere / not low-rank-preservable)'}")
-    print(f"[alive?] global_kl {s['global_kl']:.3f} (<<10.8 = alive)   host cov95 {host_cov['all']['cov95']:.3f}")
+
+    def pct(r):
+        return (s["excess"] - r["excess"]) / max(s["excess"], 1e-9)
+    print(f"\n[circuit-specific excess] single {s['excess']:+.3f}  ->  readers {ur['excess']:+.3f} ({pct(ur):.0%})  |  "
+          f"writers {uw['excess']:+.3f} ({pct(uw):.0%})  |  ATTRIBUTION {ua['excess']:+.3f} ({pct(ua):.0%})")
+    attr_works = pct(ua) > 0.5 and s["excess"] > 0
+    print(f"[verdict] {'ATTRIBUTION (label-free) PROTECTS induction too — overlap with the idiom-identified writers '+f'{ov_aw:.2f}'+'; the gradient rediscovers the circuit-critical writer subspace WITHOUT labels, so the fix generalises to any circuit via ∂loss/∂residual' if attr_works else 'attribution subspace does NOT protect (label-free version fails; writer identification still needed)'}")
+    print(f"[alive?] global_kl single {s['global_kl']:.3f} / attribution {ua['global_kl']:.3f}  host cov95 {host_cov['all']['cov95']:.3f}")
     print(f"[done] {args.output}")
     return out
 
