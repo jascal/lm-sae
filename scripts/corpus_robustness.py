@@ -212,8 +212,14 @@ def main(argv=None):
         va, vb = R[a]["buckets"][bk], R[b]["buckets"][bk]
         print(f"  {bk:>11} {va:>12.1%} {vb:>12.1%} {vb-va:>+8.1%}")
 
+    def topk_list(v, k):
+        return [heads[i] for i in np.argsort(-np.nan_to_num(v, nan=-1e9))[:k]]
     out = {"experiment": "corpus robustness (shakespeare vs wikitext)", "model": args.pretrained,
-           "corpora": corpora, "identity_stability": ident, "opcode_legz_spearman": leg_rho,
+           "corpora": corpora, "n_operands": nt,
+           "shared_operands": [tok.convert_ids_to_tokens(t).replace("Ġ", "_") for t in ops],
+           "identity_stability": ident, "opcode_legz_spearman": leg_rho,
+           "top_heads": {name: {sig: topk_list(R[name][sig], args.top_k) for sig in ["prev", "dup", "ind"]}
+                         for name in corpora},
            "buckets": {name: R[name]["buckets"] for name in corpora}}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
