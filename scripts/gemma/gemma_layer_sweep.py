@@ -10,15 +10,16 @@ layers; then attentions). Runs on cuda (bf16). Writes the legibility-vs-depth pr
 from __future__ import annotations
 
 import argparse
-import glob
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 
-SCOPE_GLOB = ("/home/allans/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/"
-              "**/layer_{L}/width_16k/average_l0_*/params.npz")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scope_loader import scope_npz  # noqa: E402
+
 STOP = {"the", "of", "and", "a", "to", "in", "that", "is", "was", "for", "it", "as", "with", "on", "by",
         "at", "an", "be", "or", "are", "from", "this", "his", "her", "he", "she", "they", "i", "you",
         "we", "but", "not", "have", "had", "s", "t", ""}
@@ -51,6 +52,7 @@ def main(argv=None):
     p.add_argument("--n-perm", type=int, default=16)
     p.add_argument("--device", default="cuda")
     p.add_argument("--corpus", default="wikitext")
+    p.add_argument("--scope-path", default=None, help="local Gemma Scope dir/glob; else the HF cache, else download")
     p.add_argument("--output", type=Path, default=Path("runs/gemma/gemma_layer_sweep_summary.json"))
     p.add_argument("--txt", type=Path, default=Path("runs/gemma/gemma_layer_sweep.txt"))
     args = p.parse_args(argv)
@@ -87,7 +89,7 @@ def main(argv=None):
     # ---- per layer: SAE -> diverse content operands -> pos_op + RMSNorm-folded directions ----
     operands = {}
     for L in layers:
-        sae = np.load(glob.glob(SCOPE_GLOB.format(L=L), recursive=True)[0])
+        sae = np.load(scope_npz(L, scope_path=args.scope_path))
         Wenc = torch.tensor(sae["W_enc"], device=dev, dtype=torch.float32); benc = torch.tensor(sae["b_enc"], device=dev, dtype=torch.float32)
         bdec = torch.tensor(sae["b_dec"], device=dev, dtype=torch.float32); thr = torch.tensor(sae["threshold"], device=dev, dtype=torch.float32)
         Wdec = sae["W_dec"].astype(np.float64)

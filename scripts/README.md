@@ -92,7 +92,9 @@ compression-controlled re-validation showed writer-OV ≈ random-OV.
 | `forge_revalidate_broad.py` | broadened re-validation (layers × seeds) confirming RETIRE. |
 
 ## `gemma/` — the cross-model port (Gemma-2-2B)
-Ports the disassembly to a recent RoPE / GQA / RMSNorm model, at GPT-2 parity.
+Ports the disassembly to a recent RoPE / GQA / RMSNorm model, at GPT-2 parity. The **Gemma Scope**
+SAEs (`google/gemma-scope-2b-pt-res`) auto-download from the Hub on first use via `scope_loader.py`
+(cached thereafter); point at a local copy with `--scope-path` to run offline.
 | script | role |
 |--------|------|
 | `disasm_portable.py` | behavioral idioms + coverage on **any** HF model (the arch-agnostic core). |

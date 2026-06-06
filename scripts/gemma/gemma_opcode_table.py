@@ -20,15 +20,15 @@ whether Gemma-2's QK content-binding is equally legible in SAE-feature coords.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 
-SCOPE_GLOB = ("/home/allans/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/"
-              "**/layer_{L}/width_16k/average_l0_*/params.npz")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scope_loader import scope_npz  # noqa: E402
 
 
 def _spearman(a, b):
@@ -60,6 +60,7 @@ def main(argv=None):
     p.add_argument("--n-perm", type=int, default=20)
     p.add_argument("--device", default="cuda")
     p.add_argument("--corpus", default="wikitext")
+    p.add_argument("--scope-path", default=None, help="local Gemma Scope dir/glob; else the HF cache, else download")
     p.add_argument("--output", type=Path, default=Path("runs/gemma/gemma_opcode_table_summary.json"))
     args = p.parse_args(argv)
 
@@ -78,7 +79,7 @@ def main(argv=None):
     blk = model.model.layers[L]
 
     # ---- Gemma Scope JumpReLU SAE (operand dictionary) ----
-    sae_f = glob.glob(SCOPE_GLOB.format(L=args.sae_layer), recursive=True)[0]
+    sae_f = scope_npz(args.sae_layer, scope_path=args.scope_path)
     sae = np.load(sae_f)
     Wenc = torch.tensor(sae["W_enc"], device=dev, dtype=torch.float32)        # (d, F)
     benc = torch.tensor(sae["b_enc"], device=dev, dtype=torch.float32)

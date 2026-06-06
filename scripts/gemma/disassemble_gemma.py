@@ -17,15 +17,16 @@ the GPT-2 disassembly framework, ported whole to a RoPE/GQA/RMSNorm model, at ma
 from __future__ import annotations
 
 import argparse
-import glob
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 
-SCOPE_GLOB = ("/home/allans/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/"
-              "**/layer_{L}/width_16k/average_l0_*/params.npz")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scope_loader import scope_npz  # noqa: E402
+
 BUCKETS = ["self", "sink", "prev", "structural", "local", "long_range"]
 STOP = {"the", "of", "and", "a", "to", "in", "that", "is", "was", "for", "it", "as", "with", "on", "by",
         "at", "an", "be", "or", "are", "from", "this", "his", "her", "he", "she", "they", "i", "you",
@@ -69,6 +70,7 @@ def main(argv=None):
     p.add_argument("--n-perm", type=int, default=16)
     p.add_argument("--device", default="cuda")
     p.add_argument("--corpus", default="wikitext")
+    p.add_argument("--scope-path", default=None, help="local Gemma Scope dir/glob; else the HF cache, else download")
     p.add_argument("--causal", type=Path, default=Path("runs/gemma/gemma_causal_summary.json"))
     p.add_argument("--output", type=Path, default=Path("runs/gemma/gemma2_disassembly.json"))
     p.add_argument("--txt", type=Path, default=Path("runs/gemma/gemma2_disassembly.txt"))
@@ -150,7 +152,7 @@ def main(argv=None):
     zP, zD, zI = _z(prevv.reshape(-1)), _z(dupv.reshape(-1)), _z(indv.reshape(-1))
 
     # ---- Gemma Scope operands (diverse content features) for the SAE layer ----
-    sae = np.load(glob.glob(SCOPE_GLOB.format(L=SL), recursive=True)[0])
+    sae = np.load(scope_npz(SL, scope_path=args.scope_path))
     Wenc = torch.tensor(sae["W_enc"], device=dev, dtype=torch.float32); benc = torch.tensor(sae["b_enc"], device=dev, dtype=torch.float32)
     bdec = torch.tensor(sae["b_dec"], device=dev, dtype=torch.float32); thr = torch.tensor(sae["threshold"], device=dev, dtype=torch.float32)
     Wdec = sae["W_dec"].astype(np.float64)
