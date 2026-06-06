@@ -12,6 +12,6 @@
   "forge_wall_s": 1.74,
   "n_params_forged": 124439808,
   "faithfulness_kl": 21.14864730834961,
-  "compressed_sae_path": "/home/allans/code/lm-sae/runs/forge_example/sae_compressed.safetensors",
-  "forged_dir": "/home/allans/code/lm-sae/runs/forge_example/forge"
+  "compressed_sae_path": "runs/forge_smoke/forge_example/sae_compressed.safetensors",
+  "forged_dir": "runs/forge_smoke/forge_example/forge"
 }

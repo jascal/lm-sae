@@ -1,6 +1,6 @@
 """Locate (or download) a Gemma Scope SAE `params.npz` for a layer — portable across machines.
 
-Replaces the previously hardcoded `/home/allans/.cache/...` glob. Resolution order:
+Replaces a previously hardcoded `~/.cache/huggingface/...` glob. Resolution order:
   1. `scope_path` (the --scope-path arg): an explicit local directory or glob (offline / custom cache);
   2. the local Hugging Face hub cache (HF_HUB_CACHE / $HF_HOME) — no network if already downloaded;
   3. download from the Hub (`google/gemma-scope-2b-pt-res`) via huggingface_hub.
