@@ -297,6 +297,17 @@ No preprint yet. Until one exists, cite the repository:
 
 On submission, replace with the arXiv/workshop entry and add the DOI here.
 
+## Acknowledgments / AI-use disclosure
+
+*(Confirm the wording, and check the venue CFP for a required LLM-disclosure field.)*
+
+The author (J. Allan Scott) is solely responsible for all claims, analyses, and conclusions. AI
+assistants were used as **tools, not authors**: **Claude (Anthropic)** assisted with code development,
+experiment scaffolding, and analysis; **Grok (xAI)** provided an independent review pass. All scientific
+framing, experimental design, and result interpretation are the author's. Per standard venue policy
+(ICML/NeurIPS/ACL/arXiv), AI tool use does not confer authorship — hence the disclosure here rather than a
+byline.
+
 ## Claims ledger (one line per quantitative claim → file)
 
 ```
