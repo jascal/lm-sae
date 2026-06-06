@@ -43,6 +43,7 @@ def _oracle(tok, all_ids, tok_strs, min_pos, n):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--ckpt", type=Path, default=Path("runs/tiny_gpt.pt"))
+    p.add_argument("--pretrained", default=None, help="load a HF model id (e.g. gpt2) instead of --ckpt")
     p.add_argument("--max-tokens", type=int, default=10000)
     p.add_argument("--ctx", type=int, default=96)
     p.add_argument("--rounds", type=int, default=6)
@@ -57,8 +58,12 @@ def main(argv=None):
     import torch
     from transformers import GPT2Config, GPT2LMHeadModel, GPT2TokenizerFast
 
-    ck = torch.load(args.ckpt, map_location="cpu", weights_only=False)
-    model = GPT2LMHeadModel(GPT2Config(**ck["config"])); model.load_state_dict(ck["state_dict"]); model.eval()
+    if args.pretrained:
+        model = GPT2LMHeadModel.from_pretrained(args.pretrained).eval()
+        print(f"loaded pretrained {args.pretrained}: d_model={model.config.n_embd}, {model.config.n_layer} layers")
+    else:
+        ck = torch.load(args.ckpt, map_location="cpu", weights_only=False)
+        model = GPT2LMHeadModel(GPT2Config(**ck["config"])); model.load_state_dict(ck["state_dict"]); model.eval()
     tr, lm_head = model.transformer, model.lm_head
     tok = GPT2TokenizerFast.from_pretrained("gpt2")
     import urllib.request
