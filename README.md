@@ -253,6 +253,14 @@ The **interpretability** dial works at inference (cov95 saturates at ~4 levels).
 low-χ interpretable levels are predictively inert — all of the model's prediction lives
 in the entangled core.**
 
+**Is the core useless without the low-χ features?** No — the opposite, at the output:
+by `lm_head`'s linearity (no bias), the **core alone predicts as well as the full model**
+(6.38 vs 6.54; tower-alone is random 10.67). The clean features are predictively *inert*
+at the final layer (already consumed upstream). So clean features = the **substrate**
+(*what* the model reads, interpretable); the core = the **composition** (*how* it
+predicts, entangled). Neither works alone in the way that matters — the substrate doesn't
+predict, the composition is vacuous without the substrate it's computed from.
+
 This *refines* v0's "graceful dial": graceful on cov95 and on the reconstruction *proxy*
 (fidelity), but **not** on real capability. So the served tower is an **interpretability
 sidecar** (a dial-able, monosemantic readout of the low-χ features) — *not* a

@@ -137,8 +137,17 @@ def main(argv=None):
               f"fidelity={dial[-1]['fidelity']:.3f}")
     print(f"  [+core / exact h]            lm_loss={loss_full:.3f}  (floor, b_dec-only: {loss_floor:.3f})")
 
+    # the user's question: is the entangled CORE useful WITHOUT the low-chi features?
+    Pfull = np.zeros_like(X); r = X.copy()
+    for lv in range(args.rounds):
+        m = expert_apply(lv, r); Pfull = Pfull + m; r = (r - m).astype(np.float32)
+    loss_core_alone = lm_loss(r.astype(np.float32))            # core = X - tower
+    print(f"  [CORE ALONE (X - tower)]     lm_loss={loss_core_alone:.3f}  "
+          f"(tower-alone {dial[-1]['lm_loss']:.3f}, full {loss_full:.3f})")
+
     out = {"experiment": "Phase 2: served chi-banded tower", "lm_loss_floor": loss_floor,
-           "lm_loss_full": loss_full, "dial": dial}
+           "lm_loss_full": loss_full, "lm_loss_tower_alone": dial[-1]["lm_loss"],
+           "lm_loss_core_alone": loss_core_alone, "dial": dial}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
     print(f"\n[done] {args.output}")

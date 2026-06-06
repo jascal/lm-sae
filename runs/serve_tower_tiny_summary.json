@@ -2,6 +2,8 @@
   "experiment": "Phase 2: served chi-banded tower",
   "lm_loss_floor": 6.385098690670991,
   "lm_loss_full": 6.534596432092637,
+  "lm_loss_tower_alone": 10.673999391992385,
+  "lm_loss_core_alone": 6.377620817688513,
   "dial": [
     {
       "levels_kept": 1,
