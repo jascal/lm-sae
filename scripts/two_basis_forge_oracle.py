@@ -48,6 +48,29 @@ def _build_oracle(tok, all_ids, tok_strs, min_pos, n):
     return Y[:, keep], [t for t, k in zip(tiers, keep) if k]
 
 
+def _joint_uc(model, rank):
+    """ONE shared composition subspace pooled over ALL heads AND layers (the instruction-tensor
+    low-rank result: the QK/OV geometry is shared, so a single subspace covers every layer)."""
+    tr = model.transformer; cfg = model.config
+    d, Hn, nL = cfg.n_embd, cfg.n_head, cfg.n_layer
+    hd = d // Hn
+    reads, writes = [], []
+    for L in range(nL):
+        blk = tr.h[L]
+        ln = blk.ln_1.weight.detach().numpy().astype(np.float64)
+        Wc = blk.attn.c_attn.weight.detach().numpy().astype(np.float64)
+        Wo = blk.attn.c_proj.weight.detach().numpy().astype(np.float64)
+        Wq, Wk, Wv = Wc[:, :d], Wc[:, d:2 * d], Wc[:, 2 * d:3 * d]
+        reads.append(Wq * ln[:, None]); reads.append(Wk * ln[:, None])      # ln-folded read dirs
+        for h in range(Hn):
+            sl = slice(h * hd, (h + 1) * hd)
+            writes.append(Wv[:, sl] @ Wo[sl, :])                            # write dirs
+    Ur = np.linalg.svd(np.concatenate(reads, 1), full_matrices=False)[0][:, :rank]
+    Uw = np.linalg.svd(np.concatenate(writes, 1), full_matrices=False)[0][:, :rank]
+    Q, _ = np.linalg.qr(np.concatenate([Ur, Uw], 1))
+    return Q[:, :min(Q.shape[1], d)]
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--ckpt", type=Path, default=Path("runs/tiny_gpt.pt"))
@@ -69,7 +92,7 @@ def main(argv=None):
     from saeforge.adapters import adapter_for
     from saeforge.augmented_basis import AugmentedBasis
     from saeforge.basis import FeatureBasis
-    from saeforge.composition_subspace import extract_composition_subspace
+    from saeforge.composition_subspace import CompositionSubspace, extract_composition_subspace
     from saeforge.eval.circuit_faithfulness import circuit_kl, induction_predictable
     from saeforge.model import NativeModel
 
@@ -120,6 +143,11 @@ def main(argv=None):
 
     n_layer = cfg0.n_layer
     comp = extract_composition_subspace(model, layers=list(range(n_layer)), rank=args.comp_rank)
+    # joint cross-head/layer U_C: one shared subspace at every layer (instruction-tensor low-rank → shared)
+    Uj = _joint_uc(model, args.comp_rank)
+    comp_joint = {L: CompositionSubspace(U=Uj, layer=L, rank=Uj.shape[1], source_heads="all", d_model=d)
+                  for L in range(n_layer)}
+    print(f"    per-layer U_C ~{comp[0].rank}d/layer  vs  joint U_C {Uj.shape[1]}d shared across {n_layer} layers")
     # U_A: sharpest atoms by best oracle AUC (lm-sae HAS the labels — the right selector,
     # unlike sae-forge's label-free proxy; this is the oracle-driven U_A the spec deferred)
     Zall = _encode(X, params, args.k)
@@ -158,20 +186,22 @@ def main(argv=None):
                 "complement_kl": csum / max(cn, 1), "cov95": cov["all"]["cov95"],
                 "token_cov95": cov.get("token", {}).get("cov95", float("nan"))}
 
-    print("[3] forge: single / composition / two-basis")
+    print("[3] forge: single / U_C per-layer / U_C joint / two-basis(joint)")
     configs = {
         "single": None,
-        "composition": AugmentedBasis(basis, composition=comp),
-        "two_basis": AugmentedBasis(basis, assertion_atoms=U_A, composition=comp),
+        "uc_perlayer": AugmentedBasis(basis, composition=comp),
+        "uc_joint": AugmentedBasis(basis, composition=comp_joint),
+        "two_basis_joint": AugmentedBasis(basis, assertion_atoms=U_A, composition=comp_joint),
     }
     res = {}
     for name, aug in configs.items():
         res[name] = forge(aug)
         r = res[name]
-        print(f"  {name:>12}: induction_kl {r['induction_kl']:.3f}  global_kl {r['global_kl']:.3f}  "
-              f"cov95 {r['cov95']:.3f}  token_cov95 {r['token_cov95']:.3f}")
+        r["excess"] = r["induction_kl"] - r["complement_kl"]
+        print(f"  {name:>16}: induction_kl {r['induction_kl']:.3f}  excess {r['excess']:+.3f}  "
+              f"global_kl {r['global_kl']:.3f}  cov95 {r['cov95']:.3f}")
 
-    s, c, tb = res["single"], res["composition"], res["two_basis"]
+    s, pl, j, tb = res["single"], res["uc_perlayer"], res["uc_joint"], res["two_basis_joint"]
     out = {"model": f"tiny-gpt (d={d}, {n_layer} layers)", "d_model": d, "sae_width": args.width,
            "over_complete": round(args.width / d, 2), "comp_rank": args.comp_rank,
            "assert_k": args.assert_k, "induction_pred_rate": float(M.mean()),
@@ -179,16 +209,18 @@ def main(argv=None):
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
 
-    d_ind = s["induction_kl"] - c["induction_kl"]
+    red_pl = s["excess"] - pl["excess"]
+    red_j = s["excess"] - j["excess"]
+    print(f"\n[a: joint vs per-layer U_C] circuit-specific excess single {s['excess']:+.3f} -> "
+          f"per-layer {pl['excess']:+.3f} (Δ {red_pl:+.3f}, {red_pl/s['excess']:.0%}) | "
+          f"joint {j['excess']:+.3f} (Δ {red_j:+.3f}, {red_j/s['excess']:.0%})")
+    print(f"    budget/layer: per-layer {comp[0].rank}d  vs  joint {Uj.shape[1]}d shared -> "
+          f"{'JOINT WINS (>= per-layer)' if red_j >= red_pl - 1e-9 else 'per-layer wins'}")
     d_cov = tb["cov95"] - s["cov95"]
-    # require a non-trivial fraction of the single-basis induction tax to call it protected
-    prot = d_ind > 0.05 * s["induction_kl"]
-    print(f"\n[claim 1: composition saves the circuit] induction_kl single {s['induction_kl']:.3f} -> "
-          f"composition {c['induction_kl']:.3f}  (Δ {d_ind:+.3f}, {'PROTECTED' if prot else 'NEGLIGIBLE'})")
-    print(f"[claim 2: two-basis recovers assertions] cov95 single {s['cov95']:.3f} -> "
-          f"two_basis {tb['cov95']:.3f}  (Δ {d_cov:+.3f}, {'RECOVERED' if d_cov > 0.02 else 'no gain'})")
-    print(f"[context] global_kl single {s['global_kl']:.3f} / composition {c['global_kl']:.3f} / "
-          f"two_basis {tb['global_kl']:.3f}")
+    print(f"[claim 2: two-basis(joint) recovers assertions] cov95 single {s['cov95']:.3f} -> "
+          f"two_basis_joint {tb['cov95']:.3f}  (Δ {d_cov:+.3f}, {'RECOVERED' if d_cov > 0.02 else 'no gain'})")
+    print(f"[context] global_kl single {s['global_kl']:.3f} / per-layer {pl['global_kl']:.3f} / "
+          f"joint {j['global_kl']:.3f} / two_basis {tb['global_kl']:.3f}")
     print(f"[done] {args.output}")
     return out
 
