@@ -1,0 +1,2470 @@
+{
+  "experiment": "QK opcode table (full B_h instruction reader)",
+  "model": "gpt2",
+  "n_operands": 40,
+  "n_heads": 144,
+  "opcode_classes_all": {
+    "BROADCAST": 19,
+    "COPY": 29,
+    "DIFFUSE": 91,
+    "BIND": 5
+  },
+  "opcode_classes_legible": {
+    "BROADCAST": 17,
+    "COPY": 29,
+    "DIFFUSE": 85,
+    "BIND": 5
+  },
+  "n_legible": 136,
+  "legible_distinct_classes": 4,
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "diag_score": -0.11861562884337762,
+      "row_peak": 0.030427752356228233,
+      "broadcast": 0.027215906175927795,
+      "offdiag_legibility": 0.7497792238613009,
+      "null_mu": 0.013225168146262609,
+      "leg_z": 12.815982597494,
+      "top_bind": [
+        "'d",
+        "_is",
+        0.4546576482196135
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "diag_score": 1.4103622158077305,
+      "row_peak": 0.055554652753765046,
+      "broadcast": 0.028357696704094475,
+      "offdiag_legibility": 0.8780556473278799,
+      "null_mu": -0.00503227937937856,
+      "leg_z": 22.971605482985535,
+      "top_bind": [
+        "_is",
+        "_are",
+        1.2400971429265004
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "diag_score": 0.0025930974137727165,
+      "row_peak": 0.030368938958679054,
+      "broadcast": 0.0265589329654846,
+      "offdiag_legibility": 0.7113370331709561,
+      "null_mu": -0.006619445344563709,
+      "leg_z": 17.669804038402887,
+      "top_bind": [
+        ",",
+        ";",
+        0.4925871616988716
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "diag_score": 0.42326802489538323,
+      "row_peak": 0.03859489424223289,
+      "broadcast": 0.027472591652072758,
+      "offdiag_legibility": 0.5492471463625055,
+      "null_mu": -0.007898389274795916,
+      "leg_z": 10.783571635668789,
+      "top_bind": [
+        "_my",
+        "_I",
+        1.19771898176496
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 4,
+      "diag_score": 0.127055200346507,
+      "row_peak": 0.0310577687392664,
+      "broadcast": 0.027010039879035684,
+      "offdiag_legibility": 0.5537391519414474,
+      "null_mu": -0.023681557354015156,
+      "leg_z": 14.811083981861008,
+      "top_bind": [
+        "_not",
+        "_have",
+        0.3991075706851792
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 5,
+      "diag_score": 1.2949658871382488,
+      "row_peak": 0.04804753439887458,
+      "broadcast": 0.02961566094953052,
+      "offdiag_legibility": 0.6285605572537837,
+      "null_mu": -0.003428721811558445,
+      "leg_z": 8.642306386409162,
+      "top_bind": [
+        "_I",
+        "_my",
+        1.366832348182788
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 6,
+      "diag_score": -0.072838760047717,
+      "row_peak": 0.030000283508393767,
+      "broadcast": 0.026790550198314993,
+      "offdiag_legibility": 0.6749156496060201,
+      "null_mu": 0.004638617412362898,
+      "leg_z": 12.582973245089363,
+      "top_bind": [
+        "_to",
+        "_for",
+        0.508460133051181
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 7,
+      "diag_score": -0.11778862047959687,
+      "row_peak": 0.028157617209923203,
+      "broadcast": 0.025847848704482302,
+      "offdiag_legibility": 0.17420263840660935,
+      "null_mu": 0.0039225722504840225,
+      "leg_z": 3.819362093997149,
+      "top_bind": [
+        "I",
+        "IA",
+        0.3348725343419192
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 8,
+      "diag_score": 0.09287289751566787,
+      "row_peak": 0.030810647896051056,
+      "broadcast": 0.026995555081225246,
+      "offdiag_legibility": 0.7097661920985892,
+      "null_mu": -0.002606503640104541,
+      "leg_z": 10.047369191326535,
+      "top_bind": [
+        "_you",
+        "_I",
+        0.41886088083570117
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 9,
+      "diag_score": -0.020232527154209992,
+      "row_peak": 0.02652260859089487,
+      "broadcast": 0.025304658710676903,
+      "offdiag_legibility": 0.4023545730163127,
+      "null_mu": -0.020475858467785577,
+      "leg_z": 8.912985572568278,
+      "top_bind": [
+        "_my",
+        "_you",
+        0.06978556364096794
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 10,
+      "diag_score": 0.2288672491915904,
+      "row_peak": 0.029433386925653733,
+      "broadcast": 0.025613624830262017,
+      "offdiag_legibility": 0.6013847540384039,
+      "null_mu": -0.006328902411709974,
+      "leg_z": 20.192302086993767,
+      "top_bind": [
+        "_your",
+        "_you",
+        0.3421076602288219
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 0,
+      "head": 11,
+      "diag_score": 0.0019527244789426276,
+      "row_peak": 0.027449808198887093,
+      "broadcast": 0.025460193723599495,
+      "offdiag_legibility": 0.49157727690194275,
+      "null_mu": 0.004796830416474392,
+      "leg_z": 11.030905584658079,
+      "top_bind": [
+        "MEN",
+        "_is",
+        0.1202606628568553
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "diag_score": -0.17003883222300362,
+      "row_peak": 0.032402951049112096,
+      "broadcast": 0.026693078904298766,
+      "offdiag_legibility": 0.6368720834259627,
+      "null_mu": 0.0033513871222369002,
+      "leg_z": 18.859088196885768,
+      "top_bind": [
+        "_to",
+        "_have",
+        0.377449727001678
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "diag_score": -0.1373310841745105,
+      "row_peak": 0.027726976637147394,
+      "broadcast": 0.02551772214110762,
+      "offdiag_legibility": 0.40218314546459133,
+      "null_mu": -0.00037236886059132486,
+      "leg_z": 9.859557652267224,
+      "top_bind": [
+        ",",
+        ";",
+        0.17569017407380272
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "diag_score": 0.00794039826980825,
+      "row_peak": 0.02597545441091585,
+      "broadcast": 0.02508656991192056,
+      "offdiag_legibility": -0.058437290854300925,
+      "null_mu": 0.000508796106281414,
+      "leg_z": -1.8302694935607178,
+      "top_bind": [
+        "_is",
+        "_are",
+        0.027065640319164284
+      ],
+      "opcode": "DIFFUSE",
+      "legible": false
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "diag_score": 0.003971090994847845,
+      "row_peak": 0.025894974986609347,
+      "broadcast": 0.02504480466854121,
+      "offdiag_legibility": -0.01947046080973376,
+      "null_mu": -0.00962135708113865,
+      "leg_z": -0.26450356831886745,
+      "top_bind": [
+        "_for",
+        "_of",
+        0.015016241423809654
+      ],
+      "opcode": "DIFFUSE",
+      "legible": false
+    },
+    {
+      "layer": 1,
+      "head": 4,
+      "diag_score": 0.007240370692823336,
+      "row_peak": 0.026139769968872913,
+      "broadcast": 0.025109835454462208,
+      "offdiag_legibility": 0.00975604386770843,
+      "null_mu": 0.0031383449861485417,
+      "leg_z": 0.14541579095730167,
+      "top_bind": [
+        "_have",
+        "_be",
+        0.0420924602528191
+      ],
+      "opcode": "DIFFUSE",
+      "legible": false
+    },
+    {
+      "layer": 1,
+      "head": 5,
+      "diag_score": 0.3754503970302539,
+      "row_peak": 0.034573967890378865,
+      "broadcast": 0.026561814148883832,
+      "offdiag_legibility": 0.696226942794164,
+      "null_mu": 0.008357847801219424,
+      "leg_z": 21.156951096589108,
+      "top_bind": [
+        "_for",
+        "_to",
+        0.4628413949243432
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 6,
+      "diag_score": 0.0007076988713913017,
+      "row_peak": 0.03144904761103516,
+      "broadcast": 0.02623523905221582,
+      "offdiag_legibility": 0.6875820009576195,
+      "null_mu": 0.008345696274540248,
+      "leg_z": 20.201578631595947,
+      "top_bind": [
+        "\u010a",
+        ":",
+        0.5802198988129426
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 7,
+      "diag_score": -0.015976650300942613,
+      "row_peak": 0.027466068138440592,
+      "broadcast": 0.02551204502809077,
+      "offdiag_legibility": 0.36843329827176546,
+      "null_mu": 0.01193143164770412,
+      "leg_z": 8.737323006796917,
+      "top_bind": [
+        "IA",
+        "_the",
+        0.13474889493126965
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 8,
+      "diag_score": -0.006374890337471219,
+      "row_peak": 0.02659796018808161,
+      "broadcast": 0.025293849854794038,
+      "offdiag_legibility": 0.2647427944642193,
+      "null_mu": -0.012610076617892336,
+      "leg_z": 5.585908350595844,
+      "top_bind": [
+        "'d",
+        "'s",
+        0.0739697068238543
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 9,
+      "diag_score": 0.002108808736898682,
+      "row_peak": 0.027241799150528954,
+      "broadcast": 0.025359786474140604,
+      "offdiag_legibility": 0.37211126897248037,
+      "null_mu": -0.0027220990777534603,
+      "leg_z": 7.598342098158067,
+      "top_bind": [
+        "US",
+        "_with",
+        0.10028287223019305
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 1,
+      "head": 10,
+      "diag_score": 0.00417988412207969,
+      "row_peak": 0.0258995753628329,
+      "broadcast": 0.02505512550645953,
+      "offdiag_legibility": 0.015516645016551539,
+      "null_mu": -0.009452173647654426,
+      "leg_z": 0.637174138415409,
+      "top_bind": [
+        "_is",
+        "_are",
+        0.016786397633595917
+      ],
+      "opcode": "DIFFUSE",
+      "legible": false
+    },
+    {
+      "layer": 1,
+      "head": 11,
+      "diag_score": 0.7078844173958024,
+      "row_peak": 0.039796901189081246,
+      "broadcast": 0.02793374948409228,
+      "offdiag_legibility": 0.47772096417699517,
+      "null_mu": 0.0003102043171591501,
+      "leg_z": 7.644673803191512,
+      "top_bind": [
+        "_is",
+        "_are",
+        1.0840242869580456
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 0,
+      "diag_score": -0.1272701986206251,
+      "row_peak": 0.028141046720051383,
+      "broadcast": 0.025958173014380897,
+      "offdiag_legibility": 0.14648611877115847,
+      "null_mu": 0.012255831480329193,
+      "leg_z": 3.151282478388791,
+      "top_bind": [
+        ",",
+        "\u010a",
+        0.13660316657950644
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 1,
+      "diag_score": -0.008752824889014582,
+      "row_peak": 0.02807603225122392,
+      "broadcast": 0.025328040257676238,
+      "offdiag_legibility": 0.23319254504455297,
+      "null_mu": -7.451586601266588e-05,
+      "leg_z": 6.479917899779455,
+      "top_bind": [
+        "IA",
+        "_the",
+        0.18873825667548028
+      ],
+      "opcode": "BIND",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 2,
+      "diag_score": -0.359566424443347,
+      "row_peak": 0.031666941265438134,
+      "broadcast": 0.02631252330173703,
+      "offdiag_legibility": 0.47411191305576156,
+      "null_mu": 0.001091251524527781,
+      "leg_z": 14.164517953722708,
+      "top_bind": [
+        "_to",
+        "_for",
+        0.48772218609478
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 3,
+      "diag_score": -0.2137330865700015,
+      "row_peak": 0.028564577096392606,
+      "broadcast": 0.02593020942779208,
+      "offdiag_legibility": 0.18992648411414118,
+      "null_mu": 0.0063330417558424045,
+      "leg_z": 5.282429929314774,
+      "top_bind": [
+        ",",
+        "_that",
+        0.1900994049933247
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 4,
+      "diag_score": -0.18630897892576442,
+      "row_peak": 0.030804479761467808,
+      "broadcast": 0.026576011778116266,
+      "offdiag_legibility": 0.3373207819924855,
+      "null_mu": -0.006922078097516076,
+      "leg_z": 9.8628675141556,
+      "top_bind": [
+        "_that",
+        "_it",
+        0.4021271531560626
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 5,
+      "diag_score": -0.23016807892949354,
+      "row_peak": 0.02785108561406746,
+      "broadcast": 0.025609276673977922,
+      "offdiag_legibility": 0.20662426813076926,
+      "null_mu": -0.004365334977507951,
+      "leg_z": 6.2968317782482135,
+      "top_bind": [
+        ":",
+        "?",
+        0.16465379892588725
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 6,
+      "diag_score": -0.0454432611503335,
+      "row_peak": 0.027593596758570926,
+      "broadcast": 0.025710283736177304,
+      "offdiag_legibility": 0.3566936796951495,
+      "null_mu": -0.011563739145270464,
+      "leg_z": 7.990740926532407,
+      "top_bind": [
+        "_your",
+        "_I",
+        0.1418273403016631
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 7,
+      "diag_score": 0.0008711936168140438,
+      "row_peak": 0.026069336446482738,
+      "broadcast": 0.025102067704781312,
+      "offdiag_legibility": 0.14330179237603524,
+      "null_mu": -0.00602741506631206,
+      "leg_z": 3.4964052555100813,
+      "top_bind": [
+        "_is",
+        "_to",
+        0.026713964338966112
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 8,
+      "diag_score": -0.2120601312753642,
+      "row_peak": 0.02836985913247015,
+      "broadcast": 0.025745473515266886,
+      "offdiag_legibility": 0.3210613064884136,
+      "null_mu": -0.003982782863382131,
+      "leg_z": 11.811673673147691,
+      "top_bind": [
+        "_be",
+        "US",
+        0.19213256491327235
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 9,
+      "diag_score": -0.20010796717357404,
+      "row_peak": 0.028119468780149037,
+      "broadcast": 0.025591748896617937,
+      "offdiag_legibility": 0.1485172075470817,
+      "null_mu": 0.010588024687301904,
+      "leg_z": 5.939374521202719,
+      "top_bind": [
+        "_my",
+        "_he",
+        0.14450417989645853
+      ],
+      "opcode": "BIND",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 10,
+      "diag_score": 0.0073239285626414425,
+      "row_peak": 0.026320859210623205,
+      "broadcast": 0.0251225904082846,
+      "offdiag_legibility": 0.126179633859835,
+      "null_mu": 0.006339688388439255,
+      "leg_z": 3.364183265495456,
+      "top_bind": [
+        "?",
+        "\u010a",
+        0.05056224482004201
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 2,
+      "head": 11,
+      "diag_score": -0.011469547055996681,
+      "row_peak": 0.026242255795038628,
+      "broadcast": 0.025144476825201035,
+      "offdiag_legibility": 0.008994893196749431,
+      "null_mu": 0.0008073882456302162,
+      "leg_z": 0.2582606770615002,
+      "top_bind": [
+        "_me",
+        ".",
+        0.041544105439107526
+      ],
+      "opcode": "DIFFUSE",
+      "legible": false
+    },
+    {
+      "layer": 3,
+      "head": 0,
+      "diag_score": 0.24639123250157427,
+      "row_peak": 0.0302990250364223,
+      "broadcast": 0.026041572524237482,
+      "offdiag_legibility": 0.17294763496188117,
+      "null_mu": -0.007467656662584582,
+      "leg_z": 5.024686386262731,
+      "top_bind": [
+        "_is",
+        "_are",
+        0.31607576948010996
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 1,
+      "diag_score": -0.0862330939611953,
+      "row_peak": 0.02759869421689911,
+      "broadcast": 0.02587767303010772,
+      "offdiag_legibility": 0.27921257066445815,
+      "null_mu": -0.003881479670433493,
+      "leg_z": 6.6656365889438876,
+      "top_bind": [
+        "_to",
+        "_it",
+        0.16395522930101147
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 2,
+      "diag_score": -0.14181406237134972,
+      "row_peak": 0.02783977082618529,
+      "broadcast": 0.02541615364242119,
+      "offdiag_legibility": 0.3316637728504054,
+      "null_mu": -0.00093355485439832,
+      "leg_z": 14.719684097322286,
+      "top_bind": [
+        "_of",
+        "_the",
+        0.1514765541375117
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 3,
+      "diag_score": -0.07334938632760611,
+      "row_peak": 0.028544325714758113,
+      "broadcast": 0.025506238846247985,
+      "offdiag_legibility": 0.2871150405787477,
+      "null_mu": 0.0035466073972181007,
+      "leg_z": 12.897108102513727,
+      "top_bind": [
+        "_that",
+        "_him",
+        0.21625670465112332
+      ],
+      "opcode": "BIND",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 4,
+      "diag_score": 0.03849681988946451,
+      "row_peak": 0.028214454634901392,
+      "broadcast": 0.02575441091124358,
+      "offdiag_legibility": 0.2776715322027465,
+      "null_mu": -0.012703391977377368,
+      "leg_z": 6.785850743599629,
+      "top_bind": [
+        "_my",
+        "_his",
+        0.1890570186052115
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 5,
+      "diag_score": -0.012239741497266072,
+      "row_peak": 0.027060737316632576,
+      "broadcast": 0.025240961997336286,
+      "offdiag_legibility": 0.27070751097501566,
+      "null_mu": -0.005985305495104417,
+      "leg_z": 9.783574371882652,
+      "top_bind": [
+        "\u010a",
+        ":",
+        0.10901200592506742
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 6,
+      "diag_score": -0.07995337998287706,
+      "row_peak": 0.027483022867910777,
+      "broadcast": 0.0254749069163328,
+      "offdiag_legibility": 0.2741918064001065,
+      "null_mu": -0.0006310668617484078,
+      "leg_z": 9.795412160246908,
+      "top_bind": [
+        "\u010a",
+        "IA",
+        0.1665860645419776
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 7,
+      "diag_score": -0.10280795113065389,
+      "row_peak": 0.027468323431902208,
+      "broadcast": 0.025481086303791905,
+      "offdiag_legibility": 0.1941540102856531,
+      "null_mu": 0.00991915170462761,
+      "leg_z": 7.647714135279002,
+      "top_bind": [
+        ":",
+        "IA",
+        0.1373559999878453
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 8,
+      "diag_score": -0.09412651106463765,
+      "row_peak": 0.0272921556215441,
+      "broadcast": 0.025322913412183908,
+      "offdiag_legibility": 0.2736122148342953,
+      "null_mu": 0.003725894032456661,
+      "leg_z": 8.143617836131064,
+      "top_bind": [
+        "_of",
+        "_his",
+        0.14450351450905422
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 9,
+      "diag_score": -0.06219186810284674,
+      "row_peak": 0.028163999311134773,
+      "broadcast": 0.02545375595873798,
+      "offdiag_legibility": 0.3302278023501535,
+      "null_mu": 0.0025020860993586014,
+      "leg_z": 11.630697219515511,
+      "top_bind": [
+        ".",
+        "\u010a",
+        0.1801866676587959
+      ],
+      "opcode": "BIND",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 10,
+      "diag_score": 0.049101832821991036,
+      "row_peak": 0.02721723977472784,
+      "broadcast": 0.025334051840502598,
+      "offdiag_legibility": 0.1367118798009179,
+      "null_mu": -0.008257594287238126,
+      "leg_z": 4.159731100673023,
+      "top_bind": [
+        "US",
+        "IA",
+        0.11412374062099248
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 3,
+      "head": 11,
+      "diag_score": -0.0754430685417459,
+      "row_peak": 0.027514350124206936,
+      "broadcast": 0.02536831224875698,
+      "offdiag_legibility": 0.17333489378713132,
+      "null_mu": -0.008266420996648,
+      "leg_z": 5.139859862774336,
+      "top_bind": [
+        "_my",
+        "_you",
+        0.12272233019465074
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 0,
+      "diag_score": -0.07197241937751726,
+      "row_peak": 0.027231663243745697,
+      "broadcast": 0.02538125531802225,
+      "offdiag_legibility": 0.3117249174007387,
+      "null_mu": -0.003667072651493408,
+      "leg_z": 10.916865229875771,
+      "top_bind": [
+        ";",
+        "_to",
+        0.0881406152153001
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 1,
+      "diag_score": -0.060528594821783736,
+      "row_peak": 0.027303575886093216,
+      "broadcast": 0.02525459914245485,
+      "offdiag_legibility": 0.34590460095938724,
+      "null_mu": -0.012422840507334826,
+      "leg_z": 10.118256471890232,
+      "top_bind": [
+        ":",
+        "\u010a",
+        0.1067367317956167
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 2,
+      "diag_score": -0.006179572703015056,
+      "row_peak": 0.02661054991947054,
+      "broadcast": 0.025172293042098455,
+      "offdiag_legibility": 0.15090774549337663,
+      "null_mu": -2.9498747439802106e-05,
+      "leg_z": 4.589408357747502,
+      "top_bind": [
+        ":",
+        "?",
+        0.06570514722482688
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 3,
+      "diag_score": -0.05340075270964276,
+      "row_peak": 0.02719919369341801,
+      "broadcast": 0.025352372261059325,
+      "offdiag_legibility": 0.2738673715448276,
+      "null_mu": 0.0035781374585794586,
+      "leg_z": 9.972932043473007,
+      "top_bind": [
+        "_he",
+        "US",
+        0.11038808469758316
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 4,
+      "diag_score": 0.09118796595802302,
+      "row_peak": 0.027776153182385976,
+      "broadcast": 0.025478517443299688,
+      "offdiag_legibility": 0.1561219432102665,
+      "null_mu": -0.007895094810493252,
+      "leg_z": 4.763126520309478,
+      "top_bind": [
+        "_is",
+        "'s",
+        0.1589705251836201
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 5,
+      "diag_score": -0.08914883804024659,
+      "row_peak": 0.027267559044292688,
+      "broadcast": 0.025592900657228586,
+      "offdiag_legibility": 0.2391549934215782,
+      "null_mu": -0.0040600608493593935,
+      "leg_z": 8.158121161132659,
+      "top_bind": [
+        "'d",
+        "_be",
+        0.11587448190040026
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 6,
+      "diag_score": -0.05113407006248579,
+      "row_peak": 0.02665398812251152,
+      "broadcast": 0.025350800739228983,
+      "offdiag_legibility": 0.2391131830438989,
+      "null_mu": -0.008794812778065278,
+      "leg_z": 7.36384722872763,
+      "top_bind": [
+        "_his",
+        "_you",
+        0.07652365110010435
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 7,
+      "diag_score": 0.05031073176737271,
+      "row_peak": 0.027173352479736124,
+      "broadcast": 0.025236091952602853,
+      "offdiag_legibility": 0.2967970532272625,
+      "null_mu": -0.007812546081890635,
+      "leg_z": 11.997597885415546,
+      "top_bind": [
+        "IA",
+        "US",
+        0.1051278157514256
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 8,
+      "diag_score": 0.03202804713245476,
+      "row_peak": 0.0273651093637495,
+      "broadcast": 0.02531231516605429,
+      "offdiag_legibility": 0.22880776715738962,
+      "null_mu": 0.0012574980583273943,
+      "leg_z": 7.08097909653359,
+      "top_bind": [
+        "US",
+        "IA",
+        0.1824832347355939
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 9,
+      "diag_score": -0.03990014741142995,
+      "row_peak": 0.026986022308179158,
+      "broadcast": 0.025236744175557026,
+      "offdiag_legibility": 0.30169990789042045,
+      "null_mu": -0.0015036999766015317,
+      "leg_z": 8.624143287366804,
+      "top_bind": [
+        "I",
+        ".",
+        0.1029341354939082
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 10,
+      "diag_score": 0.016444353253539455,
+      "row_peak": 0.026706397667199632,
+      "broadcast": 0.025179771717390043,
+      "offdiag_legibility": 0.14930618455037334,
+      "null_mu": 0.007212340849139251,
+      "leg_z": 5.192744633448898,
+      "top_bind": [
+        "IA",
+        "US",
+        0.08546932847922367
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 4,
+      "head": 11,
+      "diag_score": -0.08763424753031535,
+      "row_peak": 0.03968061162008182,
+      "broadcast": 0.02791080938174929,
+      "offdiag_legibility": 0.4301963653489866,
+      "null_mu": -0.006094462101235817,
+      "leg_z": 11.75241335733138,
+      "top_bind": [
+        ":",
+        "IA",
+        0.9777840594084553
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 0,
+      "diag_score": -0.013053748393939288,
+      "row_peak": 0.027744665547541892,
+      "broadcast": 0.02537584762132734,
+      "offdiag_legibility": 0.21669152163257602,
+      "null_mu": 0.0013782735132508229,
+      "leg_z": 5.839440109866355,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.23128933067789686
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 1,
+      "diag_score": -0.009216543016821118,
+      "row_peak": 0.028485184739118253,
+      "broadcast": 0.025601700312032828,
+      "offdiag_legibility": 0.041783385219672925,
+      "null_mu": -0.0028989688163293626,
+      "leg_z": 1.6517499107128,
+      "top_bind": [
+        "I",
+        "US",
+        0.24888940704625495
+      ],
+      "opcode": "BROADCAST",
+      "legible": false
+    },
+    {
+      "layer": 5,
+      "head": 2,
+      "diag_score": -0.020389323395019303,
+      "row_peak": 0.02663140099941367,
+      "broadcast": 0.025150944424210554,
+      "offdiag_legibility": 0.27687449165034916,
+      "null_mu": -0.011676182210526511,
+      "leg_z": 8.065995738995781,
+      "top_bind": [
+        "MEN",
+        ":",
+        0.14548191224492374
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 3,
+      "diag_score": -0.02283561420573941,
+      "row_peak": 0.02630890705639103,
+      "broadcast": 0.0251571436259172,
+      "offdiag_legibility": 0.2771841336037527,
+      "null_mu": -0.004497107212181747,
+      "leg_z": 8.150332942308623,
+      "top_bind": [
+        ":",
+        "\u010a",
+        0.05043517851435511
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 4,
+      "diag_score": -0.03643448883796876,
+      "row_peak": 0.026459958838142762,
+      "broadcast": 0.02520413331417336,
+      "offdiag_legibility": 0.12244962116328913,
+      "null_mu": 0.0015538140587269865,
+      "leg_z": 4.070882132384451,
+      "top_bind": [
+        "I",
+        ":",
+        0.057095278790595255
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 5,
+      "diag_score": -0.03381675967273596,
+      "row_peak": 0.02733618684489051,
+      "broadcast": 0.025394728362393582,
+      "offdiag_legibility": 0.09009576861299784,
+      "null_mu": -0.0022835937712376965,
+      "leg_z": 2.7007776443275424,
+      "top_bind": [
+        "I",
+        "US",
+        0.16467565017176594
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 6,
+      "diag_score": -0.02278973065293318,
+      "row_peak": 0.0268820827883691,
+      "broadcast": 0.02524844214169607,
+      "offdiag_legibility": 0.23165174840592723,
+      "null_mu": 0.005254586508373166,
+      "leg_z": 8.481088223644333,
+      "top_bind": [
+        "US",
+        "I",
+        0.10450298022426628
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 7,
+      "diag_score": -0.013016461716881061,
+      "row_peak": 0.026785622825887218,
+      "broadcast": 0.025245025383648277,
+      "offdiag_legibility": 0.14962642502592094,
+      "null_mu": -0.007228472950586872,
+      "leg_z": 3.7665108224350297,
+      "top_bind": [
+        "_with",
+        "'d",
+        0.09566035149450089
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 8,
+      "diag_score": -0.045407520345902265,
+      "row_peak": 0.02723512999093828,
+      "broadcast": 0.025311501892819277,
+      "offdiag_legibility": 0.16457681210129418,
+      "null_mu": 0.004757136741282152,
+      "leg_z": 5.459906527269141,
+      "top_bind": [
+        "IA",
+        ":",
+        0.12540389389438727
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 9,
+      "diag_score": -0.0034671668047905006,
+      "row_peak": 0.026591249074100532,
+      "broadcast": 0.02522351774609218,
+      "offdiag_legibility": 0.23757221129200404,
+      "null_mu": -0.0018968065843923373,
+      "leg_z": 5.499492228413116,
+      "top_bind": [
+        "IA",
+        ":",
+        0.07176346622705031
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 10,
+      "diag_score": 0.030359664783378305,
+      "row_peak": 0.02685054159374517,
+      "broadcast": 0.02521886543061432,
+      "offdiag_legibility": 0.24479248160351721,
+      "null_mu": -0.0020091242351927964,
+      "leg_z": 6.850482856727657,
+      "top_bind": [
+        "_I",
+        "_me",
+        0.12174237692168977
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 5,
+      "head": 11,
+      "diag_score": 0.06934131595865024,
+      "row_peak": 0.026847646784977874,
+      "broadcast": 0.025218871111705538,
+      "offdiag_legibility": 0.24701739575215234,
+      "null_mu": -0.007427542048448338,
+      "leg_z": 7.3385999771598645,
+      "top_bind": [
+        "US",
+        "IA",
+        0.08195232661951382
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 0,
+      "diag_score": -0.012860250083858852,
+      "row_peak": 0.02715720232912868,
+      "broadcast": 0.025274201043184556,
+      "offdiag_legibility": 0.3860172304785812,
+      "null_mu": 0.0018176333725197918,
+      "leg_z": 14.58935702679515,
+      "top_bind": [
+        "MEN",
+        "\u010a",
+        0.10854063945311472
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 1,
+      "diag_score": -0.037523952113793495,
+      "row_peak": 0.027372641467797658,
+      "broadcast": 0.025269581971084486,
+      "offdiag_legibility": 0.12855343598084026,
+      "null_mu": -0.005281015270043841,
+      "leg_z": 5.020367345267434,
+      "top_bind": [
+        ".",
+        "\u010a",
+        0.12911132894450494
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 2,
+      "diag_score": -0.0013288838107079612,
+      "row_peak": 0.026146349351429166,
+      "broadcast": 0.025185979290215838,
+      "offdiag_legibility": 0.14793548126713296,
+      "null_mu": -0.0018918527133967816,
+      "leg_z": 4.602852768691858,
+      "top_bind": [
+        "_for",
+        "_your",
+        0.03541241974893501
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 3,
+      "diag_score": -0.005865236548403569,
+      "row_peak": 0.026617779073303104,
+      "broadcast": 0.025214907995255186,
+      "offdiag_legibility": 0.1247404779658309,
+      "null_mu": -0.005641374362316692,
+      "leg_z": 3.6256178588271255,
+      "top_bind": [
+        "MEN",
+        ":",
+        0.12593741675033304
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 4,
+      "diag_score": 0.015270506228238133,
+      "row_peak": 0.026536650086419748,
+      "broadcast": 0.025224370239525357,
+      "offdiag_legibility": 0.27203752960873523,
+      "null_mu": -0.0004631359050746002,
+      "leg_z": 7.375939851010642,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.07056381402392421
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 5,
+      "diag_score": -0.003385412271352254,
+      "row_peak": 0.02623500006717223,
+      "broadcast": 0.025109700088165227,
+      "offdiag_legibility": 0.08806524687051741,
+      "null_mu": -0.0022037818128692903,
+      "leg_z": 3.3552563310443784,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.04495350512460691
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 6,
+      "diag_score": 0.07867667350533299,
+      "row_peak": 0.027085664176390654,
+      "broadcast": 0.02534380348280793,
+      "offdiag_legibility": 0.1427094508964882,
+      "null_mu": -0.0026018753130149686,
+      "leg_z": 3.6032202232100676,
+      "top_bind": [
+        "US",
+        "IA",
+        0.10094063263105203
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 7,
+      "diag_score": -0.02065637495378764,
+      "row_peak": 0.026318130930217842,
+      "broadcast": 0.025162385220019134,
+      "offdiag_legibility": 0.14910638031033074,
+      "null_mu": -0.004221740095551806,
+      "leg_z": 5.60172256355442,
+      "top_bind": [
+        "US",
+        ":",
+        0.041761383546945766
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 8,
+      "diag_score": -0.02268046590688132,
+      "row_peak": 0.02688034367602755,
+      "broadcast": 0.025270659829248754,
+      "offdiag_legibility": 0.36015213340495744,
+      "null_mu": -0.014908997636637961,
+      "leg_z": 13.344395690182322,
+      "top_bind": [
+        "MEN",
+        "\u010a",
+        0.08530758901054003
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 9,
+      "diag_score": -0.024189445405280632,
+      "row_peak": 0.02833815050713409,
+      "broadcast": 0.025790388395371334,
+      "offdiag_legibility": 0.05991004347979084,
+      "null_mu": -0.005951577011730421,
+      "leg_z": 2.249555855508796,
+      "top_bind": [
+        "I",
+        "US",
+        0.27051754008577544
+      ],
+      "opcode": "BROADCAST",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 10,
+      "diag_score": 0.004997446353893959,
+      "row_peak": 0.026849876693504894,
+      "broadcast": 0.025240775864627103,
+      "offdiag_legibility": 0.15346707595362935,
+      "null_mu": 0.0012258165656819009,
+      "leg_z": 3.7359978443930806,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.18834196219054797
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 6,
+      "head": 11,
+      "diag_score": -0.029122214649081993,
+      "row_peak": 0.026867668369369286,
+      "broadcast": 0.025204212949694098,
+      "offdiag_legibility": 0.30779355779963674,
+      "null_mu": 0.003345759148542581,
+      "leg_z": 10.411148915647646,
+      "top_bind": [
+        "MEN",
+        "\u010a",
+        0.08714737005849978
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 0,
+      "diag_score": -0.03387272355531189,
+      "row_peak": 0.02682355614712161,
+      "broadcast": 0.025294530460033087,
+      "offdiag_legibility": 0.32104688049053065,
+      "null_mu": -0.005872388123050928,
+      "leg_z": 13.095830779181481,
+      "top_bind": [
+        "MEN",
+        "\u010a",
+        0.0822934241103119
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 1,
+      "diag_score": -0.003642105483417323,
+      "row_peak": 0.026833006377873874,
+      "broadcast": 0.025293463565777125,
+      "offdiag_legibility": 0.1373916695115624,
+      "null_mu": 0.002695666647042863,
+      "leg_z": 5.4375152861216085,
+      "top_bind": [
+        "_I",
+        "_me",
+        0.09020152641048476
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 2,
+      "diag_score": -0.02669680736633976,
+      "row_peak": 0.027718549868529264,
+      "broadcast": 0.025339216212700678,
+      "offdiag_legibility": 0.08043426089442188,
+      "null_mu": -0.005980389315155352,
+      "leg_z": 2.9079126281583623,
+      "top_bind": [
+        "I",
+        "US",
+        0.17231955215892647
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 3,
+      "diag_score": -0.008030355614449826,
+      "row_peak": 0.026671249548622843,
+      "broadcast": 0.025229342735595277,
+      "offdiag_legibility": 0.15082024722991655,
+      "null_mu": 0.003763624771289563,
+      "leg_z": 4.643406919613364,
+      "top_bind": [
+        ".",
+        "MEN",
+        0.09089463497399569
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 4,
+      "diag_score": -0.014860426974628848,
+      "row_peak": 0.026671665792960986,
+      "broadcast": 0.02515735716501516,
+      "offdiag_legibility": 0.1879184519186494,
+      "null_mu": -0.00042250762534899776,
+      "leg_z": 6.030126199407287,
+      "top_bind": [
+        "_and",
+        "_have",
+        0.07614147835334309
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 5,
+      "diag_score": -0.006271926826283185,
+      "row_peak": 0.026599521503466228,
+      "broadcast": 0.02530316131865959,
+      "offdiag_legibility": 0.3063160104060643,
+      "null_mu": -0.005630234156460205,
+      "leg_z": 13.088478955276948,
+      "top_bind": [
+        ";",
+        "_not",
+        0.0700885945827935
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 6,
+      "diag_score": 0.0042588925237647245,
+      "row_peak": 0.026431705940999944,
+      "broadcast": 0.025204476772013755,
+      "offdiag_legibility": 0.11621894929036598,
+      "null_mu": -0.0028783514803492043,
+      "leg_z": 3.0499421403974907,
+      "top_bind": [
+        "I",
+        "US",
+        0.0689723493099311
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 7,
+      "diag_score": -0.020911239814654783,
+      "row_peak": 0.027057752527143136,
+      "broadcast": 0.025302697594289714,
+      "offdiag_legibility": 0.15962153186085867,
+      "null_mu": -0.00014102755465660429,
+      "leg_z": 4.387490181037829,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.15480694732145384
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 8,
+      "diag_score": -0.02793330418244855,
+      "row_peak": 0.026832812296337844,
+      "broadcast": 0.025292520334185824,
+      "offdiag_legibility": 0.2998338091688974,
+      "null_mu": 0.006515645203172252,
+      "leg_z": 8.466405724031764,
+      "top_bind": [
+        "_as",
+        "_are",
+        0.07645230851945467
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 9,
+      "diag_score": -0.01636252785211978,
+      "row_peak": 0.02693462053420792,
+      "broadcast": 0.025296449783253,
+      "offdiag_legibility": 0.2675710155185379,
+      "null_mu": 0.0027372688900937424,
+      "leg_z": 8.19836413440909,
+      "top_bind": [
+        ".",
+        "IA",
+        0.12702287569434528
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 7,
+      "head": 10,
+      "diag_score": -0.04283999644963581,
+      "row_peak": 0.027668106470527355,
+      "broadcast": 0.025743581949213973,
+      "offdiag_legibility": 0.05408650161879709,
+      "null_mu": -0.006970029113831795,
+      "leg_z": 1.5233404026919473,
+      "top_bind": [
+        "I",
+        "US",
+        0.18603097343131622
+      ],
+      "opcode": "BROADCAST",
+      "legible": false
+    },
+    {
+      "layer": 7,
+      "head": 11,
+      "diag_score": 0.0032595231905351023,
+      "row_peak": 0.02798273606882734,
+      "broadcast": 0.025406586012640026,
+      "offdiag_legibility": 0.21608841485634292,
+      "null_mu": -0.00784849466796773,
+      "leg_z": 6.608626711620721,
+      "top_bind": [
+        "US",
+        ":",
+        0.2102838873220608
+      ],
+      "opcode": "BIND",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 0,
+      "diag_score": 0.019260566823649714,
+      "row_peak": 0.027248720371188972,
+      "broadcast": 0.025302058855727776,
+      "offdiag_legibility": 0.19001917740458454,
+      "null_mu": 0.0009452664298356986,
+      "leg_z": 4.351302177966582,
+      "top_bind": [
+        "And",
+        "_a",
+        0.1609772161852489
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 1,
+      "diag_score": -0.04895779897577227,
+      "row_peak": 0.027678304279140732,
+      "broadcast": 0.025431222747007577,
+      "offdiag_legibility": 0.13340843468917143,
+      "null_mu": 0.0008866758648385719,
+      "leg_z": 4.199341710189276,
+      "top_bind": [
+        "US",
+        ":",
+        0.15958887297980476
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 2,
+      "diag_score": -0.007149812564124173,
+      "row_peak": 0.026848571517651167,
+      "broadcast": 0.025243988958728064,
+      "offdiag_legibility": 0.3839280040973169,
+      "null_mu": -0.012383477379284833,
+      "leg_z": 16.657085756215114,
+      "top_bind": [
+        "MEN",
+        "I",
+        0.09264950702651824
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 3,
+      "diag_score": -0.005313508307667462,
+      "row_peak": 0.026652097453068103,
+      "broadcast": 0.025200347135035227,
+      "offdiag_legibility": 0.2273855222019443,
+      "null_mu": 0.002674166740186444,
+      "leg_z": 8.712314142109536,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.0634733302817137
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 4,
+      "diag_score": -0.011632600540260838,
+      "row_peak": 0.027455986751601068,
+      "broadcast": 0.02528086170250146,
+      "offdiag_legibility": 0.26133527369953796,
+      "null_mu": 0.005550911848147111,
+      "leg_z": 7.048170046934532,
+      "top_bind": [
+        ".",
+        "\u010a",
+        0.1625053062126528
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 5,
+      "diag_score": -0.01987427755629148,
+      "row_peak": 0.026716726986131513,
+      "broadcast": 0.025243323772019884,
+      "offdiag_legibility": 0.38416268923281877,
+      "null_mu": 0.0036437712460343098,
+      "leg_z": 11.155397232208818,
+      "top_bind": [
+        "_of",
+        "_a",
+        0.06506195627201239
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 6,
+      "diag_score": -0.010221133323614741,
+      "row_peak": 0.027453599581592176,
+      "broadcast": 0.025292087124609723,
+      "offdiag_legibility": 0.19873087909029158,
+      "null_mu": 0.0015873540868685228,
+      "leg_z": 5.980687860426369,
+      "top_bind": [
+        "US",
+        ":",
+        0.14929444773471734
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 7,
+      "diag_score": -0.002931903862170077,
+      "row_peak": 0.02713715507466711,
+      "broadcast": 0.025315672797541454,
+      "offdiag_legibility": 0.3728492213046472,
+      "null_mu": 0.014510383799921249,
+      "leg_z": 9.405201181850815,
+      "top_bind": [
+        "_are",
+        "_he",
+        0.09138725196474329
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 8,
+      "diag_score": -0.003013361811122388,
+      "row_peak": 0.026811913240227282,
+      "broadcast": 0.02531533899696526,
+      "offdiag_legibility": 0.20621662111775968,
+      "null_mu": -0.005041072066781863,
+      "leg_z": 8.264320139120994,
+      "top_bind": [
+        "US",
+        ":",
+        0.07967744888394437
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 9,
+      "diag_score": 0.0034017561120944346,
+      "row_peak": 0.0265172606869437,
+      "broadcast": 0.025184082695207992,
+      "offdiag_legibility": 0.13219783496625068,
+      "null_mu": -0.0030118555018671237,
+      "leg_z": 3.9789853155745627,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.06901570764677378
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 10,
+      "diag_score": 0.011892032648470394,
+      "row_peak": 0.026625107005762406,
+      "broadcast": 0.02511443958283217,
+      "offdiag_legibility": 0.16323602817088853,
+      "null_mu": 0.003519451498544308,
+      "leg_z": 4.790566778200145,
+      "top_bind": [
+        "US",
+        ":",
+        0.08415991892634346
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 8,
+      "head": 11,
+      "diag_score": -0.0073317206848979,
+      "row_peak": 0.026526805381317898,
+      "broadcast": 0.025210935588524615,
+      "offdiag_legibility": 0.07964375790407095,
+      "null_mu": -0.004772390941540686,
+      "leg_z": 2.1382738512104513,
+      "top_bind": [
+        "I",
+        "US",
+        0.0686927992884623
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 0,
+      "diag_score": 0.011372199675950325,
+      "row_peak": 0.026826869927313403,
+      "broadcast": 0.025283524410997495,
+      "offdiag_legibility": 0.17035393226852236,
+      "null_mu": 0.006577938496550851,
+      "leg_z": 4.557016287402817,
+      "top_bind": [
+        "US",
+        ":",
+        0.09551378907038102
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 1,
+      "diag_score": 0.010210308877633738,
+      "row_peak": 0.027041906880757444,
+      "broadcast": 0.02528041342678199,
+      "offdiag_legibility": 0.17570926294157937,
+      "null_mu": -0.0031596761171684543,
+      "leg_z": 4.324652407848406,
+      "top_bind": [
+        "_that",
+        "_is",
+        0.08990782293313973
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 2,
+      "diag_score": 0.0010379322860510634,
+      "row_peak": 0.026467123492663468,
+      "broadcast": 0.0253024833330208,
+      "offdiag_legibility": 0.1664060202941269,
+      "null_mu": 0.011243304210606896,
+      "leg_z": 4.5144918238659475,
+      "top_bind": [
+        ".",
+        "MEN",
+        0.05518925585449877
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 3,
+      "diag_score": -0.018133711649870494,
+      "row_peak": 0.02682884438938511,
+      "broadcast": 0.0252786552384326,
+      "offdiag_legibility": 0.46646751840648926,
+      "null_mu": -0.005651061294814197,
+      "leg_z": 16.915939723944405,
+      "top_bind": [
+        "_him",
+        "!",
+        0.061485347891174
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 4,
+      "diag_score": -0.0003250598930088734,
+      "row_peak": 0.026795252514857214,
+      "broadcast": 0.025186489656752326,
+      "offdiag_legibility": 0.21304412070540962,
+      "null_mu": -0.002542671017703282,
+      "leg_z": 5.482392395646554,
+      "top_bind": [
+        "US",
+        ":",
+        0.09997421546696919
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 5,
+      "diag_score": 0.029070376717905032,
+      "row_peak": 0.026548646568955864,
+      "broadcast": 0.025228462508719234,
+      "offdiag_legibility": 0.23996810270109717,
+      "null_mu": 0.00570298121168042,
+      "leg_z": 6.01189906234077,
+      "top_bind": [
+        "_me",
+        ".",
+        0.07053967462963165
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 6,
+      "diag_score": -0.004484120055327515,
+      "row_peak": 0.027091240333281662,
+      "broadcast": 0.025252278380045907,
+      "offdiag_legibility": 0.1539613956961161,
+      "null_mu": 0.002576003911863658,
+      "leg_z": 3.8010244421144135,
+      "top_bind": [
+        ".",
+        "\u010a",
+        0.10610045264142359
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 7,
+      "diag_score": -0.019232712112674813,
+      "row_peak": 0.02654221869752298,
+      "broadcast": 0.025188418410107317,
+      "offdiag_legibility": 0.20065309744519746,
+      "null_mu": -0.006575433209380934,
+      "leg_z": 5.421136933539982,
+      "top_bind": [
+        "And",
+        "_him",
+        0.06600010369699083
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 8,
+      "diag_score": -0.004859550169785303,
+      "row_peak": 0.02635749832428566,
+      "broadcast": 0.025171475686381152,
+      "offdiag_legibility": 0.035510794565618196,
+      "null_mu": 0.007521005503726661,
+      "leg_z": 0.803897054523956,
+      "top_bind": [
+        "_it",
+        "_of",
+        0.05901031671082188
+      ],
+      "opcode": "DIFFUSE",
+      "legible": false
+    },
+    {
+      "layer": 9,
+      "head": 9,
+      "diag_score": -0.003106616040280779,
+      "row_peak": 0.026843110442440792,
+      "broadcast": 0.02526120825945144,
+      "offdiag_legibility": 0.10422503289210905,
+      "null_mu": 0.001879403994483764,
+      "leg_z": 2.583983306628297,
+      "top_bind": [
+        "I",
+        "US",
+        0.1124880145370476
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 10,
+      "diag_score": -0.001307455093042799,
+      "row_peak": 0.02696968485785093,
+      "broadcast": 0.02522564342283687,
+      "offdiag_legibility": 0.31719241229201756,
+      "null_mu": 0.004708251453982151,
+      "leg_z": 10.843261264801855,
+      "top_bind": [
+        "_his",
+        "_of",
+        0.0815646486703224
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 9,
+      "head": 11,
+      "diag_score": -0.005608416367509354,
+      "row_peak": 0.027377029753255573,
+      "broadcast": 0.02532550262331388,
+      "offdiag_legibility": 0.1240603547061024,
+      "null_mu": -0.006296780300724519,
+      "leg_z": 3.60154058662502,
+      "top_bind": [
+        "US",
+        ":",
+        0.15477209446376827
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 0,
+      "diag_score": 0.007520068253194342,
+      "row_peak": 0.026614042757840038,
+      "broadcast": 0.025227762308400282,
+      "offdiag_legibility": 0.11201895759573818,
+      "null_mu": 0.004864693979555774,
+      "leg_z": 3.3926745219133463,
+      "top_bind": [
+        "_it",
+        "'d",
+        0.06508573178179508
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 1,
+      "diag_score": 0.018351759048503388,
+      "row_peak": 0.026863726792919068,
+      "broadcast": 0.02525100230441275,
+      "offdiag_legibility": 0.12620276548881035,
+      "null_mu": -0.0037980673832524016,
+      "leg_z": 2.9445550636015874,
+      "top_bind": [
+        "_he",
+        "_have",
+        0.12229635767691832
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 2,
+      "diag_score": 0.004466037954234194,
+      "row_peak": 0.02712768966880036,
+      "broadcast": 0.025293444845198416,
+      "offdiag_legibility": 0.1291509808260977,
+      "null_mu": -0.005372268962640668,
+      "leg_z": 4.178334173163851,
+      "top_bind": [
+        "US",
+        ":",
+        0.11360223495112881
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 3,
+      "diag_score": 0.012607343808174826,
+      "row_peak": 0.026733346769013733,
+      "broadcast": 0.025239751893880967,
+      "offdiag_legibility": 0.08271354354374888,
+      "null_mu": -0.001278990627103964,
+      "leg_z": 2.3057643337628213,
+      "top_bind": [
+        "US",
+        ":",
+        0.08500301703083973
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 4,
+      "diag_score": 0.01240874968783761,
+      "row_peak": 0.026896608147959113,
+      "broadcast": 0.02538512816941872,
+      "offdiag_legibility": 0.23321505960772293,
+      "null_mu": 0.007477849255493428,
+      "leg_z": 5.23596446751756,
+      "top_bind": [
+        "?",
+        "\u010a",
+        0.0867805710222129
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 5,
+      "diag_score": -0.0038914377541136307,
+      "row_peak": 0.02664120539062098,
+      "broadcast": 0.025149691424294657,
+      "offdiag_legibility": 0.25265224055760066,
+      "null_mu": -0.001249640309006543,
+      "leg_z": 7.770761361217718,
+      "top_bind": [
+        "_with",
+        "_me",
+        0.07472499059698393
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 6,
+      "diag_score": 0.011146552819496159,
+      "row_peak": 0.026603474438480806,
+      "broadcast": 0.025147002077019986,
+      "offdiag_legibility": 0.08835769436864079,
+      "null_mu": 0.0010219730462320718,
+      "leg_z": 2.2568194676873796,
+      "top_bind": [
+        "US",
+        ":",
+        0.06749621186022993
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 7,
+      "diag_score": 0.027594021879109098,
+      "row_peak": 0.026743002966616414,
+      "broadcast": 0.025268143198714815,
+      "offdiag_legibility": 0.17232085453941123,
+      "null_mu": -0.007386910766780981,
+      "leg_z": 4.291249811184989,
+      "top_bind": [
+        "I",
+        "US",
+        0.08972465482139219
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 8,
+      "diag_score": -0.001718428400699741,
+      "row_peak": 0.027037566948350605,
+      "broadcast": 0.02528953582215246,
+      "offdiag_legibility": 0.24009084042528175,
+      "null_mu": -0.0021534856129439726,
+      "leg_z": 6.73326549015541,
+      "top_bind": [
+        "IA",
+        "US",
+        0.08977770788617406
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 9,
+      "diag_score": 0.00024386013866134324,
+      "row_peak": 0.026845053946638962,
+      "broadcast": 0.02524594808506472,
+      "offdiag_legibility": 0.41587345081043253,
+      "null_mu": -0.006201588727641995,
+      "leg_z": 11.914845501955512,
+      "top_bind": [
+        "'",
+        "_of",
+        0.08274718824411029
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 10,
+      "diag_score": 0.001948852367716799,
+      "row_peak": 0.026753909090073476,
+      "broadcast": 0.025241659795596984,
+      "offdiag_legibility": 0.10863039075775514,
+      "null_mu": 0.007702172688700808,
+      "leg_z": 2.1167698037067773,
+      "top_bind": [
+        "_it",
+        "'d",
+        0.07597570058186862
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 10,
+      "head": 11,
+      "diag_score": 0.016530599561709144,
+      "row_peak": 0.02717036502285074,
+      "broadcast": 0.025294201209887825,
+      "offdiag_legibility": 0.28828156179021797,
+      "null_mu": 0.0033201976144903054,
+      "leg_z": 7.889882113560913,
+      "top_bind": [
+        "US",
+        ":",
+        0.09743094991621529
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 0,
+      "diag_score": 0.024547770658707713,
+      "row_peak": 0.02659703003590177,
+      "broadcast": 0.025216058629195005,
+      "offdiag_legibility": 0.5671015368440819,
+      "null_mu": 0.009432794445874075,
+      "leg_z": 14.277989330516055,
+      "top_bind": [
+        "!",
+        ".",
+        0.10627961104822407
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 1,
+      "diag_score": 0.014280885834966771,
+      "row_peak": 0.026553506360203143,
+      "broadcast": 0.025163070061413377,
+      "offdiag_legibility": 0.3346651058793196,
+      "null_mu": -0.005528382942366555,
+      "leg_z": 12.376883551948836,
+      "top_bind": [
+        "_with",
+        "_his",
+        0.05640531953511145
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 2,
+      "diag_score": 0.017533587945713032,
+      "row_peak": 0.026654297336025347,
+      "broadcast": 0.025180422273443033,
+      "offdiag_legibility": 0.1068869130182373,
+      "null_mu": 0.0031780149793558133,
+      "leg_z": 3.3821298389449805,
+      "top_bind": [
+        "?",
+        "MEN",
+        0.06162882113461293
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 3,
+      "diag_score": 0.016027232095908183,
+      "row_peak": 0.02644917420668897,
+      "broadcast": 0.025239198397244072,
+      "offdiag_legibility": 0.4026905653473522,
+      "null_mu": -0.006911628338263465,
+      "leg_z": 10.8514153686349,
+      "top_bind": [
+        "_of",
+        "_the",
+        0.05697661435143611
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 4,
+      "diag_score": 0.01072962882027866,
+      "row_peak": 0.026407910170041092,
+      "broadcast": 0.025135465758174123,
+      "offdiag_legibility": 0.2677733297154376,
+      "null_mu": -0.010515970747078236,
+      "leg_z": 8.173785107316744,
+      "top_bind": [
+        "MEN",
+        "IA",
+        0.04794481297435911
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 5,
+      "diag_score": 0.02449987123177692,
+      "row_peak": 0.026663410352249173,
+      "broadcast": 0.025183990609772063,
+      "offdiag_legibility": 0.21484479377410623,
+      "null_mu": 0.002938637475340297,
+      "leg_z": 5.192048079105562,
+      "top_bind": [
+        "And",
+        "_I",
+        0.07903911939044433
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 6,
+      "diag_score": 0.010463671527817393,
+      "row_peak": 0.026443700438394013,
+      "broadcast": 0.025166611389540783,
+      "offdiag_legibility": 0.1284926049666459,
+      "null_mu": -0.00916261568524574,
+      "leg_z": 4.1304268922667875,
+      "top_bind": [
+        "MEN",
+        "I",
+        0.06712288368219158
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 7,
+      "diag_score": 0.014513880710044507,
+      "row_peak": 0.02656294850899396,
+      "broadcast": 0.025230656014990534,
+      "offdiag_legibility": 0.30377496677434185,
+      "null_mu": -0.000655050041535199,
+      "leg_z": 9.303901265582663,
+      "top_bind": [
+        "_and",
+        "_your",
+        0.07254047141584166
+      ],
+      "opcode": "DIFFUSE",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 8,
+      "diag_score": 0.03321581833676648,
+      "row_peak": 0.027320808169407202,
+      "broadcast": 0.025345011066251817,
+      "offdiag_legibility": 0.6912621814210158,
+      "null_mu": -0.01420758227113238,
+      "leg_z": 17.624577306459244,
+      "top_bind": [
+        "US",
+        "IA",
+        0.11171151989536175
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 9,
+      "diag_score": 0.020122855831807958,
+      "row_peak": 0.026484185500295476,
+      "broadcast": 0.02518214484589022,
+      "offdiag_legibility": 0.15918526633644195,
+      "null_mu": -0.001367021902000276,
+      "leg_z": 4.558415228921304,
+      "top_bind": [
+        "_he",
+        "_for",
+        0.0674741874349881
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 10,
+      "diag_score": 0.04176356675626019,
+      "row_peak": 0.026948216278212523,
+      "broadcast": 0.025259282198534794,
+      "offdiag_legibility": 0.36895622818693224,
+      "null_mu": 0.0007933284846414823,
+      "leg_z": 8.693236181990667,
+      "top_bind": [
+        "_your",
+        "_of",
+        0.09510877906726287
+      ],
+      "opcode": "COPY",
+      "legible": true
+    },
+    {
+      "layer": 11,
+      "head": 11,
+      "diag_score": 0.042089959507025945,
+      "row_peak": 0.0271571234165884,
+      "broadcast": 0.02549482006925876,
+      "offdiag_legibility": 0.35106205363836174,
+      "null_mu": -0.010674947912141172,
+      "leg_z": 7.8104651364975135,
+      "top_bind": [
+        "And",
+        "_he",
+        0.1409066315377196
+      ],
+      "opcode": "COPY",
+      "legible": true
+    }
+  ]
+}
