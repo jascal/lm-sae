@@ -199,6 +199,34 @@ illustration of why a third/fourth architecture is worth testing. (The SAE-featu
 copy/transform WRITE split are reported per-model in the Gemma deep-dive; legibility needs a per-layer SAE
 [Gemma only], and the copy/transform split is threshold-defined, so neither is a cross-model invariant.)
 
+### Is the sink load-bearing? Ablation — magnitude ≠ dependence
+`sink_ablation.py` blocks attention to key-position-0 at every layer (rewrites the 4D causal mask; query 0
+keeps self-attention) and measures next-token NLL on the same short-context corpus — removing the *option* to
+sink and forcing each head to redistribute onto content. The sink-fraction drops to 0 under the hook
+(intervention check passed for all four).
+
+| model | sink mass | baseline NLL | sink-blocked NLL | ΔNLL | ΔNLL % |
+|---|---|---|---|---|---|
+| **GPT-2** | 45.6% | 5.00 | 7.08 | **+2.09** | **+42%** |
+| Gemma-2-2B | 2.1% | 7.42 | 7.60 | +0.18 | +2% |
+| Llama-3.2-1B | 55.0% | 4.13 | 4.17 | +0.04 | +1% |
+| Qwen2.5-1.5B | 44.5% | 3.98 | 4.03 | +0.05 | +1% |
+
+**Sink magnitude does not predict sink dependence.** Only **GPT-2** is functionally dependent on its sink
+(+42% NLL); **Llama and Qwen sink even harder (55%, 44%) yet shrug off its removal (+1%)** — their large sink
+is a genuinely redistributable no-op — and Gemma (low sink) is likewise unaffected (+2%). This refutes both
+the naive "the sink is a universal load-bearing stabilizer" reading *and* the guess that sink magnitude
+tracks dependence: the only outlier on *dependence* is GPT-2.
+
+**Leading hypothesis (untested):** GPT-2's uniqueness tracks its **learned absolute positional embeddings** —
+position 0 is a genuine absolute-position anchor heads rely on, so blocking it disrupts GPT-2's positional
+computation; the other three use **RoPE** (relative), so key-0 is not a positional anchor and is freely
+redistributable. (Alternative: a GPT-2-specific massive-activation / register read at pos-0.) **Caveats:** this
+is *short context* (ctx 96, all keys present) — a different regime from the StreamingLLM result, where the
+sink is essential for *long-context KV-cache eviction*, which this does not probe; and the absolute baseline
+NLLs are not cross-comparable (tokenizer / no-BOS-per-chunk / Gemma's logit-softcap), so only the within-model
+Δ is the signal. `sink_ablation.py`, `runs/gemma/sink_ablation_*_summary.json`.
+
 ### The full listings
 The complete per-head listings are committed as reference artifacts (regenerate with the disassemblers):
 

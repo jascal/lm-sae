@@ -1,0 +1,13 @@
+{
+  "experiment": "sink ablation (block key-0): Qwen/Qwen2.5-1.5B",
+  "model": "Qwen/Qwen2.5-1.5B",
+  "corpus": "shakespeare",
+  "n_chunks": 42,
+  "baseline_nll": 3.9774702244662707,
+  "ablated_nll": 4.0285381299790375,
+  "delta_nll": 0.05106790551276674,
+  "delta_nll_frac_of_baseline": 0.012839292975378452,
+  "sink_frac_baseline": 0.44486139959708343,
+  "sink_frac_ablated": 0.0,
+  "intervention_ok": true
+}

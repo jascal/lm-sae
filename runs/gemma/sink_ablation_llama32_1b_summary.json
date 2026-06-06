@@ -1,0 +1,13 @@
+{
+  "experiment": "sink ablation (block key-0): unsloth/Llama-3.2-1B",
+  "model": "unsloth/Llama-3.2-1B",
+  "corpus": "shakespeare",
+  "n_chunks": 42,
+  "baseline_nll": 4.133608647944531,
+  "ablated_nll": 4.172941611715493,
+  "delta_nll": 0.039332963770962515,
+  "delta_nll_frac_of_baseline": 0.009515405816300762,
+  "sink_frac_baseline": 0.5500290091651807,
+  "sink_frac_ablated": 0.0,
+  "intervention_ok": true
+}

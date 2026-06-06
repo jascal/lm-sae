@@ -1,0 +1,13 @@
+{
+  "experiment": "sink ablation (block key-0): gpt2",
+  "model": "gpt2",
+  "corpus": "shakespeare",
+  "n_chunks": 42,
+  "baseline_nll": 4.996021303520954,
+  "ablated_nll": 7.082645780573956,
+  "delta_nll": 2.086624477053002,
+  "delta_nll_frac_of_baseline": 0.4176572416899924,
+  "sink_frac_baseline": 0.4558949474558257,
+  "sink_frac_ablated": 0.0,
+  "intervention_ok": true
+}

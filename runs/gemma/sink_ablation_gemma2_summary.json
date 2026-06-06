@@ -1,0 +1,13 @@
+{
+  "experiment": "sink ablation (block key-0): google/gemma-2-2b",
+  "model": "google/gemma-2-2b",
+  "corpus": "shakespeare",
+  "n_chunks": 42,
+  "baseline_nll": 7.421536014319791,
+  "ablated_nll": 7.599430756956836,
+  "delta_nll": 0.17789474263704452,
+  "delta_nll_frac_of_baseline": 0.023970070655696896,
+  "sink_frac_baseline": 0.02075085786810165,
+  "sink_frac_ablated": 0.0,
+  "intervention_ok": true
+}
