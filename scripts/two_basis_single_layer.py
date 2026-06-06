@@ -3,11 +3,17 @@
 The whole-model forge dies on 12-layer GPT-2 (one basis can't carry 12 layers). This tests the U_C
 MECHANISM without that: forge ONLY the residual entering the induction heads (layer L) with a self-trained
 SAE, keep the other 11 layers HOST (so the model stays alive), and ask whether smearing that residual breaks
-induction — and whether preserving U_C (the layers L..L+2 attention read/write geometry) protects it.
+induction — and which U_C protects it. Compares five recoveries of the smeared residual:
 
-  single     r -> SAE_decode(SAE_encode(r))                    (lossy recon smears the predecessor signal)
-  U_C        recon + (r - recon) projected back onto U_C       (keep the attention geometry verbatim)
-  two_basis  + also keep the sharp assertion atoms (U_A)
+  single          r -> SAE_decode(SAE_encode(r))                  (lossy recon smears the predecessor signal)
+  uc_readers      recon + (r - recon) onto the readers' geometry  (the U_C that FAILED, -6%)
+  uc_writers      recon + (r - recon) onto the writers' OV-output (the VALIDATED U_C, -111%)
+  uc_attribution  recon + (r - recon) onto top d(loss)/d(residual) (label-free control, +14% worse)
+  two_basis_wr    writers' OV-output + the sharp assertion atoms (U_A)
+
+The writer detection and the writers' OV-output U_C now come from the RELEASED sae-forge 0.14.0 API
+(saeforge.circuit_heads.prev_token_heads + composition_subspace.extract_writer_subspace), so this is the
+consumer-side validation that the shipped library reproduces the -111% excess removal.
 
 Metric: induction-predictable circuit KL (excess over complement) — the circuit-specific damage. The model
 stays alive because only layer L's residual is perturbed; blocks L..11 run host weights. Real GPT-2, CPU.
@@ -80,21 +86,6 @@ def _uc(model, layers, rank):
     return np.linalg.qr(np.concatenate([Ur, Uw], 1))[0]
 
 
-def _writer_uc(model, writer_heads, rank):
-    """The OV OUTPUT subspace of the circuit WRITER heads (e.g. prev-token movers) — the actual
-    predecessor-write the SAE smears. Written subspace of head A = row space of OV_A = W_V^A W_O^A."""
-    tr = model.transformer; cfg = model.config
-    d, Hn = cfg.n_embd, cfg.n_head; hd = d // Hn
-    ovs = []
-    for (L, h) in writer_heads:
-        Wc = tr.h[L].attn.c_attn.weight.detach().numpy().astype(np.float64)
-        Wo = tr.h[L].attn.c_proj.weight.detach().numpy().astype(np.float64)
-        sl = slice(h * hd, (h + 1) * hd)
-        ovs.append(Wc[:, 2 * d:3 * d][:, sl] @ Wo[sl, :])      # (d, d) OV_A
-    Vt = np.linalg.svd(np.concatenate(ovs, 0), full_matrices=False)[2]   # right singular vecs = written dirs
-    return Vt[:rank].T                                                   # (d, rank) orthonormal
-
-
 def _attribution_uc(model, chunks, L, X5, ind_mask, rank, dev):
     """Label-FREE circuit subspace: top principal directions of ∂(induction-predictable NLL)/∂(layer-L
     residual). Backprop the circuit loss to a leaf residual injected at block L; the gradient directions
@@ -149,6 +140,10 @@ def main(argv=None):
     import torch
     from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 
+    import saeforge
+    from saeforge.circuit_heads import prev_token_heads
+    from saeforge.composition_subspace import extract_writer_subspace
+
     dev = args.device
     model = GPT2LMHeadModel.from_pretrained("gpt2", attn_implementation="eager").eval().to(dev)
     tr = model.transformer
@@ -163,18 +158,14 @@ def main(argv=None):
     L = args.layer
 
     # ---- pass 1: layer-L residual (SAE + cov95), host final hidden, induction mask, oracle ----
-    print("[1] host pass: layer-%d residual + induction mask + prev-token writers" % L)
+    print("[1] host pass: layer-%d residual + induction mask" % L)
     X5, all_ids, ind_mask, Hf = [], [], [], []
-    pt = np.zeros((nL, Hn)); ptn = 0
     with torch.no_grad():
         for c in chunks:
-            o = model(input_ids=torch.tensor([c], device=dev), output_hidden_states=True, output_attentions=True)
+            o = model(input_ids=torch.tensor([c], device=dev), output_hidden_states=True)
             X5.append(o.hidden_states[L][0].float().cpu().numpy())
             Hf.append(o.hidden_states[-1][0].float().cpu().numpy())
-            ind_mask.append(_induction_predictable(c)[1:].astype(bool)); all_ids.extend(c); ptn += len(c) - 1
-            for Li in range(nL):
-                pt[Li] += np.diagonal(o.attentions[Li][0].float().cpu().numpy(), offset=-1, axis1=1, axis2=2).sum(1)
-    prevtok = pt / max(ptn, 1)
+            ind_mask.append(_induction_predictable(c)[1:].astype(bool)); all_ids.extend(c)
     X5 = np.concatenate(X5, 0).astype(np.float32)
     W_U = model.lm_head.weight.detach().cpu().numpy().astype(np.float32)
     N, d = X5.shape
@@ -192,9 +183,14 @@ def main(argv=None):
 
     uc_layers = [int(x) for x in args.uc_layers.split(",")]
     Uc = _uc(model, uc_layers, args.comp_rank)           # readers' geometry (the U_C that failed)
-    # prev-token WRITER heads (Δ=1 movers) BELOW the forged layer: their OV output = the predecessor-write
-    writers = sorted([(Li, h) for Li in range(L) for h in range(Hn)], key=lambda lh: -prevtok[lh])[:4]
-    Uw = _writer_uc(model, writers, Uc.shape[1])          # match dim for a fair head-to-head vs readers
+    # prev-token WRITER heads (Δ=1 movers) BELOW the forged layer, via the RELEASED sae-forge 0.14.0
+    # behavioral detector; their OV output is the predecessor-write the SAE smears.
+    det = [t for t in prev_token_heads(model, ids, top_k=nL * Hn, ctx=args.ctx, min_attention=0.0)
+           if t[0] < L][:4]
+    writers = [(Li, h) for (Li, h, _s) in det]
+    writer_scores = [float(s) for (_Li, _h, s) in det]
+    # released OV-output U_C; match the readers' dim for a fair head-to-head
+    Uw = extract_writer_subspace(model, writer_heads=writers, rank=Uc.shape[1]).U
     Za = _encode(Xz, params, args.k)
     atom_auc = np.array([np.nanmax(_best_auc_per_label(Za[:, [j]], Y)) for j in range(args.width)])
     Ua = np.linalg.qr(Wdr[np.argsort(-atom_auc)[: args.assert_k]].T)[0]
@@ -206,7 +202,9 @@ def main(argv=None):
     Patt = Uatt @ Uatt.T
     Uwa = np.linalg.qr(np.concatenate([Uw, Ua], 1))[0]; Pwa = Uwa @ Uwa.T
     print(f"    host cov95 {host_cov['all']['cov95']:.3f}; readers-U_C {Uc.shape[1]}d (layers {uc_layers}); "
-          f"writers-U_C {Uw.shape[1]}d (prev-tok {[f'{a}.{b}' for a, b in writers]}); attribution-U_C {Uatt.shape[1]}d")
+          f"writers-U_C {Uw.shape[1]}d; attribution-U_C {Uatt.shape[1]}d")
+    print(f"    detected writers (released prev_token_heads, Δ=1 score): "
+          f"{', '.join(f'{Li}.{h}={s:.3f}' for (Li, h), s in zip(writers, writer_scores))}")
     print(f"    [science check] subspace overlap(attribution, writers) = {ov_aw:.2f} "
           f"(high => the gradient REDISCOVERS the prev-token writers, no labels needed)")
 
@@ -257,7 +255,8 @@ def main(argv=None):
     s, ur, uw, ua, tb = (res["single"], res["uc_readers"], res["uc_writers"],
                          res["uc_attribution"], res["two_basis_wr"])
     out = {"experiment": "single-layer U_C: readers vs writers vs attribution", "layer": L,
-           "uc_layers": uc_layers, "writers": [list(w) for w in writers], "n_features": args.width,
+           "uc_layers": uc_layers, "writers": [list(w) for w in writers], "writer_scores": writer_scores,
+           "n_features": args.width, "sae_forge_version": saeforge.__version__,
            "overlap_attribution_writers": ov_aw, "host_cov95": host_cov["all"]["cov95"], "configs": res}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
