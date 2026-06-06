@@ -49,6 +49,11 @@ def _load(path):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--pretrained", default="gpt2")
+    p.add_argument("--corpus", default="shakespeare",
+                   help="'shakespeare' (verse) / 'wikitext' (prose) preset, or a raw-text URL. "
+                        "The attention-bucket split is corpus-conditioned (verse inflates structural); the "
+                        "head-credit overlay (idioms/opcode legibility) is corpus-invariant, so reusing the "
+                        "Shakespeare-derived idiom/opcode summaries is justified (see corpus_robustness.py).")
     p.add_argument("--max-tokens", type=int, default=12000)
     p.add_argument("--ctx", type=int, default=96)
     p.add_argument("--local-max", type=int, default=8, help="upper Δ for the 'local' window")
@@ -70,10 +75,15 @@ def main(argv=None):
     H = cfg.n_head; nL = cfg.n_layer
     tok = GPT2TokenizerFast.from_pretrained("gpt2")
     import urllib.request
-    txt = urllib.request.urlopen(
-        "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
-        timeout=8).read().decode("utf-8", "ignore")[:200000]
+    CORPORA = {
+        "shakespeare": "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
+        "wikitext": "https://raw.githubusercontent.com/pytorch/examples/main/word_language_model/data/wikitext-2/train.txt",
+    }
+    url = CORPORA.get(args.corpus, args.corpus)
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    txt = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "ignore")[:600000]
     ids = tok(txt)["input_ids"][: args.max_tokens]
+    print(f"[corpus] {args.corpus}")
     chunks = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
 
     buckets = ["self", "sink", "prev", "structural", "local", "long_range"]
@@ -170,7 +180,8 @@ def main(argv=None):
     idiom_breakdown = {t: {"footprint": idiom_fp.get(t, 0.0), "exclusive": idiom_excl.get(t, 0.0)}
                        for t in sorted(idiom_fp, key=lambda k: -idiom_fp[k])}
 
-    out = {"experiment": "attention coverage scorecard", "model": args.pretrained, "n_heads": nL * H,
+    out = {"experiment": "attention coverage scorecard", "model": args.pretrained, "corpus": args.corpus,
+           "n_heads": nL * H,
            "attention_budget": budget, "plumbing_frac": plumbing_frac,
            "long_range_total": lr_total, "long_range_named": lr_named,
            "long_range_legible_unnamed": lr_legible, "long_range_sae_only": lr_sae,
