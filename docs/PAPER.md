@@ -90,6 +90,36 @@ basis / idiom* are load-bearing; U_A·U_C and χ can be omitted entirely.
 
 ---
 
+## Overview diagrams (Mermaid — render on GitHub, or export for the paper)
+
+**(B) The disassembly pipeline** — read attention from the weights, name it, score coverage, causally
+test, corpus-check, then port across architectures:
+
+```mermaid
+flowchart LR
+  W["model weights"] --> QK["QK opcode B_h[X,Y]"]
+  W --> OV["OV write V_h[X,Y]"]
+  QK --> IDI["idiom catalog (8/8 from weights)"]
+  OV --> IDI
+  IDI --> COV["coverage scorecard (% attention explained)"]
+  COV --> CAU["causal validation (mean-ablation)"]
+  CAU --> ROB["corpus robustness (verse vs prose)"]
+  ROB --> XM["cross-model port: Gemma-2-2B"]
+```
+
+**(A) The forge tax and the preserve lever** — forging keeps accuracy but taxes monosemanticity;
+verbatim-preserving a small set of atoms recovers it:
+
+```mermaid
+flowchart LR
+  H["host model"] -->|"forge into SAE basis"| F["forged model"]
+  F --> MAUC["mAUC: preserved (~91%)"]
+  F --> COVc["cov95: collapses (~18%)"]
+  COVc -->|"verbatim-preserve K≈6–12% of atoms"| REC["cov95 recovered"]
+```
+
+---
+
 ## Background & related work
 
 The literature has a **piecemeal list of head types** but, to our knowledge, **no complete
@@ -250,6 +280,22 @@ git-ignored).
   `gemma_layer_sweep.py` → `disassemble_gemma.py`.
 - **Data behind every figure**: the tracked `runs/*_summary.json` listed above
   ([`../runs/README.md`](../runs/README.md)). Large listings are git-ignored and regenerated.
+
+## How to cite
+
+No preprint yet. Until one exists, cite the repository:
+
+```bibtex
+@misc{lm-sae,
+  title  = {lm-sae: a language-model ground-truth oracle and a cross-model attention disassembler},
+  author = {Scott, J. Allan},
+  year   = {2026},
+  note   = {Workshop paper in preparation; see docs/PAPER.md},
+  howpublished = {\url{https://github.com/jascal/lm-sae}}
+}
+```
+
+On submission, replace with the arXiv/workshop entry and add the DOI here.
 
 ## Claims ledger (one line per quantitative claim → file)
 

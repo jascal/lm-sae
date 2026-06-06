@@ -6,7 +6,8 @@
 #   # GPU (NVIDIA Blackwell / RTX 50-series, e.g. the RTX 5050 used here) needs the cu128 wheel:
 #   .venv/bin/pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
 #
-# Versions below are the ones the committed results were produced with.
+# Versions below are the ones the committed results were produced with. For EXACT recreation of the
+# GPU environment (full freeze, pins torch==2.11.0+cu128), see constraints-gpu.txt.
 
 # sae-forge provides the forge pipeline (FeatureBasis / SubspaceProjector / NativeModel /
 # adapters), the two-basis forge (composition_preserve / assertion_preserve) + circuit-
