@@ -35,7 +35,7 @@ from pathlib import Path
 import numpy as np
 
 CONTENT_IDIOMS = {"induction", "copy_namemover", "backup_namemover", "negative_namemover",
-                  "copy_suppression", "s_inhibition"}
+                  "copy_suppression", "s_inhibition", "coreference"}
 STRUCT_STR = {".", ",", ";", ":", "!", "?", "Ċ", "\n", "ĊĊ"}
 
 
@@ -157,12 +157,25 @@ def main(argv=None):
     cov_sae = cov_legible + lr_sae                   # + heads only the SAE operand basis explains
     dark = [r for r in sorted(rows, key=lambda r: -r["long_range"]) if r["content_src"] is None][:15]
 
+    # per-idiom named-content contribution: footprint (overlapping) + exclusive (named ONLY by this idiom)
+    nheads = len(rows)
+    named_rows = [r for r in rows if r["content_src"] == "idiom"]
+    idiom_fp, idiom_excl = {}, {}
+    for r in named_rows:
+        ctags = [t for t in r["idioms"] if t in CONTENT_IDIOMS]
+        for t in ctags:
+            idiom_fp[t] = idiom_fp.get(t, 0.0) + r["long_range"] / nheads
+        if len(ctags) == 1:
+            idiom_excl[ctags[0]] = idiom_excl.get(ctags[0], 0.0) + r["long_range"] / nheads
+    idiom_breakdown = {t: {"footprint": idiom_fp.get(t, 0.0), "exclusive": idiom_excl.get(t, 0.0)}
+                       for t in sorted(idiom_fp, key=lambda k: -idiom_fp[k])}
+
     out = {"experiment": "attention coverage scorecard", "model": args.pretrained, "n_heads": nL * H,
            "attention_budget": budget, "plumbing_frac": plumbing_frac,
            "long_range_total": lr_total, "long_range_named": lr_named,
            "long_range_legible_unnamed": lr_legible, "long_range_sae_only": lr_sae,
            "long_range_dark": lr_dark, "coverage_named": cov_named, "coverage_legible": cov_legible,
-           "coverage_with_sae": cov_sae,
+           "coverage_with_sae": cov_sae, "named_by_idiom": idiom_breakdown,
            "dark_heads": [{"head": r["head"], "long_range": r["long_range"], "dominant": r["dominant"],
                            "leg_z": r["leg_z"], "idioms": r["idioms"]} for r in dark],
            "heads": rows}
@@ -180,6 +193,11 @@ def main(argv=None):
     print(f"  token-operand B_h legible     {lr_legible/lr_total:6.1%} of long-range  ({lr_legible:.1%} abs)")
     print(f"  SAE-operand B_h legible only  {lr_sae/lr_total:6.1%} of long-range  ({lr_sae:.1%} abs)")
     print(f"  DARK (no channel explains)    {lr_dark/lr_total:6.1%} of long-range  ({lr_dark:.1%} abs)")
+    if idiom_breakdown and lr_named > 0:
+        print("\n[named-by-idiom] each idiom's share of long-range content "
+              "(footprint = heads it tags; exclusive = mass named ONLY by it):")
+        for t, v in idiom_breakdown.items():
+            print(f"  {t:18} footprint {v['footprint']/lr_total:5.1%}  exclusive {v['exclusive']/lr_total:5.1%}")
     print(f"\n[COVERAGE]  named-idiom: {cov_named:.1%}  |  +token-legible: {cov_legible:.1%}  "
           f"|  +SAE-operand: {cov_sae:.1%}")
     if lr_sae > 0:
