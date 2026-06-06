@@ -1,0 +1,36 @@
+{
+  "experiment": "relational oracle + pair-cov95",
+  "n_pairs": 1128,
+  "per_tier": {
+    "unary_cur": {
+      "n": 19,
+      "single_cov95": 0.8947368421052632,
+      "pair_cov95": 0.9473684210526315,
+      "single_mauc": 0.9838213652886434,
+      "pair_mauc": 0.9916568142572938
+    },
+    "unary_lex": {
+      "n": 9,
+      "single_cov95": 0.1111111111111111,
+      "pair_cov95": 0.1111111111111111,
+      "single_mauc": 0.7868031892547493,
+      "pair_mauc": 0.8447946263035669
+    },
+    "unary_prev": {
+      "n": 11,
+      "single_cov95": 0.0,
+      "pair_cov95": 0.0,
+      "single_mauc": 0.6768237042023296,
+      "pair_mauc": 0.7080521052861369
+    },
+    "relational_bigram": {
+      "n": 7,
+      "single_cov95": 1.0,
+      "pair_cov95": 1.0,
+      "single_mauc": 0.9691579515161202,
+      "pair_mauc": 0.9748570692497796
+    }
+  },
+  "unary_pair_gain": 0.025641025641025605,
+  "relational_pair_gain": 0.0
+}
