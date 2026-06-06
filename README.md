@@ -1,11 +1,10 @@
 # lm-sae — a language-model ground-truth oracle, and a disassembler for what the SAE misses
 
-`lm-sae` is one instrument in a larger research program (see the workspace
-[`RESEARCH_MANIFESTO.md`](../RESEARCH_MANIFESTO.md)). The other `*-sae` substrates
-(`bio-sae`, `econ-sae`, `sm-sae`) **manufacture** a known feature factorization so an
-SAE/forge can be *graded* against an answer key. The program's terminal target, though, is
-real LLMs — and a real LLM has **no oracle**: its "features" are whatever the SAE finds,
-with nothing to check them against.
+`lm-sae` is one instrument in a broader research program whose other substrates
+**manufacture** a known feature factorization — a dataset or model whose ground-truth features
+are computed externally — so that SAE/forge recovery can be *graded* against an answer key. The
+program's terminal target, though, is real LLMs — and a real LLM has **no oracle**: its
+"features" are whatever the SAE finds, with nothing to check them against.
 
 `lm-sae` fills that gap with two complementary instruments on a **frozen text LLM**:
 
