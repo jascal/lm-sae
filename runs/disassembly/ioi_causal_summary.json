@@ -1,0 +1,259 @@
+{
+  "experiment": "IOI-template causal metric (logit-diff, mean-ablation)",
+  "model": "gpt2",
+  "n_examples": 160,
+  "baseline_logit_diff": 2.7526195287704467,
+  "baseline_acc": 0.9875,
+  "idioms": [
+    {
+      "idiom": "prev_token",
+      "heads": [
+        [
+          4,
+          11
+        ]
+      ],
+      "delta_ld": -0.2183326244354249,
+      "acc": 0.9875,
+      "delta_ld_random_mean": -0.02123836278915392,
+      "z": -5.770007184246459,
+      "expect_sign": 0,
+      "confirmed": false
+    },
+    {
+      "idiom": "duplicate_token",
+      "heads": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "delta_ld": 0.6586628913879395,
+      "acc": 1.0,
+      "delta_ld_random_mean": 0.06486617326736455,
+      "z": 5.963926080885061,
+      "expect_sign": -1,
+      "confirmed": false
+    },
+    {
+      "idiom": "induction",
+      "heads": [
+        [
+          7,
+          11
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "delta_ld": -1.4472662448883056,
+      "acc": 0.8875,
+      "delta_ld_random_mean": -0.4084117054939268,
+      "z": -3.722023240453662,
+      "expect_sign": 0,
+      "confirmed": false
+    },
+    {
+      "idiom": "copy_namemover",
+      "heads": [
+        [
+          9,
+          9
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          10,
+          0
+        ]
+      ],
+      "delta_ld": -0.505487823486328,
+      "acc": 0.99375,
+      "delta_ld_random_mean": 0.018034636974334828,
+      "z": -2.172512152617327,
+      "expect_sign": -1,
+      "confirmed": true
+    },
+    {
+      "idiom": "backup_namemover",
+      "heads": [
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "delta_ld": 0.3042875289916993,
+      "acc": 0.99375,
+      "delta_ld_random_mean": 0.07419463396072401,
+      "z": 0.8435903361394431,
+      "expect_sign": -1,
+      "confirmed": false
+    },
+    {
+      "idiom": "negative_namemover",
+      "heads": [
+        [
+          10,
+          7
+        ],
+        [
+          11,
+          10
+        ]
+      ],
+      "delta_ld": 2.086287522315979,
+      "acc": 0.9875,
+      "delta_ld_random_mean": -0.012160915136337325,
+      "z": 62.41397239659889,
+      "expect_sign": 1,
+      "confirmed": true
+    },
+    {
+      "idiom": "s_inhibition",
+      "heads": [
+        [
+          10,
+          0
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "delta_ld": -0.3203597068786621,
+      "acc": 0.9875,
+      "delta_ld_random_mean": -0.18638561964035016,
+      "z": -1.702171401577731,
+      "expect_sign": -1,
+      "confirmed": false
+    },
+    {
+      "idiom": "copy_suppression",
+      "heads": [
+        [
+          8,
+          10
+        ],
+        [
+          10,
+          7
+        ]
+      ],
+      "delta_ld": -0.3019516706466674,
+      "acc": 0.96875,
+      "delta_ld_random_mean": -0.07827678322792042,
+      "z": -0.41765244091827697,
+      "expect_sign": 1,
+      "confirmed": false
+    }
+  ],
+  "literature_audit": [
+    {
+      "idiom": "duplicate_token",
+      "heads": [
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "delta_ld": -0.0416874885559082,
+      "z": -0.9774313189822809,
+      "expect_sign": -1,
+      "confirmed": false
+    },
+    {
+      "idiom": "s_inhibition",
+      "heads": [
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "delta_ld": -2.2968647718429565,
+      "z": -3.4934294252548,
+      "expect_sign": -1,
+      "confirmed": true
+    },
+    {
+      "idiom": "copy_namemover",
+      "heads": [
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          10,
+          0
+        ]
+      ],
+      "delta_ld": 0.014879059791565119,
+      "z": -0.14528165041201915,
+      "expect_sign": -1,
+      "confirmed": false
+    },
+    {
+      "idiom": "negative_namemover",
+      "heads": [
+        [
+          10,
+          7
+        ],
+        [
+          11,
+          10
+        ]
+      ],
+      "delta_ld": 2.086287522315979,
+      "z": 15.563002135135429,
+      "expect_sign": 1,
+      "confirmed": true
+    }
+  ]
+}

@@ -1,0 +1,1010 @@
+{
+  "experiment": "SAE-feature opcode table (dominant vs content-weighted operands)",
+  "model": "gpt2",
+  "layers": [
+    1,
+    4,
+    9
+  ],
+  "n_operands": 60,
+  "sae_repo": "jbloom/GPT2-Small-SAEs-Reformatted",
+  "heads": [
+    {
+      "head": "1.0",
+      "layer": 1,
+      "z_token": 18.859088196885768,
+      "z_dominant": 7.748177275119946,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          ","
+        ]
+      },
+      "z_content": 8.134362557899147,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_to"
+        ]
+      }
+    },
+    {
+      "head": "1.1",
+      "layer": 1,
+      "z_token": 9.859557652267224,
+      "z_dominant": 5.716441925156564,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          ","
+        ]
+      },
+      "z_content": 5.681808480762519,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_of"
+        ]
+      }
+    },
+    {
+      "head": "1.2",
+      "layer": 1,
+      "z_token": -1.8302694935607178,
+      "z_dominant": -0.3298065064362629,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          ","
+        ]
+      },
+      "z_content": -0.7490640116090574,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_the"
+        ]
+      }
+    },
+    {
+      "head": "1.3",
+      "layer": 1,
+      "z_token": -0.26450356831886745,
+      "z_dominant": 4.512283006453098,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "_the"
+        ]
+      },
+      "z_content": 2.363221377171056,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_the"
+        ]
+      }
+    },
+    {
+      "head": "1.4",
+      "layer": 1,
+      "z_token": 0.14541579095730167,
+      "z_dominant": 4.179058042356838,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          ","
+        ]
+      },
+      "z_content": 3.741960701799186,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_the"
+        ]
+      }
+    },
+    {
+      "head": "1.5",
+      "layer": 1,
+      "z_token": 21.156951096589108,
+      "z_dominant": 10.303871792617816,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "_to"
+        ],
+        "k": [
+          "_to"
+        ]
+      },
+      "z_content": 12.458756238218635,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_to"
+        ],
+        "k": [
+          "_to"
+        ]
+      }
+    },
+    {
+      "head": "1.6",
+      "layer": 1,
+      "z_token": 20.201578631595947,
+      "z_dominant": 16.981754867393132,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "."
+        ]
+      },
+      "z_content": 10.002849255105584,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "'d"
+        ],
+        "k": [
+          "_is"
+        ]
+      }
+    },
+    {
+      "head": "1.7",
+      "layer": 1,
+      "z_token": 8.737323006796917,
+      "z_dominant": 5.818689708017374,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a"
+        ]
+      },
+      "z_content": 5.411317631124626,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "IN"
+        ],
+        "k": [
+          "_the"
+        ]
+      }
+    },
+    {
+      "head": "1.8",
+      "layer": 1,
+      "z_token": 5.585908350595844,
+      "z_dominant": 2.5447903764280655,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a",
+          ".",
+          "First"
+        ]
+      },
+      "z_content": 1.0889462902755918,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_and"
+        ]
+      }
+    },
+    {
+      "head": "1.9",
+      "layer": 1,
+      "z_token": 7.598342098158067,
+      "z_dominant": 6.915677766135233,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a",
+          ".",
+          "First"
+        ],
+        "k": [
+          "."
+        ]
+      },
+      "z_content": 6.024332048875054,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_are"
+        ]
+      }
+    },
+    {
+      "head": "1.10",
+      "layer": 1,
+      "z_token": 0.637174138415409,
+      "z_dominant": 3.645272360121034,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          ","
+        ]
+      },
+      "z_content": 3.905795814996968,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_to"
+        ],
+        "k": [
+          "_the"
+        ]
+      }
+    },
+    {
+      "head": "1.11",
+      "layer": 1,
+      "z_token": 7.644673803191512,
+      "z_dominant": -0.7769752784453073,
+      "supp_dominant": 1870,
+      "bind_dominant": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_the"
+        ]
+      },
+      "z_content": 8.215760483734073,
+      "supp_content": 713,
+      "bind_content": {
+        "q": [
+          "_the"
+        ],
+        "k": [
+          "_the"
+        ]
+      }
+    },
+    {
+      "head": "4.0",
+      "layer": 4,
+      "z_token": 10.916865229875771,
+      "z_dominant": 3.3154094581970512,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a",
+          ",",
+          ":"
+        ]
+      },
+      "z_content": 2.1761552721918416,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_I"
+        ],
+        "k": [
+          "_and"
+        ]
+      }
+    },
+    {
+      "head": "4.1",
+      "layer": 4,
+      "z_token": 10.118256471890232,
+      "z_dominant": 3.1997287038464064,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "."
+        ]
+      },
+      "z_content": 2.699832333901453,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_I"
+        ],
+        "k": [
+          "_and"
+        ]
+      }
+    },
+    {
+      "head": "4.2",
+      "layer": 4,
+      "z_token": 4.589408357747502,
+      "z_dominant": 4.895629355764581,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "What",
+          "_What",
+          "_what"
+        ],
+        "k": [
+          "First"
+        ]
+      },
+      "z_content": 2.555349003885611,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "What",
+          "_What",
+          "_what"
+        ],
+        "k": [
+          "First"
+        ]
+      }
+    },
+    {
+      "head": "4.3",
+      "layer": 4,
+      "z_token": 9.972932043473007,
+      "z_dominant": 6.070325365883223,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a",
+          ",",
+          ":"
+        ]
+      },
+      "z_content": 5.375430200466056,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_they",
+          "they",
+          "They"
+        ],
+        "k": [
+          "MEN",
+          "_Men"
+        ]
+      }
+    },
+    {
+      "head": "4.4",
+      "layer": 4,
+      "z_token": 4.763126520309478,
+      "z_dominant": 9.951026398542712,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "_have",
+          "_has",
+          "have"
+        ],
+        "k": [
+          "'d"
+        ]
+      },
+      "z_content": 7.621801631271853,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_have",
+          "_has",
+          "have"
+        ],
+        "k": [
+          "'d"
+        ]
+      }
+    },
+    {
+      "head": "4.5",
+      "layer": 4,
+      "z_token": 8.158121161132659,
+      "z_dominant": 5.326816544663999,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a",
+          ",",
+          ":"
+        ]
+      },
+      "z_content": 4.0064503754479395,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_and"
+        ],
+        "k": [
+          "_of"
+        ]
+      }
+    },
+    {
+      "head": "4.6",
+      "layer": 4,
+      "z_token": 7.36384722872763,
+      "z_dominant": 4.753060397895596,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "."
+        ]
+      },
+      "z_content": 4.8010238182786775,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_they",
+          "they",
+          "They"
+        ],
+        "k": [
+          "_he"
+        ]
+      }
+    },
+    {
+      "head": "4.7",
+      "layer": 4,
+      "z_token": 11.997597885415546,
+      "z_dominant": 4.926670937863205,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a"
+        ]
+      },
+      "z_content": 5.220636024196776,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "They",
+          "_They"
+        ],
+        "k": [
+          "The",
+          "_The"
+        ]
+      }
+    },
+    {
+      "head": "4.8",
+      "layer": 4,
+      "z_token": 7.08097909653359,
+      "z_dominant": 7.07604666241489,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a"
+        ]
+      },
+      "z_content": 7.137661809335865,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_and"
+        ],
+        "k": [
+          "_of"
+        ]
+      }
+    },
+    {
+      "head": "4.9",
+      "layer": 4,
+      "z_token": 8.624143287366804,
+      "z_dominant": 5.122350387498067,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "."
+        ]
+      },
+      "z_content": 4.978156861658901,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "They",
+          "_They"
+        ],
+        "k": [
+          "_not"
+        ]
+      }
+    },
+    {
+      "head": "4.10",
+      "layer": 4,
+      "z_token": 5.192744633448898,
+      "z_dominant": 6.92909678992436,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          ".",
+          "_to",
+          "_that"
+        ],
+        "k": [
+          "'d"
+        ]
+      },
+      "z_content": 2.952911565814568,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_have",
+          "_has",
+          "have"
+        ],
+        "k": [
+          "'ll"
+        ]
+      }
+    },
+    {
+      "head": "4.11",
+      "layer": 4,
+      "z_token": 11.75241335733138,
+      "z_dominant": 5.798284956395694,
+      "supp_dominant": 1349,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a",
+          ",",
+          ":"
+        ]
+      },
+      "z_content": -0.37878030956118286,
+      "supp_content": 292,
+      "bind_content": {
+        "q": [
+          "_I"
+        ],
+        "k": [
+          "_and"
+        ]
+      }
+    },
+    {
+      "head": "9.0",
+      "layer": 9,
+      "z_token": 4.557016287402817,
+      "z_dominant": 8.691286862293321,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          "_friends",
+          "cius",
+          "am"
+        ],
+        "k": [
+          ":",
+          "\u010a"
+        ]
+      },
+      "z_content": 5.462759513271071,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_their",
+          "Their"
+        ],
+        "k": [
+          "_they",
+          "They",
+          "_They"
+        ]
+      }
+    },
+    {
+      "head": "9.1",
+      "layer": 9,
+      "z_token": 4.324652407848406,
+      "z_dominant": 6.08924876068112,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          "_the",
+          "_to",
+          "And"
+        ],
+        "k": [
+          "'d",
+          "_be",
+          "_is"
+        ]
+      },
+      "z_content": 5.3258852574012225,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_and"
+        ],
+        "k": [
+          "_but",
+          "_and",
+          "And"
+        ]
+      }
+    },
+    {
+      "head": "9.2",
+      "layer": 9,
+      "z_token": 4.5144918238659475,
+      "z_dominant": 1.1877200820414777,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          "_the",
+          "_to",
+          "And"
+        ],
+        "k": [
+          "_abundance",
+          "ikes",
+          "_virtue"
+        ]
+      },
+      "z_content": 2.709319578992476,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_the",
+          "_to",
+          "And"
+        ],
+        "k": [
+          "_abundance",
+          "ikes",
+          "_virtue"
+        ]
+      }
+    },
+    {
+      "head": "9.3",
+      "layer": 9,
+      "z_token": 16.915939723944405,
+      "z_dominant": 5.848273068411293,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          ":",
+          "\u010a",
+          "."
+        ],
+        "k": [
+          "\u010a"
+        ]
+      },
+      "z_content": 5.933246488145765,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_but",
+          "_and",
+          "And"
+        ],
+        "k": [
+          "_me"
+        ]
+      }
+    },
+    {
+      "head": "9.4",
+      "layer": 9,
+      "z_token": 5.482392395646554,
+      "z_dominant": 4.383103997319952,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          "_the",
+          "_to",
+          "And"
+        ],
+        "k": [
+          "_abundance",
+          "ikes",
+          "_virtue"
+        ]
+      },
+      "z_content": 6.324742572193882,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_the",
+          "_to",
+          "And"
+        ],
+        "k": [
+          "_abundance",
+          "ikes",
+          "_virtue"
+        ]
+      }
+    },
+    {
+      "head": "9.5",
+      "layer": 9,
+      "z_token": 6.01189906234077,
+      "z_dominant": 8.22152918604864,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          "\u010a"
+        ],
+        "k": [
+          "\u010a"
+        ]
+      },
+      "z_content": 11.09484391694581,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "'d",
+          "_be",
+          "_is"
+        ],
+        "k": [
+          "_the",
+          "_to",
+          "And"
+        ]
+      }
+    },
+    {
+      "head": "9.6",
+      "layer": 9,
+      "z_token": 3.8010244421144135,
+      "z_dominant": 5.938563429513641,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          ","
+        ],
+        "k": [
+          "_friends",
+          "cius",
+          "am"
+        ]
+      },
+      "z_content": 4.501925928244074,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_and"
+        ],
+        "k": [
+          "_the",
+          "the",
+          "The"
+        ]
+      }
+    },
+    {
+      "head": "9.7",
+      "layer": 9,
+      "z_token": 5.421136933539982,
+      "z_dominant": 5.0273007616162575,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          ","
+        ],
+        "k": [
+          "_they",
+          "They",
+          "_They"
+        ]
+      },
+      "z_content": 2.825081541969465,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "The"
+        ],
+        "k": [
+          "First"
+        ]
+      }
+    },
+    {
+      "head": "9.8",
+      "layer": 9,
+      "z_token": 0.803897054523956,
+      "z_dominant": 4.868036527155534,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          "_the",
+          "_to",
+          "And"
+        ],
+        "k": [
+          "ius",
+          "_Titus",
+          "cius"
+        ]
+      },
+      "z_content": 2.1456591405531604,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_it",
+          "'d",
+          "_he"
+        ],
+        "k": [
+          "_the",
+          "the",
+          "The"
+        ]
+      }
+    },
+    {
+      "head": "9.9",
+      "layer": 9,
+      "z_token": 2.583983306628297,
+      "z_dominant": 4.49727908016983,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          ","
+        ],
+        "k": [
+          "_friends",
+          "cius",
+          "am"
+        ]
+      },
+      "z_content": 3.3330501131052035,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "COM",
+          "_Com",
+          "Com"
+        ],
+        "k": [
+          "_Citizen",
+          "_citizens"
+        ]
+      }
+    },
+    {
+      "head": "9.10",
+      "layer": 9,
+      "z_token": 10.843261264801855,
+      "z_dominant": 8.862523453121618,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          ":",
+          "\u010a",
+          "."
+        ],
+        "k": [
+          "\u010a"
+        ]
+      },
+      "z_content": 7.826360923418443,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_abundance",
+          "ikes",
+          "_virtue"
+        ],
+        "k": [
+          "_the",
+          "the",
+          "The"
+        ]
+      }
+    },
+    {
+      "head": "9.11",
+      "layer": 9,
+      "z_token": 3.60154058662502,
+      "z_dominant": 6.015171213137223,
+      "supp_dominant": 1517,
+      "bind_dominant": {
+        "q": [
+          ":"
+        ],
+        "k": [
+          "\u010a"
+        ]
+      },
+      "z_content": 5.488253819277045,
+      "supp_content": 397,
+      "bind_content": {
+        "q": [
+          "_the",
+          "The",
+          "_a"
+        ],
+        "k": [
+          "_abundance",
+          "ikes",
+          "_virtue"
+        ]
+      }
+    }
+  ]
+}

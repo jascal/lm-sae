@@ -1,0 +1,151 @@
+{
+  "experiment": "broadened compression-controlled re-validation (writer-output U_C)",
+  "model": "gpt2",
+  "sae_forge_version": "0.14.0",
+  "layers": [
+    5,
+    6,
+    7
+  ],
+  "ranks": [
+    8,
+    32
+  ],
+  "n_random_seeds": 4,
+  "per_layer": {
+    "5": {
+      "baseline_ind": 3.9006469216565596,
+      "baseline_comp": 3.257257685455296,
+      "writers": [
+        [
+          4,
+          11
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "ranks": [
+        {
+          "rank": 8,
+          "writer_ind": 3.8908209498966517,
+          "writer_comp": 3.7595559286575413,
+          "writer_tax": 0.13126502123911044,
+          "random_tax_mean": 0.28629040632222297,
+          "random_tax_sd": 0.2875404754546489,
+          "writer_ind_below_baseline": false,
+          "writer_beats_random": false
+        },
+        {
+          "rank": 32,
+          "writer_ind": 3.9904152897700813,
+          "writer_comp": 4.133220672692907,
+          "writer_tax": -0.14280538292282596,
+          "random_tax_mean": 0.2746198546810079,
+          "random_tax_sd": 0.6605987477562987,
+          "writer_ind_below_baseline": false,
+          "writer_beats_random": false
+        }
+      ]
+    },
+    "6": {
+      "baseline_ind": 3.987711030849993,
+      "baseline_comp": 3.3019392823779743,
+      "writers": [
+        [
+          4,
+          11
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "ranks": [
+        {
+          "rank": 8,
+          "writer_ind": 4.24424421903321,
+          "writer_comp": 3.4493668663668435,
+          "writer_tax": 0.7948773526663668,
+          "random_tax_mean": 0.8081529969229553,
+          "random_tax_sd": 0.28355505991378377,
+          "writer_ind_below_baseline": false,
+          "writer_beats_random": false
+        },
+        {
+          "rank": 32,
+          "writer_ind": 4.107481884193685,
+          "writer_comp": 3.4589654929794347,
+          "writer_tax": 0.6485163912142506,
+          "random_tax_mean": 0.8225453358875378,
+          "random_tax_sd": 0.19039528156400518,
+          "writer_ind_below_baseline": false,
+          "writer_beats_random": false
+        }
+      ]
+    },
+    "7": {
+      "baseline_ind": 3.2891594920934324,
+      "baseline_comp": 2.621624040129194,
+      "writers": [
+        [
+          4,
+          11
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "ranks": [
+        {
+          "rank": 8,
+          "writer_ind": 3.6137094615397767,
+          "writer_comp": 3.0192490905021074,
+          "writer_tax": 0.5944603710376692,
+          "random_tax_mean": 0.5066093003072278,
+          "random_tax_sd": 0.07371564141560256,
+          "writer_ind_below_baseline": false,
+          "writer_beats_random": false
+        },
+        {
+          "rank": 32,
+          "writer_ind": 3.5355702832610616,
+          "writer_comp": 3.016156587433157,
+          "writer_tax": 0.5194136958279048,
+          "random_tax_mean": 0.5530892183518985,
+          "random_tax_sd": 0.05634248451889322,
+          "writer_ind_below_baseline": false,
+          "writer_beats_random": false
+        }
+      ]
+    }
+  },
+  "writer_wins": 0,
+  "tests": 6
+}

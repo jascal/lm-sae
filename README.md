@@ -1,300 +1,293 @@
-# lm-sae — the language-model ground-truth oracle substrate
+# lm-sae — a language-model ground-truth oracle, and a disassembler for what the SAE misses
 
-The `*-sae` substrates (bio-sae, econ-sae, sm-sae) manufacture a **known feature
-factorization** so an SAE/forge can be *graded* against it. The program's terminal
-target is real LLMs — but a real LLM has **no oracle** (its "features" are whatever
-the SAE finds, with no answer key). `lm-sae` fills that gap: a **frozen text LLM +
-an exact, externally-computed feature oracle**, so the cov95 / forge-tax / preserve
-instrument runs on the actual target.
+`lm-sae` is one instrument in a larger research program (see the workspace
+[`RESEARCH_MANIFESTO.md`](../RESEARCH_MANIFESTO.md)). The other `*-sae` substrates
+(`bio-sae`, `econ-sae`, `sm-sae`) **manufacture** a known feature factorization so an
+SAE/forge can be *graded* against an answer key. The program's terminal target, though, is
+real LLMs — and a real LLM has **no oracle**: its "features" are whatever the SAE finds,
+with nothing to check them against.
 
-## Recipe A (this MVP) — probed frozen LLM, exact-lexical oracle
+`lm-sae` fills that gap with two complementary instruments on a **frozen text LLM**:
 
-The bio-sae recipe retargeted: *ESM-2 + Pfam-from-a-DB* → *GPT-2 + lexical-labels-
-from-a-rule*. Per GPT-2 token we compute **deterministic** labels (no tagger, no
-noise), tiered sharp→diffuse like bio's Pfam/GO:
+1. **An exact, externally-computed feature oracle** — deterministic per-token labels (token
+   identity, lexical class, structure) — so the cov95 / forge-tax / preserve instrument that
+   `bio-sae` runs against Pfam can run against an *actual* language model.
+2. **A disassembler** — because the headline finding is that an SAE *misses* most of the
+   model's computation. The disassembler reads the model's attention as a small, reused
+   **instruction set** in the right (QK/OV-in-operand) basis, scores how much of it a named
+   op-catalog explains, **causally validates** the named operators, and shows the same
+   reading **ports to a recent model** (Gemma-2-2B), at matched detail.
 
-- **token** — "this token == ' the' / ' of' / …" (one-token detectors; the sharp tier)
-- **lexical** — capitalization / punctuation / digit / length buckets (sharp-ish)
-- **struct** — word-boundary / newline (medium)
+The throughline: **a language model is legible in the right basis even where it is *not*
+legible as single SAE features.** Most of attention is positional plumbing; the
+content-carrying minority is largely named, causally load-bearing, and corpus-robust — and
+the part the SAE forge destroys (monosemanticity / cov95) is exactly the part you must
+*preserve* rather than re-learn.
 
-`cov95` then asks: does a single SAE latent on GPT-2's residual stream detect each
-known feature at AUC ≥ 0.95?
+> **Status.** A CPU/single-GPU research MVP. GPT-2-small and a from-scratch tiny GPT for the
+> CPU loops; Gemma-2-2B (bf16, one RTX 5050) for the cross-model port. Every table below is
+> backed by a tracked `runs/*_summary.json` (see [`runs/README.md`](runs/README.md)).
 
-## Status: MVP works; first numbers on a real LM
+---
 
-```
-scripts/build_lm_bundle.py     # GPT-2 (cached) → layer-6 acts + exact-lexical Y → data/lm_bundle_gpt2.npz
-scripts/forge_cov_mechanism.py # train TopK SAE → per-tier cov95/mAUC + N1 (rank/LN/TopK)
-# run with bio-sae's venv (shared for the MVP): /home/allans/code/bio-sae/.venv/bin/python
-```
+## Results at a glance
 
-First result (gpt2 layer 6, 16k tokens, self-trained TopK SAE w2048/k32):
+| # | finding | key number | where |
+|---|---------|-----------|-------|
+| 1 | The exact-lexical oracle is real; sharp/diffuse split reproduces `bio`'s shape | host cov95 0.64, token tier 0.89, lexical 0.11 | §1 |
+| 2 | **The cov95 forge tax replicates on a language model** | cov95 0.65 → **0.12**; mAUC robust (0.93→0.85) | §2 |
+| 2 | The tax is **emergent**, not over-completeness-driven | forged cov95 stays collapsed at *every* width incl. 1× | §2 |
+| 2 | **Preserve-verbatim** is the lever (not concentrate / not retrain) | K≈32–64 of 512 atoms recovers host cov95 | §2 |
+| 2 | Relations are **compiled**, not composed; label-free preserve-selection is **FALSIFIED** | relational-bigram single-cov95 = 1.0 | §2 |
+| 3 | A model decomposes into a low-χ interpretable **core** + high-χ capable **tail**… | cov95 saturates at 3 levels; capability all in the tail | §3 |
+| 3 | …and you **cannot train the entanglement away** | every retrain raises the entangled core | §3 |
+| 4 | GPT-2 attention is a reused **op-catalog**; 8/8 literature idioms recovered from weights | ~99% of content mass legible, ~2% dark | §4 |
+| 4 | The named heads are **causally load-bearing** and **corpus-robust** | induction-NLL z=8.6; head identities ρ≈0.84 across corpora | §4 |
+| 5 | The disassembler **ports whole to Gemma-2-2B** (RoPE/GQA/RMSNorm), at GPT-2 parity | induction-NLL z=8.3; 7/8 QK opcodes legible | §5 |
+| 5 | Plumbing fraction is **model-invariant** (~87%); its *composition* is not | attention-sink 46% (GPT-2) vs 4% (Gemma) | §5 |
+| 6 | The two-basis writer-output `U_C` circuit-preservation claim was **RETRACTED** | writer-OV ≈ random-OV at matched compression (0/6) | §6 |
 
-| metric | value |
-|---|---|
-| host cov95 (all) | 0.607 |
-| **token tier** (one-token detectors) | **0.89** |
-| lexical tier | 0.00 |
-| host mAUC | 0.874 |
-| N1-rank | **sensitive** (rank-128/768 → 0.32; full → 0.61) |
-| N1-LayerNorm | exonerated (0.607 ≈ host) |
-| N1-TopK | exonerated (flat across k) |
+---
 
-The oracle is real and the sharp/diffuse split reproduces bio's shape.
+## 1. The substrate & the oracle
 
-### With a real SAELens dictionary (`scripts/sae_lens_eval.py`)
+`bio-sae`'s recipe, retargeted: *ESM-2 + Pfam-from-a-DB* → *GPT-2 + lexical-labels-from-a-rule*.
+Per token we compute **deterministic** labels (no tagger, no noise), tiered sharp→diffuse like
+Pfam/GO:
 
-Swapping the self-trained SAE for a published **SAELens** SAE
-(`jbloom/GPT2-Small-SAEs-Reformatted`, `blocks.8.hook_resid_pre`, 24576 feats,
-layer 8) resolves the main caveat:
+- **token** — "this token == ` the` / ` of` / …" (one-token detectors; the sharp tier)
+- **lexical** — capitalization / punctuation / digit / length buckets
+- **struct** — word-boundary / newline
 
-| metric | self-trained | **SAELens** |
+`cov95` asks: does a single SAE latent detect each known feature at AUC ≥ 0.95?
+
+| metric (GPT-2 resid) | self-trained SAE | **SAELens** dictionary |
 |---|---|---|
 | host cov95 (all) | 0.607 | **0.643** |
 | token tier | 0.89 | 0.89 (mAUC 0.98) |
-| lexical tier | **0.00** | **0.11** (mAUC 0.79) |
+| lexical tier | 0.00 | **0.11** (mAUC 0.79) |
 | host mAUC | 0.874 | 0.918 |
 
-The real dictionary partly recovers the lexical tier (0.00 → 0.11) — so that tier is
-genuinely *diffuse*, not just a training artifact. N1-rank stays **rank-sensitive**
-with the real dictionary (token tier 71% of host at 17% rank-fraction, vs bio's Pfam
-96% at 40%) — GPT-2's lexical/token features are high-dimensional, not low-rank
-concentrated. (N1-LN drops 0.64→0.46, likely the raw-trained SAE's input-scale
-sensitivity — a caveat, not a clean exoneration.)
+A real dictionary partly recovers the lexical tier (0.00 → 0.11) — so that tier is genuinely
+*diffuse*, not a training artifact. Scripts: `common/build_lm_bundle.py`,
+`common/forge_cov_mechanism.py`, `substrate/sae_lens_eval.py`. For the *forge* loop (below) a
+CPU-feasible **tiny GPT-2** (`n_embd=128`, 4 layers, 7.2M params) is trained from scratch
+(`substrate/train_tiny_gpt.py`), with the SAE on its final layer so the forged residual is
+directly decodable.
 
-### The forge (GPT2Adapter): machinery verified; faithful forge is GPU-scale
+## 2. The cov95 forge tax on a language model
 
-- The GPT-2 forge **runs end-to-end** (forge → next-token logits; `native_in_basis`).
-- **Raw slices of the 24k SAELens SAE are numerically DEGENERATE** — meanKL(host‖forged)
-  = 58 (N=256), **17245** (N=768), 15 (N=1536): garbage, non-monotonic. You cannot
-  naively forge a 32×-over-complete basis (`scripts/forge_gpt2.py`, a negative
-  control). This is the GPT-2 over-completeness wall.
-- The repo's **polygram path works**: slice 64 → polygram-compress to **11 kept** →
-  forge a 124M-param GPT-2 → faithfulness **KL 21.1** (`runs/forge_example_summary.json`).
-  Sane KL — but 11 features is a heavily-compressed *smoke*, not a faithful forge.
-- **Next (GPU-scale):** a faithful forge (hundreds–thousands of features + polygram
-  tuning) and the **forged-cov95 tax** — hook the forged layer-8 residual, decode,
-  re-score the lexical oracle. That's the lm-sae "whole loop" for text (the bio
-  whole-loop analog); it needs a GPU, not this CPU MVP.
+Forging an SAE basis into the model **preserves mAUC but collapses cov95** —
+monosemanticity, not accuracy, is what the forge taxes. On the tiny GPT
+(`cov95_forge_tax/whole_loop_tiny.py`):
 
-## Whole loop on a tiny trainable GPT (CPU) — the forge tax replicates on an LM
+| | cov95 (all) | token tier | mAUC |
+|---|---|---|---|
+| host | 0.654 | 0.94 | 0.930 |
+| **forged** | **0.115** | **0.18** | 0.849 |
 
-The GPT-2 + 24k-SAELens forge is GPU-scale (over-completeness wall). A **tiny
-GPT-2-config model trained from scratch** (`n_embd=128, 4 layers, 7.2M params`, the
-CPU-feasible nanochat stand-in; reuses the existing `GPT2Adapter`) makes the whole
-loop tractable: train → SAE → **forge** → forged-cov95. SAE on the **final** layer so
-the forged residual is directly decodable (`scripts/train_tiny_gpt.py`,
-`scripts/whole_loop_tiny.py`).
-
-| | cov95 (all) | token tier | lexical | mAUC |
-|---|---|---|---|---|
-| host | 0.654 | 0.94 | 0.11 | 0.930 |
-| **forged** | **0.115** | **0.18** | 0.00 | 0.849 |
-| **tax** | **0.65 → 0.12** | 0.94 → 0.18 | — | 0.93 → 0.85 |
-
-**The cov95 forge tax replicates on a language model**, with the canonical
-signature: **mAUC robust (91% retained), cov95 collapses (~18% retained), sharp
+Canonical signature: **mAUC robust (91% retained), cov95 collapses (~18% retained), sharp
 one-token detectors hit hardest.**
 
-### N1-width on the LM (`scripts/width_sweep_tiny.py`): the tax is EMERGENT, not over-completeness-driven
+**The tax is emergent, not over-completeness-driven** (`width_sweep_tiny.py`). Sweeping SAE
+width 1×–16× over-complete, forged cov95 stays collapsed at **every** width — including 1×
+(no over-completeness at all). So over-completeness is exonerated; the tax is a property of
+the *deep-transformer forward pass*. This is `bio`'s "emergent" regime, **not** `econ`'s
+rank/over-completeness regime — and real LLMs are deep transformers, so the LM target sits in
+the emergent regime, where the lever is **preserve-verbatim**, not concentrate.
 
-Sweeping SAE width 1×–16× over-complete settles which regime the LM is in:
+**Preserve-verbatim recovers the tax, constructively** (`common/preserve_hybrid_tiny.py`):
+keep the top-K oracle-reading atoms verbatim + forge the rest.
 
-| over-complete | 1× | 2× | 4× | 8× | 16× |
+| K verbatim (of 512) | 0 | 16 | 32 | 64 | 128 |
 |---|---|---|---|---|---|
-| host cov95 | 0.615 | 0.615 | 0.654 | 0.692 | 0.692 |
-| **forged cov95** | **0.00** | 0.04 | 0.12 | 0.04 | 0.15 |
-| mAUC retained | 0.67 | 0.88 | 0.91 | 0.93 | 0.94 |
+| combined cov95 | 0.12 | 0.46 | **0.62** | **0.65** | 0.65 |
+| token tier | 0.18 | 0.71 | 0.94 | 0.94 | 0.94 |
 
-**Forged cov95 stays collapsed at every width — including 1× (no over-completeness
-at all, where it's 0.00).** So over-completeness is **exonerated** for cov95; if
-anything it mildly *helps* (via redundancy) and clearly helps mAUC retention (rises
-0.67→0.94). ⇒ **the LM's cov95 tax is EMERGENT — bio's regime, not econ's.**
+Preserving **K≈32–64 atoms (6–12% of the basis)** fully recovers host cov95 — the LM analog
+of `bio`'s P1 knee.
 
-This **corrects the earlier guess** that a trainable host → econ's *concentrate*
-regime. The regime is set by **host architecture, not trainability**: a *deep
-transformer forward* (bio's ESM-2, this tiny GPT) → **emergent** tax → **preserve**
-lever; econ's *shallow dense fc1/fc2 bridge* → rank/over-completeness tax →
-concentrate. **Real LLMs are deep transformers, so the LM target is the
-emergent/preserve regime** — preserve-verbatim is the lever, not concentrate.
+Two sharpening negatives:
+- **Label-free selection is FALSIFIED** (`residual_selector_tiny.py`). The hoped-for
+  shortcut — "preserve the atoms fine-tuning can't recover" — is *anti*-informative (overlap
+  0.00 with the oracle's top-64). Reconstruction-hardness is orthogonal to detector-value, so
+  preserve-selection genuinely needs a **value** signal (labels / downstream importance).
+- **Relations are compiled, not composed** (`pair_cov95_tiny.py`). Bilinear *pair* detectors
+  read no relational signal a single latent can't: even strict relational bigrams have
+  single-latent cov95 = 1.0. The model **compiles** frequent inference into dedicated unary
+  features (a JIT memoizing hot paths); only novel/un-compiled composition stays high-χ in the
+  entangled core. So χ tracks **compilation/novelty, not logical arity** — a *static* oracle
+  can't probe the core's inference.
 
-### P1 on the LM (`scripts/preserve_hybrid_tiny.py`): preserve-verbatim recovers the tax
+## 3. The entanglement tower (M0…Mn)
 
-The width sweep said the LM is emergent → the lever is **preserve-verbatim**. This
-confirms it constructively: keep the top-K oracle-reading SAE atoms **verbatim**
-(host readout) + the rest forged, sweep K.
+"Harvest the cleanest features, subtract, repeat" → an additive tower `X ≈ M0 + M1 + … + core`
+where χ (monosemanticity vs the oracle) falls and variance tapers across levels
+(`entanglement_tower/mps_tower_tiny.py`). Three predictions hold: a real entanglement
+**taper** (χ 0.99→0.77), a graceful **dial** (cov95 saturates at 3 levels while fidelity keeps
+climbing), and **convergence** to an irreducible ~24% entangled core.
 
-| K verbatim (of 512) | 0 | 8 | 16 | 32 | 64 | 128 |
-|---|---|---|---|---|---|---|
-| combined cov95 | 0.12 | 0.31 | 0.46 | **0.62** | **0.65** | 0.65 |
-| token tier | 0.18 | 0.47 | 0.71 | 0.94 | 0.94 | 0.94 |
+The retrain experiments prove there is **no shortcut**:
+- complement-routing retrain **backfires** — re-entangles the core (0.24 → 0.75)
+  (`mps_tower_retrain_tiny.py`);
+- geometry-forcing retrain is better but a **no-go** — it still can't drive the core below the
+  original, because *training toward capability inherently increases entanglement*
+  (`mps_tower_geoforce_tiny.py`).
 
-Preserving **K≈32–64 atoms (6–12% of the basis) fully recovers host cov95** (0.12 →
-0.65); the sharp one-token detectors snap back 0.18 → 0.94. **The lm-sae analog of
-bio's P1 knee** (K≈160/1024 = 16%) — preserve-verbatim is the lever for the LM's
-emergent cov95 tax, by construction, at small K.
+Serving the tower (`serve_tower_tiny.py`) sharpens the frontier: the **interpretability** dial
+works (cov95 saturates at ~4 levels) but the **capability** dial is a cliff — the low-χ levels
+are predictively *inert*; by `lm_head` linearity the entangled **core alone** predicts as well
+as the full model. Clean features = the **substrate** (*what* the model reads); the core = the
+**composition** (*how* it predicts). Capability is irreducibly entangled — so the right
+response is to *decompose and choose a truncation*, not to train the entanglement away.
 
-### Label-free residual selector (`scripts/residual_selector_tiny.py`): FALSIFIED
+## 4. Disassembly — GPT-2 attention as an instruction set
 
-The algorithm hoped the preserve set could be picked **label-free** from the
-*post-training residual* — "the atoms fine-tuning can't recover are the ones to
-preserve." It doesn't work. Comparing selectors by their preserve-hybrid cov95
-recovery (real projection tax; diffuse = projection forge):
+If the SAE misses the composition, read the composition directly. Full write-up:
+[`docs/disassembly.md`](docs/disassembly.md). Pipeline (CPU): idiom library → opcode tables →
+coverage scorecard → causal validation → corpus robustness.
 
-| selector | reaches host cov95 (0.68) at K≈ | overlap w/ oracle top-64 |
-|---|---|---|
-| **oracle** (host strength, labels) | **64** (12% of atoms) | 1.00 |
-| random / norm / frag_proj (static P2 signals) | ~256–512 (50–100%) | 0.11–0.16 |
-| **frag_train** (post-training residual) | **512** (100% — i.e. useless) | **0.00** |
+- **Idiom catalog** (`disassembly/idiom_library_v2.py`): **8/8** literature idioms recovered
+  from the *weights* (prev-token, induction, duplicate, copy/name-mover, backup & negative
+  name-mover, copy-suppression, S-inhibition), plus the composed IOI chain read straight from
+  Q-composition scores.
+- **Coverage** (`coverage_scorecard.py`): most of attention is **plumbing** (attention-sink
+  ~45% on GPT-2); of the content-carrying minority (~14% Shakespeare / ~17% prose), **~99% is
+  legible** (named idiom / token-operand / SAE-feature binding) and only **~2% is genuinely
+  dark** (the lone persistently-dark head is 1.2).
+- **Causal validation**: ablating induction heads raises induction-NLL by **+0.256 = 36% of
+  baseline, z=8.6** (`causal_validation.py`); on synthetic IOI, negative name-movers
+  10.7/11.10 move the logit-diff with **z up to 62** (`ioi_causal.py`). Causal validation is
+  **metric-specific** and **audits the catalog** (it caught a mis-named S-inhibition set).
+- **Corpus robustness** (`corpus_robustness.py`): head identities are **corpus-invariant**
+  (prev-token ρ=0.99, mean ρ≈0.84 across Shakespeare/WikiText); the coverage *percentages* are
+  corpus-conditioned (report the prose baseline for general text).
 
-The post-training residual is the **worst** selector — *anti*-informative (overlap
-0.00). Reconstruction-residual ranks atoms by how hard they are to *reproduce*,
-which is orthogonal-to-anti-correlated with how *valuable* they are as detectors
-(the sharp detectors are high-variance, **easy** to reconstruct; the residual-hard
-atoms are noise). ⇒ **preserve-selection genuinely needs a *value* signal (labels /
-downstream importance), not reconstruction fidelity** — sharpening P2. The "what
-training can't recover" shortcut is dead.
+## 5. Cross-model — the same disassembler on Gemma-2-2B
 
-*(Secondary, caveated: fine-tuning the tiny forged model over-recovered cov95
-0.16 → 0.60 — a same-data / tiny-model artifact where distillation nearly copies the
-host; it does NOT generalize to a frozen, held-out LLM, where bio showed distillation
-leaves cov95 floored. So preserve remains the lever for the real target.)*
+The whole framework **ports to a recent RoPE / GQA / RMSNorm model** (`gemma/`), at GPT-2
+parity. The architecture handling: GQA (query head `h` → kv head `h//(H/n_kv)`), content
+opcode `M_h = W_Q^h⊤ W_K^{kv} / √query_pre_attn_scalar`, RMSNorm gain-fold (`1+weight`, no
+mean-sub), and reading the **unrotated** content-QK (R₀) so RoPE's positional axis is
+separated from the content binding.
 
-### The M0…Mn entanglement tower (`scripts/mps_tower_tiny.py`) — the reverse algorithm
+- **Behavioral + coverage** (`disasm_portable.py`, same Shakespeare corpus as GPT-2):
 
-Phase 1 of the "harvest the cleanest features first, subtract, repeat" idea: build an
-**additive tower** `X ≈ M0 + M1 + … + Mn` where each level is the next entanglement
-band (χ-meter = monosemanticity against the oracle — *labels all the way*). On the
-tiny LM (fixed-model v0), all three predictions hold:
+  | | GPT-2-small | Gemma-2-2B |
+  |---|---|---|
+  | plumbing fraction | 86.7% | 87.7% |
+  | attention-sink | **45.6%** | **3.9%** |
+  | content (long-range) | 13.3% | 12.3% |
 
-| level | M0 | M1 | M2 | M3 | M4 | M5 | M6 | M7 |
-|---|---|---|---|---|---|---|---|---|
-| monosemanticity (χ) | 0.99 | 0.98 | 0.96 | 0.91 | 0.87 | 0.81 | 0.79 | 0.77 |
-| variance captured | 0.36 | 0.14 | 0.07 | 0.09 | 0.06 | 0.03 | 0.01 | 0.01 |
+  The **plumbing fraction is model-invariant (~87%)**, but its *composition* is not: the heavy
+  attention-sink is **GPT-2-family-specific**, not universal — Gemma plumbs via self/local/prev
+  instead. A clean cross-model dissociation.
+- **Causal** (`gemma_causal.py`): ablating Gemma's induction heads raises induction-NLL at
+  **z=8.3** — replicating GPT-2's z=8.6. The induction mechanism is causal in both.
+- **Content opcodes** (`gemma_opcode_table.py`): **7/8** QK content bindings legible (z>2) at
+  layer 12 in Gemma Scope feature coords; legibility **peaks mid-network**
+  (`gemma_layer_sweep.py`).
+- **Full disassembly at parity** (`disassemble_gemma.py`): all 208 heads get an addressing
+  bucket + behavioral idiom tags + a **QK token-operand binding** + an **OV copy/transform
+  WRITE** class (WRITE histogram: 156 transform / 52 copy), plus a per-layer **GeGLU MLP
+  catalog** (read-tokens → write-tokens) and, at the SAE layer, the feature-native QK/OV
+  opcode — the same fields GPT-2's listing carries.
 
-- **Taper:** later levels are monotonically *more entangled* (χ ↑) and capture *less*
-  variance — a real entanglement spectrum.
-- **Dial (graceful truncation = MPS truncation):** keeping `M0..Mk`, **cov95
-  (interpretability) saturates at 3 levels (0.46→0.65, token tier 0.94)** while
-  **fidelity (capability) keeps climbing (0.36→0.76).** The low-χ core holds *all* the
-  interpretability; the high-χ tail adds capability at **zero interpretability cost.**
-  Truncation level is the capability↔interpretability dial, made smooth.
-- **Convergence:** residual variance flattens 0.64 → … → **0.24** — "until stable"
-  reaches a fixed point: an irreducible ~24% entangled core.
+**Why the two listings used to differ (now resolved).** GPT-2's listing decoded a QK/OV
+binding for *every* head at *every* layer because its operand basis — token unembeddings /
+per-layer token centroids — is **universal and cheap** (768-dim, tied embeddings, no RoPE).
+Gemma's first port only decoded opcodes at the single Gemma-Scope SAE layer, because the
+feature-operand basis is a *per-layer* SAE and the weight-space extraction is layer-specific
+under RoPE/GQA/RMSNorm. Parity was reached by giving Gemma the **same universal token-centroid
+operand basis at every layer** (computed the low-rank way so all 208 heads stay cheap) and
+adding the GeGLU MLP catalog; the per-layer Gemma-Scope opcode remains as the richer
+*feature-native* extra at the SAE layer (the analog of GPT-2's separate `sae_opcode_table`).
+The one residual non-parity is intrinsic: GPT-2's named *circuit* roles (IOI name-movers,
+S-inhibition) come from a published head-set that has no Gemma equivalent, so Gemma carries
+the behavioral idiom tags + causal flags rather than named-circuit tags.
 
-So most of the (tiny) LM's monosemantic content lives in a small low-χ core, with a
-bounded entangled tail — the optimistic, falsifiable claim, here confirmed. (v0 is
-fixed-model; the from-scratch *retrain-between-rounds* loop is the next step, and should
-push the residual core lower.)
+## 6. The two-basis forge — and a retraction
 
-### Retrain-between-rounds (`scripts/mps_tower_retrain_tiny.py`) — the complement-routing version BACKFIRES
+The forge tax motivated a **two-basis forge**: `U_A` (assertion → preserves cov95) + `U_C`
+(composition → meant to preserve circuits). A specific `U_C` construction — the orthonormalised
+union of circuit *writer heads'* OV-output rowspace ("writer-output `U_C`") — was tested here
+and **RETRACTED**.
 
-Phase 1b: after harvesting a level, freeze that subspace and fine-tune the model with
-gradients routed only through the *complement* (re-express computation in the freed
-capacity), then re-harvest. Then a fixed v0 decomposition of the adapted model:
+The original metric `excess = induction_kl − complement_kl` is **gameable**: a basis can lower
+"excess" by *damaging the complement*, not by preserving the circuit. Compression-controlled
+re-validation (`two_basis_forge/forge_compression_controlled.py`) showed writer-OV ≈ random-OV
+at matched complement-KL and never below the recon-only baseline; the broadened re-run across
+layers × seeds (`forge_revalidate_broad.py`) confirmed **0/6 writer-wins**. The claim is retired
+in the `sae-forge` docs + a runtime warning. This section is kept as an honest negative: the
+preserve-verbatim lever (§2) stands; the writer-output circuit-preservation shortcut does not.
+
+---
+
+## Repository map
 
 ```
-entangled core:  original model 0.24  ->  adapted model 0.75   (3x WORSE)
+lm-sae/
+├── README.md            ← you are here (theory + results guide)
+├── requirements.txt     ← standalone deps (sae-forge from PyPI, torch, transformers)
+├── docs/
+│   ├── disassembly.md   ← the GPT-2 disassembly thread, in depth
+│   └── PAPER.md         ← self-contained kit for a short NEMI-workshop paper
+├── scripts/             ← grouped by research thread — see scripts/README.md
+│   ├── common/          ← shared substrate + the core cov95/forge instrument
+│   ├── substrate/       ← the models under test (tiny GPT, SAELens eval)
+│   ├── cov95_forge_tax/ ← §2
+│   ├── entanglement_tower/ ← §3
+│   ├── disassembly/     ← §4 (GPT-2 op-catalog)
+│   ├── two_basis_forge/ ← §6
+│   └── gemma/           ← §5 (cross-model port)
+└── runs/                ← result artifacts; *_summary.json tracked — see runs/README.md
 ```
 
-It makes the model **less** forgeable. Diagnosis: freezing the clean directions and
-forcing gradients into the complement teaches the model to predict from the *leftover
-(entangled) directions* — i.e. it learns to **entangle**. **Freeing capacity by removing
-forgeable features does not pressure toward forgeability; it pressures toward using
-whatever's left, which is the messy subspace.**
+## How to run
 
-So this disambiguates the algorithm: **"retrain until stable" needs explicit
-*forgeability pressure* (geometry-forcing — train *through* the basis, the
-`forge_aware_train_tiny.py` lever that *halved* the tax), not just freed capacity.** The
-right Phase 1b is **harvest + geometry-forcing retrain**; harvest + complement-routing
-re-entangles. (The fixed-model v0 tower — taper, dial, convergence — still stands; this
-is about how to *improve* it.)
+Standalone — its own venv, `sae-forge` from PyPI, no bio-sae path:
 
-### Corrected retrain = geometry-forcing (`scripts/mps_tower_geoforce_tiny.py`) — better, but a NO-GO
+```bash
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+# GPU (RTX 50-series / Blackwell, sm_120): install the cu128 torch wheel
+.venv/bin/pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
 
-Harvest + retrain *through* an SAE bottleneck (forgeability pressure, basis refreshed
-each round), then fixed-decompose the adapted model:
+# the cov95 instrument on GPT-2
+.venv/bin/python scripts/common/build_lm_bundle.py
+.venv/bin/python scripts/common/forge_cov_mechanism.py
 
+# the whole forge loop on the tiny GPT (CPU)
+.venv/bin/python scripts/substrate/train_tiny_gpt.py
+.venv/bin/python scripts/cov95_forge_tax/whole_loop_tiny.py
+
+# the GPT-2 disassembly pipeline (CPU)
+.venv/bin/python scripts/disassembly/idiom_library_v2.py
+.venv/bin/python scripts/disassembly/coverage_scorecard.py --corpus wikitext
+.venv/bin/python scripts/disassembly/causal_validation.py
+.venv/bin/python scripts/disassembly/disassemble_gpt2.py
+
+# the cross-model port (needs the GPU)
+.venv/bin/python scripts/gemma/disasm_portable.py --model google/gemma-2-2b
+.venv/bin/python scripts/gemma/gemma_causal.py
+.venv/bin/python scripts/gemma/disassemble_gemma.py
 ```
-entangled core:  original 0.24  ->  geo-forcing 0.51  ->  (complement-routing 0.75)
-LM loss:         6.46 -> 5.93  (capability UP)  while core 0.24 -> 0.51  (entanglement UP)
-```
 
-Geometry-forcing is the **better** lever (0.51 < complement's 0.75, as predicted) but
-**still can't drive the core below the original.** The reason is the punchline of the
-whole thread: **training toward capability inherently increases entanglement.** The
-original tiny model is forgeable (core 0.24) partly *because* it's weak; making it more
-capable (LM loss 6.46→5.93) raised the core to 0.51 *at the same time*. The bottleneck
-slows it (it pressures faithfulness/mAUC, not monosemanticity/cov95) but can't make
-capability free of entanglement.
+See [`scripts/README.md`](scripts/README.md) for the full per-group guide and run order.
 
-**No-go:** there is no training trick that makes a capable model globally low-χ — you
-move *along* the capability↔interpretability frontier, never off it. **So the tower is
-the correct response, not a workaround:** don't train the entanglement away (you can't)
-— *decompose* a trained model into a low-χ interpretable core + a high-χ capable tail
-and choose your truncation. The retrain negatives are the proof there's no shortcut.
+## Honest caveats
 
-### Phase 2: serving the tower (`scripts/serve_tower_tiny.py`) — interpretability dials, capability cliffs
-
-Make the tower a runnable model: reconstruct the residual as an additive cascade
-`h ≈ M0(h)+…+Mn(h)+core(h)`, keep `M0..M_{T-1}`, feed to `lm_head`, measure **real** LM
-loss vs the truncation level T:
-
-| levels kept | cov95 | fidelity | real LM loss |
-|---|---|---|---|
-| M0..M0 | 0.52 | 0.15 | 10.68 (random) |
-| M0..M2 | 0.68 | 0.25 | 10.68 |
-| M0..M5 | 0.72 | 0.32 | 10.67 |
-| **+ entangled core** (exact h) | — | 1.0 | **6.54** |
-
-The **interpretability** dial works at inference (cov95 saturates at ~4 levels). But the
-**capability** dial is a **cliff**: keeping *any* number of monosemantic levels gives
-**random** next-token loss; only the entangled **core** restores prediction. **The
-low-χ interpretable levels are predictively inert — all of the model's prediction lives
-in the entangled core.**
-
-**Is the core useless without the low-χ features?** No — the opposite, at the output:
-by `lm_head`'s linearity (no bias), the **core alone predicts as well as the full model**
-(6.38 vs 6.54; tower-alone is random 10.67). The clean features are predictively *inert*
-at the final layer (already consumed upstream). So clean features = the **substrate**
-(*what* the model reads, interpretable); the core = the **composition** (*how* it
-predicts, entangled). Neither works alone in the way that matters — the substrate doesn't
-predict, the composition is vacuous without the substrate it's computed from.
-
-This *refines* v0's "graceful dial": graceful on cov95 and on the reconstruction *proxy*
-(fidelity), but **not** on real capability. So the served tower is an **interpretability
-sidecar** (a dial-able, monosemantic readout of the low-χ features) — *not* a
-capability-truncation of the LM; the capable LM needs the core. It sharpens the frontier
-a final notch: interpretable (low-χ) and capable (high-χ) aren't just different *points*,
-they're different *directions* — capability is irreducibly entangled. (Caveats: tiny weak
-model with a ~0.16-nat capability range; the harvested atoms are *current-token* lexical
-features so they can't predict the *next* token — a richer/next-token oracle and a more
-capable LM are the obvious follow-ups.)
-
-## Honest caveats (this is an MVP)
-
-1. **Self-trained SAE, not SAELens.** `sae_lens` isn't installed here, so the SAE is
-   self-trained (600 steps, 16k tokens) — token-identity-dominated (lexical tier =
-   0). Swap in a **SAELens** production dictionary (the real plan) and the lexical
-   tier should partly recover. This makes the **N1-rank result preliminary**: the
-   host-side rank probe largely reflects which token atoms sit in the top-r by norm,
-   an SAE-internal property, not GPT-2's intrinsic structure.
-2. **Host-side probe, not the forge.** The *actual* forge tax (forged-vs-host cov95)
-   and the **preserve hybrid (P1)** need the sae-forge `GPT2Adapter` — the immediate
-   next step. This MVP is bio-sae's N1 *core* (host-side), nothing more.
-3. **Partial oracle.** Lexical primitives cover a slice of GPT-2's features; cov95
-   here measures "do known lexical primitives survive," not total interpretability.
-
-## Next
-
-- Swap the self-trained SAE for a **SAELens** GPT-2 resid SAE (sae-forge already
-  ingests the format).
-- Wire the **sae-forge `GPT2Adapter`** (`native_in_basis`) → forged cov95 tax + N1 on
-  the forged path + **P1 preserve hybrid** → does the frozen-LLM target sit in the
-  *preserve* regime?
-- Add the **spaCy** syntactic/semantic tiers (POS/NER/dep) for a richer oracle.
-- **Recipe B** (planted synthetic corpus + from-scratch nanochat LM) for a *perfect*
-  oracle and the *concentrate* / trainable-host arm.
+1. **Partial oracle.** The lexical primitives cover a *slice* of an LLM's features; cov95 here
+   measures "do known lexical primitives survive," not total interpretability.
+2. **Small hosts.** GPT-2-small, a 7.2M tiny GPT, and Gemma-2-2B — not frontier scale. The tiny
+   GPT compiles aggressively (a caveat on §2's "compiled relations"), and the forge over a
+   24k-feature SAELens SAE hits an over-completeness wall on full GPT-2 (`forge_gpt2.py`, a
+   negative control) — the faithful large-scale forge needs the polygram whole-loop.
+3. **Coverage magnitudes are corpus-conditioned** (use the prose baseline for general text);
+   **causal claims are metric-specific** (confirmed on the metric each idiom serves).
+4. **First-order disassembly.** Single-component instructions + the induction idiom;
+   superposition and the imperfect centroid/feature operand basis cap fidelity. The MLP catalog
+   is a weight-only qualitative read.
 
 ## License
 

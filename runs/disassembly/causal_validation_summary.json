@@ -1,0 +1,204 @@
+{
+  "experiment": "causal validation of named idioms (mean-ablation, induction-NLL)",
+  "model": "gpt2",
+  "baseline_ind_nll": 0.7048791552014235,
+  "baseline_comp_nll": 5.270503620345031,
+  "n_random": 3,
+  "idioms": [
+    {
+      "idiom": "prev_token",
+      "heads": [
+        [
+          4,
+          11
+        ]
+      ],
+      "is_circuit": true,
+      "delta_ind": 0.06438537736216354,
+      "delta_comp": 0.03872776543231815,
+      "delta_ind_random_mean": 0.010321237815164511,
+      "delta_ind_random_sd": 0.021479797040482654,
+      "specificity_z": 2.516976275199675,
+      "load_bearing": true
+    },
+    {
+      "idiom": "duplicate_token",
+      "heads": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "is_circuit": true,
+      "delta_ind": 0.0113832235801965,
+      "delta_comp": 0.3309975890392751,
+      "delta_ind_random_mean": -0.03317938744590654,
+      "delta_ind_random_sd": 0.020897684017901916,
+      "specificity_z": 2.1324186444741273,
+      "load_bearing": false
+    },
+    {
+      "idiom": "induction",
+      "heads": [
+        [
+          7,
+          11
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "is_circuit": true,
+      "delta_ind": 0.256495133210491,
+      "delta_comp": 0.14014947452778515,
+      "delta_ind_random_mean": 0.0333944969569091,
+      "delta_ind_random_sd": 0.02598463274137778,
+      "specificity_z": 8.585868365894498,
+      "load_bearing": true
+    },
+    {
+      "idiom": "copy_namemover",
+      "heads": [
+        [
+          9,
+          9
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          10,
+          0
+        ]
+      ],
+      "is_circuit": true,
+      "delta_ind": 0.007887509806702497,
+      "delta_comp": -0.003040006678102891,
+      "delta_ind_random_mean": 0.011794518209407431,
+      "delta_ind_random_sd": 0.010371548859326684,
+      "specificity_z": -0.37670443013837135,
+      "load_bearing": false
+    },
+    {
+      "idiom": "s_inhibition",
+      "heads": [
+        [
+          10,
+          0
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "is_circuit": true,
+      "delta_ind": 0.009352034811551335,
+      "delta_comp": -0.00326597283750818,
+      "delta_ind_random_mean": 0.0018918441513691153,
+      "delta_ind_random_sd": 0.00278680858403596,
+      "specificity_z": 2.676965580957876,
+      "load_bearing": true
+    },
+    {
+      "idiom": "copy_suppression",
+      "heads": [
+        [
+          8,
+          10
+        ],
+        [
+          10,
+          7
+        ]
+      ],
+      "is_circuit": false,
+      "delta_ind": -0.025873571996473665,
+      "delta_comp": 0.028608321734164832,
+      "delta_ind_random_mean": 0.02143492077097849,
+      "delta_ind_random_sd": 0.00820305049902847,
+      "specificity_z": -5.767182924578503,
+      "load_bearing": false
+    },
+    {
+      "idiom": "succession",
+      "heads": [
+        [
+          9,
+          1
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          8,
+          8
+        ]
+      ],
+      "is_circuit": false,
+      "delta_ind": 0.019182228198688867,
+      "delta_comp": -0.003163617935065588,
+      "delta_ind_random_mean": 0.010241776704788172,
+      "delta_ind_random_sd": 0.00463472556209012,
+      "specificity_z": 1.9290142154326013,
+      "load_bearing": false
+    },
+    {
+      "idiom": "namemovers+backups",
+      "heads": [
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "is_circuit": true,
+      "delta_ind": 0.029809015828909158,
+      "delta_comp": -0.009005889434060776,
+      "delta_ind_random_mean": 0.053493818882594045,
+      "specificity_z": -0.668061674079674,
+      "load_bearing": false
+    }
+  ]
+}

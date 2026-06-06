@@ -121,8 +121,39 @@ noisy 0.43–0.75; 38 → stable 0.81); it needs ~20k tokens/corpus for enough s
 - Single base model (GPT-2-small); SAE-operand table covers layers 1/4/9; greater-than is MLP-dominated
   (the OV probe sees only the attention-side shadow).
 
-## Downstream hook
+## Cross-model: Gemma-2-2B (parity)
 
-The causally-validated **and** corpus-robust writer heads (induction 5.x/6.9/7.11, prev-token 4.11) are an
-evidence-backed preserve-set for **writer-output `U_C`** in `sae-forge` (the two-basis forge): forge with
-exactly these heads to test whether the disassembly directly improves circuit preservation.
+The whole framework **ports to a recent RoPE / GQA / RMSNorm model** (`scripts/gemma/`), at matched detail.
+Architecture handling: GQA (query head `h` → kv head `h//(H/n_kv)`); content opcode
+`M_h = W_Q^h⊤ W_K^{kv} / √query_pre_attn_scalar` (=√256); RMSNorm gain-fold (`1+weight`, no mean-subtraction);
+and the **unrotated content-QK** (R₀) reading, which separates RoPE's positional axis from the content binding.
+Operands at the SAE layer = Gemma Scope (`gemma-scope-2b-pt-res`, JumpReLU, width-16k) decoder directions; at
+every layer = a universal per-layer **token-centroid** basis (the parity move — the same kind of basis GPT-2's
+listing uses, computed low-rank so all 208 heads stay cheap).
+
+| axis | GPT-2-small | Gemma-2-2B | invariant? |
+|------|-------------|------------|------------|
+| plumbing fraction (same Shakespeare corpus) | 86.7% | 87.7% | **yes (~87%)** |
+| attention-sink | **45.6%** | **3.9%** | **no — sink is GPT-2-family-specific** |
+| induction causal (mean-ablation, induction-NLL) | z = 8.6 | z = 8.3 | **yes (mechanism is causal in both)** |
+| QK content-opcode legibility (SAE-feature coords) | most heads z>2 | 7/8 at L12; peaks mid-network | **yes (legible in the right basis)** |
+| OV write (copy vs transform) | mostly transform | 52 copy / 156 transform | **yes** |
+
+`disasm_portable.py` (behavioral + coverage on any HF model), `gemma_opcode_table.py` (QK opcode table with
+Gemma Scope operands), `gemma_causal.py` (induction-NLL ablation), `gemma_layer_sweep.py` (legibility across
+depth), and `disassemble_gemma.py` (the unified per-head listing at GPT-2 parity: all-layer QK token-bind + OV
+WRITE + GeGLU MLP catalog + SAE-layer feature opcode). The one residual non-parity is intrinsic: GPT-2's named
+*circuit* roles (IOI name-movers, S-inhibition) come from a published head-set with no Gemma equivalent, so
+Gemma carries the behavioral idiom tags + causal flags rather than named-circuit tags. Conclusion: **mechanisms
+and legibility are architecture-invariant; the *composition of the plumbing* (the attention-sink) is
+architecture-specific.**
+
+## Downstream hook (and a retraction)
+
+The causally-validated, corpus-robust writer heads (induction 5.x/6.9/7.11, prev-token 4.11) were proposed as an
+evidence-backed preserve-set for **writer-output `U_C`** in `sae-forge` (the two-basis forge). That circuit-
+preservation claim was **RETRACTED**: the `excess = induction_kl − complement_kl` metric is gameable (a basis can
+lower it by damaging the complement), and compression-controlled re-validation found writer-OV ≈ random-OV at
+matched complement-KL (0/6 writer-wins across layers × seeds; `scripts/two_basis_forge/forge_revalidate_broad.py`).
+The disassembly itself stands; the shortcut from "these are the writer heads" to "forging their OV-output subspace
+preserves the circuit" does not.

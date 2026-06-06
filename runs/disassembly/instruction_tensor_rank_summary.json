@@ -1,0 +1,36 @@
+{
+  "experiment": "instruction-tensor low-rank",
+  "model": "gpt2",
+  "n_tokens": 40,
+  "ref_layer": 6,
+  "QK": {
+    "head_rank_90": 34,
+    "head_rank_99": 103,
+    "head_participation": 4.8233653299008115,
+    "n_heads": 144,
+    "rand_head_rank_90": 121,
+    "rand_head_participation": 132.47124456310945,
+    "tucker_ranks_90": [
+      34,
+      10,
+      10
+    ],
+    "recon_err_at_5": 0.5832215019442994,
+    "recon_err_at_10": 0.49745378726288453
+  },
+  "OV": {
+    "head_rank_90": 28,
+    "head_rank_99": 85,
+    "head_participation": 11.038065525174252,
+    "n_heads": 144,
+    "rand_head_rank_90": 120,
+    "rand_head_participation": 132.31424580871484,
+    "tucker_ranks_90": [
+      28,
+      18,
+      3
+    ],
+    "recon_err_at_5": 0.6533762861069785,
+    "recon_err_at_10": 0.5350796733260956
+  }
+}

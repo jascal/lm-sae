@@ -1,0 +1,68 @@
+{
+  "experiment": "Gemma-2 causal validation (induction-NLL mean-ablation)",
+  "model": "google/gemma-2-2b",
+  "baseline_ind_nll": 4.46975041278883,
+  "baseline_comp_nll": 8.45637128896432,
+  "sets": [
+    {
+      "set": "induction",
+      "heads": [
+        [
+          22,
+          3
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          22,
+          4
+        ],
+        [
+          22,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "delta_ind": 2.4787005554035044,
+      "delta_comp": -0.3852232209479194,
+      "delta_ind_random_mean": 0.27864964689299665,
+      "z": 8.314193075871096,
+      "load_bearing": true
+    },
+    {
+      "set": "prev_token",
+      "heads": [
+        [
+          21,
+          7
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          21,
+          6
+        ],
+        [
+          20,
+          1
+        ]
+      ],
+      "delta_ind": 1.2185242486169985,
+      "delta_comp": 0.010623074856264125,
+      "delta_ind_random_mean": 0.07862527524488772,
+      "z": 6.971414822406795,
+      "load_bearing": true
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "experiment": "MLP neuron catalog",
+  "model": "gpt2",
+  "n_neurons": 36864,
+  "n_tokens": 48,
+  "catalog": [
+    {
+      "neuron": [
+        2,
+        3034
+      ],
+      "reads": [
+        "The",
+        "And",
+        "_he"
+      ],
+      "writes": [
+        "_for",
+        "First",
+        "_he"
+      ],
+      "salience": 15.878829883520643
+    },
+    {
+      "neuron": [
+        2,
+        1825
+      ],
+      "reads": [
+        "And",
+        "_be",
+        "_for"
+      ],
+      "writes": [
+        "_for",
+        "First",
+        "_he"
+      ],
+      "salience": 8.216081287328835
+    },
+    {
+      "neuron": [
+        2,
+        666
+      ],
+      "reads": [
+        "And",
+        "_for",
+        "The"
+      ],
+      "writes": [
+        "_for",
+        "First",
+        "_he"
+      ],
+      "salience": 7.231355751808144
+    },
+    {
+      "neuron": [
+        3,
+        1027
+      ],
+      "reads": [
+        "MAR",
+        "_to",
+        "'s"
+      ],
+      "writes": [
+        "_for",
+        "First",
+        "_he"
+      ],
+      "salience": 5.967232147124138
+    },
+    {
+      "neuron": [
+        11,
+        43
+      ],
+      "reads": [
+        "_a",
+        "\u010a",
+        "_not"
+      ],
+      "writes": [
+        "_a",
+        "MAR",
+        "CI"
+      ],
+      "salience": 4.38014437045215
+    },
+    {
+      "neuron": [
+        3,
+        1751
+      ],
+      "reads": [
+        "_for",
+        "And",
+        "_he"
+      ],
+      "writes": [
+        "_for",
+        "First",
+        "_he"
+      ],
+      "salience": 3.4592722300768144
+    },
+    {
+      "neuron": [
+        3,
+        1874
+      ],
+      "reads": [
+        ".",
+        "_to",
+        "MAR"
+      ],
+      "writes": [
+        "_for",
+        "First",
+        "_he"
+      ],
+      "salience": 2.623895674619325
+    },
+    {
+      "neuron": [
+        1,
+        2401
+      ],
+      "reads": [
+        "_us",
+        "_me",
+        "."
+      ],
+      "writes": [
+        "_for",
+        "And",
+        "_he"
+      ],
+      "salience": 2.591905345319398
+    },
+    {
+      "neuron": [
+        1,
+        1120
+      ],
+      "reads": [
+        "MAR",
+        "_to",
+        "And"
+      ],
+      "writes": [
+        "_for",
+        "And",
+        "_he"
+      ],
+      "salience": 2.4579185991597887
+    },
+    {
+      "neuron": [
+        0,
+        132
+      ],
+      "reads": [
+        "_of",
+        "_in",
+        "_it"
+      ],
+      "writes": [
+        "_the",
+        "The",
+        "_our"
+      ],
+      "salience": 2.266925126214785
+    },
+    {
+      "neuron": [
+        11,
+        2378
+      ],
+      "reads": [
+        "\u010a",
+        "_the",
+        "_a"
+      ],
+      "writes": [
+        "_him",
+        "_he",
+        "_for"
+      ],
+      "salience": 2.1799367050466265
+    },
+    {
+      "neuron": [
+        11,
+        789
+      ],
+      "reads": [
+        "_a",
+        "_I",
+        "_are"
+      ],
+      "writes": [
+        "_a",
+        "?",
+        "!"
+      ],
+      "salience": 1.854539381873388
+    },
+    {
+      "neuron": [
+        11,
+        584
+      ],
+      "reads": [
+        "_you",
+        "_I",
+        "_the"
+      ],
+      "writes": [
+        "_he",
+        "First",
+        "_for"
+      ],
+      "salience": 1.8458453559863226
+    },
+    {
+      "neuron": [
+        10,
+        900
+      ],
+      "reads": [
+        "And",
+        "_for",
+        "_he"
+      ],
+      "writes": [
+        "_him",
+        "_he",
+        "First"
+      ],
+      "salience": 1.825301701379584
+    },
+    {
+      "neuron": [
+        1,
+        242
+      ],
+      "reads": [
+        ".",
+        "MAR",
+        "!"
+      ],
+      "writes": [
+        "_for",
+        "And",
+        "_he"
+      ],
+      "salience": 1.49888677002244
+    },
+    {
+      "neuron": [
+        10,
+        772
+      ],
+      "reads": [
+        "_a",
+        "_good",
+        "\u010a"
+      ],
+      "writes": [
+        "_a",
+        "_the",
+        "_us"
+      ],
+      "salience": 1.4592893641283624
+    },
+    {
+      "neuron": [
+        11,
+        1550
+      ],
+      "reads": [
+        "_I",
+        "_we",
+        "_they"
+      ],
+      "writes": [
+        "_I",
+        "_we",
+        "_they"
+      ],
+      "salience": 1.4517839754339845
+    },
+    {
+      "neuron": [
+        0,
+        1612
+      ],
+      "reads": [
+        "_I",
+        "_a",
+        "The"
+      ],
+      "writes": [
+        "_for",
+        "And",
+        "_he"
+      ],
+      "salience": 1.2212581356220906
+    },
+    {
+      "neuron": [
+        11,
+        1623
+      ],
+      "reads": [
+        "_to",
+        "_not",
+        "_in"
+      ],
+      "writes": [
+        "'d",
+        "The",
+        "_be"
+      ],
+      "salience": 1.2119018133410624
+    },
+    {
+      "neuron": [
+        11,
+        2679
+      ],
+      "reads": [
+        ".",
+        "\u010a",
+        ":"
+      ],
+      "writes": [
+        ".",
+        ":",
+        "?"
+      ],
+      "salience": 1.0358531438040912
+    }
+  ],
+  "transform_participation": 22.318757353456736,
+  "transform_participation_random": 1665.62969666058,
+  "transform_rank90": 186,
+  "read_participation": 12.775710203469913,
+  "write_participation": 1.8646990459179213,
+  "n_rank_test": 6000
+}

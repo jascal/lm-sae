@@ -1,0 +1,108 @@
+{
+  "experiment": "Gemma-2 QK content-opcode legibility across depth",
+  "model": "google/gemma-2-2b",
+  "layers": [
+    0,
+    3,
+    6,
+    9,
+    12,
+    18,
+    21,
+    24
+  ],
+  "per_layer": [
+    {
+      "layer": 0,
+      "n_operands": 2,
+      "supported_cells": 2,
+      "n_legible_z2": 0,
+      "mean_z": NaN,
+      "best": null
+    },
+    {
+      "layer": 3,
+      "n_operands": 48,
+      "supported_cells": 1254,
+      "n_legible_z2": 2,
+      "mean_z": 0.6842229075497113,
+      "best": [
+        "3.2",
+        "_make/_help/_return",
+        "_received/_became/_continued"
+      ]
+    },
+    {
+      "layer": 6,
+      "n_operands": 29,
+      "supported_cells": 726,
+      "n_legible_z2": 7,
+      "mean_z": 3.8263797252931657,
+      "best": [
+        "6.4",
+        "_Building/_Chronicles/_Arsenal",
+        "_III/_Arsenal/_II"
+      ]
+    },
+    {
+      "layer": 9,
+      "n_operands": 36,
+      "supported_cells": 1016,
+      "n_legible_z2": 3,
+      "mean_z": 1.2053553013554865,
+      "best": [
+        "9.4",
+        "_time/_this/_,",
+        "_Chronicles/3/_Arsenal"
+      ]
+    },
+    {
+      "layer": 12,
+      "n_operands": 24,
+      "supported_cells": 547,
+      "n_legible_z2": 5,
+      "mean_z": 3.7318439533130308,
+      "best": [
+        "12.5",
+        "_first/_from/1",
+        "2/_/1"
+      ]
+    },
+    {
+      "layer": 18,
+      "n_operands": 38,
+      "supported_cells": 1258,
+      "n_legible_z2": 2,
+      "mean_z": 0.805533266251926,
+      "best": [
+        "18.7",
+        "_no/<unk>/_November",
+        "_Name/less/_not"
+      ]
+    },
+    {
+      "layer": 21,
+      "n_operands": 48,
+      "supported_cells": 2101,
+      "n_legible_z2": 2,
+      "mean_z": 0.751577053436263,
+      "best": [
+        "21.5",
+        "_PlayStation/_published/_player",
+        "_early/_elements/_\u00c6"
+      ]
+    },
+    {
+      "layer": 24,
+      "n_operands": 11,
+      "supported_cells": 110,
+      "n_legible_z2": 1,
+      "mean_z": 1.1067591257992664,
+      "best": [
+        "24.1",
+        "9/1/_the",
+        "_Little/_./_The"
+      ]
+    }
+  ]
+}
