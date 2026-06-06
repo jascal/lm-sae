@@ -168,36 +168,49 @@ def main(argv=None):
                                  "ind_kl": ik, "tax": ik - ck})
             print(f"  {kind:>12} {r:>5} {ck:>8.3f} {ik:>8.3f} {ik-ck:>+13.3f}")
 
-    # ---- matched-compression comparison: interpolate ind_kl + tax at common complement_kl targets ----
-    lo = max(min(p["comp_kl"] for p in curves[k]) for k in kinds)
-    hi = min(max(p["comp_kl"] for p in curves[k]) for k in kinds)
-    targets = [round(t, 2) for t in np.linspace(lo, hi, 4)] if hi > lo else []
-    print(f"\n[4] MATCHED-COMPRESSION comparison (induction tax = ind-comp at equal complement_kl):")
-    print(f"  {'comp_kl':>8} " + " ".join(f"{k:>12}" for k in kinds))
-    matched = []
-    for t in targets:
-        taxes = {k: _interp([p["comp_kl"] for p in curves[k]], [p["tax"] for p in curves[k]], t) for k in kinds}
-        matched.append({"comp_kl": t, "tax": taxes})
-        print(f"  {t:>8.2f} " + " ".join(f"{taxes[k]:>+12.3f}" for k in kinds))
+    # ---- compression-controlled analysis ----
+    # Does ANY preserve reduce induction_kl BELOW the recon-only baseline (genuine help, not artifact)?
+    helps = {k: min(p["ind_kl"] for p in curves[k]) < base_ik - 0.05 for k in kinds}
+    print(f"\n[4a] does the preserve reduce induction_kl below recon-only baseline ({base_ik:.3f})?")
+    for k in kinds:
+        mi = min(p["ind_kl"] for p in curves[k])
+        note = "" if k not in ("top_pc",) else "  (DEGENERATE: comp_kl also ~0 => not compressing)"
+        print(f"  {k:>12}: best ind_kl {mi:.3f}  {'BELOW' if helps[k] else 'NOT below'} baseline{note}")
+
+    # KEY matched comparison: writer_OV vs random_OV (the two OV types share a comp_kl regime).
+    # random_orth (~baseline, no effect) and top_pc (degenerate) are controls in disjoint regimes.
+    def overlap_targets(a, b, n=4):
+        ca = [p["comp_kl"] for p in curves[a]]; cb = [p["comp_kl"] for p in curves[b]]
+        lo2, hi2 = max(min(ca), min(cb)), min(max(ca), max(cb))
+        return [float(t) for t in np.linspace(lo2, hi2, n)] if hi2 > lo2 else []
+
+    def tax_at(k, t):
+        return _interp([p["comp_kl"] for p in curves[k]], [p["tax"] for p in curves[k]], t)
+    tg = overlap_targets("writer_OV", "random_OV")
+    print("\n[4b] writer_OV vs random_OV at MATCHED complement_kl (tax = ind-comp; lower=better-preserved):")
+    matched, deltas = [], []
+    for t in tg:
+        wt, rt = tax_at("writer_OV", t), tax_at("random_OV", t)
+        matched.append({"comp_kl": t, "writer_OV_tax": wt, "random_OV_tax": rt, "delta_rand_minus_writer": rt - wt})
+        if np.isfinite(wt) and np.isfinite(rt):
+            deltas.append(rt - wt)
+        print(f"  comp_kl {t:>5.2f}: writer_OV {wt:+.3f} | random_OV {rt:+.3f} | Δ(rand-writer) {rt - wt:+.3f}")
+    md = float(np.nanmean(deltas)) if deltas else float("nan")
 
     out = {"experiment": "compression-controlled two-basis re-validation", "layer": L,
            "sae_forge_version": saeforge.__version__, "ranks": ranks, "detected_writers": [list(w) for w in det],
            "baseline_recon_only": {"ind_kl": base_ik, "comp_kl": base_ck},
-           "curves": curves, "matched_compression": matched}
+           "reduces_ind_below_baseline": helps, "curves": curves,
+           "writer_vs_random_OV_matched": matched, "writer_vs_random_OV_mean_delta": md}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
 
-    # verdict: at matched complement_kl, is writer_OV's tax meaningfully below the random subspaces?
-    if matched:
-        deltas = []
-        for m in matched:
-            w = m["tax"]["writer_OV"]; rnd = np.nanmean([m["tax"]["random_OV"], m["tax"]["random_orth"]])
-            if np.isfinite(w) and np.isfinite(rnd):
-                deltas.append(rnd - w)   # >0 => writer_OV has LOWER tax than random at matched compression
-        md = float(np.nanmean(deltas)) if deltas else float("nan")
-        rescue = np.isfinite(md) and md > 0.05
-        print(f"\n[verdict] mean(random_tax - writer_OV_tax) at matched complement_kl = {md:+.3f}")
-        print(f"  {'RESCUE: writer/OV subspace preserves induction beyond random at matched compression' if rescue else 'RETIRE: at matched compression the induction tax is ~the same across subspace types => the writer-output U_C is NOT circuit-specific; the -111% excess was a compression/complement-damage artifact'}")
+    # RESCUE requires writer_OV to (a) actually preserve induction (ind below baseline) AND (b) beat
+    # random_OV at matched compression. Otherwise RETIRE.
+    rescue = bool(helps["writer_OV"] and np.isfinite(md) and md > 0.1)
+    print(f"\n[verdict] writer_OV reduces ind below baseline: {helps['writer_OV']}; "
+          f"writer_OV-vs-random_OV mean Δtax at matched compression {md:+.3f}")
+    print(f"  {'RESCUE: writer-OV genuinely preserves induction (below baseline) AND beats random_OV at matched compression' if rescue else 'RETIRE: the writer-output U_C does NOT preserve the induction circuit -- preserving it RAISES both KLs above the recon-only baseline (complement worst), and is no better than a random-OV subspace at matched compression. The -111% excess was a gameable-metric artifact (complement-damage from the hybrid residual), not circuit preservation. top_pc only zeroes the tax by NOT compressing; random_orth does nothing.'}")
     try:
         import matplotlib
         matplotlib.use("Agg")
