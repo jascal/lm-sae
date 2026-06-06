@@ -1,0 +1,2756 @@
+{
+  "experiment": "OV write channel (read->write instructions)",
+  "model": "gpt2",
+  "n_heads": 144,
+  "instruction_mix": {
+    "BROADCAST->COPY": 3,
+    "COPY->TRANSFORM": 21,
+    "BROADCAST->TRANSFORM": 16,
+    "DIFFUSE->TRANSFORM": 60,
+    "DIFFUSE->COPY": 31,
+    "BIND->COPY": 1,
+    "BIND->TRANSFORM": 4,
+    "COPY->COPY": 8
+  },
+  "copyQK_fraction_copyWrite": 0.27586206896551724,
+  "mean_ov_self_positive": 0.6072916666666666,
+  "corr_qkdiag_ovdiag": -0.02944060232286876,
+  "heads": [
+    {
+      "layer": 0,
+      "head": 0,
+      "qk_diag": -0.11861562884337762,
+      "row_peak": 0.030427752356228233,
+      "broadcast": 0.027215906175927795,
+      "ov_diag": 0.168600963005076,
+      "ov_self_frac": 0.125,
+      "ov_self_pos": 0.95,
+      "ov_top_map": [
+        "_to",
+        ",",
+        1.2072635953287798
+      ],
+      "transform_strength": 0.6140940096110291,
+      "qk_opcode": "BROADCAST",
+      "write": "COPY",
+      "instruction": "BROADCAST->COPY"
+    },
+    {
+      "layer": 0,
+      "head": 1,
+      "qk_diag": 1.4103622158077305,
+      "row_peak": 0.055554652753765046,
+      "broadcast": 0.028357696704094475,
+      "ov_diag": 0.022376613376895307,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.7,
+      "ov_top_map": [
+        "_of",
+        "_the",
+        0.679734143660165
+      ],
+      "transform_strength": 0.8115201275671994,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 2,
+      "qk_diag": 0.0025930974137727165,
+      "row_peak": 0.030368938958679054,
+      "broadcast": 0.0265589329654846,
+      "ov_diag": -0.012305242390652248,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.55,
+      "ov_top_map": [
+        "_the",
+        "_to",
+        0.9052025337218994
+      ],
+      "transform_strength": 0.5210253959358323,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 3,
+      "qk_diag": 0.42326802489538323,
+      "row_peak": 0.03859489424223289,
+      "broadcast": 0.027472591652072758,
+      "ov_diag": 0.013917204657238176,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.525,
+      "ov_top_map": [
+        "_and",
+        "_I",
+        0.23381165819104233
+      ],
+      "transform_strength": 0.12558364176335185,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 4,
+      "qk_diag": 0.127055200346507,
+      "row_peak": 0.0310577687392664,
+      "broadcast": 0.027010039879035684,
+      "ov_diag": -0.0038980500650214623,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.475,
+      "ov_top_map": [
+        "_him",
+        ",",
+        0.41378624885917664
+      ],
+      "transform_strength": 0.4775933610489082,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 5,
+      "qk_diag": 1.2949658871382488,
+      "row_peak": 0.04804753439887458,
+      "broadcast": 0.02961566094953052,
+      "ov_diag": 0.009864171348905897,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.725,
+      "ov_top_map": [
+        "_are",
+        "_the",
+        0.35942872434138573
+      ],
+      "transform_strength": 0.35921532468091866,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 6,
+      "qk_diag": -0.072838760047717,
+      "row_peak": 0.030000283508393767,
+      "broadcast": 0.026790550198314993,
+      "ov_diag": 0.13881408355204322,
+      "ov_self_frac": 0.125,
+      "ov_self_pos": 0.775,
+      "ov_top_map": [
+        ",",
+        "_and",
+        1.079481715259735
+      ],
+      "transform_strength": -0.2471247140822579,
+      "qk_opcode": "BROADCAST",
+      "write": "COPY",
+      "instruction": "BROADCAST->COPY"
+    },
+    {
+      "layer": 0,
+      "head": 7,
+      "qk_diag": -0.11778862047959687,
+      "row_peak": 0.028157617209923203,
+      "broadcast": 0.025847848704482302,
+      "ov_diag": 0.010983722790631738,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.625,
+      "ov_top_map": [
+        "_the",
+        "_of",
+        0.4636244741875577
+      ],
+      "transform_strength": 0.5128740085060556,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 8,
+      "qk_diag": 0.09287289751566787,
+      "row_peak": 0.030810647896051056,
+      "broadcast": 0.026995555081225246,
+      "ov_diag": -0.03059389633085001,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.35,
+      "ov_top_map": [
+        "_have",
+        "_the",
+        0.5982717065744521
+      ],
+      "transform_strength": 0.43166135668178995,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 9,
+      "qk_diag": -0.020232527154209992,
+      "row_peak": 0.02652260859089487,
+      "broadcast": 0.025304658710676903,
+      "ov_diag": 0.08617306686449079,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.625,
+      "ov_top_map": [
+        "_have",
+        "'s",
+        0.7322451480070562
+      ],
+      "transform_strength": 0.6637394993133976,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 10,
+      "qk_diag": 0.2288672491915904,
+      "row_peak": 0.029433386925653733,
+      "broadcast": 0.025613624830262017,
+      "ov_diag": -0.3335319091060714,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.125,
+      "ov_top_map": [
+        ",",
+        "MEN",
+        1.3411696201583925
+      ],
+      "transform_strength": 2.6933934866199163,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 0,
+      "head": 11,
+      "qk_diag": 0.0019527244789426276,
+      "row_peak": 0.027449808198887093,
+      "broadcast": 0.025460193723599495,
+      "ov_diag": 0.06806195651523263,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.65,
+      "ov_top_map": [
+        "_and",
+        "_the",
+        0.7102819970928349
+      ],
+      "transform_strength": 0.28458642791681427,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 0,
+      "qk_diag": -0.17003883273460527,
+      "row_peak": 0.03240295101610703,
+      "broadcast": 0.026693078861646187,
+      "ov_diag": 0.08558561512659159,
+      "ov_self_frac": 0.225,
+      "ov_self_pos": 0.8,
+      "ov_top_map": [
+        "_it",
+        "_is",
+        0.45768230246212693
+      ],
+      "transform_strength": 0.3635393760529779,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 1,
+      "qk_diag": -0.1373310840505993,
+      "row_peak": 0.027726976634079747,
+      "broadcast": 0.025517722150234977,
+      "ov_diag": 0.1452720656195549,
+      "ov_self_frac": 0.15,
+      "ov_self_pos": 0.875,
+      "ov_top_map": [
+        ".",
+        "\u010a",
+        0.45210245627714163
+      ],
+      "transform_strength": 0.1338320242807835,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 1,
+      "head": 2,
+      "qk_diag": 0.007940398220138754,
+      "row_peak": 0.025975454406110106,
+      "broadcast": 0.025086569902785592,
+      "ov_diag": -0.032221227372121325,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.175,
+      "ov_top_map": [
+        ".",
+        "\u010a",
+        0.1670322382146858
+      ],
+      "transform_strength": 0.01479897128489785,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 3,
+      "qk_diag": 0.003971090958087087,
+      "row_peak": 0.025894974986709896,
+      "broadcast": 0.025044804667087535,
+      "ov_diag": -0.0767034130904149,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.05,
+      "ov_top_map": [
+        "_to",
+        "\u010a",
+        0.21124946450972065
+      ],
+      "transform_strength": 0.40663704358044805,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 4,
+      "qk_diag": 0.007240370785452849,
+      "row_peak": 0.026139769967211034,
+      "broadcast": 0.025109835456157303,
+      "ov_diag": -0.14349612697654712,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.0,
+      "ov_top_map": [
+        "_a",
+        "_have",
+        0.38976164026636795
+      ],
+      "transform_strength": 0.44862447281931217,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 5,
+      "qk_diag": 0.37545039719601686,
+      "row_peak": 0.034573967884082325,
+      "broadcast": 0.026561814129507717,
+      "ov_diag": -0.01998434329549381,
+      "ov_self_frac": 0.15,
+      "ov_self_pos": 0.425,
+      "ov_top_map": [
+        "_and",
+        "_the",
+        1.1898249629746143
+      ],
+      "transform_strength": 0.25428383393592013,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 6,
+      "qk_diag": 0.0007076992915332442,
+      "row_peak": 0.03144904762345028,
+      "broadcast": 0.02623523902668138,
+      "ov_diag": 0.13623132806687577,
+      "ov_self_frac": 0.3,
+      "ov_self_pos": 0.7,
+      "ov_top_map": [
+        "\u010a",
+        ".",
+        0.7793793553367219
+      ],
+      "transform_strength": 0.5566999694501713,
+      "qk_opcode": "BROADCAST",
+      "write": "COPY",
+      "instruction": "BROADCAST->COPY"
+    },
+    {
+      "layer": 1,
+      "head": 7,
+      "qk_diag": -0.015976650248068856,
+      "row_peak": 0.027466068143887946,
+      "broadcast": 0.025512045027027003,
+      "ov_diag": 0.12106594160796391,
+      "ov_self_frac": 0.175,
+      "ov_self_pos": 0.7,
+      "ov_top_map": [
+        "_of",
+        "\u010a",
+        0.6375829564320092
+      ],
+      "transform_strength": 0.4223786693744267,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 1,
+      "head": 8,
+      "qk_diag": -0.006374891349411072,
+      "row_peak": 0.026597960182898294,
+      "broadcast": 0.02529384984867187,
+      "ov_diag": -0.11370993920646341,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.325,
+      "ov_top_map": [
+        "_it",
+        "_the",
+        0.6193827210947481
+      ],
+      "transform_strength": 0.39182145676085195,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 9,
+      "qk_diag": 0.0021088091059413127,
+      "row_peak": 0.027241799191205708,
+      "broadcast": 0.025359786466822014,
+      "ov_diag": -0.0620022363379548,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.375,
+      "ov_top_map": [
+        "_in",
+        "_the",
+        0.9416616652914349
+      ],
+      "transform_strength": 0.46357522995286393,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 10,
+      "qk_diag": 0.004179884113469328,
+      "row_peak": 0.025899575364352202,
+      "broadcast": 0.02505512550588736,
+      "ov_diag": -0.04076682352587606,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.15,
+      "ov_top_map": [
+        ".",
+        ",",
+        0.1557262982324361
+      ],
+      "transform_strength": 0.042423962407335564,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 1,
+      "head": 11,
+      "qk_diag": 0.707884416743192,
+      "row_peak": 0.03979690111032267,
+      "broadcast": 0.02793374943117871,
+      "ov_diag": -0.050802436112558726,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.55,
+      "ov_top_map": [
+        ",",
+        "MEN",
+        0.5495223740796127
+      ],
+      "transform_strength": 1.7435750043444274,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 0,
+      "qk_diag": -0.1272701991462819,
+      "row_peak": 0.028141046712338656,
+      "broadcast": 0.0259581730122223,
+      "ov_diag": -0.031208746400506873,
+      "ov_self_frac": 0.125,
+      "ov_self_pos": 0.475,
+      "ov_top_map": [
+        ",",
+        "_and",
+        0.4552010218097062
+      ],
+      "transform_strength": 0.42186031605335167,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 1,
+      "qk_diag": -0.008752825224785722,
+      "row_peak": 0.02807603221397047,
+      "broadcast": 0.0253280402229012,
+      "ov_diag": 0.16953043458274272,
+      "ov_self_frac": 0.325,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "'s",
+        "IA",
+        0.3885928416156557
+      ],
+      "transform_strength": 0.1212490254581462,
+      "qk_opcode": "BIND",
+      "write": "COPY",
+      "instruction": "BIND->COPY"
+    },
+    {
+      "layer": 2,
+      "head": 2,
+      "qk_diag": -0.3595664268709192,
+      "row_peak": 0.03166694125272585,
+      "broadcast": 0.02631252325021549,
+      "ov_diag": 0.10673756501067694,
+      "ov_self_frac": 0.475,
+      "ov_self_pos": 0.975,
+      "ov_top_map": [
+        "I",
+        "_I",
+        0.2676388471842053
+      ],
+      "transform_strength": 0.03342985575231733,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 3,
+      "qk_diag": -0.213733087863836,
+      "row_peak": 0.02856457709770004,
+      "broadcast": 0.025930209380337566,
+      "ov_diag": 0.04457721367404317,
+      "ov_self_frac": 0.35,
+      "ov_self_pos": 0.625,
+      "ov_top_map": [
+        "_you",
+        "_your",
+        0.22902642586490654
+      ],
+      "transform_strength": 0.0024281460322228277,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 4,
+      "qk_diag": -0.18630897836801266,
+      "row_peak": 0.030804479777263628,
+      "broadcast": 0.026576011748495415,
+      "ov_diag": 0.05265658097500977,
+      "ov_self_frac": 0.225,
+      "ov_self_pos": 0.725,
+      "ov_top_map": [
+        "_not",
+        "?",
+        0.16195481766804984
+      ],
+      "transform_strength": -0.27076235180879804,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 5,
+      "qk_diag": -0.2301680801343119,
+      "row_peak": 0.027851085595860636,
+      "broadcast": 0.02560927665961595,
+      "ov_diag": 0.06609382085646123,
+      "ov_self_frac": 0.175,
+      "ov_self_pos": 0.825,
+      "ov_top_map": [
+        "_of",
+        "'s",
+        0.20354918069165462
+      ],
+      "transform_strength": 0.12350770066367983,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 6,
+      "qk_diag": -0.04544326107365226,
+      "row_peak": 0.027593596799387776,
+      "broadcast": 0.025710283763797238,
+      "ov_diag": -0.03673545844058019,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.3,
+      "ov_top_map": [
+        "\u010a",
+        ":",
+        0.2842494755215088
+      ],
+      "transform_strength": 0.26309982345874905,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 7,
+      "qk_diag": 0.0008711934491922172,
+      "row_peak": 0.026069336443758872,
+      "broadcast": 0.02510206770925367,
+      "ov_diag": -0.041972824863334694,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.2,
+      "ov_top_map": [
+        "_I",
+        "IA",
+        0.12231156789785863
+      ],
+      "transform_strength": 0.20370485331277338,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 8,
+      "qk_diag": -0.21206013101198015,
+      "row_peak": 0.028369859111271416,
+      "broadcast": 0.025745473536567625,
+      "ov_diag": 0.012562883456066709,
+      "ov_self_frac": 0.15,
+      "ov_self_pos": 0.575,
+      "ov_top_map": [
+        "'",
+        "'s",
+        0.3446247000015431
+      ],
+      "transform_strength": 0.12358702153948994,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 9,
+      "qk_diag": -0.20010796741171347,
+      "row_peak": 0.028119468798725122,
+      "broadcast": 0.025591748939853748,
+      "ov_diag": -0.010904695368976862,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.45,
+      "ov_top_map": [
+        "MEN",
+        "IA",
+        0.15406039952280906
+      ],
+      "transform_strength": 0.03946154560853411,
+      "qk_opcode": "BIND",
+      "write": "TRANSFORM",
+      "instruction": "BIND->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 10,
+      "qk_diag": 0.007323928319047469,
+      "row_peak": 0.026320859218870306,
+      "broadcast": 0.025122590403501305,
+      "ov_diag": -0.10349240052678933,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.3,
+      "ov_top_map": [
+        ".",
+        "_in",
+        0.2874161293898716
+      ],
+      "transform_strength": 1.1461137900844198,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 2,
+      "head": 11,
+      "qk_diag": -0.011469547510074535,
+      "row_peak": 0.026242255799127878,
+      "broadcast": 0.025144476818172744,
+      "ov_diag": -0.0019209580319685844,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.65,
+      "ov_top_map": [
+        "_the",
+        "_he",
+        0.28920339281818463
+      ],
+      "transform_strength": 0.15986364557397634,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 0,
+      "qk_diag": 0.24639123387104792,
+      "row_peak": 0.030299025036668877,
+      "broadcast": 0.026041572513379678,
+      "ov_diag": 0.19887133593912107,
+      "ov_self_frac": 0.325,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "_of",
+        "_and",
+        1.1405195986700978
+      ],
+      "transform_strength": 0.6517202656665415,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    },
+    {
+      "layer": 3,
+      "head": 1,
+      "qk_diag": -0.08623309403325359,
+      "row_peak": 0.027598694181842874,
+      "broadcast": 0.02587767303696874,
+      "ov_diag": -0.004948686549728549,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.5,
+      "ov_top_map": [
+        ".",
+        "_for",
+        0.2827438252933556
+      ],
+      "transform_strength": 0.13059841692194424,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 2,
+      "qk_diag": -0.14181406229206578,
+      "row_peak": 0.02783977081043501,
+      "broadcast": 0.025416153650174765,
+      "ov_diag": 0.12660788355802377,
+      "ov_self_frac": 0.625,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_is",
+        "_are",
+        0.1972917397031853
+      ],
+      "transform_strength": 0.11696989018301537,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 3,
+      "head": 3,
+      "qk_diag": -0.07334938580559862,
+      "row_peak": 0.028544325678670712,
+      "broadcast": 0.025506238844644445,
+      "ov_diag": 0.07797222932418245,
+      "ov_self_frac": 0.325,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        ":",
+        "And",
+        0.26554206865017865
+      ],
+      "transform_strength": 0.12784001705874246,
+      "qk_opcode": "BIND",
+      "write": "TRANSFORM",
+      "instruction": "BIND->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 4,
+      "qk_diag": 0.038496819939471585,
+      "row_peak": 0.028214454620710382,
+      "broadcast": 0.025754410922819958,
+      "ov_diag": -0.3749381609721174,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.05,
+      "ov_top_map": [
+        "I",
+        "_for",
+        0.8671808928784719
+      ],
+      "transform_strength": 1.8292828063088102,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 5,
+      "qk_diag": -0.0122397413576713,
+      "row_peak": 0.027060737314228554,
+      "broadcast": 0.025240962011965455,
+      "ov_diag": -0.09123439123817141,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.275,
+      "ov_top_map": [
+        ":",
+        "_for",
+        0.3949938756136498
+      ],
+      "transform_strength": 0.18319204239855524,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 6,
+      "qk_diag": -0.07995337943213433,
+      "row_peak": 0.027483022886086134,
+      "broadcast": 0.025474906894324433,
+      "ov_diag": 0.08080545019705263,
+      "ov_self_frac": 0.175,
+      "ov_self_pos": 0.75,
+      "ov_top_map": [
+        "_your",
+        "_you",
+        0.33228162381914583
+      ],
+      "transform_strength": 0.07370990202331063,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 7,
+      "qk_diag": -0.10280795153314239,
+      "row_peak": 0.02746832343394905,
+      "broadcast": 0.025481086279683245,
+      "ov_diag": -0.0007578448262992189,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.6,
+      "ov_top_map": [
+        "_me",
+        "_for",
+        0.23984640078991787
+      ],
+      "transform_strength": 0.27150934231021995,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 8,
+      "qk_diag": -0.09412651117415693,
+      "row_peak": 0.027292155611050934,
+      "broadcast": 0.025322913415714098,
+      "ov_diag": -0.02103617741118629,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.425,
+      "ov_top_map": [
+        "_not",
+        "_for",
+        0.3647119449803715
+      ],
+      "transform_strength": 0.4520842340078477,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 9,
+      "qk_diag": -0.06219186828845491,
+      "row_peak": 0.028163999278193297,
+      "broadcast": 0.025453755954299488,
+      "ov_diag": 0.06098706261361874,
+      "ov_self_frac": 0.275,
+      "ov_self_pos": 0.675,
+      "ov_top_map": [
+        "_is",
+        "_for",
+        0.217622985410963
+      ],
+      "transform_strength": -0.08245313608452368,
+      "qk_opcode": "BIND",
+      "write": "TRANSFORM",
+      "instruction": "BIND->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 10,
+      "qk_diag": 0.049101832820942055,
+      "row_peak": 0.027217239755264473,
+      "broadcast": 0.025334051825282523,
+      "ov_diag": -0.3407413498802094,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.125,
+      "ov_top_map": [
+        "_and",
+        "_for",
+        0.7630969344362147
+      ],
+      "transform_strength": 1.6178099804871224,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 3,
+      "head": 11,
+      "qk_diag": -0.07544306899373322,
+      "row_peak": 0.027514350102921796,
+      "broadcast": 0.025368312224489674,
+      "ov_diag": 0.017942143583574884,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.475,
+      "ov_top_map": [
+        "_in",
+        "_for",
+        0.23497337528215792
+      ],
+      "transform_strength": 0.24590002438697972,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 0,
+      "qk_diag": -0.07197241911250818,
+      "row_peak": 0.027231663262968643,
+      "broadcast": 0.025381255342466675,
+      "ov_diag": 0.06227172535499331,
+      "ov_self_frac": 0.325,
+      "ov_self_pos": 0.85,
+      "ov_top_map": [
+        "_are",
+        "_is",
+        0.25021426949369063
+      ],
+      "transform_strength": 0.10021152759524804,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 1,
+      "qk_diag": -0.0605285948710446,
+      "row_peak": 0.027303575885665232,
+      "broadcast": 0.025254599147875045,
+      "ov_diag": 0.05323870761957879,
+      "ov_self_frac": 0.175,
+      "ov_self_pos": 0.825,
+      "ov_top_map": [
+        "_and",
+        "And",
+        0.2113202443689407
+      ],
+      "transform_strength": 0.022690933740500657,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 2,
+      "qk_diag": -0.006179573112631343,
+      "row_peak": 0.026610549908262077,
+      "broadcast": 0.025172293031617533,
+      "ov_diag": 0.022043738316613104,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.575,
+      "ov_top_map": [
+        "And",
+        "_for",
+        0.29115678633483283
+      ],
+      "transform_strength": 0.06473171283851153,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 3,
+      "qk_diag": -0.05340075335998471,
+      "row_peak": 0.027199193720427572,
+      "broadcast": 0.02535237223998718,
+      "ov_diag": 0.12891452081182025,
+      "ov_self_frac": 0.3,
+      "ov_self_pos": 0.65,
+      "ov_top_map": [
+        "_your",
+        "_you",
+        0.46729813391350683
+      ],
+      "transform_strength": 0.1711196168824034,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 4,
+      "head": 4,
+      "qk_diag": 0.09118796616330575,
+      "row_peak": 0.027776153203665353,
+      "broadcast": 0.025478517435602636,
+      "ov_diag": -0.32519528894995914,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.1,
+      "ov_top_map": [
+        "_of",
+        "_for",
+        1.0363799799811957
+      ],
+      "transform_strength": 1.2937887705286355,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 5,
+      "qk_diag": -0.0891488379591078,
+      "row_peak": 0.027267559046478724,
+      "broadcast": 0.025592900674109624,
+      "ov_diag": 0.09261963826399879,
+      "ov_self_frac": 0.2,
+      "ov_self_pos": 0.85,
+      "ov_top_map": [
+        ".",
+        "!",
+        0.2101654990129289
+      ],
+      "transform_strength": 0.07493345620938419,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 6,
+      "qk_diag": -0.05113406958645774,
+      "row_peak": 0.02665398812033497,
+      "broadcast": 0.025350800729991387,
+      "ov_diag": -0.1308531037591637,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.15,
+      "ov_top_map": [
+        "_I",
+        "_him",
+        0.3505520903894378
+      ],
+      "transform_strength": 0.49382533782538507,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 7,
+      "qk_diag": 0.05031073106476213,
+      "row_peak": 0.027173352500945658,
+      "broadcast": 0.02523609196165282,
+      "ov_diag": -0.22642969963838674,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.0,
+      "ov_top_map": [
+        "_are",
+        "_for",
+        0.5319897119169414
+      ],
+      "transform_strength": 0.8972657459909272,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 8,
+      "qk_diag": 0.032028048497063984,
+      "row_peak": 0.027365109396099215,
+      "broadcast": 0.02531231515894112,
+      "ov_diag": 0.09913096507186656,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.675,
+      "ov_top_map": [
+        "'d",
+        "And",
+        0.6529464816223933
+      ],
+      "transform_strength": 0.01408847934512858,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 9,
+      "qk_diag": -0.03990014757095978,
+      "row_peak": 0.026986022343291616,
+      "broadcast": 0.025236744167041365,
+      "ov_diag": 0.05168851396612833,
+      "ov_self_frac": 0.25,
+      "ov_self_pos": 0.75,
+      "ov_top_map": [
+        "_is",
+        "_are",
+        0.2078969080643555
+      ],
+      "transform_strength": -0.02045074955261844,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 10,
+      "qk_diag": 0.016444354785029675,
+      "row_peak": 0.02670639768316339,
+      "broadcast": 0.02517977172480872,
+      "ov_diag": -0.14754652586976943,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.15,
+      "ov_top_map": [
+        ",",
+        "_for",
+        1.0718999294504545
+      ],
+      "transform_strength": 1.4805669298182156,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 4,
+      "head": 11,
+      "qk_diag": -0.08763425463604176,
+      "row_peak": 0.03968061174507048,
+      "broadcast": 0.02791080933612298,
+      "ov_diag": 0.029398565136711154,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.7,
+      "ov_top_map": [
+        "I",
+        "US",
+        0.22264159665104413
+      ],
+      "transform_strength": 0.09784246057867119,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 0,
+      "qk_diag": -0.013053748609447975,
+      "row_peak": 0.027744665546560653,
+      "broadcast": 0.02537584761493152,
+      "ov_diag": 0.052980829410835484,
+      "ov_self_frac": 0.125,
+      "ov_self_pos": 0.675,
+      "ov_top_map": [
+        "'d",
+        "And",
+        0.3085915561373866
+      ],
+      "transform_strength": 0.23939470806181756,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 1,
+      "qk_diag": -0.009216542818003498,
+      "row_peak": 0.028485184699330333,
+      "broadcast": 0.025601700319690772,
+      "ov_diag": -0.0012692632595131693,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.45,
+      "ov_top_map": [
+        "_to",
+        "_have",
+        0.37359230883588457
+      ],
+      "transform_strength": 0.44495330446125325,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 2,
+      "qk_diag": -0.020389323231589988,
+      "row_peak": 0.026631400981289733,
+      "broadcast": 0.025150944451034052,
+      "ov_diag": 0.08062983440318296,
+      "ov_self_frac": 0.35,
+      "ov_self_pos": 0.875,
+      "ov_top_map": [
+        "_with",
+        "And",
+        0.24392643363015534
+      ],
+      "transform_strength": 0.2073356396752033,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 3,
+      "qk_diag": -0.022835614347352144,
+      "row_peak": 0.026308907067055208,
+      "broadcast": 0.02515714361839972,
+      "ov_diag": 0.04252344105257257,
+      "ov_self_frac": 0.15,
+      "ov_self_pos": 0.8,
+      "ov_top_map": [
+        "_not",
+        "_for",
+        0.2325484955609184
+      ],
+      "transform_strength": 0.27033691795340675,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 4,
+      "qk_diag": -0.03643448867590398,
+      "row_peak": 0.02645995882524399,
+      "broadcast": 0.025204133329342043,
+      "ov_diag": 0.02006912700963919,
+      "ov_self_frac": 0.15,
+      "ov_self_pos": 0.625,
+      "ov_top_map": [
+        "_not",
+        "And",
+        0.19200445365362065
+      ],
+      "transform_strength": 0.27256626818152924,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 5,
+      "qk_diag": -0.03381675860884414,
+      "row_peak": 0.027336186855339097,
+      "broadcast": 0.025394728374246833,
+      "ov_diag": 0.011969547382528995,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.675,
+      "ov_top_map": [
+        "_me",
+        "_for",
+        0.3001675849819514
+      ],
+      "transform_strength": 0.35237524798772074,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 6,
+      "qk_diag": -0.022789730839952917,
+      "row_peak": 0.026882082799579748,
+      "broadcast": 0.025248442147359097,
+      "ov_diag": 0.15947803972186167,
+      "ov_self_frac": 0.525,
+      "ov_self_pos": 0.975,
+      "ov_top_map": [
+        "I",
+        "US",
+        0.2642937046615947
+      ],
+      "transform_strength": 0.09463359318510225,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 5,
+      "head": 7,
+      "qk_diag": -0.013016462095984541,
+      "row_peak": 0.026785622851516543,
+      "broadcast": 0.02524502542009968,
+      "ov_diag": 0.08979262056169476,
+      "ov_self_frac": 0.325,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "_a",
+        "_are",
+        0.23933904562702324
+      ],
+      "transform_strength": 0.21637577336222327,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 8,
+      "qk_diag": -0.04540751898117181,
+      "row_peak": 0.027235130012075292,
+      "broadcast": 0.025311501898659838,
+      "ov_diag": -0.01664096178175505,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.425,
+      "ov_top_map": [
+        "'d",
+        "_are",
+        0.23291721697979115
+      ],
+      "transform_strength": 0.2191794041767424,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 9,
+      "qk_diag": -0.0034671670143284422,
+      "row_peak": 0.02659124909120598,
+      "broadcast": 0.025223517766453662,
+      "ov_diag": -0.24530249618482775,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.1,
+      "ov_top_map": [
+        "_the",
+        "_he",
+        0.6310196334572713
+      ],
+      "transform_strength": 0.8324844727719685,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 10,
+      "qk_diag": 0.030359665469052888,
+      "row_peak": 0.02685054161751982,
+      "broadcast": 0.025218865437115913,
+      "ov_diag": 0.07383138339439003,
+      "ov_self_frac": 0.3,
+      "ov_self_pos": 0.875,
+      "ov_top_map": [
+        "_his",
+        "_he",
+        0.3430611035025676
+      ],
+      "transform_strength": 0.18687277566471597,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 5,
+      "head": 11,
+      "qk_diag": 0.06934131629650732,
+      "row_peak": 0.026847646783693103,
+      "broadcast": 0.02521887110299077,
+      "ov_diag": -0.1409674898974991,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.15,
+      "ov_top_map": [
+        "_I",
+        "_for",
+        0.50441683487306
+      ],
+      "transform_strength": 0.6402176152578992,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 0,
+      "qk_diag": -0.012860249660462824,
+      "row_peak": 0.027157202319228402,
+      "broadcast": 0.025274201043814858,
+      "ov_diag": 0.18139810019188615,
+      "ov_self_frac": 0.475,
+      "ov_self_pos": 0.925,
+      "ov_top_map": [
+        "_his",
+        "_him",
+        0.5061890001768239
+      ],
+      "transform_strength": 0.14621938709765359,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 6,
+      "head": 1,
+      "qk_diag": -0.03752395281716344,
+      "row_peak": 0.02737264148185935,
+      "broadcast": 0.025269581982035626,
+      "ov_diag": -0.01956564607556772,
+      "ov_self_frac": 0.125,
+      "ov_self_pos": 0.4,
+      "ov_top_map": [
+        "_that",
+        ";",
+        0.3075568080104974
+      ],
+      "transform_strength": 0.30184159953692835,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 2,
+      "qk_diag": -0.0013288834874304024,
+      "row_peak": 0.026146349359737454,
+      "broadcast": 0.02518597928970335,
+      "ov_diag": -0.04774008375093143,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.475,
+      "ov_top_map": [
+        "_his",
+        "_with",
+        0.5537633619800163
+      ],
+      "transform_strength": 0.24990464818248487,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 3,
+      "qk_diag": -0.005865236331620134,
+      "row_peak": 0.02661777906533445,
+      "broadcast": 0.025214907989504143,
+      "ov_diag": 0.030977464812708452,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.575,
+      "ov_top_map": [
+        "US",
+        "IA",
+        0.36275826412780077
+      ],
+      "transform_strength": 0.07352861475721684,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 4,
+      "qk_diag": 0.015270506557012927,
+      "row_peak": 0.0265366501147569,
+      "broadcast": 0.02522437023333387,
+      "ov_diag": 0.09368427655970041,
+      "ov_self_frac": 0.35,
+      "ov_self_pos": 0.925,
+      "ov_top_map": [
+        "_a",
+        "_in",
+        0.17054231679203602
+      ],
+      "transform_strength": 0.07682866071975097,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 5,
+      "qk_diag": -0.0033854124050959203,
+      "row_peak": 0.026235000068987692,
+      "broadcast": 0.02510970011155233,
+      "ov_diag": -0.23879746618615444,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.1,
+      "ov_top_map": [
+        ":",
+        "And",
+        0.4209663056821831
+      ],
+      "transform_strength": 0.6717755849671925,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 6,
+      "qk_diag": 0.07867667450780744,
+      "row_peak": 0.02708566419173438,
+      "broadcast": 0.025343803512142833,
+      "ov_diag": -0.26679698828151005,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.05,
+      "ov_top_map": [
+        "MEN",
+        "_not",
+        0.3799091066221336
+      ],
+      "transform_strength": 1.2020281065456029,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 7,
+      "qk_diag": -0.02065637462795575,
+      "row_peak": 0.026318130928123497,
+      "broadcast": 0.025162385208056352,
+      "ov_diag": 0.04079731661226756,
+      "ov_self_frac": 0.2,
+      "ov_self_pos": 0.65,
+      "ov_top_map": [
+        "_and",
+        "_are",
+        0.22517004782380795
+      ],
+      "transform_strength": -0.00857527158763749,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 8,
+      "qk_diag": -0.022680466464003235,
+      "row_peak": 0.026880343684299434,
+      "broadcast": 0.02527065981962081,
+      "ov_diag": 0.14879373882025562,
+      "ov_self_frac": 0.8,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "MEN",
+        "IA",
+        0.31917093507022276
+      ],
+      "transform_strength": 0.008655169887062941,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 6,
+      "head": 9,
+      "qk_diag": -0.024189444812575647,
+      "row_peak": 0.02833815051581854,
+      "broadcast": 0.0257903883660991,
+      "ov_diag": 0.01534220865419459,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.55,
+      "ov_top_map": [
+        "And",
+        "\u010a",
+        0.41670293750527565
+      ],
+      "transform_strength": 0.567126556295422,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 10,
+      "qk_diag": 0.004997446875283865,
+      "row_peak": 0.0268498767204354,
+      "broadcast": 0.025240775858633758,
+      "ov_diag": 0.07435124311691618,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.65,
+      "ov_top_map": [
+        ":",
+        "MEN",
+        0.6588738730785495
+      ],
+      "transform_strength": 0.5520707633209544,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 6,
+      "head": 11,
+      "qk_diag": -0.029122214821157028,
+      "row_peak": 0.026867668357691016,
+      "broadcast": 0.025204212951948884,
+      "ov_diag": 0.13168364142955216,
+      "ov_self_frac": 0.425,
+      "ov_self_pos": 0.95,
+      "ov_top_map": [
+        "_is",
+        "_are",
+        0.3733242232272851
+      ],
+      "transform_strength": 0.03893540255773198,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 7,
+      "head": 0,
+      "qk_diag": -0.03387272408752595,
+      "row_peak": 0.026823556159051926,
+      "broadcast": 0.025294530458079594,
+      "ov_diag": 0.2164447324224194,
+      "ov_self_frac": 0.85,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_your",
+        "_my",
+        0.3311176496123517
+      ],
+      "transform_strength": -0.009423095047005114,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 7,
+      "head": 1,
+      "qk_diag": -0.0036421036581426587,
+      "row_peak": 0.026833006381799168,
+      "broadcast": 0.025293463539243527,
+      "ov_diag": 0.16830902557870758,
+      "ov_self_frac": 0.375,
+      "ov_self_pos": 0.95,
+      "ov_top_map": [
+        "_he",
+        "_him",
+        0.7798854290931857
+      ],
+      "transform_strength": -0.005657733129875386,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 7,
+      "head": 2,
+      "qk_diag": -0.026696807449923594,
+      "row_peak": 0.027718549865068286,
+      "broadcast": 0.025339216204245063,
+      "ov_diag": 0.029181895224650534,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.6,
+      "ov_top_map": [
+        "_the",
+        "_for",
+        0.5495879292780492
+      ],
+      "transform_strength": 0.35203156472673147,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 7,
+      "head": 3,
+      "qk_diag": -0.008030355326158574,
+      "row_peak": 0.02667124955290149,
+      "broadcast": 0.025229342728457844,
+      "ov_diag": 0.06576631312496152,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.725,
+      "ov_top_map": [
+        "And",
+        "_he",
+        0.4275640700577858
+      ],
+      "transform_strength": 0.03603958360431142,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 7,
+      "head": 4,
+      "qk_diag": -0.01486042752819374,
+      "row_peak": 0.02667166580515381,
+      "broadcast": 0.0251573571740935,
+      "ov_diag": 0.12714776767951633,
+      "ov_self_frac": 0.3,
+      "ov_self_pos": 0.725,
+      "ov_top_map": [
+        "_with",
+        "And",
+        0.4910433955452649
+      ],
+      "transform_strength": 0.6236677980309404,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 7,
+      "head": 5,
+      "qk_diag": -0.006271926357414146,
+      "row_peak": 0.026599521480195704,
+      "broadcast": 0.025303161300025957,
+      "ov_diag": 0.11461135614501854,
+      "ov_self_frac": 0.425,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "_I",
+        "_me",
+        0.2591810443602438
+      ],
+      "transform_strength": -0.0002576814014626505,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 7,
+      "head": 6,
+      "qk_diag": 0.004258893084106629,
+      "row_peak": 0.026431705935014697,
+      "broadcast": 0.02520447677415723,
+      "ov_diag": -0.10932563607197993,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.275,
+      "ov_top_map": [
+        "_the",
+        "_him",
+        0.49021489465242574
+      ],
+      "transform_strength": 0.6341444149324071,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 7,
+      "head": 7,
+      "qk_diag": -0.020911238981790453,
+      "row_peak": 0.027057752494659516,
+      "broadcast": 0.02530269760557214,
+      "ov_diag": -0.09141754463143291,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.25,
+      "ov_top_map": [
+        "I",
+        "MEN",
+        0.3794280599963604
+      ],
+      "transform_strength": 0.12364932458286759,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 7,
+      "head": 8,
+      "qk_diag": -0.02793330477773259,
+      "row_peak": 0.02683281229495158,
+      "broadcast": 0.02529252035047409,
+      "ov_diag": 0.12981405057555762,
+      "ov_self_frac": 0.7,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_him",
+        "_he",
+        0.30993612412494626
+      ],
+      "transform_strength": -0.0910064399455019,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 7,
+      "head": 9,
+      "qk_diag": -0.016362527893520655,
+      "row_peak": 0.02693462052690613,
+      "broadcast": 0.02529644976349992,
+      "ov_diag": 0.08557710869738777,
+      "ov_self_frac": 0.325,
+      "ov_self_pos": 0.85,
+      "ov_top_map": [
+        "'d",
+        "_a",
+        0.25728626041086067
+      ],
+      "transform_strength": 0.14911422688202897,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 7,
+      "head": 10,
+      "qk_diag": -0.04283999579805274,
+      "row_peak": 0.02766810644850696,
+      "broadcast": 0.025743581904934802,
+      "ov_diag": -0.0141571581787424,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.475,
+      "ov_top_map": [
+        "_a",
+        "_for",
+        0.41511381917541823
+      ],
+      "transform_strength": 0.27994867350168073,
+      "qk_opcode": "BROADCAST",
+      "write": "TRANSFORM",
+      "instruction": "BROADCAST->TRANSFORM"
+    },
+    {
+      "layer": 7,
+      "head": 11,
+      "qk_diag": 0.003259522954037464,
+      "row_peak": 0.027982736076901583,
+      "broadcast": 0.0254065859952275,
+      "ov_diag": -0.14116148218412017,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.25,
+      "ov_top_map": [
+        "\u010a",
+        ".",
+        0.9172745357231082
+      ],
+      "transform_strength": 0.6731585054306446,
+      "qk_opcode": "BIND",
+      "write": "TRANSFORM",
+      "instruction": "BIND->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 0,
+      "qk_diag": 0.019260567558373767,
+      "row_peak": 0.027248720382478053,
+      "broadcast": 0.025302058852664188,
+      "ov_diag": -0.13862026332157967,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.275,
+      "ov_top_map": [
+        "_the",
+        "_for",
+        1.6347670545989734
+      ],
+      "transform_strength": 1.086434885942746,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 1,
+      "qk_diag": -0.04895779873437147,
+      "row_peak": 0.02767830426567013,
+      "broadcast": 0.025431222721050493,
+      "ov_diag": -0.19625425509432542,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.15,
+      "ov_top_map": [
+        "_that",
+        "And",
+        0.6016068960374683
+      ],
+      "transform_strength": 1.1370338090635261,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 2,
+      "qk_diag": -0.007149813318597593,
+      "row_peak": 0.026848571514181463,
+      "broadcast": 0.02524398896836223,
+      "ov_diag": 0.1808999077795474,
+      "ov_self_frac": 0.15,
+      "ov_self_pos": 0.8,
+      "ov_top_map": [
+        "_I",
+        "_me",
+        0.6487559954512228
+      ],
+      "transform_strength": 0.27365655513855014,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 8,
+      "head": 3,
+      "qk_diag": -0.005313508076173069,
+      "row_peak": 0.02665209747502919,
+      "broadcast": 0.02520034713995769,
+      "ov_diag": -0.06952805709736967,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.4,
+      "ov_top_map": [
+        "_it",
+        "_he",
+        0.4278053286761501
+      ],
+      "transform_strength": 0.7942322318538535,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 4,
+      "qk_diag": -0.011632600780217127,
+      "row_peak": 0.02745598673934351,
+      "broadcast": 0.02528086171144612,
+      "ov_diag": 0.3051653689462396,
+      "ov_self_frac": 0.625,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_is",
+        "_are",
+        0.9853826471099285
+      ],
+      "transform_strength": -0.03300542637590653,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 8,
+      "head": 5,
+      "qk_diag": -0.01987427807463581,
+      "row_peak": 0.02671672695340499,
+      "broadcast": 0.02524332376004344,
+      "ov_diag": 0.3153076875336715,
+      "ov_self_frac": 0.675,
+      "ov_self_pos": 0.975,
+      "ov_top_map": [
+        "_he",
+        "_him",
+        0.81558726032229
+      ],
+      "transform_strength": -0.004426446171572396,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 8,
+      "head": 6,
+      "qk_diag": -0.010221132187342274,
+      "row_peak": 0.027453599563152947,
+      "broadcast": 0.02529208714374525,
+      "ov_diag": 0.03501063922212607,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.5,
+      "ov_top_map": [
+        "US",
+        "MEN",
+        0.830273450669851
+      ],
+      "transform_strength": 0.058088866201370326,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 7,
+      "qk_diag": -0.002931903803116915,
+      "row_peak": 0.02713715508362168,
+      "broadcast": 0.02531567280738835,
+      "ov_diag": 0.22805852403127394,
+      "ov_self_frac": 0.675,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_your",
+        "_his",
+        0.3654328899377318
+      ],
+      "transform_strength": -0.017288452733674964,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 8,
+      "head": 8,
+      "qk_diag": -0.0030133615510284434,
+      "row_peak": 0.026811913253927955,
+      "broadcast": 0.02531533899722787,
+      "ov_diag": 0.07183336987059667,
+      "ov_self_frac": 0.2,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "_your",
+        "_my",
+        0.2234243378380849
+      ],
+      "transform_strength": 0.06679411842151334,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 9,
+      "qk_diag": 0.00340175624855202,
+      "row_peak": 0.026517260699366718,
+      "broadcast": 0.025184082698178976,
+      "ov_diag": -0.023248813767108224,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.475,
+      "ov_top_map": [
+        "_you",
+        "!",
+        0.475327782345502
+      ],
+      "transform_strength": 0.7363020361043179,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 10,
+      "qk_diag": 0.011892032503408458,
+      "row_peak": 0.02662510699887225,
+      "broadcast": 0.025114439571936494,
+      "ov_diag": -0.181749590146444,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.2,
+      "ov_top_map": [
+        "\u010a",
+        "And",
+        0.5326084821903191
+      ],
+      "transform_strength": 0.8061471972338194,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 8,
+      "head": 11,
+      "qk_diag": -0.007331721396012736,
+      "row_peak": 0.02652680536923997,
+      "broadcast": 0.02521093556495662,
+      "ov_diag": 0.04883504286765262,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.55,
+      "ov_top_map": [
+        "_him",
+        "_his",
+        0.5279571148290509
+      ],
+      "transform_strength": 0.11504316361768985,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 0,
+      "qk_diag": 0.011372200447962109,
+      "row_peak": 0.026826869948104005,
+      "broadcast": 0.025283524375734195,
+      "ov_diag": 0.1880338476218589,
+      "ov_self_frac": 0.625,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_his",
+        "_him",
+        0.4301136693619142
+      ],
+      "transform_strength": 0.13478398194652053,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 9,
+      "head": 1,
+      "qk_diag": 0.01021030805016294,
+      "row_peak": 0.02704190691242677,
+      "broadcast": 0.025280413455971335,
+      "ov_diag": -0.07320952577933107,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.35,
+      "ov_top_map": [
+        "I",
+        "_that",
+        0.7564698769066985
+      ],
+      "transform_strength": 1.035055460612182,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 2,
+      "qk_diag": 0.0010379325312652068,
+      "row_peak": 0.02646712350713784,
+      "broadcast": 0.025302483340636513,
+      "ov_diag": 0.11161352544116027,
+      "ov_self_frac": 0.375,
+      "ov_self_pos": 0.95,
+      "ov_top_map": [
+        "_I",
+        "I",
+        0.21697285440621006
+      ],
+      "transform_strength": 0.08877886342868221,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 3,
+      "qk_diag": -0.018133711753790003,
+      "row_peak": 0.026828844408760245,
+      "broadcast": 0.025278655246893177,
+      "ov_diag": 0.25597270554107104,
+      "ov_self_frac": 0.725,
+      "ov_self_pos": 0.975,
+      "ov_top_map": [
+        "MEN",
+        "US",
+        0.4619020025192496
+      ],
+      "transform_strength": -0.0128270799023541,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 9,
+      "head": 4,
+      "qk_diag": -0.00032506045417181155,
+      "row_peak": 0.026795252519650037,
+      "broadcast": 0.025186489665332046,
+      "ov_diag": 0.1105002761077782,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.625,
+      "ov_top_map": [
+        "?",
+        ":",
+        0.9397453201066449
+      ],
+      "transform_strength": 0.0015567139833344568,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 5,
+      "qk_diag": 0.029070376271639477,
+      "row_peak": 0.026548646564071944,
+      "broadcast": 0.02522846252137943,
+      "ov_diag": -0.2162809396741137,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.175,
+      "ov_top_map": [
+        "\u010a",
+        "And",
+        0.8555086616368313
+      ],
+      "transform_strength": 1.314604868888666,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 6,
+      "qk_diag": -0.004484120425938903,
+      "row_peak": 0.02709124034274655,
+      "broadcast": 0.025252278363505198,
+      "ov_diag": 0.024157173165298973,
+      "ov_self_frac": 0.075,
+      "ov_self_pos": 0.425,
+      "ov_top_map": [
+        "MEN",
+        "_with",
+        0.4430926978402143
+      ],
+      "transform_strength": 0.37597495037589723,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 7,
+      "qk_diag": -0.019232711762166465,
+      "row_peak": 0.026542218699239284,
+      "broadcast": 0.025188418391604454,
+      "ov_diag": 0.022510104113092327,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.525,
+      "ov_top_map": [
+        "_I",
+        "_me",
+        0.5257894853828067
+      ],
+      "transform_strength": 0.11011840413789653,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 8,
+      "qk_diag": -0.004859550820661005,
+      "row_peak": 0.026357498351288346,
+      "broadcast": 0.02517147569011078,
+      "ov_diag": 0.13944618034675513,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.7,
+      "ov_top_map": [
+        "US",
+        "cius",
+        0.6880289149337849
+      ],
+      "transform_strength": 0.06925715500898788,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 9,
+      "head": 9,
+      "qk_diag": -0.0031066164855912052,
+      "row_peak": 0.026843110448097108,
+      "broadcast": 0.025261208238976395,
+      "ov_diag": -0.013834409797855784,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.45,
+      "ov_top_map": [
+        "I",
+        "IA",
+        0.5601324649871526
+      ],
+      "transform_strength": 0.45963064390121916,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 9,
+      "head": 10,
+      "qk_diag": -0.001307454921159756,
+      "row_peak": 0.02696968485830481,
+      "broadcast": 0.025225643415184018,
+      "ov_diag": 0.3681725740786277,
+      "ov_self_frac": 0.875,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_is",
+        "_are",
+        0.5765556100097671
+      ],
+      "transform_strength": -0.04657943882887827,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 9,
+      "head": 11,
+      "qk_diag": -0.005608417029432603,
+      "row_peak": 0.027377029744821302,
+      "broadcast": 0.02532550258838893,
+      "ov_diag": -0.0876090307164767,
+      "ov_self_frac": 0.0,
+      "ov_self_pos": 0.225,
+      "ov_top_map": [
+        "\u010a",
+        ".",
+        1.510201924894234
+      ],
+      "transform_strength": 1.520294207234542,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 10,
+      "head": 0,
+      "qk_diag": 0.007520068537709696,
+      "row_peak": 0.026614042758584866,
+      "broadcast": 0.025227762330654997,
+      "ov_diag": 0.18787845096577901,
+      "ov_self_frac": 0.35,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "cius",
+        "US",
+        0.5210499475268604
+      ],
+      "transform_strength": -0.7633162066916497,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 10,
+      "head": 1,
+      "qk_diag": 0.01835175933905833,
+      "row_peak": 0.026863726779755636,
+      "broadcast": 0.02525100230469613,
+      "ov_diag": 0.07939337903234037,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.7,
+      "ov_top_map": [
+        "'s",
+        "'d",
+        0.5034216025166892
+      ],
+      "transform_strength": 0.5324168808395733,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 10,
+      "head": 2,
+      "qk_diag": 0.004466038362564541,
+      "row_peak": 0.027127689682732447,
+      "broadcast": 0.02529344487880008,
+      "ov_diag": 0.1678334557977467,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.625,
+      "ov_top_map": [
+        "MEN",
+        "US",
+        1.6062626625940415
+      ],
+      "transform_strength": 0.18409237110914178,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 10,
+      "head": 3,
+      "qk_diag": 0.012607344122140325,
+      "row_peak": 0.026733346771047384,
+      "broadcast": 0.025239751882401906,
+      "ov_diag": 0.046991221513148274,
+      "ov_self_frac": 0.05,
+      "ov_self_pos": 0.675,
+      "ov_top_map": [
+        "_as",
+        "And",
+        0.43928920061021604
+      ],
+      "transform_strength": 0.38630703915964215,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 10,
+      "head": 4,
+      "qk_diag": 0.012408748873177979,
+      "row_peak": 0.0268966081504816,
+      "broadcast": 0.0253851281477172,
+      "ov_diag": 0.27210285580886484,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.875,
+      "ov_top_map": [
+        "_of",
+        "_for",
+        2.19821041408308
+      ],
+      "transform_strength": 1.2951404454049715,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 10,
+      "head": 5,
+      "qk_diag": -0.003891437806353219,
+      "row_peak": 0.026641205382087047,
+      "broadcast": 0.025149691441100613,
+      "ov_diag": 0.7077862701125964,
+      "ov_self_frac": 0.7,
+      "ov_self_pos": 0.975,
+      "ov_top_map": [
+        "IA",
+        "US",
+        1.573933948134439
+      ],
+      "transform_strength": 0.014916462490476512,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 10,
+      "head": 6,
+      "qk_diag": 0.011146553636221013,
+      "row_peak": 0.026603474435468493,
+      "broadcast": 0.025147002071843443,
+      "ov_diag": 0.1159564854694057,
+      "ov_self_frac": 0.175,
+      "ov_self_pos": 0.825,
+      "ov_top_map": [
+        "'d",
+        "?",
+        0.34175742224386974
+      ],
+      "transform_strength": 0.10951258630829944,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 10,
+      "head": 7,
+      "qk_diag": 0.027594021848582357,
+      "row_peak": 0.026743002984679486,
+      "broadcast": 0.025268143194396065,
+      "ov_diag": 0.030164393891823443,
+      "ov_self_frac": 0.175,
+      "ov_self_pos": 0.475,
+      "ov_top_map": [
+        ".",
+        "_for",
+        0.7557552355915964
+      ],
+      "transform_strength": 0.5980234907178836,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 10,
+      "head": 8,
+      "qk_diag": -0.0017184286928770651,
+      "row_peak": 0.027037566950878278,
+      "broadcast": 0.025289535845379695,
+      "ov_diag": -0.5018106617051805,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.1,
+      "ov_top_map": [
+        "_and",
+        ";",
+        2.6908392897646465
+      ],
+      "transform_strength": 3.886828735058227,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 10,
+      "head": 9,
+      "qk_diag": 0.0002438611032655922,
+      "row_peak": 0.026845053975869348,
+      "broadcast": 0.025245948087802655,
+      "ov_diag": 0.6765651831321665,
+      "ov_self_frac": 0.9,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_I",
+        "_me",
+        0.7667678828859222
+      ],
+      "transform_strength": -0.27304286442404846,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 10,
+      "head": 10,
+      "qk_diag": 0.0019488521400480292,
+      "row_peak": 0.026753909081180617,
+      "broadcast": 0.025241659838635005,
+      "ov_diag": -0.20651549712637238,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.35,
+      "ov_top_map": [
+        ",",
+        "'",
+        2.50263316124196
+      ],
+      "transform_strength": 2.2261236041927375,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 10,
+      "head": 11,
+      "qk_diag": 0.01653060055591134,
+      "row_peak": 0.027170365024743837,
+      "broadcast": 0.02529420116804006,
+      "ov_diag": 0.2534887507131193,
+      "ov_self_frac": 0.6,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_your",
+        "_his",
+        0.7047052933179971
+      ],
+      "transform_strength": 0.008472098273412332,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 0,
+      "qk_diag": 0.0245477701088159,
+      "row_peak": 0.026597030055222026,
+      "broadcast": 0.025216058644643703,
+      "ov_diag": 0.3951643300580679,
+      "ov_self_frac": 0.225,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "_in",
+        "_for",
+        1.7117434870462531
+      ],
+      "transform_strength": 1.0532000538091535,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 1,
+      "qk_diag": 0.0142808861152272,
+      "row_peak": 0.026553506353495303,
+      "broadcast": 0.025163070062515114,
+      "ov_diag": 0.28274172424563376,
+      "ov_self_frac": 0.25,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "MEN",
+        "_you",
+        0.890327065349744
+      ],
+      "transform_strength": 0.9725098989919465,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 2,
+      "qk_diag": 0.01753358801696836,
+      "row_peak": 0.026654297332110822,
+      "broadcast": 0.025180422277340846,
+      "ov_diag": 0.2355054280683118,
+      "ov_self_frac": 0.25,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "cius",
+        "US",
+        0.9074587948966055
+      ],
+      "transform_strength": -1.299270485722713,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 3,
+      "qk_diag": 0.0160272320355541,
+      "row_peak": 0.026449174206168435,
+      "broadcast": 0.02523919840856977,
+      "ov_diag": 0.22273635762081825,
+      "ov_self_frac": 0.8,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "I",
+        "US",
+        0.29168486276920635
+      ],
+      "transform_strength": -0.22333326259522046,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 4,
+      "qk_diag": 0.010729628888640996,
+      "row_peak": 0.02640791017696812,
+      "broadcast": 0.025135465760511556,
+      "ov_diag": -0.06513921031243103,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.55,
+      "ov_top_map": [
+        "_of",
+        "\u010a",
+        3.536699117074288
+      ],
+      "transform_strength": 5.508231859987678,
+      "qk_opcode": "DIFFUSE",
+      "write": "TRANSFORM",
+      "instruction": "DIFFUSE->TRANSFORM"
+    },
+    {
+      "layer": 11,
+      "head": 5,
+      "qk_diag": 0.02449987101874652,
+      "row_peak": 0.026663410349019524,
+      "broadcast": 0.02518399063679836,
+      "ov_diag": 0.3343881854340835,
+      "ov_self_frac": 0.25,
+      "ov_self_pos": 0.85,
+      "ov_top_map": [
+        "_be",
+        "_to",
+        1.1763146041620738
+      ],
+      "transform_strength": 1.4706353765489941,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 6,
+      "qk_diag": 0.010463671430899359,
+      "row_peak": 0.026443700446035657,
+      "broadcast": 0.025166611376995374,
+      "ov_diag": 0.12395548469648375,
+      "ov_self_frac": 0.2,
+      "ov_self_pos": 0.625,
+      "ov_top_map": [
+        "_in",
+        "_the",
+        0.6741129890484948
+      ],
+      "transform_strength": 0.25901539950338937,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 7,
+      "qk_diag": 0.014513880365598239,
+      "row_peak": 0.02656294848899881,
+      "broadcast": 0.02523065600855493,
+      "ov_diag": 0.18041740538730924,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.85,
+      "ov_top_map": [
+        "_you",
+        "_for",
+        1.4922625786406756
+      ],
+      "transform_strength": 1.8303029174117493,
+      "qk_opcode": "DIFFUSE",
+      "write": "COPY",
+      "instruction": "DIFFUSE->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 8,
+      "qk_diag": 0.03321581735670785,
+      "row_peak": 0.02732080817031073,
+      "broadcast": 0.025345011020293396,
+      "ov_diag": -7.575176739898565,
+      "ov_self_frac": 0.025,
+      "ov_self_pos": 0.225,
+      "ov_top_map": [
+        "_and",
+        "_for",
+        33.239338144274875
+      ],
+      "transform_strength": 45.575169795367586,
+      "qk_opcode": "COPY",
+      "write": "TRANSFORM",
+      "instruction": "COPY->TRANSFORM"
+    },
+    {
+      "layer": 11,
+      "head": 9,
+      "qk_diag": 0.02012285603254935,
+      "row_peak": 0.026484185512803838,
+      "broadcast": 0.025182144851307313,
+      "ov_diag": 0.1925644156500921,
+      "ov_self_frac": 0.15,
+      "ov_self_pos": 0.9,
+      "ov_top_map": [
+        "_are",
+        "And",
+        0.5615260552628604
+      ],
+      "transform_strength": 0.40648437050109987,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 10,
+      "qk_diag": 0.04176356702163969,
+      "row_peak": 0.026948216322685986,
+      "broadcast": 0.02525928223908433,
+      "ov_diag": 0.3514571139081368,
+      "ov_self_frac": 0.625,
+      "ov_self_pos": 1.0,
+      "ov_top_map": [
+        "_you",
+        "_I",
+        0.6794043043260458
+      ],
+      "transform_strength": -0.09174413511106572,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    },
+    {
+      "layer": 11,
+      "head": 11,
+      "qk_diag": 0.04208996006268226,
+      "row_peak": 0.027157123399917417,
+      "broadcast": 0.02549482005455624,
+      "ov_diag": 0.2806385254388226,
+      "ov_self_frac": 0.1,
+      "ov_self_pos": 0.7,
+      "ov_top_map": [
+        "_you",
+        "_I",
+        3.1502430304947233
+      ],
+      "transform_strength": 1.3924206318532806,
+      "qk_opcode": "COPY",
+      "write": "COPY",
+      "instruction": "COPY->COPY"
+    }
+  ]
+}
