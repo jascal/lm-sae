@@ -1,0 +1,31 @@
+{
+  "experiment": "cross-position pair-probe",
+  "model": "gpt2",
+  "layer": 6,
+  "per_dist": {
+    "k1": {
+      "n_pos": 269,
+      "single_mauc": 0.997667851585547,
+      "within_pair_mauc": 0.9649700481804374,
+      "cross_pair_mauc": 0.9965499834401768,
+      "single_cov95": 1.0,
+      "cross_cov95": 1.0
+    },
+    "k2": {
+      "n_pos": 53,
+      "single_mauc": 0.8188166293244035,
+      "within_pair_mauc": 0.7779933896935354,
+      "cross_pair_mauc": 0.8241639123723064,
+      "single_cov95": 0.0,
+      "cross_cov95": 0.0
+    },
+    "k3": {
+      "n_pos": 78,
+      "single_mauc": 0.7755827354424393,
+      "within_pair_mauc": 0.7546881974005902,
+      "cross_pair_mauc": 0.8485942624679959,
+      "single_cov95": 0.0,
+      "cross_cov95": 0.0
+    }
+  }
+}
