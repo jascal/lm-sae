@@ -1,0 +1,75 @@
+{
+  "experiment": "chi-ladder (residual-\u03c7 vs macro-legibility up the composition ladder)",
+  "model": "gpt2",
+  "layer": 6,
+  "macro_heads": {
+    "induction": [
+      [
+        7,
+        11
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        9
+      ]
+    ],
+    "duplicate": [
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        3,
+        0
+      ]
+    ]
+  },
+  "ladder": {
+    "rung0_token": {
+      "residual_bestAUC": 0.9867349112918833,
+      "macro_bestAUC": 0.6580692504587885,
+      "residual_chi": 0.013265088708116712,
+      "residual_cov95": 0.9,
+      "n_labels": 10
+    },
+    "rung0b_lexical": {
+      "residual_bestAUC": 0.8382354385420334,
+      "macro_bestAUC": 0.6743059701070222,
+      "residual_chi": 0.16176456145796658,
+      "residual_cov95": 0.0,
+      "n_labels": 2
+    },
+    "rung1_repeat": {
+      "residual_bestAUC": 0.7797125380116959,
+      "macro_bestAUC": 1.0,
+      "residual_chi": 0.22028746198830407,
+      "residual_cov95": 0.0,
+      "n_labels": 1
+    },
+    "rung2_induction": {
+      "residual_bestAUC": 0.8330976510742498,
+      "macro_bestAUC": 0.9381271174714456,
+      "residual_chi": 0.16690234892575018,
+      "residual_cov95": 0.0,
+      "n_labels": 1
+    }
+  },
+  "residual_AUC_falls": 0.15363726021763346,
+  "macro_AUC_rises": 0.2800578670126571
+}
