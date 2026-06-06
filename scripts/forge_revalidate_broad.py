@@ -93,7 +93,6 @@ def main(argv=None):
             ind_mask.append(_induction_predictable(c)[1:].astype(bool))
     Xs = {L: np.concatenate(v, 0).astype(np.float32) for L, v in Xs.items()}
     W_U = model.lm_head.weight.detach().numpy().astype(np.float32)
-    d = W_U.shape[1]
 
     def forge_kl(L, Rf):
         inj = {}
