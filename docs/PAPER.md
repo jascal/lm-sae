@@ -263,10 +263,13 @@ content-opcode legibility 7/8 at L12, peaks mid-network (`gemma_opcode_table_sum
 **Sink ablation — magnitude ≠ dependence** (`sink_ablation.py`, block key-0 + renormalize, short-context
 ΔNLL): GPT-2 **+42%**, Gemma +2%, Llama +1%, Qwen +1%. Only GPT-2 is functionally dependent on its sink;
 Llama/Qwen sink *harder* (55/44%) yet shrug off its removal — the big sink is a redistributable no-op for
-them. Refutes "the sink is a universal load-bearing stabilizer"; the dependence outlier is GPT-2 (leading
-hypothesis: its learned **absolute** positional embeddings make pos-0 a positional anchor, vs RoPE in the
-other three). Caveat: short-context regime, distinct from StreamingLLM's long-context KV-eviction; within-model
-Δ only (absolute NLLs not cross-comparable). `runs/gemma/sink_ablation_*_summary.json`.
+them. Refutes "the sink is a universal load-bearing stabilizer"; the dependence outlier is GPT-2.
+**Position-resolved** sharpens it: GPT-2's dependence is *position-independent* — a persistent **+1.5-nat
+floor even at query positions 32+** (abundant context to redistribute onto), vs **~0 for all three RoPE
+models** — exactly the signature expected if GPT-2's learned **absolute** positional embeddings make pos-0 an
+anchor read at every position, while RoPE has no such anchor. Caveat: short-context regime, distinct from
+StreamingLLM's long-context KV-eviction; within-model Δ only (absolute NLLs not cross-comparable).
+`runs/gemma/sink_ablation_*_summary.json` (incl. per-position ΔNLL arrays).
 
 **Figure C1** (cross-model plumbing composition): grouped bars of the 6 attention buckets for all four
 models from the `disasm_portable_*` JSONs — visually carries "**sink is high in 3/4; Gemma is the low

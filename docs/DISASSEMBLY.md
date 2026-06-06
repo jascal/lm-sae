@@ -218,6 +218,22 @@ is a genuinely redistributable no-op — and Gemma (low sink) is likewise unaffe
 the naive "the sink is a universal load-bearing stabilizer" reading *and* the guess that sink magnitude
 tracks dependence: the only outlier on *dependence* is GPT-2.
 
+**Position-resolved (ΔNLL by query position)** sharpens it. All four peak at the earliest positions (little
+context to redistribute onto) and decay, but two signatures separate GPT-2 from the RoPE models:
+
+| | ΔNLL @ p1 | early (p1–8) | late (p32+) |
+|---|---|---|---|
+| **GPT-2** | +9.25 | +5.23 | **+1.57** |
+| Gemma-2 | −0.81 | +0.51 | +0.15 |
+| Llama-3.2 | +1.30 | +0.34 | **+0.00** |
+| Qwen-2.5 | +0.79 | +0.36 | **+0.01** |
+
+(1) GPT-2's early spike is ~7× the others' (p1 +9.25 vs ≤+1.3) — even at position 1 the RoPE models cope via
+self/local attention, GPT-2 cannot. (2) The decisive one: **GPT-2 keeps a persistent ~+1.5-nat floor at
+positions 32+** (where dozens of content tokens are available to redistribute onto), while all three RoPE
+models fall to **~0**. So GPT-2 reads its sink for prediction *at every position*, not just when context is
+short; the RoPE models don't depend on it at all once any context exists.
+
 **Leading hypothesis (untested):** GPT-2's uniqueness tracks its **learned absolute positional embeddings** —
 position 0 is a genuine absolute-position anchor heads rely on, so blocking it disrupts GPT-2's positional
 computation; the other three use **RoPE** (relative), so key-0 is not a positional anchor and is freely

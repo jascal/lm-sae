@@ -6,7 +6,9 @@ causal mask, setting key-0 to -inf for all query positions >= 1 (query 0 keeps i
 row is not fully masked). The model's own attention math (GQA, logit-softcap, scaling, RoPE positions) is
 otherwise untouched — we only remove the *option* to park budget on the sink, forcing each head to
 redistribute onto content. Reports baseline vs ablated mean NLL (+ the measured sink fraction before/after,
-which must drop to ~0 — the intervention's own validation).
+which must drop to ~0 — the intervention's own validation), and **resolves ΔNLL by query position** (early
+vs late in the window) to localize where the damage lands — early-concentrated would mean "the sink is the
+rest-state heads fall back on when there's little context to redistribute onto."
 
 Prediction (from the 4-model disassembly): large ΔNLL for the heavy-sink models (GPT-2 / Llama / Qwen,
 sink 44-55%) and small ΔNLL for Gemma-2 (sink ~4%), whose sandwich-norm + attn_logit_softcap give an
@@ -17,6 +19,8 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+
+import numpy as np
 
 
 def _attn_modules(model):
@@ -57,15 +61,22 @@ def main(argv=None):
     chunks = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
     print(f"{args.model}: {len(attns)} layers, {len(chunks)} chunks")
 
-    def nll():
-        tot = 0.0; n = 0
+    P1 = args.ctx - 1
+
+    def measure():
+        """Per-query-position next-token NLL: returns (sum[P1], count[P1])."""
+        s = np.zeros(P1); cnt = np.zeros(P1)
         with torch.no_grad():
             for c in chunks:
                 t = torch.tensor([c], device=dev)
                 lp = F.log_softmax(model(input_ids=t).logits[0, :-1].float(), -1)
                 tgt = t[0, 1:]
-                tot += float((-lp[torch.arange(len(tgt), device=dev), tgt]).sum()); n += len(tgt)
-        return tot / n
+                nl = (-lp[torch.arange(len(tgt), device=dev), tgt]).cpu().numpy()
+                k = min(len(nl), P1); s[:k] += nl[:k]; cnt[:k] += 1
+        return s, cnt
+
+    def total(s, cnt):
+        return float(s.sum() / max(cnt.sum(), 1))
 
     def sink_frac():
         num = den = 0.0
@@ -93,30 +104,44 @@ def main(argv=None):
                 new_args[i] = v; changed = True
         return (tuple(new_args), new_kwargs) if changed else None
 
-    print("[baseline] measuring NLL + sink fraction ...")
-    base_nll = nll(); base_sink = sink_frac()
+    print("[baseline] measuring NLL (by position) + sink fraction ...")
+    sb, cb = measure(); base_nll = total(sb, cb); base_sink = sink_frac()
     print(f"  baseline NLL {base_nll:.4f}  | sink fraction {base_sink:.3f}")
 
     handles = [m.register_forward_pre_hook(pre_hook, with_kwargs=True) for m in attns]
     try:
         abl_sink = sink_frac()                              # validation: should drop to ~0
-        abl_nll = nll()
+        sa, ca = measure()
     finally:
         for h in handles:
             h.remove()
+    abl_nll = total(sa, ca)
     print(f"  ablated  NLL {abl_nll:.4f}  | sink fraction {abl_sink:.3f}  (intervention {'OK' if abl_sink < base_sink * 0.5 + 1e-3 else 'DID NOT BITE — check mask plumbing'})")
+
+    # ---- position-resolved: does the damage concentrate at early query positions? ----
+    base_pp = sb / np.maximum(cb, 1); abl_pp = sa / np.maximum(ca, 1); dpp = abl_pp - base_pp
+    d_early = float(np.mean(dpp[1:9]))          # query positions 1..8 (little context to redistribute onto)
+    d_late = float(np.mean(dpp[32:]))           # positions 32+ (plenty of content available)
+    probe = [p for p in (1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 80) if p < P1]
+    print("  ΔNLL by query position: " + "  ".join(f"p{p}:{dpp[p]:+.2f}" for p in probe))
+    shape = "EARLY-concentrated (decays with position)" if d_early > 2 * max(d_late, 1e-6) else "flat across positions"
+    print(f"  early (pos1-8) ΔNLL {d_early:+.3f}  vs  late (pos32+) ΔNLL {d_late:+.3f}  ->  {shape}")
 
     d_nll = abl_nll - base_nll
     out = {"experiment": f"sink ablation (block key-0): {args.model}", "model": args.model,
-           "corpus": args.corpus, "n_chunks": len(chunks),
+           "corpus": args.corpus, "n_chunks": len(chunks), "ctx": args.ctx,
            "baseline_nll": base_nll, "ablated_nll": abl_nll,
            "delta_nll": d_nll, "delta_nll_frac_of_baseline": d_nll / base_nll,
            "sink_frac_baseline": base_sink, "sink_frac_ablated": abl_sink,
-           "intervention_ok": bool(abl_sink < base_sink * 0.5 + 1e-3)}
+           "intervention_ok": bool(abl_sink < base_sink * 0.5 + 1e-3),
+           "delta_nll_early_pos1_8": d_early, "delta_nll_late_pos32plus": d_late,
+           "delta_nll_by_position": [float(x) for x in dpp],
+           "baseline_nll_by_position": [float(x) for x in base_pp],
+           "ablated_nll_by_position": [float(x) for x in abl_pp]}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
-    print(f"\n[verdict] sink {base_sink:.1%} -> blocking it changes NLL by {d_nll:+.3f} "
-          f"({d_nll / base_nll:+.0%} of baseline). {'LOAD-BEARING' if d_nll / base_nll > 0.05 else 'mild/inert'}.")
+    print(f"\n[verdict] sink {base_sink:.1%} -> ΔNLL {d_nll:+.3f} ({d_nll / base_nll:+.0%} of baseline); "
+          f"early {d_early:+.2f} / late {d_late:+.2f}.")
     print(f"[done] {args.output}")
     return out
 
