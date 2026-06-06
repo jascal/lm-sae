@@ -50,7 +50,10 @@ def main(argv=None):
     p.add_argument("--layers", default="5,6,7", help="forged layers (residual entering each; induction band)")
     p.add_argument("--ranks", default="8,32")
     p.add_argument("--n-random-seeds", type=int, default=4)
-    p.add_argument("--top-k", type=int, default=4)
+    p.add_argument("--top-k", type=int, default=4,
+                   help="# prev-token writer heads (the induction predecessor-write is carried by a few — "
+                        "4.11 dominant + a small tail; top-4 covers them and matches the random-set size)")
+    p.add_argument("--seed", type=int, default=0, help="offsets the SAE-train seed + the random-head seeds")
     p.add_argument("--max-tokens", type=int, default=12000)
     p.add_argument("--ctx", type=int, default=96)
     p.add_argument("--width", type=int, default=2048)
@@ -114,7 +117,7 @@ def main(argv=None):
         X5 = Xs[L]
         mu, sd = X5.mean(0, keepdims=True), X5.std(0, keepdims=True) + 1e-6
         Xz = ((X5 - mu) / sd).astype(np.float32)
-        params = _train_topk_sae(Xz, args.width, args.k, args.steps, 1e-3, 0)
+        params = _train_topk_sae(Xz, args.width, args.k, args.steps, 1e-3, args.seed)
         Wd = params[1].numpy().astype(np.float64)
         r_recon = ((_encode(Xz, params, args.k) @ Wd.T) * sd + mu).astype(np.float32)
         base_ik, base_ck = forge_kl(L, r_recon)
@@ -134,7 +137,7 @@ def main(argv=None):
             wik, wck, wtax = forge_sub(det, r)
             rnds = []
             for s in range(args.n_random_seeds):
-                rg = np.random.default_rng(1000 * L + 10 * r + s)
+                rg = np.random.default_rng(1_000_000 * args.seed + 1000 * L + 10 * r + s)
                 rheads = [(int(rg.integers(0, L)), int(rg.integers(0, Hn))) for _ in range(args.top_k)]
                 rnds.append(forge_sub(rheads, r))
             rtax = np.array([t for _ik, _ck, t in rnds]); rmu = float(rtax.mean()); rsd = float(rtax.std() + 1e-9)
@@ -151,7 +154,7 @@ def main(argv=None):
 
     out = {"experiment": "broadened compression-controlled re-validation (writer-output U_C)",
            "model": "gpt2", "sae_forge_version": saeforge.__version__, "layers": layers, "ranks": ranks,
-           "n_random_seeds": args.n_random_seeds, "per_layer": report,
+           "n_random_seeds": args.n_random_seeds, "seed": args.seed, "per_layer": report,
            "writer_wins": wins, "tests": tests}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
