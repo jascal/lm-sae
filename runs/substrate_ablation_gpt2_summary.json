@@ -1,0 +1,14 @@
+{
+  "experiment": "norm-preserving substrate ablation",
+  "model": "gpt2",
+  "d_model": 768,
+  "substrate_rank": 144,
+  "losses": {
+    "full": 4.96048386872944,
+    "mean_ablate_SUBSTRATE": 6.3560396484375,
+    "mean_ablate_RANDOM_samedim": 10.746565907689146,
+    "mean_ablate_COMPLEMENT(keep substrate only)": 5.760179096422697
+  },
+  "substrate_cost": 1.3955557797080598,
+  "random_cost": 5.786082038959705
+}
