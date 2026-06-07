@@ -1,7 +1,28 @@
 # Operator catalog — attention operators, surveyed across models
 
 A **working catalog** of attention operators — amateur, exploratory home-science: provisional, descriptive, and
-*not* a definitive reference (one of many catalogs one could draw). Two axes:
+*not* a definitive reference (one of many catalogs one could draw).
+
+## Catalog index
+
+- [`prevtok`](prevtok.md) — positional
+- [`induction`](induction.md) — content
+- [`duplicate`](duplicate.md) — content
+- [`sink`](sink.md) — addressing
+- [`self`](self.md) — addressing
+- [`local`](local.md) — positional
+- [`structural`](structural.md) — structural
+- [`name_mover`](name_mover.md) — circuit
+- [`backup_name_mover`](backup_name_mover.md) — circuit
+- [`negative_mover`](negative_mover.md) — circuit
+- [`s_inhibition`](s_inhibition.md) — circuit
+- [`coreference`](coreference.md) — circuit
+
+**Discovered-candidate dossiers** (UNNAMED load-bearing heads from the [discovery sweep](discovered.md), given the full battery): [`discovered_7.6`](discovered_7.6.md).
+
+## How to read this catalog
+
+Two axes:
 
 > **Taxonomy — classes, instances, variants (read this first).** Each row below is an operator **CLASS**, *not* a
 > single operator: it is a *family* of heads that realize the same operation. The **membership matrix** gives the
@@ -29,25 +50,25 @@ channels / composition / redundancy / cross-model). Per-op data lives under `run
 
 | operator class | kind | gpt2 | gpt2-medium | gpt2-large | gemma-2-2b | Llama-3.2-1B | Qwen2.5-1.5B |
 |---|---|---|---|---|---|---|---|
-| **prevtok** | positional | 0.96 | 0.99 | 0.96 | 0.84 | 0.68 | 0.77 |
-| **induction** | content | 0.92 | 0.91 | 0.96 | 0.94 | 0.94 | 0.99 |
-| **duplicate** | content | 0.62 | 0.86 | 0.96 | 0.85 | 0.74 | 0.97 |
-| **sink** | addressing | 0.95 | 0.96 | 0.96 | 0.07 | 1.00 | 1.00 |
-| **self** | addressing | 0.83 | 0.45 | 0.55 | 0.95 | 0.96 | 1.00 |
-| **local** | positional | 0.34 | 0.34 | 0.34 | 0.31 | 0.27 | 0.28 |
-| **structural** | structural | 0.19 | 0.25 | 0.38 | 0.23 | 0.36 | 0.16 |
+| **prevtok** | positional | 0.96 | 0.99 | 0.96 | 0.88 | 0.68 | 0.77 |
+| **induction** | content | 0.93 | 0.91 | 0.97 | 0.94 | 0.95 | 0.99 |
+| **duplicate** | content | 0.62 | 0.86 | 0.96 | 0.86 | 0.74 | 0.97 |
+| **sink** | addressing | 0.96 | 0.97 | 0.97 | 0.06 | 1.00 | 0.99 |
+| **self** | addressing | 0.84 | 0.45 | 0.55 | 0.97 | 0.96 | 1.00 |
+| **local** | positional | 0.34 | 0.34 | 0.34 | 0.32 | 0.27 | 0.29 |
+| **structural** | structural | 0.20 | 0.25 | 0.39 | 0.24 | 0.35 | 0.17 |
 
 ## Catalog — membership (# heads carrying the op, mass > 0.15; *how many heads in the class?*)
 
 | operator class | kind | gpt2 | gpt2-medium | gpt2-large | gemma-2-2b | Llama-3.2-1B | Qwen2.5-1.5B |
 |---|---|---|---|---|---|---|---|
-| **prevtok** | positional | 31 | 53 | 81 | 107 | 46 | 56 |
-| **induction** | content | 22 | 62 | 76 | 26 | 40 | 54 |
-| **duplicate** | content | 4 | 6 | 23 | 11 | 17 | 16 |
-| **sink** | addressing | 117 | 334 | 553 | 0 | 472 | 292 |
-| **self** | addressing | 10 | 21 | 74 | 149 | 58 | 43 |
-| **local** | positional | 16 | 28 | 42 | 48 | 8 | 22 |
-| **structural** | structural | 2 | 4 | 6 | 7 | 3 | 1 |
+| **prevtok** | positional | 31 | 53 | 80 | 106 | 47 | 57 |
+| **induction** | content | 22 | 61 | 75 | 23 | 40 | 54 |
+| **duplicate** | content | 4 | 6 | 23 | 11 | 16 | 16 |
+| **sink** | addressing | 117 | 335 | 555 | 0 | 446 | 292 |
+| **self** | addressing | 10 | 21 | 74 | 154 | 60 | 43 |
+| **local** | positional | 15 | 29 | 44 | 49 | 8 | 22 |
+| **structural** | structural | 2 | 4 | 9 | 11 | 19 | 4 |
 
 ## Catalog — causal ΔNLL (mean-ablate top-3 heads, generic-prose NLL; *load-bearing on prose?*)
 
@@ -56,30 +77,13 @@ they are load-bearing on their *own* task — see each op's dossier (section B) 
 
 | operator class | kind | gpt2 | gpt2-medium | gpt2-large | gemma-2-2b | Llama-3.2-1B | Qwen2.5-1.5B |
 |---|---|---|---|---|---|---|---|
-| **prevtok** | positional | +0.02 | +0.00 | +0.02 | +0.09 | -0.00 | +0.20 |
-| **induction** | content | +0.01 | -0.01 | +0.01 | -0.29 | +0.00 | +0.00 |
-| **duplicate** | content | +0.11 | -0.01 | -0.00 | -0.96 | +0.03 | -0.00 |
-| **sink** | addressing | +0.02 | +0.01 | -0.00 | +0.00 | +0.00 | -0.00 |
-| **self** | addressing | +0.05 | +0.03 | +0.00 | +0.51 | +0.10 | +3.77 |
-| **local** | positional | +0.00 | +0.00 | +0.02 | +0.51 | -0.00 | +0.20 |
-| **structural** | structural | -0.05 | -0.05 | +0.00 | -0.12 | +1.47 | -0.06 |
-
-## Catalog index
-
-- [`prevtok`](prevtok.md) — positional
-- [`induction`](induction.md) — content
-- [`duplicate`](duplicate.md) — content
-- [`sink`](sink.md) — addressing
-- [`self`](self.md) — addressing
-- [`local`](local.md) — positional
-- [`structural`](structural.md) — structural
-- [`name_mover`](name_mover.md) — circuit
-- [`backup_name_mover`](backup_name_mover.md) — circuit
-- [`negative_mover`](negative_mover.md) — circuit
-- [`s_inhibition`](s_inhibition.md) — circuit
-- [`coreference`](coreference.md) — circuit
-
-**Discovered-candidate dossiers** (UNNAMED load-bearing heads from the [discovery sweep](discovered.md), given the full battery): [`discovered_7.6`](discovered_7.6.md).
+| **prevtok** | positional | +0.01 | +0.03 | +0.01 | -0.01 | +0.01 | +0.22 |
+| **induction** | content | +0.01 | +0.00 | +0.01 | -0.28 | +0.00 | -0.00 |
+| **duplicate** | content | +0.11 | -0.01 | +0.00 | -1.07 | +0.02 | +0.00 |
+| **sink** | addressing | +0.02 | +0.00 | +0.00 | -0.02 | -0.00 | -0.00 |
+| **self** | addressing | +0.02 | +0.03 | +0.01 | +0.48 | +0.10 | +3.73 |
+| **local** | positional | -0.01 | +0.03 | +0.01 | +0.45 | +0.01 | +0.22 |
+| **structural** | structural | -0.01 | -0.03 | -0.00 | -0.12 | +1.38 | -0.05 |
 
 ## The other instruction class: COMPUTE (MLP)
 

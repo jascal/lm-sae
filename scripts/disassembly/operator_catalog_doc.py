@@ -39,12 +39,15 @@ def op_page(op, atlas, dossier):
         lines += [f"**{kinds[op]}** operator (universal/addressing — measured across all models in the catalog).", ""]
     # cross-model catalog row (universal ops)
     if op in atlas["operators"]:
-        lines += ["## Cross-model (catalog row)", "",
-                  "| model | arch | signal | #heads | top head | depth | causal ΔNLL |",
+        nseed = atlas.get("seeds") or (atlas["results"][0].get("seeds") if atlas.get("results") else None)
+        lines += ["## Cross-model (catalog row)" + (f" — signal/causal are mean ± σ over {nseed} probe-resample seeds" if nseed else ""), "",
+                  "| model | arch | signal (±σ) | #heads | top head | depth | causal ΔNLL (±σ) |",
                   "|---|---|---|---|---|---|---|"]
         for r in ok:
             c = r["cells"][op]
-            lines.append(f"| {r['model']} | {r['arch']} | {c['signal']:.3f} | {c['n_heads']} | {c['top_head']} | {c['top_depth']:.2f} | {c['causal_dNLL']:+.3f} |")
+            ss = f" ± {c['signal_std']:.3f}" if "signal_std" in c else ""
+            cs = f" ± {c['causal_std']:.3f}" if "causal_std" in c else ""
+            lines.append(f"| {r['model']} | {r['arch']} | {c['signal']:.3f}{ss} | {c['n_heads']} | {c['top_head']} | {c['top_depth']:.2f} | {c['causal_dNLL']:+.3f}{cs} |")
         lines.append("")
     else:
         heads = atlas.get("gpt2_circuit_ops", {}).get(op)
@@ -119,7 +122,15 @@ def main(argv=None):
     readme = f"""# Operator catalog — attention operators, surveyed across models
 
 A **working catalog** of attention operators — amateur, exploratory home-science: provisional, descriptive, and
-*not* a definitive reference (one of many catalogs one could draw). Two axes:
+*not* a definitive reference (one of many catalogs one could draw).
+
+## Catalog index
+
+{idx}{disc_idx}
+
+## How to read this catalog
+
+Two axes:
 
 > **Taxonomy — classes, instances, variants (read this first).** Each row below is an operator **CLASS**, *not* a
 > single operator: it is a *family* of heads that realize the same operation. The **membership matrix** gives the
@@ -157,10 +168,6 @@ Note: this is **generic-prose** ΔNLL, so *task-specific* ops (induction, duplic
 they are load-bearing on their *own* task — see each op's dossier (section B) for the task-specific causal.
 
 {cau_tbl}
-
-## Catalog index
-
-{idx}{disc_idx}
 
 ## The other instruction class: COMPUTE (MLP)
 
