@@ -48,6 +48,7 @@ The core finding: forging an SAE basis preserves mAUC but collapses cov95 (monos
 | `ceiling_test.py` | **decompilation milestone 4** — forge-basis reconstruction coverage: KL (capability) + cov95 (legibility) + mAUC across SAE width; content/factorability axes decouple (see [`docs/DECOMPILATION.md`](../docs/DECOMPILATION.md)). |
 | `host_width_sweep.py` | **reachability test** — train tiny GPTs from scratch across host width, with/without an oracle-feature-recovery aux loss (linear-recoverability proxy); supervision lifts native cov95 at ~zero capability cost (defeats the tower retrain no-go). |
 | `monosemantic_aux.py` | **aux-mode comparison** (`--seeds`, multi-seed) — none/linear/decorr/dedicated/sparsedict at fixed width; linear-recoverability is the *effective* lever (3/3 seeds beat none; no direct objective beats it; the full in-loop aligned sparse dict is robustly *worst*). |
+| `legibility_crosscheck.py` | **circularity test** — scores the supervision cov95 lift in SAE / raw-neuron / PCA bases; SAE-free metrics corroborate (genuine monosemanticity, not the eval-SAE finding planted features). |
 | `width_sweep_tiny.py` | N1-width sweep (1×–16× over-complete) → the tax is **emergent**, not over-completeness-driven. |
 | `forge_aware_train_tiny.py` | train *through* the SAE basis (geometry-forcing) → halves the tax. |
 | `residual_selector_tiny.py` | tests whether the preserve-set can be chosen **label-free** → falsified. |
