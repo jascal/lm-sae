@@ -931,6 +931,50 @@ cross-model ceiling result (mechanisms invariant, positional register absolute-p
 the **mixer class itself** changes and the copy *capability* persists. `ssm_induction.py`,
 `runs/gemma/ssm_induction_summary.json` (~SSM models run on the sequential Mamba kernel — slow but exact).
 
+## Deep per-operator dossier — the full battery on ONE instruction (induction, first)
+
+The disassembly studied each named op *piecemeal*: induction lived in `composition_dag`/`ssm_induction`,
+prev-token in `cross_model_positional`/`key_patch_cross_model`, name-movers in `self_repair`, the key/value
+channel in `circuit_content_patch`, reuse-across-tasks in `instruction_reuse`. `operator_dossier.py` inverts
+that: pick **one** operator and run **every** measurement on it in a single report — `--op induction` (default),
+extensible to `prevtok|duplicate|name_mover|s_inhibition`. Six sections (A identity · B causal×tasks · C K/V
+channels · D composition in/out · E redundancy curve · F cross-model). First dossier — **induction on GPT-2**:
+
+- **A · IDENTITY (behavioural, not hardcoded).** Top heads by attention mass on the induction pattern:
+  **5.1 (.81), 5.5 (.78), 6.9 (.77), 7.10 (.75), 7.2 (.73)** (then 5.0 .57). The literature set 5.0/5.1/5.5/6.9 is
+  recovered, but behavioural ranking puts **7.10/7.2 ahead of the literature's 7.11** on this probe — a head-set
+  the downstream sections then inherit (see the B caveat).
+- **B · CAUSAL × TASKS.** Ablating those 5 heads: generic **+0.01**, induction **+6.39\***, copy-names **+14.42\***,
+  successor **+0.01**, IOI **+0.28\*** (\* = beyond the random-head bar). Serves induction-copy + copy-names + IOI;
+  **not** generic. **Honest discrepancy:** `instruction_reuse.py` found induction served *successor* (+5.46) with
+  the **literature** set (incl. 7.11/5.0); the behavioural top-5 here does **not** (+0.01). So *which heads you call
+  "induction" changes the causal story* — the successor-by-copying claim is sensitive to the 7.11-vs-7.10 head
+  choice. A real caveat the piecemeal scripts hid by each fixing its own set.
+- **C · CHANNELS (match vs move, in one view).** Reader 5.1 (zero-patch sanity 0.0): **KEY/match** collapses
+  **+43%** when the prev-token head **4.11** is removed from its key (median +0%, **90.8× concentration** — sharp,
+  sparse, one writer); **VALUE/move** is **distributed** (top mover 1.10, ΔV-out 0.22 vs 0.08 median). The K/V
+  dissociation `circuit_content_patch` found across circuits, here localized to the one op.
+- **D · COMPOSITION (local call-graph).** IN→key dominated by **4.11** (.101) — the same K-composition edge C
+  confirms causally — then 4.7/1.0/3.7; OUT→value feeds **layer-6/7** heads (6.7/6.8/6.6/7.0), the composed-OV
+  "virtual heads" `vcomposition.py` named (induction-moved content re-read as a value downstream).
+- **E · REDUNDANCY (the ablation curve).** Primary task induction (baseline +0.674). Per-head **solo**: 5.1 +1.70,
+  7.2 +0.22, 6.9 +0.21, 5.5 +0.08, 7.10 −0.03. **Cumulative**: 1h +1.70 → 2h +2.25 → 3h +3.82 → 4h +5.77 → 5h
+  **+6.39**. The full-set effect (+6.39) **vastly exceeds** the best single head (+1.70) **and the sum of solos
+  (~2.18)** → **strongly superadditive**: the induction heads are a **jointly-necessary / synergistic population**,
+  not a single bottleneck and not independent — removing them together hurts far more than their individual
+  removals predict. (This is the per-op generalization of `self_repair`'s redundancy contrast and the
+  progressive-ablation "redundancy depth" probe, folded into the dossier.)
+- **F · CROSS-MODEL.** Induction behavioural signal + gain elsewhere: gpt2 .81; **gpt2-medium .97 / gain +12.60**;
+  **Qwen-2.5-1.5B (RoPE) 1.00 / gain +14.07**. Strong everywhere, including RoPE — consistent with induction being
+  the content-universal op (the cross-model ceiling + SSM results).
+
+**Net (descriptive):** consolidating the scattered measurements onto one operator reproduces each prior thread
+*and* surfaces what the piecemeal layout obscured — the head-set sensitivity of the causal profile (B) and the
+**superadditivity** of the redundancy (E). SAE-feature operands (what induction reads/writes in feature space —
+the "subword name-completion" finding) are the one battery section **not** run here (needs a SAE); flagged as the
+next layer. `operator_dossier.py --op induction`, `runs/disassembly/dossier_induction_summary.json`, figure
+`runs/disassembly/dossier_induction.png`. The harness runs the same six sections for the other operators.
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
