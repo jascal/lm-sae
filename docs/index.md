@@ -93,10 +93,12 @@ in-context-copy *capability* survives a non-attention mixer (Mamba), though the 
 
 ## Future work
 
-Per-class **SAE-feature operands** (what each op reads/writes in feature space — the last catalog-depth gap) ·
-executable decompilation (recompile a validated circuit, KL ≈ host) · the outlier follow-ups in
-[Cross-model findings](FINDINGS.md). *(Done: the MLP/COMPUTE family, cross-model circuit discovery, dossiering the
-discovered candidates, the cross-model deep dossier across all six models, and the MLP extended-embedding test.)*
+**Executable decompilation** (recompile a validated circuit, KL ≈ host) · circuit-edge SAE-feature content (the
+operator [SAE operands](operators/sae_operands.md) exist; the per-edge version is next) · the outlier follow-ups
+in [Cross-model findings](FINDINGS.md) · the pivot to **other models / more decompiler research**. *(Done: the
+MLP/COMPUTE family + its extended-embedding mechanism test, cross-model circuit discovery, dossiering the
+discovered candidates, the cross-model deep dossier (identity/causal/channel/redundancy) across all six models,
+the outlier digs, and **per-operator SAE-feature operands on GPT-2 + Gemma** — the catalog-depth gap, now filled.)*
 
 ## Sister track
 

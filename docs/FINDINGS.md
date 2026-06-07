@@ -18,6 +18,11 @@ not to trust."
 - **The early MLP is largely an "extended embedding" in 5/6 models** — MLP0's output is mostly fixed by the current
   token identity (token-determinism η²: GPT-2 0.63, Gemma 0.91, Qwen 0.65), the classic detokenizer reading
   ([MLP extended-embedding test](operators/mlp_detokenizer.md)).
+- **In feature space, the copy/suppress split survives** — reading operators in monosemantic SAE features (the
+  [SAE-feature operands](operators/sae_operands.md), GPT-2 + Gemma): the copy ops have positive OV copy-scores on
+  their read-feature's tokens and `negative_mover` is the only non-positive circuit op (copy-suppression). The
+  *read*-features are cleaner on GPT-2 than Gemma (whose heads are `<bos>`/structural-heavy on this corpus) —
+  provisional, single-corpus.
 
 ## What scales — within a family, not just across architectures
 
