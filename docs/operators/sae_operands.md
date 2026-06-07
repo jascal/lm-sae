@@ -29,11 +29,11 @@ The token-operand catalog says which **tokens** an operator binds; this says whi
 
 | operator | head | kind | reads (SAE feature) | copy-score (OV) |
 |---|---|---|---|---|
-| `duplicate` | 1.4 _(SAE L0, head L1)_ | content | **cius/▁belly/VIR**; **▁the**; **<bos>** | -0.15 (suppresses) |
+| `duplicate` | 1.4 _(SAE L0, head L1)_ | content | **cius/▁belly/VIR**; **▁the**; **UMN/GIL/▁Cai** | -0.15 (suppresses) |
 | `sink` | 0.3 | addressing | **cius/▁belly/VIR**; **UMN/GIL/▁Cai**; **▁Citizen** | +0.10 (copies) |
 | `local` | 0.0 | positional | **cius/▁belly/VIR**; **UMN/GIL/▁Cai**; **▁the** | +0.02 (≈neutral) |
-| `induction` | 6.3 | content | **<bos>**; **First**; **▁gods/▁run/▁petition** | -0.11 (suppresses) |
-| `prevtok` | 21.7 | positional | **▁Citizen/./▁belly**; **▁the/▁a/▁to**; **<bos>** | -0.10 (suppresses) |
+| `induction` | 6.3 | content | **First**; **▁gods/▁run/▁petition**; **Before** | +0.06 (copies) |
+| `prevtok` | 21.7 | positional | **▁Citizen/./▁belly**; **▁the/▁a/▁to**; **First/▁first** | -0.10 (suppresses) |
 | `self` | 25.7 _(SAE L24, head L25)_ | addressing | **▁the/⏎⏎/.**; **First**; **▁the/▁your/▁own** | -0.21 (suppresses) |
 | `structural` | 24.6 | structural | **▁the/⏎⏎/.**; **First**; **▁with/With/▁With** | +0.11 (copies) |
 

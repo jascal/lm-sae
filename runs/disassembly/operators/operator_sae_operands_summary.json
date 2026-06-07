@@ -15,7 +15,7 @@
             {
               "read_feature": 20911,
               "read_gloss": "_you",
-              "attn_mass": 46.38744646981917,
+              "attn_mass": 43.924484833641074,
               "copy_score": 0.08743378508721476
             },
             {
@@ -27,7 +27,7 @@
             {
               "read_feature": 5123,
               "read_gloss": "US",
-              "attn_mass": 24.35978407149524,
+              "attn_mass": 21.201820513198626,
               "copy_score": -0.013909140240009134
             }
           ]
@@ -42,13 +42,13 @@
             {
               "read_feature": 20911,
               "read_gloss": "_you",
-              "attn_mass": 16.807626959889127,
+              "attn_mass": 16.59173200065775,
               "copy_score": 0.06759358084347104
             },
             {
               "read_feature": 5123,
               "read_gloss": "US",
-              "attn_mass": 11.896657432856705,
+              "attn_mass": 11.842205603754847,
               "copy_score": -0.0495137425889293
             },
             {
@@ -345,20 +345,20 @@
             {
               "read_feature": 12950,
               "read_gloss": "cius/\u2581belly/VIR",
-              "attn_mass": 98.05782750621438,
+              "attn_mass": 96.66753083840013,
               "copy_score": -0.15287092728208296
             },
             {
               "read_feature": 4735,
               "read_gloss": "\u2581the",
-              "attn_mass": 93.65274864435196,
+              "attn_mass": 92.59081965684891,
               "copy_score": -0.40900119091327114
             },
             {
-              "read_feature": 8920,
-              "read_gloss": "<bos>",
-              "attn_mass": 72.6083984375,
-              "copy_score": 0.0034556578716900196
+              "read_feature": 7407,
+              "read_gloss": "UMN/GIL/\u2581Cai",
+              "attn_mass": 69.976851798594,
+              "copy_score": -0.2281820350235592
             }
           ]
         },
@@ -372,13 +372,13 @@
             {
               "read_feature": 12950,
               "read_gloss": "cius/\u2581belly/VIR",
-              "attn_mass": 507.44180154800415,
+              "attn_mass": 492.9945921897888,
               "copy_score": 0.09992575582806945
             },
             {
               "read_feature": 7407,
               "read_gloss": "UMN/GIL/\u2581Cai",
-              "attn_mass": 428.6100788116455,
+              "attn_mass": 408.21167945861816,
               "copy_score": 0.17847638990249234
             },
             {
@@ -399,19 +399,19 @@
             {
               "read_feature": 12950,
               "read_gloss": "cius/\u2581belly/VIR",
-              "attn_mass": 235.39265831069466,
+              "attn_mass": 233.38533610842853,
               "copy_score": 0.017147972832553076
             },
             {
               "read_feature": 7407,
               "read_gloss": "UMN/GIL/\u2581Cai",
-              "attn_mass": 136.83080542204814,
+              "attn_mass": 134.24467509671493,
               "copy_score": 0.01920769041087891
             },
             {
               "read_feature": 4735,
               "read_gloss": "\u2581the",
-              "attn_mass": 110.06747216444637,
+              "attn_mass": 109.04876068413432,
               "copy_score": 0.017717883828386512
             }
           ]
@@ -424,12 +424,6 @@
           "sae_offset": 0,
           "operands": [
             {
-              "read_feature": 1227,
-              "read_gloss": "<bos>",
-              "attn_mass": 105.57177734375,
-              "copy_score": -0.11428031633521696
-            },
-            {
               "read_feature": 5712,
               "read_gloss": "First",
               "attn_mass": 4.6274656801251695,
@@ -440,6 +434,12 @@
               "read_gloss": "\u2581gods/\u2581run/\u2581petition",
               "attn_mass": 3.2022124443592475,
               "copy_score": 0.05425957577074606
+            },
+            {
+              "read_feature": 16060,
+              "read_gloss": "Before",
+              "attn_mass": 1.7909453567117453,
+              "copy_score": 0.07121141172936257
             }
           ]
         },
@@ -459,14 +459,14 @@
             {
               "read_feature": 3461,
               "read_gloss": "\u2581the/\u2581a/\u2581to",
-              "attn_mass": 254.6567114759331,
+              "attn_mass": 253.70602039629523,
               "copy_score": -0.160647888248571
             },
             {
-              "read_feature": 12197,
-              "read_gloss": "<bos>",
-              "attn_mass": 66.015625,
-              "copy_score": -0.011337635982991692
+              "read_feature": 15279,
+              "read_gloss": "First/\u2581first",
+              "attn_mass": 25.45238296469688,
+              "copy_score": -0.0930721590664382
             }
           ]
         },
@@ -480,7 +480,7 @@
             {
               "read_feature": 6071,
               "read_gloss": "\u2581the/\n\n/.",
-              "attn_mass": 51.195885292836465,
+              "attn_mass": 5.015221230336465,
               "copy_score": -0.21176232735696177
             },
             {
@@ -507,7 +507,7 @@
             {
               "read_feature": 6071,
               "read_gloss": "\u2581the/\n\n/.",
-              "attn_mass": 205.35320368409157,
+              "attn_mass": 134.36052790284157,
               "copy_score": 0.11111104922120192
             },
             {

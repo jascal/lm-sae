@@ -37,7 +37,7 @@ What this operator reads/writes in **feature** space (monosemantic SAE latents),
 | model | head | reads (SAE feature) | copy-score |
 |---|---|---|---|
 | gpt2 | 5.5 | `First`; `What/_What/_what`; `US` | +0.09 (copies) |
-| gemma-2-2b | 6.3 | `<bos>`; `First`; `▁gods/▁run/▁petition` | -0.11 (suppresses) |
+| gemma-2-2b | 6.3 | `First`; `▁gods/▁run/▁petition`; `Before` | +0.06 (copies) |
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op induction`
 
