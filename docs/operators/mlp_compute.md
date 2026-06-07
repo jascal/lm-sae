@@ -1,6 +1,6 @@
 # Operator class `MLP` / COMPUTE
 
-Attention **MOVES** operands; the MLP **COMPUTES** on them. The [operator catalog](README.md) is attention-only — but in the ResidualVM discovery sweeps **MLP0 had the largest single-component causal effect of anything measured** (induction / IOI / generic). A working catalog of the COMPUTE class across architectures — provisional and descriptive.
+Attention **MOVES** operands; the MLP **COMPUTES** on them. The [operator catalog](README.md) is attention-only — but in the ResidualVM discovery sweeps **MLP0 had the largest single-component causal effect of anything measured** (induction / IOI / generic). A working catalog of the COMPUTE class across architectures — provisional and descriptive. For the *mechanism* of that load-bearing early MLP, see [**is MLP0 an extended embedding / detokenizer?**](mlp_detokenizer.md) — a token-determinism test (MLP0's output is largely fixed by the current token in 5/6 models; Llama-3.2-1B is the outlier).
 
 ## Cross-model — per-layer MLP causal ΔNLL (mean-ablate the whole MLP block)
 

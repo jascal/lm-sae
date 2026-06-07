@@ -1,0 +1,437 @@
+{
+  "experiment": "early-MLP detokenizer test (token-category ablation)",
+  "results": [
+    {
+      "model": "gpt2",
+      "rope": false,
+      "n_layers": 12,
+      "token_counts": {
+        "word-start": 2522,
+        "continuation": 1741,
+        "other": 817
+      },
+      "baseline_by_cat": {
+        "word-start": 5.621519256582407,
+        "continuation": 4.901675555177515,
+        "other": 2.6390343952459205
+      },
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "determinism": 0.6317643134583657,
+          "dNLL": {
+            "word-start": 2.1669021827007384,
+            "continuation": 1.6555192693768648,
+            "other": 1.6673495523462578
+          },
+          "cont_over_start": 0.764002769757467
+        },
+        {
+          "layer": 1,
+          "depth": 0.09090909090909091,
+          "determinism": 0.0725379721304904,
+          "dNLL": {
+            "word-start": 0.06813092252869524,
+            "continuation": 0.136193238131197,
+            "other": 0.02382876102443854
+          },
+          "cont_over_start": 1.9989930133976304
+        },
+        {
+          "layer": 2,
+          "depth": 0.18181818181818182,
+          "determinism": 0.03623092972901021,
+          "dNLL": {
+            "word-start": 0.09683720541665242,
+            "continuation": 0.13759072216048818,
+            "other": 0.031120084619977284
+          },
+          "cont_over_start": 1.4208456508889264
+        },
+        {
+          "layer": 6,
+          "depth": 0.5454545454545454,
+          "determinism": 0.3002670877912743,
+          "dNLL": {
+            "word-start": -0.01728223984478383,
+            "continuation": -0.8805314166388891,
+            "other": 0.0379396314882916
+          },
+          "cont_over_start": null
+        },
+        {
+          "layer": 10,
+          "depth": 0.9090909090909091,
+          "determinism": 0.3755256643150102,
+          "dNLL": {
+            "word-start": 0.05701902773453593,
+            "continuation": -0.6704744527499207,
+            "other": 0.014358829813205798
+          },
+          "cont_over_start": -11.75878438109214
+        }
+      ]
+    },
+    {
+      "model": "gpt2-medium",
+      "rope": false,
+      "n_layers": 24,
+      "token_counts": {
+        "word-start": 2522,
+        "continuation": 1741,
+        "other": 817
+      },
+      "baseline_by_cat": {
+        "word-start": 5.368432024618376,
+        "continuation": 4.235866392244342,
+        "other": 2.4783703537522204
+      },
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "determinism": 0.6080649479375799,
+          "dNLL": {
+            "word-start": 7.667305625346873,
+            "continuation": 9.573666817613894,
+            "other": 3.294700946107694
+          },
+          "cont_over_start": 1.2486350858331379
+        },
+        {
+          "layer": 1,
+          "depth": 0.043478260869565216,
+          "determinism": 0.6832990082716832,
+          "dNLL": {
+            "word-start": 0.022267808251223542,
+            "continuation": 0.2729354732998406,
+            "other": 0.02036618837639903
+          },
+          "cont_over_start": 12.256952737359937
+        },
+        {
+          "layer": 2,
+          "depth": 0.08695652173913043,
+          "determinism": 0.18244539580081665,
+          "dNLL": {
+            "word-start": 0.03825968640467714,
+            "continuation": 0.026315347432760205,
+            "other": 0.00851028199869619
+          },
+          "cont_over_start": 0.6878087591837456
+        },
+        {
+          "layer": 12,
+          "depth": 0.5217391304347826,
+          "determinism": 0.2982597698363505,
+          "dNLL": {
+            "word-start": 0.013825460321846172,
+            "continuation": -0.40286043923944836,
+            "other": -0.015948495505015092
+          },
+          "cont_over_start": -29.1390253822415
+        },
+        {
+          "layer": 22,
+          "depth": 0.9565217391304348,
+          "determinism": 0.11747657020297242,
+          "dNLL": {
+            "word-start": 0.03560332112759923,
+            "continuation": 0.05226142333510797,
+            "other": 0.006609372422441417
+          },
+          "cont_over_start": 1.4678805706863003
+        }
+      ]
+    },
+    {
+      "model": "gpt2-large",
+      "rope": false,
+      "n_layers": 36,
+      "token_counts": {
+        "word-start": 2522,
+        "continuation": 1741,
+        "other": 817
+      },
+      "baseline_by_cat": {
+        "word-start": 5.282304850474246,
+        "continuation": 4.551167236276119,
+        "other": 2.357563337544122
+      },
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "determinism": 0.7532122792885979,
+          "dNLL": {
+            "word-start": 4.1713731905369205,
+            "continuation": 4.734970295674548,
+            "other": 2.4386381893556943
+          },
+          "cont_over_start": 1.135110688829326
+        },
+        {
+          "layer": 1,
+          "depth": 0.02857142857142857,
+          "determinism": 0.6813035577864981,
+          "dNLL": {
+            "word-start": 0.005297701730635929,
+            "continuation": 0.03705575072311973,
+            "other": -0.012153806852950755
+          },
+          "cont_over_start": 6.994684224827359
+        },
+        {
+          "layer": 2,
+          "depth": 0.05714285714285714,
+          "determinism": 0.680915338345818,
+          "dNLL": {
+            "word-start": -0.0009993691655871828,
+            "continuation": 0.013026709520134183,
+            "other": -0.01256019706342526
+          },
+          "cont_over_start": null
+        },
+        {
+          "layer": 18,
+          "depth": 0.5142857142857142,
+          "determinism": 0.2388953318406517,
+          "dNLL": {
+            "word-start": 0.014987761950429501,
+            "continuation": -0.04677861258150884,
+            "other": 0.0011883209292196106
+          },
+          "cont_over_start": -3.121120600675694
+        },
+        {
+          "layer": 34,
+          "depth": 0.9714285714285714,
+          "determinism": 0.33855179042727646,
+          "dNLL": {
+            "word-start": 0.046012824631228355,
+            "continuation": -0.38996370770877054,
+            "other": -0.0011142393791558902
+          },
+          "cont_over_start": -8.475109077396366
+        }
+      ]
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "n_layers": 26,
+      "token_counts": {
+        "word-start": 2667,
+        "continuation": 994,
+        "other": 1419
+      },
+      "baseline_by_cat": {
+        "word-start": 8.459604150671156,
+        "continuation": 7.831927233908847,
+        "other": 3.4594807223789696
+      },
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "determinism": 0.9104474707278183,
+          "dNLL": {
+            "word-start": 0.30390529806038025,
+            "continuation": 1.1399924249810605,
+            "other": -0.07463000207434911
+          },
+          "cont_over_start": 3.751143636708056
+        },
+        {
+          "layer": 1,
+          "depth": 0.04,
+          "determinism": 0.6330997022730092,
+          "dNLL": {
+            "word-start": 0.01617810140298559,
+            "continuation": -0.0299015809969001,
+            "other": -0.04753540510070442
+          },
+          "cont_over_start": -1.8482750387126334
+        },
+        {
+          "layer": 2,
+          "depth": 0.08,
+          "determinism": 0.5649959132761387,
+          "dNLL": {
+            "word-start": 0.31796045654027694,
+            "continuation": 0.5360213274435894,
+            "other": 0.07597311087924608
+          },
+          "cont_over_start": 1.6858112901083036
+        },
+        {
+          "layer": 13,
+          "depth": 0.52,
+          "determinism": 0.16115536669299046,
+          "dNLL": {
+            "word-start": 0.03317699049322442,
+            "continuation": 0.25270959528203374,
+            "other": 0.2354269865575449
+          },
+          "cont_over_start": 7.617013825700779
+        },
+        {
+          "layer": 24,
+          "depth": 0.96,
+          "determinism": 0.46005060333711356,
+          "dNLL": {
+            "word-start": 0.26298283072117634,
+            "continuation": 0.976226919393695,
+            "other": 0.2449042657386138
+          },
+          "cont_over_start": 3.7121317643307488
+        }
+      ]
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "n_layers": 16,
+      "token_counts": {
+        "word-start": 2760,
+        "continuation": 1411,
+        "other": 909
+      },
+      "baseline_by_cat": {
+        "word-start": 4.773569790968221,
+        "continuation": 2.8980594859893154,
+        "other": 2.819038968087595
+      },
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "determinism": 0.005446975197396897,
+          "dNLL": {
+            "word-start": 3.99795674364959,
+            "continuation": 6.718580962137387,
+            "other": 3.8882974926433533
+          },
+          "cont_over_start": 1.680503665480942
+        },
+        {
+          "layer": 1,
+          "depth": 0.06666666666666667,
+          "determinism": -0.018550192703477464,
+          "dNLL": {
+            "word-start": 3.3369539568735114,
+            "continuation": 3.479277395654943,
+            "other": 3.6390865114666076
+          },
+          "cont_over_start": 1.0426507049904814
+        },
+        {
+          "layer": 2,
+          "depth": 0.13333333333333333,
+          "determinism": 0.4227156545773416,
+          "dNLL": {
+            "word-start": 0.2222026809421962,
+            "continuation": 0.15579280691711084,
+            "other": 0.09988532473340372
+          },
+          "cont_over_start": 0.7011292854636564
+        },
+        {
+          "layer": 8,
+          "depth": 0.5333333333333333,
+          "determinism": 0.3433493893125189,
+          "dNLL": {
+            "word-start": 0.1660176811805183,
+            "continuation": 0.25530506745406045,
+            "other": 0.07615072380882548
+          },
+          "cont_over_start": 1.5378185361862515
+        },
+        {
+          "layer": 14,
+          "depth": 0.9333333333333333,
+          "determinism": 0.4341185349363812,
+          "dNLL": {
+            "word-start": 0.1608056760955332,
+            "continuation": 0.6245106850651645,
+            "other": 0.16492448447833663
+          },
+          "cont_over_start": 3.8836358282163395
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "rope": true,
+      "n_layers": 28,
+      "token_counts": {
+        "word-start": 2761,
+        "continuation": 1407,
+        "other": 912
+      },
+      "baseline_by_cat": {
+        "word-start": 4.634410057710035,
+        "continuation": 2.8235630453258604,
+        "other": 2.5801234634280648
+      },
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "determinism": 0.6510634769443278,
+          "dNLL": {
+            "word-start": 3.039674264524902,
+            "continuation": 3.9898502696349674,
+            "other": 2.841773109099002
+          },
+          "cont_over_start": 1.3125913905313065
+        },
+        {
+          "layer": 1,
+          "depth": 0.037037037037037035,
+          "determinism": 0.046556766323186616,
+          "dNLL": {
+            "word-start": 5.48387993686171,
+            "continuation": 6.92363058888764,
+            "other": 3.4314664140100626
+          },
+          "cont_over_start": 1.2625423365577664
+        },
+        {
+          "layer": 2,
+          "depth": 0.07407407407407407,
+          "determinism": 0.05539856292726908,
+          "dNLL": {
+            "word-start": 5.966106095423127,
+            "continuation": 7.973520796132197,
+            "other": 3.4186078015145056
+          },
+          "cont_over_start": 1.3364698295005262
+        },
+        {
+          "layer": 14,
+          "depth": 0.5185185185185185,
+          "determinism": 0.22251202175987028,
+          "dNLL": {
+            "word-start": 0.03507614545982918,
+            "continuation": 0.04436119255769677,
+            "other": 0.05308909741845058
+          },
+          "cont_over_start": 1.2647111584282047
+        },
+        {
+          "layer": 26,
+          "depth": 0.9629629629629629,
+          "determinism": 0.05340443386944649,
+          "dNLL": {
+            "word-start": 0.28465859748137046,
+            "continuation": 0.6269377803104237,
+            "other": 0.2540418121597643
+          },
+          "cont_over_start": 2.2024199720560125
+        }
+      ]
+    }
+  ]
+}
