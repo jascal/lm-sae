@@ -1,0 +1,46 @@
+{
+  "experiment": "monosemanticity aux modes vs linear-recoverability",
+  "width": 128,
+  "n_oracle_features": 29,
+  "rows": [
+    {
+      "mode": "none",
+      "lm_loss": 6.026378089457585,
+      "cov95": 0.7241379310344828,
+      "mauc": 0.9216332359724602,
+      "cov95_token": 1.0,
+      "cov95_lexical": 0.1111111111111111
+    },
+    {
+      "mode": "linear",
+      "lm_loss": 5.994076609792223,
+      "cov95": 0.7586206896551724,
+      "mauc": 0.937731646529891,
+      "cov95_token": 1.0,
+      "cov95_lexical": 0.2222222222222222
+    },
+    {
+      "mode": "decorr",
+      "lm_loss": 5.994875000003855,
+      "cov95": 0.7241379310344828,
+      "mauc": 0.9369162578638209,
+      "cov95_token": 1.0,
+      "cov95_lexical": 0.1111111111111111
+    },
+    {
+      "mode": "dedicated",
+      "lm_loss": 6.006310695788264,
+      "cov95": 0.6896551724137931,
+      "mauc": 0.9252795622331738,
+      "cov95_token": 1.0,
+      "cov95_lexical": 0.0
+    }
+  ],
+  "cov95_lift_vs_none": {
+    "none": 0.0,
+    "linear": 0.03448275862068961,
+    "decorr": 0.0,
+    "dedicated": -0.03448275862068961
+  },
+  "best_mode": "linear"
+}

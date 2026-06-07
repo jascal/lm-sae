@@ -268,11 +268,32 @@ its low unsupervised cov95 is a compute-budget artifact, not scarcity counter-ev
 reconstruction-coverage at lower op-budget) than an unsupervised one. That's the direct hand-off to the
 recompile harness.
 
-Caveats + scope: the aux loss pressures **linear recoverability** of the oracle (a *proxy* — it lifts cov95
-here but is not a direct monosemanticity/decorrelation objective). The scarcity trend is only cleanly visible
+### What kind of pressure lifts cov95? (aux-mode comparison)
+Is the lift real monosemanticity or just linear recoverability? `monosemantic_aux.py` compares aux modes at a
+fixed well-trained width (128), training from scratch:
+
+| aux mode | LM-loss | cov95 | mAUC |
+|---|---|---|---|
+| none | 6.03 | 0.72 | 0.92 |
+| linear (recoverability) | 5.99 | **0.76** | 0.94 |
+| decorr (orthogonal read-directions) | 6.00 | 0.72 | 0.94 |
+| dedicated (one-neuron-per-feature) | 6.01 | 0.69 | 0.93 |
+
+**Counterintuitively, the simple linear-recoverability proxy is the *best*** — the two "more direct"
+monosemanticity objectives don't beat it: orthogonalizing the probe's read-directions does nothing (= none),
+and forcing features onto dedicated raw neurons *hurts* (0.69 < none). So the cov95 lift comes from making
+features **linearly prominent** (so the downstream SAE can isolate them), **not** from forcing axis-alignment
+in the host residual — the SAE does the factorization; the host just needs to surface the features. (At
+*undertrained* budgets the ranking inverts — dedicated wins at 80 steps — so this is a well-trained-regime
+result.) This answers the "is it just recoverability?" worry: yes, and recoverability *is* the effective lever
+for SAE-measured cov95. `monosemantic_aux.py`, `runs/cov95_forge_tax/monosemantic_aux_summary.json`.
+
+Caveats + scope: the aux loss pressures **linear recoverability** of the oracle (which, per the aux-mode
+comparison above, is the *effective* lever — direct decorr/dedicated objectives don't beat it). The scarcity trend is only cleanly visible
 in the **well-trained regime** (≤w128 here); confirming it at w256+ needs more tokens/steps (compute scaling),
-not more width. Single seed, tiny hosts, short training. **Planned follow-ups:** (1) a decorrelation /
-sparse-dictionary-in-the-loop aux term (direct monosemanticity, not just recoverability); (2) multi-seed +
+not more width. Single seed, tiny hosts, short training. **Planned follow-ups:** (1) a *full*
+sparse-dictionary-in-the-loop aux (jointly-trained sparse SAE with oracle-aligned latents) — the simpler
+decorr/dedicated forms were tested (above) and don't beat linear-recoverability; (2) multi-seed +
 adequately-trained wide hosts to clean the scarcity curve; (3) richer oracles (spaCy POS/NER) + curriculum
 annealing of the aux weight; (4) polygram geometry penalties. But the direction is clear and the cost is
 ~zero, so the reachability lever is real. `host_width_sweep.py`,
