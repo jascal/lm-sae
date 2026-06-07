@@ -600,6 +600,35 @@ annealing of the aux weight; (4) polygram geometry penalties. But the direction 
 ~zero, so the reachability lever is real. `host_width_sweep.py`,
 `runs/cov95_forge_tax/host_width_sweep_summary.json`.
 
+### Does feature legibility buy circuit legibility? (oracle-supervised DAG)
+
+The reachability lever makes the *feature substrate* more legible (cov95 up). `oracle_supervised_dag.py` asks the
+sharp follow-up: does it also make the *composition* more legible — or are knowledge (features) and computation
+(the DAG) the **separate axes** the forge tax says they are? Train tiny GPTs unsupervised vs oracle-supervised
+(the `linear` lever), 3 seeds, and on each model measure feature legibility (cov95) alongside circuit legibility
+(static→dynamic composition ρ; prev-token→induction recovery) and the prev-token head's key position-vs-token
+content (the #26 probe), paired by seed.
+
+| metric | none → linear | seeds + |
+|---|---|---|
+| **cov95** (feature) | 0.690 → 0.736 (Δ **+0.046**) | 2/3 |
+| induction-recovery (circuit) | 1.18 → 1.35 (Δ **+0.16**) | 3/3 |
+| static→dynamic ρ (circuit) | 0.44 → 0.49 (Δ +0.04 ± **0.42**) | noise-dominated |
+| prev-token key **position** fraction | 0.33 → 0.13 (Δ **−0.20**) | 0/3 (drops) |
+
+**PARTIAL / SUBSTRATE-DOMINATED — largely separate axes.** Supervision robustly reshapes *what the residual
+represents*: cov95 lifts, and the prev-token head's key shifts **token-ward** every seed (Δpos −0.20) — the
+feature-recovery loss injects token/lexical content into the residual, which the key inherits, making it *less*
+positional. Its effect on the *composition* is at most marginal: induction-recoverability lifts a small but
+consistent +0.16 (3/3), while the broad static→dynamic agreement is noise-dominated (±0.42) on a 16-head host.
+So the lever acts mainly on the **feature substrate**, with only a small spillover to circuit recoverability —
+consistent with the program's knowledge-≠-computation thesis (you cannot supervise circuits into existence with
+a feature loss). **Scope (honest):** the tiny 4-layer host is underpowered for circuit metrics — its induction
+is marginal (1.1–1.4× baseline) and its prev-token key is token-dominated even unsupervised (unlike GPT-2's 4.11
+at 59%), so the static→dynamic ρ is high-variance; a definitive circuit-legibility test needs a host with real
+circuits (GPT-2 scale), which the reachability lever can't retrain on this budget. `oracle_supervised_dag.py`,
+`runs/cov95_forge_tax/oracle_supervised_dag_summary.json`.
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
