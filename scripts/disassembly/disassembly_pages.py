@@ -76,8 +76,11 @@ def main(argv=None):
                 f"Operator roles referenced (hyperlinked inline below): {legend}. "
                 f"Full raw listing: [`{fname}`](https://github.com/jascal/lm-sae/blob/main/docs/listings/{fname}). "
                 f"See the [operator catalog](../operators/README.md) for what each role means.", "",
-                "_First-order, single-component reads (+ the induction idiom); provisional. Each line: head · "
-                "ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role._", ""]
+                "_First-order, single-component reads (+ the induction idiom); provisional. Each head line: head · "
+                "ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role. "
+                "Lines like `L.MLP.n####` are **MLP neurons** (the COMPUTE class — `n####` is the neuron's index in "
+                "that layer's gated-MLP intermediate dimension, e.g. Gemma-2-2B has 9216/layer), **not** attention "
+                "heads; each lists the top read-tokens → write-tokens (the layer's most salient few)._", ""]
         page += body
         page += ["", "_Generated from the committed listing by `disassembly_pages.py`._"]
         (args.docs / f"{slug}.md").write_text("\n".join(page))
