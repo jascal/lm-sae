@@ -35,6 +35,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--width", type=int, default=128)
     p.add_argument("--modes", default="none,linear,decorr,dedicated,sparsedict")
+    p.add_argument("--seeds", default="0,1,2", help="seeds for model init + batch order + eval SAE (multi-seed)")
     p.add_argument("--n-layer", type=int, default=4)
     p.add_argument("--n-head", type=int, default=4)
     p.add_argument("--ctx", type=int, default=96)
@@ -121,14 +122,15 @@ def main(argv=None):
             bce = bce + args.decorr_beta * (off ** 2).sum() / (Ffeat * (Ffeat - 1))
         return bce
 
-    def train(mode):
+    def train(mode, seed):
+        torch.manual_seed(seed)                               # model + aux weight init (the main cov95 noise source)
         cfg = GPT2Config(vocab_size=tok.vocab_size, n_positions=args.ctx, n_ctx=args.ctx,
                          n_embd=args.width, n_layer=args.n_layer, n_head=args.n_head)
         model = GPT2LMHeadModel(cfg).to(dev).train()
         aux = make_aux(mode)
         params = list(model.parameters()) + (list(aux.parameters()) if aux is not None else [])
         opt = torch.optim.AdamW(params, lr=args.lr)
-        g = torch.Generator().manual_seed(0)
+        g = torch.Generator().manual_seed(seed)
         for _ in range(args.steps):
             x, y = batch(g)
             out = model(input_ids=x, labels=y, output_hidden_states=True)
@@ -136,7 +138,7 @@ def main(argv=None):
             opt.zero_grad(); loss.backward(); opt.step()
         return model.eval()
 
-    def evaluate(model):
+    def evaluate(model, seed):
         with torch.no_grad():
             ev = eval_ids[: args.eval_tokens]
             chunks = [ev[i:i + args.ctx] for i in range(0, len(ev) - 1, args.ctx) if len(ev[i:i + args.ctx]) >= 8]
@@ -150,39 +152,46 @@ def main(argv=None):
         Xraw = np.concatenate(acts, 0).astype(np.float32); Y = Ttab[np.array(ev_ids)]
         mu, sd = Xraw.mean(0, keepdims=True), Xraw.std(0, keepdims=True) + 1e-6
         X = ((Xraw - mu) / sd).astype(np.float32)
-        sae = _train_topk_sae(X, args.sae_over * args.width, args.k, args.sae_steps, 1e-3, 0)
+        sae = _train_topk_sae(X, args.sae_over * args.width, args.k, args.sae_steps, 1e-3, seed)
         res = _per_tier(_best_auc_per_label(_encode(X, sae, args.k), Y), tiers)
         return lm_tot / lm_n, res
 
+    seeds = [int(s) for s in args.seeds.split(",")]
+    modes = [m.strip() for m in args.modes.split(",") if not (m.strip() == "dedicated" and args.width < Ffeat)]
     rows = []
-    for mode in [m.strip() for m in args.modes.split(",")]:
-        if mode == "dedicated" and args.width < Ffeat:
-            continue
-        lm_loss, res = evaluate(train(mode))
-        rows.append({"mode": mode, "lm_loss": lm_loss, "cov95": res["all"]["cov95"], "mauc": res["all"]["mauc"],
-                     "cov95_token": res.get("token", {}).get("cov95"), "cov95_lexical": res.get("lexical", {}).get("cov95")})
-        print(f"  {mode:>10}: LM-loss {lm_loss:.3f}  cov95 {res['all']['cov95']:.3f}  mAUC {res['all']['mauc']:.3f}")
+    for seed in seeds:
+        print(f"--- seed {seed} ---")
+        for mode in modes:
+            lm_loss, res = evaluate(train(mode, seed), seed)
+            rows.append({"mode": mode, "seed": seed, "lm_loss": lm_loss,
+                         "cov95": res["all"]["cov95"], "mauc": res["all"]["mauc"]})
+            print(f"  seed {seed} {mode:>10}: LM-loss {lm_loss:.3f}  cov95 {res['all']['cov95']:.3f}")
 
-    base = next((r for r in rows if r["mode"] == "none"), None)
-    lin = next((r for r in rows if r["mode"] == "linear"), None)
+    def cov(mode, seed):
+        return next(r["cov95"] for r in rows if r["mode"] == mode and r["seed"] == seed)
+    agg = {m: {"cov95_mean": float(np.mean([r["cov95"] for r in rows if r["mode"] == m])),
+               "cov95_std": float(np.std([r["cov95"] for r in rows if r["mode"] == m])),
+               "lm_loss_mean": float(np.mean([r["lm_loss"] for r in rows if r["mode"] == m])),
+               "n_seeds": sum(1 for r in rows if r["mode"] == m)} for m in modes}
 
-    def lift(r):
-        return (r["cov95"] - base["cov95"]) if base else None
-    out = {"experiment": "monosemanticity aux modes vs linear-recoverability", "width": args.width,
-           "n_oracle_features": Ffeat, "rows": rows,
-           "cov95_lift_vs_none": {r["mode"]: lift(r) for r in rows if base},
-           "best_mode": max(rows, key=lambda r: r["cov95"])["mode"]}
+    def paired(a, b):
+        return [cov(a, s) - cov(b, s) for s in seeds] if (a in agg and b in agg) else []
+    lin_none = paired("linear", "none"); sd_none = paired("sparsedict", "none"); lin_sd = paired("linear", "sparsedict")
+    out = {"experiment": "monosemanticity aux modes (multi-seed)", "width": args.width, "seeds": seeds,
+           "n_oracle_features": Ffeat, "rows": rows, "agg": agg,
+           "paired_linear_minus_none": lin_none, "paired_sparsedict_minus_none": sd_none,
+           "paired_linear_minus_sparsedict": lin_sd}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
-    print("\n[verdict] cov95 by mode: " + "  ".join(f"{r['mode']} {r['cov95']:.2f}" for r in rows))
-    if base and lin:
-        direct = [r for r in rows if r["mode"] in ("decorr", "dedicated", "sparsedict")]
-        beats = [r["mode"] for r in direct if r["cov95"] > lin["cov95"] + 0.02]
-        print(f"  best mode: {out['best_mode']}; linear(recoverability) cov95 {lin['cov95']:.2f}; "
-              f"direct-monosemanticity modes beating it: {beats or 'none'}")
-        print("  => " + ("a DIRECT monosemanticity objective lifts cov95 beyond linear-recoverability "
-                         f"(by {max((r['cov95'] - lin['cov95']) for r in direct):+.2f} best)" if beats
-                         else "direct objectives do NOT beat the linear-recoverability proxy here"))
+    print(f"\n[verdict] cov95 mean ± std over {len(seeds)} seeds:")
+    for m in modes:
+        print(f"  {m:>10}: {agg[m]['cov95_mean']:.3f} ± {agg[m]['cov95_std']:.3f}   (LM {agg[m]['lm_loss_mean']:.3f})")
+    if lin_none:
+        print(f"  linear > none:       {sum(d > 0 for d in lin_none)}/{len(lin_none)} seeds  (Δ {np.mean(lin_none):+.3f} ± {np.std(lin_none):.3f})")
+    if sd_none:
+        print(f"  sparsedict < none:   {sum(d < 0 for d in sd_none)}/{len(sd_none)} seeds  (Δ {np.mean(sd_none):+.3f} ± {np.std(sd_none):.3f})")
+    if lin_sd:
+        print(f"  linear > sparsedict: {sum(d > 0 for d in lin_sd)}/{len(lin_sd)} seeds  (Δ {np.mean(lin_sd):+.3f})")
     print(f"[done] {args.output}")
     return out
 
