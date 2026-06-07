@@ -160,6 +160,26 @@ def write_doc(out, docs):
               "drops, Qwen goes **negative** (keeping more induction-mass heads *hurts* induction-NLL — the same "
               "interference / compensatory effect the [outlier digs](../operators/outlier_digs.md) traced to a "
               "synthetic-probe artifact). Induction is a property of the near-whole network, not an isolable subgraph._"]
+    io = out.get("ioi_gpt2")
+    if io:
+        L += ["", "## The IOI circuit (GPT-2) — is the literature's *complete* circuit sufficient?", "",
+              "The same test on the field's most-celebrated complete circuit (Wang et al. 2022), measured on the metric "
+              "it serves — the IOI logit-difference `LD = logit(IO) − logit(S)`. Keep only the IOI circuit's "
+              f"**{io['circuit_size']} heads** (of {io['n_heads_total']}), ablate the rest:", "",
+              "| circuit | LD (full / circuit-only / all-ablated) | coverage | random control |",
+              "|---|---|---|---|",
+              f"| IOI ({io['circuit_size']}h) | {io['ld_full']:+.2f} / {io['ld_circuit_only']:+.2f} / {io['ld_all_attn_ablated']:+.2f} | "
+              f"**{io['coverage']:+.0%}** | {io['random_coverage_mean']:+.0%} ± {io['random_coverage_std']:.0%} |", "",
+              "**Same lesson as induction, sharper:** keeping only the 26 IOI heads and mean-ablating the rest gives a "
+              f"**negative** logit-diff ({io['ld_circuit_only']:+.2f}) — the model now prefers S over IO — and is **no "
+              "better than a random 26-head set**. The named circuit is not a *sufficient* isolated subgraph; it needs "
+              "the rest of the network as substrate.", "",
+              "> **Caveat (important, read this).** This is a harsh *sufficiency-under-mean-ablation* test: mean-ablating "
+              "~120 heads pushes activations far off-distribution and severs the upstream signals the circuit reads. "
+              "The original IOI result (Wang et al.) is about **necessity** + path-patching, **not** isolated "
+              "mean-ablation sufficiency — so this does **not** refute it. It says the IOI computation, like induction, "
+              "is not recoverable from its named heads *in isolation*; the named circuit is necessary and explanatory, "
+              "but the behaviour is carried by the near-whole network. A statement about distributedness, not validity._", ""]
     L += ["", "_**The honest result: necessity ≠ a small sufficient circuit.** No 8-head circuit *fully* reconstructs "
           "induction in any model (best +17%, GPT-2-small). The circuit beats its random control in 4/6 models — it is "
           "the **main** contributor — but coverage is modest, and it **decays with GPT-2 scale** (small +17% → medium "

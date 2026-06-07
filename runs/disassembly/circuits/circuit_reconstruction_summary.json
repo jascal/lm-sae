@@ -245,5 +245,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ioi_gpt2": {
+    "circuit_size": 26,
+    "n_heads_total": 144,
+    "ld_full": 2.670942094590929,
+    "ld_all_attn_ablated": -0.008660040961371528,
+    "ld_circuit_only": -0.7021335177951389,
+    "coverage": -0.2587971801388479,
+    "random_coverage_mean": -0.23302327716568633,
+    "random_coverage_std": 0.13958593243237122
+  }
 }
