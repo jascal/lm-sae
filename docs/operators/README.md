@@ -113,6 +113,8 @@ Llama **0.31** is induction-load-bearing **+7.99** (an early induction-enabling 
 
 - **succession / greater-than** — MLP-dominated; no clean attention head, so no catalog row (the OV probe sees only
   the attention-side shadow). It is carried by the *copy* ops (see `instruction_reuse.py`: successor ← induction/duplicate).
+  **Now localized** ([succession](succession.md)): on number runs it is **95–100% MLP-computed** and lives in the
+  early–mid MLPs (GPT-2-small L0–L2, gpt2-large L7–9; GPT-2 family only — RoPE tokenizers lack single-token numbers).
 - **SSM (Mamba)** — no attention heads, so the head-resolved catalog does not apply; induction is present
   *behaviourally* (NLL gain) — see `ssm_induction.py`.
 
