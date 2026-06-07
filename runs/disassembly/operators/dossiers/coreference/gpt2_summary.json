@@ -1,0 +1,199 @@
+{
+  "op": "coreference",
+  "spec": {
+    "kind": "content",
+    "primary": "generic",
+    "repeat": false,
+    "desc": "coreference (exploratory): pronoun -> earlier antecedent (no clean task probe here)"
+  },
+  "model": "gpt2",
+  "prev_token_head": "4.11",
+  "A_identity": {
+    "note": "circuit op \u2014 heads from literature (DLA-defined; not attention-mask-readable)",
+    "op_heads": [
+      "9.0"
+    ],
+    "ranked": [
+      {
+        "head": "9.0",
+        "signal": null,
+        "depth": 0.8181818181818182
+      }
+    ]
+  },
+  "B_causal": {
+    "tasks": [
+      "generic",
+      "induction",
+      "copy_names",
+      "successor",
+      "ioi"
+    ],
+    "op_effects": {
+      "generic": 7.179743909739469e-05,
+      "induction": 0.01082652113474453,
+      "copy_names": 0.047132414485034,
+      "successor": -0.0007278934573284441,
+      "ioi": 0.01756569159689433
+    },
+    "random_mean": {
+      "generic": -0.0009901969985094863,
+      "induction": 0.016669166436406438,
+      "copy_names": 0.03999046504832972,
+      "successor": -0.00280926086049181,
+      "ioi": 0.0035858581093548393
+    },
+    "threshold": {
+      "generic": 0.05,
+      "induction": 0.07580226907734874,
+      "copy_names": 0.23605965142015423,
+      "successor": 0.05,
+      "ioi": 0.2419632670958169
+    },
+    "serves": [],
+    "baselines": {
+      "generic": 5.010904661479749,
+      "induction": 0.6512455021026605,
+      "copy_names": 0.3099959124226729,
+      "successor": 5.392696031502315,
+      "ioi": 2.699162401471819
+    }
+  },
+  "C_channels": {
+    "reader": "9.0",
+    "note": ""
+  },
+  "D_composition": {
+    "in_key": [
+      [
+        "5.10",
+        0.06321985849003453
+      ],
+      [
+        "5.9",
+        0.05523670676655176
+      ],
+      [
+        "5.11",
+        0.054112553172477144
+      ],
+      [
+        "7.1",
+        0.05347166784174319
+      ],
+      [
+        "6.2",
+        0.052846805676125305
+      ],
+      [
+        "1.6",
+        0.05179878739970356
+      ]
+    ],
+    "in_value": [
+      [
+        "5.10",
+        0.04946298698331223
+      ],
+      [
+        "5.11",
+        0.04791558613054502
+      ],
+      [
+        "1.6",
+        0.04495126393542962
+      ],
+      [
+        "7.8",
+        0.04419759846538325
+      ],
+      [
+        "7.1",
+        0.04248992807822788
+      ],
+      [
+        "8.8",
+        0.04163035115349136
+      ]
+    ],
+    "out_value": [
+      [
+        "11.3",
+        0.07369940237690642
+      ],
+      [
+        "10.11",
+        0.053055985710302386
+      ],
+      [
+        "11.11",
+        0.04877758297307349
+      ],
+      [
+        "10.0",
+        0.042232386903847376
+      ],
+      [
+        "10.6",
+        0.04045572151939419
+      ],
+      [
+        "10.9",
+        0.033740174494111375
+      ]
+    ],
+    "out_key": [
+      [
+        "11.3",
+        0.04814771458563324
+      ],
+      [
+        "11.11",
+        0.0375173368569485
+      ],
+      [
+        "11.8",
+        0.03710631423289627
+      ],
+      [
+        "10.11",
+        0.03469816562156963
+      ],
+      [
+        "10.6",
+        0.034014861535187645
+      ],
+      [
+        "11.0",
+        0.03397988922189041
+      ]
+    ]
+  },
+  "E_redundancy": {
+    "primary_task": "generic",
+    "full_op_effect": 7.179743909739469e-05,
+    "max_single_head_effect": 7.179743909739469e-05,
+    "population_gap": 0.0,
+    "bottleneck": false,
+    "solo": [
+      [
+        "9.0",
+        7.179743909739469e-05
+      ]
+    ],
+    "cumulative_curve": [
+      {
+        "after": "9.0",
+        "n": 1,
+        "effect": 7.179743909739469e-05
+      }
+    ],
+    "leave_one_out": [
+      {
+        "head": "9.0",
+        "marginal": 7.179743909739469e-05
+      }
+    ]
+  },
+  "G_sae_operands": "NOT RUN \u2014 needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer."
+}

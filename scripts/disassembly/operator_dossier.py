@@ -39,7 +39,10 @@ LIT = {
     "induction": [(5, 0), (5, 1), (5, 5), (6, 9), (7, 11)],
     "duplicate": [(0, 1), (0, 5), (3, 0), (1, 5)],
     "name_mover": [(9, 6), (9, 9), (10, 0), (10, 10)],
+    "backup_name_mover": [(9, 0), (9, 7), (10, 1), (10, 2), (10, 6), (11, 2)],     # self-repair backups (Wang et al.)
+    "negative_mover": [(10, 7), (11, 10)],                                         # copy-suppression / negative name-movers
     "s_inhibition": [(7, 3), (7, 9), (8, 6), (8, 10)],
+    "coreference": [(9, 0)],                                                       # pronoun -> antecedent (exploratory)
 }
 
 
@@ -50,8 +53,12 @@ def op_masks(toks):
         "prevtok": (qi[None, :] == (qi[:, None] - 1)) & (qi[:, None] >= 1),          # attend to position q-1
         "induction": (pv[None, :] == ca[:, None]) & (qi[None, :] >= 1) & (qi[None, :] < qi[:, None]),  # key's predecessor==query tok
         "duplicate": (ca[None, :] == ca[:, None]) & (qi[None, :] < qi[:, None]),     # earlier same token
+        "sink": (qi[None, :] == 0) & (qi[:, None] >= 1),                             # attend to key-0 (the no-op / idle register)
     }
 
+
+LIT_OPS = {"name_mover", "backup_name_mover", "negative_mover", "s_inhibition", "coreference"}  # head-sets from literature (DLA/IOI)
+BEHAV_OPS = {"prevtok", "induction", "duplicate", "sink"}                                        # heads found by attention-mask mass
 
 OPS = {
     "induction": dict(kind="content", primary="induction", repeat=True,
@@ -60,10 +67,18 @@ OPS = {
                     desc="previous-token head: attend to position q-1 (the induction writer / local addressing)"),
     "duplicate": dict(kind="content", primary="successor", repeat=True,
                       desc="duplicate-token head: attend to an earlier occurrence of the same token"),
+    "sink": dict(kind="addressing", primary="generic", repeat=False,
+                 desc="attention sink: park attention on key-0 (the no-op / idle register)"),
     "name_mover": dict(kind="output", primary="ioi", repeat=False,
                        desc="IOI name-mover: copy the indirect-object name to the logits (output head)"),
+    "backup_name_mover": dict(kind="output", primary="ioi", repeat=False,
+                              desc="IOI backup name-mover: the self-repair spares that wake when primaries are ablated"),
+    "negative_mover": dict(kind="output", primary="ioi", repeat=False,
+                           desc="copy-suppression / negative name-mover: writes against the copied token"),
     "s_inhibition": dict(kind="output", primary="ioi", repeat=False,
                          desc="IOI S-inhibition: suppress the subject so the name-mover writes IO"),
+    "coreference": dict(kind="content", primary="generic", repeat=False,
+                        desc="coreference (exploratory): pronoun -> earlier antecedent (no clean task probe here)"),
 }
 
 
@@ -82,12 +97,14 @@ def main(argv=None):
     p.add_argument("--no-cross", action="store_true")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--device", default="cuda")
+    p.add_argument("--outroot", type=Path, default=Path("runs/disassembly/operators"), help="operator-catalog tree root")
     p.add_argument("--output", type=Path, default=None)
     p.add_argument("--fig", type=Path, default=None)
     args = p.parse_args(argv)
     op = args.op; spec = OPS[op]
-    args.output = args.output or Path(f"runs/disassembly/dossier_{op}_summary.json")
-    args.fig = args.fig or Path(f"runs/disassembly/dossier_{op}.png")
+    mtag = args.pretrained.split("/")[-1]                                           # dossiers/<op>/<model>_summary.{json,png}
+    args.output = args.output or (args.outroot / "dossiers" / op / f"{mtag}_summary.json")
+    args.fig = args.fig or (args.outroot / "dossiers" / op / f"{mtag}.png")
 
     import torch
     import torch.nn.functional as F
@@ -118,7 +135,7 @@ def main(argv=None):
         probes = [(lambda s: s + s)([int(vocab[i]) for i in rng.integers(0, len(vocab), args.probe_len)]) for _ in range(args.probe_seqs)]
     else:
         probes = echunks[: args.probe_seqs]
-    msk_op = op if op in ("prevtok", "induction", "duplicate") else "induction"   # output ops: identify via IOI below
+    msk_op = op if op in BEHAV_OPS else "induction"                                # lit/output ops: identified via LIT below
     mass = np.zeros(NH); pmass = np.zeros(NH); ntot = 0
     with torch.no_grad():
         for s in probes:
@@ -131,9 +148,9 @@ def main(argv=None):
     mass /= max(ntot, 1)
     prevtok_head = int(np.argmax(pmass / max(ntot, 1)))                            # the model's prev-token head (induction writer)
 
-    if op in ("name_mover", "s_inhibition"):                                       # output ops: rank by IOI direct effect, not attention
+    if op in LIT_OPS:                                                              # output/circuit ops: rank by IOI direct effect, not attention
         op_heads_idx = [L * H + h for (L, h) in LIT[op]]                            # literature set (DLA-defined; not weight/attn-readable)
-        id_note = "output op — heads from literature (DLA-defined; not attention-mask-readable)"
+        id_note = "circuit op — heads from literature (DLA-defined; not attention-mask-readable)"
         ident = [{"head": name_of(i), "signal": None, "depth": (i // H) / (nL - 1)} for i in op_heads_idx]
     else:
         order = np.argsort(-mass)
@@ -268,7 +285,7 @@ def main(argv=None):
     # reader B's KEY (match) vs VALUE (move) dependence on each upstream head (GPT-2 c_attn machinery).
     Wc = tr.h[LB].attn.c_proj
     channel = {"reader": name_of(reader), "note": "reader in layer 0 — no upstream; channel skipped" if LB == 0 else ""}
-    if LB > 0 and op in ("prevtok", "induction", "duplicate"):
+    if LB > 0 and op in BEHAV_OPS:
         upstream = [(L, h) for L in range(LB) for h in range(H)][: args.max_upstream]
 
         def head_contrib(L, captured, h):
@@ -399,7 +416,7 @@ def main(argv=None):
 
     # ============================ F. CROSS-MODEL (behavioural signal survival) ============================
     cross = []
-    if not args.no_cross and op in ("induction", "prevtok", "duplicate"):
+    if not args.no_cross and op in BEHAV_OPS:
         from transformers import AutoModelForCausalLM
 
         def behaviour_signal(mid):
@@ -411,7 +428,7 @@ def main(argv=None):
             with torch.no_grad():
                 for s in sg:
                     out = m(input_ids=torch.tensor([s], device=dev), output_attentions=True)
-                    Msk = op_masks(s)[op if op != "prevtok" else "prevtok"]; L = len(s) // 2
+                    Msk = op_masks(s)[op]; L = len(s) // 2
                     lp = F.log_softmax(out.logits[0].float(), -1)
                     for pos in range(1, L - 1):
                         t1 += float(-lp[pos, s[pos + 1]]); n1 += 1
