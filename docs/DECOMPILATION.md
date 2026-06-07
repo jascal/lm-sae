@@ -884,6 +884,53 @@ primaries are gone** (Δ +1.04 — **4× larger**). So the op is load-bearing, b
 it under single-class ablation — a clean instance of the program-wide redundancy (the named circuit ships *hot
 spares*), and exactly why mean-ablation under-counts name-movers. `runs/disassembly/self_repair_summary.json`.
 
+## Does the in-context-copy op survive a non-attention mixer? — SSM vs attention sweep (data, not a verdict)
+
+`instruction_reuse.py` found **induction** (in-context copy) to be the one genuinely *reused* low-level op across
+tasks. The disassembly reads that op as **attention** (a QK predecessor-match feeding an OV copy). Does anything
+like it appear when the sequence-mixer is **not** attention at all? **Mamba** is a pure state-space model — no
+heads, no QK match; mixing is a learned linear recurrence (a scan). `ssm_induction.py` runs this as an
+**exhaustive sweep, reporting raw measurements rather than a clean conclusion**: two families across three sizes
+each (Mamba 130m/370m/790m; GPT-2 small/medium/large), each measured for (a) **induction GAIN** = (1st-copy NLL −
+2nd-copy NLL) on repeated random sequences, over **3 seeds × 3 context lengths**; and (b) a per-layer
+**localization** profile = mean-ablate each layer's mixer (Mamba `mixer.out_proj` / GPT-2 `attn.c_proj`), record
+the induction-NLL increase.
+
+| model | mixer | L | hidden | induction gain (μ±σ) | gain @ len 12/24/48 | top layer (depth, ΔNLL, conc) |
+|---|---|---|---|---|---|---|
+| gpt2 | attention | 12 | 768 | **+12.54**±0.20 | +12.8 / +12.5 / +12.3 | L5 (d0.45, +0.90, c0.27) |
+| gpt2-medium | attention | 24 | 1024 | **+12.45**±0.21 | +12.7 / +12.5 / +12.2 | L3 (d0.13, +0.52, c0.21) |
+| gpt2-large | attention | 36 | 1280 | **+12.38**±0.18 | +12.6 / +12.4 / +12.2 | L0 (d0.0, +15.85, **c0.92 — artifact**) |
+| mamba-130m | **SSM** | 24 | 768 | **+12.10**±0.35 | +12.4 / +12.2 / +11.7 | L0 (d0.0, +8.73, c0.47) |
+| mamba-370m | **SSM** | 48 | 1024 | **+12.33**±0.27 | +12.5 / +12.4 / +12.1 | L0 (d0.0, +4.70, c0.38) |
+| mamba-790m | **SSM** | 48 | 1536 | **+12.28**±0.30 | +12.6 / +12.4 / +11.9 | L1 (d0.02, +4.43, c0.32) |
+
+**What the data shows (descriptive):**
+1. **The in-context-copy GAIN is present and large in both families, in a narrow band — +12.10..+12.54 — across
+   6 models, 3 sizes/family, 3 seeds, 3 lengths.** The behaviour that the disassembly attributes to attention is
+   produced just as strongly by a model with *no attention*. The gain shrinks slightly with context length
+   (12 > 24 > 48) in **every** model — a consistent secondary trend.
+2. **The localization differs by family — but the headline number is confounded by coarse ablation.** Mamba
+   concentrates the effect on an **early** layer (L0/L1, large ΔNLL +4.4..+8.7) **plus a mid-deep secondary peak**
+   (L17/L34/L23, visible in `runs/gemma/ssm_induction.png`); GPT-2 small/medium **distribute** it across early-mid
+   layers with small per-layer magnitudes (concentration 0.27/0.21). **gpt2-large's L0 spike (+15.85, conc 0.92)
+   is an artifact**: mean-ablating L0 in a 36-layer model destroys the detokenizer, not "induction" — so the
+   auto-summary's "attention concentration 0.47" is dragged up by that one outlier (gpt2/medium are 0.21–0.27).
+   Within Mamba, concentration *falls* with size (0.47 → 0.38 → 0.32).
+
+**What is NOT concluded (the held-off pattern).** This is evidence the in-context-copy **capability** is
+architecture-invariant — it does **not** show the **mechanism** is the same. (1) the GAIN is a behavioural NLL
+effect; (2) whole-layer mean-ablation removes everything a layer does, an over-estimate of "induction
+localization"; (3) the two families' baselines/magnitudes are not directly comparable — compare *within* family
+across size, not across families by magnitude; (4) single seed for the localization profile; (5) the SSM has no
+heads, so there is **no head-level resolution** — we cannot point to a "Mamba induction head," only a layer. So:
+the copy op survives the loss of attention *behaviourally*, and even survives the loss of *heads as a unit of
+analysis*; whether the SSM implements it by anything resembling a QK-match→OV-copy is **unverified here** and
+would need an SSM-native circuit probe (the recurrence's state-update, not a head). This complements the
+cross-model ceiling result (mechanisms invariant, positional register absolute-position-family-specific): here
+the **mixer class itself** changes and the copy *capability* persists. `ssm_induction.py`,
+`runs/gemma/ssm_induction_summary.json` (~SSM models run on the sequential Mamba kernel — slow but exact).
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
