@@ -1,5 +1,7 @@
 # Operator `duplicate`
 
+> **`op:duplicate`** — this is the **operator** (a head *class*: the family of heads that realize the operation). Not the [`duplicate` *circuit*](../circuits/duplicate.md), which is the *composition* (a writer-op feeding a reader-op) named after — and built around — this operator.
+
 **content** — duplicate-token head: attend to an earlier occurrence of the same token
 
 ## Cross-model (catalog row) — signal/causal are mean ± σ over 3 probe-resample seeds

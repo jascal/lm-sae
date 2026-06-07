@@ -1,5 +1,7 @@
 # Operator `induction`
 
+> **`op:induction`** — this is the **operator** (a head *class*: the family of heads that realize the operation). Not the [`induction` *circuit*](../circuits/induction.md), which is the *composition* (a writer-op feeding a reader-op) named after — and built around — this operator.
+
 **content** — in-context copy: attend to the key whose predecessor token == current token, copy it
 
 ## Cross-model (catalog row) — signal/causal are mean ± σ over 3 probe-resample seeds

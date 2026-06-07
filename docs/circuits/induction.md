@@ -1,5 +1,7 @@
 # Circuit `induction` (cross-model)
 
+> **`circuit:induction`** — this is the **circuit** (a *composition* of operators: a writer-op feeding a reader-op's K/Q/V port). Not the [`induction` *operator*](../operators/induction.md), which is the head *class* this circuit is named after (the circuit is keyed by its **reader operator**). `circuit:induction` here vs `op:induction` there.
+
 prev-token head --K--> induction head (the in-context-copy macro)
 
 **Defining edge:** `prevtok_head -> induction (K)`

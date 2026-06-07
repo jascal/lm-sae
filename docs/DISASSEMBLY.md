@@ -23,15 +23,25 @@ residual-bus picture, Weiss/Lindner's RASP/Tracr (an op set for what transformer
 Merrill's TC⁰ bound. This thread **assembles, quantifies, causally tests, corpus-checks, and
 cross-model-replicates** such a catalog; it does not reproduce an existing one.
 
+> **Scope & currency (read first).** This is the original **methodology deep-dive**: the worked example on
+> **GPT-2-small** (§Pipeline–§Corpus robustness — *GPT-2-specific*, head indices like 4.11/5.x), then the first
+> **cross-model port** to the RoPE family (§Cross-model — *general*). The two scopes are kept separate; where a
+> claim is GPT-2-only vs cross-model is stated inline. **The cross-model survey has since been generalized and made
+> browsable** — read those for the *current* state, this doc for the *method*:
+> [Operator catalog](operators/README.md) (every operator class × model), [Circuit catalog](circuits/README.md)
+> (composed circuits + de-novo discovered edges), [MLP / COMPUTE catalog](operators/mlp_compute.md),
+> [Discovered components](operators/discovered.md), the [decompilation milestones](DECOMPILATION.md), and the
+> browsable [per-head listings](disassembly/README.md). PR numbers below are historical.
+
 ## Pipeline
 
-| stage | script | PR | what it produces |
-|------|--------|----|------------------|
-| Idiom library | `idiom_library_v2.py` | #2/#3 | 8 literature-validated idioms + coreference + the composed IOI chain |
-| Coverage scorecard | `coverage_scorecard.py` | #2 | "% of attention the catalog explains" + the dark-head work-list |
-| SAE-feature operands | `sae_opcode_table.py` | #2 | richer operand basis; resolves dark heads token-identity misses |
-| Causal validation | `causal_validation.py`, `ioi_causal.py` | #4 | mean-ablation: are the named heads *load-bearing*? |
-| Corpus robustness | `corpus_robustness.py` | #5 | which claims are corpus-invariant vs corpus-conditioned |
+| stage | script | what it produces |
+|------|--------|------------------|
+| Idiom library | `idiom_library_v2.py` | 8 literature-validated idioms + coreference + the composed IOI chain |
+| Coverage scorecard | `coverage_scorecard.py` | "% of attention the catalog explains" + the dark-head work-list |
+| SAE-feature operands | `sae_opcode_table.py` | richer operand basis; resolves dark heads token-identity misses |
+| Causal validation | `causal_validation.py`, `ioi_causal.py` | mean-ablation: are the named heads *load-bearing*? |
+| Corpus robustness | `corpus_robustness.py` | which claims are corpus-invariant vs corpus-conditioned |
 
 Run order (GPT-2, CPU): idiom library → opcode tables → scorecard (it consumes the idiom/opcode summaries)
 → causal validation → corpus robustness. SAEs for the SAE-operand table download per layer on demand.
@@ -122,18 +132,6 @@ Two transferable lessons:
 
 Method note: the opcode-legibility cross-corpus estimate is operand-count-sensitive (~9 shared operands →
 noisy 0.43–0.75; 38 → stable 0.81); it needs ~20k tokens/corpus for enough shared high-frequency tokens.
-
-## Boundaries (honest)
-
-- Coverage **magnitudes** are corpus-conditioned (use the prose baseline for general text).
-- Causal claims are **metric-specific** — confirmed on the metric each idiom serves, not universally.
-- `coreference` overlaps `duplicate_token` (the dup mechanism applied to pronouns), and its SAE *weight*
-  binding (9.0) diverges from its raw *attention* signal — weight-binding ≠ attention.
-- Four base models (GPT-2-small, Gemma-2-2B, Llama-3.2-1B, Qwen2.5-1.5B); the GPT-2 SAE-operand table covers
-  layers 1/4/9; greater-than is MLP-dominated (the OV probe sees only the attention-side shadow). Named
-  *circuit* roles (IOI name-movers, S-inhibition) are GPT-2-only (no published IOI head-set for the others) —
-  the non-GPT-2 models carry the universal idioms + behavioral tags + causal flags. The feature-native SAE
-  opcode is Gemma-only (Gemma Scope); Llama/Qwen use the universal token-operand bind.
 
 ## Cross-model: Gemma-2, Llama-3, Qwen-2.5
 
@@ -287,6 +285,21 @@ The complete per-head listings are committed as reference artifacts (regenerate 
 → `runs/gemma/` for Gemma/Llama/Qwen. The `runs/` copies + per-head `.json` are git-ignored and regenerated on
 demand. Llama-3.2-1B was run via the ungated `unsloth/Llama-3.2-1B` mirror — identical weights to the gated
 `meta-llama/Llama-3.2-1B`, which the code defaults to once you have access.)
+
+## Boundaries (honest)
+
+These span both scopes — the GPT-2 method above and the cross-model port — and are what the browsable
+catalogs are meant to keep current:
+
+- Coverage **magnitudes** are corpus-conditioned (use the prose baseline for general text).
+- Causal claims are **metric-specific** — confirmed on the metric each idiom serves, not universally.
+- `coreference` overlaps `duplicate_token` (the dup mechanism applied to pronouns), and its SAE *weight*
+  binding (9.0) diverges from its raw *attention* signal — weight-binding ≠ attention.
+- Four base models (GPT-2-small, Gemma-2-2B, Llama-3.2-1B, Qwen2.5-1.5B); the GPT-2 SAE-operand table covers
+  layers 1/4/9; greater-than is MLP-dominated (the OV probe sees only the attention-side shadow). Named
+  *circuit* roles (IOI name-movers, S-inhibition) are GPT-2-only (no published IOI head-set for the others) —
+  the non-GPT-2 models carry the universal idioms + behavioral tags + causal flags. The feature-native SAE
+  opcode is Gemma-only (Gemma Scope); Llama/Qwen use the universal token-operand bind.
 
 ## Downstream hook (and a retraction)
 

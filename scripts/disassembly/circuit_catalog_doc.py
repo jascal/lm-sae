@@ -31,8 +31,20 @@ def cross_matrix(atlas):
     return models, "\n".join(lines)
 
 
-def cross_page(c, row, models, rung3):
-    lines = [f"# Circuit `{c}` (cross-model)", "", row["desc"], "",
+def disambig(c, operator_names):
+    """A banner shown when a circuit shares a name with an operator (the head class it's named after)."""
+    if c not in operator_names:
+        return []
+    return [f"> **`circuit:{c}`** — this is the **circuit** (a *composition* of operators: a writer-op feeding a "
+            f"reader-op's K/Q/V port). Not the [`{c}` *operator*](../operators/{c}.md), which is the head *class* "
+            f"this circuit is named after (the circuit is keyed by its **reader operator**). `circuit:{c}` here vs "
+            f"`op:{c}` there.", ""]
+
+
+def cross_page(c, row, models, rung3, operator_names=frozenset()):
+    lines = [f"# Circuit `{c}` (cross-model)", ""]
+    lines += disambig(c, operator_names)
+    lines += [row["desc"], "",
              f"**Defining edge:** `{row['defining_edge']}`", "",
              "## Cross-model edge liveness (path-patch: remove the writer from the reader's key → attention collapse)", "",
              "| model | reader | writer | key collapse | writer is | value mover | value ΔV-out |",
@@ -55,8 +67,10 @@ def cross_page(c, row, models, rung3):
     return "\n".join(lines)
 
 
-def gpt2_page(name, c, extra):
-    lines = [f"# Circuit `{name}` (GPT-2)", "", f"**{c.get('kind','')}** — scope: {c.get('scope','gpt2')}", ""]
+def gpt2_page(name, c, extra, operator_names=frozenset()):
+    lines = [f"# Circuit `{name}` (GPT-2)", ""]
+    lines += disambig(name, operator_names)
+    lines += [f"**{c.get('kind','')}** — scope: {c.get('scope','gpt2')}", ""]
     if name == "ioi_q_chain":
         lines += ["The indirect-object-identification circuit: **duplicate-token → S-inhibition → name-mover**, a "
                   "Q-composition chain (no published head-set outside GPT-2).", "",
@@ -102,16 +116,24 @@ def main(argv=None):
     extra = {"self_repair": load(args.disasm / "self_repair_summary.json")}
     args.docs.mkdir(parents=True, exist_ok=True)
 
+    # the set of operator names (the OTHER catalog) — any circuit sharing a name with an operator gets a
+    # disambiguation banner + a `circuit:` qualifier in the index.
+    ops_atlas = load(args.disasm / "operators" / "atlas_summary.json")
+    operator_names = frozenset(ops_atlas.get("operators", [])) | frozenset(ops_atlas.get("gpt2_circuit_ops", {}))
+
     models, cmat = cross_matrix(atlas)
     cross = atlas["cross_model_circuits"]; gpt2 = atlas["gpt2_circuits"]
     for c, row in cross.items():
-        (args.docs / f"{c}.md").write_text(cross_page(c, row, models, rung3))
+        (args.docs / f"{c}.md").write_text(cross_page(c, row, models, rung3, operator_names))
     for name, c in gpt2.items():
-        (args.docs / f"{name}.md").write_text(gpt2_page(name, c, extra))
+        (args.docs / f"{name}.md").write_text(gpt2_page(name, c, extra, operator_names))
 
     all_circuits = list(cross) + list(gpt2)
-    idx = "\n".join(f"- [`{c}`]({c}.md) — cross-model" for c in cross) + "\n" + \
-          "\n".join(f"- [`{c}`]({c}.md) — GPT-2 ({gpt2[c].get('kind','')})" for c in gpt2)
+
+    def qual(c):
+        return f" · **also an [operator](../operators/{c}.md)** (`circuit:{c}` here vs `op:{c}` there)" if c in operator_names else ""
+    idx = "\n".join(f"- [`{c}`]({c}.md) — cross-model{qual(c)}" for c in cross) + "\n" + \
+          "\n".join(f"- [`{c}`]({c}.md) — GPT-2 ({gpt2[c].get('kind','')}){qual(c)}" for c in gpt2)
     readme = f"""# Circuit catalog — composed circuits, surveyed & collected across models
 
 Operators are single head-classes ([`../operators/`](../operators/README.md)); **circuits** are their
@@ -130,6 +152,12 @@ here, two sources:
 ## Circuit inventory (index)
 
 {idx}
+
+> **Circuit vs operator — a naming note.** A few names ({', '.join(sorted(c for c in all_circuits if c in operator_names)) or '—'}) appear in
+> *both* this circuit catalog and the [operator catalog](../operators/README.md). A **circuit** is a *composition*
+> (`circuit:induction` = prev-token → induction); the same-named **operator** is the *head class* it is named
+> after and built around (`op:induction`). The coincidence is deliberate: a circuit is keyed by its **reader
+> operator**. Pages cross-link to their namesake.
 
 ## Cross-model circuit-edge liveness (remove the writer from the reader's key → attention collapse %)
 

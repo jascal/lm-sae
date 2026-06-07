@@ -30,9 +30,13 @@ def atlas_tables(atlas):
     return ok, ops, kinds, "\n".join(sig), "\n".join(cau), "\n".join(memb)
 
 
-def op_page(op, atlas, dossier):
+def op_page(op, atlas, dossier, circuit_names=frozenset()):
     kinds = atlas["kinds"]; ok = [r for r in atlas["results"] if "cells" in r]
     lines = [f"# Operator `{op}`", ""]
+    if op in circuit_names:
+        lines += [f"> **`op:{op}`** — this is the **operator** (a head *class*: the family of heads that realize the "
+                  f"operation). Not the [`{op}` *circuit*](../circuits/{op}.md), which is the *composition* "
+                  f"(a writer-op feeding a reader-op) named after — and built around — this operator.", ""]
     if dossier and dossier.get("spec"):
         lines += [f"**{dossier['spec']['kind']}** — {dossier['spec']['desc']}", ""]
     elif op in kinds:
@@ -100,23 +104,30 @@ def main(argv=None):
     atlas = json.loads((args.root / "atlas_summary.json").read_text())
     args.docs.mkdir(parents=True, exist_ok=True)
 
+    # the set of circuit names (the OTHER catalog) — any operator that shares a name with a circuit gets a
+    # disambiguation banner + an `op:` qualifier in the index, so a reader never confuses the two.
+    cir = json.loads((args.root.parent / "circuits" / "atlas_summary.json").read_text()) if (args.root.parent / "circuits" / "atlas_summary.json").exists() else {}
+    circuit_names = frozenset(cir.get("cross_model_circuits", {})) | frozenset(cir.get("gpt2_circuits", {}))
+
     def load_dossier(op):
         f = args.root / "dossiers" / op / "gpt2_summary.json"
         return json.loads(f.read_text()) if f.exists() else None
 
     all_ops = list(atlas["operators"]) + list(atlas.get("gpt2_circuit_ops", {}))
     for op in all_ops:
-        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op)))
+        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names))
 
     # discovered-candidate dossiers: any dossiers/<op>/ not in the registered set (e.g. discovered_7.6)
     dossier_dir = args.root / "dossiers"
     discovered = sorted(d.name for d in dossier_dir.iterdir() if d.is_dir() and d.name not in all_ops and (d / "gpt2_summary.json").exists()) if dossier_dir.exists() else []
     for op in discovered:
-        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op)))
+        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names))
 
     ok, ops, kinds, sig_tbl, cau_tbl, memb_tbl = atlas_tables(atlas)
     circuit = atlas.get("gpt2_circuit_ops", {})
-    idx = "\n".join(f"- [`{op}`]({op}.md) — {kinds.get(op, 'circuit')}" for op in all_ops)
+    idx = "\n".join(f"- [`{op}`]({op}.md) — {kinds.get(op, 'circuit')}"
+                    + (f" · **also a [circuit](../circuits/{op}.md)** (`op:{op}` here vs `circuit:{op}` there)" if op in circuit_names else "")
+                    for op in all_ops)
     disc_idx = ("\n\n**Discovered-candidate dossiers** (UNNAMED load-bearing heads from the [discovery sweep](discovered.md), "
                 "given the full battery): " + ", ".join(f"[`{op}`]({op}.md)" for op in discovered) + ".") if discovered else ""
     readme = f"""# Operator catalog — attention operators, surveyed across models
@@ -127,6 +138,12 @@ A **working catalog** of attention operators — amateur, exploratory home-scien
 ## Catalog index
 
 {idx}{disc_idx}
+
+> **Operator vs circuit — a naming note.** A few names ({', '.join(sorted(n for n in all_ops if n in circuit_names)) or '—'}) appear in
+> *both* this operator catalog and the [circuit catalog](../circuits/README.md). They are different objects at
+> different levels: an **operator** is a *head class* (`op:induction`); the same-named **circuit** is the
+> *composition* that feeds/anchors it (`circuit:induction` = prev-token → induction). The circuit is named after
+> its **reader operator**, which is why the names coincide. Pages on either side cross-link to their namesake.
 
 ## How to read this catalog
 
