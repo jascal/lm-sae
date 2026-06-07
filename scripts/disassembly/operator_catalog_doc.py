@@ -3,8 +3,8 @@
 Reads `runs/disassembly/operators/atlas_summary.json` (the cross-model matrix) + each
 `runs/disassembly/operators/dossiers/<op>/<model>.json` (the deep per-op dossiers) and emits:
   docs/operators/README.md   — the master operator x model matrix (signal + causal), the catalog index, the gaps.
-  docs/operators/<op>.md     — one page per operator: its cross-model atlas row + its GPT-2 dossier (A-F).
-The docs are GENERATED, not hand-written, so re-running after new atlas/dossier runs keeps the catalog in sync.
+  docs/operators/<op>.md     — one page per operator: its cross-model catalog row + its GPT-2 dossier (A-F).
+The docs are GENERATED, not hand-written, so re-running after new survey/dossier runs keeps the catalog in sync.
 """
 from __future__ import annotations
 
@@ -36,10 +36,10 @@ def op_page(op, atlas, dossier):
     if dossier and dossier.get("spec"):
         lines += [f"**{dossier['spec']['kind']}** — {dossier['spec']['desc']}", ""]
     elif op in kinds:
-        lines += [f"**{kinds[op]}** operator (universal/addressing — measured across all models in the atlas).", ""]
-    # cross-model atlas row (universal ops)
+        lines += [f"**{kinds[op]}** operator (universal/addressing — measured across all models in the catalog).", ""]
+    # cross-model catalog row (universal ops)
     if op in atlas["operators"]:
-        lines += ["## Cross-model (atlas row)", "",
+        lines += ["## Cross-model (catalog row)", "",
                   "| model | arch | signal | #heads | top head | depth | causal ΔNLL |",
                   "|---|---|---|---|---|---|---|"]
         for r in ok:
@@ -49,7 +49,7 @@ def op_page(op, atlas, dossier):
     else:
         heads = atlas.get("gpt2_circuit_ops", {}).get(op)
         if heads:
-            lines += [f"GPT-2-only circuit op (literature DLA head-set): {', '.join(heads)}. No published head-set in the RoPE models — not in the cross-model atlas.", ""]
+            lines += [f"GPT-2-only circuit op (literature DLA head-set): {', '.join(heads)}. No published head-set in the RoPE models — not in the cross-model catalog.", ""]
     # the deep dossier (GPT-2)
     if dossier:
         A = dossier.get("A_identity", {}); B = dossier.get("B_causal", {}); C = dossier.get("C_channels", {})
@@ -85,7 +85,7 @@ def op_page(op, atlas, dossier):
             lines += [f"**F · cross-model**: {row}", ""]
         if dossier.get("G_sae_operands"):
             lines += [f"**G · SAE operands**: {dossier['G_sae_operands']}", ""]
-    lines += ["", f"_Data: `runs/disassembly/operators/dossiers/{op}/` + the atlas. Regenerate: `operator_catalog_doc.py`._"]
+    lines += ["", f"_Data: `runs/disassembly/operators/dossiers/{op}/` + the catalog. Regenerate: `operator_catalog_doc.py`._"]
     return "\n".join(lines)
 
 
@@ -127,22 +127,22 @@ This is the **catalog** of GPT-2-family attention operators, measured exhaustive
 
 
 - **Universal / addressing operators** (a position-or-token attention mask → measurable in *any* architecture):
-  `{', '.join(ops)}`. The **atlas** ({len(ok)} models) below is their cross-model survey.
+  `{', '.join(ops)}`. The **catalog matrix** ({len(ok)} models) below is their cross-model survey.
 - **GPT-2 circuit operators** (literature direct-logit-attribution head-sets, **no published head-set outside
   GPT-2**): `{', '.join(circuit)}`. Catalogued by their per-op dossiers (GPT-2), not the cross-model matrix.
 
-Each operator has a **page** (cross-model atlas row + the deep GPT-2 dossier: identity / causal×tasks / K-V
+Each operator has a **page** (cross-model catalog row + the deep GPT-2 dossier: identity / causal×tasks / K-V
 channels / composition / redundancy / cross-model). Per-op data lives under `runs/disassembly/operators/`.
 
-## Atlas — behavioural signal (max head mass on the op's pattern; *is the op present?*)
+## Catalog — behavioural signal (max head mass on the op's pattern; *is the op present?*)
 
 {sig_tbl}
 
-## Atlas — membership (# heads carrying the op, mass > 0.15; *how many heads in the class?*)
+## Catalog — membership (# heads carrying the op, mass > 0.15; *how many heads in the class?*)
 
 {memb_tbl}
 
-## Atlas — causal ΔNLL (mean-ablate top-3 heads, generic-prose NLL; *load-bearing on prose?*)
+## Catalog — causal ΔNLL (mean-ablate top-3 heads, generic-prose NLL; *load-bearing on prose?*)
 
 Note: this is **generic-prose** ΔNLL, so *task-specific* ops (induction, duplicate) read low here even though
 they are load-bearing on their *own* task — see each op's dossier (section B) for the task-specific causal.
@@ -155,9 +155,9 @@ they are load-bearing on their *own* task — see each op's dossier (section B) 
 
 ## Gaps (documented, not skipped)
 
-- **succession / greater-than** — MLP-dominated; no clean attention head, so no atlas row (the OV probe sees only
+- **succession / greater-than** — MLP-dominated; no clean attention head, so no catalog row (the OV probe sees only
   the attention-side shadow). It is carried by the *copy* ops (see `instruction_reuse.py`: successor ← induction/duplicate).
-- **SSM (Mamba)** — no attention heads, so the head-resolved atlas does not apply; induction is present
+- **SSM (Mamba)** — no attention heads, so the head-resolved catalog does not apply; induction is present
   *behaviourally* (NLL gain) — see `ssm_induction.py`.
 
 ## How this was made

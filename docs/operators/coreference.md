@@ -2,7 +2,7 @@
 
 **content** — coreference (exploratory): pronoun -> earlier antecedent (no clean task probe here)
 
-GPT-2-only circuit op (literature DLA head-set): 9.0. No published head-set in the RoPE models — not in the cross-model atlas.
+GPT-2-only circuit op (literature DLA head-set): 9.0. No published head-set in the RoPE models — not in the cross-model catalog.
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op coreference`
 
@@ -19,4 +19,4 @@ GPT-2-only circuit op (literature DLA head-set): 9.0. No published head-set in t
 **G · SAE operands**: NOT RUN — needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer.
 
 
-_Data: `runs/disassembly/operators/dossiers/coreference/` + the atlas. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/coreference/` + the catalog. Regenerate: `operator_catalog_doc.py`._

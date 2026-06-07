@@ -1,8 +1,8 @@
 # Operator `structural`
 
-**structural** operator (universal/addressing — measured across all models in the atlas).
+**structural** operator (universal/addressing — measured across all models in the catalog).
 
-## Cross-model (atlas row)
+## Cross-model (catalog row)
 
 | model | arch | signal | #heads | top head | depth | causal ΔNLL |
 |---|---|---|---|---|---|---|
@@ -14,4 +14,4 @@
 | Qwen2.5-1.5B | RoPE | 0.162 | 1 | 25.7 | 0.93 | -0.059 |
 
 
-_Data: `runs/disassembly/operators/dossiers/structural/` + the atlas. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/structural/` + the catalog. Regenerate: `operator_catalog_doc.py`._

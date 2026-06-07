@@ -1,8 +1,8 @@
 # Operator `local`
 
-**positional** operator (universal/addressing — measured across all models in the atlas).
+**positional** operator (universal/addressing — measured across all models in the catalog).
 
-## Cross-model (atlas row)
+## Cross-model (catalog row)
 
 | model | arch | signal | #heads | top head | depth | causal ΔNLL |
 |---|---|---|---|---|---|---|
@@ -14,4 +14,4 @@
 | Qwen2.5-1.5B | RoPE | 0.285 | 22 | 1.4 | 0.04 | +0.196 |
 
 
-_Data: `runs/disassembly/operators/dossiers/local/` + the atlas. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/local/` + the catalog. Regenerate: `operator_catalog_doc.py`._

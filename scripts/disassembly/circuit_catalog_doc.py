@@ -4,7 +4,7 @@ Reads `runs/disassembly/circuits/atlas_summary.json` (cross-model edges + harves
 committed discovery artifacts (`rung3_induction_chain`, `self_repair`, `validate_new_edges`) and emits:
   docs/circuits/README.md   — the cross-model circuit-edge matrix + the full circuit inventory + taxonomy + gaps.
   docs/circuits/<circuit>.md — one page per circuit (its DAG/stages, cross-model edge liveness, causal, redundancy).
-Mirror of `operator_catalog_doc.py`; generated, so re-running after new atlas/discovery runs keeps it in sync.
+Mirror of `operator_catalog_doc.py`; generated, so re-running after new survey/discovery runs keeps it in sync.
 """
 from __future__ import annotations
 
@@ -133,7 +133,7 @@ collected with the tools here, two sources:
 **Reading it:** the **induction** edge (prev-token → induction) is live in *every* model (and *stronger* in RoPE —
 content matching lives in the key everywhere); **positional-broadcast** (sink/hub → prev-token key) is
 **GPT-2-small/medium-only** (the absolute-position plumbing — RoPE reads position from the rotation, so the
-prev-token key has no upstream writer to remove). Same absolute-position-family split as the operator atlas's sink.
+prev-token key has no upstream writer to remove). Same absolute-position-family split as the operator catalog's sink.
 
 ## Circuit inventory (index)
 
@@ -147,7 +147,7 @@ prev-token key has no upstream writer to remove). Same absolute-position-family 
 - **SSM (Mamba)** — no heads, so no composition edges; induction is present only behaviourally (`ssm_induction.py`).
 - **Not yet run:** the IOI Q-chain / V-composition cross-model (no published head-sets off GPT-2); full per-edge
   path-patch of all {gpt2.get('discovered_write_hub_edges', {}).get('n_novel_live', '?')} discovered edges on the
-  RoPE models. The cross-model atlas covers the universal-reader edges.
+  RoPE models. The cross-model catalog covers the universal-reader edges.
 
 ## How this was made
 
