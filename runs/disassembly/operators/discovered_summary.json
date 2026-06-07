@@ -1,0 +1,1238 @@
+{
+  "experiment": "cross-model discovery sweep \u2014 every head+MLP ranked by causal effect (multi-seed induction)",
+  "seeds": 3,
+  "results": [
+    {
+      "model": "gpt2",
+      "arch": "GPT-2/absolute",
+      "n_layers": 12,
+      "n_heads": 12,
+      "base_generic": 5.187284197126116,
+      "base_induction": 0.5008357086576224,
+      "seeds": 3,
+      "top_components": [
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 1.7156338464646108,
+          "induction_dNLL_mean": 11.748844999856695,
+          "induction_dNLL_std": 0.13773275396882365,
+          "named": "mlp"
+        },
+        {
+          "comp": "5.1",
+          "kind": "head",
+          "L": 5,
+          "depth": 0.45,
+          "generic_dNLL": 0.01740059020027296,
+          "induction_dNLL_mean": 1.2298219730051296,
+          "induction_dNLL_std": 0.026386470377582318,
+          "named": "induction"
+        },
+        {
+          "comp": "mlp1",
+          "kind": "mlp",
+          "L": 1,
+          "depth": 0.09,
+          "generic_dNLL": 1.0315524812728638,
+          "induction_dNLL_mean": 0.9728107520877588,
+          "induction_dNLL_std": 0.2662876577659456,
+          "named": "mlp"
+        },
+        {
+          "comp": "0.3",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.07917573716905313,
+          "induction_dNLL_mean": 0.732107828695827,
+          "induction_dNLL_std": 0.03860989899746404,
+          "named": "self"
+        },
+        {
+          "comp": "7.6",
+          "kind": "head",
+          "L": 7,
+          "depth": 0.64,
+          "generic_dNLL": -0.026047055683439346,
+          "induction_dNLL_mean": 0.5281593205750329,
+          "induction_dNLL_std": 0.01628044265020496,
+          "named": "sink"
+        },
+        {
+          "comp": "4.11",
+          "kind": "head",
+          "L": 4,
+          "depth": 0.36,
+          "generic_dNLL": 0.023213220021081504,
+          "induction_dNLL_mean": 0.3969737510422073,
+          "induction_dNLL_std": 0.013566414761605491,
+          "named": "prevtok"
+        },
+        {
+          "comp": "0.9",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.025392259870256062,
+          "induction_dNLL_mean": 0.37378859328332875,
+          "induction_dNLL_std": 0.006855229445146044,
+          "named": null
+        },
+        {
+          "comp": "0.10",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.017082759312220475,
+          "induction_dNLL_mean": 0.2894345469071726,
+          "induction_dNLL_std": 0.03344302428154227,
+          "named": "self"
+        },
+        {
+          "comp": "mlp11",
+          "kind": "mlp",
+          "L": 11,
+          "depth": 1.0,
+          "generic_dNLL": 0.04283529614645332,
+          "induction_dNLL_mean": 0.24608254245438962,
+          "induction_dNLL_std": 0.03366894195876662,
+          "named": "mlp"
+        },
+        {
+          "comp": "0.8",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.0417514074416383,
+          "induction_dNLL_mean": 0.23006923805247456,
+          "induction_dNLL_std": 0.011734980596202628,
+          "named": null
+        },
+        {
+          "comp": "0.5",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": -0.004940335712736221,
+          "induction_dNLL_mean": 0.19454892973610963,
+          "induction_dNLL_std": 0.019462893760252207,
+          "named": "duplicate"
+        },
+        {
+          "comp": "mlp4",
+          "kind": "mlp",
+          "L": 4,
+          "depth": 0.36,
+          "generic_dNLL": -0.06912416125100762,
+          "induction_dNLL_mean": 0.19425064874628173,
+          "induction_dNLL_std": 0.01168191512312337,
+          "named": "mlp"
+        },
+        {
+          "comp": "0.1",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.13000049288310667,
+          "induction_dNLL_mean": 0.1863194791824392,
+          "induction_dNLL_std": 0.03046849675370085,
+          "named": "duplicate"
+        },
+        {
+          "comp": "mlp10",
+          "kind": "mlp",
+          "L": 10,
+          "depth": 0.91,
+          "generic_dNLL": -0.25339878929985904,
+          "induction_dNLL_mean": 0.17826354216202392,
+          "induction_dNLL_std": 0.008203129047640447,
+          "named": "mlp"
+        },
+        {
+          "comp": "8.5",
+          "kind": "head",
+          "L": 8,
+          "depth": 0.73,
+          "generic_dNLL": -0.007347924368722225,
+          "induction_dNLL_mean": 0.16420870243759025,
+          "induction_dNLL_std": 0.004257343435400248,
+          "named": "sink"
+        }
+      ],
+      "candidate_unnamed": [
+        {
+          "comp": "0.9",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.025392259870256062,
+          "induction_dNLL_mean": 0.37378859328332875,
+          "induction_dNLL_std": 0.006855229445146044,
+          "named": null
+        },
+        {
+          "comp": "0.8",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.0417514074416383,
+          "induction_dNLL_mean": 0.23006923805247456,
+          "induction_dNLL_std": 0.011734980596202628,
+          "named": null
+        }
+      ],
+      "n_unnamed_load_bearing": 2
+    },
+    {
+      "model": "gpt2-medium",
+      "arch": "GPT-2/absolute",
+      "n_layers": 24,
+      "n_heads": 16,
+      "base_generic": 4.890628027537512,
+      "base_induction": 0.42482963755873726,
+      "seeds": 3,
+      "top_components": [
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 7.6352429465642055,
+          "induction_dNLL_mean": 21.796678808445918,
+          "induction_dNLL_std": 0.2823558615974455,
+          "named": "mlp"
+        },
+        {
+          "comp": "2.13",
+          "kind": "head",
+          "L": 2,
+          "depth": 0.09,
+          "generic_dNLL": -0.02392935374426486,
+          "induction_dNLL_mean": 0.2697765950620773,
+          "induction_dNLL_std": 0.07242020946220659,
+          "named": "sink"
+        },
+        {
+          "comp": "6.1",
+          "kind": "head",
+          "L": 6,
+          "depth": 0.26,
+          "generic_dNLL": -0.01475582425556432,
+          "induction_dNLL_mean": 0.1761542700300832,
+          "induction_dNLL_std": 0.0025399345276155005,
+          "named": "induction"
+        },
+        {
+          "comp": "mlp22",
+          "kind": "mlp",
+          "L": 22,
+          "depth": 0.96,
+          "generic_dNLL": 0.01368720947750024,
+          "induction_dNLL_mean": 0.15785983574247756,
+          "induction_dNLL_std": 0.003800547500898733,
+          "named": "mlp"
+        },
+        {
+          "comp": "11.4",
+          "kind": "head",
+          "L": 11,
+          "depth": 0.48,
+          "generic_dNLL": -0.013807448129805167,
+          "induction_dNLL_mean": 0.12860108697925515,
+          "induction_dNLL_std": 0.0025340629493449144,
+          "named": "sink"
+        },
+        {
+          "comp": "5.8",
+          "kind": "head",
+          "L": 5,
+          "depth": 0.22,
+          "generic_dNLL": -0.0004850266471736475,
+          "induction_dNLL_mean": 0.10236647482678461,
+          "induction_dNLL_std": 0.004757246103174187,
+          "named": "induction"
+        },
+        {
+          "comp": "0.1",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.015064966110956313,
+          "induction_dNLL_mean": 0.09380120132199886,
+          "induction_dNLL_std": 0.025564218909612257,
+          "named": null
+        },
+        {
+          "comp": "9.9",
+          "kind": "head",
+          "L": 9,
+          "depth": 0.39,
+          "generic_dNLL": 0.004854262821258004,
+          "induction_dNLL_mean": 0.0891229901092297,
+          "induction_dNLL_std": 0.013887453926731363,
+          "named": "induction"
+        },
+        {
+          "comp": "1.4",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.04,
+          "generic_dNLL": 0.013859067644391487,
+          "induction_dNLL_mean": 0.08603787483406782,
+          "induction_dNLL_std": 0.04527260847365027,
+          "named": "duplicate"
+        },
+        {
+          "comp": "0.8",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": -0.0009829657418389814,
+          "induction_dNLL_mean": 0.07838525722308698,
+          "induction_dNLL_std": 0.02079767844535435,
+          "named": null
+        },
+        {
+          "comp": "9.1",
+          "kind": "head",
+          "L": 9,
+          "depth": 0.39,
+          "generic_dNLL": -0.02285937657431969,
+          "induction_dNLL_mean": 0.0760063420132307,
+          "induction_dNLL_std": 0.00488599058162999,
+          "named": "sink"
+        },
+        {
+          "comp": "3.13",
+          "kind": "head",
+          "L": 3,
+          "depth": 0.13,
+          "generic_dNLL": -0.015607379731677362,
+          "induction_dNLL_mean": 0.07539747709383916,
+          "induction_dNLL_std": 0.02427550025673563,
+          "named": "prevtok"
+        },
+        {
+          "comp": "7.4",
+          "kind": "head",
+          "L": 7,
+          "depth": 0.3,
+          "generic_dNLL": 0.005565189179920438,
+          "induction_dNLL_mean": 0.07331305255480285,
+          "induction_dNLL_std": 0.013775798005998065,
+          "named": "sink"
+        },
+        {
+          "comp": "11.7",
+          "kind": "head",
+          "L": 11,
+          "depth": 0.48,
+          "generic_dNLL": -0.0009811038062688127,
+          "induction_dNLL_mean": 0.06968116790226231,
+          "induction_dNLL_std": 0.003974285070202901,
+          "named": "sink"
+        },
+        {
+          "comp": "mlp9",
+          "kind": "mlp",
+          "L": 9,
+          "depth": 0.39,
+          "generic_dNLL": -0.06980384342254098,
+          "induction_dNLL_mean": 0.0666533125758597,
+          "induction_dNLL_std": 0.007389908858734638,
+          "named": "mlp"
+        }
+      ],
+      "candidate_unnamed": [],
+      "n_unnamed_load_bearing": 0
+    },
+    {
+      "model": "gpt2-large",
+      "arch": "GPT-2/absolute",
+      "n_layers": 36,
+      "n_heads": 20,
+      "base_generic": 4.749130824255565,
+      "base_induction": 0.4785607449641998,
+      "seeds": 3,
+      "top_components": [
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.7889310443212105,
+          "induction_dNLL_mean": 13.548341206326112,
+          "induction_dNLL_std": 0.0674315296065913,
+          "named": "mlp"
+        },
+        {
+          "comp": "16.9",
+          "kind": "head",
+          "L": 16,
+          "depth": 0.46,
+          "generic_dNLL": 0.0014357037014427476,
+          "induction_dNLL_mean": 0.7361317639337992,
+          "induction_dNLL_std": 0.038052861606321126,
+          "named": "induction"
+        },
+        {
+          "comp": "0.14",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.017093507070389258,
+          "induction_dNLL_mean": 0.18616452880874954,
+          "induction_dNLL_std": 0.02885607565430329,
+          "named": "duplicate"
+        },
+        {
+          "comp": "5.19",
+          "kind": "head",
+          "L": 5,
+          "depth": 0.14,
+          "generic_dNLL": 0.0024441764468239313,
+          "induction_dNLL_mean": 0.17341892363308165,
+          "induction_dNLL_std": 0.024668825512550834,
+          "named": "duplicate"
+        },
+        {
+          "comp": "23.9",
+          "kind": "head",
+          "L": 23,
+          "depth": 0.66,
+          "generic_dNLL": -0.0029170626685735,
+          "induction_dNLL_mean": 0.12366969623616321,
+          "induction_dNLL_std": 0.012796943296082301,
+          "named": "sink"
+        },
+        {
+          "comp": "mlp34",
+          "kind": "mlp",
+          "L": 34,
+          "depth": 0.97,
+          "generic_dNLL": -0.10152421678815582,
+          "induction_dNLL_mean": 0.10593807399035003,
+          "induction_dNLL_std": 0.011639104106163005,
+          "named": "mlp"
+        },
+        {
+          "comp": "22.6",
+          "kind": "head",
+          "L": 22,
+          "depth": 0.63,
+          "generic_dNLL": -0.0026142029535209943,
+          "induction_dNLL_mean": 0.10169626841860237,
+          "induction_dNLL_std": 0.0056561901784051485,
+          "named": "sink"
+        },
+        {
+          "comp": "mlp25",
+          "kind": "mlp",
+          "L": 25,
+          "depth": 0.71,
+          "generic_dNLL": -0.0063505626860118625,
+          "induction_dNLL_mean": 0.10111770514095762,
+          "induction_dNLL_std": 0.013078531599074392,
+          "named": "mlp"
+        },
+        {
+          "comp": "mlp35",
+          "kind": "mlp",
+          "L": 35,
+          "depth": 1.0,
+          "generic_dNLL": -0.21623989892384365,
+          "induction_dNLL_mean": 0.09301403521246915,
+          "induction_dNLL_std": 0.007240190118104206,
+          "named": "mlp"
+        },
+        {
+          "comp": "24.4",
+          "kind": "head",
+          "L": 24,
+          "depth": 0.69,
+          "generic_dNLL": -0.0024685027107365087,
+          "induction_dNLL_mean": 0.07728399868432283,
+          "induction_dNLL_std": 0.004235075435757076,
+          "named": "sink"
+        },
+        {
+          "comp": "20.1",
+          "kind": "head",
+          "L": 20,
+          "depth": 0.57,
+          "generic_dNLL": -0.0010049608018665168,
+          "induction_dNLL_mean": 0.0663185172214908,
+          "induction_dNLL_std": 0.006472540997438399,
+          "named": "induction"
+        },
+        {
+          "comp": "16.2",
+          "kind": "head",
+          "L": 16,
+          "depth": 0.46,
+          "generic_dNLL": -0.0015476620386518647,
+          "induction_dNLL_mean": 0.05963846453179561,
+          "induction_dNLL_std": 0.003669488488724257,
+          "named": "sink"
+        },
+        {
+          "comp": "18.15",
+          "kind": "head",
+          "L": 18,
+          "depth": 0.51,
+          "generic_dNLL": -0.007127701290070121,
+          "induction_dNLL_mean": 0.05743233238581088,
+          "induction_dNLL_std": 0.008098884542723719,
+          "named": "sink"
+        },
+        {
+          "comp": "mlp33",
+          "kind": "mlp",
+          "L": 33,
+          "depth": 0.94,
+          "generic_dNLL": -0.03050537714882573,
+          "induction_dNLL_mean": 0.05410537066969218,
+          "induction_dNLL_std": 0.002786211092563379,
+          "named": "mlp"
+        },
+        {
+          "comp": "15.19",
+          "kind": "head",
+          "L": 15,
+          "depth": 0.43,
+          "generic_dNLL": 0.003636889987521208,
+          "induction_dNLL_mean": 0.05408745559545911,
+          "induction_dNLL_std": 0.0072364747778247305,
+          "named": "prevtok"
+        }
+      ],
+      "candidate_unnamed": [],
+      "n_unnamed_load_bearing": 0
+    },
+    {
+      "model": "gemma-2-2b",
+      "arch": "RoPE",
+      "n_layers": 26,
+      "n_heads": 8,
+      "base_generic": 7.583200802878728,
+      "base_induction": 5.010138402139839,
+      "seeds": 3,
+      "top_components": [
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.2882704810490688,
+          "induction_dNLL_mean": 3.651669080822964,
+          "induction_dNLL_std": 0.3115646876397708,
+          "named": "mlp"
+        },
+        {
+          "comp": "22.4",
+          "kind": "head",
+          "L": 22,
+          "depth": 0.88,
+          "generic_dNLL": -0.021462440490722656,
+          "induction_dNLL_mean": 2.8986408917620246,
+          "induction_dNLL_std": 0.13977083203200646,
+          "named": "induction"
+        },
+        {
+          "comp": "14.5",
+          "kind": "head",
+          "L": 14,
+          "depth": 0.56,
+          "generic_dNLL": 0.14699910179017106,
+          "induction_dNLL_mean": 2.5641534066015743,
+          "induction_dNLL_std": 0.1032257509286858,
+          "named": "self"
+        },
+        {
+          "comp": "17.4",
+          "kind": "head",
+          "L": 17,
+          "depth": 0.68,
+          "generic_dNLL": 0.14199506668817463,
+          "induction_dNLL_mean": 2.326702762834022,
+          "induction_dNLL_std": 0.07609811085662202,
+          "named": "self"
+        },
+        {
+          "comp": "15.6",
+          "kind": "head",
+          "L": 15,
+          "depth": 0.6,
+          "generic_dNLL": 0.19890813978891586,
+          "induction_dNLL_mean": 1.9263225972658775,
+          "induction_dNLL_std": 0.08024948282132947,
+          "named": "self"
+        },
+        {
+          "comp": "mlp17",
+          "kind": "mlp",
+          "L": 17,
+          "depth": 0.68,
+          "generic_dNLL": 0.00026798248291015625,
+          "induction_dNLL_mean": 1.7162118136015325,
+          "induction_dNLL_std": 0.17439067800007077,
+          "named": "mlp"
+        },
+        {
+          "comp": "16.2",
+          "kind": "head",
+          "L": 16,
+          "depth": 0.64,
+          "generic_dNLL": 0.20057393634130083,
+          "induction_dNLL_mean": 1.5827645633865375,
+          "induction_dNLL_std": 0.06153095329810751,
+          "named": "self"
+        },
+        {
+          "comp": "17.2",
+          "kind": "head",
+          "L": 17,
+          "depth": 0.68,
+          "generic_dNLL": 0.1261018420022637,
+          "induction_dNLL_mean": 1.5616271502400483,
+          "induction_dNLL_std": 0.05145049180143162,
+          "named": "prevtok"
+        },
+        {
+          "comp": "5.0",
+          "kind": "head",
+          "L": 5,
+          "depth": 0.2,
+          "generic_dNLL": 0.13877394842723056,
+          "induction_dNLL_mean": 1.3439235009722326,
+          "induction_dNLL_std": 0.10907442121220284,
+          "named": "prevtok"
+        },
+        {
+          "comp": "17.6",
+          "kind": "head",
+          "L": 17,
+          "depth": 0.68,
+          "generic_dNLL": 0.1045468194144119,
+          "induction_dNLL_mean": 1.309207962702307,
+          "induction_dNLL_std": 0.0481069158749173,
+          "named": "prevtok"
+        },
+        {
+          "comp": "21.7",
+          "kind": "head",
+          "L": 21,
+          "depth": 0.84,
+          "generic_dNLL": 0.05113199022081183,
+          "induction_dNLL_mean": 1.1692646205226849,
+          "induction_dNLL_std": 0.12230204083938954,
+          "named": "prevtok"
+        },
+        {
+          "comp": "0.2",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": -0.03350486452617307,
+          "induction_dNLL_mean": 1.1556652543990893,
+          "induction_dNLL_std": 0.25985742522340655,
+          "named": "self"
+        },
+        {
+          "comp": "13.0",
+          "kind": "head",
+          "L": 13,
+          "depth": 0.52,
+          "generic_dNLL": 0.07677836645217173,
+          "induction_dNLL_mean": 0.9923599207578393,
+          "induction_dNLL_std": 0.1456436196606151,
+          "named": "prevtok"
+        },
+        {
+          "comp": "14.6",
+          "kind": "head",
+          "L": 14,
+          "depth": 0.56,
+          "generic_dNLL": 0.1500508747403586,
+          "induction_dNLL_mean": 0.971191754064311,
+          "induction_dNLL_std": 0.04402610726317566,
+          "named": "prevtok"
+        },
+        {
+          "comp": "6.3",
+          "kind": "head",
+          "L": 6,
+          "depth": 0.24,
+          "generic_dNLL": 0.05668287428598617,
+          "induction_dNLL_mean": 0.9456139253705343,
+          "induction_dNLL_std": 0.08248357126226401,
+          "named": "induction"
+        }
+      ],
+      "candidate_unnamed": [
+        {
+          "comp": "13.7",
+          "kind": "head",
+          "L": 13,
+          "depth": 0.52,
+          "generic_dNLL": 0.009842857481941358,
+          "induction_dNLL_mean": 0.7989609124515452,
+          "induction_dNLL_std": 0.07098764331396737,
+          "named": null
+        },
+        {
+          "comp": "0.7",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.05951698242671899,
+          "induction_dNLL_mean": 0.44563474628198,
+          "induction_dNLL_std": 0.10615139394199992,
+          "named": null
+        },
+        {
+          "comp": "5.6",
+          "kind": "head",
+          "L": 5,
+          "depth": 0.2,
+          "generic_dNLL": 0.008130346025740032,
+          "induction_dNLL_mean": 0.4329436986118201,
+          "induction_dNLL_std": 0.24362647201633714,
+          "named": null
+        },
+        {
+          "comp": "10.6",
+          "kind": "head",
+          "L": 10,
+          "depth": 0.4,
+          "generic_dNLL": 0.04658702063182041,
+          "induction_dNLL_mean": 0.3731535164276479,
+          "induction_dNLL_std": 0.03292727119363937,
+          "named": null
+        },
+        {
+          "comp": "0.6",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.001975543915279765,
+          "induction_dNLL_mean": 0.22908428748071716,
+          "induction_dNLL_std": 0.42481434310516886,
+          "named": null
+        },
+        {
+          "comp": "9.6",
+          "kind": "head",
+          "L": 9,
+          "depth": 0.36,
+          "generic_dNLL": 0.052784102303641944,
+          "induction_dNLL_mean": 0.12413711450992408,
+          "induction_dNLL_std": 0.10000098039783857,
+          "named": null
+        }
+      ],
+      "n_unnamed_load_bearing": 6
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "arch": "RoPE",
+      "n_layers": 16,
+      "n_heads": 32,
+      "base_generic": 4.275114437890431,
+      "base_induction": 0.7636608046838008,
+      "seeds": 3,
+      "top_components": [
+        {
+          "comp": "mlp1",
+          "kind": "mlp",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": 7.352436201913016,
+          "induction_dNLL_mean": 12.635748580649183,
+          "induction_dNLL_std": 0.09067379172365568,
+          "named": "mlp"
+        },
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 4.499114702618312,
+          "induction_dNLL_mean": 12.630426278315293,
+          "induction_dNLL_std": 0.03028286328464114,
+          "named": "mlp"
+        },
+        {
+          "comp": "1.8",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": 0.007194564456031394,
+          "induction_dNLL_mean": 11.409042021051965,
+          "induction_dNLL_std": 0.703814469882674,
+          "named": "sink"
+        },
+        {
+          "comp": "1.11",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": -5.084749252048937e-05,
+          "induction_dNLL_mean": 8.982910531345526,
+          "induction_dNLL_std": 0.8394258647440379,
+          "named": "sink"
+        },
+        {
+          "comp": "0.31",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.7767316424657436,
+          "induction_dNLL_mean": 7.25716957805183,
+          "induction_dNLL_std": 0.9112250281509281,
+          "named": null
+        },
+        {
+          "comp": "1.31",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": 2.350471239241343,
+          "induction_dNLL_mean": 5.926350600291265,
+          "induction_dNLL_std": 0.24026870844450537,
+          "named": null
+        },
+        {
+          "comp": "1.29",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": 1.9574033192225873,
+          "induction_dNLL_mean": 5.571836637209969,
+          "induction_dNLL_std": 0.16071047594133603,
+          "named": null
+        },
+        {
+          "comp": "0.29",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.15240231771317791,
+          "induction_dNLL_mean": 2.785345967987641,
+          "induction_dNLL_std": 0.0953840174906857,
+          "named": null
+        },
+        {
+          "comp": "mlp15",
+          "kind": "mlp",
+          "L": 15,
+          "depth": 1.0,
+          "generic_dNLL": 0.8124995912824362,
+          "induction_dNLL_mean": 1.923084986476331,
+          "induction_dNLL_std": 0.05562451349183366,
+          "named": "mlp"
+        },
+        {
+          "comp": "0.13",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.1539893226018032,
+          "induction_dNLL_mean": 1.6379103216629047,
+          "induction_dNLL_std": 0.2367446617413484,
+          "named": null
+        },
+        {
+          "comp": "0.30",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.03399650634281226,
+          "induction_dNLL_mean": 1.439192920047069,
+          "induction_dNLL_std": 0.09061742808754965,
+          "named": "self"
+        },
+        {
+          "comp": "0.28",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.04502591632661357,
+          "induction_dNLL_mean": 1.2530183800220829,
+          "induction_dNLL_std": 0.47214254392454985,
+          "named": null
+        },
+        {
+          "comp": "0.26",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.050481024242583494,
+          "induction_dNLL_mean": 1.2231506419183302,
+          "induction_dNLL_std": 0.2956867801675264,
+          "named": "prevtok"
+        },
+        {
+          "comp": "0.14",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.029350189935593463,
+          "induction_dNLL_mean": 1.0693080830655712,
+          "induction_dNLL_std": 0.22415010102288177,
+          "named": null
+        },
+        {
+          "comp": "mlp9",
+          "kind": "mlp",
+          "L": 9,
+          "depth": 0.6,
+          "generic_dNLL": 0.1852128619239446,
+          "induction_dNLL_mean": 0.9910397825574147,
+          "induction_dNLL_std": 0.032097046573656696,
+          "named": "mlp"
+        }
+      ],
+      "candidate_unnamed": [
+        {
+          "comp": "0.31",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.7767316424657436,
+          "induction_dNLL_mean": 7.25716957805183,
+          "induction_dNLL_std": 0.9112250281509281,
+          "named": null
+        },
+        {
+          "comp": "1.31",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": 2.350471239241343,
+          "induction_dNLL_mean": 5.926350600291265,
+          "induction_dNLL_std": 0.24026870844450537,
+          "named": null
+        },
+        {
+          "comp": "1.29",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": 1.9574033192225873,
+          "induction_dNLL_mean": 5.571836637209969,
+          "induction_dNLL_std": 0.16071047594133603,
+          "named": null
+        },
+        {
+          "comp": "0.29",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.15240231771317791,
+          "induction_dNLL_mean": 2.785345967987641,
+          "induction_dNLL_std": 0.0953840174906857,
+          "named": null
+        },
+        {
+          "comp": "0.13",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.1539893226018032,
+          "induction_dNLL_mean": 1.6379103216629047,
+          "induction_dNLL_std": 0.2367446617413484,
+          "named": null
+        },
+        {
+          "comp": "0.28",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.04502591632661357,
+          "induction_dNLL_mean": 1.2530183800220829,
+          "induction_dNLL_std": 0.47214254392454985,
+          "named": null
+        },
+        {
+          "comp": "0.14",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.029350189935593463,
+          "induction_dNLL_mean": 1.0693080830655712,
+          "induction_dNLL_std": 0.22415010102288177,
+          "named": null
+        },
+        {
+          "comp": "0.19",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.05659663487994493,
+          "induction_dNLL_mean": 0.5523911109181223,
+          "induction_dNLL_std": 0.31892736821018897,
+          "named": null
+        },
+        {
+          "comp": "0.18",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.18413327232239762,
+          "induction_dNLL_mean": 0.4456463071357805,
+          "induction_dNLL_std": 0.2526983485043128,
+          "named": null
+        },
+        {
+          "comp": "0.20",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.052360913110158336,
+          "induction_dNLL_mean": 0.38373502412541133,
+          "induction_dNLL_std": 0.1227127981804253,
+          "named": null
+        },
+        {
+          "comp": "1.28",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.07,
+          "generic_dNLL": 0.055339010934981836,
+          "induction_dNLL_mean": 0.29500301484044433,
+          "induction_dNLL_std": 0.053050621126113265,
+          "named": null
+        },
+        {
+          "comp": "0.25",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.0025879996163507,
+          "induction_dNLL_mean": 0.26225928010895755,
+          "induction_dNLL_std": 0.2277526987141601,
+          "named": null
+        },
+        {
+          "comp": "0.22",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.00496045369950604,
+          "induction_dNLL_mean": 0.2264914879665917,
+          "induction_dNLL_std": 0.1649414711678595,
+          "named": null
+        },
+        {
+          "comp": "0.16",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.014069057646252325,
+          "induction_dNLL_mean": 0.21599863038900943,
+          "induction_dNLL_std": 0.22718878907696002,
+          "named": null
+        },
+        {
+          "comp": "0.21",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.004876545497349838,
+          "induction_dNLL_mean": 0.2141322754774361,
+          "induction_dNLL_std": 0.005607305699502721,
+          "named": null
+        }
+      ],
+      "n_unnamed_load_bearing": 16
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "arch": "RoPE",
+      "n_layers": 28,
+      "n_heads": 12,
+      "base_generic": 4.153635100712852,
+      "base_induction": 0.45261981687343944,
+      "seeds": 3,
+      "top_components": [
+        {
+          "comp": "mlp2",
+          "kind": "mlp",
+          "L": 2,
+          "depth": 0.07,
+          "generic_dNLL": 5.719284314957876,
+          "induction_dNLL_mean": 13.75118357670244,
+          "induction_dNLL_std": 0.19107237211639064,
+          "named": "mlp"
+        },
+        {
+          "comp": "mlp1",
+          "kind": "mlp",
+          "L": 1,
+          "depth": 0.04,
+          "generic_dNLL": 8.030548655797563,
+          "induction_dNLL_mean": 13.381118772791806,
+          "induction_dNLL_std": 0.07878331700713462,
+          "named": "mlp"
+        },
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.049058626568507,
+          "induction_dNLL_mean": 7.710271609702596,
+          "induction_dNLL_std": 0.10650256362799193,
+          "named": "mlp"
+        },
+        {
+          "comp": "mlp26",
+          "kind": "mlp",
+          "L": 26,
+          "depth": 0.96,
+          "generic_dNLL": 0.733219600859143,
+          "induction_dNLL_mean": 1.0499542661043038,
+          "induction_dNLL_std": 0.017384963796232146,
+          "named": "mlp"
+        },
+        {
+          "comp": "8.3",
+          "kind": "head",
+          "L": 8,
+          "depth": 0.3,
+          "generic_dNLL": 0.001651763916015625,
+          "induction_dNLL_mean": 0.6474483991039759,
+          "induction_dNLL_std": 0.008352791181412697,
+          "named": "duplicate"
+        },
+        {
+          "comp": "0.10",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.3452315708947564,
+          "induction_dNLL_mean": 0.4983579343090068,
+          "induction_dNLL_std": 0.09305597719258725,
+          "named": "self"
+        },
+        {
+          "comp": "2.3",
+          "kind": "head",
+          "L": 2,
+          "depth": 0.07,
+          "generic_dNLL": -0.00041702815464539356,
+          "induction_dNLL_mean": 0.44982817351850657,
+          "induction_dNLL_std": 0.04122289374306359,
+          "named": "induction"
+        },
+        {
+          "comp": "mlp27",
+          "kind": "mlp",
+          "L": 27,
+          "depth": 1.0,
+          "generic_dNLL": 0.5859647781129871,
+          "induction_dNLL_mean": 0.2682888941721825,
+          "induction_dNLL_std": 0.052504239442728244,
+          "named": "mlp"
+        },
+        {
+          "comp": "13.4",
+          "kind": "head",
+          "L": 13,
+          "depth": 0.48,
+          "generic_dNLL": 0.007378487359909869,
+          "induction_dNLL_mean": 0.24607116672989848,
+          "induction_dNLL_std": 0.015099135113144754,
+          "named": "prevtok"
+        },
+        {
+          "comp": "18.8",
+          "kind": "head",
+          "L": 18,
+          "depth": 0.67,
+          "generic_dNLL": 0.008893724471803921,
+          "induction_dNLL_mean": 0.24323620947867486,
+          "induction_dNLL_std": 0.033201497263142865,
+          "named": "prevtok"
+        },
+        {
+          "comp": "mlp25",
+          "kind": "mlp",
+          "L": 25,
+          "depth": 0.93,
+          "generic_dNLL": 0.11588976118299676,
+          "induction_dNLL_mean": 0.2328075012696423,
+          "induction_dNLL_std": 0.011460461209692558,
+          "named": "mlp"
+        },
+        {
+          "comp": "1.6",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.04,
+          "generic_dNLL": 0.061926977975027775,
+          "induction_dNLL_mean": 0.22207197768492196,
+          "induction_dNLL_std": 0.07788149383527702,
+          "named": null
+        },
+        {
+          "comp": "mlp18",
+          "kind": "mlp",
+          "L": 18,
+          "depth": 0.67,
+          "generic_dNLL": 0.028376609560043065,
+          "induction_dNLL_mean": 0.21582391512167798,
+          "induction_dNLL_std": 0.011381623768667248,
+          "named": "mlp"
+        },
+        {
+          "comp": "0.6",
+          "kind": "head",
+          "L": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.4294823237827847,
+          "induction_dNLL_mean": 0.2112170948548853,
+          "induction_dNLL_std": 0.019264481602287747,
+          "named": "self"
+        },
+        {
+          "comp": "1.4",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.04,
+          "generic_dNLL": -0.0014705355205233417,
+          "induction_dNLL_mean": 0.19040172448355389,
+          "induction_dNLL_std": 0.008914959952441188,
+          "named": "prevtok"
+        }
+      ],
+      "candidate_unnamed": [
+        {
+          "comp": "1.6",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.04,
+          "generic_dNLL": 0.061926977975027775,
+          "induction_dNLL_mean": 0.22207197768492196,
+          "induction_dNLL_std": 0.07788149383527702,
+          "named": null
+        },
+        {
+          "comp": "1.5",
+          "kind": "head",
+          "L": 1,
+          "depth": 0.04,
+          "generic_dNLL": 0.05848981463719927,
+          "induction_dNLL_mean": 0.11139372218206534,
+          "induction_dNLL_std": 0.018875827278711958,
+          "named": null
+        }
+      ],
+      "n_unnamed_load_bearing": 2
+    }
+  ]
+}
