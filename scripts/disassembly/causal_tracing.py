@@ -18,6 +18,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "gemma"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from circuit_content_patch import _arch  # noqa: E402
 from mlp_atlas import mlp_blocks  # noqa: E402
 
 # (prompt, subject, object) — subject is the entity whose tokens get corrupted
@@ -55,7 +56,7 @@ def run_model(model_id, args, dev):
     else:
         from transformers import AutoModelForCausalLM
         m = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", dtype=torch.bfloat16).eval().to(dev)
-    nL = m.config.num_hidden_layers; mlps = mlp_blocks(m)
+    nL = m.config.num_hidden_layers; mlps = mlp_blocks(m); oproj = _arch(m)["oproj"]
     tok = AutoTokenizer.from_pretrained(model_id)
     emb = m.get_input_embeddings()
 
@@ -83,13 +84,14 @@ def run_model(model_id, args, dev):
                     o[0, p] = o[0, p] + nz[j].to(o.dtype)
                 return o
             hs.append(emb.register_forward_hook(ehook))
-        if restore is not None:                                                  # restore the clean MLP OUTPUT at (layer, pos) — isolates that MLP's fact contribution
-            clean_mlp, pos, RL = restore
+        if restore is not None:                                                  # restore a clean module OUTPUT at (layer, pos) — isolates its fact contribution
+            clean, pos, RL, kind = restore
+            mod_t = mlps[RL] if kind == "mlp" else oproj[RL]
 
             def mhook(mod, i, o):
-                t = (o[0] if isinstance(o, tuple) else o).clone(); t[0, pos] = clean_mlp[RL][0, pos].to(t.dtype)
+                t = (o[0] if isinstance(o, tuple) else o).clone(); t[0, pos] = clean[RL][0, pos].to(t.dtype)
                 return (t,) + tuple(o[1:]) if isinstance(o, tuple) else t
-            hs.append(mlps[RL].register_forward_hook(mhook))
+            hs.append(mod_t.register_forward_hook(mhook))
         try:
             with torch.no_grad():
                 lp = F.log_softmax(m(input_ids=torch.tensor([ids], device=dev)).logits[0, -1].float(), -1)
@@ -99,10 +101,11 @@ def run_model(model_id, args, dev):
         return float(lp[obj])
 
     rng = torch.Generator(device=dev).manual_seed(args.seed)
-    recover = np.zeros(nL); n_ok = 0; clean_acc = 0.0; corrupt_acc = 0.0
+    rec_mlp = np.zeros(nL); rec_attn = np.zeros(nL); n_ok = 0; clean_acc = 0.0; corrupt_acc = 0.0
     for ids, span, obj in facts:
-        clean_mlp = {}                                                           # clean: capture per-layer MLP outputs
+        clean_mlp = {}; clean_attn = {}                                          # clean: capture per-layer MLP + attention outputs
         hk = [mlps[L].register_forward_hook((lambda L: lambda mod, i, o: clean_mlp.__setitem__(L, (o[0] if isinstance(o, tuple) else o).detach()))(L)) for L in range(nL)]
+        hk += [oproj[L].register_forward_hook((lambda L: lambda mod, i, o: clean_attn.__setitem__(L, (o[0] if isinstance(o, tuple) else o).detach()))(L)) for L in range(nL)]
         with torch.no_grad():
             lp_clean = float(F.log_softmax(m(input_ids=torch.tensor([ids], device=dev)).logits[0, -1].float(), -1)[obj])
         for h in hk:
@@ -114,19 +117,21 @@ def run_model(model_id, args, dev):
         if denom < 0.2:                                                           # noise must actually hurt the fact
             continue
         n_ok += 1
-        subj_last = span[-1]
-        for L in range(nL):
-            lp_r = logp_obj(ids, obj, noise=(span, nz), restore=(clean_mlp, subj_last, L))
-            recover[L] += (lp_r - lp_corrupt) / denom
-    recover = (recover / max(n_ok, 1)).tolist()
+        subj_last = span[-1]; last = len(ids) - 1
+        for L in range(nL):                                                      # MLP store at the subject; attention readout at the last token
+            rec_mlp[L] += (logp_obj(ids, obj, noise=(span, nz), restore=(clean_mlp, subj_last, L, "mlp")) - lp_corrupt) / denom
+            rec_attn[L] += (logp_obj(ids, obj, noise=(span, nz), restore=(clean_attn, last, L, "attn")) - lp_corrupt) / denom
+    rec_mlp = (rec_mlp / max(n_ok, 1)).tolist(); rec_attn = (rec_attn / max(n_ok, 1)).tolist()
     depth = [L / (nL - 1) if nL > 1 else 0.0 for L in range(nL)]
-    peak = int(np.argmax(recover))
-    print(f"  {n_ok}/{len(facts)} facts (clean lp {clean_acc / len(facts):.2f}, corrupt {corrupt_acc / len(facts):.2f}) | "
-          f"peak restore L{peak} (depth {depth[peak]:.2f}, recovery {recover[peak]:+.0%})")
-    top = sorted(range(nL), key=lambda L: -recover[L])[:3]
+    pm = int(np.argmax(rec_mlp)); pa = int(np.argmax(rec_attn))
+    print(f"  {n_ok}/{len(facts)} facts (clean {clean_acc / len(facts):.2f}, corrupt {corrupt_acc / len(facts):.2f}) | "
+          f"MLP@subj peak L{pm}(d{depth[pm]:.2f},{rec_mlp[pm]:+.0%}) | attn@last peak L{pa}(d{depth[pa]:.2f},{rec_attn[pa]:+.0%})")
+    top = sorted(range(nL), key=lambda L: -rec_mlp[L])[:3]
     return {"model": model_id.split("/")[-1], "rope": not is_gpt2, "n_layers": nL, "n_facts_used": n_ok,
-            "recovery_by_layer": recover, "depth": depth, "peak_layer": peak, "peak_depth": depth[peak],
-            "peak_recovery": recover[peak], "top_layers": [{"layer": L, "depth": depth[L], "recovery": recover[L]} for L in top]}
+            "recovery_by_layer": rec_mlp, "attn_recovery_by_layer": rec_attn, "depth": depth,
+            "peak_layer": pm, "peak_depth": depth[pm], "peak_recovery": rec_mlp[pm],
+            "attn_peak_layer": pa, "attn_peak_depth": depth[pa], "attn_peak_recovery": rec_attn[pa],
+            "top_layers": [{"layer": L, "depth": depth[L], "recovery": rec_mlp[L]} for L in top]}
 
 
 def write_doc(out, docs):
@@ -137,16 +142,24 @@ def write_doc(out, docs):
          "then in the corrupted run **restore the clean MLP output** at each layer (at the subject's last token) and "
          "measure how much the object's probability recovers. The MLP whose restoration recovers the most is where the "
          "fact is enriched; ROME's headline is an **early-mid MLP** site at the subject's last token.", "",
-         "| model | facts used | peak restore layer (depth, recovery) | top-3 layers (depth, recovery) |",
+         "Two sites are expected: an **early MLP store at the subject's last token** (restore the clean MLP output) "
+         "and a **late attention readout at the last token** (restore the clean attention output — the heads that copy "
+         "the enriched fact to the prediction).", "",
+         "| model | facts used | MLP store — peak @ subject (depth, recovery) | attention readout — peak @ last token (depth, recovery) |",
          "|---|---|---|---|"]
     excluded = []
     for r in out["results"]:
         if r.get("n_facts_used", 0) < 4:
             excluded.append(r.get("model", "?")); continue
-        tl = "; ".join(f"L{x['layer']} ({x['depth']:.2f}, {x['recovery']:+.0%})" for x in r["top_layers"])
-        L.append(f"| {r['model']} | {r['n_facts_used']} | **L{r['peak_layer']} ({r['peak_depth']:.2f}, {r['peak_recovery']:+.0%})** | {tl} |")
-    L += ["", "_**Finding.** Factual recall recovers from the **early MLPs at the subject's last token** (the ROME "
-          "subject-enrichment site) in every model traced — and the early-mid **plateau widens with scale**: GPT-2-small "
+        L.append(f"| {r['model']} | {r['n_facts_used']} | **L{r['peak_layer']} ({r['peak_depth']:.2f}, {r['peak_recovery']:+.0%})** | "
+                 f"L{r.get('attn_peak_layer', 0)} ({r.get('attn_peak_depth', 0):.2f}, {r.get('attn_peak_recovery', 0):+.0%}) |")
+    L += ["", "_**Finding — the two-site flow is architecture-invariant.** Every model traced shows the canonical ROME "
+          "structure: an **early MLP store at the subject** (peak depth ≈ 0.00–0.03) feeding a **late attention readout "
+          "at the last token** (peak depth ≈ 0.60–0.87). The fact is enriched into the subject's residual by the early "
+          "MLPs, then copied to the prediction by late-layer attention — the same early-MLP → late-attention information "
+          "flow in GPT-2 (small/medium/large), Llama, and Qwen. Recovered cross-model (ROME only did GPT-2/GPT-J)._", "",
+          "_**Scale note.** Factual recall recovers from the **early MLPs at the subject's last token** in every model — "
+          "and the early-mid MLP **plateau widens with scale**: GPT-2-small "
           "is a sharp single L0 spike, while gpt2-large and Llama show a broad L0–3 early-mid plateau (the same "
           "embedding-block-widens-with-scale pattern as the [extended-embedding test](../operators/mlp_detokenizer.md)). "
           "This is the rigorous (corruption + restoration) confirmation of the cheaper "
