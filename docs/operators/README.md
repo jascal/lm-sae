@@ -78,6 +78,12 @@ they are load-bearing on their *own* task — see each op's dossier (section B) 
 - [`s_inhibition`](s_inhibition.md) — circuit
 - [`coreference`](coreference.md) — circuit
 
+## The other instruction class: COMPUTE (MLP)
+
+Attention is the **MOVE** class; the **[MLP / COMPUTE catalog](mlp_compute.md)** is the other half of the
+instruction set (cross-model per-layer MLP causal profile + the GPT-2 neuron read→write idioms). The ResidualVM
+discovery engine found **MLP0 (the detokenizer) is the single most load-bearing component for every behaviour**.
+
 ## Gaps (documented, not skipped)
 
 - **succession / greater-than** — MLP-dominated; no clean attention head, so no catalog row (the OV probe sees only

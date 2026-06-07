@@ -1,0 +1,1878 @@
+{
+  "experiment": "MLP/COMPUTE catalog \u2014 per-layer MLP causal profile across models",
+  "results": [
+    {
+      "model": "gpt2",
+      "arch": "GPT-2/absolute",
+      "n_layers": 12,
+      "generic_base": 5.215971043500951,
+      "induction_base": 0.4957939185350846,
+      "all_mlp_ablated_generic_dNLL": 2.0916267475753862,
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 1.7049151829310825,
+          "induction_dNLL": 11.715111412341424
+        },
+        {
+          "layer": 1,
+          "depth": 0.09,
+          "generic_dNLL": 1.047073404624979,
+          "induction_dNLL": 0.9961754349525498
+        },
+        {
+          "layer": 2,
+          "depth": 0.18,
+          "generic_dNLL": 0.11124333376606899,
+          "induction_dNLL": 0.044433180534551475
+        },
+        {
+          "layer": 3,
+          "depth": 0.27,
+          "generic_dNLL": -0.03943813667095508,
+          "induction_dNLL": 0.009125472926154399
+        },
+        {
+          "layer": 4,
+          "depth": 0.36,
+          "generic_dNLL": -0.08779481352952434,
+          "induction_dNLL": 0.2166631259574009
+        },
+        {
+          "layer": 5,
+          "depth": 0.45,
+          "generic_dNLL": -0.18446065509130083,
+          "induction_dNLL": 0.0041397716082439695
+        },
+        {
+          "layer": 6,
+          "depth": 0.55,
+          "generic_dNLL": -0.2976572955096213,
+          "induction_dNLL": 0.0866625070430126
+        },
+        {
+          "layer": 7,
+          "depth": 0.64,
+          "generic_dNLL": -0.00048668674691043634,
+          "induction_dNLL": 0.0793680761302139
+        },
+        {
+          "layer": 8,
+          "depth": 0.73,
+          "generic_dNLL": -0.1633725847516745,
+          "induction_dNLL": 0.08354805634146378
+        },
+        {
+          "layer": 9,
+          "depth": 0.82,
+          "generic_dNLL": -0.06509042164636103,
+          "induction_dNLL": 0.07199891439791994
+        },
+        {
+          "layer": 10,
+          "depth": 0.91,
+          "generic_dNLL": -0.2492304605150979,
+          "induction_dNLL": 0.1927389143085011
+        },
+        {
+          "layer": 11,
+          "depth": 1.0,
+          "generic_dNLL": 0.04812460601645174,
+          "induction_dNLL": 0.32474286812400044
+        }
+      ],
+      "top_generic": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 1.7049151829310825,
+          "induction_dNLL": 11.715111412341424
+        },
+        {
+          "layer": 1,
+          "depth": 0.09,
+          "generic_dNLL": 1.047073404624979,
+          "induction_dNLL": 0.9961754349525498
+        },
+        {
+          "layer": 2,
+          "depth": 0.18,
+          "generic_dNLL": 0.11124333376606899,
+          "induction_dNLL": 0.044433180534551475
+        }
+      ],
+      "top_induction": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 1.7049151829310825,
+          "induction_dNLL": 11.715111412341424
+        },
+        {
+          "layer": 1,
+          "depth": 0.09,
+          "generic_dNLL": 1.047073404624979,
+          "induction_dNLL": 0.9961754349525498
+        },
+        {
+          "layer": 11,
+          "depth": 1.0,
+          "generic_dNLL": 0.04812460601645174,
+          "induction_dNLL": 0.32474286812400044
+        }
+      ]
+    },
+    {
+      "model": "gpt2-medium",
+      "arch": "GPT-2/absolute",
+      "n_layers": 24,
+      "generic_base": 4.949101422829603,
+      "induction_base": 0.4628681601681083,
+      "all_mlp_ablated_generic_dNLL": 2.686943558788804,
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 7.3188695958051735,
+          "induction_dNLL": 20.943582232776365
+        },
+        {
+          "layer": 1,
+          "depth": 0.04,
+          "generic_dNLL": 0.05014528547014496,
+          "induction_dNLL": -0.04514838844464797
+        },
+        {
+          "layer": 2,
+          "depth": 0.09,
+          "generic_dNLL": 0.0529460099639083,
+          "induction_dNLL": 0.010450703040229825
+        },
+        {
+          "layer": 3,
+          "depth": 0.13,
+          "generic_dNLL": -0.019950362109633524,
+          "induction_dNLL": 0.025286169533133285
+        },
+        {
+          "layer": 4,
+          "depth": 0.17,
+          "generic_dNLL": -0.06730101852820702,
+          "induction_dNLL": 0.016665684416433846
+        },
+        {
+          "layer": 5,
+          "depth": 0.22,
+          "generic_dNLL": -0.14159718266239896,
+          "induction_dNLL": -0.01864046330374114
+        },
+        {
+          "layer": 6,
+          "depth": 0.26,
+          "generic_dNLL": -0.06333503521308703,
+          "induction_dNLL": -0.016613734879229014
+        },
+        {
+          "layer": 7,
+          "depth": 0.3,
+          "generic_dNLL": -0.08134643110648732,
+          "induction_dNLL": -0.04435249852983919
+        },
+        {
+          "layer": 8,
+          "depth": 0.35,
+          "generic_dNLL": -0.03551347924287995,
+          "induction_dNLL": -0.026542639434085524
+        },
+        {
+          "layer": 9,
+          "depth": 0.39,
+          "generic_dNLL": -0.05013663680465186,
+          "induction_dNLL": 0.06561551549676947
+        },
+        {
+          "layer": 10,
+          "depth": 0.43,
+          "generic_dNLL": -0.05922740350955369,
+          "induction_dNLL": -0.14820693015123998
+        },
+        {
+          "layer": 11,
+          "depth": 0.48,
+          "generic_dNLL": -0.027789746642743474,
+          "induction_dNLL": -0.029479313372770988
+        },
+        {
+          "layer": 12,
+          "depth": 0.52,
+          "generic_dNLL": -0.14279265630812876,
+          "induction_dNLL": 0.010475128095939534
+        },
+        {
+          "layer": 13,
+          "depth": 0.57,
+          "generic_dNLL": -0.07722046261742044,
+          "induction_dNLL": -0.04360658749237156
+        },
+        {
+          "layer": 14,
+          "depth": 0.61,
+          "generic_dNLL": -0.045094848309875424,
+          "induction_dNLL": 0.057674613097355
+        },
+        {
+          "layer": 15,
+          "depth": 0.65,
+          "generic_dNLL": -0.00798366687916019,
+          "induction_dNLL": 0.062127141580818
+        },
+        {
+          "layer": 16,
+          "depth": 0.7,
+          "generic_dNLL": -0.041607427849340795,
+          "induction_dNLL": 0.011557259624017546
+        },
+        {
+          "layer": 17,
+          "depth": 0.74,
+          "generic_dNLL": -0.030860466931863506,
+          "induction_dNLL": 0.020813626810130326
+        },
+        {
+          "layer": 18,
+          "depth": 0.78,
+          "generic_dNLL": -0.0029286985044132408,
+          "induction_dNLL": 0.050868031313538786
+        },
+        {
+          "layer": 19,
+          "depth": 0.83,
+          "generic_dNLL": 0.025169877148178976,
+          "induction_dNLL": 0.05520764854559057
+        },
+        {
+          "layer": 20,
+          "depth": 0.87,
+          "generic_dNLL": -0.005962270908255185,
+          "induction_dNLL": 0.006526947746091805
+        },
+        {
+          "layer": 21,
+          "depth": 0.91,
+          "generic_dNLL": -0.12339332620933607,
+          "induction_dNLL": 0.03224058938054619
+        },
+        {
+          "layer": 22,
+          "depth": 0.96,
+          "generic_dNLL": 0.003011208993417114,
+          "induction_dNLL": 0.15867912028365294
+        },
+        {
+          "layer": 23,
+          "depth": 1.0,
+          "generic_dNLL": -0.2741241354160211,
+          "induction_dNLL": 0.00868807740172478
+        }
+      ],
+      "top_generic": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 7.3188695958051735,
+          "induction_dNLL": 20.943582232776365
+        },
+        {
+          "layer": 2,
+          "depth": 0.09,
+          "generic_dNLL": 0.0529460099639083,
+          "induction_dNLL": 0.010450703040229825
+        },
+        {
+          "layer": 1,
+          "depth": 0.04,
+          "generic_dNLL": 0.05014528547014496,
+          "induction_dNLL": -0.04514838844464797
+        }
+      ],
+      "top_induction": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 7.3188695958051735,
+          "induction_dNLL": 20.943582232776365
+        },
+        {
+          "layer": 22,
+          "depth": 0.96,
+          "generic_dNLL": 0.003011208993417114,
+          "induction_dNLL": 0.15867912028365294
+        },
+        {
+          "layer": 9,
+          "depth": 0.39,
+          "generic_dNLL": -0.05013663680465186,
+          "induction_dNLL": 0.06561551549676947
+        }
+      ]
+    },
+    {
+      "model": "gpt2-large",
+      "arch": "GPT-2/absolute",
+      "n_layers": 36,
+      "generic_base": 4.826853555346292,
+      "induction_base": 0.5687948281835945,
+      "all_mlp_ablated_generic_dNLL": 5.282838528749173,
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.673983316572886,
+          "induction_dNLL": 13.573509883924608
+        },
+        {
+          "layer": 1,
+          "depth": 0.03,
+          "generic_dNLL": -0.023552768444888628,
+          "induction_dNLL": -0.07902994425590543
+        },
+        {
+          "layer": 2,
+          "depth": 0.06,
+          "generic_dNLL": 0.0007593064081099499,
+          "induction_dNLL": -0.07123314881112358
+        },
+        {
+          "layer": 3,
+          "depth": 0.09,
+          "generic_dNLL": 0.023731453708870198,
+          "induction_dNLL": -0.03949767134508875
+        },
+        {
+          "layer": 4,
+          "depth": 0.11,
+          "generic_dNLL": -0.0034369211348277418,
+          "induction_dNLL": -0.03460211661461332
+        },
+        {
+          "layer": 5,
+          "depth": 0.14,
+          "generic_dNLL": 0.022338624984499234,
+          "induction_dNLL": 0.03119338133135552
+        },
+        {
+          "layer": 6,
+          "depth": 0.17,
+          "generic_dNLL": -0.000722511735542497,
+          "induction_dNLL": -0.011343195864188083
+        },
+        {
+          "layer": 7,
+          "depth": 0.2,
+          "generic_dNLL": -0.012002854120163775,
+          "induction_dNLL": -0.03092102428265553
+        },
+        {
+          "layer": 8,
+          "depth": 0.23,
+          "generic_dNLL": 0.0035958063034779997,
+          "induction_dNLL": 0.005781667226377407
+        },
+        {
+          "layer": 9,
+          "depth": 0.26,
+          "generic_dNLL": -0.00025360672562246833,
+          "induction_dNLL": -0.036791167205765696
+        },
+        {
+          "layer": 10,
+          "depth": 0.29,
+          "generic_dNLL": -0.05263203414028972,
+          "induction_dNLL": -0.04230770762140823
+        },
+        {
+          "layer": 11,
+          "depth": 0.31,
+          "generic_dNLL": -0.01657372933846979,
+          "induction_dNLL": -0.034789916443796254
+        },
+        {
+          "layer": 12,
+          "depth": 0.34,
+          "generic_dNLL": 0.009938719411375807,
+          "induction_dNLL": -0.07011849549100929
+        },
+        {
+          "layer": 13,
+          "depth": 0.37,
+          "generic_dNLL": -0.024825615857643868,
+          "induction_dNLL": -0.020301541330333017
+        },
+        {
+          "layer": 14,
+          "depth": 0.4,
+          "generic_dNLL": -0.022595541817801212,
+          "induction_dNLL": -0.030905425715683887
+        },
+        {
+          "layer": 15,
+          "depth": 0.43,
+          "generic_dNLL": -0.017646446429863794,
+          "induction_dNLL": 0.008574850831835401
+        },
+        {
+          "layer": 16,
+          "depth": 0.46,
+          "generic_dNLL": -0.024219946886496757,
+          "induction_dNLL": -0.09001526701944207
+        },
+        {
+          "layer": 17,
+          "depth": 0.49,
+          "generic_dNLL": -0.029990342559007566,
+          "induction_dNLL": -0.04690032685820844
+        },
+        {
+          "layer": 18,
+          "depth": 0.51,
+          "generic_dNLL": -0.011167818907076743,
+          "induction_dNLL": -0.11247118547243229
+        },
+        {
+          "layer": 19,
+          "depth": 0.54,
+          "generic_dNLL": -0.013682330096210116,
+          "induction_dNLL": -0.06845492688041432
+        },
+        {
+          "layer": 20,
+          "depth": 0.57,
+          "generic_dNLL": 0.009590633331782783,
+          "induction_dNLL": -0.07813035628337922
+        },
+        {
+          "layer": 21,
+          "depth": 0.6,
+          "generic_dNLL": -0.012688631733889899,
+          "induction_dNLL": -0.07116181407231381
+        },
+        {
+          "layer": 22,
+          "depth": 0.63,
+          "generic_dNLL": -0.015623768801411586,
+          "induction_dNLL": 0.00451540156193786
+        },
+        {
+          "layer": 23,
+          "depth": 0.66,
+          "generic_dNLL": -0.008875690440021344,
+          "induction_dNLL": -0.01751537122263036
+        },
+        {
+          "layer": 24,
+          "depth": 0.69,
+          "generic_dNLL": -0.0727399392102761,
+          "induction_dNLL": 0.015377981490452108
+        },
+        {
+          "layer": 25,
+          "depth": 0.71,
+          "generic_dNLL": -0.0002147129603793374,
+          "induction_dNLL": 0.11313837928511417
+        },
+        {
+          "layer": 26,
+          "depth": 0.74,
+          "generic_dNLL": 0.012290994957010248,
+          "induction_dNLL": 0.00619468557046543
+        },
+        {
+          "layer": 27,
+          "depth": 0.77,
+          "generic_dNLL": -0.014804093295304632,
+          "induction_dNLL": 0.05024538625838482
+        },
+        {
+          "layer": 28,
+          "depth": 0.8,
+          "generic_dNLL": -0.0005345622067727263,
+          "induction_dNLL": -0.01131142148599229
+        },
+        {
+          "layer": 29,
+          "depth": 0.83,
+          "generic_dNLL": -0.01824499059606488,
+          "induction_dNLL": 0.029655561626896088
+        },
+        {
+          "layer": 30,
+          "depth": 0.86,
+          "generic_dNLL": -0.01827740543103129,
+          "induction_dNLL": 0.02116215865286608
+        },
+        {
+          "layer": 31,
+          "depth": 0.89,
+          "generic_dNLL": 0.01818036276196633,
+          "induction_dNLL": 0.014661715349012394
+        },
+        {
+          "layer": 32,
+          "depth": 0.91,
+          "generic_dNLL": -0.014999349281271002,
+          "induction_dNLL": 0.04919932473283206
+        },
+        {
+          "layer": 33,
+          "depth": 0.94,
+          "generic_dNLL": -0.03952795361715644,
+          "induction_dNLL": 0.05030348553741326
+        },
+        {
+          "layer": 34,
+          "depth": 0.97,
+          "generic_dNLL": -0.10486403974906455,
+          "induction_dNLL": 0.10916377742697003
+        },
+        {
+          "layer": 35,
+          "depth": 1.0,
+          "generic_dNLL": -0.22869685339549228,
+          "induction_dNLL": 0.10807390872516753
+        }
+      ],
+      "top_generic": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.673983316572886,
+          "induction_dNLL": 13.573509883924608
+        },
+        {
+          "layer": 3,
+          "depth": 0.09,
+          "generic_dNLL": 0.023731453708870198,
+          "induction_dNLL": -0.03949767134508875
+        },
+        {
+          "layer": 5,
+          "depth": 0.14,
+          "generic_dNLL": 0.022338624984499234,
+          "induction_dNLL": 0.03119338133135552
+        }
+      ],
+      "top_induction": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.673983316572886,
+          "induction_dNLL": 13.573509883924608
+        },
+        {
+          "layer": 25,
+          "depth": 0.71,
+          "generic_dNLL": -0.0002147129603793374,
+          "induction_dNLL": 0.11313837928511417
+        },
+        {
+          "layer": 34,
+          "depth": 0.97,
+          "generic_dNLL": -0.10486403974906455,
+          "induction_dNLL": 0.10916377742697003
+        }
+      ]
+    },
+    {
+      "model": "gemma-2-2b",
+      "arch": "RoPE",
+      "n_layers": 26,
+      "generic_base": 7.730153058571791,
+      "induction_base": 4.6371676671143565,
+      "all_mlp_ablated_generic_dNLL": 10.740533677358474,
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.30675984942723744,
+          "induction_dNLL": 4.249964453093721
+        },
+        {
+          "layer": 1,
+          "depth": 0.04,
+          "generic_dNLL": 0.023215682418257444,
+          "induction_dNLL": -0.06580411250455498
+        },
+        {
+          "layer": 2,
+          "depth": 0.08,
+          "generic_dNLL": 0.20979880277441865,
+          "induction_dNLL": 0.35064619199311853
+        },
+        {
+          "layer": 3,
+          "depth": 0.12,
+          "generic_dNLL": -0.007587180566535956,
+          "induction_dNLL": 0.35125108365804447
+        },
+        {
+          "layer": 4,
+          "depth": 0.16,
+          "generic_dNLL": 0.09330081435107651,
+          "induction_dNLL": 0.6933626416044678
+        },
+        {
+          "layer": 5,
+          "depth": 0.2,
+          "generic_dNLL": -0.01537028317729039,
+          "induction_dNLL": 1.0015231069988833
+        },
+        {
+          "layer": 6,
+          "depth": 0.24,
+          "generic_dNLL": -0.14128413528361694,
+          "induction_dNLL": -0.8898454365807122
+        },
+        {
+          "layer": 7,
+          "depth": 0.28,
+          "generic_dNLL": 0.07942625580641316,
+          "induction_dNLL": 0.8664524562513876
+        },
+        {
+          "layer": 8,
+          "depth": 0.32,
+          "generic_dNLL": 0.12026667721057027,
+          "induction_dNLL": -1.189088826255491
+        },
+        {
+          "layer": 9,
+          "depth": 0.36,
+          "generic_dNLL": 0.00012126296916292745,
+          "induction_dNLL": -0.2664854471409157
+        },
+        {
+          "layer": 10,
+          "depth": 0.4,
+          "generic_dNLL": -0.022398287657076743,
+          "induction_dNLL": -0.05370613339480368
+        },
+        {
+          "layer": 11,
+          "depth": 0.44,
+          "generic_dNLL": -0.09345049580569054,
+          "induction_dNLL": -0.6676169871825546
+        },
+        {
+          "layer": 12,
+          "depth": 0.48,
+          "generic_dNLL": -0.04837464024780935,
+          "induction_dNLL": 0.3326326857660602
+        },
+        {
+          "layer": 13,
+          "depth": 0.52,
+          "generic_dNLL": -0.009774314032660492,
+          "induction_dNLL": 0.5922561223220502
+        },
+        {
+          "layer": 14,
+          "depth": 0.56,
+          "generic_dNLL": 0.22559508066328693,
+          "induction_dNLL": 0.15064651920275107
+        },
+        {
+          "layer": 15,
+          "depth": 0.6,
+          "generic_dNLL": 0.01636194299768512,
+          "induction_dNLL": 0.29441346046639527
+        },
+        {
+          "layer": 16,
+          "depth": 0.64,
+          "generic_dNLL": 0.045844375771819657,
+          "induction_dNLL": 0.611438183792373
+        },
+        {
+          "layer": 17,
+          "depth": 0.68,
+          "generic_dNLL": -0.004419266231476371,
+          "induction_dNLL": 1.5263766634408453
+        },
+        {
+          "layer": 18,
+          "depth": 0.72,
+          "generic_dNLL": -0.012734286999577016,
+          "induction_dNLL": 0.29035019426443043
+        },
+        {
+          "layer": 19,
+          "depth": 0.76,
+          "generic_dNLL": 0.005783585644272726,
+          "induction_dNLL": 0.18879533661614367
+        },
+        {
+          "layer": 20,
+          "depth": 0.8,
+          "generic_dNLL": 0.03698146154010118,
+          "induction_dNLL": 0.43694981865203264
+        },
+        {
+          "layer": 21,
+          "depth": 0.84,
+          "generic_dNLL": 0.08210760449606269,
+          "induction_dNLL": 0.5837910991922399
+        },
+        {
+          "layer": 22,
+          "depth": 0.88,
+          "generic_dNLL": 0.03796801491389168,
+          "induction_dNLL": -0.025678907356042835
+        },
+        {
+          "layer": 23,
+          "depth": 0.92,
+          "generic_dNLL": -0.030226954707393006,
+          "induction_dNLL": -0.020456183007246054
+        },
+        {
+          "layer": 24,
+          "depth": 0.96,
+          "generic_dNLL": 0.3455498306839555,
+          "induction_dNLL": 0.6516570216594815
+        },
+        {
+          "layer": 25,
+          "depth": 1.0,
+          "generic_dNLL": 0.840047059235749,
+          "induction_dNLL": 0.8709319838977709
+        }
+      ],
+      "top_generic": [
+        {
+          "layer": 25,
+          "depth": 1.0,
+          "generic_dNLL": 0.840047059235749,
+          "induction_dNLL": 0.8709319838977709
+        },
+        {
+          "layer": 24,
+          "depth": 0.96,
+          "generic_dNLL": 0.3455498306839555,
+          "induction_dNLL": 0.6516570216594815
+        },
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.30675984942723744,
+          "induction_dNLL": 4.249964453093721
+        }
+      ],
+      "top_induction": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 0.30675984942723744,
+          "induction_dNLL": 4.249964453093721
+        },
+        {
+          "layer": 17,
+          "depth": 0.68,
+          "generic_dNLL": -0.004419266231476371,
+          "induction_dNLL": 1.5263766634408453
+        },
+        {
+          "layer": 5,
+          "depth": 0.2,
+          "generic_dNLL": -0.01537028317729039,
+          "induction_dNLL": 1.0015231069988833
+        }
+      ]
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "arch": "RoPE",
+      "n_layers": 16,
+      "generic_base": 4.353152784720931,
+      "induction_base": 0.7258635493885127,
+      "all_mlp_ablated_generic_dNLL": 4.181175494320178,
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 4.517211914062499,
+          "induction_dNLL": 12.490706496587899
+        },
+        {
+          "layer": 1,
+          "depth": 0.07,
+          "generic_dNLL": 7.3503960301636395,
+          "induction_dNLL": 12.651929584579888
+        },
+        {
+          "layer": 2,
+          "depth": 0.13,
+          "generic_dNLL": 0.13378281568093264,
+          "induction_dNLL": 0.13003853517217234
+        },
+        {
+          "layer": 3,
+          "depth": 0.2,
+          "generic_dNLL": 0.16702177663328754,
+          "induction_dNLL": 0.35498635146740576
+        },
+        {
+          "layer": 4,
+          "depth": 0.27,
+          "generic_dNLL": 0.21034337603856645,
+          "induction_dNLL": 0.38048534953503854
+        },
+        {
+          "layer": 5,
+          "depth": 0.33,
+          "generic_dNLL": 0.15533937726701996,
+          "induction_dNLL": 0.1895394044187837
+        },
+        {
+          "layer": 6,
+          "depth": 0.4,
+          "generic_dNLL": 0.1378990354992089,
+          "induction_dNLL": 0.017073171539647936
+        },
+        {
+          "layer": 7,
+          "depth": 0.47,
+          "generic_dNLL": 0.13670788114032995,
+          "induction_dNLL": -0.04435613182085085
+        },
+        {
+          "layer": 8,
+          "depth": 0.53,
+          "generic_dNLL": 0.15057451762850338,
+          "induction_dNLL": 0.41839828498528464
+        },
+        {
+          "layer": 9,
+          "depth": 0.6,
+          "generic_dNLL": 0.1990330610325728,
+          "induction_dNLL": 0.9679531203416575
+        },
+        {
+          "layer": 10,
+          "depth": 0.67,
+          "generic_dNLL": 0.22172375835438896,
+          "induction_dNLL": 0.48026857521368316
+        },
+        {
+          "layer": 11,
+          "depth": 0.73,
+          "generic_dNLL": 0.22712530913176376,
+          "induction_dNLL": 0.40984352524226
+        },
+        {
+          "layer": 12,
+          "depth": 0.8,
+          "generic_dNLL": 0.2578775012303911,
+          "induction_dNLL": 0.31002307585939504
+        },
+        {
+          "layer": 13,
+          "depth": 0.87,
+          "generic_dNLL": 0.2566290557699862,
+          "induction_dNLL": 0.24858544761290036
+        },
+        {
+          "layer": 14,
+          "depth": 0.93,
+          "generic_dNLL": 0.25768087276075224,
+          "induction_dNLL": 0.46881800922138994
+        },
+        {
+          "layer": 15,
+          "depth": 1.0,
+          "generic_dNLL": 0.8304100137539008,
+          "induction_dNLL": 1.9597096454900953
+        }
+      ],
+      "top_generic": [
+        {
+          "layer": 1,
+          "depth": 0.07,
+          "generic_dNLL": 7.3503960301636395,
+          "induction_dNLL": 12.651929584579888
+        },
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 4.517211914062499,
+          "induction_dNLL": 12.490706496587899
+        },
+        {
+          "layer": 15,
+          "depth": 1.0,
+          "generic_dNLL": 0.8304100137539008,
+          "induction_dNLL": 1.9597096454900953
+        }
+      ],
+      "top_induction": [
+        {
+          "layer": 1,
+          "depth": 0.07,
+          "generic_dNLL": 7.3503960301636395,
+          "induction_dNLL": 12.651929584579888
+        },
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 4.517211914062499,
+          "induction_dNLL": 12.490706496587899
+        },
+        {
+          "layer": 15,
+          "depth": 1.0,
+          "generic_dNLL": 0.8304100137539008,
+          "induction_dNLL": 1.9597096454900953
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "arch": "RoPE",
+      "n_layers": 28,
+      "generic_base": 4.215459308927021,
+      "induction_base": 0.3722145390359704,
+      "all_mlp_ablated_generic_dNLL": 4.288001650855656,
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.1633529864921774,
+          "induction_dNLL": 7.718778400345314
+        },
+        {
+          "layer": 1,
+          "depth": 0.04,
+          "generic_dNLL": 7.642121289772963,
+          "induction_dNLL": 13.484402612235758
+        },
+        {
+          "layer": 2,
+          "depth": 0.07,
+          "generic_dNLL": 5.563188825334822,
+          "induction_dNLL": 13.90926413418371
+        },
+        {
+          "layer": 3,
+          "depth": 0.11,
+          "generic_dNLL": 0.1120426743118852,
+          "induction_dNLL": 0.017604160047063666
+        },
+        {
+          "layer": 4,
+          "depth": 0.15,
+          "generic_dNLL": 0.0709746426375455,
+          "induction_dNLL": -0.02239472827789407
+        },
+        {
+          "layer": 5,
+          "depth": 0.19,
+          "generic_dNLL": 0.21271901408200566,
+          "induction_dNLL": 0.03580942538653853
+        },
+        {
+          "layer": 6,
+          "depth": 0.22,
+          "generic_dNLL": 0.1464371655983907,
+          "induction_dNLL": -0.03565734899787759
+        },
+        {
+          "layer": 7,
+          "depth": 0.26,
+          "generic_dNLL": 0.12963051770730072,
+          "induction_dNLL": 0.006153731646783123
+        },
+        {
+          "layer": 8,
+          "depth": 0.3,
+          "generic_dNLL": 0.09728350967326538,
+          "induction_dNLL": 0.049391626669884836
+        },
+        {
+          "layer": 9,
+          "depth": 0.33,
+          "generic_dNLL": 0.058193055410233896,
+          "induction_dNLL": -0.009579286346341365
+        },
+        {
+          "layer": 10,
+          "depth": 0.37,
+          "generic_dNLL": 0.0595676381751975,
+          "induction_dNLL": -0.019658409289038836
+        },
+        {
+          "layer": 11,
+          "depth": 0.41,
+          "generic_dNLL": 0.06634213684727985,
+          "induction_dNLL": -0.012239386679920805
+        },
+        {
+          "layer": 12,
+          "depth": 0.44,
+          "generic_dNLL": 0.07001899032996484,
+          "induction_dNLL": 0.00103700352386632
+        },
+        {
+          "layer": 13,
+          "depth": 0.48,
+          "generic_dNLL": 0.07638335858703371,
+          "induction_dNLL": 0.0443427739793108
+        },
+        {
+          "layer": 14,
+          "depth": 0.52,
+          "generic_dNLL": 0.03125041376346083,
+          "induction_dNLL": 0.08517567652440794
+        },
+        {
+          "layer": 15,
+          "depth": 0.56,
+          "generic_dNLL": 0.019329504991965507,
+          "induction_dNLL": 0.020404207288097942
+        },
+        {
+          "layer": 16,
+          "depth": 0.59,
+          "generic_dNLL": 0.0466063262293579,
+          "induction_dNLL": 0.15538053121244527
+        },
+        {
+          "layer": 17,
+          "depth": 0.63,
+          "generic_dNLL": 0.08415178773264476,
+          "induction_dNLL": 0.188171848096837
+        },
+        {
+          "layer": 18,
+          "depth": 0.67,
+          "generic_dNLL": 0.026177522366640282,
+          "induction_dNLL": 0.2364990941555118
+        },
+        {
+          "layer": 19,
+          "depth": 0.7,
+          "generic_dNLL": 0.0916946754253738,
+          "induction_dNLL": 0.03252042889050699
+        },
+        {
+          "layer": 20,
+          "depth": 0.74,
+          "generic_dNLL": 0.07748971162019025,
+          "induction_dNLL": 0.11925780976170725
+        },
+        {
+          "layer": 21,
+          "depth": 0.78,
+          "generic_dNLL": 0.07372070998741886,
+          "induction_dNLL": 0.1721631406282887
+        },
+        {
+          "layer": 22,
+          "depth": 0.81,
+          "generic_dNLL": 0.12956052104001348,
+          "induction_dNLL": 0.11658065373711951
+        },
+        {
+          "layer": 23,
+          "depth": 0.85,
+          "generic_dNLL": 0.11057753789992564,
+          "induction_dNLL": 0.11892904164018808
+        },
+        {
+          "layer": 24,
+          "depth": 0.89,
+          "generic_dNLL": 0.17169220737679325,
+          "induction_dNLL": 0.061054516308745754
+        },
+        {
+          "layer": 25,
+          "depth": 0.93,
+          "generic_dNLL": 0.10344281272282707,
+          "induction_dNLL": 0.22334803117317797
+        },
+        {
+          "layer": 26,
+          "depth": 0.96,
+          "generic_dNLL": 0.7102984574736748,
+          "induction_dNLL": 1.052011500465553
+        },
+        {
+          "layer": 27,
+          "depth": 1.0,
+          "generic_dNLL": 0.5556717322616986,
+          "induction_dNLL": 0.28455684013699417
+        }
+      ],
+      "top_generic": [
+        {
+          "layer": 1,
+          "depth": 0.04,
+          "generic_dNLL": 7.642121289772963,
+          "induction_dNLL": 13.484402612235758
+        },
+        {
+          "layer": 2,
+          "depth": 0.07,
+          "generic_dNLL": 5.563188825334822,
+          "induction_dNLL": 13.90926413418371
+        },
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.1633529864921774,
+          "induction_dNLL": 7.718778400345314
+        }
+      ],
+      "top_induction": [
+        {
+          "layer": 2,
+          "depth": 0.07,
+          "generic_dNLL": 5.563188825334822,
+          "induction_dNLL": 13.90926413418371
+        },
+        {
+          "layer": 1,
+          "depth": 0.04,
+          "generic_dNLL": 7.642121289772963,
+          "induction_dNLL": 13.484402612235758
+        },
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "generic_dNLL": 3.1633529864921774,
+          "induction_dNLL": 7.718778400345314
+        }
+      ]
+    }
+  ],
+  "gpt2_harvest": {
+    "mlp_catalog": {
+      "experiment": "MLP neuron catalog",
+      "model": "gpt2",
+      "n_neurons": 36864,
+      "n_tokens": 48,
+      "catalog": [
+        {
+          "neuron": [
+            2,
+            3034
+          ],
+          "reads": [
+            "The",
+            "And",
+            "_he"
+          ],
+          "writes": [
+            "_for",
+            "First",
+            "_he"
+          ],
+          "salience": 15.878829883520643
+        },
+        {
+          "neuron": [
+            2,
+            1825
+          ],
+          "reads": [
+            "And",
+            "_be",
+            "_for"
+          ],
+          "writes": [
+            "_for",
+            "First",
+            "_he"
+          ],
+          "salience": 8.216081287328835
+        },
+        {
+          "neuron": [
+            2,
+            666
+          ],
+          "reads": [
+            "And",
+            "_for",
+            "The"
+          ],
+          "writes": [
+            "_for",
+            "First",
+            "_he"
+          ],
+          "salience": 7.231355751808144
+        },
+        {
+          "neuron": [
+            3,
+            1027
+          ],
+          "reads": [
+            "MAR",
+            "_to",
+            "'s"
+          ],
+          "writes": [
+            "_for",
+            "First",
+            "_he"
+          ],
+          "salience": 5.967232147124138
+        },
+        {
+          "neuron": [
+            11,
+            43
+          ],
+          "reads": [
+            "_a",
+            "\u010a",
+            "_not"
+          ],
+          "writes": [
+            "_a",
+            "MAR",
+            "CI"
+          ],
+          "salience": 4.38014437045215
+        },
+        {
+          "neuron": [
+            3,
+            1751
+          ],
+          "reads": [
+            "_for",
+            "And",
+            "_he"
+          ],
+          "writes": [
+            "_for",
+            "First",
+            "_he"
+          ],
+          "salience": 3.4592722300768144
+        },
+        {
+          "neuron": [
+            3,
+            1874
+          ],
+          "reads": [
+            ".",
+            "_to",
+            "MAR"
+          ],
+          "writes": [
+            "_for",
+            "First",
+            "_he"
+          ],
+          "salience": 2.623895674619325
+        },
+        {
+          "neuron": [
+            1,
+            2401
+          ],
+          "reads": [
+            "_us",
+            "_me",
+            "."
+          ],
+          "writes": [
+            "_for",
+            "And",
+            "_he"
+          ],
+          "salience": 2.591905345319398
+        },
+        {
+          "neuron": [
+            1,
+            1120
+          ],
+          "reads": [
+            "MAR",
+            "_to",
+            "And"
+          ],
+          "writes": [
+            "_for",
+            "And",
+            "_he"
+          ],
+          "salience": 2.4579185991597887
+        },
+        {
+          "neuron": [
+            0,
+            132
+          ],
+          "reads": [
+            "_of",
+            "_in",
+            "_it"
+          ],
+          "writes": [
+            "_the",
+            "The",
+            "_our"
+          ],
+          "salience": 2.266925126214785
+        },
+        {
+          "neuron": [
+            11,
+            2378
+          ],
+          "reads": [
+            "\u010a",
+            "_the",
+            "_a"
+          ],
+          "writes": [
+            "_him",
+            "_he",
+            "_for"
+          ],
+          "salience": 2.1799367050466265
+        },
+        {
+          "neuron": [
+            11,
+            789
+          ],
+          "reads": [
+            "_a",
+            "_I",
+            "_are"
+          ],
+          "writes": [
+            "_a",
+            "?",
+            "!"
+          ],
+          "salience": 1.854539381873388
+        },
+        {
+          "neuron": [
+            11,
+            584
+          ],
+          "reads": [
+            "_you",
+            "_I",
+            "_the"
+          ],
+          "writes": [
+            "_he",
+            "First",
+            "_for"
+          ],
+          "salience": 1.8458453559863226
+        },
+        {
+          "neuron": [
+            10,
+            900
+          ],
+          "reads": [
+            "And",
+            "_for",
+            "_he"
+          ],
+          "writes": [
+            "_him",
+            "_he",
+            "First"
+          ],
+          "salience": 1.825301701379584
+        },
+        {
+          "neuron": [
+            1,
+            242
+          ],
+          "reads": [
+            ".",
+            "MAR",
+            "!"
+          ],
+          "writes": [
+            "_for",
+            "And",
+            "_he"
+          ],
+          "salience": 1.49888677002244
+        },
+        {
+          "neuron": [
+            10,
+            772
+          ],
+          "reads": [
+            "_a",
+            "_good",
+            "\u010a"
+          ],
+          "writes": [
+            "_a",
+            "_the",
+            "_us"
+          ],
+          "salience": 1.4592893641283624
+        },
+        {
+          "neuron": [
+            11,
+            1550
+          ],
+          "reads": [
+            "_I",
+            "_we",
+            "_they"
+          ],
+          "writes": [
+            "_I",
+            "_we",
+            "_they"
+          ],
+          "salience": 1.4517839754339845
+        },
+        {
+          "neuron": [
+            0,
+            1612
+          ],
+          "reads": [
+            "_I",
+            "_a",
+            "The"
+          ],
+          "writes": [
+            "_for",
+            "And",
+            "_he"
+          ],
+          "salience": 1.2212581356220906
+        },
+        {
+          "neuron": [
+            11,
+            1623
+          ],
+          "reads": [
+            "_to",
+            "_not",
+            "_in"
+          ],
+          "writes": [
+            "'d",
+            "The",
+            "_be"
+          ],
+          "salience": 1.2119018133410624
+        },
+        {
+          "neuron": [
+            11,
+            2679
+          ],
+          "reads": [
+            ".",
+            "\u010a",
+            ":"
+          ],
+          "writes": [
+            ".",
+            ":",
+            "?"
+          ],
+          "salience": 1.0358531438040912
+        }
+      ],
+      "transform_participation": 22.318757353456736,
+      "transform_participation_random": 1665.62969666058,
+      "transform_rank90": 186,
+      "read_participation": 12.775710203469913,
+      "write_participation": 1.8646990459179213,
+      "n_rank_test": 6000
+    },
+    "mlp_ops": {
+      "experiment": "milestone-3 MLP ops in the DAG + recompile",
+      "model": "gpt2",
+      "corpus": "shakespeare",
+      "floor_kl": 3.3917241416958137,
+      "n_heads": 144,
+      "n_mlp": 12,
+      "coverage_attention_only": -0.01868537623898603,
+      "coverage_mlp_only": 0.4628327632989597,
+      "coverage_full": 1.0,
+      "coverage_combined_sparse_op_set": 0.28603881020064303,
+      "combined_op_set_n_heads": 12,
+      "combined_op_set_n_mlp": 4,
+      "mlp_importance": {
+        "L0": 0.7724294143427803,
+        "L1": 0.07378239955448627,
+        "L2": 0.04748103413720223,
+        "L3": 0.03856379048400317,
+        "L4": 0.0311801723949375,
+        "L5": 0.04276190587089056,
+        "L6": 0.04722600156323083,
+        "L7": 0.03167538639676568,
+        "L8": 0.032148774697405326,
+        "L9": 0.03274367958523542,
+        "L10": 0.03911998413890307,
+        "L11": 0.07598021293304286
+      },
+      "mlp_ranked": [
+        0,
+        11,
+        1,
+        2,
+        6,
+        5,
+        10,
+        3,
+        9,
+        8,
+        7,
+        4
+      ],
+      "mlp_curve": [
+        {
+          "n_mlp": 1,
+          "coverage_attn_plus_topMLP": 0.11803040074915083,
+          "coverage_attn_plus_randMLP": -0.002201760713552159
+        },
+        {
+          "n_mlp": 2,
+          "coverage_attn_plus_topMLP": 0.2573715755887511,
+          "coverage_attn_plus_randMLP": -0.004028225679826081
+        },
+        {
+          "n_mlp": 3,
+          "coverage_attn_plus_topMLP": 0.34387486653377375,
+          "coverage_attn_plus_randMLP": 0.14711032890833545
+        },
+        {
+          "n_mlp": 4,
+          "coverage_attn_plus_topMLP": 0.4362583915050493,
+          "coverage_attn_plus_randMLP": 0.3125275659401385
+        },
+        {
+          "n_mlp": 6,
+          "coverage_attn_plus_topMLP": 0.6339070523976073,
+          "coverage_attn_plus_randMLP": -0.17244552320069328
+        },
+        {
+          "n_mlp": 8,
+          "coverage_attn_plus_topMLP": 0.8191038795242432,
+          "coverage_attn_plus_randMLP": 0.5950700948194004
+        },
+        {
+          "n_mlp": 12,
+          "coverage_attn_plus_topMLP": 1.0,
+          "coverage_attn_plus_randMLP": 1.0
+        }
+      ],
+      "spearman_mlp_static_vs_importance": -0.43356643356643354,
+      "top_head_to_mlp": [
+        [
+          "2.1",
+          "L2",
+          0.056291755284928156
+        ],
+        [
+          "11.0",
+          "L11",
+          0.05527714056697826
+        ],
+        [
+          "1.7",
+          "L2",
+          0.05126881510084094
+        ],
+        [
+          "1.7",
+          "L1",
+          0.04985592731414661
+        ],
+        [
+          "4.7",
+          "L4",
+          0.049634566493515386
+        ],
+        [
+          "4.11",
+          "L4",
+          0.04910831052211631
+        ],
+        [
+          "1.11",
+          "L2",
+          0.04794334692018704
+        ],
+        [
+          "3.10",
+          "L4",
+          0.047153098964942804
+        ],
+        [
+          "5.6",
+          "L5",
+          0.04687900647466308
+        ],
+        [
+          "3.7",
+          "L4",
+          0.046816522871867806
+        ]
+      ],
+      "top_mlp_to_head": [
+        [
+          "L1",
+          "2.2",
+          0.057394775863171946
+        ],
+        [
+          "L0",
+          "4.11",
+          0.054066177675712083
+        ],
+        [
+          "L0",
+          "2.2",
+          0.053555465476204475
+        ],
+        [
+          "L0",
+          "3.7",
+          0.05144279595447531
+        ],
+        [
+          "L3",
+          "11.8",
+          0.05132130149177002
+        ],
+        [
+          "L0",
+          "10.9",
+          0.05129324133434158
+        ],
+        [
+          "L1",
+          "2.5",
+          0.0510337429031382
+        ],
+        [
+          "L0",
+          "3.2",
+          0.05080567221411252
+        ],
+        [
+          "L1",
+          "2.9",
+          0.05065088977405749
+        ],
+        [
+          "L0",
+          "11.8",
+          0.0499611247154205
+        ]
+      ],
+      "named_mlp_idioms": {
+        "L0": [
+          {
+            "neuron": 504,
+            "reads": [
+              ".",
+              ";",
+              "?"
+            ],
+            "writes": [
+              "\u010a",
+              "I",
+              "First"
+            ]
+          },
+          {
+            "neuron": 1612,
+            "reads": [
+              "_you",
+              "_and",
+              "_Citizen"
+            ],
+            "writes": [
+              "_to",
+              "First",
+              ","
+            ]
+          },
+          {
+            "neuron": 2874,
+            "reads": [
+              ":",
+              "?",
+              "_Citizen"
+            ],
+            "writes": [
+              ":",
+              "_to",
+              "_Citizen"
+            ]
+          }
+        ],
+        "L11": [
+          {
+            "neuron": 2378,
+            "reads": [
+              "\u010a",
+              "_the",
+              "_and"
+            ],
+            "writes": [
+              ".",
+              "?",
+              "_to"
+            ]
+          },
+          {
+            "neuron": 584,
+            "reads": [
+              "\u010a",
+              "_the",
+              ","
+            ],
+            "writes": [
+              "First",
+              "_to",
+              ","
+            ]
+          },
+          {
+            "neuron": 2679,
+            "reads": [
+              "\u010a",
+              ".",
+              ":"
+            ],
+            "writes": [
+              ".",
+              ":",
+              "?"
+            ]
+          }
+        ],
+        "L1": [
+          {
+            "neuron": 1120,
+            "reads": [
+              "_Citizen",
+              ".",
+              "_you"
+            ],
+            "writes": [
+              "First",
+              "_to",
+              ","
+            ]
+          },
+          {
+            "neuron": 2401,
+            "reads": [
+              "_the",
+              ":",
+              "_Citizen"
+            ],
+            "writes": [
+              "First",
+              "_to",
+              ","
+            ]
+          },
+          {
+            "neuron": 242,
+            "reads": [
+              "_Citizen",
+              "I",
+              "."
+            ],
+            "writes": [
+              "_to",
+              "First",
+              ","
+            ]
+          }
+        ],
+        "L2": [
+          {
+            "neuron": 3034,
+            "reads": [
+              "_Citizen",
+              "I",
+              "_to"
+            ],
+            "writes": [
+              "First",
+              "_to",
+              ","
+            ]
+          },
+          {
+            "neuron": 1825,
+            "reads": [
+              "_Citizen",
+              "_to",
+              "First"
+            ],
+            "writes": [
+              "First",
+              "_to",
+              ","
+            ]
+          },
+          {
+            "neuron": 666,
+            "reads": [
+              "First",
+              "_to",
+              ","
+            ],
+            "writes": [
+              "First",
+              "_to",
+              ","
+            ]
+          }
+        ]
+      },
+      "circuit_heads": [
+        "2.2",
+        "3.2",
+        "3.7",
+        "4.11",
+        "5.0",
+        "5.5",
+        "6.9",
+        "7.11",
+        "8.3",
+        "8.10",
+        "10.0",
+        "11.2"
+      ]
+    }
+  },
+  "note_gaps": "Mamba/SSM has no separate MLP block (mixer = whole layer); per-neuron idioms GPT-2-only."
+}
