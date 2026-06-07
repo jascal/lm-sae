@@ -1,0 +1,68 @@
+{
+  "experiment": "causal validation (induction-NLL mean-ablation): unsloth/Llama-3.2-1B",
+  "model": "unsloth/Llama-3.2-1B",
+  "baseline_ind_nll": 0.3424816816078877,
+  "baseline_comp_nll": 3.7931109063674415,
+  "sets": [
+    {
+      "set": "induction",
+      "heads": [
+        [
+          2,
+          26
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          10,
+          23
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          13,
+          20
+        ]
+      ],
+      "delta_ind": 0.26148081098200004,
+      "delta_comp": -0.0022420707529056116,
+      "delta_ind_random_mean": 0.010661088656704107,
+      "z": 27.342545467454915,
+      "load_bearing": true
+    },
+    {
+      "set": "prev_token",
+      "heads": [
+        [
+          0,
+          2
+        ],
+        [
+          8,
+          26
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          9,
+          28
+        ]
+      ],
+      "delta_ind": 0.11235896682128643,
+      "delta_comp": 0.062469945310383856,
+      "delta_ind_random_mean": -0.005267537312750203,
+      "z": 6.639265159236669,
+      "load_bearing": true
+    }
+  ]
+}

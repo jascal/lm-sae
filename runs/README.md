@@ -69,14 +69,17 @@ The sections below map 1:1 to the subdirectories.
 | `forge_compression_controlled_summary.json` | `forge_compression_controlled.py` | **RETIRE**: writer-OV ≈ random-OV at matched compression |
 | `forge_revalidate_broad_summary.json` | `forge_revalidate_broad.py` | RETIRE confirmed (0/6 across layers×seeds) |
 
-## Cross-model (Gemma-2-2B)
+## Cross-model (Gemma-2, Llama-3, Qwen-2.5)
+Four families via the arch-generic disassembler (`arch_config.py`). Headline: plumbing ~87% and
+induction-causality invariant across all four; the attention-sink is the variable (44–55% in
+GPT-2/Llama/Qwen, **4% in Gemma** — the low outlier).
 | file | from | headline |
 |------|------|----------|
-| `disasm_portable_summary.json` (gpt2), `disasm_portable_gemma2_summary.json` | `gemma/disasm_portable.py` | same-corpus coverage comparison (plumbing ≈87% both; sink 46% vs 4%) |
-| `gemma_opcode_table_summary.json` | `gemma_opcode_table.py` | 7/8 QK content opcodes legible at L12 |
-| `gemma_causal_summary.json` | `gemma_causal.py` | induction-NLL ablation z=8.3 (replicates GPT-2's 8.6) |
-| `gemma_layer_sweep_summary.json`, `gemma_layer_sweep.txt` | `gemma_layer_sweep.py` | QK content legibility across depth |
-| `gemma2_disassembly.txt` / `.json`, `gemma2_disassembly_L6.*` *(git-ignored)* | `disassemble_gemma.py` | full per-head listing at GPT-2 parity (SAE layers 12 / 6) |
+| `disasm_portable_summary.json` (gpt2), `disasm_portable_gemma2_summary.json`, `disasm_portable_llama32_1b_summary.json`, `disasm_portable_qwen25_15b_summary.json` | `gemma/disasm_portable.py --model …` | same-corpus coverage: plumbing 86.7/87.7/89.4/86.6%; sink 45.6/3.9/55.0/44.4% |
+| `gemma_causal_summary.json`, `llama32_1b_causal_summary.json`, `qwen25_15b_causal_summary.json` | `gemma/gemma_causal.py --model …` | induction-NLL ablation z = 8.3 / 27.3 / 14.9 (all load-bearing; GPT-2 = 8.6) |
+| `gemma_opcode_table_summary.json` | `gemma_opcode_table.py` | 7/8 QK content opcodes legible at L12 (Gemma Scope; Gemma-only) |
+| `gemma_layer_sweep_summary.json`, `gemma_layer_sweep.txt` | `gemma_layer_sweep.py` | QK content legibility across depth (Gemma) |
+| `{gemma2,llama32_1b,qwen25_15b}_disassembly.txt` / `.json` *(git-ignored; .txt also committed under `docs/listings/`)* | `disassemble_gemma.py --model …` | full per-head listing at GPT-2 parity |
 
 ## Forge smoke (polygram path)
 `forge_example_summary.json` + `forge_example/` — the polygram-compressed 11-feature GPT-2 forge (KL≈21).

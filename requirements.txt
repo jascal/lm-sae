@@ -28,3 +28,7 @@ matplotlib>=3.7
 # safetensors, NOT the sae_lens package (which is not required).
 huggingface_hub>=0.20
 safetensors>=0.4
+
+# Optional — only for the multilingual ops experiment (scripts/gemma/multilingual_ops.py), which streams
+# per-language Wikipedia. Not needed for the rest of the toolkit.
+datasets>=2.14

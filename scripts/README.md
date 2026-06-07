@@ -91,14 +91,20 @@ compression-controlled re-validation showed writer-OV ≈ random-OV.
 | `forge_compression_controlled.py` | the **compression-controlled re-validation** that retired the claim. |
 | `forge_revalidate_broad.py` | broadened re-validation (layers × seeds) confirming RETIRE. |
 
-## `gemma/` — the cross-model port (Gemma-2-2B)
-Ports the disassembly to a recent RoPE / GQA / RMSNorm model, at GPT-2 parity. The **Gemma Scope**
-SAEs (`google/gemma-scope-2b-pt-res`) auto-download from the Hub on first use via `scope_loader.py`
-(cached thereafter); point at a local copy with `--scope-path` to run offline.
+## `gemma/` — the cross-model port (Gemma-2 / Llama-3 / Qwen-2.5)
+The weight-space disassembler is **arch-generic**: one `--model` flag runs Gemma-2-2B, Llama-3.2-1B,
+and Qwen2.5-1.5B (any RoPE / GQA / RMSNorm / gated-MLP HF LM). Per-architecture constants live in
+`arch_config.py`; the **Gemma Scope** SAEs (`google/gemma-scope-2b-pt-res`, Gemma-only) auto-download
+on first use via `scope_loader.py` (or `--scope-path` for offline). (Despite the `gemma_*` filenames,
+only the opcode-table / layer-sweep are Gemma-specific — the disassembler and causal validator are general.)
 | script | role |
 |--------|------|
 | `disasm_portable.py` | behavioral idioms + coverage on **any** HF model (the arch-agnostic core). |
-| `gemma_opcode_table.py` | QK opcode table with **Gemma Scope** SAE operands (RoPE/GQA/RMSNorm-aware). |
-| `gemma_causal.py` | induction-NLL causal validation on Gemma. |
-| `disassemble_gemma.py` | **the unified per-head listing at GPT-2 parity** (all-layer QK bind + OV WRITE + GeGLU MLP catalog + SAE-feature opcode at the SAE layer) → `runs/gemma/gemma2_disassembly.txt`. |
-| `gemma_layer_sweep.py` | QK content-opcode legibility **across depth** (which layers are content-addressing). |
+| `disassemble_gemma.py` | **the unified per-head listing at GPT-2 parity, any model** (all-layer QK bind + OV WRITE + gated-MLP catalog; SAE-feature opcode at the SAE layer where a SAE exists) → `runs/gemma/`, committed `.txt` under `docs/listings/`. |
+| `gemma_causal.py` | induction-NLL causal validation (arch-general; `--model`). |
+| `sink_ablation.py` | block attention to the sink (key-0) and measure ΔNLL (arch-general) — is the sink load-bearing? Finds magnitude ≠ dependence (only GPT-2 depends). |
+| `multilingual_ops.py` | idiom-head invariance + attention budget across languages/scripts (the ops are language-universal; needs `datasets` to stream Wikipedia). |
+| `gemma_opcode_table.py` | QK opcode table with **Gemma Scope** SAE operands (Gemma-only; RoPE/GQA/RMSNorm-aware). |
+| `gemma_layer_sweep.py` | QK content-opcode legibility **across depth** (Gemma Scope; Gemma-only). |
+| `arch_config.py` | per-architecture knobs (RMSNorm gain offset, QK scale, SAE availability). |
+| `scope_loader.py` | portable Gemma Scope SAE resolver (explicit path → HF cache → download). |

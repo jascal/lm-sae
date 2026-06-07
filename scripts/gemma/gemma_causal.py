@@ -47,7 +47,8 @@ def main(argv=None):
     model = AutoModelForCausalLM.from_pretrained(
         args.model, attn_implementation="eager", dtype=torch.bfloat16).eval().to(dev)
     cfg = model.config
-    nL, H, hd = cfg.num_hidden_layers, cfg.num_attention_heads, cfg.head_dim
+    nL, H = cfg.num_hidden_layers, cfg.num_attention_heads
+    hd = getattr(cfg, "head_dim", None) or (cfg.hidden_size // cfg.num_attention_heads)
     CORPORA = {"shakespeare": "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
                "wikitext": "https://raw.githubusercontent.com/pytorch/examples/main/word_language_model/data/wikitext-2/train.txt"}
     import urllib.request
@@ -127,13 +128,13 @@ def main(argv=None):
         print(f"  {name:>10}: Δind {d_ind:+.3f}  Δcomp {d_com:+.3f}  random Δind {rmu:+.3f}  z {z:+.1f}  "
               f"-> {'LOAD-BEARING' if lb else 'weak'}")
 
-    out = {"experiment": "Gemma-2 causal validation (induction-NLL mean-ablation)", "model": args.model,
+    out = {"experiment": f"causal validation (induction-NLL mean-ablation): {args.model}", "model": args.model,
            "baseline_ind_nll": base_ind, "baseline_comp_nll": base_com, "sets": rows}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2, default=float))
     nlb = sum(r["load_bearing"] for r in rows)
     print(f"\n[verdict] {nlb}/{len(rows)} head sets causally load-bearing for induction -> "
-          f"{'the universal circuits are CAUSAL on Gemma-2, not just correlational' if nlb >= 1 else 'no clear causal effect'}")
+          f"{f'the universal circuits are CAUSAL on {args.model}, not just correlational' if nlb >= 1 else 'no clear causal effect'}")
     print(f"[done] {args.output}")
     return out
 
