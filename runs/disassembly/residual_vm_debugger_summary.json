@@ -1,0 +1,690 @@
+{
+  "model": "gpt2",
+  "named_catalog": {
+    "prevtok": [
+      "4.11"
+    ],
+    "induction": [
+      "5.0",
+      "5.1",
+      "5.5",
+      "6.9",
+      "7.11"
+    ],
+    "duplicate": [
+      "0.1",
+      "0.5",
+      "1.5",
+      "3.0"
+    ],
+    "name_mover": [
+      "9.6",
+      "9.9",
+      "10.0",
+      "10.10"
+    ],
+    "backup_name_mover": [
+      "9.0",
+      "9.7",
+      "10.1",
+      "10.2",
+      "10.6",
+      "11.2"
+    ],
+    "negative_mover": [
+      "10.7",
+      "11.10"
+    ],
+    "s_inhibition": [
+      "7.3",
+      "7.9",
+      "8.6",
+      "8.10"
+    ],
+    "coreference": [
+      "9.0"
+    ]
+  },
+  "sweeps": {
+    "induction": {
+      "baseline": 0.6624949061487553,
+      "top": [
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "effect": 7.816210678775716,
+          "named": "mlp"
+        },
+        {
+          "comp": "5.1",
+          "kind": "head",
+          "L": 5,
+          "effect": 1.2623549861363579,
+          "named": "induction"
+        },
+        {
+          "comp": "0.1",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.38407006600866334,
+          "named": "duplicate"
+        },
+        {
+          "comp": "7.6",
+          "kind": "head",
+          "L": 7,
+          "effect": 0.3643603096920216,
+          "named": null
+        },
+        {
+          "comp": "4.11",
+          "kind": "head",
+          "L": 4,
+          "effect": 0.33262773487524677,
+          "named": "prevtok"
+        },
+        {
+          "comp": "mlp4",
+          "kind": "mlp",
+          "L": 4,
+          "effect": 0.3322458863419774,
+          "named": "mlp"
+        },
+        {
+          "comp": "2.11",
+          "kind": "head",
+          "L": 2,
+          "effect": 0.2470845893422513,
+          "named": null
+        },
+        {
+          "comp": "1.2",
+          "kind": "head",
+          "L": 1,
+          "effect": 0.21624931200517739,
+          "named": null
+        },
+        {
+          "comp": "8.1",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.21613507659107878,
+          "named": null
+        },
+        {
+          "comp": "8.5",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.2159838559004129,
+          "named": null
+        },
+        {
+          "comp": "mlp9",
+          "kind": "mlp",
+          "L": 9,
+          "effect": 0.19766718471705413,
+          "named": "mlp"
+        },
+        {
+          "comp": "6.9",
+          "kind": "head",
+          "L": 6,
+          "effect": 0.1947935061670203,
+          "named": "induction"
+        }
+      ],
+      "candidate_unnamed_ops": [
+        {
+          "comp": "7.6",
+          "kind": "head",
+          "L": 7,
+          "effect": 0.3643603096920216,
+          "named": null
+        },
+        {
+          "comp": "2.11",
+          "kind": "head",
+          "L": 2,
+          "effect": 0.2470845893422513,
+          "named": null
+        },
+        {
+          "comp": "1.2",
+          "kind": "head",
+          "L": 1,
+          "effect": 0.21624931200517739,
+          "named": null
+        },
+        {
+          "comp": "8.1",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.21613507659107878,
+          "named": null
+        },
+        {
+          "comp": "8.5",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.2159838559004129,
+          "named": null
+        },
+        {
+          "comp": "7.2",
+          "kind": "head",
+          "L": 7,
+          "effect": 0.18451330901976026,
+          "named": null
+        },
+        {
+          "comp": "3.8",
+          "kind": "head",
+          "L": 3,
+          "effect": 0.16892849736556714,
+          "named": null
+        },
+        {
+          "comp": "6.0",
+          "kind": "head",
+          "L": 6,
+          "effect": 0.16688142373685355,
+          "named": null
+        },
+        {
+          "comp": "9.10",
+          "kind": "head",
+          "L": 9,
+          "effect": 0.15270291778542744,
+          "named": null
+        },
+        {
+          "comp": "9.1",
+          "kind": "head",
+          "L": 9,
+          "effect": 0.15260112429605222,
+          "named": null
+        },
+        {
+          "comp": "1.1",
+          "kind": "head",
+          "L": 1,
+          "effect": 0.14834879283593383,
+          "named": null
+        },
+        {
+          "comp": "2.9",
+          "kind": "head",
+          "L": 2,
+          "effect": 0.14513781595725106,
+          "named": null
+        }
+      ]
+    },
+    "ioi": {
+      "baseline": 2.854847717285156,
+      "top": [
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "effect": 7.533416620890299,
+          "named": "mlp"
+        },
+        {
+          "comp": "5.9",
+          "kind": "head",
+          "L": 5,
+          "effect": 1.0049530029296874,
+          "named": null
+        },
+        {
+          "comp": "7.9",
+          "kind": "head",
+          "L": 7,
+          "effect": 0.9299860000610349,
+          "named": "s_inhibition"
+        },
+        {
+          "comp": "mlp5",
+          "kind": "mlp",
+          "L": 5,
+          "effect": 0.7702143351236979,
+          "named": "mlp"
+        },
+        {
+          "comp": "8.3",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.7545958201090492,
+          "named": null
+        },
+        {
+          "comp": "8.6",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.7372912089029948,
+          "named": "s_inhibition"
+        },
+        {
+          "comp": "0.10",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.7090771993001299,
+          "named": null
+        },
+        {
+          "comp": "5.5",
+          "kind": "head",
+          "L": 5,
+          "effect": 0.6673857371012368,
+          "named": "induction"
+        },
+        {
+          "comp": "1.3",
+          "kind": "head",
+          "L": 1,
+          "effect": 0.6464958190917969,
+          "named": null
+        },
+        {
+          "comp": "mlp7",
+          "kind": "mlp",
+          "L": 7,
+          "effect": 0.5884187062581376,
+          "named": "mlp"
+        },
+        {
+          "comp": "9.4",
+          "kind": "head",
+          "L": 9,
+          "effect": 0.5675742467244462,
+          "named": null
+        },
+        {
+          "comp": "8.10",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.5430807749430335,
+          "named": "s_inhibition"
+        }
+      ],
+      "candidate_unnamed_ops": [
+        {
+          "comp": "5.9",
+          "kind": "head",
+          "L": 5,
+          "effect": 1.0049530029296874,
+          "named": null
+        },
+        {
+          "comp": "8.3",
+          "kind": "head",
+          "L": 8,
+          "effect": 0.7545958201090492,
+          "named": null
+        },
+        {
+          "comp": "0.10",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.7090771993001299,
+          "named": null
+        },
+        {
+          "comp": "1.3",
+          "kind": "head",
+          "L": 1,
+          "effect": 0.6464958190917969,
+          "named": null
+        },
+        {
+          "comp": "9.4",
+          "kind": "head",
+          "L": 9,
+          "effect": 0.5675742467244462,
+          "named": null
+        },
+        {
+          "comp": "6.0",
+          "kind": "head",
+          "L": 6,
+          "effect": 0.5252459208170572,
+          "named": null
+        },
+        {
+          "comp": "2.6",
+          "kind": "head",
+          "L": 2,
+          "effect": 0.5052141189575194,
+          "named": null
+        },
+        {
+          "comp": "0.9",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.4528039296468096,
+          "named": null
+        },
+        {
+          "comp": "2.11",
+          "kind": "head",
+          "L": 2,
+          "effect": 0.42972386678059893,
+          "named": null
+        },
+        {
+          "comp": "10.5",
+          "kind": "head",
+          "L": 10,
+          "effect": 0.4262758255004879,
+          "named": null
+        },
+        {
+          "comp": "9.5",
+          "kind": "head",
+          "L": 9,
+          "effect": 0.4152420043945311,
+          "named": null
+        },
+        {
+          "comp": "4.6",
+          "kind": "head",
+          "L": 4,
+          "effect": 0.4027749379475911,
+          "named": null
+        }
+      ]
+    },
+    "generic": {
+      "baseline": 5.01550681666324,
+      "top": [
+        {
+          "comp": "mlp0",
+          "kind": "mlp",
+          "L": 0,
+          "effect": 1.8444537567674066,
+          "named": "mlp"
+        },
+        {
+          "comp": "0.1",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.3085040390282341,
+          "named": "duplicate"
+        },
+        {
+          "comp": "mlp1",
+          "kind": "mlp",
+          "L": 1,
+          "effect": 0.13014366819147494,
+          "named": "mlp"
+        },
+        {
+          "comp": "mlp2",
+          "kind": "mlp",
+          "L": 2,
+          "effect": 0.06975794741981911,
+          "named": "mlp"
+        },
+        {
+          "comp": "mlp11",
+          "kind": "mlp",
+          "L": 11,
+          "effect": 0.0648339201274668,
+          "named": "mlp"
+        },
+        {
+          "comp": "0.8",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.04692281087239536,
+          "named": null
+        },
+        {
+          "comp": "6.6",
+          "kind": "head",
+          "L": 6,
+          "effect": 0.046612688031112626,
+          "named": null
+        },
+        {
+          "comp": "7.11",
+          "kind": "head",
+          "L": 7,
+          "effect": 0.04300448233621168,
+          "named": "induction"
+        },
+        {
+          "comp": "0.3",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.03778883549205059,
+          "named": null
+        },
+        {
+          "comp": "1.10",
+          "kind": "head",
+          "L": 1,
+          "effect": 0.036139312208744556,
+          "named": null
+        },
+        {
+          "comp": "5.0",
+          "kind": "head",
+          "L": 5,
+          "effect": 0.03371956808525223,
+          "named": "induction"
+        },
+        {
+          "comp": "5.6",
+          "kind": "head",
+          "L": 5,
+          "effect": 0.03185300592790519,
+          "named": null
+        }
+      ],
+      "candidate_unnamed_ops": [
+        {
+          "comp": "0.8",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.04692281087239536,
+          "named": null
+        },
+        {
+          "comp": "6.6",
+          "kind": "head",
+          "L": 6,
+          "effect": 0.046612688031112626,
+          "named": null
+        },
+        {
+          "comp": "0.3",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.03778883549205059,
+          "named": null
+        },
+        {
+          "comp": "1.10",
+          "kind": "head",
+          "L": 1,
+          "effect": 0.036139312208744556,
+          "named": null
+        },
+        {
+          "comp": "5.6",
+          "kind": "head",
+          "L": 5,
+          "effect": 0.03185300592790519,
+          "named": null
+        },
+        {
+          "comp": "0.10",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.03143698173656784,
+          "named": null
+        },
+        {
+          "comp": "5.9",
+          "kind": "head",
+          "L": 5,
+          "effect": 0.026659781472724298,
+          "named": null
+        },
+        {
+          "comp": "0.4",
+          "kind": "head",
+          "L": 0,
+          "effect": 0.025663569935581165,
+          "named": null
+        },
+        {
+          "comp": "6.8",
+          "kind": "head",
+          "L": 6,
+          "effect": 0.022056499280427744,
+          "named": null
+        },
+        {
+          "comp": "5.11",
+          "kind": "head",
+          "L": 5,
+          "effect": 0.021862568102384294,
+          "named": null
+        },
+        {
+          "comp": "4.4",
+          "kind": "head",
+          "L": 4,
+          "effect": 0.020241891961348735,
+          "named": null
+        },
+        {
+          "comp": "2.7",
+          "kind": "head",
+          "L": 2,
+          "effect": 0.018515849866364675,
+          "named": null
+        }
+      ]
+    }
+  },
+  "edge_probe": {
+    "reader": "7.6",
+    "candidate_writers": [
+      {
+        "writer": "5.1",
+        "effect": 1.255501011019997,
+        "named": "induction"
+      },
+      {
+        "writer": "4.11",
+        "effect": 0.40308108840947265,
+        "named": "prevtok"
+      },
+      {
+        "writer": "0.1",
+        "effect": 0.3377149807358557,
+        "named": "duplicate"
+      },
+      {
+        "writer": "2.11",
+        "effect": 0.1973928862604034,
+        "named": null
+      },
+      {
+        "writer": "6.9",
+        "effect": 0.17858340065504308,
+        "named": "induction"
+      },
+      {
+        "writer": "1.1",
+        "effect": 0.16466031605366305,
+        "named": null
+      },
+      {
+        "writer": "0.5",
+        "effect": 0.16188576298801838,
+        "named": "duplicate"
+      },
+      {
+        "writer": "5.9",
+        "effect": 0.16071150783088684,
+        "named": null
+      },
+      {
+        "writer": "5.5",
+        "effect": 0.1234624382839492,
+        "named": "induction"
+      },
+      {
+        "writer": "2.3",
+        "effect": 0.12147549470602448,
+        "named": null
+      },
+      {
+        "writer": "6.2",
+        "effect": 0.12114421335193726,
+        "named": null
+      },
+      {
+        "writer": "3.8",
+        "effect": 0.11626369692059701,
+        "named": null
+      }
+    ]
+  },
+  "logit_lens_induction": [
+    {
+      "layer": 0,
+      "kl_to_final": 5.825039863586426
+    },
+    {
+      "layer": 1,
+      "kl_to_final": 6.564633846282959
+    },
+    {
+      "layer": 2,
+      "kl_to_final": 5.475849151611328
+    },
+    {
+      "layer": 3,
+      "kl_to_final": 4.970485210418701
+    },
+    {
+      "layer": 4,
+      "kl_to_final": 4.399184703826904
+    },
+    {
+      "layer": 5,
+      "kl_to_final": 1.6521329879760742
+    },
+    {
+      "layer": 6,
+      "kl_to_final": 0.29678332805633545
+    },
+    {
+      "layer": 7,
+      "kl_to_final": 0.10090939700603485
+    },
+    {
+      "layer": 8,
+      "kl_to_final": 0.1309722363948822
+    },
+    {
+      "layer": 9,
+      "kl_to_final": 0.1492016762495041
+    },
+    {
+      "layer": 10,
+      "kl_to_final": 0.6789430379867554
+    },
+    {
+      "layer": 11,
+      "kl_to_final": 0.0
+    }
+  ]
+}
