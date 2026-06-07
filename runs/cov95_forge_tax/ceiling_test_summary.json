@@ -1,0 +1,55 @@
+{
+  "experiment": "decompilation ceiling test (forge-basis reconstruction coverage)",
+  "model": "tiny-gpt",
+  "d_model": 128,
+  "n_samples": 9000,
+  "kl_unigram_floor": 2.1740838877360025,
+  "tower_core_fraction": 0.24,
+  "sweep": [
+    {
+      "over_complete": 1,
+      "width": 128,
+      "kl_host_forged": 43.26892567274306,
+      "recon_coverage": -18.902141732811174,
+      "host_cov95": 0.6,
+      "forged_cov95": 0.0,
+      "host_mauc": 0.9168915691627484,
+      "forged_mauc": 0.6660432048357571
+    },
+    {
+      "over_complete": 2,
+      "width": 256,
+      "kl_host_forged": 5.113221655951606,
+      "recon_coverage": -1.3518971300027873,
+      "host_cov95": 0.64,
+      "forged_cov95": 0.0,
+      "host_mauc": 0.9156324255811594,
+      "forged_mauc": 0.7824977668057836
+    },
+    {
+      "over_complete": 4,
+      "width": 512,
+      "kl_host_forged": 5.078012617323133,
+      "recon_coverage": -1.3357022449631222,
+      "host_cov95": 0.64,
+      "forged_cov95": 0.12,
+      "host_mauc": 0.9295123432805557,
+      "forged_mauc": 0.8438542750993625
+    },
+    {
+      "over_complete": 8,
+      "width": 1024,
+      "kl_host_forged": 5.076527231852213,
+      "recon_coverage": -1.3350190213399222,
+      "host_cov95": 0.6,
+      "forged_cov95": 0.16,
+      "host_mauc": 0.9160015295728877,
+      "forged_mauc": 0.8532857241007076
+    }
+  ],
+  "best_recon_coverage_kl": -1.3350190213399222,
+  "mean_cov95_retention": 0.11354166666666667,
+  "mean_mauc_retention": 0.8550979519320099,
+  "forge_capability_alive": false,
+  "feature_content_vs_monosemanticity_decoupled": true
+}
