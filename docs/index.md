@@ -1,10 +1,5 @@
 ---
-title: Home
 ---
-
-# A Field Guide to Attention
-
-### A cross-architecture, causally-validated catalog of transformer operators and circuits
 
 *Disassembling a transformer's attention into a catalogued instruction set — `lm-sae`.*
 
