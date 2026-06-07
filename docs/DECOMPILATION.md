@@ -283,6 +283,55 @@ one for the path-patch gate); the full run is **~70 s wall-clock and ~5 GB RAM o
 to any HF model the box can hold a forward pass of. `runs/disassembly/composition_dag_summary.json` (re-run the
 script to regenerate the figure).
 
+### Validating the new write-hub edges (follow-up to M2)
+
+`validate_new_edges.py` takes the 22 new live edges to the next rung: a **targeted single-edge path-patch with
+a behavioural readout** (the induction-style strong test, generalized). For each edge A→B it surgically removes
+A's output from B's port, recomputes B's attention, and measures the collapse of B's *named* components —
+{prev-token, duplicate, induction, sink} — against a **reader-matched random-writer null**. A pattern collapse
+beyond the null *names* the edge's function; ΔTV with no named collapse is real-but-unlabeled shaping.
+
+- **The write-hubs are early SINK heads broadcasting a positional signal.** All three hubs (0.11, 0.9, 1.8) and
+  the minor ones (1.3, 1.7, 1.9) self-label **sink** (their own attention parks on position-0). **13/22 edges
+  resolve to a named function — 9 prev-token, 3 sink, 1 duplicate.** Removing these hubs from a downstream key
+  collapses that head's **prev-token attention**: e.g. `0.9→2.5` −56%, `1.8→9.3 / 1.8→10.9` −45%, and — the
+  headline — `1.3→4.11` −11% and `1.8→4.11` −8% into the *canonical prev-token head itself*.
+
+  | edge | writer→reader | pattern | rel-collapse (beats null) |
+  |---|---|---|---|
+  | K | 0.9→2.5 | prev-token | −56% |
+  | K | 1.8→9.3 | prev-token | −45% |
+  | K | 1.8→10.9 | prev-token | −45% |
+  | Q | 0.9→1.3 | sink | −42% |
+  | Q | 0.9→1.10 | prev-token | −23% |
+  | Q | 0.9→1.2 | prev-token | −23% |
+  | K | 1.8→11.8 | prev-token | −14% |
+  | K | **1.3→4.11** | **prev-token** | **−11%** |
+  | K | 0.11→1.1 | prev-token | −10% |
+  | K | **1.8→4.11** | **prev-token** | **−8%** |
+- **The prev-token mechanism is not self-contained in 4.11.** It *reads a positional signal piped in from early
+  sink heads*; remove that input and 4.11's previous-token addressing degrades. This edge-resolves the
+  disassembly's **position/structure register** and reframes the **sink**: a sink head is a no-op in *where it
+  reads* (parks on pos-0) but its **OV-write is a load-bearing positional broadcast** — attention-pattern and
+  write-content are decoupled. *Hypothesis* (consistent with the sink-ablation result — GPT-2 is the only
+  family member that depends on its sink, position-independently = the absolute-positional-embedding signature):
+  these hubs propagate GPT-2's learned absolute positions; the exact encoding pathway is left open.
+- **Honest scope.** (a) The reader-matched null *includes other early/sink heads* that also carry positional
+  signal, so the test is **conservative** — several of the 9 "unlabeled" edges still collapse prev-token (e.g.
+  `0.9→2.9` −55%) but don't beat that positional null (those readers' prev-token mass is fragile to *any* key
+  perturbation), so they are real shaping not attributable to one writer. (b) The readout is attention-pattern
+  collapse (like M2's ΔTV), evidence of a positional-broadcast role, not a task-level loss metric.
+
+  *Next* (sharpen the mechanism): (a) **task-level readout** — re-do the edge patch as a forward-pass
+  intervention and read next-token KL / induction-NLL, turning "reshapes the pattern" into "changes the
+  output"; (b) **the positional-embedding test** — re-run the patch with `wpe` zeroed/randomized: if these
+  hubs propagate GPT-2's *absolute* positions, their prev-token collapse should vanish without `wpe`; (c)
+  **cross-model prediction** — RoPE models (Gemma-2 / Llama-3 / Qwen-2.5) do **not** depend on their sink
+  (sink-ablation result), so they should show **no** such absolute-positional-broadcast circuit — the
+  prev-token signal is carried by RoPE in the QK directly, not piped from a sink head. A clean falsifier of the
+  "GPT-2 absolute-positions" hypothesis. `runs/disassembly/validate_new_edges_summary.json` (~40 s on CPU;
+  re-run to regenerate the figure).
+
 ## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
 
 `dag_recompile.py` closes the loop between the two milestones: it feeds the M2-extracted live sub-DAG into M1's
