@@ -66,6 +66,25 @@ The throughline: **a model is legible in the right basis even where it is *not* 
 - **[Discovered circuit edges](circuits/discovered.md)** — de-novo key-patch over the top content readers in every
   model. *Recovers prev-token→induction in the GPT-2 family (6/2/2 edges); Llama 3, Qwen 1, Gemma 0 (distributed).*
 
+## Analyses & results (the experiments)
+
+Beyond the catalogs, the deeper experiments — read **[Cross-model findings](FINDINGS.md)** for the narrative and
+**[Scaling synthesis](scaling.md)** for the central table.
+
+- **Mechanism depth** — **[SAE-feature operands](operators/sae_operands.md)** (what each operator reads/writes in
+  *feature* space, GPT-2 + Gemma) · **[MLP extended-embedding test](operators/mlp_detokenizer.md)** (MLP0 is
+  token-determined in 5/6 — Llama the outlier) · **[outlier mechanism digs](operators/outlier_digs.md)** (the
+  "compensatory" suppression is a synthetic-probe artifact; high causal effect ≠ doing the named op).
+- **Executable decompilation** — **[reconstruction](circuits/reconstruction.md)** (no small head-set is *sufficient*
+  for induction; even IOI's 26-head circuit isn't, in isolation) · **[attention-vs-MLP substrate](circuits/induction_substrate.md)**
+  (induction leans on both ~equally; MLP0 is the critical MLP).
+- **Knowledge** — **[where facts live](circuits/factual_recall.md)** (ablation-contrast) and **[ROME causal
+  tracing](circuits/causal_tracing.md)** (facts enriched in the early MLPs at the subject, cross-model).
+- **Operator gaps** — **[succession](operators/succession.md)** (the +1 operator is 95–100% MLP-computed — data
+  behind the catalog's "MLP-dominated" gap).
+- **The thesis** — much of what looks *architectural* tracks **scale**: the *same* named circuits become more
+  distributed as models grow ([scaling synthesis](scaling.md)).
+
 ## The methodology & tools
 
 - **Disassembly** ([deep-dive](DISASSEMBLY.md)) — idiom library → opcode tables → coverage scorecard → causal
