@@ -98,6 +98,40 @@ def run_model(model_id, circuit_heads, args, dev):
     allabl = ind_nll(all_heads)                                                  # ablate ALL attention (MLPs intact)
     circ = ind_nll(non_circuit)                                                  # keep only the circuit heads
 
+    # robustness: RESAMPLE ablation (on-distribution) — replace ablated heads with a different seq's activations
+    def resample_nll(keepset):
+        ablate = [hh for hh in all_heads if hh not in keepset]
+        by = {}
+        for (L, hh) in ablate:
+            by.setdefault(L, []).append(hh)
+        tot = 0.0; k = 0
+        for i, s in enumerate(seqs):
+            sd = seqs[(i + 1) % len(seqs)]; dcap = {}
+            hk = [oproj[L].register_forward_pre_hook((lambda L: lambda mod, inp: dcap.__setitem__(L, inp[0].detach()))(L)) for L in by]
+            with torch.no_grad():
+                m(input_ids=torch.tensor([sd], device=dev))
+            for x in hk:
+                x.remove()
+            hs = []
+            for L, hss in by.items():
+                def mk(L, hss):
+                    def hook(mod, inp):
+                        x = inp[0].clone()
+                        for hh in hss:
+                            x[..., hh * hd:(hh + 1) * hd] = dcap[L][..., hh * hd:(hh + 1) * hd].to(x.dtype)
+                        return (x,)
+                    return hook
+                hs.append(oproj[L].register_forward_pre_hook(mk(L, hss)))
+            with torch.no_grad():
+                lp = F.log_softmax(m(input_ids=torch.tensor([s], device=dev)).logits[0].float(), -1); Lh = len(s) // 2
+                for pp in range(Lh, 2 * Lh - 1):
+                    tot += float(-lp[pp, s[pp + 1]]); k += 1
+            for x in hs:
+                x.remove()
+        return tot / max(k, 1)
+    rs_allabl = resample_nll(set()); rs_circ = resample_nll(keep)
+    rs_cov = (rs_allabl - rs_circ) / (rs_allabl - base + 1e-9)
+
     def coverage(nll):
         return (allabl - nll) / (allabl - base + 1e-9)
 
@@ -124,7 +158,8 @@ def run_model(model_id, circuit_heads, args, dev):
     return {"model": model_id.split("/")[-1], "rope": not is_gpt2, "n_heads_total": nL * H, "circuit_size": len(keep),
             "base_ind_nll": base, "all_attn_ablated_nll": allabl, "circuit_only_nll": circ,
             "circuit_coverage": coverage(circ), "random_coverage_mean": float(np.mean(rnd)),
-            "random_coverage_std": float(np.std(rnd)), "curve": curve}
+            "random_coverage_std": float(np.std(rnd)), "curve": curve,
+            "resample_circuit_coverage": rs_cov, "resample_all_ablated_nll": rs_allabl, "resample_circuit_nll": rs_circ}
 
 
 def write_doc(out, docs):
@@ -135,14 +170,15 @@ def write_doc(out, docs):
          "**coverage = (NLL_all-attn-ablated − NLL_circuit-only) / (NLL_all-attn-ablated − NLL_full)** — 1 = the "
          "circuit alone fully reconstructs induction, 0 = no better than ablating all attention. A random same-size "
          "head-set is the control.", "",
-         "| model | circuit size / total heads | induction-NLL (full / circuit-only / all-ablated) | **circuit coverage** | random control |",
-         "|---|---|---|---|---|"]
+         "| model | circuit size / total heads | induction-NLL (full / circuit-only / all-ablated) | **circuit coverage** (mean-abl) | coverage (resample-abl) | random control |",
+         "|---|---|---|---|---|---|"]
     for r in out["results"]:
         if "circuit_coverage" not in r:
             continue
+        rs = f"{r['resample_circuit_coverage']:+.0%}" if "resample_circuit_coverage" in r else "—"
         L.append(f"| {r['model']} | {r['circuit_size']} / {r['n_heads_total']} | "
                  f"{r['base_ind_nll']:.2f} / {r['circuit_only_nll']:.2f} / {r['all_attn_ablated_nll']:.2f} | "
-                 f"**{r['circuit_coverage']:+.0%}** | {r['random_coverage_mean']:+.0%} ± {r['random_coverage_std']:.0%} |")
+                 f"**{r['circuit_coverage']:+.0%}** | {rs} | {r['random_coverage_mean']:+.0%} ± {r['random_coverage_std']:.0%} |")
     ks = sorted({c["k"] for r in out["results"] if r.get("curve") for c in r["curve"]})
     if ks:
         L += ["", "## How many heads does induction need? (reconstruction curve)", "",
@@ -180,8 +216,14 @@ def write_doc(out, docs):
               "mean-ablation sufficiency — so this does **not** refute it. It says the IOI computation, like induction, "
               "is not recoverable from its named heads *in isolation*; the named circuit is necessary and explanatory, "
               "but the behaviour is carried by the near-whole network. A statement about distributedness, not validity._", ""]
+    L += ["", "_**Robustness — does it survive a gentler ablation?** Mean-ablation pushes activations off-distribution, "
+          "so it *understates* coverage: under **resample-ablation** (replace ablated heads with a different valid "
+          "sequence's activations, on the data manifold) the GPT-2 family reconstructs more (gpt2 +17%→**+30%**, "
+          "medium +7%→+24%). But **no model exceeds ~30% even under resample** — so the distributedness is real, not a "
+          "mean-ablation artifact; mean-ablation just exaggerated it. The named 8-head circuit is the dominant driver, "
+          "not a sufficient subgraph, under either ablation._", ""]
     L += ["", "_**The honest result: necessity ≠ a small sufficient circuit.** No 8-head circuit *fully* reconstructs "
-          "induction in any model (best +17%, GPT-2-small). The circuit beats its random control in 4/6 models — it is "
+          "induction in any model (best +17% mean / +30% resample, GPT-2-small). The circuit beats its random control in 4/6 models — it is "
           "the **main** contributor — but coverage is modest, and it **decays with GPT-2 scale** (small +17% → medium "
           "+7% → large +0%) and fails in Qwen (−4%): in the larger / more distributed models the top induction + "
           "prev-token heads in isolation recover essentially nothing, because induction there is spread across a "
@@ -237,9 +279,12 @@ def main(argv=None):
             print(f"  [skip] {e}"); results.append({"model": short, "error": str(e)})
         if dev == "cuda":
             torch.cuda.empty_cache()
-    out = {"experiment": "executable decompilation — induction-circuit reconstruction coverage", "results": results}
+    sumpath = args.outdir / "circuit_reconstruction_summary.json"
+    out = json.loads(sumpath.read_text()) if sumpath.exists() else {}            # preserve extra blocks (e.g. ioi_gpt2)
+    out["experiment"] = "executable decompilation — induction-circuit reconstruction coverage"
+    out["results"] = results
     args.outdir.mkdir(parents=True, exist_ok=True)
-    (args.outdir / "circuit_reconstruction_summary.json").write_text(json.dumps(out, indent=2, default=float))
+    sumpath.write_text(json.dumps(out, indent=2, default=float))
     write_doc(out, args.docs)
     print(f"\n[done] {len([r for r in results if 'circuit_coverage' in r])} models → {args.outdir / 'circuit_reconstruction_summary.json'}")
     return out
