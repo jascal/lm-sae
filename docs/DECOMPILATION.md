@@ -413,6 +413,42 @@ key-only / value-only forward patch generalizes to **any** circuit — induction
 tests whether supervision (#19/#20) shifts the key-content dependence. `key_patch_cross_model.py`,
 `runs/gemma/key_patch_cross_model_summary.json` (~85 s, 4 models).
 
+### Generalizing the key-patch across circuits — positional vs content addressing
+
+`circuit_content_patch.py` runs the same faithful key-only patch on three circuits — **prev-token** (positional:
+attend to q−1), **induction** (content: attend to the key whose *predecessor token* == the current token),
+**duplicate** (content: attend to an earlier occurrence of the *same* token). The sharp question: is the
+key-content-vs-rotation split (#26/#31) about the *architecture*, or about the *addressing type*? RoPE's rotation
+supplies *position*, never token *content* — so a content match must live in the key content in **every**
+architecture, while only positional matching can move to the rotation.
+
+| circuit | type | GPT-2 | Gemma-2-2B | Llama-3.2-1B | Qwen-2.5-1.5B |
+|---|---|---|---|---|---|
+| **prev-token** | positional | **+22% ✓** | +0% | skip (L0) | +0% |
+| **induction** | content | **+17% ✓** | **+18% ✓** | **+70% ✓** | **+89% ✓** |
+| duplicate | content | skip (L0) | +3% | +9% | +13% ✓ |
+
+(✓ = the top upstream head's key-content removal collapses that circuit ≥10% and ≥3× the upstream-head median;
+every zero-patch sanity is 0.0.)
+
+**GENERALIZED — key-content dependence is about the ADDRESSING TYPE, not the architecture.** The *positional*
+circuit (prev-token) is key-content-dependent **only in GPT-2** (the RoPE models read position from the rotation,
+−0%), but the *content* circuit (induction) is key-content-dependent in **every** model (+17…+89%): removing the
+upstream predecessor-writer from the induction head's key collapses induction everywhere — the rotation cannot
+supply the predecessor *token*, so it must be in the key content. So #26/#31's GPT-2-vs-RoPE split is specifically
+the **positional register**; the **content instruction set** (token-identity matching) is universal — exactly
+consistent with the mechanism-invariance results (induction is causally load-bearing in all four). A nuance: in
+GPT-2 the induction collapser *is* its prev-token head (4.11 — the canonical K-composition writer), but in the
+RoPE models it is an **early** head (their dominant prev-token head is *late* — e.g. Gemma's is layer 21,
+downstream of its layer-4 induction head — so induction is fed by a separate early predecessor-writer); the
+universal fact (induction is key-content-fed) holds, the specific writer differs.
+
+**Scope.** Induction is the clean content circuit; **duplicate** is the weaker case (its readers are early /
+layer-0, so GPT-2 skips and the others give a smaller, noisier signal — only Qwen clears the bar). prev-token
+skips for Llama (layer-0 reader). The same forward patch could run **value-only** (the V-edge readout) to ask
+content-vs-rotation for what heads *move*, not just what they *match*. `circuit_content_patch.py`,
+`runs/gemma/circuit_content_patch_summary.json` (~3.5 min, 4 models × 3 circuits).
+
 ## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
 
 `dag_recompile.py` closes the loop between the two milestones: it feeds the M2-extracted live sub-DAG into M1's
