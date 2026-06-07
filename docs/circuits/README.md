@@ -13,6 +13,16 @@ here, two sources:
   (of which 13 are behaviourally named). These are
   GPT-2-only (literature IOI head-sets / GPT-2 path-patch runs).
 
+## Circuit inventory (index)
+
+- [`induction`](induction.md) — cross-model
+- [`positional_broadcast`](positional_broadcast.md) — cross-model
+- [`duplicate`](duplicate.md) — cross-model
+- [`ioi_q_chain`](ioi_q_chain.md) — GPT-2 (Q-composition chain (GPT-2-only))
+- [`induction_kchain_weights`](induction_kchain_weights.md) — GPT-2 (K-composition (weight + path-patch, GPT-2))
+- [`discovered_write_hub_edges`](discovered_write_hub_edges.md) — GPT-2 (DISCOVERED (novel-live composition edges))
+- [`v_virtual_heads`](v_virtual_heads.md) — GPT-2 (V-composition (composed-OV 'virtual heads', GPT-2))
+
 ## Cross-model circuit-edge liveness (remove the writer from the reader's key → attention collapse %)
 
 | circuit | defining edge | gpt2 | gpt2-medium | gpt2-large | gemma-2-2b | Llama-3.2-1B | Qwen2.5-1.5B |
@@ -25,16 +35,6 @@ here, two sources:
 content matching lives in the key everywhere); **positional-broadcast** (sink/hub → prev-token key) is
 **GPT-2-small/medium-only** (the absolute-position plumbing — RoPE reads position from the rotation, so the
 prev-token key has no upstream writer to remove). Same absolute-position-family split as the operator catalog's sink.
-
-## Circuit inventory (index)
-
-- [`induction`](induction.md) — cross-model
-- [`positional_broadcast`](positional_broadcast.md) — cross-model
-- [`duplicate`](duplicate.md) — cross-model
-- [`ioi_q_chain`](ioi_q_chain.md) — GPT-2 (Q-composition chain (GPT-2-only))
-- [`induction_kchain_weights`](induction_kchain_weights.md) — GPT-2 (K-composition (weight + path-patch, GPT-2))
-- [`discovered_write_hub_edges`](discovered_write_hub_edges.md) — GPT-2 (DISCOVERED (novel-live composition edges))
-- [`v_virtual_heads`](v_virtual_heads.md) — GPT-2 (V-composition (composed-OV 'virtual heads', GPT-2))
 
 ## Discovered edges (de novo, cross-model)
 

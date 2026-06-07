@@ -2,16 +2,16 @@
 
 **content** — duplicate-token head: attend to an earlier occurrence of the same token
 
-## Cross-model (catalog row)
+## Cross-model (catalog row) — signal/causal are mean ± σ over 3 probe-resample seeds
 
-| model | arch | signal | #heads | top head | depth | causal ΔNLL |
+| model | arch | signal (±σ) | #heads | top head | depth | causal ΔNLL (±σ) |
 |---|---|---|---|---|---|---|
-| gpt2 | GPT-2/absolute | 0.618 | 4 | 0.5 | 0.00 | +0.112 |
-| gpt2-medium | GPT-2/absolute | 0.858 | 6 | 7.11 | 0.30 | -0.006 |
-| gpt2-large | GPT-2/absolute | 0.958 | 23 | 5.8 | 0.14 | -0.001 |
-| gemma-2-2b | RoPE | 0.851 | 11 | 1.4 | 0.04 | -0.964 |
-| Llama-3.2-1B | RoPE | 0.742 | 17 | 6.8 | 0.40 | +0.033 |
-| Qwen2.5-1.5B | RoPE | 0.970 | 16 | 8.3 | 0.30 | -0.001 |
+| gpt2 | GPT-2/absolute | 0.622 ± 0.005 | 4 | 0.5 | 0.00 | +0.114 ± 0.014 |
+| gpt2-medium | GPT-2/absolute | 0.859 ± 0.003 | 6 | 7.11 | 0.30 | -0.008 ± 0.007 |
+| gpt2-large | GPT-2/absolute | 0.961 ± 0.002 | 23 | 5.8 | 0.14 | +0.000 ± 0.003 |
+| gemma-2-2b | RoPE | 0.856 ± 0.007 | 11 | 1.4 | 0.04 | -1.067 ± 0.027 |
+| Llama-3.2-1B | RoPE | 0.735 ± 0.008 | 16 | 6.8 | 0.40 | +0.017 ± 0.005 |
+| Qwen2.5-1.5B | RoPE | 0.973 ± 0.001 | 16 | 8.3 | 0.30 | +0.000 ± 0.003 |
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op duplicate`
 

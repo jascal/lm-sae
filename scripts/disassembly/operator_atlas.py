@@ -76,78 +76,82 @@ def run_model(model_id, args, dev):
         oproj = [ly.self_attn.o_proj for ly in model.model.layers]
     nlids = tok("\n", add_special_tokens=False)["input_ids"]; newline_id = nlids[0] if nlids else None
     V = cfg.vocab_size; lo, hi = int(0.02 * V), int(0.4 * V)
-    rng = np.random.default_rng(args.seed)
     import urllib.request
     prose = urllib.request.urlopen(urllib.request.Request(
         "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
         headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "ignore")[:120000]
     pids = tok(prose)["input_ids"]
-    prose_chunks = [pids[i:i + args.ctx] for i in range(0, len(pids), args.ctx) if len(pids[i:i + args.ctx]) >= 8][: args.chunks]
-    rep_seqs = [(lambda s: s + s)([int(x) for x in rng.integers(lo, hi, args.rep_len)]) for _ in range(args.chunks)]
 
-    # ---- behavioural mass per head, accumulated on the appropriate probe set per op ----
-    mass = {op: np.zeros(NH) for op in UNIVERSAL}; ntot = {op: 0 for op in UNIVERSAL}
-    for op in UNIVERSAL:
-        probe = rep_seqs if op in CONTENT_OPS else prose_chunks
-        with torch.no_grad():
-            for s in probe:
-                o = model(input_ids=torch.tensor([s], device=dev), output_attentions=True)
-                M = masks(s, newline_id)[op]; ntot[op] += int(M.sum())
-                if M.sum() == 0:
-                    continue
-                for L in range(nL):
-                    at = o.attentions[L][0].float().cpu().numpy()
-                    mass[op][L * H:(L + 1) * H] += (at * M[None]).sum((1, 2))
-        mass[op] /= max(ntot[op], 1)
-
-    # ---- mean-ablation harness (arch-generic: o_proj/c_proj input slice -> corpus mean) ----
-    cap = {L: [] for L in range(nL)}
-    hk = [oproj[L].register_forward_pre_hook(
-        (lambda L: lambda m, inp: cap[L].append(inp[0].detach().reshape(-1, inp[0].shape[-1])))(L)) for L in range(nL)]
-    with torch.no_grad():
-        for s in prose_chunks:
-            model(input_ids=torch.tensor([s], device=dev))
-    for h in hk:
-        h.remove()
-    meanv = {L: torch.cat(cap[L], 0).mean(0) for L in range(nL)}
-
-    def lm_nll(ablate):
-        by = {}
-        for (L, h) in ablate:
-            by.setdefault(L, []).append(h)
-        hs = []
-        for L, hss in by.items():
-            def mk(L, hss):
-                def hook(m, inp):
-                    x = inp[0].clone()
-                    for h in hss:
-                        x[..., h * hd:(h + 1) * hd] = meanv[L][h * hd:(h + 1) * hd].to(x.dtype)
-                    return (x,)
-                return hook
-            hs.append(oproj[L].register_forward_pre_hook(mk(L, hss)))
-        tot = 0.0; n = 0
-        try:
+    def one_seed(sd):                                                               # one probe-resample → per-op signal + causal
+        rng = np.random.default_rng(sd); off = int(rng.integers(0, args.ctx))
+        prose_chunks = [pids[i:i + args.ctx] for i in range(off, len(pids), args.ctx) if len(pids[i:i + args.ctx]) >= 8][: args.chunks]
+        rep_seqs = [(lambda s: s + s)([int(x) for x in rng.integers(lo, hi, args.rep_len)]) for _ in range(args.chunks)]
+        mass = {op: np.zeros(NH) for op in UNIVERSAL}; ntot = {op: 0 for op in UNIVERSAL}
+        for op in UNIVERSAL:
+            probe = rep_seqs if op in CONTENT_OPS else prose_chunks
             with torch.no_grad():
-                for s in prose_chunks:
-                    lp = F.log_softmax(model(input_ids=torch.tensor([s], device=dev)).logits[0, :-1].float(), -1)
-                    y = torch.tensor(s[1:], device=dev); tot += float(-lp[torch.arange(len(y)), y].sum()); n += len(y)
-        finally:
-            for h in hs:
-                h.remove()
-        return tot / max(n, 1)
-    base = lm_nll(set())
+                for s in probe:
+                    o = model(input_ids=torch.tensor([s], device=dev), output_attentions=True)
+                    M = masks(s, newline_id)[op]; ntot[op] += int(M.sum())
+                    if M.sum() == 0:
+                        continue
+                    for L in range(nL):
+                        at = o.attentions[L][0].float().cpu().numpy()
+                        mass[op][L * H:(L + 1) * H] += (at * M[None]).sum((1, 2))
+            mass[op] /= max(ntot[op], 1)
+        cap = {L: [] for L in range(nL)}
+        hk = [oproj[L].register_forward_pre_hook(
+            (lambda L: lambda m, inp: cap[L].append(inp[0].detach().reshape(-1, inp[0].shape[-1])))(L)) for L in range(nL)]
+        with torch.no_grad():
+            for s in prose_chunks:
+                model(input_ids=torch.tensor([s], device=dev))
+        for h in hk:
+            h.remove()
+        meanv = {L: torch.cat(cap[L], 0).mean(0) for L in range(nL)}
 
+        def lm_nll(ablate):
+            by = {}
+            for (L, h) in ablate:
+                by.setdefault(L, []).append(h)
+            hs = []
+            for L, hss in by.items():
+                def mk(L, hss):
+                    def hook(m, inp):
+                        x = inp[0].clone()
+                        for h in hss:
+                            x[..., h * hd:(h + 1) * hd] = meanv[L][h * hd:(h + 1) * hd].to(x.dtype)
+                        return (x,)
+                    return hook
+                hs.append(oproj[L].register_forward_pre_hook(mk(L, hss)))
+            tot = 0.0; n = 0
+            try:
+                with torch.no_grad():
+                    for s in prose_chunks:
+                        lp = F.log_softmax(model(input_ids=torch.tensor([s], device=dev)).logits[0, :-1].float(), -1)
+                        y = torch.tensor(s[1:], device=dev); tot += float(-lp[torch.arange(len(y)), y].sum()); n += len(y)
+            finally:
+                for h in hs:
+                    h.remove()
+            return tot / max(n, 1)
+        base = lm_nll(set()); cells_s = {}
+        for op in UNIVERSAL:
+            order = np.argsort(-mass[op]); top = int(order[0])
+            topk = [(int(i) // H, int(i) % H) for i in order[: args.ablate_k] if mass[op][int(i)] > 0.05]
+            cells_s[op] = {"signal": float(mass[op][top]), "n_heads": int((mass[op] > args.head_thr).sum()),
+                           "top_head": f"{top // H}.{top % H}", "top_depth": round((top // H) / max(nL - 1, 1), 2),
+                           "causal_dNLL": (lm_nll(set(topk)) - base) if topk else 0.0, "ablated": [f"{L}.{h}" for L, h in topk]}
+        return base, cells_s
+
+    per = [one_seed(args.seed + sd) for sd in range(args.seeds)]                     # multi-seed: resample probes per seed
+    bases = [b for b, _ in per]; cs = [c for _, c in per]
     cells = {}
     for op in UNIVERSAL:
-        order = np.argsort(-mass[op]); top = int(order[0]); sig = float(mass[op][top])
-        nh = int((mass[op] > args.head_thr).sum())
-        topk = [(int(i) // H, int(i) % H) for i in order[: args.ablate_k] if mass[op][int(i)] > 0.05]
-        dnll = (lm_nll(set(topk)) - base) if topk else 0.0
-        cells[op] = {"signal": sig, "n_heads": nh, "top_head": f"{top // H}.{top % H}",
-                     "top_depth": round((top // H) / max(nL - 1, 1), 2), "causal_dNLL": float(dnll),
-                     "ablated": [f"{L}.{h}" for L, h in topk]}
+        sg = [c[op]["signal"] for c in cs]; ca = [c[op]["causal_dNLL"] for c in cs]; nh = [c[op]["n_heads"] for c in cs]
+        cells[op] = {"signal": float(np.mean(sg)), "signal_std": float(np.std(sg)), "n_heads": int(round(np.mean(nh))),
+                     "top_head": cs[0][op]["top_head"], "top_depth": cs[0][op]["top_depth"],
+                     "causal_dNLL": float(np.mean(ca)), "causal_std": float(np.std(ca)), "ablated": cs[0][op]["ablated"]}
     return {"model": model_id.split("/")[-1], "arch": "GPT-2/absolute" if is_gpt2 else "RoPE",
-            "n_layers": nL, "n_heads": H, "base_nll": base, "cells": cells}
+            "n_layers": nL, "n_heads": H, "base_nll": float(np.mean(bases)), "seeds": args.seeds, "cells": cells}
 
 
 def main(argv=None):
@@ -159,6 +163,7 @@ def main(argv=None):
     p.add_argument("--head-thr", type=float, default=0.15, help="mass above which a head 'carries' the op")
     p.add_argument("--ablate-k", type=int, default=3, help="top heads ablated for the causal column")
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--seeds", type=int, default=3, help="probe-resample seeds for variance (signal/causal mean±std)")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly/operators"))
     args = p.parse_args(argv)

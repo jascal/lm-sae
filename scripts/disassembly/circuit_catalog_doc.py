@@ -127,6 +127,10 @@ here, two sources:
   (of which {gpt2.get('discovered_write_hub_edges', {}).get('n_named', '?')} are behaviourally named). These are
   GPT-2-only (literature IOI head-sets / GPT-2 path-patch runs).
 
+## Circuit inventory (index)
+
+{idx}
+
 ## Cross-model circuit-edge liveness (remove the writer from the reader's key → attention collapse %)
 
 {cmat}
@@ -135,10 +139,6 @@ here, two sources:
 content matching lives in the key everywhere); **positional-broadcast** (sink/hub → prev-token key) is
 **GPT-2-small/medium-only** (the absolute-position plumbing — RoPE reads position from the rotation, so the
 prev-token key has no upstream writer to remove). Same absolute-position-family split as the operator catalog's sink.
-
-## Circuit inventory (index)
-
-{idx}
 
 ## Discovered edges (de novo, cross-model)
 

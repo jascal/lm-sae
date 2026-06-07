@@ -2,16 +2,16 @@
 
 **addressing** — attention sink: park attention on key-0 (the no-op / idle register)
 
-## Cross-model (catalog row)
+## Cross-model (catalog row) — signal/causal are mean ± σ over 3 probe-resample seeds
 
-| model | arch | signal | #heads | top head | depth | causal ΔNLL |
+| model | arch | signal (±σ) | #heads | top head | depth | causal ΔNLL (±σ) |
 |---|---|---|---|---|---|---|
-| gpt2 | GPT-2/absolute | 0.954 | 117 | 7.2 | 0.64 | +0.023 |
-| gpt2-medium | GPT-2/absolute | 0.959 | 334 | 9.9 | 0.39 | +0.011 |
-| gpt2-large | GPT-2/absolute | 0.964 | 553 | 19.4 | 0.54 | -0.001 |
-| gemma-2-2b | RoPE | 0.074 | 0 | 1.0 | 0.04 | +0.002 |
-| Llama-3.2-1B | RoPE | 0.997 | 472 | 5.11 | 0.33 | +0.002 |
-| Qwen2.5-1.5B | RoPE | 0.998 | 292 | 14.5 | 0.52 | -0.000 |
+| gpt2 | GPT-2/absolute | 0.959 ± 0.000 | 117 | 7.2 | 0.64 | +0.024 ± 0.006 |
+| gpt2-medium | GPT-2/absolute | 0.965 ± 0.000 | 335 | 9.9 | 0.39 | +0.000 ± 0.002 |
+| gpt2-large | GPT-2/absolute | 0.972 ± 0.002 | 555 | 19.4 | 0.54 | +0.000 ± 0.001 |
+| gemma-2-2b | RoPE | 0.059 ± 0.001 | 0 | 0.3 | 0.00 | -0.024 ± 0.043 |
+| Llama-3.2-1B | RoPE | 0.997 ± 0.000 | 446 | 5.11 | 0.33 | -0.003 ± 0.002 |
+| Qwen2.5-1.5B | RoPE | 0.990 ± 0.012 | 292 | 14.5 | 0.52 | -0.001 ± 0.002 |
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op sink`
 

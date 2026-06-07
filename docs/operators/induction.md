@@ -2,16 +2,16 @@
 
 **content** — in-context copy: attend to the key whose predecessor token == current token, copy it
 
-## Cross-model (catalog row)
+## Cross-model (catalog row) — signal/causal are mean ± σ over 3 probe-resample seeds
 
-| model | arch | signal | #heads | top head | depth | causal ΔNLL |
+| model | arch | signal (±σ) | #heads | top head | depth | causal ΔNLL (±σ) |
 |---|---|---|---|---|---|---|
-| gpt2 | GPT-2/absolute | 0.922 | 22 | 5.5 | 0.45 | +0.006 |
-| gpt2-medium | GPT-2/absolute | 0.914 | 62 | 18.5 | 0.78 | -0.010 |
-| gpt2-large | GPT-2/absolute | 0.963 | 76 | 16.0 | 0.46 | +0.011 |
-| gemma-2-2b | RoPE | 0.941 | 26 | 6.3 | 0.24 | -0.289 |
-| Llama-3.2-1B | RoPE | 0.937 | 40 | 10.23 | 0.67 | +0.005 |
-| Qwen2.5-1.5B | RoPE | 0.992 | 54 | 14.3 | 0.52 | +0.002 |
+| gpt2 | GPT-2/absolute | 0.926 ± 0.006 | 22 | 5.5 | 0.45 | +0.011 ± 0.004 |
+| gpt2-medium | GPT-2/absolute | 0.915 ± 0.004 | 61 | 18.5 | 0.78 | +0.003 ± 0.003 |
+| gpt2-large | GPT-2/absolute | 0.969 ± 0.002 | 75 | 16.0 | 0.46 | +0.007 ± 0.000 |
+| gemma-2-2b | RoPE | 0.941 ± 0.005 | 23 | 6.3 | 0.24 | -0.282 ± 0.019 |
+| Llama-3.2-1B | RoPE | 0.946 ± 0.005 | 40 | 10.23 | 0.67 | +0.001 ± 0.001 |
+| Qwen2.5-1.5B | RoPE | 0.994 ± 0.001 | 54 | 14.3 | 0.52 | -0.000 ± 0.002 |
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op induction`
 
