@@ -113,66 +113,126 @@
       ]
     }
   },
+  "value_pathway": {
+    "n_v_live_edges": 20,
+    "n_v_new_heads": 22,
+    "v_new_heads": [
+      "1.0",
+      "3.0",
+      "3.10",
+      "4.3",
+      "4.7",
+      "5.9",
+      "5.10",
+      "5.11",
+      "6.0",
+      "6.4",
+      "6.6",
+      "6.7",
+      "7.1",
+      "7.3",
+      "7.7",
+      "8.7",
+      "9.0",
+      "9.2",
+      "9.3",
+      "9.11",
+      "11.3",
+      "11.8"
+    ],
+    "coverage_kq": 0.33331017925550643,
+    "coverage_kq_plus_v": 0.3375357005060652,
+    "v_increment": 0.00422552125055875,
+    "coverage_kq_plus_random": 0.41212478205800385,
+    "random_increment": 0.07881460280249741,
+    "coverage_kq_plus_topimp": 0.5317987857119852,
+    "topimp_increment": 0.1984886064564788,
+    "v_new_importance_ranks": [
+      23,
+      26,
+      33,
+      35,
+      38,
+      42,
+      47,
+      53,
+      59,
+      61,
+      62,
+      71,
+      75,
+      80,
+      83,
+      85,
+      86,
+      101,
+      115,
+      118,
+      120,
+      134
+    ],
+    "v_beats_random_addition": false
+  },
   "curve": [
     {
       "budget": 2,
       "coverage_importance": 0.005816637477952913,
       "coverage_dag_connectivity": 0.013600762341518968,
-      "coverage_random": 0.0037388066082632843
+      "coverage_random": -0.0005541151050292292
     },
     {
       "budget": 4,
       "coverage_importance": 0.15287705123839135,
       "coverage_dag_connectivity": 0.054045239170061876,
-      "coverage_random": 0.025164743020894137
+      "coverage_random": 0.017660549492929778
     },
     {
       "budget": 6,
       "coverage_importance": 0.184669740245346,
       "coverage_dag_connectivity": 0.0820575912372834,
-      "coverage_random": 0.05270244848329217
+      "coverage_random": 0.06367524291706236
     },
     {
       "budget": 8,
       "coverage_importance": 0.20775806111893635,
       "coverage_dag_connectivity": 0.13660721967524836,
-      "coverage_random": 0.027968292595035693
+      "coverage_random": 0.0773860485361412
     },
     {
       "budget": 12,
       "coverage_importance": 0.22954990880704662,
       "coverage_dag_connectivity": 0.18606546408573632,
-      "coverage_random": 0.081613143292046
+      "coverage_random": 0.16211100614962604
     },
     {
       "budget": 16,
       "coverage_importance": 0.31183296492483337,
       "coverage_dag_connectivity": 0.19301938859057377,
-      "coverage_random": 0.21886106966644797
+      "coverage_random": 0.2123951461954424
     },
     {
       "budget": 24,
       "coverage_importance": 0.3910842822468985,
       "coverage_dag_connectivity": 0.4157824263136095,
-      "coverage_random": 0.1695797755731199
+      "coverage_random": 0.23779613561052557
     },
     {
       "budget": 32,
       "coverage_importance": 0.567706741092632,
       "coverage_dag_connectivity": 0.31486629970832725,
-      "coverage_random": 0.23700013128679
+      "coverage_random": 0.2790334078593146
     },
     {
       "budget": 48,
       "coverage_importance": 0.6099305887619524,
       "coverage_dag_connectivity": 0.6362534229890882,
-      "coverage_random": 0.40758553031780054
+      "coverage_random": 0.4785506456275733
     },
     {
       "budget": 64,
       "coverage_importance": 0.7151529987832617,
       "coverage_dag_connectivity": 0.6897571329808962,
-      "coverage_random": 0.42592942747321605
+      "coverage_random": 0.5220045059173111
     }
   ],
   "top_importance_heads": [

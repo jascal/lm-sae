@@ -16,7 +16,14 @@ reproduce the marginal-importance ordering (Spearman + the coverage-vs-budget cu
 top-importance and beats random, and connectivity tracks importance, then the extracted DAG is the structured
 op-set the recompile harness should retain — recoverable for ~free from weights, no per-head ablation sweep.
 
-Consumes `runs/disassembly/composition_dag_summary.json` (auto-generates it via composition_dag if absent) and
+It also adds the **VALUE pathway** (V-composition, `vcomposition.py`): the K/Q sub-DAG covers attention routing,
+but the composed-OV "virtual heads" (induction content re-read as a later head's value) move CONTENT the K/Q
+edges don't. We add the live V-edge heads to the circuit keep-set and ask: does the value pathway lift
+reconstruction coverage *beyond* the K/Q circuit, and beat the same number of random additions? The V-edge
+readout is an OUTPUT change (ΔV-out) — does that make the value-pathway heads output-load-bearing, or is ΔV-out
+(like ΔTV in #23) an edge-COUPLING score that does NOT predict head output-importance? (Spoiler in the verdict.)
+
+Consumes `composition_dag_summary.json` + `vcomposition_summary.json` (auto-generates either if absent) and
 reuses residual_vm's proven mean-ablation coverage harness (GPT-2; arch-generic o_proj/c_proj slice hook).
 """
 from __future__ import annotations
@@ -60,6 +67,8 @@ def main(argv=None):
     p.add_argument("--model", default="gpt2")
     p.add_argument("--corpus", default="shakespeare")
     p.add_argument("--dag-summary", type=Path, default=Path("runs/disassembly/composition_dag_summary.json"))
+    p.add_argument("--v-summary", type=Path, default=Path("runs/disassembly/vcomposition_summary.json"),
+                   help="V-composition DAG (the value pathway) to add onto the K/Q circuit keep-set")
     p.add_argument("--rank-tokens", type=int, default=2400, help="tokens for per-head marginal importance ranking")
     p.add_argument("--eval-tokens", type=int, default=4000, help="tokens for the coverage KLs")
     p.add_argument("--ctx", type=int, default=96)
@@ -92,6 +101,18 @@ def main(argv=None):
     dag_all = sorted(set(dag_circuit) | {hk(e["A"]) for e in live_new} | {hk(e["B"]) for e in live_new})
     print(f"[dag] live circuit sub-DAG = {len(dag_circuit)} heads; +new live = {len(dag_all)} heads "
           f"(spearman static->specificity {dag.get('spearman_static_vs_specificity'):+.2f})")
+
+    # ---- load (or generate) the V-composition DAG (the value pathway) ----
+    if not args.v_summary.exists():
+        print(f"[v] {args.v_summary} missing -> running vcomposition.py to generate it...")
+        import vcomposition
+        vcomposition.main(["--pretrained", args.model, "--output", str(args.v_summary)])
+    vdag = json.loads(args.v_summary.read_text())
+    v_live = [e for e in vdag["edges"] if e["kind"] == "topV" and e.get("dvout_spec", 0.0) > 0]
+    v_heads = {hk(e["A"]) for e in v_live} | {hk(e["B"]) for e in v_live}
+    v_new = sorted(v_heads - set(dag_circuit))                                # value-pathway heads not in the K/Q circuit
+    print(f"[v] {len(v_live)} live V-edges -> {len(v_heads)} heads, {len(v_new)} NEW vs the K/Q circuit: "
+          f"{[f'{L}.{h}' for L, h in v_new]}")
 
     import torch
     import torch.nn.functional as F
@@ -211,6 +232,29 @@ def main(argv=None):
         print(f"  [{nm}] n={sz}: DAG {cov_dag:+.3f} | top-imp {cov_top:+.3f} | random {cov_rnd:+.3f}  "
               f"(DAG/top {cov_dag/cov_top:.0%} of importance-optimal, {cov_dag - cov_rnd:+.3f} over random)")
 
+    # ---- VALUE PATHWAY: add the live V-edge heads to the K/Q circuit; does it lift coverage beyond random additions? ----
+    kq = dag_circuit
+    cov_kq = ks_res["dag_circuit (induction+IOI)"]["coverage_dag"]
+    cov_kqv = coverage(sorted(set(kq) | set(v_new)))
+
+    def rand_add(base, k):
+        pool = [hh for hh in all_heads if hh not in set(base)]
+        return float(np.mean([coverage(set(base) | set(map(tuple, np.array(pool)[rng.choice(len(pool), k, replace=False)].tolist())))
+                              for _ in range(args.n_rand)])) if k else coverage(set(base))
+    cov_kq_rand = rand_add(kq, len(v_new))
+    imp_add = [hh for hh in ranked if hh not in set(kq)][:len(v_new)]                # importance-optimal addition
+    cov_kq_imp = coverage(set(kq) | set(imp_add)) if v_new else cov_kq
+    v_ranks = sorted(ranked.index(hh) for hh in v_new)
+    v_incr = cov_kqv - cov_kq; rand_incr = cov_kq_rand - cov_kq; imp_incr = cov_kq_imp - cov_kq
+    v_res = {"n_v_live_edges": len(v_live), "n_v_new_heads": len(v_new),
+             "v_new_heads": [f"{L}.{h}" for L, h in v_new], "coverage_kq": cov_kq, "coverage_kq_plus_v": cov_kqv,
+             "v_increment": v_incr, "coverage_kq_plus_random": cov_kq_rand, "random_increment": rand_incr,
+             "coverage_kq_plus_topimp": cov_kq_imp, "topimp_increment": imp_incr, "v_new_importance_ranks": v_ranks}
+    print(f"\n[value pathway] K/Q circuit {cov_kq:+.3f}  + {len(v_new)} V-heads -> {cov_kqv:+.3f} (Δ {v_incr:+.3f})  "
+          f"| + {len(v_new)} random -> {cov_kq_rand:+.3f} (Δ {rand_incr:+.3f})  "
+          f"| + {len(v_new)} top-importance -> {cov_kq_imp:+.3f} (Δ {imp_incr:+.3f})")
+    print(f"[value pathway] V-head marginal-importance ranks (of {len(all_heads)}): {v_ranks}")
+
     # coverage curve: three orderings (importance / DAG-connectivity / random) vs budget
     budgets = sorted({min(int(b), len(all_heads)) for b in args.budgets.split(",")})
     curve = []
@@ -226,7 +270,7 @@ def main(argv=None):
            "spearman_connectivity_vs_importance_all": rho_all,
            "spearman_connectivity_vs_importance_touched": rho_touched,
            "spearman_curve_importance_vs_connectivity": rho_curve,
-           "keepsets": ks_res, "curve": curve,
+           "keepsets": ks_res, "value_pathway": v_res, "curve": curve,
            "top_importance_heads": [f"{L}.{h}" for L, h in ranked[:16]],
            "dag_connectivity_heads": [f"{L}.{h}" for L, h in conn_ranked[:16]]}
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -253,13 +297,26 @@ def main(argv=None):
           f"DAG-touched {rho_touched:+.2f}); the new live write-hubs RESHAPE attention (high ΔTV) without being "
           f"output-load-bearing (dag_all_live {ks_res['dag_all_live']['coverage_dag']/max(ks_res['dag_all_live']['coverage_top_importance'],1e-9):.0%} of optimal) "
           f"=> ΔTV (attention-influence) != KL (output-importance); the win is the CONFIRMED CIRCUIT, not a generic importance score.")
+    # value-pathway verdict: does the V edge type add output-load-bearing heads the K/Q circuit missed?
+    v_adds = v_incr > 0.01 and v_incr > 1.5 * max(rand_incr, 0.0)
+    out["value_pathway"]["v_beats_random_addition"] = bool(v_adds)
+    args.output.write_text(json.dumps(out, indent=2, default=float))
+    if v_adds:
+        print(f"[value pathway] V-EDGES ADD REAL COVERAGE: the {len(v_new)} composed-OV virtual heads lift the K/Q "
+              f"circuit {cov_kq:+.3f} -> {cov_kqv:+.3f} (Δ {v_incr:+.3f}), {v_incr/max(rand_incr,1e-9):.1f}x the "
+              f"random-addition lift (Δ {rand_incr:+.3f}) and {v_incr/max(imp_incr,1e-9):.0%} of the importance-optimal "
+              f"addition (Δ {imp_incr:+.3f}) -> the value pathway carries output-load-bearing reconstruction the "
+              f"attention-routing (K/Q) DAG missed; ΔV-out (output-change) finds heads ΔTV (attention) could not.")
+    else:
+        print(f"[value pathway] the V-edges add {v_incr:+.3f} coverage (random additions add {rand_incr:+.3f}) — "
+              f"not clearly output-load-bearing beyond the K/Q circuit; see table.")
     print(f"[done] {args.output}")
 
     try:
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
-        fig, (axC, axB) = plt.subplots(1, 2, figsize=(12.6, 5.0))
+        fig, (axC, axB, axV) = plt.subplots(1, 3, figsize=(16.5, 5.0))
         Bs = [c["budget"] for c in curve]
         axC.plot(Bs, [c["coverage_importance"] for c in curve], "-o", color="#d62728", label="top-importance (M1, expensive)")
         axC.plot(Bs, [c["coverage_dag_connectivity"] for c in curve], "-s", color="#1f77b4", label="DAG-connectivity (M2, cheap)")
@@ -274,7 +331,14 @@ def main(argv=None):
         axB.set_xticks(x); axB.set_xticklabels([f"{n}\n(n={ks_res[n]['size']})" for n in names], fontsize=8)
         axB.set_ylabel("reconstruction coverage"); axB.set_title("DAG keep-set vs equal-size baselines", fontsize=10)
         axB.legend(fontsize=8)
-        fig.suptitle("M1↔M2 bridge: the weight-cheap composition-DAG picks the recompile keep-set", fontsize=11)
+        vb = [("K/Q\ncircuit", cov_kq, "#d62728"), (f"+ {len(v_new)}\nV-heads", cov_kqv, "#2ca02c"),
+              (f"+ {len(v_new)}\nrandom", cov_kq_rand, "#999999"), (f"+ {len(v_new)}\ntop-imp", cov_kq_imp, "#9467bd")]
+        axV.bar(range(len(vb)), [b[1] for b in vb], color=[b[2] for b in vb], edgecolor="k")
+        axV.axhline(cov_kq, color="#d62728", lw=0.8, ls=":")
+        axV.set_xticks(range(len(vb))); axV.set_xticklabels([b[0] for b in vb], fontsize=8)
+        axV.set_ylabel("reconstruction coverage")
+        axV.set_title(f"value pathway: V-heads add {v_incr:+.3f} (random {rand_incr:+.3f})", fontsize=10)
+        fig.suptitle("M1↔M2 bridge: the weight-cheap composition-DAG picks the recompile keep-set (+ the V value pathway)", fontsize=11)
         fig.tight_layout(rect=[0, 0, 1, 0.95]); args.fig.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(args.fig, dpi=130); print(f"[fig] {args.fig}")
     except Exception as e:  # pragma: no cover
