@@ -268,11 +268,44 @@ its low unsupervised cov95 is a compute-budget artifact, not scarcity counter-ev
 reconstruction-coverage at lower op-budget) than an unsupervised one. That's the direct hand-off to the
 recompile harness.
 
-Caveats + scope: the aux loss pressures **linear recoverability** of the oracle (a *proxy* — it lifts cov95
-here but is not a direct monosemanticity/decorrelation objective). The scarcity trend is only cleanly visible
+### What kind of pressure lifts cov95? (aux-mode comparison)
+Is the lift real monosemanticity or just linear recoverability? `monosemantic_aux.py` compares aux modes at a
+fixed well-trained width (128), training from scratch, **over 3 seeds** (per-seed model init + batch order +
+eval-SAE init):
+
+| aux mode | LM-loss | cov95 (mean ± std, 3 seeds) |
+|---|---|---|
+| none | 6.02 | 0.68 ± 0.04 |
+| linear (recoverability) | 6.01 | **0.76 ± 0.00** |
+| decorr (orthogonal read-directions) | 6.00 | 0.76 ± 0.00 |
+| dedicated (one-neuron-per-feature) | 6.00 | 0.69 ± 0.00 |
+| sparsedict (full in-loop aligned SAE) | 6.16 | **0.48 ± 0.07** |
+
+Paired across seeds: **`linear > none` in 3/3 (+0.080 ± 0.043); `sparsedict < none` in 3/3 (−0.195 ± 0.086);
+`linear > sparsedict` in 3/3 (+0.276)** — every signal survives the noise.
+
+**The simple linear-recoverability proxy is robustly the *best*** — and *every* "more direct" monosemanticity
+objective fails to beat it: orthogonalizing the probe's read-directions is **inert** (decorr ≡ linear, identical
+every seed), dedicated raw neurons sit *below* `none`'s mean, and the **full sparse-dictionary-in-the-loop** (a
+jointly-trained TopK SAE on the residual, reconstruction + sparsity, first F latents aligned to the oracle) is
+robustly the **worst** — cov95 0.48 (below `none` in 3/3) *and* the only one with a real capability cost
+(+0.16 nats). The heavier the direct pressure, the worse it gets. So the cov95 lift comes from making features
+**linearly prominent** (so the downstream SAE can isolate them), **not** from forcing axis-alignment /
+sparse-coding in the host residual: the SAE does the factorization; an in-loop dictionary's reconstruction
+pressure distorts the representation in a way that doesn't transfer to the fresh eval SAE. This answers "is it
+just recoverability?" — yes, and recoverability *is* the effective lever for SAE-measured cov95. **Bonus:**
+supervision also makes cov95 **variance-free** (linear pins exactly 22/29 features over threshold every seed,
+vs `none`'s noisy 0.62–0.72) — it lifts cov95 *and* makes it reproducible. `monosemantic_aux.py`,
+`runs/cov95_forge_tax/monosemantic_aux_summary.json`.
+
+Caveats + scope: the aux loss pressures **linear recoverability** of the oracle (which, per the aux-mode
+comparison above, is the *effective* lever — direct decorr/dedicated/sparsedict objectives don't beat it, and
+the in-loop sparse dict actively hurts). The scarcity trend is only cleanly visible
 in the **well-trained regime** (≤w128 here); confirming it at w256+ needs more tokens/steps (compute scaling),
-not more width. Single seed, tiny hosts, short training. **Planned follow-ups:** (1) a decorrelation /
-sparse-dictionary-in-the-loop aux term (direct monosemanticity, not just recoverability); (2) multi-seed +
+not more width. Single seed, tiny hosts, short training. **Planned follow-ups:** (1) decorr / dedicated /
+full sparse-dict-in-the-loop were all tested (above) and none beats linear-recoverability — so the open lever
+is on the *measurement* side (does a non-SAE legibility metric agree?), not a heavier training pressure;
+(2) multi-seed +
 adequately-trained wide hosts to clean the scarcity curve; (3) richer oracles (spaCy POS/NER) + curriculum
 annealing of the aux weight; (4) polygram geometry penalties. But the direction is clear and the cost is
 ~zero, so the reachability lever is real. `host_width_sweep.py`,
