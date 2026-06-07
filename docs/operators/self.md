@@ -14,4 +14,4 @@
 | Qwen2.5-1.5B | RoPE | 0.999 ± 0.000 | 43 | 15.7 | 0.56 | +3.733 ± 0.059 |
 
 
-_Data: `runs/disassembly/operators/dossiers/self/` + the catalog. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/self/` + the catalog. Regenerate: [operator_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_catalog_doc.py)._

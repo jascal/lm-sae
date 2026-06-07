@@ -1,6 +1,6 @@
 """Generate the circuit-catalog docs from the JSON artifacts — the circuit survey as browsable markdown.
 
-Reads `runs/disassembly/circuits/atlas_summary.json` (cross-model edges + harvested GPT-2 circuits) plus the
+Reads [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json) (cross-model edges + harvested GPT-2 circuits) plus the
 committed discovery artifacts (`rung3_induction_chain`, `self_repair`, `validate_new_edges`) and emits:
   docs/circuits/README.md   — the cross-model circuit-edge matrix + the full circuit inventory + taxonomy + gaps.
   docs/circuits/<circuit>.md — one page per circuit (its DAG/stages, cross-model edge liveness, causal, redundancy).
@@ -51,7 +51,7 @@ def cross_page(c, row, models, rung3):
                   f"3-stage chain: prev-token population ({pop_n} heads) → stage-2 reader "
                   f"`{rung3.get('stage2_B')}` (bottleneck) → inductors. Writers are individually redundant, collectively "
                   f"necessary; copy-score↔induction ρ {rung3.get('spearman_copyscore_vs_induction')}."]
-    lines += ["", "_Data: `runs/disassembly/circuits/atlas_summary.json`. Regenerate: `circuit_catalog_doc.py`._"]
+    lines += ["", "_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json). Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._"]
     return "\n".join(lines)
 
 
@@ -87,7 +87,7 @@ def gpt2_page(name, c, extra):
                   "(the cross-model behavioural view is on the `induction` page).", "",
                   f"- canonical writer **{c.get('canonical_writer')}**; {c.get('canonical_induction_live')}/{c.get('canonical_induction_edges')} canonical edges live",
                   f"- K-composition static {c.get('K_induction_static')} vs random {c.get('K_random_baseline')}; top edge rel-drop {c.get('induction_top_rel_drop')}"]
-    lines += ["", "_Data: `runs/disassembly/circuits/atlas_summary.json` + the discovery artifacts. Regenerate: `circuit_catalog_doc.py`._"]
+    lines += ["", "_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json) + the discovery artifacts. Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._"]
     return "\n".join(lines)
 
 

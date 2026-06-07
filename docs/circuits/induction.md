@@ -18,4 +18,4 @@ prev-token head --K--> induction head (the in-context-copy macro)
 ## Stage redundancy (GPT-2, `rung3_induction_chain.py`)
 3-stage chain: prev-token population (17 heads) → stage-2 reader `[7, 11]` (bottleneck) → inductors. Writers are individually redundant, collectively necessary; copy-score↔induction ρ 0.2676754280202556.
 
-_Data: `runs/disassembly/circuits/atlas_summary.json`. Regenerate: `circuit_catalog_doc.py`._
+_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json). Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._

@@ -311,7 +311,7 @@ git-ignored).
   Gemma (GPU): `disasm_portable.py` → `gemma_opcode_table.py` → `gemma_causal.py` →
   `gemma_layer_sweep.py` → `disassemble_gemma.py`.
 - **Data behind every figure**: the tracked `runs/*_summary.json` listed above
-  ([`../runs/README.md`](../runs/README.md)). Large listings are git-ignored and regenerated.
+  ([`../runs/README.md`](https://github.com/jascal/lm-sae/blob/main/runs/README.md)). Large listings are git-ignored and regenerated.
 
 ## How to cite
 

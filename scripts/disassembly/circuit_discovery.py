@@ -8,7 +8,7 @@ re-applies its own RoPE), measuring the collapse of that reader's attention on i
 collapse the reader beyond a reader-matched null are **discovered live circuit edges** (writer → reader, K).
 Arch-generic (GPT-2 c_attn / RoPE k_proj), reuses `circuit_content_patch._arch`.
 
-Output: `runs/disassembly/circuits/discovered_summary.json` + a generated `docs/circuits/discovered.md`. The
+Output: [runs/disassembly/circuits/discovered_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/discovered_summary.json) + a generated `docs/circuits/discovered.md`. The
 rigorous (every reader, every upstream, every model) way to grow the circuit catalog beyond the named circuits.
 """
 from __future__ import annotations
@@ -139,7 +139,7 @@ def write_doc(out, docs):
               "de novo here.",
               "- Provisional and descriptive. Value-channel (move) edges and Q-composition are not in this pass "
               "(key/match only). See the [circuit catalog](README.md) for the named circuits.", "",
-              "_Data: `runs/disassembly/circuits/discovered_summary.json`. Regenerate: `circuit_discovery.py`._"]
+              "_Data: [runs/disassembly/circuits/discovered_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/discovered_summary.json). Regenerate: [circuit_discovery.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_discovery.py)._"]
     (docs / "discovered.md").write_text("\n".join(lines))
 
 

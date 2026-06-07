@@ -13,4 +13,4 @@ Arch-generic dossiers of the strongest **UNNAMED** load-bearing candidates the [
 | Llama-3.2-1B | 1.31 | induction | +5.97 / +2.35 | 0.30 (+6%) | 0.29 (0.52) |
 | Qwen2.5-1.5B | 1.6 | duplicate | +0.31 / +0.06 | 0.8 (+4%) | 0.10 (0.18) |
 
-_Data: `runs/disassembly/operators/xmodel_candidates_summary.json`. Regenerate: `xmodel_candidate.py`. The full per-op battery for these is the RoPE-dossier port (future); this is the channel + causal core._
+_Data: [xmodel_candidates_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_candidates_summary.json). Regenerate: [xmodel_candidate.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/xmodel_candidate.py). The full per-op battery for these is the RoPE-dossier port (future); this is the channel + causal core._

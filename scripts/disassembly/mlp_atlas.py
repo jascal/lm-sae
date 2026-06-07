@@ -12,7 +12,7 @@ into the summary here. The new axis is **cross-model**: do MLPs carry COMPUTE th
 as under GPT-2's GELU MLP? (Mamba/SSM has no separate MLP block — its mixer is the whole layer — so it is excluded,
 the COMPUTE analog of "no attention heads".)
 
-Output: `runs/disassembly/operators/mlp_compute_summary.json` + `mlp_compute.png` + a generated
+Output: [runs/disassembly/operators/mlp_compute_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/mlp_compute_summary.json) + `mlp_compute.png` + a generated
 `docs/operators/mlp_compute.md` page.
 """
 from __future__ import annotations
@@ -179,7 +179,7 @@ def write_doc(out, gpt2_harvest, docs):
               "- Per-**neuron** read→write idioms are catalogued for **GPT-2 only** (the cheap token-unembedding basis); "
               "the cross-model rows are per-**layer** causal profiles. RoPE neuron-idioms need the per-layer SAE / "
               "token-centroid basis (the `disassemble_gemma.py` route).", "",
-              "_Data: `runs/disassembly/operators/mlp_compute_summary.json`. Regenerate: `mlp_atlas.py`._"]
+              "_Data: [runs/disassembly/operators/mlp_compute_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/mlp_compute_summary.json). Regenerate: [mlp_atlas.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/mlp_atlas.py)._"]
     (docs / "mlp_compute.md").write_text("\n".join(lines))
 
 

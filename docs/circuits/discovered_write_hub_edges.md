@@ -8,4 +8,4 @@
 - edges: `0.9->2.9`, `0.9->2.5`, `1.8->10.9`, `1.8->9.3`, `0.9->1.3`, `1.8->3.2`, `1.10->2.11`, `1.8->10.5`, `0.11->2.9`, `0.11->2.5`
 - These are mostly early **sink/write-hub → prev-token-key** broadcasters (the absolute-position plumbing).
 
-_Data: `runs/disassembly/circuits/atlas_summary.json` + the discovery artifacts. Regenerate: `circuit_catalog_doc.py`._
+_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json) + the discovery artifacts. Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._

@@ -15,4 +15,4 @@ early sink/write-hub --K--> prev-token head's key (absolute-position broadcast)
 | Llama-3.2-1B | 0.2 | — | (skipped) | — | — | — |
 | Qwen2.5-1.5B | 13.4 | 0.0 | +0% | sink | 5.1 | 0.11 |
 
-_Data: `runs/disassembly/circuits/atlas_summary.json`. Regenerate: `circuit_catalog_doc.py`._
+_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json). Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._
