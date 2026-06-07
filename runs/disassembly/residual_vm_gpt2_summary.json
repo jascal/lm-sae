@@ -1,0 +1,126 @@
+{
+  "experiment": "ResidualVM reconstruction coverage: gpt2",
+  "model": "gpt2",
+  "corpus": "shakespeare",
+  "n_heads": 144,
+  "floor_kl": 1.919131371034041,
+  "budgets": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    24,
+    32,
+    48,
+    64,
+    96,
+    128
+  ],
+  "curve": [
+    {
+      "budget": 1,
+      "coverage_top": -0.013057048062544263,
+      "coverage_random": 0.008658886381876544,
+      "kl_top": 1.9441895615839688
+    },
+    {
+      "budget": 2,
+      "coverage_top": 0.01356993425634856,
+      "coverage_random": 0.0025671761239947077,
+      "kl_top": 1.893088884499813
+    },
+    {
+      "budget": 4,
+      "coverage_top": 0.1438770668239765,
+      "coverage_random": 0.04286331379129841,
+      "kl_top": 1.6430123785197865
+    },
+    {
+      "budget": 8,
+      "coverage_top": 0.1998620051061275,
+      "coverage_random": 0.05914778334958748,
+      "kl_top": 1.535569927157106
+    },
+    {
+      "budget": 16,
+      "coverage_top": 0.3004861972342383,
+      "coverage_random": 0.2023774777238352,
+      "kl_top": 1.342458883359092
+    },
+    {
+      "budget": 24,
+      "coverage_top": 0.3768542841639142,
+      "coverage_random": 0.06966257952754025,
+      "kl_top": 1.1958984919864963
+    },
+    {
+      "budget": 32,
+      "coverage_top": 0.5747932322110378,
+      "coverage_random": 0.24681399097161352,
+      "kl_top": 0.816027647239784
+    },
+    {
+      "budget": 48,
+      "coverage_top": 0.6107689969258501,
+      "coverage_random": 0.451075965578777,
+      "kl_top": 0.7469854285786484
+    },
+    {
+      "budget": 64,
+      "coverage_top": 0.7194081354900322,
+      "coverage_random": 0.5622331615453786,
+      "kl_top": 0.5384926496380122
+    },
+    {
+      "budget": 96,
+      "coverage_top": 0.8602148981695108,
+      "coverage_random": 0.6750817000215897,
+      "kl_top": 0.2682659741260798
+    },
+    {
+      "budget": 128,
+      "coverage_top": 0.9681295588871117,
+      "coverage_random": 0.8967553956426113,
+      "kl_top": 0.06116356334843699
+    }
+  ],
+  "heads_for_90pct_coverage": 128,
+  "top_heads": [
+    "0.1",
+    "0.3",
+    "7.11",
+    "9.5",
+    "0.10",
+    "0.7",
+    "0.9",
+    "1.7",
+    "4.11",
+    "2.10",
+    "1.5",
+    "1.2",
+    "0.6",
+    "0.8",
+    "6.10",
+    "1.10"
+  ],
+  "named": {
+    "heads": [
+      "4.11",
+      "5.0",
+      "5.5",
+      "6.9",
+      "7.11"
+    ],
+    "size": 5,
+    "coverage": 0.1635031406115217,
+    "coverage_random_samesize": 0.03245512734392245,
+    "importance_ranks": [
+      2,
+      8,
+      54,
+      96,
+      131
+    ]
+  }
+}

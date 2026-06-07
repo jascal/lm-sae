@@ -77,6 +77,7 @@ Run order: idiom library → opcode tables → scorecard → causal validation �
 | `causal_validation.py` / `ioi_causal.py` | mean-ablation: are the named heads **load-bearing**? (induction-NLL; IOI logit-diff). |
 | `corpus_robustness.py` | which claims are corpus-invariant vs corpus-conditioned. |
 | `disassemble_gpt2.py` | **the unified per-head listing** → `runs/disassembly/gpt2_disassembly.txt`. |
+| `residual_vm.py` | **decompilation milestone 1** — reconstruction-coverage interpreter: keep a head-set, mean-ablate the rest, `1 − KL/floor` vs budget + random + named-idiom set (see [`docs/DECOMPILATION.md`](../docs/DECOMPILATION.md)). |
 | `induction_probe.py`, `induction_graph.py`, `composition_probe.py`, `composition_graph.py`, `path_patch_induction.py`, `rung3_induction_chain.py`, `cross_position_probe.py`, `hub_probe.py`, `mlp_catalog.py`, `write_bus_check.py`, `instruction_{nmf,templates,tensor_rank}.py` | the supporting probes (induction circuit, composition graph, MLP catalog, write-bus, instruction-tensor structure). |
 
 ## `two_basis_forge/` — the two-basis forge + its retraction

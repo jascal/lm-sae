@@ -96,6 +96,23 @@ the forward pass and (b) the forgeable/low-χ fraction — that bounds how inter
 made *without* retraining. If the curve instead reaches ~1.0, the entanglement story is wrong and the model
 is fully decompilable (also a publishable result).
 
+### What form is the core? (not an SAE, not a dense slab — a program)
+"SAE vs dense" is a false dichotomy for the entangled remainder. The forge tax says the core has **no sparse
+feature (SAE) basis** in which composition is monosemantic — that rules out the SAE form. But the χ-ladder
+showed composition *is* factorable in **weight/attention-composition coordinates** (induction = `OV_A∘QK_B`;
+IOI = a head chain), and the instruction-tensor result found the program is **low-rank (~5–11 templates vs
+~132 random) — in operand-pair space, not residual-direction space** (which is exactly why the residual-
+direction search, joint-`U_C`, failed). So the core's natural form is a **program**: a compact DAG of reused
+weight-space bilinear templates over *now-explicit* operands. Subtracting the clean low-χ substrate is then a
+**change of coordinates, not a sparsification** — it makes the operands explicit so the remainder reads as
+"bilinears with clean arguments," but it does **not** shrink the dense magnitude (the tower's ~24% irreducible
+variance floor; the retrain no-go). Consequence for this program: the lever that "simplifies" the core is the
+**composition-DAG extractor in operand coordinates** (work-item 1+2), *not* a better SAE — and the
+reconstruction-coverage curve should plateau at the entangled-core fraction precisely because first-order
+*feature* ops can't express the composition, while *template* ops over operands can. (Open at scale: whether
+the template count stays small and whether the irreducible floor itself grows with capability — the tower
+convergence was measured on small hosts.)
+
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
 The recompile-KL harness is most useful not as a one-shot metric but as a **steppable interpreter** over the
@@ -113,6 +130,18 @@ von-Neumann character appears **only at the autoregressive loop**: the residual 
 read/write tape, the decode step as the clock, chain-of-thought as working memory (see the
 `llm-as-accreting-vm` framing). So the interpreter executes a **fixed circuit per token** and is a **VM at the
 generation level** — not a stored-program CPU per layer.
+
+Formal grounding (why the DAG/loop split is load-bearing, not decorative): the object is a **clocked
+sequential machine** = combinational core (the fixed DAG) + state register (KV-cache + the growing token
+sequence) + clock (the decode step). The **DAG alone is weak** — one bounded-depth pass sits in **TC⁰**
+(Merrill–Sabharwal); the **loop supplies the power** — transformer + decoding + an unbounded scratchpad is
+Turing-complete (Pérez et al., CoT-expressivity). Two precisions: (a) the recursion goes through a **discrete
+token bottleneck** — high-dim state is sampled to a *token* and re-embedded, so depth-per-step is bounded but
+steps are unbounded (hard problems buy back missing within-pass depth with *longer* CoT); (b) the program is
+**fixed, not self-modifying** — the same DAG every step, only the data changes (microcode/ASIC-like; Turing
+power lives entirely in the outer tape+clock). The decompilation payoff: **the loop is a clean recurrence —
+the hard part is reading the DAG**, and `reconstruction_coverage` is exactly the measure of how much of that
+fixed high-dim DAG reduces to a compact symbolic program over explicit operands.
 
 What the frame *does* buy, mapped to checked-in results:
 
@@ -141,9 +170,7 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
 
 ## Milestones (each a PR, gated on the prior)
 
-1. **Recompile-KL harness, built as the interpreter** (§Execution model) — structured forge over the
-   disassembly's named ops with selectable fidelity modes + a trace, so the reconstruction-coverage curve is
-   debuggable from day one (tiny GPT on CPU, then GPT-2). (Reuses sae-forge `NativeModel` + the forge loop.)
+1. **Recompile-KL harness, built as the interpreter** (§Execution model) — **DONE (v1, GPT-2): `scripts/disassembly/residual_vm.py`** (see First result). v1 recompiles by *keeping ops at full fidelity and mean-ablating the complement*; v2 = feature-basis recompilation via sae-forge `NativeModel` (the ceiling test, milestone 4).
 2. **Composition-DAG extractor** — weight-space edge scorer + path-patch gate; auto-recover induction + IOI;
    report new sub-DAGs. (Generalizes `path_patch_induction.py` / `composition_graph.py`.)
 3. **MLP ops** — neuron key→value catalog + named MLP idioms; add to the DAG + the recompile.
@@ -152,7 +179,27 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
 5. **Cross-model** — repeat the ceiling on Gemma-2 / Llama-3 / Qwen-2.5 (idea i) to test whether the
    decompilable fraction is architecture-invariant like the mechanisms are.
 
-## Boundaries / risks
+## First result (milestone 1, GPT-2)
+
+`residual_vm.py` on GPT-2 (Shakespeare; floor = KL(host ‖ all-144-heads-mean-ablated) = 1.92): keep a head-set
+at full fidelity, mean-ablate the complement, sweep the budget B by marginal ablation importance vs a random
+control + the named induction circuit.
+
+- **Attention is distributed / redundant.** The coverage curve rises *gradually* — **128 of 144 heads are
+  needed for 90% coverage**; no small set reconstructs the forward pass. The single most-important head in
+  isolation is even net-negative (keep 1, ablate 143 → slightly below the all-ablated floor): heads interact.
+  (Same program-wide redundancy seen in the circuit work.)
+- **But the named catalog is coverage-efficient.** Top-B beats random-B at every budget except B=1 (largest
+  gap mid-range, Δ≈+0.31 at B=24–32), and the **5-head induction circuit (prev-token 4.11 + induction
+  5.0/5.5/6.9/7.11) reconstructs +0.164 coverage vs +0.032 for a random 5-head set — ~5×**. The disassembly's
+  named ops are disproportionately load-bearing (importance ranks: 7.11 #2, 4.11 #8). The op-catalog buys real
+  reconstruction.
+- **Scope (honest).** v1 keeps the kept heads at *full fidelity* (exact weights), so coverage → 1 as B → all
+  *by construction* — it measures **which/how-many ops matter** (op-selection coverage), **not** the
+  entangled-core ceiling. The plateau-below-1 prediction (forge tax as decompilation ceiling) needs the
+  **feature-basis recompilation** (sae-forge `NativeModel`, milestone 4), where kept ops must be expressed in a
+  clean basis and composition bottlenecks. Milestone 1 delivers the interpreter + metric + the op-selection
+  result; the ceiling test is the next build. `runs/disassembly/residual_vm_gpt2_summary.json`.
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
   use norm-preserving mean-ablation + a random-op-budget control (the lesson from the entanglement-tower
