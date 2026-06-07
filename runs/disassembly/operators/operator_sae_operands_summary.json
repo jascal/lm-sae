@@ -1,0 +1,307 @@
+{
+  "experiment": "SAE-feature operands per operator (section G)",
+  "model": "gpt2",
+  "sae_repo": "jbloom/GPT2-Small-SAEs-Reformatted",
+  "operators": {
+    "duplicate": {
+      "head": "0.5",
+      "kind": "content",
+      "layer": 0,
+      "operands": [
+        {
+          "read_feature": 20911,
+          "read_gloss": "_you",
+          "attn_mass": 46.38744646981917,
+          "copy_score": 0.08743378508721476
+        },
+        {
+          "read_feature": 7261,
+          "read_gloss": "_the",
+          "attn_mass": 25.074373457499103,
+          "copy_score": 0.14929439595279428
+        },
+        {
+          "read_feature": 5123,
+          "read_gloss": "US",
+          "attn_mass": 24.35978407149524,
+          "copy_score": -0.013909140240009134
+        }
+      ]
+    },
+    "self": {
+      "head": "0.1",
+      "kind": "addressing",
+      "layer": 0,
+      "operands": [
+        {
+          "read_feature": 20911,
+          "read_gloss": "_you",
+          "attn_mass": 16.807626959889127,
+          "copy_score": 0.06759358084347104
+        },
+        {
+          "read_feature": 5123,
+          "read_gloss": "US",
+          "attn_mass": 11.896657432856705,
+          "copy_score": -0.0495137425889293
+        },
+        {
+          "read_feature": 7261,
+          "read_gloss": "_the",
+          "attn_mass": 10.325723139736892,
+          "copy_score": 0.0329333056298778
+        }
+      ]
+    },
+    "structural": {
+      "head": "3.1",
+      "kind": "structural",
+      "layer": 3,
+      "operands": [
+        {
+          "read_feature": 18676,
+          "read_gloss": "_your/Your/_Your",
+          "attn_mass": 22.64020549194468,
+          "copy_score": -0.027155808785018155
+        },
+        {
+          "read_feature": 14953,
+          "read_gloss": "The",
+          "attn_mass": 19.93026990217735,
+          "copy_score": -0.025044088738031517
+        },
+        {
+          "read_feature": 13282,
+          "read_gloss": "_it/it",
+          "attn_mass": 19.462304225260645,
+          "copy_score": -0.018195925256493016
+        }
+      ]
+    },
+    "prevtok": {
+      "head": "4.11",
+      "kind": "positional",
+      "layer": 4,
+      "operands": [
+        {
+          "read_feature": 17467,
+          "read_gloss": "US",
+          "attn_mass": 50.84511080241424,
+          "copy_score": 0.1029704839671566
+        },
+        {
+          "read_feature": 20949,
+          "read_gloss": "cius/ius",
+          "attn_mass": 32.99606647092187,
+          "copy_score": 0.13141148359673618
+        },
+        {
+          "read_feature": 14286,
+          "read_gloss": "I",
+          "attn_mass": 31.132244362694554,
+          "copy_score": 0.1071810981574921
+        }
+      ]
+    },
+    "local": {
+      "head": "4.11",
+      "kind": "positional",
+      "layer": 4,
+      "operands": [
+        {
+          "read_feature": 17467,
+          "read_gloss": "US",
+          "attn_mass": 50.84511080241424,
+          "copy_score": 0.1029704839671566
+        },
+        {
+          "read_feature": 20949,
+          "read_gloss": "cius/ius",
+          "attn_mass": 32.99606647092187,
+          "copy_score": 0.13141148359673618
+        },
+        {
+          "read_feature": 14286,
+          "read_gloss": "I",
+          "attn_mass": 31.132244362694554,
+          "copy_score": 0.1071810981574921
+        }
+      ]
+    },
+    "induction": {
+      "head": "5.5",
+      "kind": "content",
+      "layer": 5,
+      "operands": [
+        {
+          "read_feature": 2116,
+          "read_gloss": "First",
+          "attn_mass": 20.205421490814842,
+          "copy_score": 0.086315206981025
+        },
+        {
+          "read_feature": 10651,
+          "read_gloss": "What/_What/_what",
+          "attn_mass": 14.606569275681068,
+          "copy_score": 0.11131053575946796
+        },
+        {
+          "read_feature": 17632,
+          "read_gloss": "US",
+          "attn_mass": 11.938912928501459,
+          "copy_score": 0.09773729301674926
+        }
+      ]
+    },
+    "sink": {
+      "head": "7.2",
+      "kind": "addressing",
+      "layer": 7,
+      "operands": [
+        {
+          "read_feature": 20540,
+          "read_gloss": "US/us",
+          "attn_mass": 12.825416241660513,
+          "copy_score": 0.0015727768023371938
+        },
+        {
+          "read_feature": 21420,
+          "read_gloss": "_Citizen/_citizens",
+          "attn_mass": 6.262428168531288,
+          "copy_score": 0.026819294590385775
+        },
+        {
+          "read_feature": 1809,
+          "read_gloss": "I",
+          "attn_mass": 5.977864204916755,
+          "copy_score": 0.05138299533503644
+        }
+      ]
+    },
+    "s_inhibition": {
+      "head": "7.3",
+      "kind": "circuit",
+      "layer": 7,
+      "operands": [
+        {
+          "read_feature": 20540,
+          "read_gloss": "US/us",
+          "attn_mass": 24.032244030882694,
+          "copy_score": 0.005354323190652861
+        },
+        {
+          "read_feature": 19013,
+          "read_gloss": "MAR/MEN/CI",
+          "attn_mass": 16.602573733240263,
+          "copy_score": -0.025792269705020226
+        },
+        {
+          "read_feature": 3108,
+          "read_gloss": "_you/you/You",
+          "attn_mass": 11.63710475812871,
+          "copy_score": 0.050207889725126575
+        }
+      ]
+    },
+    "name_mover": {
+      "head": "9.6",
+      "kind": "circuit",
+      "layer": 9,
+      "operands": [
+        {
+          "read_feature": 19687,
+          "read_gloss": "_Citizen/_citizens",
+          "attn_mass": 32.743016907155834,
+          "copy_score": 0.04297179499099046
+        },
+        {
+          "read_feature": 15380,
+          "read_gloss": "MEN/_men/_Men",
+          "attn_mass": 20.23097929130745,
+          "copy_score": 0.12344677103682632
+        },
+        {
+          "read_feature": 9670,
+          "read_gloss": "_it/'d/_are",
+          "attn_mass": 19.96995780097467,
+          "copy_score": 0.009719304917920822
+        }
+      ]
+    },
+    "backup_name_mover": {
+      "head": "9.0",
+      "kind": "circuit",
+      "layer": 9,
+      "operands": [
+        {
+          "read_feature": 9670,
+          "read_gloss": "_it/'d/_are",
+          "attn_mass": 39.3300577506177,
+          "copy_score": 0.03488285129372574
+        },
+        {
+          "read_feature": 19687,
+          "read_gloss": "_Citizen/_citizens",
+          "attn_mass": 37.09614739794051,
+          "copy_score": 0.1403196095820545
+        },
+        {
+          "read_feature": 1344,
+          "read_gloss": "US/us",
+          "attn_mass": 23.50917633331437,
+          "copy_score": 0.07830376759612831
+        }
+      ]
+    },
+    "coreference": {
+      "head": "9.0",
+      "kind": "circuit",
+      "layer": 9,
+      "operands": [
+        {
+          "read_feature": 9670,
+          "read_gloss": "_it/'d/_are",
+          "attn_mass": 39.3300577506177,
+          "copy_score": 0.03488285129372574
+        },
+        {
+          "read_feature": 19687,
+          "read_gloss": "_Citizen/_citizens",
+          "attn_mass": 37.09614739794051,
+          "copy_score": 0.1403196095820545
+        },
+        {
+          "read_feature": 1344,
+          "read_gloss": "US/us",
+          "attn_mass": 23.50917633331437,
+          "copy_score": 0.07830376759612831
+        }
+      ]
+    },
+    "negative_mover": {
+      "head": "10.7",
+      "kind": "circuit",
+      "layer": 10,
+      "operands": [
+        {
+          "read_feature": 10480,
+          "read_gloss": "'d/_not/_and",
+          "attn_mass": 75.75510614742444,
+          "copy_score": -0.005948458667480533
+        },
+        {
+          "read_feature": 4213,
+          "read_gloss": "And/That/_and",
+          "attn_mass": 25.780529465464497,
+          "copy_score": 0.0332425645765701
+        },
+        {
+          "read_feature": 9153,
+          "read_gloss": "_Citizen/_citizens",
+          "attn_mass": 24.926929711169578,
+          "copy_score": 0.004866938950662035
+        }
+      ]
+    }
+  }
+}

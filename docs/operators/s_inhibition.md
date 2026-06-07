@@ -4,6 +4,10 @@
 
 GPT-2-only circuit op (literature DLA head-set): 7.3, 7.9, 8.6, 8.10. No published head-set in the RoPE models — not in the cross-model catalog.
 
+## SAE-feature operands (GPT-2 section G)
+
+Top head 7.3 reads SAE feature(s) `US/us`, `MAR/MEN/CI`, `_you/you/You`; the OV copy-score on that feature's own tokens is **+0.01** (≈neutral). The feature-space operand basis (monosemantic features, not tokens) via the per-layer GPT-2 SAEs — see the [full SAE-operand table](sae_operands.md) for every operator. _Provisional, single corpus; for positional/addressing ops the read-feature is incidental (they attend by position, not content)._
+
 ## Deep dossier (GPT-2) — `operator_dossier.py --op s_inhibition`
 
 **A · identity** (output op — heads from literature (DLA-defined; not attention-mask-readable)): heads ['7.3', '7.9', '8.6', '8.10']. ranked: 7.3, 7.9, 8.6, 8.10
@@ -15,8 +19,6 @@ GPT-2-only circuit op (literature DLA head-set): 7.3, 7.9, 8.6, 8.10. No publish
 **D · composition**: IN→key 0.11(0.060), 1.8(0.059), 5.3(0.058), 2.6(0.057); OUT→value 8.7(0.070), 9.3(0.064), 8.5(0.059), 9.10(0.044).
 
 **E · redundancy** (task `ioi`): solo 7.9(+0.25), 8.10(+0.19), 8.6(+0.16), 7.3(+0.07); cumulative 1h +0.25 → 2h +0.43 → 3h +0.57 → 4h +0.65 → DISTRIBUTED population (full +0.65 ≫ best single +0.25).
-
-**G · SAE operands**: NOT RUN — needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer.
 
 
 _Data: `runs/disassembly/operators/dossiers/s_inhibition/` + the catalog. Regenerate: [operator_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_catalog_doc.py)._

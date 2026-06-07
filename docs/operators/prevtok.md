@@ -28,6 +28,10 @@ The deep battery's arch-generic core — behavioural head-ID + mean-ablation cau
 
 _Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; **redundancy** cumulative-ablates the top heads in solo-effect order (bottleneck = one head ≈ the whole op; distributed = the population far exceeds any single head; **compensatory** cases — which head triggers the recovery — are dug in [outlier mechanism digs](outlier_digs.md)); channel = remove each upstream head from the reader's key → top collapser + the value/move channel. Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._
 
+## SAE-feature operands (GPT-2 section G)
+
+Top head 4.11 reads SAE feature(s) `US`, `cius/ius`, `I`; the OV copy-score on that feature's own tokens is **+0.10** (copies it). The feature-space operand basis (monosemantic features, not tokens) via the per-layer GPT-2 SAEs — see the [full SAE-operand table](sae_operands.md) for every operator. _Provisional, single corpus; for positional/addressing ops the read-feature is incidental (they attend by position, not content)._
+
 ## Deep dossier (GPT-2) — `operator_dossier.py --op prevtok`
 
 **A · identity** (behavioural: top heads by attention mass on the prevtok pattern (>0.02)): heads ['4.11', '2.2', '3.2', '3.7', '2.9']. ranked: 4.11 (0.96), 2.2 (0.54), 3.2 (0.38), 3.7 (0.37), 2.9 (0.33), 1.0 (0.32)
@@ -39,8 +43,6 @@ _Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL dama
 **D · composition**: IN→key 0.11(0.114), 1.8(0.105), 1.3(0.094), 1.9(0.091); OUT→value 8.3(0.064), 5.2(0.062), 5.8(0.057), 9.4(0.056).
 
 **E · redundancy** (task `copy_names`): solo 4.11(+1.78), 3.7(+0.06), 2.9(+0.03), 2.2(-0.00), 3.2(-0.00); cumulative 1h +1.78 → 2h +2.61 → 3h +3.45 → 4h +5.11 → 5h +4.76 → DISTRIBUTED population (full +4.76 ≫ best single +1.78).
-
-**G · SAE operands**: NOT RUN — needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer.
 
 
 _Data: `runs/disassembly/operators/dossiers/prevtok/` + the catalog. Regenerate: [operator_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_catalog_doc.py)._
