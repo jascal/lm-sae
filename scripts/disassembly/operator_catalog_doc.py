@@ -30,7 +30,33 @@ def atlas_tables(atlas):
     return ok, ops, kinds, "\n".join(sig), "\n".join(cau), "\n".join(memb)
 
 
-def op_page(op, atlas, dossier, circuit_names=frozenset()):
+def xdossier_section(op, xrows):
+    """The arch-generic cross-model deep dossier (identity + causal + channel) for a universal behavioural op."""
+    if not xrows:
+        return []
+    lines = ["## Cross-model deep dossier (arch-generic) — `operator_dossier_xmodel.py`", "",
+             "The deep battery's arch-generic core — behavioural head-ID + mean-ablation causal + the faithful "
+             "key-only path-patch channel (the model re-applies its own RoPE) — run across **every** model, not just "
+             "GPT-2. (The full A–F dossier below stays GPT-2-only: its channel/composition math is written against "
+             "GPT-2's fused-QKV layout, and the named *output* ops have no published head-set off GPT-2.)", "",
+             "| model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | KEY top writer (collapse) | VALUE top mover (ΔV-out) |",
+             "|---|---|---|---|---|---|---|"]
+    for r in xrows:
+        ch = r["channel"]
+        if "key_top" in ch:
+            kc = f"{ch['key_top']['head']} ({ch['key_top']['collapse']:+.0%}, conc {ch.get('key_concentration', 0):.0f}×)"
+            vc = f"{ch['value_top']['head']} ({ch['value_top']['dvout']:.2f})"
+        else:
+            kc = vc = "— (addresses by position/key-0)"
+        lines.append(f"| {r['model']} | {r['top_head']} | {r['n_heads_mass']} | {r['causal_induction_dNLL']:+.2f} | {r['causal_generic_dNLL']:+.2f} | {kc} | {vc} |")
+    lines += ["", "_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; channel = remove "
+              "each upstream head from the reader's key → top collapser + the value/move channel. "
+              "Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). "
+              "Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._", ""]
+    return lines
+
+
+def op_page(op, atlas, dossier, circuit_names=frozenset(), xrows=None):
     kinds = atlas["kinds"]; ok = [r for r in atlas["results"] if "cells" in r]
     lines = [f"# Operator `{op}`", ""]
     if op in circuit_names:
@@ -57,6 +83,8 @@ def op_page(op, atlas, dossier, circuit_names=frozenset()):
         heads = atlas.get("gpt2_circuit_ops", {}).get(op)
         if heads:
             lines += [f"GPT-2-only circuit op (literature DLA head-set): {', '.join(heads)}. No published head-set in the RoPE models — not in the cross-model catalog.", ""]
+    # the arch-generic cross-model deep dossier (universal behavioural ops)
+    lines += xdossier_section(op, xrows)
     # the deep dossier (GPT-2)
     if dossier:
         A = dossier.get("A_identity", {}); B = dossier.get("B_causal", {}); C = dossier.get("C_channels", {})
@@ -109,19 +137,26 @@ def main(argv=None):
     cir = json.loads((args.root.parent / "circuits" / "atlas_summary.json").read_text()) if (args.root.parent / "circuits" / "atlas_summary.json").exists() else {}
     circuit_names = frozenset(cir.get("cross_model_circuits", {})) | frozenset(cir.get("gpt2_circuits", {}))
 
+    # arch-generic cross-model deep dossier (operator_dossier_xmodel.py): op -> [per-model record], in run order
+    xd = json.loads((args.root / "xmodel_dossiers_summary.json").read_text()) if (args.root / "xmodel_dossiers_summary.json").exists() else {}
+    xdoss = {}
+    for r in xd.get("results", []):
+        for op, rec in r.get("ops", {}).items():
+            xdoss.setdefault(op, []).append({**rec, "model": r["model"]})
+
     def load_dossier(op):
         f = args.root / "dossiers" / op / "gpt2_summary.json"
         return json.loads(f.read_text()) if f.exists() else None
 
     all_ops = list(atlas["operators"]) + list(atlas.get("gpt2_circuit_ops", {}))
     for op in all_ops:
-        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names))
+        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names, xdoss.get(op)))
 
     # discovered-candidate dossiers: any dossiers/<op>/ not in the registered set (e.g. discovered_7.6)
     dossier_dir = args.root / "dossiers"
     discovered = sorted(d.name for d in dossier_dir.iterdir() if d.is_dir() and d.name not in all_ops and (d / "gpt2_summary.json").exists()) if dossier_dir.exists() else []
     for op in discovered:
-        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names))
+        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names, xdoss.get(op)))
 
     ok, ops, kinds, sig_tbl, cau_tbl, memb_tbl = atlas_tables(atlas)
     circuit = atlas.get("gpt2_circuit_ops", {})
@@ -168,8 +203,12 @@ Two axes:
 - **GPT-2 circuit operators** (literature direct-logit-attribution head-sets, **no published head-set outside
   GPT-2**): `{', '.join(circuit)}`. Catalogued by their per-op dossiers (GPT-2), not the cross-model matrix.
 
-Each operator has a **page** (cross-model catalog row + the deep GPT-2 dossier: identity / causal×tasks / K-V
-channels / composition / redundancy / cross-model). Per-op data lives under `runs/disassembly/operators/`.
+Each operator has a **page**: the cross-model catalog row, then — for the universal behavioural ops — an
+**arch-generic cross-model deep dossier** (behavioural head-ID + mean-ablation causal + key/value channel on
+*every* model, via `operator_dossier_xmodel.py`), then the full **GPT-2 deep dossier** (identity / causal×tasks /
+K-V channels / composition / redundancy / cross-model). The GPT-2 A–F battery stays GPT-2-only because its
+channel/composition math is written against GPT-2's fused-QKV layout and the named *output* ops (name-movers,
+S-inhibition) have no published head-set off GPT-2. Per-op data lives under `runs/disassembly/operators/`.
 
 ## Catalog — behavioural signal (max head mass on the op's pattern; *is the op present?*)
 

@@ -8,7 +8,7 @@ title: Gemma-2-2B disassembly
 
 Operator roles referenced (hyperlinked inline below): [duplicate](../operators/duplicate.md) · [induction](../operators/induction.md) · [prevtok](../operators/prevtok.md). Full raw listing: [`gemma2_disassembly.txt`](https://github.com/jascal/lm-sae/blob/main/docs/listings/gemma2_disassembly.txt). See the [operator catalog](../operators/README.md) for what each role means.
 
-_First-order, single-component reads (+ the induction idiom); provisional. Each line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role._
+_First-order, single-component reads (+ the induction idiom); provisional. Each head line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role. Lines like `L.MLP.n####` are **MLP neurons** (the COMPUTE class — `n####` is the neuron's index in that layer's gated-MLP intermediate dimension, e.g. Gemma-2-2B has 9216/layer), **not** attention heads; each lists the top read-tokens → write-tokens (the layer's most salient few)._
 
 - `google/gemma-2-2b DISASSEMBLY  (26 layers x 8 heads + gated MLP; GQA n_kv=4, RoPE, RMSNorm)`
 - `corpus=wikitext  tokens=10000  token-operands=40  SAE-layer=12 (48 SAE-feature operands)`

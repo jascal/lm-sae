@@ -1,0 +1,703 @@
+{
+  "experiment": "arch-generic cross-model operator dossier (universal behavioural ops)",
+  "ops": [
+    "induction",
+    "prevtok",
+    "duplicate",
+    "sink"
+  ],
+  "results": [
+    {
+      "model": "gpt2",
+      "rope": false,
+      "n_layers": 12,
+      "n_heads": 12,
+      "ops": {
+        "induction": {
+          "op": "induction",
+          "kind": "content",
+          "heads": [
+            "5.1",
+            "5.5",
+            "6.9",
+            "7.10"
+          ],
+          "top_head": "5.1",
+          "top_mass": 0.8369014212425719,
+          "top_depth": 0.45454545454545453,
+          "causal_induction_dNLL": 3.6713894449860813,
+          "causal_generic_dNLL": 0.030049423944382703,
+          "base_induction": 0.6567261349965168,
+          "base_generic": 5.215125310988653,
+          "n_heads_mass": 37,
+          "channel": {
+            "key_top": {
+              "head": "4.11",
+              "collapse": 0.3867392087165599
+            },
+            "key_median": 0.0045563422004002195,
+            "key_concentration": 84.87929721417595,
+            "value_top": {
+              "head": "1.10",
+              "dvout": 0.21622490603963307
+            },
+            "value_median": 0.07658954840896542,
+            "key_rows": [
+              {
+                "head": "4.11",
+                "collapse": 0.3867392087165599
+              },
+              {
+                "head": "1.0",
+                "collapse": 0.13853378682210185
+              },
+              {
+                "head": "2.0",
+                "collapse": 0.10316310212620695
+              },
+              {
+                "head": "3.7",
+                "collapse": 0.08055908792024151
+              },
+              {
+                "head": "1.1",
+                "collapse": 0.07052396079796629
+              }
+            ],
+            "value_rows": [
+              {
+                "head": "1.10",
+                "dvout": 0.21622490603963307
+              },
+              {
+                "head": "1.3",
+                "dvout": 0.2126916794680905
+              },
+              {
+                "head": "1.4",
+                "dvout": 0.17236250444046444
+              },
+              {
+                "head": "3.4",
+                "dvout": 0.14610419067095806
+              },
+              {
+                "head": "0.9",
+                "dvout": 0.14134512797329624
+              }
+            ]
+          }
+        },
+        "prevtok": {
+          "op": "prevtok",
+          "kind": "positional",
+          "heads": [
+            "4.11",
+            "2.2",
+            "3.2",
+            "3.7"
+          ],
+          "top_head": "4.11",
+          "top_mass": 0.9635770888555617,
+          "top_depth": 0.36363636363636365,
+          "causal_induction_dNLL": 1.1389072984954949,
+          "causal_generic_dNLL": 0.022865246969556274,
+          "base_induction": 0.6567261349965168,
+          "base_generic": 5.215125310988653,
+          "n_heads_mass": 86,
+          "channel": {
+            "note": "positional op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        },
+        "duplicate": {
+          "op": "duplicate",
+          "kind": "content",
+          "heads": [
+            "0.5",
+            "3.0",
+            "0.1",
+            "1.11"
+          ],
+          "top_head": "0.5",
+          "top_mass": 0.5939680008178062,
+          "top_depth": 0.0,
+          "causal_induction_dNLL": 0.48852299649233144,
+          "causal_generic_dNLL": 0.23362268114846874,
+          "base_induction": 0.6567261349965168,
+          "base_generic": 5.215125310988653,
+          "n_heads_mass": 11,
+          "channel": {
+            "note": "reader in layer 0 \u2014 no upstream; channel skipped"
+          }
+        },
+        "sink": {
+          "op": "sink",
+          "kind": "addressing",
+          "heads": [
+            "7.2",
+            "5.1",
+            "6.9",
+            "7.10"
+          ],
+          "top_head": "7.2",
+          "top_mass": 0.9489230163513668,
+          "top_depth": 0.6363636363636364,
+          "causal_induction_dNLL": 3.1018888649108405,
+          "causal_generic_dNLL": 0.029705762106274847,
+          "base_induction": 0.6567261349965168,
+          "base_generic": 5.215125310988653,
+          "n_heads_mass": 136,
+          "channel": {
+            "note": "addressing op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        }
+      }
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "n_layers": 26,
+      "n_heads": 8,
+      "ops": {
+        "induction": {
+          "op": "induction",
+          "kind": "content",
+          "heads": [
+            "6.3",
+            "6.2",
+            "22.3",
+            "4.4"
+          ],
+          "top_head": "6.3",
+          "top_mass": 0.9379459727894176,
+          "top_depth": 0.24,
+          "causal_induction_dNLL": 0.5861572387807836,
+          "causal_generic_dNLL": -0.3077950977143793,
+          "base_induction": 4.535496789700217,
+          "base_generic": 7.666809626988003,
+          "n_heads_mass": 51,
+          "channel": {
+            "key_top": {
+              "head": "5.0",
+              "collapse": 0.030721330827049913
+            },
+            "key_median": 1.837045745998097e-05,
+            "key_concentration": 1672.231552339873,
+            "value_top": {
+              "head": "5.5",
+              "dvout": 0.07031026147744329
+            },
+            "value_median": 0.033859585329998276,
+            "key_rows": [
+              {
+                "head": "5.0",
+                "collapse": 0.030721330827049913
+              },
+              {
+                "head": "5.4",
+                "collapse": 0.006173658897345987
+              },
+              {
+                "head": "3.5",
+                "collapse": 0.0057718792148347955
+              },
+              {
+                "head": "0.0",
+                "collapse": 0.0046234293258872435
+              },
+              {
+                "head": "3.7",
+                "collapse": 0.002372751989342902
+              }
+            ],
+            "value_rows": [
+              {
+                "head": "5.5",
+                "dvout": 0.07031026147744329
+              },
+              {
+                "head": "5.0",
+                "dvout": 0.06327736253019155
+              },
+              {
+                "head": "5.4",
+                "dvout": 0.05507029147330207
+              },
+              {
+                "head": "4.5",
+                "dvout": 0.053365109991461844
+              },
+              {
+                "head": "3.0",
+                "dvout": 0.04763461885201372
+              }
+            ]
+          }
+        },
+        "prevtok": {
+          "op": "prevtok",
+          "kind": "positional",
+          "heads": [
+            "21.7",
+            "0.0",
+            "21.6",
+            "5.0"
+          ],
+          "top_head": "21.7",
+          "top_mass": 0.8346150716145834,
+          "top_depth": 0.84,
+          "causal_induction_dNLL": 4.938330763418066,
+          "causal_generic_dNLL": 0.2994428604368178,
+          "base_induction": 4.535496789700217,
+          "base_generic": 7.666809626988003,
+          "n_heads_mass": 191,
+          "channel": {
+            "note": "positional op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        },
+        "duplicate": {
+          "op": "duplicate",
+          "kind": "content",
+          "heads": [
+            "1.4",
+            "0.1",
+            "8.1",
+            "3.2"
+          ],
+          "top_head": "1.4",
+          "top_mass": 0.8638971502130682,
+          "top_depth": 0.04,
+          "causal_induction_dNLL": -0.2821517075758644,
+          "causal_generic_dNLL": -0.8696986728244358,
+          "base_induction": 4.535496789700217,
+          "base_generic": 7.666809626988003,
+          "n_heads_mass": 34,
+          "channel": {
+            "key_top": {
+              "head": "0.0",
+              "collapse": 0.008278541231705558
+            },
+            "key_median": 0.0004050980025551013,
+            "key_concentration": 20.435846989229542,
+            "value_top": {
+              "head": "0.1",
+              "dvout": 0.24966605828827992
+            },
+            "value_median": 0.06759349530164441,
+            "key_rows": [
+              {
+                "head": "0.0",
+                "collapse": 0.008278541231705558
+              },
+              {
+                "head": "0.2",
+                "collapse": 0.0059102759859981134
+              },
+              {
+                "head": "0.1",
+                "collapse": 0.005453242342089683
+              },
+              {
+                "head": "0.4",
+                "collapse": 0.0006855504658625518
+              },
+              {
+                "head": "0.5",
+                "collapse": 0.00012464553924765082
+              }
+            ],
+            "value_rows": [
+              {
+                "head": "0.1",
+                "dvout": 0.24966605828827992
+              },
+              {
+                "head": "0.0",
+                "dvout": 0.15581907512298215
+              },
+              {
+                "head": "0.2",
+                "dvout": 0.09966945467333023
+              },
+              {
+                "head": "0.6",
+                "dvout": 0.07022859958678428
+              },
+              {
+                "head": "0.4",
+                "dvout": 0.06495839101650452
+              }
+            ]
+          }
+        },
+        "sink": {
+          "op": "sink",
+          "kind": "addressing",
+          "heads": [
+            "1.0",
+            "7.6",
+            "1.5",
+            "22.3"
+          ],
+          "top_head": "1.0",
+          "top_mass": 0.08281636143487597,
+          "top_depth": 0.04,
+          "causal_induction_dNLL": -0.18095810885514307,
+          "causal_generic_dNLL": -0.48952531360444596,
+          "base_induction": 4.535496789700217,
+          "base_generic": 7.666809626988003,
+          "n_heads_mass": 67,
+          "channel": {
+            "note": "addressing op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        }
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "n_layers": 16,
+      "n_heads": 32,
+      "ops": {
+        "induction": {
+          "op": "induction",
+          "kind": "content",
+          "heads": [
+            "10.23",
+            "5.10",
+            "12.15",
+            "2.26"
+          ],
+          "top_head": "10.23",
+          "top_mass": 0.9410206187855114,
+          "top_depth": 0.6666666666666666,
+          "causal_induction_dNLL": 1.2379352219104227,
+          "causal_generic_dNLL": 0.007691689143104696,
+          "base_induction": 0.7363155087203478,
+          "base_generic": 4.316886841304719,
+          "n_heads_mass": 93,
+          "channel": {
+            "key_top": {
+              "head": "1.9",
+              "collapse": 0.016359787759807603
+            },
+            "key_median": 0.00025514181632631006,
+            "key_concentration": 64.1201190586709,
+            "value_top": {
+              "head": "1.28",
+              "dvout": 0.08365584865387606
+            },
+            "value_median": 0.02427230081160005,
+            "key_rows": [
+              {
+                "head": "1.9",
+                "collapse": 0.016359787759807603
+              },
+              {
+                "head": "1.20",
+                "collapse": 0.006699835102789043
+              },
+              {
+                "head": "1.24",
+                "collapse": 0.005263481173841417
+              },
+              {
+                "head": "1.18",
+                "collapse": 0.00514299753835406
+              },
+              {
+                "head": "1.28",
+                "collapse": 0.004498055724862659
+              }
+            ],
+            "value_rows": [
+              {
+                "head": "1.28",
+                "dvout": 0.08365584865387606
+              },
+              {
+                "head": "0.29",
+                "dvout": 0.06972064714078285
+              },
+              {
+                "head": "1.9",
+                "dvout": 0.06873079359548173
+              },
+              {
+                "head": "2.6",
+                "dvout": 0.06022657780127562
+              },
+              {
+                "head": "0.26",
+                "dvout": 0.05571383361729545
+              }
+            ]
+          }
+        },
+        "prevtok": {
+          "op": "prevtok",
+          "kind": "positional",
+          "heads": [
+            "0.2",
+            "8.26",
+            "9.28",
+            "11.11"
+          ],
+          "top_head": "0.2",
+          "top_mass": 0.6866571335565477,
+          "top_depth": 0.0,
+          "causal_induction_dNLL": 1.0217533082749575,
+          "causal_generic_dNLL": -0.003108130560980804,
+          "base_induction": 0.7363155087203478,
+          "base_generic": 4.316886841304719,
+          "n_heads_mass": 279,
+          "channel": {
+            "note": "positional op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        },
+        "duplicate": {
+          "op": "duplicate",
+          "kind": "content",
+          "heads": [
+            "0.9",
+            "6.8",
+            "12.0",
+            "8.19"
+          ],
+          "top_head": "0.9",
+          "top_mass": 0.7434248490767046,
+          "top_depth": 0.0,
+          "causal_induction_dNLL": 0.9385064571480534,
+          "causal_generic_dNLL": 0.033272758362785204,
+          "base_induction": 0.7363155087203478,
+          "base_generic": 4.316886841304719,
+          "n_heads_mass": 72,
+          "channel": {
+            "note": "reader in layer 0 \u2014 no upstream; channel skipped"
+          }
+        },
+        "sink": {
+          "op": "sink",
+          "kind": "addressing",
+          "heads": [
+            "5.11",
+            "10.2",
+            "2.21",
+            "2.20"
+          ],
+          "top_head": "5.11",
+          "top_mass": 0.9964735243055556,
+          "top_depth": 0.3333333333333333,
+          "causal_induction_dNLL": 0.4165691922915321,
+          "causal_generic_dNLL": -0.00017743791852709023,
+          "base_induction": 0.7363155087203478,
+          "base_generic": 4.316886841304719,
+          "n_heads_mass": 508,
+          "channel": {
+            "note": "addressing op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        }
+      }
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "rope": true,
+      "n_layers": 28,
+      "n_heads": 12,
+      "ops": {
+        "induction": {
+          "op": "induction",
+          "kind": "content",
+          "heads": [
+            "14.3",
+            "19.3",
+            "19.5",
+            "2.3"
+          ],
+          "top_head": "14.3",
+          "top_mass": 0.9934914328835227,
+          "top_depth": 0.5185185185185185,
+          "causal_induction_dNLL": 2.0976516237150507,
+          "causal_generic_dNLL": -0.0014835054912261114,
+          "base_induction": 0.3645389469463293,
+          "base_generic": 4.170695229182168,
+          "n_heads_mass": 98,
+          "channel": {
+            "key_top": {
+              "head": "2.10",
+              "collapse": 0.00152470377822484
+            },
+            "key_median": 8.94254415381176e-05,
+            "key_concentration": 17.04980934050632,
+            "value_top": {
+              "head": "1.4",
+              "dvout": 0.07249871914769919
+            },
+            "value_median": 0.03677744179777278,
+            "key_rows": [
+              {
+                "head": "2.10",
+                "collapse": 0.00152470377822484
+              },
+              {
+                "head": "0.8",
+                "collapse": 0.001073105298457411
+              },
+              {
+                "head": "1.4",
+                "collapse": 0.001073105298457411
+              },
+              {
+                "head": "3.2",
+                "collapse": 0.0009031969595350202
+              },
+              {
+                "head": "1.10",
+                "collapse": 0.0006796333556897263
+              }
+            ],
+            "value_rows": [
+              {
+                "head": "1.4",
+                "dvout": 0.07249871914769919
+              },
+              {
+                "head": "2.8",
+                "dvout": 0.07192214053979426
+              },
+              {
+                "head": "5.1",
+                "dvout": 0.0675014156384227
+              },
+              {
+                "head": "5.4",
+                "dvout": 0.06523642717437649
+              },
+              {
+                "head": "0.7",
+                "dvout": 0.06341556186303174
+              }
+            ]
+          }
+        },
+        "prevtok": {
+          "op": "prevtok",
+          "kind": "positional",
+          "heads": [
+            "13.4",
+            "1.4",
+            "0.8",
+            "18.8"
+          ],
+          "top_head": "13.4",
+          "top_mass": 0.7711414155505952,
+          "top_depth": 0.48148148148148145,
+          "causal_induction_dNLL": 2.793699468438247,
+          "causal_generic_dNLL": 0.2216439625573532,
+          "base_induction": 0.3645389469463293,
+          "base_generic": 4.170695229182168,
+          "n_heads_mass": 195,
+          "channel": {
+            "note": "positional op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        },
+        "duplicate": {
+          "op": "duplicate",
+          "kind": "content",
+          "heads": [
+            "8.3",
+            "5.11",
+            "6.6",
+            "0.9"
+          ],
+          "top_head": "8.3",
+          "top_mass": 0.9798972389914773,
+          "top_depth": 0.2962962962962963,
+          "causal_induction_dNLL": 1.3744287078241009,
+          "causal_generic_dNLL": 0.0032629951598153184,
+          "base_induction": 0.3645389469463293,
+          "base_generic": 4.170695229182168,
+          "n_heads_mass": 81,
+          "channel": {
+            "key_top": {
+              "head": "0.4",
+              "collapse": 0.0032094686095012087
+            },
+            "key_median": 7.222432876524306e-05,
+            "key_concentration": 44.43688473794388,
+            "value_top": {
+              "head": "6.5",
+              "dvout": 0.0847939405939789
+            },
+            "value_median": 0.04308786303132252,
+            "key_rows": [
+              {
+                "head": "0.4",
+                "collapse": 0.0032094686095012087
+              },
+              {
+                "head": "5.1",
+                "collapse": 0.00300633768484924
+              },
+              {
+                "head": "1.2",
+                "collapse": 0.0021396457396674726
+              },
+              {
+                "head": "1.1",
+                "collapse": 0.00190491667118072
+              },
+              {
+                "head": "1.3",
+                "collapse": 0.0018778325478938564
+              }
+            ],
+            "value_rows": [
+              {
+                "head": "6.5",
+                "dvout": 0.0847939405939789
+              },
+              {
+                "head": "1.5",
+                "dvout": 0.08357745089145578
+              },
+              {
+                "head": "1.4",
+                "dvout": 0.08211721176380363
+              },
+              {
+                "head": "5.8",
+                "dvout": 0.08135985542358536
+              },
+              {
+                "head": "2.8",
+                "dvout": 0.08105441039356213
+              }
+            ]
+          }
+        },
+        "sink": {
+          "op": "sink",
+          "kind": "addressing",
+          "heads": [
+            "14.5",
+            "6.9",
+            "14.4",
+            "19.5"
+          ],
+          "top_head": "14.5",
+          "top_mass": 0.9981902591765873,
+          "top_depth": 0.5185185185185185,
+          "causal_induction_dNLL": 0.19388206076867082,
+          "causal_generic_dNLL": -0.0014220101492750103,
+          "base_induction": 0.3645389469463293,
+          "base_generic": 4.170695229182168,
+          "n_heads_mass": 312,
+          "channel": {
+            "note": "addressing op \u2014 addresses by position/key-0, not an upstream key writer; channel N/A"
+          }
+        }
+      }
+    }
+  ]
+}

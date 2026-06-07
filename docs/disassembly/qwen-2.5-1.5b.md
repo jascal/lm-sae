@@ -8,7 +8,7 @@ title: Qwen-2.5-1.5B disassembly
 
 Operator roles referenced (hyperlinked inline below): [duplicate](../operators/duplicate.md) · [induction](../operators/induction.md) · [prevtok](../operators/prevtok.md). Full raw listing: [`qwen25_15b_disassembly.txt`](https://github.com/jascal/lm-sae/blob/main/docs/listings/qwen25_15b_disassembly.txt). See the [operator catalog](../operators/README.md) for what each role means.
 
-_First-order, single-component reads (+ the induction idiom); provisional. Each line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role._
+_First-order, single-component reads (+ the induction idiom); provisional. Each head line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role. Lines like `L.MLP.n####` are **MLP neurons** (the COMPUTE class — `n####` is the neuron's index in that layer's gated-MLP intermediate dimension, e.g. Gemma-2-2B has 9216/layer), **not** attention heads; each lists the top read-tokens → write-tokens (the layer's most salient few)._
 
 - `Qwen/Qwen2.5-1.5B DISASSEMBLY  (28 layers x 12 heads + gated MLP; GQA n_kv=2, RoPE, RMSNorm)`
 - `corpus=wikitext  tokens=10000  token-operands=40  SAE-feature opcode: n/a (token-operand basis only)`

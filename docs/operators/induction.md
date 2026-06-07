@@ -15,6 +15,19 @@
 | Llama-3.2-1B | RoPE | 0.946 ± 0.005 | 40 | 10.23 | 0.67 | +0.001 ± 0.001 |
 | Qwen2.5-1.5B | RoPE | 0.994 ± 0.001 | 54 | 14.3 | 0.52 | -0.000 ± 0.002 |
 
+## Cross-model deep dossier (arch-generic) — `operator_dossier_xmodel.py`
+
+The deep battery's arch-generic core — behavioural head-ID + mean-ablation causal + the faithful key-only path-patch channel (the model re-applies its own RoPE) — run across **every** model, not just GPT-2. (The full A–F dossier below stays GPT-2-only: its channel/composition math is written against GPT-2's fused-QKV layout, and the named *output* ops have no published head-set off GPT-2.)
+
+| model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | KEY top writer (collapse) | VALUE top mover (ΔV-out) |
+|---|---|---|---|---|---|---|
+| gpt2 | 5.1 | 37 | +3.67 | +0.03 | 4.11 (+39%, conc 85×) | 1.10 (0.22) |
+| gemma-2-2b | 6.3 | 51 | +0.59 | -0.31 | 5.0 (+3%, conc 1672×) | 5.5 (0.07) |
+| Llama-3.2-1B | 10.23 | 93 | +1.24 | +0.01 | 1.9 (+2%, conc 64×) | 1.28 (0.08) |
+| Qwen2.5-1.5B | 14.3 | 98 | +2.10 | -0.00 | 2.10 (+0%, conc 17×) | 1.4 (0.07) |
+
+_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; channel = remove each upstream head from the reader's key → top collapser + the value/move channel. Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._
+
 ## Deep dossier (GPT-2) — `operator_dossier.py --op induction`
 
 **A · identity** (behavioural: top heads by attention mass on the induction pattern (>0.02)): heads ['5.1', '5.5', '6.9', '7.10', '7.2']. ranked: 5.1 (0.81), 5.5 (0.78), 6.9 (0.77), 7.10 (0.75), 7.2 (0.72), 5.0 (0.57)

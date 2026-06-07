@@ -49,8 +49,12 @@ Two axes:
 - **GPT-2 circuit operators** (literature direct-logit-attribution head-sets, **no published head-set outside
   GPT-2**): `name_mover, backup_name_mover, negative_mover, s_inhibition, coreference`. Catalogued by their per-op dossiers (GPT-2), not the cross-model matrix.
 
-Each operator has a **page** (cross-model catalog row + the deep GPT-2 dossier: identity / causal×tasks / K-V
-channels / composition / redundancy / cross-model). Per-op data lives under `runs/disassembly/operators/`.
+Each operator has a **page**: the cross-model catalog row, then — for the universal behavioural ops — an
+**arch-generic cross-model deep dossier** (behavioural head-ID + mean-ablation causal + key/value channel on
+*every* model, via `operator_dossier_xmodel.py`), then the full **GPT-2 deep dossier** (identity / causal×tasks /
+K-V channels / composition / redundancy / cross-model). The GPT-2 A–F battery stays GPT-2-only because its
+channel/composition math is written against GPT-2's fused-QKV layout and the named *output* ops (name-movers,
+S-inhibition) have no published head-set off GPT-2. Per-op data lives under `runs/disassembly/operators/`.
 
 ## Catalog — behavioural signal (max head mass on the op's pattern; *is the op present?*)
 
