@@ -4,29 +4,30 @@ title: Glossary
 
 # Glossary — the terms this project uses, and where they come from
 
-Each entry: a short **definition**, *how/why we use it here*, and a link to the **canonical source** (or to our
-own page where the term is ours). This is the field-guide's vocabulary — the natural-history reference for the
-[operator catalog](operators/README.md) and [circuit catalog](circuits/README.md).
+Each entry: a short **definition** and *how/why we use it here*. Established terms link to a **canonical source**;
+working terms with no canonical reference link to the page that defines them here. This is the field-guide's
+vocabulary — the natural-history reference for the [operator catalog](operators/README.md) and
+[circuit catalog](circuits/README.md).
 
-## Our framing terms
+## Framing & working terms
 
-- **Operator** *(ours)* — a single attention head **class** or MLP class that realizes one operation. The unit of
+- **Operator** — a single attention head **class** or MLP class that realizes one operation. The unit of
   the [operator catalog](operators/README.md). *Here:* found behaviourally (an attention mask) or from a
   literature head-set; an operator is a *family of heads* (a class), not one head — see the membership matrix.
 - **Circuit** — a **composition** of operators: a writer-op feeding a reader-op's K/Q/V port, chained into a DAG.
   *Here:* the [circuit catalog](circuits/README.md); the primitive is the *edge* (writer → reader via a port).
   Canonical framing: [Elhage et al., *A Mathematical Framework for Transformer Circuits* (2021)](https://transformer-circuits.pub/2021/framework/index.html).
-- **MOVE vs COMPUTE** *(ours)* — the two instruction classes: attention **MOVES** operands between positions (a QK
+- **MOVE vs COMPUTE** — the two instruction classes: attention **MOVES** operands between positions (a QK
   *addressing mode* × an OV *write op*); the MLP **COMPUTES** on them (key–value memories). *Here:* the operator
   catalog is MOVE; the [MLP catalog](operators/mlp_compute.md) is COMPUTE.
-- **Disassembly → decompilation** *(ours)* — *disassembly* = naming components/idioms in isolation; *decompilation*
+- **Disassembly → decompilation** — *disassembly* = naming components/idioms in isolation; *decompilation*
   = reconstructing the **computation** faithfully (recompile the op-graph, KL ≈ host). *Here:* the program's arc;
   see [DECOMPILATION.md](DECOMPILATION.md).
-- **Reconstruction coverage** *(ours)* — `1 − KL(host ‖ kept) / KL(host ‖ all-ablated)`: how much of the forward
+- **Reconstruction coverage** — `1 − KL(host ‖ kept) / KL(host ‖ all-ablated)`: how much of the forward
   pass an op-set reconstructs. *Here:* the decompilation metric with teeth ([DECOMPILATION.md](DECOMPILATION.md)).
-- **Dossier** *(ours)* — the deep per-operator battery (identity · causal×tasks · K/V channels · composition ·
+- **Dossier** — the deep per-operator battery (identity · causal×tasks · K/V channels · composition ·
   redundancy · cross-model). *Here:* `operator_dossier.py`; one page per op-class in the catalog.
-- **Catalog (not atlas)** *(ours)* — a growing, causally-tested *record* of what we've observed, **not** a claim of
+- **Catalog (not atlas)** — a growing, causally-tested *record* of what we've observed, **not** a claim of
   completeness — the natural-history stance. (We avoid "atlas," which overclaims a complete map.)
 
 ## Named attention operators & circuits (from the literature)
@@ -66,7 +67,7 @@ own page where the term is ours). This is the field-guide's vocabulary — the n
 - **Self-repair / backup heads** — redundant components that *wake up* and compensate when primaries are ablated,
   masking their importance under single-set ablation. *Here:* why name-movers read ~0; quantified in
   `self_repair.py`. [McGrath et al., *The Hydra Effect* (2023)](https://arxiv.org/abs/2307.15771).
-- **cov95 / mAUC** *(ours + SAE-eval)* — `cov95` = fraction of known features a *single* SAE latent detects at
+- **cov95 / mAUC** — `cov95` = fraction of known features a *single* SAE latent detects at
   AUC ≥ 0.95 (monosemanticity); `mAUC` = mean best-detector AUC (content recoverability). *Here:* the
   [forge-tax track](FORGE_TAX_TRACK.md)'s legibility meters.
 
@@ -89,7 +90,7 @@ own page where the term is ours). This is the field-guide's vocabulary — the n
 - **SAE** (sparse autoencoder) — a dictionary that decomposes activations into sparse, ideally monosemantic
   features. *Here:* the thing that *misses* the composition (the motivation for disassembly). [Cunningham et al. (2023)](https://arxiv.org/abs/2309.08600);
   [Bricken et al., *Towards Monosemanticity* (2023)](https://transformer-circuits.pub/2023/monosemantic-features/index.html).
-- **Forge / forge tax** *(ours)* — re-expressing a model's weights so its residual is written in a fixed SAE
+- **Forge / forge tax** — re-expressing a model's weights so its residual is written in a fixed SAE
   feature basis; the "tax" = forging preserves accuracy (mAUC) but collapses monosemanticity (cov95). *Here:* the
   [forge-tax track](FORGE_TAX_TRACK.md).
 
