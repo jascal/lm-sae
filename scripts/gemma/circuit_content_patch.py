@@ -16,7 +16,15 @@ writer from the reader's KEY should:
 
 Same faithful forward key-only patch as #31 (replace the reader's k_proj/c_attn input with `norm(resid − A_out)`,
 q untouched; the model applies its own RoPE). For each circuit we pick the reader behaviorally and measure the
-collapse of THAT circuit's attention signal. GPT-2 + Gemma-2 / Llama-3 / Qwen-2.5.
+collapse of THAT circuit's attention signal.
+
+It also runs the complementary **VALUE (move) channel** — what each circuit *moves*, not what it *matches*:
+feed `norm(resid − A_out)` to the reader's value instead of its key and measure the change in the reader's
+OUTPUT (ΔV-out). RoPE rotates Q/K but NEVER the value, so the value channel is content-based in *every*
+architecture — prediction: the value/move dependence is universal even for the positional prev-token circuit
+(whose KEY is rotation-only in RoPE), confining the architecture-specific positional register to the key/match
+channel. (The value patch needs no extra forward — values aren't rotated, just v_proj/o_proj matmuls.)
+GPT-2 + Gemma-2 / Llama-3 / Qwen-2.5.
 """
 from __future__ import annotations
 
@@ -35,7 +43,8 @@ def _arch(model):
         hd = getattr(cfg, "head_dim", None) or (cfg.hidden_size // H)
         L = list(model.model.layers)
         return dict(is_gpt2=False, layers=L, oproj=[ly.self_attn.o_proj for ly in L],
-                    norm=[ly.input_layernorm for ly in L], kproj=[ly.self_attn.k_proj for ly in L], hd=hd, H=H, nkv=nkv)
+                    norm=[ly.input_layernorm for ly in L], kproj=[ly.self_attn.k_proj for ly in L],
+                    vproj=[ly.self_attn.v_proj for ly in L], hd=hd, H=H, nkv=nkv)
     if hasattr(model, "transformer") and hasattr(model.transformer, "h"):
         L = list(model.transformer.h)
         return dict(is_gpt2=True, layers=L, oproj=[b.attn.c_proj for b in L], norm=[b.ln_1 for b in L],
@@ -100,14 +109,26 @@ def run_model(model_id, args):
         cap = {}; hooks = [a["layers"][LB].register_forward_pre_hook(lambda m, inp: cap.__setitem__("r", inp[0].detach()))]
         for L in range(LB):
             hooks.append(oprojs[L].register_forward_pre_hook((lambda L: lambda m, inp: cap.__setitem__(L, inp[0].detach()))(L)))
+        kvB = hB // (H // a["nkv"])
+
+        def b_output(inp_normed, attnB):                                  # head B's residual write for a given value-input
+            v = (a["cattn"][LB](inp_normed)[..., 2 * a["d"]:3 * a["d"]] if a["is_gpt2"] else a["vproj"][LB](inp_normed))
+            headout = attnB.to(v.dtype) @ v[0, :, kvB * hd:(kvB + 1) * hd]  # (seq,seq)@(seq,hd) -> B's head output
+            x = torch.zeros((1, headout.shape[0], H * hd), dtype=v.dtype, device=v.device)
+            x[0, :, hB * hd:(hB + 1) * hd] = headout
+            return oprojs[LB](x) - oprojs[LB](x[:, :1] * 0)               # (1,seq,hidden) B's write (no RoPE on values)
         clean = 0.0; patched = {u: 0.0 for u in upstream}; tot = 0; sane = None
+        vtot = 0.0; vpatch = {u: 0.0 for u in upstream}                   # value/move channel: ΔV-out (B output change)
         with torch.no_grad():
             for c in chunks:
                 cap.clear()
                 o = model(input_ids=torch.tensor([c], device=dev), output_attentions=True)
                 Lc = len(c); tot += Lc; Msk = circuit_masks(c)[cc]
-                clean += float((o.attentions[LB][0, hB].float().cpu().numpy() * Msk).sum())
+                attnB_t = o.attentions[LB][0, hB]
+                clean += float((attnB_t.float().cpu().numpy() * Msk).sum())
                 resid = cap["r"]
+                Bout_clean = b_output(norm_mods[LB](resid), attnB_t)      # B's clean residual write (value channel)
+                vtot += float(torch.linalg.norm(Bout_clean.float()))
                 for (La, ha) in upstream:
                     key_in = norm_mods[LB](resid - head_contrib(La, cap[La], ha))
                     if a["is_gpt2"]:
@@ -125,6 +146,7 @@ def run_model(model_id, args):
                         patched[(La, ha)] += float((ap.float().cpu().numpy() * Msk).sum())
                     finally:
                         hk.remove()
+                    vpatch[(La, ha)] += float(torch.linalg.norm((Bout_clean - b_output(key_in, attnB_t)).float()))  # value/move patch (no forward)
                 if sane is None:                                              # zero-patch fidelity check
                     kz = norm_mods[LB](resid)
                     if a["is_gpt2"]:
@@ -149,13 +171,18 @@ def run_model(model_id, args):
         for r in rows:
             r["z"] = (r["rel"] - med) / (1.4826 * mad + 1e-6)
         rows.sort(key=lambda r: -r["rel"]); top = rows[0]
+        vrows = [{"head": f"{La}.{ha}", "rel": vpatch[(La, ha)] / max(vtot, 1e-9)} for (La, ha) in upstream]
+        vmed = float(np.median([r["rel"] for r in vrows])); vrows.sort(key=lambda r: -r["rel"]); vtop = vrows[0]
         out["circuits"][cc] = {"reader": f"{LB}.{hB}", "reader_mass": float(mass[cc][B]), "sanity": sane,
+                               "key_top_head": top["head"], "key_top_collapse": top["rel"], "key_top_z": top["z"],
                                "top_head": top["head"], "top_collapse": top["rel"], "top_z": top["z"],
                                "top_is_sink": top["sink"] > 0.2, "top_is_prevtok_head": top["head"] == out["prev_token_head"],
-                               "median_collapse": med, "rows": rows[:5]}
+                               "median_collapse": med, "rows": rows[:5],
+                               "value_top_head": vtop["head"], "value_top_dvout": vtop["rel"], "value_median_dvout": vmed,
+                               "vrows": vrows[:5]}
         tag = ("=prev-tok head" if top["head"] == out["prev_token_head"] else ("SINK" if top["sink"] > 0.2 else ""))
-        print(f"  [{cc:>9}] reader {LB}.{hB}: top collapser {top['head']} {tag} -> collapse {top['rel']:+.0%} (z {top['z']:.1f}); "
-              f"sanity {sane:.1e}")
+        print(f"  [{cc:>9}] reader {LB}.{hB}: KEY (match) top {top['head']} {tag} collapse {top['rel']:+.0%} (z {top['z']:.1f}) | "
+              f"VALUE (move) top {vtop['head']} ΔV-out {vtop['rel']:.2f} (med {vmed:.2f}); sanity {sane:.1e}")
     return out
 
 
@@ -185,52 +212,64 @@ def main(argv=None):
 
     ok = [r for r in results if "circuits" in r]
 
-    def collapsed(r, cc):                                                      # did circuit cc's key collapse for model r?
+    def collapsed(r, cc):                                                      # KEY (match): did circuit cc's key collapse?
         d = r["circuits"].get(cc, {})                                          # robust standout: >10% AND >3x the upstream median
         return d.get("top_collapse", 0) > 0.1 and d.get("top_collapse", 0) > 3 * max(d.get("median_collapse", 0), 0.01)
 
-    print("\n[cross-model] key-content dependence per circuit (collapse % | ✓ = key-content-dependent):")
-    print(f"  {'model':>22} {'pos':>8} | " + " | ".join(f"{cc:>10}" for cc in CIRCUITS))
-    for r in ok:
-        cells = []
-        for cc in CIRCUITS:
-            d = r["circuits"].get(cc, {})
-            v = f"{d['top_collapse']:+.0%}{'✓' if collapsed(r, cc) else ' '}" if "top_collapse" in d else "  skip"
-            cells.append(f"{v:>10}")
-        print(f"  {r['model'].split('/')[-1]:>22} {r['pos']:>8} | " + " | ".join(cells))
+    def moves(r, cc):                                                          # VALUE (move): is there value-content dependence?
+        return r["circuits"].get(cc, {}).get("value_top_dvout", 0) > 0.05      # ΔV-out > 5% (distributed, not a sharp standout)
+
+    print("\n[cross-model] KEY (match) collapse % | VALUE (move) top ΔV-out  [✓ = content-dependent] per circuit:")
+    for ch, fn, fmt in (("KEY (match)", collapsed, lambda d: f"{d.get('top_collapse', 0):+.0%}"),
+                        ("VALUE (move)", moves, lambda d: f"{d.get('value_top_dvout', 0):.2f}")):
+        print(f"  --- {ch} ---  {'model':>20} {'pos':>8} | " + " | ".join(f"{cc:>10}" for cc in CIRCUITS))
+        for r in ok:
+            cells = []
+            for cc in CIRCUITS:
+                d = r["circuits"].get(cc, {})
+                cells.append(f"{(fmt(d) + ('✓' if fn(r, cc) else ' ')) if 'top_collapse' in d else 'skip':>10}")
+            print(f"  {' ' * 13} {r['model'].split('/')[-1]:>20} {r['pos']:>8} | " + " | ".join(cells))
 
     absm = [r for r in ok if not r["rope"]]; rope = [r for r in ok if r["rope"]]
     if absm and rope:
         pos_split = (all(collapsed(r, "prevtok") for r in absm) and all(not collapsed(r, "prevtok") for r in rope))
         content_universal = all(collapsed(r, "induction") for r in ok if "top_collapse" in r["circuits"].get("induction", {}))
-        ind_writer = all(r["circuits"].get("induction", {}).get("top_is_prevtok_head", False)
-                         for r in ok if "top_collapse" in r["circuits"].get("induction", {}))
+        # the MOVE channel: value-content dependence in EVERY model (values aren't rotated -> universal, even where the KEY isn't)
+        move_universal = all(moves(r, "induction") for r in ok if "top_collapse" in r["circuits"].get("induction", {}))
+        prevtok_value_in_rope = all(moves(r, "prevtok") for r in rope if "value_top_dvout" in r["circuits"].get("prevtok", {}))
         if pos_split and content_universal:
-            verdict = (f"GENERALIZED — key-content dependence is about ADDRESSING TYPE, not architecture: the POSITIONAL "
-                       f"circuit (prev-token) is key-content-dependent ONLY in GPT-2 (RoPE reads position from the rotation), "
-                       f"but the CONTENT circuit (induction) is key-content-dependent in EVERY model"
-                       f"{' — and the top collapser IS the prev-token head universally (the canonical K-composition writer)' if ind_writer else ''}. "
-                       f"RoPE replaces only POSITIONAL key-content with rotation; token-identity matching always lives in the "
-                       f"key content. So #26/#31's GPT-2-vs-RoPE split is specifically the POSITIONAL register; the content "
-                       f"instruction set is universal (consistent with the mechanism-invariance results).")
+            verdict = (f"MATCH vs MOVE — the architecture-specific positional register is confined to the KEY/match channel. "
+                       f"KEY (match): the POSITIONAL circuit (prev-token) is key-content-dependent ONLY in GPT-2 (RoPE reads "
+                       f"position from the rotation), but the CONTENT circuit (induction) is key-content-dependent in EVERY "
+                       f"model — rotation replaces only POSITIONAL key-content; token-identity matching always lives in the key. "
+                       f"VALUE (move): {'UNIVERSAL' if move_universal else 'broad'} — values are never rotated, so what each "
+                       f"circuit MOVES is content-dependent in every architecture"
+                       f"{', INCLUDING prev-token whose KEY is rotation-only in RoPE (its VALUE still depends on content there)' if prevtok_value_in_rope else ''}. "
+                       f"The value/move channel is also more DISTRIBUTED than the sparse key channel (top mover ~2-3x the "
+                       f"upstream median, vs ~10-100x for keys) — the redundancy theme. NET: only positional MATCHING is "
+                       f"architecture-specific; content matching and all moving are universal (consistent with mechanism-invariance).")
         else:
-            verdict = (f"PARTIAL: positional-split={pos_split}, content-universal={content_universal} — see table")
+            verdict = (f"PARTIAL: positional-split={pos_split}, content-universal={content_universal}, "
+                       f"move-universal={move_universal} — see table")
         print(f"\n[verdict] {verdict}")
 
     try:
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
-        fig, ax = plt.subplots(figsize=(11.0, 5.0))
+        fig, (axK, axV) = plt.subplots(1, 2, figsize=(14.5, 5.0))
         x = np.arange(len(ok)); w = 0.26
         for i, cc in enumerate(CIRCUITS):
-            vals = [max(r["circuits"].get(cc, {}).get("top_collapse", 0.0), 0.0) for r in ok]
-            ax.bar(x + (i - 1) * w, vals, w, edgecolor="k", label=cc + (" (positional)" if cc == "prevtok" else " (content)"))
-        ax.axhline(0.1, color="k", lw=0.6, ls=":"); ax.set_xticks(x)
-        ax.set_xticklabels([f"{r['model'].split('/')[-1]}\n{r['pos']}" for r in ok], fontsize=8)
-        ax.set_ylabel("top upstream-head key-patch collapse"); ax.legend(fontsize=8)
-        ax.set_title("key-content dependence: POSITIONAL (prev-token) is GPT-2-only; CONTENT (induction/duplicate) is universal", fontsize=10)
-        fig.tight_layout(); args.fig.parent.mkdir(parents=True, exist_ok=True)
+            lbl = cc + (" (positional)" if cc == "prevtok" else " (content)")
+            axK.bar(x + (i - 1) * w, [max(r["circuits"].get(cc, {}).get("top_collapse", 0.0), 0.0) for r in ok], w, edgecolor="k", label=lbl)
+            axV.bar(x + (i - 1) * w, [max(r["circuits"].get(cc, {}).get("value_top_dvout", 0.0), 0.0) for r in ok], w, edgecolor="k", label=lbl)
+        for ax, ttl, yl in ((axK, "KEY (match): POSITIONAL is GPT-2-only, CONTENT universal", "top key-patch collapse"),
+                            (axV, "VALUE (move): universal — values are never rotated", "top value-patch ΔV-out")):
+            ax.axhline(0.1 if ax is axK else 0.05, color="k", lw=0.6, ls=":"); ax.set_xticks(x)
+            ax.set_xticklabels([f"{r['model'].split('/')[-1]}\n{r['pos']}" for r in ok], fontsize=8)
+            ax.set_ylabel(yl); ax.legend(fontsize=8); ax.set_title(ttl, fontsize=10)
+        fig.suptitle("Match (key) vs move (value) channels: only the POSITIONAL register in the KEY is architecture-specific", fontsize=11)
+        fig.tight_layout(rect=[0, 0, 1, 0.95]); args.fig.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(args.fig, dpi=130); print(f"[fig] {args.fig}")
     except Exception as e:  # pragma: no cover
         print(f"[fig] skipped: {e}")

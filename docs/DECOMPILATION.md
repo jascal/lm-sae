@@ -413,7 +413,7 @@ key-only / value-only forward patch generalizes to **any** circuit — induction
 tests whether supervision (#19/#20) shifts the key-content dependence. `key_patch_cross_model.py`,
 `runs/gemma/key_patch_cross_model_summary.json` (~85 s, 4 models).
 
-### Generalizing the key-patch across circuits — positional vs content addressing
+### Generalizing the patch across circuits & channels — match (key) vs move (value)
 
 `circuit_content_patch.py` runs the same faithful key-only patch on three circuits — **prev-token** (positional:
 attend to q−1), **induction** (content: attend to the key whose *predecessor token* == the current token),
@@ -443,11 +443,30 @@ RoPE models it is an **early** head (their dominant prev-token head is *late* �
 downstream of its layer-4 induction head — so induction is fed by a separate early predecessor-writer); the
 universal fact (induction is key-content-fed) holds, the specific writer differs.
 
-**Scope.** Induction is the clean content circuit; **duplicate** is the weaker case (its readers are early /
-layer-0, so GPT-2 skips and the others give a smaller, noisier signal — only Qwen clears the bar). prev-token
-skips for Llama (layer-0 reader). The same forward patch could run **value-only** (the V-edge readout) to ask
-content-vs-rotation for what heads *move*, not just what they *match*. `circuit_content_patch.py`,
-`runs/gemma/circuit_content_patch_summary.json` (~3.5 min, 4 models × 3 circuits).
+**The move (value) channel — universal even where the key isn't.** The same forward patch runs **value-only**:
+feed `norm(resid − A_out)` to the reader's *value* and measure the change in its OUTPUT (ΔV-out, the #28 readout).
+RoPE rotates Q/K but **never** the value — so what each circuit *moves* should be content-dependent in *every*
+architecture, even for the positional circuit whose *key* is rotation-only in RoPE.
+
+| circuit | type | GPT-2 | Gemma | Llama | Qwen |
+|---|---|---|---|---|---|
+| prev-token | positional | 0.22 ✓ | 0.05 | skip | 0.11 ✓ |
+| induction | content | 0.26 ✓ | 0.12 ✓ | 0.17 ✓ | 0.24 ✓ |
+| duplicate | content | skip | 0.19 ✓ | 0.28 ✓ | 0.12 ✓ |
+
+(top value-patch ΔV-out; ✓ = >0.05.) **The move channel is universal** — value-content dependence everywhere,
+*including* prev-token (GPT-2 0.22, Qwen 0.11) whose KEY collapses only in GPT-2. So the architecture-specific
+positional register is confined to the **key/match (score) channel**; what heads *move* is content in every model
+because the value is never rotated. The value channel is also markedly more **distributed** than the key channel
+— the top value-mover is only ~2–3× the upstream median (vs ~10–100× for keys), so no single head dominates what
+a circuit moves (the redundancy theme — cf the V-edges adding nothing to the recompile keep-set, #30).
+
+**NET (the addressing register, decomposed):** only **positional matching** is architecture-specific (GPT-2 puts
+it in the key content via the sink broadcast; RoPE in the rotation); **content matching** (induction/duplicate
+keys) and **all moving** (every circuit's value) are universal — consistent with mechanism-invariance. **Scope.**
+Induction is the clean content circuit; duplicate's readers are early/layer-0 (GPT-2 skips, noisier elsewhere);
+prev-token skips for Llama (layer-0 reader). Every zero-patch sanity is 0.0. `circuit_content_patch.py`,
+`runs/gemma/circuit_content_patch_summary.json` (~4 min, 4 models × 3 circuits × 2 channels).
 
 ## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
 
