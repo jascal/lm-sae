@@ -465,8 +465,51 @@ the MLP-intact bridge (#23), where circuit heads reconstruct with MLPs on. (b) S
 the *fewest* incoming head→MLP edges (a depth confound), so the DAG edges give **structure**, importance comes
 from the recompile — the same lesson as the bridge's "ΔTV ≠ KL-importance." (c) The full per-neuron catalog +
 low-rank/named-idiom analysis lives in `mlp_catalog.py`; M3 reuses its read→write naming for the load-bearing
-layers only. (d) V-composition and MLP→MLP dynamic gating remain future work.
+layers only. (d) MLP→MLP dynamic gating remains future work (V-composition is now done — next section).
 `runs/disassembly/mlp_ops_summary.json` (re-run to regenerate the figure).
+
+## V-composition — the value pathway (completes the DAG edge types) — first result (GPT-2)
+
+M2 scored K- and Q-composition and gated them with **ΔTV** — the change in the reader's attention *pattern*. By
+construction ΔTV cannot see **V-composition** (Elhage's third edge type): head A's output feeding head B's
+**value** changes *what B moves*, not *where B attends*. V-composition is how heads chain OV circuits ("virtual
+heads" / composed copies), so the DAG was incomplete. `vcomposition.py` adds it with the matching readout —
+static `comp_V(A→B) = ‖OV_A·W_V^B‖/(‖OV_A‖‖W_V^B‖)` (mean-write removed) + a dynamic **ΔV-out**: remove A from
+B's *value*, recompute B's **output contribution** (attention fixed), measure the relative change in B's residual
+write; reader-matched null. GPT-2, faithful patches (recompute vs model 9.85e-7).
+
+- **A clean K/V double dissociation — V is a separable pathway, not a relabelled K-edge.** The strongest V-edges
+  change B's **output** (median ΔV-out **0.214**) but barely its **attention** (ΔTV **0.020**); the strongest
+  K-edges are the mirror (ΔTV **0.142**, ΔV-out 0.067). The scatter is L-shaped: V-edges top-left
+  (output-moving), K-edges bottom-right (attention-shaping), null in between (figure
+  `runs/disassembly/vcomposition.png`). This is exactly the pathway M2's ΔTV readout was blind to. (ΔV-out is
+  normalized to B's *own* output norm, so the median 0.214 means removing one writer shifts ~21% of B's residual
+  write — a large single-edge effect for the value pathway, ~3× the K-edges' incidental 0.067.)
+- **Static V-composition predicts dynamic ΔV-out (ρ +0.36)** — the value pathway is weight-legible like K/Q.
+- **The top V-edges are composed-OV "virtual heads," and they're interpretable** — induction heads (layer 5) feed
+  *layer-6 values*: the induction-moved content is re-read as a value by a layer-6 head and moved onward (a 2-hop
+  OV circuit). For `5.9→6.7`, ΔV-out 1.32 means removing 5.9 changes 6.7's output by >100% of its norm — 5.9
+  *dominates* 6.7's value.
+
+  | V-edge (A→B) | static V-comp | ΔV-out | ΔTV | reading |
+  |---|---|---|---|---|
+  | `5.9→6.7` | 0.070 | **1.32** | 0.043 | induction 5.9 → 6.7's value (composed OV) |
+  | `5.5→6.7` | 0.074 | 0.87 | 0.032 | induction 5.5 → 6.7's value |
+  | `5.5→6.6` | 0.072 | 0.72 | 0.046 | induction 5.5 → 6.6's value |
+  | `5.9→6.0` | 0.077 | 0.60 | 0.033 | induction 5.9 → 6.0's value |
+  | `5.9→7.3` | 0.076 | 0.54 | 0.039 | induction 5.9 → 7.3's value |
+  | `3.0→4.3` | 0.081 | 0.44 | 0.026 | early duplicate 3.0 → 4.3's value |
+- **V-composition is weaker/secondary to attention routing** — mean V/K composition 0.80, and K has the stronger
+  top edges (0.114 vs 0.081), consistent with Elhage's finding that GPT-2 composition is mostly Q/K. The value
+  pathway is real but the minority edge type.
+
+**Scope (honest).** (a) The readout is the change in B's *direct output* (value patch, attention fixed) — the
+value analog of ΔTV, not a task-level loss metric. (b) The `spearman_staticK_vs_dTV` reported here (−0.17) is
+**range-restricted** (computed over only the top-static-K slice, a narrow static range) and is *not* the
+canonical K static→dynamic agreement — that is M2's +0.37 over a broad top+random edge set; here the K-edges are
+only the dissociation control. (c) Q-value (Q-composition's value analog) and MLP→head V-edges are natural
+extensions. The DAG now carries **K, Q and V** head-edge types. `runs/disassembly/vcomposition_summary.json`
+(~75 s on CPU; re-run to regenerate the figure).
 
 ## Ceiling test (milestone 4) — first result (v2, tiny GPT)
 
