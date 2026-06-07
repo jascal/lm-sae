@@ -1073,6 +1073,37 @@ V-composition *cross-model* (no published head-sets off GPT-2); per-edge path-pa
 the RoPE models. `circuit_atlas.py`, `circuit_catalog_doc.py`; `docs/circuits/`;
 `runs/disassembly/circuits/atlas_summary.json`.
 
+## ResidualVM debugger — a programmatic discovery engine (the catalog's growth tool)
+
+The catalogs above are *surveys of what we named*; the debugger is the **tool that finds what we have not**. It is
+**programmatically steppable** (not a human REPL — it returns structured data; a UI could sit on top): it
+instruments the forward pass as a steppable interpreter and exposes `trace` (per-head/MLP residual writes),
+`intervene` (mean-ablate any heads/MLPs → next-token KL), `logit_lens_step` (per-layer KL-to-final: *where* the
+answer is decided), **`attribution_sweep`** (ablate **every** head + **every** MLP one-at-a-time, rank by causal
+effect on a behaviour, and **flag the strong components the catalog has NOT named** = candidate new operators), and
+**`edge_probe`** (path-patch each upstream component out of a reader → candidate circuit edges). `main()` *drives*
+it; it is the engine for being exhaustive, not a place to hand-poke.
+
+Run on GPT-2 across three behaviours (induction / IOI / generic LM), it immediately produced **new** catalog work:
+- **MLP0 is the single most load-bearing component for *every* behaviour** (induction ΔNLL **+7.8**, IOI **+7.5**,
+  generic +1.8) — far above any attention head. The discovery engine's first finding is that **the biggest
+  operator in the model is an MLP we have not catalogued** (the L0 detokenizer): a direct pointer to the
+  MLP/COMPUTE gap (the attention atlas is only half the instruction set).
+- **Candidate UNNAMED operators**, by behaviour: induction → **7.6** (+0.36, *more* load-bearing than the
+  prev-token head 4.11) and 2.11/8.1/8.5; IOI → **5.9** (+1.00), 8.3, 0.10, 1.3; generic → none above +0.05 (it is
+  distributed + MLP-carried — corroborates the operator atlas's "no named attention op serves generic LM").
+- **A discovered circuit**: edge-probing the discovered op **7.6** shows it is fed by the induction heads (5.1
+  ΔNLL +1.26, 6.9) + the prev-token head (4.11 +0.40) + the candidate writers **2.11 / 5.9** — i.e. 7.6 is a
+  *downstream induction-consumer* (a late induction-output mover) the literature head-set omits. A new circuit
+  node + its in-edges, found mechanically.
+- **logit-lens step**: induction next-token KL-to-final falls 5.8 → 0.3 by **layer L6** (decided exactly where the
+  induction heads fire), 0.1 by L9.
+
+So the debugger closes the loop the goal asks for: it *generates* candidate operators (7.6, 5.9, 8.3, MLP0) and
+candidate circuit edges (2.11→7.6, 5.9→7.6) that are not yet in the catalog — the next things to dossier.
+`residual_vm_debugger.py`, `runs/disassembly/residual_vm_debugger_summary.json` (GPT-2; intervention harness is
+arch-generic, the QK edge-probe is GPT-2-specific here).
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
