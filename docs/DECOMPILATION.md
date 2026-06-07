@@ -262,12 +262,13 @@ matched 2σ null; **specificity = ΔTV − matched null**.
   **not** validated circuits — behavioral labeling (and targeted single-edge path-patching, as for induction)
   is the obvious follow-up; the full ranked list is in the summary JSON's `novel_live_edges`.
 
-**Feeds the recompile harness (milestones 1/4).** The live edges this extractor confirms are exactly the
-*keepable ops* the ResidualVM reconstruction-coverage interpreter (`residual_vm.py`) should retain: M1 selects
-heads by marginal ablation importance, but the DAG supplies the **structured op-set** (which writer→reader
-wires carry the computation), so a DAG-guided keep-set is the natural upgrade to M1's flat head-budget — and
-the recompile-KL then verifies the extracted sub-DAG *executes*. Completing the DAG with V-composition + MLP
-nodes (milestone 3) is what makes that op-set whole.
+**Feeds the recompile harness (milestones 1/4) — now tested, see the next section.** The live edges this
+extractor confirms are exactly the *keepable ops* the ResidualVM reconstruction-coverage interpreter
+(`residual_vm.py`) should retain: M1 selects heads by marginal ablation importance, but the DAG supplies the
+**structured op-set** (which writer→reader wires carry the computation), so a DAG-guided keep-set is the
+natural upgrade to M1's flat head-budget — and the recompile-KL then verifies the extracted sub-DAG *executes*.
+The M1↔M2 bridge below confirms this. Completing the DAG with V-composition + MLP nodes (milestone 3) is what
+makes that op-set whole.
 
 **Scope (honest).** (a) The dynamic gate runs on natural text, so the IOI Q-edges are confirmed by generic
 attention reshaping (ΔTV), not the IOI-task logit-difference — that task-specific causal validation already
@@ -278,6 +279,60 @@ moving attention) needs a different readout, not done here. (c) MLP nodes are ab
 one for the path-patch gate); the full run is **~70 s wall-clock and ~5 GB RAM on CPU** (no GPU), so it scales
 to any HF model the box can hold a forward pass of. `runs/disassembly/composition_dag_summary.json` (re-run the
 script to regenerate the figure).
+
+## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
+
+`dag_recompile.py` closes the loop between the two milestones: it feeds the M2-extracted live sub-DAG into M1's
+reconstruction-coverage harness (same mean-ablation metric, `coverage = 1 − KL(host‖keep)/KL(host‖all-ablated)`)
+and asks whether the **weight-cheap** DAG (weights + 2 forward passes) picks the keep-set as well as M1's
+**expensive** marginal-ablation importance ranking (one forward pass per head). GPT-2, Shakespeare, floor KL
+1.82; ~95 s on CPU (most of it the 144-head importance ranking the DAG sidesteps).
+
+- **The path-patch-confirmed circuit IS the recompile keep-set — and it beats the greedy importance set at equal
+  size.** The 12-head induction+IOI live sub-DAG reconstructs **+0.333** coverage vs **+0.230** for the 12
+  individually-most-important heads (greedy top-B) and **+0.038** for random-12 — i.e. **145% of the
+  greedy-optimal** at equal budget, +0.295 over random. It *beats* greedy importance because marginal ablation
+  is myopic (ranks heads by their *individual* effect) while the DAG selects a *coordinated interacting circuit*
+  — exactly the regime M1 flagged ("heads interact; the single most-important head in isolation is net-negative").
+  So the auto-extracted circuit is a coverage-efficient keep-set **without** the per-head ablation sweep.
+- **But raw connectivity is NOT a generic output-importance proxy** — the honest dissociation. Ranking *all*
+  heads by DAG-connectivity (summed incident live-edge specificity) only weakly tracks marginal importance:
+  Spearman = +0.24 over all 144 heads but **+0.02 among the heads the DAG actually gated**. And the larger
+  keep-set that adds the new write-hubs (`dag_all_live`, 30 heads) reaches only **67%** of the greedy-optimal
+  coverage (+0.361 vs +0.541). Reason: **ΔTV measures attention-*reshaping*, not output-*importance*** — the new
+  early-layer write-hubs (0.9→2.x, 1.8→{9.3,10.5,10.9}) strongly shape downstream attention yet are
+  output-redundant (mean-ablating them barely moves next-token KL). *Mechanistic hypothesis:* this is the
+  program-wide redundancy seen throughout the stack (substrate/core redundancy in the tower; the redundant
+  prev-token *population* feeding a bottleneck inductor in rung-3) — an early write-hub broadcasts positional /
+  duplicate-token signal along *many parallel paths*, so removing any one (or even the hub's whole output, mean-
+  ablated) leaves the downstream readers able to recover it elsewhere; high attention-influence, low *marginal*
+  output-importance.
+
+  As an *ordering*, DAG-connectivity still beats random at every budget (it front-loads the circuit heads) but
+  lags the marginal-importance ordering at small budgets — consistent with "connectivity finds the circuit, not
+  the importance rank":
+
+  | budget B | top-importance | DAG-connectivity | random |
+  |---|---|---|---|
+  | 4 | +0.153 | +0.054 | +0.025 |
+  | 12 | +0.230 | +0.186 | +0.082 |
+  | 24 | +0.391 | +0.416 | +0.170 |
+  | 48 | +0.610 | +0.636 | +0.408 |
+  | 64 | +0.715 | +0.690 | +0.426 |
+
+**Takeaway.** The bridge confirms the program's central use of the extractor: a *path-patch-confirmed* sub-DAG
+is the structured op-set the recompiler should keep (rivals/beats greedy importance, ≫ random, no ablation
+sweep) — but the gate's ΔTV is a *circuit-liveness* signal, not a drop-in importance score, so the keep-set
+must come from the confirmed circuit, not from thresholding raw connectivity. This is the M1→M4 hand-off: the
+DAG keep-set is what the feature-basis recompilation (milestone 4) should express in a clean basis.
+
+*Next:* (a) feed *validated* new edges (single-edge path-patch of the write-hub candidates from M2) into this
+keep-set so the recompiler grows beyond the two textbook circuits; (b) make the gate jointly attention-liveness
+*and* output-importance (e.g. an attribution / logit-effect term alongside ΔTV) so connectivity becomes a true
+keep-set score; (c) re-run on an oracle-supervised host (#19/#20) — a more legible host should yield a cleaner
+live DAG and a higher-coverage keep-set. The script takes `--dag-summary` so any of these DAGs (other corpora,
+supervised models) drops straight in. `runs/disassembly/dag_recompile_summary.json` (re-run to regenerate the
+figure).
 
 ## Ceiling test (milestone 4) — first result (v2, tiny GPT)
 
