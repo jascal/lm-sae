@@ -1,0 +1,627 @@
+---
+title: Llama-3.2-1B disassembly
+---
+
+# Llama-3.2-1B — per-head disassembly
+
+**RoPE / GQA / RMSNorm.** addr=where-to-read (attn bucket)  WRITE=copy/transform (OV diag)  bind=top QK token binding  idioms=behavioral role  QK/OV[...]=SAE-feature opcode (SAE layer only)
+
+Operator roles referenced (hyperlinked inline below): [duplicate](../operators/duplicate.md) · [induction](../operators/induction.md) · [prevtok](../operators/prevtok.md). Full raw listing: [`llama32_1b_disassembly.txt`](https://github.com/jascal/lm-sae/blob/main/docs/listings/llama32_1b_disassembly.txt). See the [operator catalog](../operators/README.md) for what each role means.
+
+_First-order, single-component reads (+ the induction idiom); provisional. Each line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role._
+
+- `unsloth/Llama-3.2-1B DISASSEMBLY  (16 layers x 32 heads + gated MLP; GQA n_kv=8, RoPE, RMSNorm)`
+- `corpus=wikitext  tokens=10000  token-operands=40  SAE-feature opcode: n/a (token-operand basis only)`
+- `attention budget (mean per-head mass): self 8%  sink 55%  prev 6%  structural 9%  local 9%  long_range 12%`
+- `plumbing 88% | content (long-range) 12%`
+- `causally load-bearing (induction-NLL ablation): 0.2, 1.20, 2.26, 5.8, 5.10, 8.26, 9.28, 10.23, 12.13, 13.20`
+
+### Layer 0
+
+- `0.0  addr=local       WRITE=transform bind 'unk'->'y' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.1  addr=prev        WRITE=transform bind '_the'->'_at' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.2  addr=prev        WRITE=transform bind '_had'->'_was' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.3  addr=structural  WRITE=transform bind 'ria'->'_at' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.4  addr=local       WRITE=transform bind '_by'->'_Little'`
+- `0.5  addr=long_range  WRITE=transform bind '_.'->'_The'`
+- `0.6  addr=local       WRITE=transform bind 'y'->'_Little' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.7  addr=local       WRITE=transform bind '_:'->'@' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.8  addr=long_range  WRITE=transform bind '_Ċ_Ċ'->'>'`
+- `0.9  addr=long_range  WRITE=transform bind '_@'->'@' idioms` [`duplicate`](../operators/duplicate.md)
+- `0.10  addr=long_range  WRITE=transform bind 'ria'->'_:' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.11  addr=long_range  WRITE=transform bind '_<'->'>'`
+- `0.12  addr=long_range  WRITE=transform bind '_of'->'_Chronicles'`
+- `0.13  addr=long_range  WRITE=transform bind '_of'->'_the'`
+- `0.14  addr=long_range  WRITE=transform bind '_,'->'_.' idioms` [`duplicate`](../operators/duplicate.md)
+- `0.15  addr=long_range  WRITE=transform bind "_'"->'_,'`
+- `0.16  addr=long_range  WRITE=transform bind '-'->'_'`
+- `0.17  addr=local       WRITE=transform bind '_@'->'_'`
+- `0.18  addr=long_range  WRITE=transform bind '_.'->'_Ċ'`
+- `0.19  addr=long_range  WRITE=transform bind '_.'->'_Ċ'`
+- `0.20  addr=long_range  WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `0.21  addr=long_range  WRITE=transform bind '_a'->'_the'`
+- `0.22  addr=long_range  WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `0.23  addr=long_range  WRITE=transform bind 'ria'->'_,'`
+- `0.24  addr=prev        WRITE=transform bind '_to'->'_from' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.25  addr=long_range  WRITE=transform bind 'y'->'_Rock'`
+- `0.26  addr=local       WRITE=transform bind '_.'->'_from' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.27  addr=long_range  WRITE=transform bind '_,'->'_had'`
+- `0.28  addr=long_range  WRITE=copy      bind '-'->'ria'`
+- `0.29  addr=structural  WRITE=transform bind '_Ċ_Ċ'->'_'`
+- `0.30  addr=structural  WRITE=transform bind '_were'->'_that'`
+- `0.31  addr=structural  WRITE=transform bind '_were'->'ria'`
+- `0.MLP.n867   reads {s,y,_Valk} -> writes {s,y,-}`
+- `0.MLP.n3482  reads {_.,_,,_:} -> writes {_.,_,_,}`
+- `0.MLP.n6634  reads {s,@,ria} -> writes {s,_to,@}`
+
+### Layer 1
+
+- `1.0  addr=structural  WRITE=transform bind '_'->'_Ċ'`
+- `1.1  addr=structural  WRITE=transform bind '_'->'_,' idioms` [`prev-token`](../operators/prevtok.md)
+- `1.2  addr=structural  WRITE=transform bind '_'->'_Ċ'`
+- `1.3  addr=structural  WRITE=transform bind '_'->'_='`
+- `1.4  addr=structural  WRITE=transform bind '_to'->'_from'`
+- `1.5  addr=structural  WRITE=copy      bind '_'->'_as'`
+- `1.6  addr=structural  WRITE=transform bind '_Ċ'->'_.'`
+- `1.7  addr=structural  WRITE=transform bind '_that'->'_Rock'`
+- `1.8  addr=structural  WRITE=transform bind 'ria'->'_'`
+- `1.9  addr=structural  WRITE=transform bind '_'->"_'"`
+- `1.10  addr=structural  WRITE=transform bind '_'->'_the'`
+- `1.11  addr=structural  WRITE=transform bind '_'->'_Little'`
+- `1.12  addr=structural  WRITE=transform bind '_'->'_,'`
+- `1.13  addr=structural  WRITE=transform bind '_'->'_the'`
+- `1.14  addr=structural  WRITE=transform bind '_'->'_,' idioms` [`duplicate`](../operators/duplicate.md)
+- `1.15  addr=structural  WRITE=transform bind '_'->'_,'`
+- `1.16  addr=structural  WRITE=transform bind '_'->'_a' idioms` [`prev-token`](../operators/prevtok.md)
+- `1.17  addr=structural  WRITE=transform bind '_'->'_,'`
+- `1.18  addr=structural  WRITE=transform bind '_'->'_a'`
+- `1.19  addr=structural  WRITE=transform bind '_Ċ'->'_Ċ_Ċ' idioms` [`duplicate`](../operators/duplicate.md)
+- `1.20  addr=prev        WRITE=transform bind '_'->'ria' idioms` [`prev-token`](../operators/prevtok.md)
+- `1.21  addr=structural  WRITE=transform bind "_'"->'_"' idioms` [`duplicate`](../operators/duplicate.md)
+- `1.22  addr=structural  WRITE=transform bind '_were'->'_was' idioms` [`duplicate`](../operators/duplicate.md)
+- `1.23  addr=structural  WRITE=transform bind '_was'->'_were' idioms` [`duplicate`](../operators/duplicate.md)
+- `1.24  addr=structural  WRITE=transform bind '_'->'_the'`
+- `1.25  addr=structural  WRITE=transform bind '_was'->'_were'`
+- `1.26  addr=structural  WRITE=copy      bind '_'->'_the'`
+- `1.27  addr=structural  WRITE=copy      bind '_'->'_the'`
+- `1.28  addr=long_range  WRITE=transform bind '_'->'_='`
+- `1.29  addr=structural  WRITE=transform bind '_'->'_,'`
+- `1.30  addr=structural  WRITE=copy      bind '_Little'->'_the'`
+- `1.31  addr=structural  WRITE=transform bind '_'->'_the'`
+- `1.MLP.n7281  reads {_Ċ,_Ċ_Ċ,_=} -> writes {_,_the,_of}`
+- `1.MLP.n2937  reads {_,_The,_Ċ} -> writes {_,_the,_of}`
+- `1.MLP.n7272  reads {_to,_in,_.} -> writes {_,_the,_of}`
+
+### Layer 2
+
+- `2.0  addr=sink        WRITE=transform bind '_was'->'_.'`
+- `2.1  addr=sink        WRITE=transform bind '_,'->'_.'`
+- `2.2  addr=sink        WRITE=transform bind '_was'->'_that'`
+- `2.3  addr=sink        WRITE=transform bind '>'->'_='`
+- `2.4  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.5  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.6  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.7  addr=sink        WRITE=copy      bind '_had'->'_:'`
+- `2.8  addr=sink        WRITE=transform bind '_@'->'_at'`
+- `2.9  addr=sink        WRITE=copy      bind '_was'->'_:'`
+- `2.10  addr=sink        WRITE=transform bind '_of'->'_was'`
+- `2.11  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.12  addr=sink        WRITE=transform bind '_was'->'_The'`
+- `2.13  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.14  addr=sink        WRITE=transform bind '_<'->'>' idioms` [`induction`](../operators/induction.md)
+- `2.15  addr=sink        WRITE=transform bind '>'->'unk'`
+- `2.16  addr=sink        WRITE=copy      bind '_of'->'_had'`
+- `2.17  addr=sink        WRITE=transform bind '_was'->'_.'`
+- `2.18  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.19  addr=sink        WRITE=transform bind '_@'->'_Ċ_Ċ'`
+- `2.20  addr=sink        WRITE=transform bind '_@'->'-' idioms` [`induction`](../operators/induction.md)
+- `2.21  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.22  addr=sink        WRITE=copy      bind '_had'->'_.'`
+- `2.23  addr=sink        WRITE=transform bind '_had'->'_.'`
+- `2.24  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.25  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.26  addr=sink        WRITE=transform bind '_Valk'->'ria' idioms` [`induction`](../operators/induction.md)
+- `2.27  addr=sink        WRITE=transform bind '_Valk'->'ria' idioms` [`induction`](../operators/induction.md)
+- `2.28  addr=sink        WRITE=transform bind '_of'->'_had'`
+- `2.29  addr=sink        WRITE=transform bind '_to'->'_from' idioms` [`duplicate`](../operators/duplicate.md)
+- `2.30  addr=sink        WRITE=transform bind '_had'->'_the'`
+- `2.31  addr=sink        WRITE=transform bind '_had'->'_:'`
+- `2.MLP.n4434  reads {_,,_.,_<} -> writes {_,,_,_for}`
+- `2.MLP.n4675  reads {_,,_and,_} -> writes {_,,>,_"}`
+- `2.MLP.n8163  reads {_Ċ,_Ċ_Ċ,_"} -> writes {_Ċ,_Ċ_Ċ,_.}`
+
+### Layer 3
+
+- `3.0  addr=sink        WRITE=transform bind '_was'->'_of'`
+- `3.1  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `3.2  addr=sink        WRITE=transform bind '_Rock'->'_had'`
+- `3.3  addr=sink        WRITE=transform bind '_,'->'_The'`
+- `3.4  addr=sink        WRITE=transform bind 's'->'_a'`
+- `3.5  addr=sink        WRITE=transform bind '_Rock'->'_a'`
+- `3.6  addr=sink        WRITE=transform bind '_,'->'_that'`
+- `3.7  addr=sink        WRITE=transform bind 's'->'_a'`
+- `3.8  addr=sink        WRITE=transform bind '_was'->'y'`
+- `3.9  addr=sink        WRITE=transform bind '_,'->'_that'`
+- `3.10  addr=sink        WRITE=transform bind '_Rock'->'_was'`
+- `3.11  addr=sink        WRITE=copy      bind '_,'->'_The'`
+- `3.12  addr=sink        WRITE=transform bind '_@'->'_of'`
+- `3.13  addr=sink        WRITE=transform bind '_was'->'_of'`
+- `3.14  addr=sink        WRITE=transform bind '_Valk'->'_had'`
+- `3.15  addr=sink        WRITE=copy      bind '_Rock'->'_had'`
+- `3.16  addr=sink        WRITE=transform bind '_at'->'_@'`
+- `3.17  addr=sink        WRITE=transform bind '_by'->'_' idioms` [`prev-token`](../operators/prevtok.md)
+- `3.18  addr=sink        WRITE=copy      bind '>'->'_of' idioms` [`prev-token`](../operators/prevtok.md)
+- `3.19  addr=sink        WRITE=transform bind '_that'->'_a'`
+- `3.20  addr=sink        WRITE=copy      bind '_,'->'_:'`
+- `3.21  addr=sink        WRITE=copy      bind '_Chronicles'->'ria'`
+- `3.22  addr=sink        WRITE=transform bind '_@'->'_='`
+- `3.23  addr=sink        WRITE=transform bind '_,'->'_.'`
+- `3.24  addr=sink        WRITE=transform bind '_,'->'_that'`
+- `3.25  addr=sink        WRITE=transform bind '_,'->'_:'`
+- `3.26  addr=sink        WRITE=copy      bind '_Rock'->'_had'`
+- `3.27  addr=sink        WRITE=transform bind '_to'->'_that'`
+- `3.28  addr=sink        WRITE=copy      bind '_was'->'_of'`
+- `3.29  addr=sink        WRITE=transform bind '_of'->'_were'`
+- `3.30  addr=sink        WRITE=copy      bind '_,'->'_of'`
+- `3.31  addr=sink        WRITE=transform bind '_to'->'_of'`
+- `3.MLP.n8145  reads {_,,_for,_in} -> writes {_,,s,@}`
+- `3.MLP.n7828  reads {_Ċ,_Ċ_Ċ,_,} -> writes {_Ċ,_Ċ_Ċ,_Chronicles}`
+- `3.MLP.n6006  reads {_,,_Ċ,_<} -> writes {_",_,,_<}`
+
+### Layer 4
+
+- `4.0  addr=sink        WRITE=transform bind '>'->'-'`
+- `4.1  addr=sink        WRITE=transform bind '_of'->'_a'`
+- `4.2  addr=sink        WRITE=copy      bind 'y'->'_had'`
+- `4.3  addr=sink        WRITE=transform bind '_.'->'_Ċ_Ċ'`
+- `4.4  addr=sink        WRITE=copy      bind '_@'->'_'`
+- `4.5  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `4.6  addr=sink        WRITE=copy      bind '_@'->'_of'`
+- `4.7  addr=sink        WRITE=transform bind '_@'->'_'`
+- `4.8  addr=long_range  WRITE=transform bind '_of'->'_had'`
+- `4.9  addr=sink        WRITE=copy      bind '_Rock'->'ria'`
+- `4.10  addr=sink        WRITE=transform bind '_,'->'_that'`
+- `4.11  addr=sink        WRITE=transform bind '_Chronicles'->'ria'`
+- `4.12  addr=sink        WRITE=transform bind '@'->'_Ċ_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
+- `4.13  addr=sink        WRITE=transform bind '_,'->'y' idioms` [`prev-token`](../operators/prevtok.md)
+- `4.14  addr=sink        WRITE=copy      bind '_Ċ'->'_as'`
+- `4.15  addr=sink        WRITE=transform bind '>'->'_='`
+- `4.16  addr=sink        WRITE=transform bind '_Ċ_Ċ'->'_Ċ' idioms` [`duplicate`](../operators/duplicate.md)
+- `4.17  addr=sink        WRITE=transform bind '_The'->'_,'`
+- `4.18  addr=sink        WRITE=transform bind '_Ċ'->'_.'`
+- `4.19  addr=sink        WRITE=transform bind '_Ċ'->'_.' idioms` [`duplicate`](../operators/duplicate.md)
+- `4.20  addr=sink        WRITE=transform bind '_of'->'_game'`
+- `4.21  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `4.22  addr=sink        WRITE=transform bind "_'"->'_by'`
+- `4.23  addr=sink        WRITE=transform bind '_Chronicles'->'ria'`
+- `4.24  addr=sink        WRITE=copy      bind '_was'->'_that'`
+- `4.25  addr=sink        WRITE=transform bind '_,'->'_from'`
+- `4.26  addr=sink        WRITE=transform bind '_,'->'_.'`
+- `4.27  addr=sink        WRITE=transform bind '_Ċ_Ċ'->'_Ċ'`
+- `4.28  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `4.29  addr=sink        WRITE=copy      bind '_<'->'>'`
+- `4.30  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `4.31  addr=sink        WRITE=transform bind '_,'->'_that'`
+- `4.MLP.n3844  reads {_,,_Ċ,_.} -> writes {_,,_.,_Ċ}`
+- `4.MLP.n3345  reads {_,,_and,_"} -> writes {_,,_for,_<}`
+- `4.MLP.n7820  reads {_for,_<,_in} -> writes {_for,_to,_at}`
+
+### Layer 5
+
+- `5.0  addr=sink        WRITE=transform bind '_@'->'_='`
+- `5.1  addr=sink        WRITE=transform bind '_Rock'->'_had'`
+- `5.2  addr=sink        WRITE=transform bind '_@'->'_the'`
+- `5.3  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `5.4  addr=sink        WRITE=transform bind '_with'->'_from' idioms` [`duplicate`](../operators/duplicate.md)
+- `5.5  addr=sink        WRITE=copy      bind '_had'->'_of'`
+- `5.6  addr=sink        WRITE=transform bind '_Rock'->'ria'`
+- `5.7  addr=sink        WRITE=transform bind '_Rock'->'ria'`
+- `5.8  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `5.9  addr=sink        WRITE=transform bind '_Little'->'_Rock'`
+- `5.10  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `5.11  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `5.12  addr=sink        WRITE=transform bind '_Ċ_Ċ'->'_Ċ'`
+- `5.13  addr=sink        WRITE=transform bind '_@'->'_'`
+- `5.14  addr=sink        WRITE=copy      bind '>'->'_<'`
+- `5.15  addr=sink        WRITE=transform bind '_Ċ'->'_.'`
+- `5.16  addr=sink        WRITE=copy      bind '_had'->'_The'`
+- `5.17  addr=long_range  WRITE=transform bind '_@'->'@'`
+- `5.18  addr=sink        WRITE=transform bind '_of'->'_to'`
+- `5.19  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `5.20  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `5.21  addr=sink        WRITE=transform bind '_of'->'_was'`
+- `5.22  addr=sink        WRITE=transform bind '_@'->'_=' idioms` [`duplicate`](../operators/duplicate.md)
+- `5.23  addr=sink        WRITE=transform bind '_@'->'_='`
+- `5.24  addr=sink        WRITE=transform bind '_@'->'@'`
+- `5.25  addr=sink        WRITE=transform bind '_was'->'_.'`
+- `5.26  addr=sink        WRITE=transform bind '_The'->'_that'`
+- `5.27  addr=sink        WRITE=transform bind '_@'->"_'"`
+- `5.28  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `5.29  addr=sink        WRITE=transform bind '_@'->'_<'`
+- `5.30  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `5.31  addr=sink        WRITE=copy      bind '_Ċ'->'_.'`
+- `5.MLP.n1516  reads {_,,_Ċ,_"} -> writes {_Ċ,_,,_"}`
+- `5.MLP.n6493  reads {_,,_Ċ,_.} -> writes {_,,_Ċ_Ċ,unk}`
+- `5.MLP.n6111  reads {_,,_",_Ċ} -> writes {_,,_.,_Ċ}`
+
+### Layer 6
+
+- `6.0  addr=sink        WRITE=copy      bind '>'->'y' idioms` [`prev-token`](../operators/prevtok.md)
+- `6.1  addr=sink        WRITE=transform bind '_Ċ_Ċ'->'_Ċ'`
+- `6.2  addr=sink        WRITE=transform bind '_.'->'_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
+- `6.3  addr=sink        WRITE=transform bind '_.'->'_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
+- `6.4  addr=sink        WRITE=transform bind '_@'->'@'`
+- `6.5  addr=sink        WRITE=transform bind '_,'->'_.'`
+- `6.6  addr=sink        WRITE=copy      bind '_Ċ'->'_.'`
+- `6.7  addr=sink        WRITE=copy      bind '_@'->'_<'`
+- `6.8  addr=sink        WRITE=transform bind '_"'->'@' idioms` [`duplicate`](../operators/duplicate.md)
+- `6.9  addr=sink        WRITE=transform bind '_"'->'@'`
+- `6.10  addr=sink        WRITE=transform bind '_at'->'_in'`
+- `6.11  addr=sink        WRITE=transform bind '_"'->'@' idioms` [`duplicate`](../operators/duplicate.md)
+- `6.12  addr=sink        WRITE=transform bind '_@'->'_of'`
+- `6.13  addr=sink        WRITE=transform bind '_@'->'-'`
+- `6.14  addr=sink        WRITE=copy      bind '_Chronicles'->'ria'`
+- `6.15  addr=sink        WRITE=copy      bind '_@'->'_'`
+- `6.16  addr=sink        WRITE=transform bind '_Rock'->'ria'`
+- `6.17  addr=sink        WRITE=copy      bind '_Rock'->'_was'`
+- `6.18  addr=sink        WRITE=transform bind '_='->'_@'`
+- `6.19  addr=sink        WRITE=transform bind '_Chronicles'->'ria'`
+- `6.20  addr=sink        WRITE=transform bind '_with'->'_of'`
+- `6.21  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `6.22  addr=sink        WRITE=copy      bind '_Ċ'->'_.'`
+- `6.23  addr=sink        WRITE=transform bind '_Ċ'->'_.'`
+- `6.24  addr=sink        WRITE=copy      bind '_Chronicles'->'_had'`
+- `6.25  addr=sink        WRITE=transform bind '_@'->'_of'`
+- `6.26  addr=sink        WRITE=transform bind '_Chronicles'->'_had'`
+- `6.27  addr=sink        WRITE=transform bind '_of'->'_a'`
+- `6.28  addr=sink        WRITE=copy      bind '_of'->'_game'`
+- `6.29  addr=sink        WRITE=transform bind 's'->'_game'`
+- `6.30  addr=sink        WRITE=transform bind '_Chronicles'->'_game'`
+- `6.31  addr=sink        WRITE=copy      bind '_Chronicles'->'_game'`
+- `6.MLP.n1794  reads {_,,>,unk} -> writes {_,,_for,_<}`
+- `6.MLP.n8078  reads {_,,_",_Ċ} -> writes {_,,_",_<}`
+- `6.MLP.n8154  reads {_,,_.,_Ċ} -> writes {_,,_.,_Ċ}`
+
+### Layer 7
+
+- `7.0  addr=sink        WRITE=transform bind '_='->'_@'`
+- `7.1  addr=sink        WRITE=transform bind '_was'->'_that'`
+- `7.2  addr=sink        WRITE=transform bind '_to'->'_that'`
+- `7.3  addr=sink        WRITE=transform bind '_were'->'_that'`
+- `7.4  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `7.5  addr=sink        WRITE=copy      bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `7.6  addr=sink        WRITE=copy      bind '_@'->'_='`
+- `7.7  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `7.8  addr=sink        WRITE=copy      bind '_Chronicles'->'_had'`
+- `7.9  addr=sink        WRITE=copy      bind '_to'->'_that'`
+- `7.10  addr=sink        WRITE=transform bind '_a'->'_of'`
+- `7.11  addr=sink        WRITE=transform bind "_'"->'_was'`
+- `7.12  addr=sink        WRITE=copy      bind 'y'->'ria'`
+- `7.13  addr=sink        WRITE=transform bind 'y'->'_a'`
+- `7.14  addr=long_range  WRITE=transform bind '_@'->'-'`
+- `7.15  addr=sink        WRITE=transform bind 'y'->'_a'`
+- `7.16  addr=sink        WRITE=copy      bind 'ria'->'_the' idioms` [`prev-token`](../operators/prevtok.md)
+- `7.17  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `7.18  addr=sink        WRITE=transform bind '_@'->'-'`
+- `7.19  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `7.20  addr=sink        WRITE=copy      bind '_@'->'_the'`
+- `7.21  addr=sink        WRITE=copy      bind '_Little'->'_Rock'`
+- `7.22  addr=sink        WRITE=transform bind '_@'->'-'`
+- `7.23  addr=sink        WRITE=transform bind '_Little'->'_Rock'`
+- `7.24  addr=sink        WRITE=transform bind '_Chronicles'->'_game'`
+- `7.25  addr=sink        WRITE=transform bind '_@'->'-'`
+- `7.26  addr=sink        WRITE=transform bind '_Chronicles'->'_game'`
+- `7.27  addr=sink        WRITE=copy      bind '_of'->'_had'`
+- `7.28  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `7.29  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `7.30  addr=sink        WRITE=copy      bind '_='->'_Ċ'`
+- `7.31  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `7.MLP.n5531  reads {_,,_Chronicles,_"} -> writes {_,,_',_Ċ_Ċ}`
+- `7.MLP.n1888  reads {_,,_",_Ċ} -> writes {_,,_Ċ,_<}`
+- `7.MLP.n4683  reads {_for,_to,_in} -> writes {_for,_from,_The}`
+
+### Layer 8
+
+- `8.0  addr=sink        WRITE=transform bind 'y'->'ria'`
+- `8.1  addr=sink        WRITE=transform bind '_was'->'_at'`
+- `8.2  addr=sink        WRITE=transform bind 'y'->'_@'`
+- `8.3  addr=sink        WRITE=transform bind '_@'->'-'`
+- `8.4  addr=sink        WRITE=transform bind '_@'->'_='`
+- `8.5  addr=sink        WRITE=transform bind '_was'->'_Ċ_Ċ'`
+- `8.6  addr=sink        WRITE=transform bind '_='->'_Ċ'`
+- `8.7  addr=sink        WRITE=transform bind '_had'->'_of'`
+- `8.8  addr=sink        WRITE=copy      bind '_Ċ'->'_.'`
+- `8.9  addr=sink        WRITE=transform bind '_@'->'-' idioms` [`prev-token`](../operators/prevtok.md)
+- `8.10  addr=sink        WRITE=transform bind '_had'->'_the'`
+- `8.11  addr=sink        WRITE=transform bind '_.'->'_@' idioms` [`prev-token`](../operators/prevtok.md)
+- `8.12  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `8.13  addr=long_range  WRITE=transform bind '_Chronicles'->'_game'`
+- `8.14  addr=sink        WRITE=transform bind '_Rock'->'_Little'`
+- `8.15  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `8.16  addr=sink        WRITE=transform bind '_Ċ'->'_.'`
+- `8.17  addr=sink        WRITE=copy      bind '_Valk'->'y' idioms` [`duplicate`](../operators/duplicate.md)
+- `8.18  addr=sink        WRITE=transform bind '_.'->'_Ċ' idioms` [`duplicate`](../operators/duplicate.md)
+- `8.19  addr=sink        WRITE=copy      bind '_,'->'_Ċ' idioms` [`duplicate`](../operators/duplicate.md)
+- `8.20  addr=sink        WRITE=copy      bind '_@'->'-'`
+- `8.21  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `8.22  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `8.23  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `8.24  addr=sink        WRITE=copy      bind '_had'->'_that'`
+- `8.25  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `8.26  addr=prev        WRITE=transform bind '_was'->'_with' idioms` [`prev-token`](../operators/prevtok.md)
+- `8.27  addr=sink        WRITE=transform bind '_<'->'_='`
+- `8.28  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `8.29  addr=local       WRITE=transform bind '_Ċ_Ċ'->'_Ċ'`
+- `8.30  addr=sink        WRITE=transform bind '_@'->'_='`
+- `8.31  addr=sink        WRITE=transform bind '_Rock'->'_Little'`
+- `8.MLP.n3864  reads {_,,-,_<} -> writes {_,,_for,_in}`
+- `8.MLP.n1927  reads {_,,_at,_with} -> writes {_,,_Ċ,>}`
+- `8.MLP.n5282  reads {_for,_in,_at} -> writes {_for,_in,_to}`
+
+### Layer 9
+
+- `9.0  addr=long_range  WRITE=copy      bind '_='->'_<'`
+- `9.1  addr=sink        WRITE=transform bind '_.'->'_,'`
+- `9.2  addr=sink        WRITE=transform bind '_<'->'_='`
+- `9.3  addr=sink        WRITE=copy      bind '_@'->'_<'`
+- `9.4  addr=sink        WRITE=transform bind '_@'->'-'`
+- `9.5  addr=sink        WRITE=copy      bind 's'->'_game'`
+- `9.6  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `9.7  addr=sink        WRITE=transform bind '_='->'_@'`
+- `9.8  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `9.9  addr=sink        WRITE=transform bind '_<'->'-'`
+- `9.10  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `9.11  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `9.12  addr=self        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `9.13  addr=structural  WRITE=transform bind '_<'->'unk'`
+- `9.14  addr=sink        WRITE=transform bind '_Ċ'->'_.'`
+- `9.15  addr=sink        WRITE=transform bind '_<'->'_='`
+- `9.16  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `9.17  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `9.18  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `9.19  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `9.20  addr=sink        WRITE=copy      bind '_Ċ_Ċ'->'_game'`
+- `9.21  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `9.22  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `9.23  addr=sink        WRITE=copy      bind '_Little'->'_Rock'`
+- `9.24  addr=sink        WRITE=transform bind '_@'->'unk'`
+- `9.25  addr=sink        WRITE=transform bind 'unk'->'_<'`
+- `9.26  addr=local       WRITE=transform bind '_Ċ_Ċ'->'_='`
+- `9.27  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `9.28  addr=sink        WRITE=transform bind '_The'->'_,' idioms` [`prev-token`](../operators/prevtok.md)
+- `9.29  addr=sink        WRITE=transform bind 'unk'->'_'`
+- `9.30  addr=sink        WRITE=copy      bind '_were'->'_as'`
+- `9.31  addr=sink        WRITE=transform bind '_@'->'_<'`
+- `9.MLP.n1545  reads {_for,_.,_at} -> writes {_for,_in,unk}`
+- `9.MLP.n3611  reads {_,,_",_Ċ} -> writes {_,,_",_Ċ}`
+- `9.MLP.n150   reads {_",_,,_'} -> writes {_",_,,_'}`
+
+### Layer 10
+
+- `10.0  addr=sink        WRITE=transform bind '_Ċ_Ċ'->'_Ċ'`
+- `10.1  addr=sink        WRITE=transform bind '_Little'->'_Rock'`
+- `10.2  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `10.3  addr=sink        WRITE=copy      bind '_.'->'_,'`
+- `10.4  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `10.5  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `10.6  addr=sink        WRITE=transform bind '_.'->'unk'`
+- `10.7  addr=sink        WRITE=copy      bind '_.'->'_Ċ'`
+- `10.8  addr=sink        WRITE=copy      bind '_.'->'_Ċ'`
+- `10.9  addr=sink        WRITE=transform bind '_Chronicles'->'_game'`
+- `10.10  addr=sink        WRITE=transform bind '_@'->'-'`
+- `10.11  addr=sink        WRITE=transform bind '_had'->'_from'`
+- `10.12  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `10.13  addr=sink        WRITE=copy      bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `10.14  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `10.15  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `10.16  addr=sink        WRITE=transform bind '_.'->'_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
+- `10.17  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `10.18  addr=sink        WRITE=transform bind '_@'->'-'`
+- `10.19  addr=sink        WRITE=transform bind '_,'->'_.'`
+- `10.20  addr=sink        WRITE=transform bind 'unk'->'>'`
+- `10.21  addr=sink        WRITE=transform bind '_Ċ'->'_The' idioms` [`induction`](../operators/induction.md)
+- `10.22  addr=sink        WRITE=transform bind '-'->'@' idioms` [`induction`](../operators/induction.md)
+- `10.23  addr=sink        WRITE=copy      bind 'unk'->'>' idioms` [`induction`](../operators/induction.md)
+- `10.24  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `10.25  addr=sink        WRITE=transform bind '_in'->'_Rock'`
+- `10.26  addr=sink        WRITE=transform bind '_in'->'_Rock'`
+- `10.27  addr=sink        WRITE=transform bind '_had'->'_and'`
+- `10.28  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `10.29  addr=sink        WRITE=transform bind '_Ċ'->'_.'`
+- `10.30  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `10.31  addr=sink        WRITE=transform bind '_@'->'_='`
+- `10.MLP.n8099  reads {_for,_in,_at} -> writes {_for,_in,@}`
+- `10.MLP.n3044  reads {_in,_at,_for} -> writes {_in,_for,_at}`
+- `10.MLP.n4697  reads {_Ċ,_Ċ_Ċ,_"} -> writes {_Ċ,_Ċ_Ċ,_=}`
+
+### Layer 11
+
+- `11.0  addr=sink        WRITE=copy      bind '_.'->'_Ċ'`
+- `11.1  addr=sink        WRITE=copy      bind '_'->'-'`
+- `11.2  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `11.3  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `11.4  addr=sink        WRITE=transform bind '_at'->'_Rock'`
+- `11.5  addr=sink        WRITE=transform bind '_at'->'_Rock'`
+- `11.6  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `11.7  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `11.8  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `11.9  addr=sink        WRITE=copy      bind '_.'->'_Ċ_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
+- `11.10  addr=sink        WRITE=transform bind '_the'->'_The'`
+- `11.11  addr=sink        WRITE=copy      bind '_,'->'_with' idioms` [`prev-token`](../operators/prevtok.md)
+- `11.12  addr=sink        WRITE=transform bind '_'->'@'`
+- `11.13  addr=sink        WRITE=transform bind '_'->'_Rock'`
+- `11.14  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `11.15  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `11.16  addr=sink        WRITE=copy      bind 's'->'_in'`
+- `11.17  addr=sink        WRITE=copy      bind '_the'->'_Rock'`
+- `11.18  addr=sink        WRITE=transform bind '_and'->'_as'`
+- `11.19  addr=sink        WRITE=transform bind '_as'->'s'`
+- `11.20  addr=sink        WRITE=transform bind '_@'->'_='`
+- `11.21  addr=sink        WRITE=transform bind '_Ċ'->'_='`
+- `11.22  addr=sink        WRITE=transform bind '_@'->'-'`
+- `11.23  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `11.24  addr=sink        WRITE=transform bind '_had'->'_the'`
+- `11.25  addr=sink        WRITE=copy      bind '_Chronicles'->'ria'`
+- `11.26  addr=sink        WRITE=copy      bind '_<'->'_='`
+- `11.27  addr=sink        WRITE=transform bind '_@'->'_='`
+- `11.28  addr=sink        WRITE=transform bind '_Ċ_Ċ'->'_.'`
+- `11.29  addr=sink        WRITE=transform bind 's'->'_with'`
+- `11.30  addr=sink        WRITE=copy      bind 's'->'_as'`
+- `11.31  addr=sink        WRITE=copy      bind '_the'->'_of'`
+- `11.MLP.n167   reads {_,,>,_game} -> writes {_,,>,_Ċ}`
+- `11.MLP.n3372  reads {_,,_",_Ċ} -> writes {_,,_",_.}`
+- `11.MLP.n3507  reads {_in,_',_} -> writes {_in,_.,_Chronicles}`
+
+### Layer 12
+
+- `12.0  addr=sink        WRITE=transform bind '_with'->'_for' idioms` [`duplicate`](../operators/duplicate.md)
+- `12.1  addr=sink        WRITE=transform bind '>'->'@'`
+- `12.2  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `12.3  addr=sink        WRITE=copy      bind '_.'->'_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
+- `12.4  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `12.5  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `12.6  addr=sink        WRITE=copy      bind '_.'->'_Ċ_Ċ'`
+- `12.7  addr=sink        WRITE=copy      bind '_"'->'_,'`
+- `12.8  addr=sink        WRITE=transform bind '_Ċ'->'_.'`
+- `12.9  addr=sink        WRITE=copy      bind 'ria'->'_'`
+- `12.10  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `12.11  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `12.12  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `12.13  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `12.14  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `12.15  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `12.16  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `12.17  addr=sink        WRITE=transform bind '_.'->'_Ċ_Ċ'`
+- `12.18  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `12.19  addr=sink        WRITE=copy      bind '_.'->'_Ċ'`
+- `12.20  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `12.21  addr=sink        WRITE=copy      bind '_Ċ_Ċ'->'_.'`
+- `12.22  addr=sink        WRITE=transform bind '_the'->'_a'`
+- `12.23  addr=sink        WRITE=copy      bind '_.'->'_Ċ'`
+- `12.24  addr=sink        WRITE=transform bind '_at'->'_Little'`
+- `12.25  addr=sink        WRITE=transform bind '_at'->'_Little'`
+- `12.26  addr=sink        WRITE=transform bind '_<'->'_='`
+- `12.27  addr=sink        WRITE=copy      bind 'ria'->'y'`
+- `12.28  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `12.29  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `12.30  addr=sink        WRITE=copy      bind '_by'->'_Rock'`
+- `12.31  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `12.MLP.n3778  reads {_the,_The,_that} -> writes {_the,_The,_in}`
+- `12.MLP.n6702  reads {_in,_at,_for} -> writes {_in,_at,_<}`
+- `12.MLP.n3172  reads {_",_,,>} -> writes {>,_",_,}`
+
+### Layer 13
+
+- `13.0  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `13.1  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `13.2  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `13.3  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `13.4  addr=sink        WRITE=copy      bind '_of'->'ria'`
+- `13.5  addr=sink        WRITE=copy      bind '_at'->'_Rock'`
+- `13.6  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `13.7  addr=sink        WRITE=transform bind 'ria'->'y'`
+- `13.8  addr=sink        WRITE=copy      bind '_Ċ'->'_'`
+- `13.9  addr=sink        WRITE=copy      bind '_and'->'_with'`
+- `13.10  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `13.11  addr=sink        WRITE=copy      bind '_the'->'_The' idioms` [`duplicate`](../operators/duplicate.md)
+- `13.12  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `13.13  addr=sink        WRITE=transform bind '_at'->'_had'`
+- `13.14  addr=sink        WRITE=copy      bind '_at'->'_Rock'`
+- `13.15  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `13.16  addr=sink        WRITE=transform bind '_.'->'_Ċ_Ċ'`
+- `13.17  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `13.18  addr=sink        WRITE=copy      bind '_.'->'_Ċ_Ċ'`
+- `13.19  addr=sink        WRITE=transform bind '_and'->'_a'`
+- `13.20  addr=sink        WRITE=transform bind 'unk'->'>' idioms` [`induction`](../operators/induction.md)
+- `13.21  addr=sink        WRITE=transform bind 'unk'->'>' idioms` [`induction`](../operators/induction.md)
+- `13.22  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `13.23  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `13.24  addr=sink        WRITE=copy      bind '_in'->'_with'`
+- `13.25  addr=sink        WRITE=copy      bind '_'->'_had'`
+- `13.26  addr=sink        WRITE=transform bind '_"'->"_'" idioms` [`prev-token`](../operators/prevtok.md)
+- `13.27  addr=sink        WRITE=transform bind '_The'->'ria' idioms` [`prev-token`](../operators/prevtok.md)
+- `13.28  addr=sink        WRITE=copy      bind '_='->'_Ċ_Ċ'`
+- `13.29  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `13.30  addr=sink        WRITE=copy      bind '_.'->'_Ċ_Ċ'`
+- `13.31  addr=sink        WRITE=copy      bind 's'->'_had'`
+- `13.MLP.n4597  reads {_in,_,_Ċ} -> writes {_in,_with,_Ċ_Ċ}`
+- `13.MLP.n2691  reads {_,_",_that} -> writes {_,>,_"}`
+- `13.MLP.n6832  reads {_had,ria,_@} -> writes {_and,_:,ria}`
+
+### Layer 14
+
+- `14.0  addr=sink        WRITE=transform bind '_'->'@'`
+- `14.1  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `14.2  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.3  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.4  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `14.5  addr=sink        WRITE=copy      bind '_Ċ_Ċ'->'_.'`
+- `14.6  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `14.7  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `14.8  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `14.9  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `14.10  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `14.11  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.12  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.13  addr=sink        WRITE=transform bind '_'->'-'`
+- `14.14  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `14.15  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `14.16  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.17  addr=structural  WRITE=copy      bind '_game'->'s'`
+- `14.18  addr=structural  WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `14.19  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `14.20  addr=sink        WRITE=copy      bind 'unk'->'>'`
+- `14.21  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `14.22  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.23  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
+- `14.24  addr=sink        WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'`
+- `14.25  addr=self        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `14.26  addr=sink        WRITE=copy      bind '_of'->'_Rock'`
+- `14.27  addr=sink        WRITE=transform bind '_with'->'_by'`
+- `14.28  addr=sink        WRITE=transform bind 'unk'->'>'`
+- `14.29  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.30  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.31  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `14.MLP.n4147  reads {_had,ria,_@} -> writes {_at,_of,_from}`
+- `14.MLP.n1558  reads {_had,ria,_@} -> writes {_from,_of,>}`
+- `14.MLP.n1928  reads {_had,ria,_@} -> writes {_Valk,_in,_@}`
+
+### Layer 15
+
+- `15.0  addr=sink        WRITE=copy      bind '_The'->'_the'`
+- `15.1  addr=sink        WRITE=copy      bind '_with'->'_by'`
+- `15.2  addr=sink        WRITE=transform bind '_The'->'_the'`
+- `15.3  addr=sink        WRITE=transform bind '_The'->'_the'`
+- `15.4  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `15.5  addr=sink        WRITE=transform bind '_from'->'_Rock'`
+- `15.6  addr=sink        WRITE=copy      bind '_Ċ_Ċ'->'_.'`
+- `15.7  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `15.8  addr=sink        WRITE=copy      bind '_The'->'_the'`
+- `15.9  addr=sink        WRITE=transform bind '_had'->'_'`
+- `15.10  addr=sink        WRITE=copy      bind '_and'->'_with'`
+- `15.11  addr=self        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `15.12  addr=sink        WRITE=transform bind '_at'->'_Rock' idioms` [`induction`](../operators/induction.md)
+- `15.13  addr=sink        WRITE=copy      bind '_at'->'_Rock'`
+- `15.14  addr=self        WRITE=transform bind 'ria'->'_Valk'`
+- `15.15  addr=sink        WRITE=transform bind '_'->'-'`
+- `15.16  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `15.17  addr=sink        WRITE=transform bind '_the'->'_in'`
+- `15.18  addr=sink        WRITE=copy      bind '_'->'-'`
+- `15.19  addr=sink        WRITE=copy      bind '_<'->'-'`
+- `15.20  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `15.21  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `15.22  addr=sink        WRITE=copy      bind '_<'->'unk'`
+- `15.23  addr=self        WRITE=transform bind '_.'->'_,'`
+- `15.24  addr=self        WRITE=copy      bind '_.'->'_Ċ_Ċ'`
+- `15.25  addr=self        WRITE=transform bind '_.'->'_Ċ_Ċ'`
+- `15.26  addr=sink        WRITE=copy      bind '_Ċ'->'_.'`
+- `15.27  addr=sink        WRITE=transform bind '_Ċ'->'_Ċ_Ċ'`
+- `15.28  addr=sink        WRITE=copy      bind '_'->'-'`
+- `15.29  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `15.30  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `15.31  addr=sink        WRITE=transform bind '_<'->'unk'`
+- `15.MLP.n7258  reads {_had,ria,_@} -> writes {_had,_@,ria}`
+- `15.MLP.n433   reads {_had,_@,ria} -> writes {_had,_was,ria}`
+- `15.MLP.n7007  reads {>,_Little,_by} -> writes {_had,_@,ria}`
+
+_Generated from the committed listing by `disassembly_pages.py`._

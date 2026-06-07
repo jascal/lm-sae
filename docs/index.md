@@ -58,6 +58,8 @@ The throughline: **a model is legible in the right basis even where it is *not* 
 - **[MLP / COMPUTE catalog](operators/mlp_compute.md)** — the *other* instruction class (attention MOVES, MLP
   COMPUTES), per-layer causal profile across models. *COMPUTE concentrates on an early MLP — the detokenizer — in
   5 of 6 models (catastrophic for induction); Gemma distributes it.*
+- **[Per-head disassemblies](disassembly/README.md)** — the full per-head listing for each model (addressing ×
+  write × content binding × operator role), with every operator-role tag **hyperlinked** to its catalog page.
 
 ## The methodology & tools
 
