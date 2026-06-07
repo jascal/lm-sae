@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    {% seo %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+    <style>
+      .site-nav { margin-top: 1.2rem; }
+      .site-nav .btn { margin: 0.15rem 0.2rem; padding: 0.4rem 0.7rem; font-size: 0.78rem; }
+    </style>
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="{{ '/' | relative_url }}" class="btn">Home</a>
+        <a href="{{ '/operators/' | relative_url }}" class="btn">Operator Catalog</a>
+        <a href="{{ '/circuits/' | relative_url }}" class="btn">Circuit Catalog</a>
+        <a href="{{ '/DECOMPILATION.html' | relative_url }}" class="btn">Decompilation</a>
+        <a href="{{ '/DISASSEMBLY.html' | relative_url }}" class="btn">Disassembly</a>
+        <a href="{{ '/FORGE_TAX_TRACK.html' | relative_url }}" class="btn">Forge-tax track</a>
+        {% if site.github.is_project_page %}
+          <a href="{{ site.github.repository_url }}" class="btn">GitHub</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      {{ content }}
+
+      <footer class="site-footer">
+        {% if site.github.is_project_page %}
+          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+        {% endif %}
+        <span class="site-footer-credits">Generated from the repo's tracked result artifacts via <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
