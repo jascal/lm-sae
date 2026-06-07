@@ -115,8 +115,9 @@ def main(argv=None):
     readme = f"""# Circuit catalog — composed circuits, surveyed & collected across models
 
 Operators are single head-classes ([`../operators/`](../operators/README.md)); **circuits** are their
-*compositions* (a writer-op feeding a reader-op's K/Q/V port, chained). This catalogs **{len(all_circuits)} circuits**
-collected with the tools here, two sources:
+*compositions* (a writer-op feeding a reader-op's K/Q/V port, chained). A **working catalog** (amateur,
+exploratory, provisional — not a definitive reference) of **{len(all_circuits)} circuits** collected with the tools
+here, two sources:
 
 - **Cross-model circuit edges** — the defining composition edge of each universal-reader circuit, path-patched
   across {len(models)} models (faithful key/value patch, arch-generic).

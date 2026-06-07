@@ -19,6 +19,10 @@ defined — with its canonical reference — in the **[Glossary](glossary.md)**.
 > and intervene at high speed** — train hosts, swap the mixer to a non-attention recurrence, and ablate /
 > path-patch any component in milliseconds.
 
+> **Amateur, exploratory home-science.** Everything here is *a working catalog*, not *the* definitive one —
+> findings are **descriptive and provisional**, measurements to be checked, not settled results. Where a mechanism
+> is unknown we still list the specimen with what we measured, and say so.
+
 ## The goal
 
 > Exhaustively explore, taxonomize, and collect causal dossiers on **all operators and circuits** we can find,

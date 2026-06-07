@@ -1085,7 +1085,7 @@ effect on a behaviour, and **flag the strong components the catalog has NOT name
 it; it is the engine for being exhaustive, not a place to hand-poke.
 
 Run on GPT-2 across three behaviours (induction / IOI / generic LM), it immediately produced **new** catalog work:
-- **MLP0 is the single most load-bearing component for *every* behaviour** (induction ΔNLL **+7.8**, IOI **+7.5**,
+- **MLP0 had the largest single-component causal effect across all three behaviours** (induction ΔNLL **+7.8**, IOI **+7.5**,
   generic +1.8) — far above any attention head. The discovery engine's first finding is that **the biggest
   operator in the model is an MLP we have not catalogued** (the L0 detokenizer): a direct pointer to the
   MLP/COMPUTE gap (the attention catalog is only half the instruction set).
@@ -1106,8 +1106,8 @@ arch-generic, the QK edge-probe is GPT-2-specific here).
 
 ## The other instruction class — MLP / COMPUTE, across models
 
-Attention **MOVES** operands; the MLP **COMPUTES** on them — and the discovery engine's loudest finding was that
-**MLP0 is the most load-bearing component of all**. The operator catalog was attention-only; `mlp_atlas.py` adds
+Attention **MOVES** operands; the MLP **COMPUTES** on them — and a salient discovery-sweep result was that
+**MLP0 had the largest single-component causal effect measured**. The operator catalog was attention-only; `mlp_atlas.py` adds
 the COMPUTE class, surveyed across architectures: per (model, layer) it mean-ablates the whole MLP block and reads
 the causal ΔNLL on generic prose + induction. (Mamba/SSM is excluded — no separate MLP block, the COMPUTE analog
 of "no attention heads".)
