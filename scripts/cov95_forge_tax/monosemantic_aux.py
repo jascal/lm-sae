@@ -34,7 +34,7 @@ from host_width_sweep import CORPUS_URL, build_oracle_table  # noqa: E402
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--width", type=int, default=128)
-    p.add_argument("--modes", default="none,linear,decorr,dedicated")
+    p.add_argument("--modes", default="none,linear,decorr,dedicated,sparsedict")
     p.add_argument("--n-layer", type=int, default=4)
     p.add_argument("--n-head", type=int, default=4)
     p.add_argument("--ctx", type=int, default=96)
@@ -43,6 +43,7 @@ def main(argv=None):
     p.add_argument("--lr", type=float, default=5e-4)
     p.add_argument("--aux-lambda", type=float, default=1.0)
     p.add_argument("--decorr-beta", type=float, default=1.0, help="weight on the orthogonality penalty (decorr mode)")
+    p.add_argument("--align-alpha", type=float, default=1.0, help="oracle-alignment vs reconstruction weight (sparsedict mode)")
     p.add_argument("--sae-over", type=int, default=4)
     p.add_argument("--k", type=int, default=24)
     p.add_argument("--sae-steps", type=int, default=600)
@@ -76,14 +77,44 @@ def main(argv=None):
         y = torch.stack([torch.from_numpy(train_ids[s + 1:s + 1 + args.ctx]) for s in starts])
         return x.to(dev), y.to(dev)
 
-    def aux_term(mode, h, lab, head):
+    m_sae = args.sae_over * args.width                        # in-loop SAE width (matches the eval SAE)
+
+    class LoopSAE(torch.nn.Module):
+        """A sparse dictionary trained jointly on the host residual; first F latents aligned to the oracle."""
+        def __init__(self):
+            super().__init__()
+            self.enc = torch.nn.Linear(args.width, m_sae)
+            self.dec = torch.nn.Linear(m_sae, args.width)
+            self.scale = torch.nn.Parameter(torch.ones(Ffeat))
+            self.bias = torch.nn.Parameter(torch.zeros(Ffeat))
+
+        def forward(self, h):
+            z = torch.relu(self.enc(h))
+            if args.k < m_sae:                                # TopK sparsity per token (kept entries differentiable)
+                thr = z.topk(args.k, dim=-1).values[..., -1:].detach()
+                z = z * (z >= thr)
+            recon = ((self.dec(z) - h) ** 2).mean()
+            logit = self.scale * z[..., :Ffeat] + self.bias   # aligned latents 0..F-1 -> oracle-feature logits
+            return recon, logit
+
+    def make_aux(mode):
+        if mode in ("linear", "decorr"):
+            return torch.nn.Linear(args.width, Ffeat).to(dev)
+        if mode == "sparsedict":
+            return LoopSAE().to(dev)
+        return None
+
+    def aux_term(mode, h, lab, aux):
         if mode == "none":
             return h.new_zeros(())
         if mode == "dedicated":
             return F.binary_cross_entropy_with_logits(h[..., :Ffeat], lab)
-        bce = F.binary_cross_entropy_with_logits(head(h), lab)
+        if mode == "sparsedict":
+            recon, logit = aux(h)                             # reconstruct h sparsely + align latents to oracle
+            return recon + args.align_alpha * F.binary_cross_entropy_with_logits(logit, lab)
+        bce = F.binary_cross_entropy_with_logits(aux(h), lab)
         if mode == "decorr":
-            W = head.weight                                   # (F, width)
+            W = aux.weight                                    # (F, width)
             Wn = W / (W.norm(dim=1, keepdim=True) + 1e-6)
             G = Wn @ Wn.t()
             off = G - torch.diag(torch.diagonal(G))
@@ -94,14 +125,14 @@ def main(argv=None):
         cfg = GPT2Config(vocab_size=tok.vocab_size, n_positions=args.ctx, n_ctx=args.ctx,
                          n_embd=args.width, n_layer=args.n_layer, n_head=args.n_head)
         model = GPT2LMHeadModel(cfg).to(dev).train()
-        head = torch.nn.Linear(args.width, Ffeat).to(dev)
-        params = list(model.parameters()) + (list(head.parameters()) if mode in ("linear", "decorr") else [])
+        aux = make_aux(mode)
+        params = list(model.parameters()) + (list(aux.parameters()) if aux is not None else [])
         opt = torch.optim.AdamW(params, lr=args.lr)
         g = torch.Generator().manual_seed(0)
         for _ in range(args.steps):
             x, y = batch(g)
             out = model(input_ids=x, labels=y, output_hidden_states=True)
-            loss = out.loss + (args.aux_lambda * aux_term(mode, out.hidden_states[-1], Ttab_t[x], head) if mode != "none" else 0.0)
+            loss = out.loss + (args.aux_lambda * aux_term(mode, out.hidden_states[-1], Ttab_t[x], aux) if mode != "none" else 0.0)
             opt.zero_grad(); loss.backward(); opt.step()
         return model.eval()
 
@@ -145,7 +176,7 @@ def main(argv=None):
     args.output.write_text(json.dumps(out, indent=2, default=float))
     print("\n[verdict] cov95 by mode: " + "  ".join(f"{r['mode']} {r['cov95']:.2f}" for r in rows))
     if base and lin:
-        direct = [r for r in rows if r["mode"] in ("decorr", "dedicated")]
+        direct = [r for r in rows if r["mode"] in ("decorr", "dedicated", "sparsedict")]
         beats = [r["mode"] for r in direct if r["cov95"] > lin["cov95"] + 0.02]
         print(f"  best mode: {out['best_mode']}; linear(recoverability) cov95 {lin['cov95']:.2f}; "
               f"direct-monosemanticity modes beating it: {beats or 'none'}")
