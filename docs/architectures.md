@@ -7,7 +7,13 @@ title: Architecture references
 The architectures this project studies, declared as typed-DAG specs in
 [**n-orca**](https://github.com/jascal/n-orca) (a Markdown DSL for neural-net architectures that *verifies*
 shapes/types and compiles to Mermaid / runnable PyTorch) and rendered here. These are *reference* diagrams — the
-host we disassemble, and the SAE the forge-tax sister track acts on — not results.
+hosts we disassemble, plus the SAE the forge-tax sister track acts on — not results. One block per architecture
+**family** (models within a family differ only in dims):
+
+- **GPT-2** (small / medium / large) — absolute position, LayerNorm, dense MLP.
+- **RoPE family** (Llama-3.2-1B, Qwen-2.5-1.5B) — RoPE, grouped-query attention, RMSNorm, SwiGLU.
+- **Gemma-2-2B** — the RoPE outlier: sandwich (pre+post) norm, GeGLU; no sink, distributed COMPUTE.
+- **Mamba** (130m / 370m / 790m) — state-space mixer, no attention, no separate MLP.
 
 ## GPT-2 block — the host the catalog disassembles
 
@@ -45,6 +51,117 @@ flowchart TD
 
 The residual stream `x → … → y` is the **bus**; each block reads it (LayerNorm), MOVES (attention) and COMPUTES
 (MLP), and writes back (Add). The disassembly reads the operators *inside* the `attn` and `mlp` nodes.
+(GPT-2 small/medium/large share this block; they differ only in dims — 768/1024/1280 d_model, 12/16/20 heads.)
+
+## RoPE block — the Llama / Qwen family
+
+Same MOVE+COMPUTE skeleton, but pre-**RMSNorm**, **grouped-query** attention with **rotary positions**, and a
+**SwiGLU** gated MLP (no biases). Position lives in the *rotation*, so there is no learned absolute-position
+register — and (as the [circuit catalog](circuits/README.md) finds) no positional-broadcast circuit and no
+attention sink dependence. Dims: Llama-3.2-1B (2048 / 32 heads / 8 kv / 8192); Qwen-2.5-1.5B (1536 / 12 / 2 / 8960).
+Spec: [`docs/specs/rope_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/rope_block.n.orca.md).
+
+```mermaid
+%% architecture RoPEBlock
+flowchart TD
+    x(("x<br/>[input]"))
+    attn_norm["attn_norm — RMSNorm(d_model)"]
+    attn["attn — MOVE<br/>GroupedQueryAttention(d_model, n_heads, n_kv) + RoPE"]
+    add_1["add_1<br/>Add()"]
+    ff_norm["ff_norm — RMSNorm(d_model)"]
+    mlp["mlp — COMPUTE<br/>SwiGLU(d_model, d_ff)"]
+    add_2["add_2<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x" --> attn_norm
+    attn_norm -- "x_normed" --> attn
+    attn -- "attn_out" --> add_1
+    x -- "x_skip" --> add_1
+    add_1 -- "h" --> ff_norm
+    ff_norm -- "h_normed" --> mlp
+    mlp -- "mlp_out" --> add_2
+    add_1 -- "h_skip" --> add_2
+    add_2 -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+## Gemma-2 block — the architectural outlier
+
+Gemma-2-2B is RoPE+GQA like Llama/Qwen but wraps **each** sublayer in **both** a pre- and a post-RMSNorm (a
+sandwich norm) and uses a **GeGLU** MLP. It is the outlier in the catalog: **no attention sink** (0 sink heads vs
+117–553 elsewhere) and **distributed COMPUTE** (no single dominant detokenizer MLP). Dims for Gemma-2-2B
+(2304 / 8 heads / 4 kv / 9216). Spec:
+[`docs/specs/gemma_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/gemma_block.n.orca.md).
+
+```mermaid
+%% architecture GemmaBlock
+flowchart TD
+    x(("x<br/>[input]"))
+    pre_attn_norm["pre_attn_norm — RMSNorm"]
+    attn["attn — MOVE<br/>GroupedQueryAttention + RoPE"]
+    post_attn_norm["post_attn_norm — RMSNorm"]
+    add_1["add_1<br/>Add()"]
+    pre_ff_norm["pre_ff_norm — RMSNorm"]
+    mlp["mlp — COMPUTE<br/>GeGLU(d_model, d_ff)"]
+    post_ff_norm["post_ff_norm — RMSNorm"]
+    add_2["add_2<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x" --> pre_attn_norm
+    pre_attn_norm -- "x_normed" --> attn
+    attn -- "attn_pre" --> post_attn_norm
+    post_attn_norm -- "attn_out" --> add_1
+    x -- "x_skip" --> add_1
+    add_1 -- "h" --> pre_ff_norm
+    pre_ff_norm -- "h_normed" --> mlp
+    mlp -- "mlp_pre" --> post_ff_norm
+    post_ff_norm -- "mlp_out" --> add_2
+    add_1 -- "h_skip" --> add_2
+    add_2 -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+## Mamba block — the no-attention control (SSM)
+
+Mamba (130m/370m/790m) has **no attention and no separate MLP**: the whole layer is one selective **state-space
+mixer** (a learned linear recurrence / scan). The catalog's SSM result: the in-context-copy *capability*
+(induction) survives this loss of attention (gain +12.1…+12.5, like the transformers) — but with no heads there is
+no head-resolved operator, only a layer. Dims for Mamba-130m (d_model 768, d_inner 1536, d_state 16). Spec:
+[`docs/specs/mamba_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/mamba_block.n.orca.md).
+
+```mermaid
+%% architecture MambaBlock
+flowchart TD
+    x(("x<br/>[input]"))
+    norm["norm — RMSNorm(d_model)"]
+    in_proj["in_proj — Linear(d_model, d_inner)"]
+    conv["conv — Conv1d(d_inner, d_conv)"]
+    act["act — SiLU()"]
+    ssm["ssm — MIX<br/>SelectiveSSM(d_inner, d_state)"]
+    gate["gate — ElementwiseMul()"]
+    out_proj["out_proj — Linear(d_inner, d_model)"]
+    add["add<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x" --> norm
+    norm -- "x_normed" --> in_proj
+    in_proj -- "x-branch" --> conv
+    conv -- "xc" --> act
+    act -- "xa" --> ssm
+    ssm -- "scan" --> gate
+    in_proj -- "z-gate" --> gate
+    gate -- "gated" --> out_proj
+    out_proj -- "mix_out" --> add
+    x -- "x_skip" --> add
+    add -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
 
 ## Sparse autoencoder — the forge-tax tool (sister track)
 
