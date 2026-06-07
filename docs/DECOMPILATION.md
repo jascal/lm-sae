@@ -298,14 +298,36 @@ supervision also makes cov95 **variance-free** (linear pins exactly 22/29 featur
 vs `none`'s noisy 0.62–0.72) — it lifts cov95 *and* makes it reproducible. `monosemantic_aux.py`,
 `runs/cov95_forge_tax/monosemantic_aux_summary.json`.
 
+### Is the lift real monosemanticity, or the eval-SAE finding what we planted? (non-SAE cross-check)
+cov95 fits a TopK SAE — so does the linear aux just make features recoverable in a way a linear-ish SAE
+prefers (circular)? `legibility_crosscheck.py` scores the none→linear lift in **three bases** (same
+symmetric-AUC scorer, only one involving an SAE), width 128, 3 seeds:
+
+| basis | none → linear | Δ (mean ± std) | up in |
+|---|---|---|---|
+| sae (fitted TopK dictionary) | 0.68 → 0.76 | +0.08 ± 0.04 | 3/3 |
+| neuron (raw residual dims, no fit) | 0.68 → 0.76 | +0.08 ± 0.07 | 2/3 |
+| pca (rotated basis, fit *without* labels) | 0.36 → 0.69 | **+0.33 ± 0.09** | 3/3 |
+
+**Corroborated — the lift is genuine monosemanticity, not circular.** Both SAE-free metrics rise too: features
+become single-detector-isolable by *raw neurons* (+0.08) and, most strongly, by *PCA components* (+0.33). So
+supervision doesn't merely make features recoverable in a way the eval-SAE prefers — it makes them
+axis-isolable in the natural and rotated bases as well. (For the unsupervised model, neuron-cov95 *equals*
+sae-cov95 exactly — the fitted SAE adds nothing over raw neurons here, so it can't be inflating the result.)
+**Mechanism:** the biggest lift is in PCA — unsupervised pca-cov95 is only 0.36 (the oracle features sit *off*
+the high-variance axes), so supervision **pushes the features into the residual's principal (high-variance)
+directions**, where *any* axis-aligned probe (neuron, PCA, or SAE) isolates them. That's a basis-independent
+signature of real monosemanticity, and it explains *how* recoverability becomes monosemanticity: prominence =
+high-variance placement. `legibility_crosscheck.py`, `runs/cov95_forge_tax/legibility_crosscheck_summary.json`.
+
 Caveats + scope: the aux loss pressures **linear recoverability** of the oracle (which, per the aux-mode
 comparison above, is the *effective* lever — direct decorr/dedicated/sparsedict objectives don't beat it, and
 the in-loop sparse dict actively hurts). The scarcity trend is only cleanly visible
 in the **well-trained regime** (≤w128 here); confirming it at w256+ needs more tokens/steps (compute scaling),
-not more width. Single seed, tiny hosts, short training. **Planned follow-ups:** (1) decorr / dedicated /
-full sparse-dict-in-the-loop were all tested (above) and none beats linear-recoverability — so the open lever
-is on the *measurement* side (does a non-SAE legibility metric agree?), not a heavier training pressure;
-(2) multi-seed +
+not more width. Tiny hosts, short training. **Status of the open levers:** the *training-pressure* axis is
+settled (decorr/dedicated/sparse-dict all tested, none beats linear-recoverability; multi-seed-confirmed) and
+the *measurement* worry is resolved (non-SAE bases — raw-neuron + PCA — corroborate the lift, see cross-check
+above → genuine monosemanticity). **Remaining follow-ups:** (1) multi-seed +
 adequately-trained wide hosts to clean the scarcity curve; (3) richer oracles (spaCy POS/NER) + curriculum
 annealing of the aux weight; (4) polygram geometry penalties. But the direction is clear and the cost is
 ~zero, so the reachability lever is real. `host_width_sweep.py`,
