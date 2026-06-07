@@ -33,25 +33,25 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `0.10  addr=long_range  WRITE=transform bind 'ria'->'_:'` [`prev-token`](../operators/prevtok.md)
 - `0.11  addr=long_range  WRITE=transform bind '_<'->'>'`
 - `0.12  addr=long_range  WRITE=transform bind '_of'->'_Chronicles'`
-- `0.13  addr=long_range  WRITE=transform bind '_of'->'_the'` — ★ causal: induction ΔNLL **+1.64**±0.24, 214% of base, generic +0.15 ⚠ **UNNAMED-candidate**
-- `0.14  addr=long_range  WRITE=transform bind '_,'->'_.'` [`duplicate`](../operators/duplicate.md) — ★ causal: induction ΔNLL **+1.07**±0.22, 140% of base, generic +0.03 ⚠ **UNNAMED-candidate**
+- `0.13  addr=long_range  WRITE=transform bind '_of'->'_the'` — ★ causal: induction ΔNLL **+1.64**±0.24, 214% of base, generic +0.15 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `0.14  addr=long_range  WRITE=transform bind '_,'->'_.'` [`duplicate`](../operators/duplicate.md) — ★ causal: induction ΔNLL **+1.07**±0.22, 140% of base, generic +0.03 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `0.15  addr=long_range  WRITE=transform bind "_'"->'_,'`
-- `0.16  addr=long_range  WRITE=transform bind '-'->'_'` — ★ causal: induction ΔNLL **+0.22**±0.23, 28% of base, generic +0.01 ⚠ **UNNAMED-candidate**
+- `0.16  addr=long_range  WRITE=transform bind '-'->'_'` — ★ causal: induction ΔNLL **+0.22**±0.23, 28% of base, generic +0.01 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `0.17  addr=local       WRITE=transform bind '_@'->'_'`
-- `0.18  addr=long_range  WRITE=transform bind '_.'->'_Ċ'` — ★ causal: induction ΔNLL **+0.45**±0.25, 58% of base, generic +0.18 ⚠ **UNNAMED-candidate**
-- `0.19  addr=long_range  WRITE=transform bind '_.'->'_Ċ'` — ★ causal: induction ΔNLL **+0.55**±0.32, 72% of base, generic +0.06 ⚠ **UNNAMED-candidate**
-- `0.20  addr=long_range  WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'` — ★ causal: induction ΔNLL **+0.38**±0.12, 50% of base, generic +0.05 ⚠ **UNNAMED-candidate**
-- `0.21  addr=long_range  WRITE=transform bind '_a'->'_the'` — ★ causal: induction ΔNLL **+0.21**±0.01, 28% of base, generic +0.00 ⚠ **UNNAMED-candidate**
-- `0.22  addr=long_range  WRITE=transform bind '_Ċ'->'_Ċ_Ċ'` — ★ causal: induction ΔNLL **+0.23**±0.16, 30% of base, generic +0.00 ⚠ **UNNAMED-candidate**
+- `0.18  addr=long_range  WRITE=transform bind '_.'->'_Ċ'` — ★ causal: induction ΔNLL **+0.45**±0.25, 58% of base, generic +0.18 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `0.19  addr=long_range  WRITE=transform bind '_.'->'_Ċ'` — ★ causal: induction ΔNLL **+0.55**±0.32, 72% of base, generic +0.06 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `0.20  addr=long_range  WRITE=copy      bind '_Ċ'->'_Ċ_Ċ'` — ★ causal: induction ΔNLL **+0.38**±0.12, 50% of base, generic +0.05 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `0.21  addr=long_range  WRITE=transform bind '_a'->'_the'` — ★ causal: induction ΔNLL **+0.21**±0.01, 28% of base, generic +0.00 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `0.22  addr=long_range  WRITE=transform bind '_Ċ'->'_Ċ_Ċ'` — ★ causal: induction ΔNLL **+0.23**±0.16, 30% of base, generic +0.00 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `0.23  addr=long_range  WRITE=transform bind 'ria'->'_,'`
 - `0.24  addr=prev        WRITE=transform bind '_to'->'_from'` [`prev-token`](../operators/prevtok.md)
-- `0.25  addr=long_range  WRITE=transform bind 'y'->'_Rock'` — ★ causal: induction ΔNLL **+0.26**±0.23, 34% of base, generic +0.00 ⚠ **UNNAMED-candidate**
+- `0.25  addr=long_range  WRITE=transform bind 'y'->'_Rock'` — ★ causal: induction ΔNLL **+0.26**±0.23, 34% of base, generic +0.00 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `0.26  addr=local       WRITE=transform bind '_.'->'_from'` [`prev-token`](../operators/prevtok.md) — ★ causal: induction ΔNLL **+1.22**±0.30, 160% of base, generic +0.05
 - `0.27  addr=long_range  WRITE=transform bind '_,'->'_had'`
-- `0.28  addr=long_range  WRITE=copy      bind '-'->'ria'` — ★ causal: induction ΔNLL **+1.25**±0.47, 164% of base, generic +0.05 ⚠ **UNNAMED-candidate**
-- `0.29  addr=structural  WRITE=transform bind '_Ċ_Ċ'->'_'` — ★ causal: induction ΔNLL **+2.79**±0.10, 365% of base, generic +0.15 ⚠ **UNNAMED-candidate**
+- `0.28  addr=long_range  WRITE=copy      bind '-'->'ria'` — ★ causal: induction ΔNLL **+1.25**±0.47, 164% of base, generic +0.05 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `0.29  addr=structural  WRITE=transform bind '_Ċ_Ċ'->'_'` — ★ causal: induction ΔNLL **+2.79**±0.10, 365% of base, generic +0.15 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `0.30  addr=structural  WRITE=transform bind '_were'->'_that'` — ★ causal: induction ΔNLL **+1.44**±0.09, 188% of base, generic +0.03
-- `0.31  addr=structural  WRITE=transform bind '_were'->'ria'` — ★ causal: induction ΔNLL **+7.26**±0.91, 950% of base, generic +0.78 ⚠ **UNNAMED-candidate**
+- `0.31  addr=structural  WRITE=transform bind '_were'->'ria'` — ★ causal: induction ΔNLL **+7.26**±0.91, 950% of base, generic +0.78 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `0.MLP.n867   reads {s,y,_Valk} -> writes {s,y,-}` — ★ causal: induction ΔNLL **+12.63**±0.03, 1654% of base, generic +4.50
 - `0.MLP.n3482  reads {_.,_,,_:} -> writes {_.,_,_,}`
 - `0.MLP.n6634  reads {s,@,ria} -> writes {s,_to,@}`
@@ -86,10 +86,10 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `1.25  addr=structural  WRITE=transform bind '_was'->'_were'`
 - `1.26  addr=structural  WRITE=copy      bind '_'->'_the'`
 - `1.27  addr=structural  WRITE=copy      bind '_'->'_the'`
-- `1.28  addr=long_range  WRITE=transform bind '_'->'_='` — ★ causal: induction ΔNLL **+0.30**±0.05, 39% of base, generic +0.06 ⚠ **UNNAMED-candidate**
-- `1.29  addr=structural  WRITE=transform bind '_'->'_,'` — ★ causal: induction ΔNLL **+5.57**±0.16, 730% of base, generic +1.96 ⚠ **UNNAMED-candidate**
+- `1.28  addr=long_range  WRITE=transform bind '_'->'_='` — ★ causal: induction ΔNLL **+0.30**±0.05, 39% of base, generic +0.06 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `1.29  addr=structural  WRITE=transform bind '_'->'_,'` — ★ causal: induction ΔNLL **+5.57**±0.16, 730% of base, generic +1.96 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `1.30  addr=structural  WRITE=copy      bind '_Little'->'_the'`
-- `1.31  addr=structural  WRITE=transform bind '_'->'_the'` — ★ causal: induction ΔNLL **+5.93**±0.24, 776% of base, generic +2.35 ⚠ **UNNAMED-candidate**
+- `1.31  addr=structural  WRITE=transform bind '_'->'_the'` — ★ causal: induction ΔNLL **+5.93**±0.24, 776% of base, generic +2.35 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `1.MLP.n7281  reads {_Ċ,_Ċ_Ċ,_=} -> writes {_,_the,_of}` — ★ causal: induction ΔNLL **+12.64**±0.09, 1655% of base, generic +7.35
 - `1.MLP.n2937  reads {_,_The,_Ċ} -> writes {_,_the,_of}`
 - `1.MLP.n7272  reads {_to,_in,_.} -> writes {_,_the,_of}`

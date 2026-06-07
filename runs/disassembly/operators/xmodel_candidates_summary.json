@@ -70,6 +70,238 @@
       }
     },
     {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "head": "0.7",
+      "n_layers": 26,
+      "reads_pattern": "induction",
+      "induction_mass": 0.028077489679509942,
+      "duplicate_mass": 0.02763637195933949,
+      "causal_induction_dNLL": 0.3371096603057975,
+      "causal_generic_dNLL": 0.05951698242671899,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "head": "5.6",
+      "n_layers": 26,
+      "reads_pattern": "induction",
+      "induction_mass": 0.015250656821511008,
+      "duplicate_mass": 0.006306141073053533,
+      "causal_induction_dNLL": 0.24751547220281367,
+      "causal_generic_dNLL": 0.008130346025740032,
+      "channel": {
+        "pattern": "induction",
+        "key_top": {
+          "head": "1.4",
+          "collapse": 0.0053119219220244835
+        },
+        "key_median": -0.004721266220292406,
+        "value_top": {
+          "head": "4.4",
+          "dvout": 0.14006896584253345
+        },
+        "value_median": 0.0692619810707173,
+        "key_rows": [
+          {
+            "head": "1.4",
+            "collapse": 0.0053119219220244835
+          },
+          {
+            "head": "0.2",
+            "collapse": 0.00511408921345584
+          },
+          {
+            "head": "2.7",
+            "collapse": 0.004875325599666218
+          },
+          {
+            "head": "2.0",
+            "collapse": 0.004861681964592559
+          },
+          {
+            "head": "1.3",
+            "collapse": 0.004363689284402743
+          }
+        ],
+        "value_rows": [
+          {
+            "head": "4.4",
+            "dvout": 0.14006896584253345
+          },
+          {
+            "head": "0.1",
+            "dvout": 0.1255408505647111
+          },
+          {
+            "head": "3.0",
+            "dvout": 0.11785861592129779
+          },
+          {
+            "head": "3.1",
+            "dvout": 0.1070613386514178
+          },
+          {
+            "head": "4.7",
+            "dvout": 0.10644385524278932
+          }
+        ]
+      }
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "head": "10.6",
+      "n_layers": 26,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.023375268415971234,
+      "duplicate_mass": 0.026511493054303257,
+      "causal_induction_dNLL": 0.3097679225969525,
+      "causal_generic_dNLL": 0.04658702063182041,
+      "channel": {
+        "pattern": "duplicate",
+        "key_top": {
+          "head": "9.2",
+          "collapse": 0.056862114103325104
+        },
+        "key_median": 0.00011208582127644103,
+        "value_top": {
+          "head": "8.0",
+          "dvout": 0.2799177296719012
+        },
+        "value_median": 0.06513221869774324,
+        "key_rows": [
+          {
+            "head": "9.2",
+            "collapse": 0.056862114103325104
+          },
+          {
+            "head": "8.1",
+            "collapse": 0.0272948800345495
+          },
+          {
+            "head": "9.6",
+            "collapse": 0.025403482897254893
+          },
+          {
+            "head": "9.5",
+            "collapse": 0.023624008071650757
+          },
+          {
+            "head": "8.3",
+            "collapse": 0.019503382553465808
+          }
+        ],
+        "value_rows": [
+          {
+            "head": "8.0",
+            "dvout": 0.2799177296719012
+          },
+          {
+            "head": "9.3",
+            "dvout": 0.2548224227007957
+          },
+          {
+            "head": "8.1",
+            "dvout": 0.22788821509769963
+          },
+          {
+            "head": "6.2",
+            "dvout": 0.14820354350949844
+          },
+          {
+            "head": "6.3",
+            "dvout": 0.14586742597519908
+          }
+        ]
+      }
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "head": "0.6",
+      "n_layers": 26,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.02794619473544034,
+      "duplicate_mass": 0.030891210382634943,
+      "causal_induction_dNLL": -0.12349934501022286,
+      "causal_generic_dNLL": 0.001975543915279765,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "head": "9.6",
+      "n_layers": 26,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.020218441703102805,
+      "duplicate_mass": 0.02055667530406605,
+      "causal_induction_dNLL": 0.23646199694237158,
+      "causal_generic_dNLL": 0.052784102303641944,
+      "channel": {
+        "pattern": "duplicate",
+        "key_top": {
+          "head": "8.3",
+          "collapse": 0.09679402937737974
+        },
+        "key_median": -0.0023253155951138043,
+        "value_top": {
+          "head": "8.0",
+          "dvout": 0.30837698700507943
+        },
+        "value_median": 0.07849407057290783,
+        "key_rows": [
+          {
+            "head": "8.3",
+            "collapse": 0.09679402937737974
+          },
+          {
+            "head": "8.1",
+            "collapse": 0.06827427716361688
+          },
+          {
+            "head": "7.3",
+            "collapse": 0.034949955210208335
+          },
+          {
+            "head": "6.0",
+            "collapse": 0.030900316986887014
+          },
+          {
+            "head": "5.4",
+            "collapse": 0.029785211439869567
+          }
+        ],
+        "value_rows": [
+          {
+            "head": "8.0",
+            "dvout": 0.30837698700507943
+          },
+          {
+            "head": "8.1",
+            "dvout": 0.23635701113792865
+          },
+          {
+            "head": "8.5",
+            "dvout": 0.1535525531009547
+          },
+          {
+            "head": "6.3",
+            "dvout": 0.14191573459160908
+          },
+          {
+            "head": "6.6",
+            "dvout": 0.14012093146981475
+          }
+        ]
+      }
+    },
+    {
       "model": "Llama-3.2-1B",
       "rope": true,
       "head": "0.31",
@@ -152,6 +384,296 @@
       }
     },
     {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "1.29",
+      "n_layers": 16,
+      "reads_pattern": "induction",
+      "induction_mass": 0.026304617795077236,
+      "duplicate_mass": 0.02597410584037954,
+      "causal_induction_dNLL": 5.563207322429026,
+      "causal_generic_dNLL": 1.9574033192225873,
+      "channel": {
+        "pattern": "induction",
+        "key_top": {
+          "head": "0.30",
+          "collapse": 0.03306226667013832
+        },
+        "key_median": 0.00013447314706381628,
+        "value_top": {
+          "head": "0.29",
+          "dvout": 0.5238122248343302
+        },
+        "value_median": 0.060347549473421545,
+        "key_rows": [
+          {
+            "head": "0.30",
+            "collapse": 0.03306226667013832
+          },
+          {
+            "head": "0.9",
+            "collapse": 0.020757973713795584
+          },
+          {
+            "head": "0.2",
+            "collapse": 0.011872199094085973
+          },
+          {
+            "head": "0.20",
+            "collapse": 0.005206549765116979
+          },
+          {
+            "head": "0.0",
+            "collapse": 0.00512612954971597
+          }
+        ],
+        "value_rows": [
+          {
+            "head": "0.29",
+            "dvout": 0.5238122248343302
+          },
+          {
+            "head": "0.31",
+            "dvout": 0.32828681445297164
+          },
+          {
+            "head": "0.28",
+            "dvout": 0.21179700252363387
+          },
+          {
+            "head": "0.26",
+            "dvout": 0.13481776923360045
+          },
+          {
+            "head": "0.30",
+            "dvout": 0.10392899864306324
+          }
+        ]
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.29",
+      "n_layers": 16,
+      "reads_pattern": "induction",
+      "induction_mass": 0.026767583326859908,
+      "duplicate_mass": 0.015709683028134434,
+      "causal_induction_dNLL": 2.8697457756557956,
+      "causal_generic_dNLL": 0.15240231771317791,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.13",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.024961922385475854,
+      "duplicate_mass": 0.02755924571644176,
+      "causal_induction_dNLL": 1.6953890073105753,
+      "causal_generic_dNLL": 0.1539893226018032,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.28",
+      "n_layers": 16,
+      "reads_pattern": "induction",
+      "induction_mass": 0.029636313698508523,
+      "duplicate_mass": 0.02043880115855824,
+      "causal_induction_dNLL": 1.072668765852642,
+      "causal_generic_dNLL": 0.04502591632661357,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.14",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.029698657989501952,
+      "duplicate_mass": 0.050526150790127844,
+      "causal_induction_dNLL": 1.136483229719849,
+      "causal_generic_dNLL": 0.029350189935593463,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.19",
+      "n_layers": 16,
+      "reads_pattern": "induction",
+      "induction_mass": 0.016252066872336646,
+      "duplicate_mass": 0.015781957452947443,
+      "causal_induction_dNLL": 0.9426431656424289,
+      "causal_generic_dNLL": 0.05659663487994493,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.18",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.024546883322975853,
+      "duplicate_mass": 0.03823575106534091,
+      "causal_induction_dNLL": 0.6311507737959295,
+      "causal_generic_dNLL": 0.18413327232239762,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.20",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.02502566250887784,
+      "duplicate_mass": 0.027547524192116476,
+      "causal_induction_dNLL": 0.25557972780347515,
+      "causal_generic_dNLL": 0.052360913110158336,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "1.28",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.038176380504261365,
+      "duplicate_mass": 0.054782659357244315,
+      "causal_induction_dNLL": 0.32695407154166045,
+      "causal_generic_dNLL": 0.055339010934981836,
+      "channel": {
+        "pattern": "duplicate",
+        "key_top": {
+          "head": "0.30",
+          "collapse": 0.03697148326521927
+        },
+        "key_median": 0.0041121627849268335,
+        "value_top": {
+          "head": "0.29",
+          "dvout": 0.43696530912708004
+        },
+        "value_median": 0.03944055419971397,
+        "key_rows": [
+          {
+            "head": "0.30",
+            "collapse": 0.03697148326521927
+          },
+          {
+            "head": "0.9",
+            "collapse": 0.03060066949251252
+          },
+          {
+            "head": "0.0",
+            "collapse": 0.02184966297483583
+          },
+          {
+            "head": "0.21",
+            "collapse": 0.0203006386006492
+          },
+          {
+            "head": "0.24",
+            "collapse": 0.019486562039470613
+          }
+        ],
+        "value_rows": [
+          {
+            "head": "0.29",
+            "dvout": 0.43696530912708004
+          },
+          {
+            "head": "0.31",
+            "dvout": 0.332485538334254
+          },
+          {
+            "head": "0.28",
+            "dvout": 0.17109763490817723
+          },
+          {
+            "head": "0.26",
+            "dvout": 0.08112932902689456
+          },
+          {
+            "head": "0.8",
+            "dvout": 0.06742843985917567
+          }
+        ]
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.25",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.010818455436012961,
+      "duplicate_mass": 0.010965366797013716,
+      "causal_induction_dNLL": 0.49006492276916214,
+      "causal_generic_dNLL": 0.0025879996163507,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.22",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.02576543634588068,
+      "duplicate_mass": 0.035842756791548296,
+      "causal_induction_dNLL": 0.3658793907527561,
+      "causal_generic_dNLL": 0.00496045369950604,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.16",
+      "n_layers": 16,
+      "reads_pattern": "duplicate",
+      "induction_mass": 0.01772221651944247,
+      "duplicate_mass": 0.018616138805042613,
+      "causal_induction_dNLL": 0.4529849406560912,
+      "causal_generic_dNLL": 0.014069057646252325,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "head": "0.21",
+      "n_layers": 16,
+      "reads_pattern": "induction",
+      "induction_mass": 0.027452364834872157,
+      "duplicate_mass": 0.02711181640625,
+      "causal_induction_dNLL": 0.19209981922823416,
+      "causal_generic_dNLL": 0.004876545497349838,
+      "channel": {
+        "note": "reader in layer 0 \u2014 no upstream"
+      }
+    },
+    {
       "model": "Qwen2.5-1.5B",
       "rope": true,
       "head": "1.6",
@@ -215,6 +737,74 @@
           {
             "head": "0.8",
             "dvout": 0.1627084356367268
+          }
+        ]
+      }
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "rope": true,
+      "head": "1.5",
+      "n_layers": 28,
+      "reads_pattern": "induction",
+      "induction_mass": 0.02438597245649858,
+      "duplicate_mass": 0.022442626953125,
+      "causal_induction_dNLL": 0.07059519181297258,
+      "causal_generic_dNLL": 0.05848981463719927,
+      "channel": {
+        "pattern": "induction",
+        "key_top": {
+          "head": "0.10",
+          "collapse": 0.03312902629445819
+        },
+        "key_median": 0.017875680825950313,
+        "value_top": {
+          "head": "0.11",
+          "dvout": 0.15077904675599468
+        },
+        "value_median": 0.11250879045086828,
+        "key_rows": [
+          {
+            "head": "0.10",
+            "collapse": 0.03312902629445819
+          },
+          {
+            "head": "0.11",
+            "collapse": 0.026934398953341203
+          },
+          {
+            "head": "0.5",
+            "collapse": 0.0245140004835109
+          },
+          {
+            "head": "0.4",
+            "collapse": 0.021425219357499477
+          },
+          {
+            "head": "0.1",
+            "collapse": 0.02048379527581442
+          }
+        ],
+        "value_rows": [
+          {
+            "head": "0.11",
+            "dvout": 0.15077904675599468
+          },
+          {
+            "head": "0.9",
+            "dvout": 0.13846686489775892
+          },
+          {
+            "head": "0.8",
+            "dvout": 0.13711391601819545
+          },
+          {
+            "head": "0.10",
+            "dvout": 0.11673774609114942
+          },
+          {
+            "head": "0.0",
+            "dvout": 0.11644064607738548
           }
         ]
       }

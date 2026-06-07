@@ -43,8 +43,8 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `1.2  addr=long_range  WRITE=transform bind '_.'->'_Ċ'`
 - `1.3  addr=long_range  WRITE=transform bind '_Ċ'->'_as'`
 - `1.4  addr=prev        WRITE=transform bind '_game'->'_for'` [`prev-token`](../operators/prevtok.md) — ★ causal: induction ΔNLL **+0.19**±0.01, 42% of base, generic -0.00
-- `1.5  addr=long_range  WRITE=transform bind '2'->'_'` — ★ causal: induction ΔNLL **+0.11**±0.02, 25% of base, generic +0.06 ⚠ **UNNAMED-candidate**
-- `1.6  addr=long_range  WRITE=transform bind "_'"->'_"'` — ★ causal: induction ΔNLL **+0.22**±0.08, 49% of base, generic +0.06 ⚠ **UNNAMED-candidate**
+- `1.5  addr=long_range  WRITE=transform bind '2'->'_'` — ★ causal: induction ΔNLL **+0.11**±0.02, 25% of base, generic +0.06 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `1.6  addr=long_range  WRITE=transform bind "_'"->'_"'` — ★ causal: induction ΔNLL **+0.22**±0.08, 49% of base, generic +0.06 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `1.7  addr=long_range  WRITE=transform bind '2'->'1'` [`duplicate`](../operators/duplicate.md)
 - `1.8  addr=long_range  WRITE=transform bind '_.'->'_Ċ'`
 - `1.9  addr=prev        WRITE=transform bind '_.'->'_"'` [`prev-token`](../operators/prevtok.md)
