@@ -431,6 +431,31 @@ live DAG and a higher-coverage keep-set. The script takes `--dag-summary` so any
 supervised models) drops straight in. `runs/disassembly/dag_recompile_summary.json` (re-run to regenerate the
 figure).
 
+### Adding the value pathway (V-edges) to the bridge
+
+The bridge now also consumes the V-composition DAG (`vcomposition.py`, `--v-summary`). The K/Q circuit covers
+attention *routing*; do the composed-OV **virtual heads** (the layer-6 value-readers, induction content re-read
+as a value) carry reconstruction the K/Q circuit missed? We add the **22 live V-edge heads** to the 12-head K/Q
+circuit and measure the incremental coverage against the same number of random and importance-optimal additions:
+
+| keep-set | coverage | Δ vs K/Q |
+|---|---|---|
+| K/Q circuit (12 heads) | +0.333 | — |
+| + 22 **V-edge** heads | +0.338 | **+0.004** |
+| + 22 random heads | +0.412 | +0.079 |
+| + 22 top-importance heads | +0.532 | +0.198 |
+
+**No — the value-pathway heads are output-redundant.** Adding the 22 V-edge virtual heads lifts coverage by only
+**+0.004**, *less than adding 22 random heads* (+0.079), and their marginal-importance ranks are mid-pack
+(23–134 of 144). So **ΔV-out, like ΔTV, is an edge-COUPLING score, not head output-importance**: the V-edges are
+a real composed-OV coupling (#28 — removing the writer changes the reader's *output*), but those virtual heads
+are not load-bearing for the model's *next-token* output (keeping them barely helps; the reader is driven by the
+writer yet itself contributes little to the logits). This **unifies the bridge's lesson across all three Elhage
+ports** — K/Q (ΔTV) *and* V (ΔV-out) composition-coupling both fail to predict output-importance; the recompile
+keep-set is the **path-patch-confirmed named circuit**, full stop, not any coupling score. (Consistent with the
+program-wide redundancy theme: composition is distributed; a few named heads are load-bearing, the rest is
+redundant coupling.) `runs/disassembly/dag_recompile_summary.json`, `value_pathway` field.
+
 ## MLP ops in the DAG + the recompile (milestone 3) — first result (GPT-2)
 
 `mlp_ops.py` adds the **COMPUTE** instruction class. M1 and the bridge kept/ablated attention heads only — MLPs
