@@ -131,6 +131,18 @@ read/write tape, the decode step as the clock, chain-of-thought as working memor
 `llm-as-accreting-vm` framing). So the interpreter executes a **fixed circuit per token** and is a **VM at the
 generation level** — not a stored-program CPU per layer.
 
+Formal grounding (why the DAG/loop split is load-bearing, not decorative): the object is a **clocked
+sequential machine** = combinational core (the fixed DAG) + state register (KV-cache + the growing token
+sequence) + clock (the decode step). The **DAG alone is weak** — one bounded-depth pass sits in **TC⁰**
+(Merrill–Sabharwal); the **loop supplies the power** — transformer + decoding + an unbounded scratchpad is
+Turing-complete (Pérez et al., CoT-expressivity). Two precisions: (a) the recursion goes through a **discrete
+token bottleneck** — high-dim state is sampled to a *token* and re-embedded, so depth-per-step is bounded but
+steps are unbounded (hard problems buy back missing within-pass depth with *longer* CoT); (b) the program is
+**fixed, not self-modifying** — the same DAG every step, only the data changes (microcode/ASIC-like; Turing
+power lives entirely in the outer tape+clock). The decompilation payoff: **the loop is a clean recurrence —
+the hard part is reading the DAG**, and `reconstruction_coverage` is exactly the measure of how much of that
+fixed high-dim DAG reduces to a compact symbolic program over explicit operands.
+
 What the frame *does* buy, mapped to checked-in results:
 
 | VM concept | what it actually is here | grounded in |
