@@ -1,0 +1,43 @@
+{
+  "experiment": "cross-model: is prev-token position in the KEY content (absolute) or the rotation (RoPE)?",
+  "ctx": 64,
+  "chunks": 40,
+  "results": [
+    {
+      "model": "gpt2",
+      "rope": false,
+      "prevtok_head": "4.11",
+      "prevtok_mass": 0.9519479140639305,
+      "key_position_fraction": 0.5889601303575678,
+      "key_token_fraction": 0.1789664810825817,
+      "pos_over_tok": 3.2908962996584816
+    },
+    {
+      "model": "google/gemma-2-2b",
+      "rope": true,
+      "prevtok_head": "21.7",
+      "prevtok_mass": 0.8441608428955079,
+      "key_position_fraction": 0.06773704682349534,
+      "key_token_fraction": 0.2252903902053053,
+      "pos_over_tok": 0.30066549559334116
+    },
+    {
+      "model": "unsloth/Llama-3.2-1B",
+      "rope": true,
+      "prevtok_head": "0.2",
+      "prevtok_mass": 0.6765575408935547,
+      "key_position_fraction": 0.024829920967846565,
+      "key_token_fraction": 0.6356766206984445,
+      "pos_over_tok": 0.03906061692274429
+    },
+    {
+      "model": "Qwen/Qwen2.5-1.5B",
+      "rope": true,
+      "prevtok_head": "13.4",
+      "prevtok_mass": 0.7629417419433594,
+      "key_position_fraction": 0.08994563070675164,
+      "key_token_fraction": 0.25456873006326075,
+      "pos_over_tok": 0.35332552699775815
+    }
+  ]
+}
