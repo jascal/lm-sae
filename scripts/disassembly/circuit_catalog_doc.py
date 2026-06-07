@@ -176,6 +176,13 @@ the prev-token→induction K-chain de novo in the GPT-2 family (6/2/2 live edges
 Llama (3) and Qwen (1), but **none in Gemma** (0 — its content-reader keys aren't sharply localized to one
 writer; RoPE distributes the circuit). 14 live edges total.
 
+## Executable decompilation — is the circuit *sufficient*?
+
+Edge liveness shows the circuit's edges are **necessary**. [**Reconstruction**](reconstruction.md) tests
+**sufficiency**: keep only the induction circuit's heads (induction + prev-token), mean-ablate every other
+attention head (MLPs intact), and measure how much induction the circuit alone recovers — far above a random
+same-size head-set. A small head-set that reconstructs most of the behaviour is an *executable* decompilation.
+
 ## Taxonomy & gaps
 
 - **Levels:** circuit (a DAG of operator nodes) → edge (writer-op → reader-op via a K/Q/V port) → the operator

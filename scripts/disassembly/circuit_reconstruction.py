@@ -1,0 +1,194 @@
+"""Executable decompilation — does the catalogued induction circuit RECONSTRUCT induction on its own?
+
+The catalog establishes which heads are *necessary* (ablating them hurts). Sufficiency is the other half of a
+decompilation: keep ONLY the circuit's heads (the induction + prev-token heads, from the cross-model dossier),
+mean-ablate **every other attention head** (MLPs left intact — they are the substrate), and measure how much of
+the model's induction capability survives. Reconstruction coverage:
+
+    coverage = (NLL_all_attn_ablated − NLL_circuit_only) / (NLL_all_attn_ablated − NLL_full)
+
+= 1 if the circuit alone fully reconstructs induction, 0 if it is no better than ablating all attention. A
+random same-size head-set is the control — the circuit should beat it. Arch-generic (reuses `circuit_content_patch
+._arch`); reads the circuit heads from the committed `xmodel_dossiers_summary.json`.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "gemma"))
+from circuit_content_patch import _arch  # noqa: E402
+
+
+def run_model(model_id, circuit_heads, args, dev):
+    import torch
+    import torch.nn.functional as F
+    is_gpt2 = "gpt2" in model_id.lower()
+    from transformers import AutoTokenizer
+    if is_gpt2:
+        from transformers import GPT2LMHeadModel
+        m = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager").eval().to(dev)
+    else:
+        from transformers import AutoModelForCausalLM
+        m = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", dtype=torch.bfloat16).eval().to(dev)
+    a = _arch(m); H = a["H"]; hd = a["hd"]; nL = m.config.num_hidden_layers; oproj = a["oproj"]
+    tok = AutoTokenizer.from_pretrained(model_id); V = m.config.vocab_size
+    rng = np.random.default_rng(args.seed)
+    import urllib.request
+    prose = urllib.request.urlopen(urllib.request.Request(
+        "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
+        headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "ignore")[:160000]
+    pids = tok(prose)["input_ids"]
+    chunks = [pids[i:i + args.ctx] for i in range(0, len(pids), args.ctx) if len(pids[i:i + args.ctx]) >= 8][: args.chunks]
+    if is_gpt2:
+        from collections import Counter
+        vocab = [t for t, _ in Counter(t for c in chunks for t in c).most_common(400)]
+        rep = lambda L: [int(vocab[i]) for i in rng.integers(0, len(vocab), L)]  # noqa: E731
+    else:
+        lo, hi = int(0.02 * V), int(0.4 * V)
+        rep = lambda L: [int(x) for x in rng.integers(lo, hi, L)]                 # noqa: E731
+    seqs = [(lambda s: s + s)(rep(args.rep_len)) for _ in range(args.probes)]
+
+    cap = {L: [] for L in range(nL)}
+    hks = [oproj[L].register_forward_pre_hook((lambda L: lambda mod, inp: cap[L].append(inp[0].detach().reshape(-1, inp[0].shape[-1])))(L)) for L in range(nL)]
+    with torch.no_grad():
+        for c in chunks:
+            m(input_ids=torch.tensor([c], device=dev))
+    for h in hks:
+        h.remove()
+    meanv = {L: torch.cat(cap[L], 0).mean(0) for L in range(nL)}
+
+    def ablate_hooks(heads):                                                     # mean-ablate this set of (L,h)
+        by = {}
+        for (L, h) in heads:
+            by.setdefault(L, []).append(h)
+        hs = []
+        for L, hss in by.items():
+            def mk(L, hss):
+                def hook(mod, inp):
+                    x = inp[0].clone()
+                    for h in hss:
+                        x[..., h * hd:(h + 1) * hd] = meanv[L][h * hd:(h + 1) * hd].to(x.dtype)
+                    return (x,)
+                return hook
+            hs.append(oproj[L].register_forward_pre_hook(mk(L, hss)))
+        return hs
+
+    def ind_nll(heads=()):
+        hs = ablate_hooks(heads); tot = 0.0; k = 0
+        try:
+            with torch.no_grad():
+                for s in seqs:
+                    lp = F.log_softmax(m(input_ids=torch.tensor([s], device=dev)).logits[0].float(), -1); Lh = len(s) // 2
+                    for p in range(Lh, 2 * Lh - 1):
+                        tot += float(-lp[p, s[p + 1]]); k += 1
+        finally:
+            for x in hs:
+                x.remove()
+        return tot / max(k, 1)
+
+    all_heads = [(L, h) for L in range(nL) for h in range(H)]
+    keep = set(circuit_heads)
+    non_circuit = [hh for hh in all_heads if hh not in keep]
+    base = ind_nll()                                                             # full model
+    allabl = ind_nll(all_heads)                                                  # ablate ALL attention (MLPs intact)
+    circ = ind_nll(non_circuit)                                                  # keep only the circuit heads
+
+    def coverage(nll):
+        return (allabl - nll) / (allabl - base + 1e-9)
+    rnd = []
+    for _ in range(args.n_random):
+        rk = {tuple(int(x) for x in divmod(int(i), H)) for i in rng.choice(nL * H, len(keep), replace=False)}
+        rnd.append(coverage(ind_nll([hh for hh in all_heads if hh not in rk])))
+    return {"model": model_id.split("/")[-1], "rope": not is_gpt2, "n_heads_total": nL * H, "circuit_size": len(keep),
+            "base_ind_nll": base, "all_attn_ablated_nll": allabl, "circuit_only_nll": circ,
+            "circuit_coverage": coverage(circ), "random_coverage_mean": float(np.mean(rnd)),
+            "random_coverage_std": float(np.std(rnd))}
+
+
+def write_doc(out, docs):
+    L = ["---", "title: Executable decompilation", "---", "", "# Executable decompilation — does the induction circuit reconstruct itself?", "",
+         "The catalog shows which heads are *necessary*. This tests **sufficiency**: keep ONLY the induction circuit "
+         "(the induction + prev-token heads from the [cross-model dossier](operators/induction.md)), mean-ablate "
+         "**every other attention head** (MLPs intact — the substrate), and measure how much induction survives.", "",
+         "**coverage = (NLL_all-attn-ablated − NLL_circuit-only) / (NLL_all-attn-ablated − NLL_full)** — 1 = the "
+         "circuit alone fully reconstructs induction, 0 = no better than ablating all attention. A random same-size "
+         "head-set is the control.", "",
+         "| model | circuit size / total heads | induction-NLL (full / circuit-only / all-ablated) | **circuit coverage** | random control |",
+         "|---|---|---|---|---|"]
+    for r in out["results"]:
+        if "circuit_coverage" not in r:
+            continue
+        L.append(f"| {r['model']} | {r['circuit_size']} / {r['n_heads_total']} | "
+                 f"{r['base_ind_nll']:.2f} / {r['circuit_only_nll']:.2f} / {r['all_attn_ablated_nll']:.2f} | "
+                 f"**{r['circuit_coverage']:+.0%}** | {r['random_coverage_mean']:+.0%} ± {r['random_coverage_std']:.0%} |")
+    L += ["", "_**The honest result: necessity ≠ a small sufficient circuit.** No 8-head circuit *fully* reconstructs "
+          "induction in any model (best +17%, GPT-2-small). The circuit beats its random control in 4/6 models — it is "
+          "the **main** contributor — but coverage is modest, and it **decays with GPT-2 scale** (small +17% → medium "
+          "+7% → large +0%) and fails in Qwen (−4%): in the larger / more distributed models the top induction + "
+          "prev-token heads in isolation recover essentially nothing, because induction there is spread across a "
+          "supporting cast the 8-head set excludes. So the catalogued circuit is causally necessary and the dominant "
+          "driver, but not an executable small-circuit decompilation on its own — consistent with the distributed / "
+          "non-monotonic induction-redundancy seen in the [dossier](../operators/induction.md). Provisional, single "
+          "corpus; induction-NLL on repeated-random sequences. "
+          "Data: [circuit_reconstruction_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/circuit_reconstruction_summary.json). "
+          "Regenerate: [circuit_reconstruction.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_reconstruction.py)._"]
+    docs.mkdir(parents=True, exist_ok=True)
+    (docs / "reconstruction.md").write_text("\n".join(L))
+
+
+def main(argv=None):
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--dossiers", type=Path, default=Path("runs/disassembly/operators/xmodel_dossiers_summary.json"))
+    p.add_argument("--model-ids", default="gpt2,gpt2-medium,gpt2-large,google/gemma-2-2b,unsloth/Llama-3.2-1B,Qwen/Qwen2.5-1.5B")
+    p.add_argument("--ctx", type=int, default=64)
+    p.add_argument("--chunks", type=int, default=16)
+    p.add_argument("--probes", type=int, default=28)
+    p.add_argument("--rep-len", type=int, default=22)
+    p.add_argument("--n-random", type=int, default=4)
+    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--device", default="cuda")
+    p.add_argument("--outdir", type=Path, default=Path("runs/disassembly/circuits"))
+    p.add_argument("--docs", type=Path, default=Path("docs/circuits"))
+    args = p.parse_args(argv)
+
+    doss = {r["model"]: r for r in json.loads(args.dossiers.read_text())["results"] if "ops" in r}
+
+    def circuit_for(short):
+        d = doss.get(short)
+        if not d:
+            return None
+        heads = d["ops"]["induction"]["heads"] + d["ops"]["prevtok"]["heads"]
+        return [tuple(int(x) for x in hh.split(".")) for hh in heads]
+
+    import torch
+    dev = args.device if torch.cuda.is_available() else "cpu"
+    results = []
+    for mid in [m.strip() for m in args.model_ids.split(",") if m.strip()]:
+        short = mid.split("/")[-1]
+        circ = circuit_for(short)
+        if not circ:
+            print(f"[skip] {short}: no dossier circuit"); continue
+        print(f"\n=== {mid}: circuit = {len(circ)} heads ===")
+        try:
+            r = run_model(mid, circ, args, dev); results.append(r)
+            print(f"  full {r['base_ind_nll']:.2f} | circuit-only {r['circuit_only_nll']:.2f} | all-ablated {r['all_attn_ablated_nll']:.2f} "
+                  f"| coverage {r['circuit_coverage']:+.0%} (random {r['random_coverage_mean']:+.0%})")
+        except Exception as e:  # pragma: no cover
+            print(f"  [skip] {e}"); results.append({"model": short, "error": str(e)})
+        if dev == "cuda":
+            torch.cuda.empty_cache()
+    out = {"experiment": "executable decompilation — induction-circuit reconstruction coverage", "results": results}
+    args.outdir.mkdir(parents=True, exist_ok=True)
+    (args.outdir / "circuit_reconstruction_summary.json").write_text(json.dumps(out, indent=2, default=float))
+    write_doc(out, args.docs)
+    print(f"\n[done] {len([r for r in results if 'circuit_coverage' in r])} models → {args.outdir / 'circuit_reconstruction_summary.json'}")
+    return out
+
+
+if __name__ == "__main__":
+    main()
