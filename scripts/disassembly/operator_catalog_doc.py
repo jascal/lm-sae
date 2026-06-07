@@ -105,9 +105,17 @@ def main(argv=None):
     for op in all_ops:
         (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op)))
 
+    # discovered-candidate dossiers: any dossiers/<op>/ not in the registered set (e.g. discovered_7.6)
+    dossier_dir = args.root / "dossiers"
+    discovered = sorted(d.name for d in dossier_dir.iterdir() if d.is_dir() and d.name not in all_ops and (d / "gpt2_summary.json").exists()) if dossier_dir.exists() else []
+    for op in discovered:
+        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op)))
+
     ok, ops, kinds, sig_tbl, cau_tbl, memb_tbl = atlas_tables(atlas)
     circuit = atlas.get("gpt2_circuit_ops", {})
     idx = "\n".join(f"- [`{op}`]({op}.md) — {kinds.get(op, 'circuit')}" for op in all_ops)
+    disc_idx = ("\n\n**Discovered-candidate dossiers** (UNNAMED load-bearing heads from the [discovery sweep](discovered.md), "
+                "given the full battery): " + ", ".join(f"[`{op}`]({op}.md)" for op in discovered) + ".") if discovered else ""
     readme = f"""# Operator catalog — attention operators, surveyed across models
 
 A **working catalog** of attention operators — amateur, exploratory home-science: provisional, descriptive, and
@@ -152,7 +160,7 @@ they are load-bearing on their *own* task — see each op's dossier (section B) 
 
 ## Catalog index
 
-{idx}
+{idx}{disc_idx}
 
 ## The other instruction class: COMPUTE (MLP)
 

@@ -79,6 +79,8 @@ they are load-bearing on their *own* task — see each op's dossier (section B) 
 - [`s_inhibition`](s_inhibition.md) — circuit
 - [`coreference`](coreference.md) — circuit
 
+**Discovered-candidate dossiers** (UNNAMED load-bearing heads from the [discovery sweep](discovered.md), given the full battery): [`discovered_7.6`](discovered_7.6.md).
+
 ## The other instruction class: COMPUTE (MLP)
 
 Attention is the **MOVE** class; the **[MLP / COMPUTE catalog](mlp_compute.md)** is the other half of the

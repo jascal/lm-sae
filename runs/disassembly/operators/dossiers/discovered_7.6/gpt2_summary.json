@@ -1,0 +1,258 @@
+{
+  "op": "discovered_7.6",
+  "spec": {
+    "kind": "content",
+    "primary": "induction",
+    "repeat": true,
+    "desc": "ad-hoc head-set 7.6 (discovered candidate; provided, not behaviourally re-found)"
+  },
+  "model": "gpt2",
+  "prev_token_head": "4.11",
+  "A_identity": {
+    "note": "ad-hoc head-set (provided discovered candidate; signal = its mass on the op's reference pattern)",
+    "op_heads": [
+      "7.6"
+    ],
+    "ranked": [
+      {
+        "head": "7.6",
+        "signal": 0.04803968265623834,
+        "depth": 0.6363636363636364
+      }
+    ]
+  },
+  "B_causal": {
+    "tasks": [
+      "generic",
+      "induction",
+      "copy_names",
+      "successor",
+      "ioi"
+    ],
+    "op_effects": {
+      "generic": -0.0021849465004949897,
+      "induction": 0.5650730604253857,
+      "copy_names": 1.0495114325022266,
+      "successor": -0.019769608328863916,
+      "ioi": 0.02182040889572407
+    },
+    "random_mean": {
+      "generic": 0.0011940839837350805,
+      "induction": 0.02866683522925719,
+      "copy_names": 0.07067817805923077,
+      "successor": 0.005462664689055405,
+      "ioi": 0.026514651328175876
+    },
+    "threshold": {
+      "generic": 0.05,
+      "induction": 0.05,
+      "copy_names": 0.25967681472871795,
+      "successor": 0.05,
+      "ioi": 0.15034764279828522
+    },
+    "serves": [
+      "induction",
+      "copy_names"
+    ],
+    "baselines": {
+      "generic": 5.010904661479749,
+      "induction": 0.6735760703599746,
+      "copy_names": 0.31579052265033236,
+      "successor": 5.380253285169601,
+      "ioi": 2.602486855643136
+    }
+  },
+  "C_channels": {
+    "reader": "7.6",
+    "sanity": 0.0,
+    "key_top": {
+      "head": "1.9",
+      "collapse": 0.2201701074168653
+    },
+    "key_top_is_prevtok_head": false,
+    "key_median": -0.0023602454637523195,
+    "key_concentration": -93.28275557813981,
+    "value_top": {
+      "head": "5.9",
+      "dvout": 0.5150928137730095
+    },
+    "value_median": 0.098617782693258,
+    "key_rows": [
+      {
+        "head": "1.9",
+        "collapse": 0.2201701074168653
+      },
+      {
+        "head": "3.0",
+        "collapse": 0.12505178204940195
+      },
+      {
+        "head": "6.6",
+        "collapse": 0.11630267584701369
+      },
+      {
+        "head": "1.3",
+        "collapse": 0.06636539099733334
+      },
+      {
+        "head": "5.5",
+        "collapse": 0.04742925720784444
+      }
+    ],
+    "value_rows": [
+      {
+        "head": "5.9",
+        "dvout": 0.5150928137730095
+      },
+      {
+        "head": "5.5",
+        "dvout": 0.28728613830249455
+      },
+      {
+        "head": "6.6",
+        "dvout": 0.26691738746947086
+      },
+      {
+        "head": "5.1",
+        "dvout": 0.24850077800627485
+      },
+      {
+        "head": "2.10",
+        "dvout": 0.20727428897065445
+      }
+    ]
+  },
+  "D_composition": {
+    "in_key": [
+      [
+        "6.2",
+        0.06308156257460265
+      ],
+      [
+        "5.9",
+        0.05417237845159404
+      ],
+      [
+        "4.2",
+        0.05266131582092291
+      ],
+      [
+        "3.5",
+        0.051792441291421805
+      ],
+      [
+        "5.3",
+        0.051595719106784156
+      ],
+      [
+        "6.6",
+        0.05046165490768214
+      ]
+    ],
+    "in_value": [
+      [
+        "5.9",
+        0.0647832387832462
+      ],
+      [
+        "5.10",
+        0.06437585201004312
+      ],
+      [
+        "5.5",
+        0.0615112304225616
+      ],
+      [
+        "6.6",
+        0.0591631569520482
+      ],
+      [
+        "5.11",
+        0.05620051062684106
+      ],
+      [
+        "3.0",
+        0.055747373552693665
+      ]
+    ],
+    "out_value": [
+      [
+        "9.3",
+        0.06063699314750341
+      ],
+      [
+        "8.5",
+        0.05674991511894357
+      ],
+      [
+        "8.7",
+        0.055266863871622676
+      ],
+      [
+        "8.10",
+        0.046937787939537685
+      ],
+      [
+        "8.9",
+        0.042010692857458634
+      ],
+      [
+        "11.8",
+        0.03896578409075689
+      ]
+    ],
+    "out_key": [
+      [
+        "11.8",
+        0.062321099100526
+      ],
+      [
+        "8.9",
+        0.04878150340982426
+      ],
+      [
+        "11.6",
+        0.04752856840392097
+      ],
+      [
+        "9.2",
+        0.047072059599952525
+      ],
+      [
+        "8.2",
+        0.0466591639331806
+      ],
+      [
+        "10.10",
+        0.046597004926816274
+      ]
+    ]
+  },
+  "E_redundancy": {
+    "primary_task": "induction",
+    "full_op_effect": 0.5650730604253857,
+    "max_single_head_effect": 0.5650730604253857,
+    "population_gap": 0.0,
+    "bottleneck": true,
+    "solo": [
+      [
+        "7.6",
+        0.5650730604253857
+      ]
+    ],
+    "cumulative_curve": [
+      {
+        "after": "7.6",
+        "n": 1,
+        "effect": 0.5650730604253857
+      }
+    ],
+    "leave_one_out": [
+      {
+        "head": "7.6",
+        "marginal": 0.5650730604253857
+      }
+    ]
+  },
+  "G_sae_operands": "NOT RUN \u2014 needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer."
+}
