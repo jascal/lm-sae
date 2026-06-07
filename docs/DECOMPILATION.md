@@ -183,7 +183,11 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
 4. **The ceiling test** — reconstruction-coverage plateau vs the tower's entangled core, same host; the
    unifying claim stands or falls. **First result DONE (v2, tiny GPT): `scripts/cov95_forge_tax/ceiling_test.py`** — content/factorability axes decouple; the capability plateau is GPU-scale-gated (see Ceiling test section).
 5. **Cross-model** — repeat the ceiling on Gemma-2 / Llama-3 / Qwen-2.5 (idea i) to test whether the
-   decompilable fraction is architecture-invariant like the mechanisms are.
+   decompilable fraction is architecture-invariant like the mechanisms are. **DONE (op-selection ceiling, 5
+   models incl. the gpt2-medium control): `scripts/gemma/cross_model_ceiling.py`** — the named circuit beats
+   random everywhere (mechanisms invariant) but the decompilable *fraction* is **not** invariant; the gpt2-medium
+   control **disentangles** it — the high fraction tracks the **absolute-position family, not scale** (see
+   Cross-model ceiling section). The *forge-basis* ceiling stays SAE/GPU-gated for non-GPT-2.
 
 ## First result (milestone 1, GPT-2)
 
@@ -540,6 +544,49 @@ widths) and **identifies the capability-ceiling test as GPU-scale-gated** — an
 unifying "one ceiling" claim is wrong as stated (≥2 axes), and the clean capability test is deferred to better
 forge hardware. (The tower's ~24% irreducible core is the target a GPU-scale capability curve would be
 compared against.) `ceiling_test.py`, `runs/cov95_forge_tax/ceiling_test_summary.json`.
+
+## Cross-model ceiling (milestone 5) — first result (5 models, abs-pos vs RoPE)
+
+The forge-basis ceiling (M4) needs per-layer SAEs + sae-forge forging, which Llama-3.2-1B / Qwen-2.5-1.5B don't
+have and which is globally broken at whole-model scale — so the cross-model ceiling goes to the **op-selection**
+metric, which is arch-generic: `cross_model_ceiling.py` runs M1's reconstruction-coverage harness
+(`coverage = 1 − KL(host‖keep)/KL(host‖all-ablated)`) on five models — two **absolute-position** (GPT-2 144h,
+gpt2-medium 384h) and three **RoPE** (Gemma-2-2B, Qwen-2.5-1.5B, Llama-3.2-1B) — and compares the **named
+induction circuit** (prev-token + induction heads, found behaviorally) to an **equal-size random** keep-set. The
+gpt2-medium control is the key: it is *larger* than two of the RoPE models, so it separates **scale** from
+**architecture-family**. The question: is the *decompilable fraction* architecture-invariant like the mechanisms
+are?
+
+| model | pos. enc. | heads | induction circuit | random | lift | ratio |
+|---|---|---|---|---|---|---|
+| **GPT-2** | absolute | 144 | +0.202 (**20% of pass**) | +0.049 | **+0.153** | **4.1×** |
+| **gpt2-medium** | absolute | 384 | +0.197 (**20%**) | +0.012 | **+0.185** | **16.9×** |
+| Gemma-2-2B | RoPE | 208 | +0.031 (3%) | +0.022 | +0.009 | 1.4× |
+| Qwen-2.5-1.5B | RoPE | 336 | +0.090 (9%) | +0.031 | +0.060 | 2.9× |
+| Llama-3.2-1B | RoPE | 512 | +0.034 (3%) | −0.000 | +0.034 | n/a |
+
+**The decompilable fraction is *not* architecture-invariant — and the gpt2-medium control disentangles *why*:
+it's the absolute-position FAMILY, not scale.** The named circuit beats random in **every** model (lift > 0 →
+the op-catalog is real and the *mechanisms* are invariant). But its coverage-share splits cleanly by
+position-encoding: the **absolute-position** GPT-2 family reconstructs **~20%** of the pass (4–17× random)
+*regardless of size*, while **every RoPE** model sits at **3–9%** (1.4–2.9×). The control is decisive —
+**gpt2-medium has 384 heads, more than Qwen (336) and Gemma (208), yet keeps the full 20% / 16.9× fraction** the
+larger RoPE models lack. So the earlier GPT-2-smallest-and-only-absolute confound resolves in favour of
+**family**: GPT-2's absolute positions **concentrate** the induction circuit into a few load-bearing heads; RoPE
+**distributes** it across many (more redundant), so a fixed named circuit explains proportionally less. The
+random-budget curves echo it: the absolute-pos curves *rise* with heads kept, the RoPE curves stay
+flat/declining (random head-sets add ~nothing). This is the **same GPT-2-family-is-special pattern** as the sink
+(only GPT-2 depends on it) and the positional-broadcast circuit (only GPT-2 has it) — three independent
+signatures of GPT-2's learned absolute positions.
+
+**Scope (honest).** (a) **Op-selection** ceiling (heads at full fidelity, complement mean-ablated); the
+**forge-basis** ceiling (M4) stays SAE/GPU-gated for non-GPT-2 — when per-layer SAEs land for the RoPE models it
+can be run apples-to-apples. (b) **gpt2-large (720 heads) was tested and excluded** — its 5-head circuit
+collapses to ~0% because the behavioral induction-head identification fails at that head count on the small eval
+(it picks a last-layer "inductor"); the disentanglement rests on gpt2-medium, where the circuit is clean. (c)
+The circuit is a fixed ~5 heads (behavioral); the size-controlled lift makes the conclusion robust to the exact
+heads (`--n-prev/--n-ind` expose it for sensitivity). `cross_model_ceiling.py`,
+`runs/gemma/cross_model_ceiling_summary.json` (~3 min, 5 models).
 
 ## Reachability — host-width × oracle-supervision (first result)
 
