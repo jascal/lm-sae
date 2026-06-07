@@ -872,6 +872,14 @@ specialization. **Caveat:** name-movers read ~0 here because mean-ablation trigg
 finds them load-bearing. The matrix is the cross-task causal generalization of that script's single-task
 double-dissociation. `instruction_reuse.py`, `runs/disassembly/instruction_reuse_summary.json`.
 
+**Self-repair, made causal (`self_repair.py`).** The name-mover caveat above is quantified: ablating the
+*primary* name-movers (9.6/9.9/10.0) drops the IOI logit-diff by **−0.002** (the circuit looks robust), but
+ablating primaries **and** backups (9.0/9.7/10.x/11.2) together drops it **−1.04** (+2.57 → +1.53). The backups
+are causally **idle when primaries are present** (Δ +0.26 from removing them) and **carry the logit-diff once
+primaries are gone** (Δ +1.04 — **4× larger**). So the op is load-bearing, but a redundant backup pathway masks
+it under single-class ablation — a clean instance of the program-wide redundancy (the named circuit ships *hot
+spares*), and exactly why mean-ablation under-counts name-movers. `runs/disassembly/self_repair_summary.json`.
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);

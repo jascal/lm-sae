@@ -1,0 +1,28 @@
+{
+  "experiment": "IOI self-repair (backup name-movers compensate)",
+  "model": "gpt2",
+  "n_prompts": 160,
+  "ld_full": 2.5670141220092773,
+  "ld_minus_primaries": 2.568937587738037,
+  "ld_minus_backups": 2.3106181144714357,
+  "ld_minus_both": 1.5280656099319458,
+  "ld_minus_negatives": 4.228095078468323,
+  "primaries": [
+    "9.6",
+    "9.9",
+    "10.0"
+  ],
+  "backups": [
+    "9.0",
+    "9.7",
+    "10.1",
+    "10.2",
+    "10.6",
+    "10.10",
+    "11.2"
+  ],
+  "backups_effect_with_primaries": 0.25639600753784153,
+  "backups_effect_without_primaries": 1.040871977806091,
+  "drop_primaries": -0.0019234657287596768,
+  "drop_both": 1.0389485120773314
+}
