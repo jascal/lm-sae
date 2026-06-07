@@ -20,6 +20,8 @@ The deep battery's arch-generic core — behavioural head-ID + mean-ablation cau
 | model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | redundancy (top heads) | KEY top writer (collapse) | VALUE top mover (ΔV-out) |
 |---|---|---|---|---|---|---|---|
 | gpt2 | 7.2 | 136 | +3.10 | +0.03 | distributed (full +3.10 ≫ best 1h +1.31) | — (addresses by position/key-0) | — (addresses by position/key-0) |
+| gpt2-medium | 9.9 | 378 | +0.41 | +0.01 | distributed (full +0.41 ≫ best 1h +0.12) | — (addresses by position/key-0) | — (addresses by position/key-0) |
+| gpt2-large | 19.4 | 687 | +0.17 | +0.00 | distributed (full +0.17 ≫ best 1h +0.04) | — (addresses by position/key-0) | — (addresses by position/key-0) |
 | gemma-2-2b | 1.0 | 67 | -0.18 | -0.49 | **compensatory** (peak +0.62@2h → full -0.18; self-repair) | — (addresses by position/key-0) | — (addresses by position/key-0) |
 | Llama-3.2-1B | 5.11 | 508 | +0.42 | -0.00 | distributed (full +0.42 ≫ best 1h +0.22) | — (addresses by position/key-0) | — (addresses by position/key-0) |
 | Qwen2.5-1.5B | 14.5 | 312 | +0.19 | -0.00 | distributed (full +0.19 ≫ best 1h +0.08) | — (addresses by position/key-0) | — (addresses by position/key-0) |
