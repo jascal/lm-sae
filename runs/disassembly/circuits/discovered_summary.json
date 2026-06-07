@@ -1,0 +1,1217 @@
+{
+  "experiment": "cross-model circuit-edge discovery (top content readers x all upstream, key-patch)",
+  "results": [
+    {
+      "model": "gpt2",
+      "arch": "GPT-2/absolute",
+      "n_layers": 12,
+      "prev_token_head": "4.11",
+      "n_readers": 6,
+      "n_live_edges": 6,
+      "edges": [
+        {
+          "reader": "5.5",
+          "pattern": "induction",
+          "top_writer": "4.11",
+          "collapse": 0.22162496523548753,
+          "z": 24.54851718794867,
+          "writer_is_prevtok_head": true,
+          "live": true,
+          "median_collapse": 0.0010932839757175528,
+          "top_writers": [
+            {
+              "writer": "4.11",
+              "collapse": 0.22162496523548753,
+              "z": 24.54851718794867
+            },
+            {
+              "writer": "1.0",
+              "collapse": 0.07600960939073384,
+              "z": 8.339322003998952
+            },
+            {
+              "writer": "3.7",
+              "collapse": 0.060773162755459124,
+              "z": 6.643274660720768
+            },
+            {
+              "writer": "1.9",
+              "collapse": 0.06030564000268516,
+              "z": 6.591232295348739
+            }
+          ]
+        },
+        {
+          "reader": "7.10",
+          "pattern": "induction",
+          "top_writer": "4.11",
+          "collapse": 0.16516512052013962,
+          "z": 30.725891384590664,
+          "writer_is_prevtok_head": true,
+          "live": true,
+          "median_collapse": 0.001466856961623868,
+          "top_writers": [
+            {
+              "writer": "4.11",
+              "collapse": 0.16516512052013962,
+              "z": 30.725891384590664
+            },
+            {
+              "writer": "5.6",
+              "collapse": 0.0813510941960039,
+              "z": 14.994138259304389
+            },
+            {
+              "writer": "3.7",
+              "collapse": 0.039902473834443425,
+              "z": 7.214301261734788
+            },
+            {
+              "writer": "2.2",
+              "collapse": 0.038267126546146564,
+              "z": 6.9073492998507655
+            }
+          ]
+        },
+        {
+          "reader": "5.1",
+          "pattern": "induction",
+          "top_writer": "4.11",
+          "collapse": 0.4563639361659922,
+          "z": 16.58604672137983,
+          "writer_is_prevtok_head": true,
+          "live": true,
+          "median_collapse": 0.0010562961199713993,
+          "top_writers": [
+            {
+              "writer": "4.11",
+              "collapse": 0.4563639361659922,
+              "z": 16.58604672137983
+            },
+            {
+              "writer": "2.0",
+              "collapse": 0.1729424541775767,
+              "z": 6.261506721068331
+            },
+            {
+              "writer": "1.0",
+              "collapse": 0.15022216932476398,
+              "z": 5.433847193866634
+            },
+            {
+              "writer": "1.1",
+              "collapse": 0.11001844798857416,
+              "z": 3.969297202155579
+            }
+          ]
+        },
+        {
+          "reader": "6.9",
+          "pattern": "induction",
+          "top_writer": "4.11",
+          "collapse": 0.2586944802708476,
+          "z": 19.848585943166256,
+          "writer_is_prevtok_head": true,
+          "live": true,
+          "median_collapse": 0.0018540163637096082,
+          "top_writers": [
+            {
+              "writer": "4.11",
+              "collapse": 0.2586944802708476,
+              "z": 19.848585943166256
+            },
+            {
+              "writer": "5.6",
+              "collapse": 0.10587667768328553,
+              "z": 8.038852997808721
+            },
+            {
+              "writer": "1.0",
+              "collapse": 0.08312467252428354,
+              "z": 6.280582034939376
+            },
+            {
+              "writer": "2.2",
+              "collapse": 0.07833219136673246,
+              "z": 5.9102199327627885
+            }
+          ]
+        },
+        {
+          "reader": "7.2",
+          "pattern": "induction",
+          "top_writer": "4.11",
+          "collapse": 0.24566895152476437,
+          "z": 16.292111833409393,
+          "writer_is_prevtok_head": true,
+          "live": true,
+          "median_collapse": 0.00095280264094463,
+          "top_writers": [
+            {
+              "writer": "4.11",
+              "collapse": 0.24566895152476437,
+              "z": 16.292111833409393
+            },
+            {
+              "writer": "1.4",
+              "collapse": 0.10838410276817187,
+              "z": 7.152297729694622
+            },
+            {
+              "writer": "5.6",
+              "collapse": 0.10178174093856655,
+              "z": 6.712741869637218
+            },
+            {
+              "writer": "3.7",
+              "collapse": 0.0667186037518004,
+              "z": 4.3783942800624285
+            }
+          ]
+        },
+        {
+          "reader": "3.0",
+          "pattern": "duplicate",
+          "top_writer": "1.9",
+          "collapse": 0.15343816435745175,
+          "z": 5.049095498561982,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": -0.0017594018033868486,
+          "top_writers": [
+            {
+              "writer": "1.9",
+              "collapse": 0.15343816435745175,
+              "z": 5.049095498561982
+            },
+            {
+              "writer": "1.4",
+              "collapse": 0.15226889524228432,
+              "z": 5.011055266540038
+            },
+            {
+              "writer": "1.10",
+              "collapse": 0.11349974342057034,
+              "z": 3.7497651910035565
+            },
+            {
+              "writer": "0.4",
+              "collapse": 0.05527087456931316,
+              "z": 1.8553854859858292
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt2-medium",
+      "arch": "GPT-2/absolute",
+      "n_layers": 24,
+      "prev_token_head": "5.11",
+      "n_readers": 6,
+      "n_live_edges": 2,
+      "edges": [
+        {
+          "reader": "18.5",
+          "pattern": "induction",
+          "top_writer": "1.6",
+          "collapse": 0.008253489616263836,
+          "z": 11.119649230808333,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.00016414571275716162,
+          "top_writers": [
+            {
+              "writer": "1.6",
+              "collapse": 0.008253489616263836,
+              "z": 11.119649230808333
+            },
+            {
+              "writer": "4.13",
+              "collapse": 0.005362093283400613,
+              "z": 7.145122570525389
+            },
+            {
+              "writer": "1.14",
+              "collapse": 0.0039881328729147415,
+              "z": 5.256470288725696
+            },
+            {
+              "writer": "3.13",
+              "collapse": 0.003258596371771801,
+              "z": 4.25364606830108
+            }
+          ]
+        },
+        {
+          "reader": "11.1",
+          "pattern": "induction",
+          "top_writer": "4.13",
+          "collapse": 0.08951591622115596,
+          "z": 42.73558140171634,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0006108466823695876,
+          "top_writers": [
+            {
+              "writer": "4.13",
+              "collapse": 0.08951591622115596,
+              "z": 42.73558140171634
+            },
+            {
+              "writer": "3.13",
+              "collapse": 0.026310388303019117,
+              "z": 12.35345586718111
+            },
+            {
+              "writer": "2.4",
+              "collapse": 0.02073946655980929,
+              "z": 9.675581805841222
+            },
+            {
+              "writer": "1.6",
+              "collapse": 0.01930275516287616,
+              "z": 8.984972179495637
+            }
+          ]
+        },
+        {
+          "reader": "9.9",
+          "pattern": "induction",
+          "top_writer": "4.13",
+          "collapse": 0.11303584484372042,
+          "z": 15.37574452522962,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": 0.0006953699947846532,
+          "top_writers": [
+            {
+              "writer": "4.13",
+              "collapse": 0.11303584484372042,
+              "z": 15.37574452522962
+            },
+            {
+              "writer": "1.14",
+              "collapse": 0.055121942498819444,
+              "z": 7.4492214433955075
+            },
+            {
+              "writer": "3.13",
+              "collapse": 0.04532850684088727,
+              "z": 6.108819732408207
+            },
+            {
+              "writer": "2.14",
+              "collapse": 0.04483410370629735,
+              "z": 6.041152079230228
+            }
+          ]
+        },
+        {
+          "reader": "7.2",
+          "pattern": "induction",
+          "top_writer": "4.13",
+          "collapse": 0.16520946709107714,
+          "z": 12.924542002024571,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": 0.00314457336482185,
+          "top_writers": [
+            {
+              "writer": "4.13",
+              "collapse": 0.16520946709107714,
+              "z": 12.924542002024571
+            },
+            {
+              "writer": "1.14",
+              "collapse": 0.07137283088612797,
+              "z": 5.44114743041485
+            },
+            {
+              "writer": "2.4",
+              "collapse": 0.06593336071465243,
+              "z": 5.007354157340275
+            },
+            {
+              "writer": "2.14",
+              "collapse": 0.044538710339870696,
+              "z": 3.3011483836545685
+            }
+          ]
+        },
+        {
+          "reader": "12.1",
+          "pattern": "induction",
+          "top_writer": "4.13",
+          "collapse": 0.08459019263546533,
+          "z": 22.45476784698281,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0012538555414235019,
+          "top_writers": [
+            {
+              "writer": "4.13",
+              "collapse": 0.08459019263546533,
+              "z": 22.45476784698281
+            },
+            {
+              "writer": "3.13",
+              "collapse": 0.029299540167146414,
+              "z": 7.5568396613069755
+            },
+            {
+              "writer": "1.6",
+              "collapse": 0.022749625388128757,
+              "z": 5.7919814864823165
+            },
+            {
+              "writer": "2.14",
+              "collapse": 0.01906787297696713,
+              "z": 4.799942496702739
+            }
+          ]
+        },
+        {
+          "reader": "7.11",
+          "pattern": "duplicate",
+          "top_writer": "4.6",
+          "collapse": 0.08553741115328761,
+          "z": 21.708806751320434,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0004254451889027775,
+          "top_writers": [
+            {
+              "writer": "4.6",
+              "collapse": 0.08553741115328761,
+              "z": 21.708806751320434
+            },
+            {
+              "writer": "2.13",
+              "collapse": 0.07712085700456012,
+              "z": 19.562065744266196
+            },
+            {
+              "writer": "1.6",
+              "collapse": 0.02529997707181613,
+              "z": 6.344541564245933
+            },
+            {
+              "writer": "1.15",
+              "collapse": 0.025241382824242806,
+              "z": 6.3295964130806945
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt2-large",
+      "arch": "GPT-2/absolute",
+      "n_layers": 36,
+      "prev_token_head": "14.1",
+      "n_readers": 6,
+      "n_live_edges": 2,
+      "edges": [
+        {
+          "reader": "16.0",
+          "pattern": "induction",
+          "top_writer": "3.14",
+          "collapse": 0.008766893585222108,
+          "z": 16.926924103657477,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 5.9235767467766236e-05,
+          "top_writers": [
+            {
+              "writer": "3.14",
+              "collapse": 0.008766893585222108,
+              "z": 16.926924103657477
+            },
+            {
+              "writer": "3.1",
+              "collapse": 0.007987715413146662,
+              "z": 15.412269984491706
+            },
+            {
+              "writer": "2.3",
+              "collapse": 0.00707183931614588,
+              "z": 13.631887072490187
+            },
+            {
+              "writer": "2.4",
+              "collapse": 0.003891334262879289,
+              "z": 7.449263825837766
+            }
+          ]
+        },
+        {
+          "reader": "5.8",
+          "pattern": "duplicate",
+          "top_writer": "3.3",
+          "collapse": 0.16134061151342252,
+          "z": 191.71347502712928,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": 1.828688464623186e-05,
+          "top_writers": [
+            {
+              "writer": "3.3",
+              "collapse": 0.16134061151342252,
+              "z": 191.71347502712928
+            },
+            {
+              "writer": "2.9",
+              "collapse": 0.019859556725916074,
+              "z": 23.579122102126586
+            },
+            {
+              "writer": "2.11",
+              "collapse": 0.01634847487382043,
+              "z": 19.40659542598994
+            },
+            {
+              "writer": "1.14",
+              "collapse": 0.012563089752029811,
+              "z": 14.908090103280113
+            }
+          ]
+        },
+        {
+          "reader": "5.19",
+          "pattern": "duplicate",
+          "top_writer": "3.3",
+          "collapse": 0.1672070661896242,
+          "z": 135.73506478118375,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": 0.00019566189624324078,
+          "top_writers": [
+            {
+              "writer": "3.3",
+              "collapse": 0.1672070661896242,
+              "z": 135.73506478118375
+            },
+            {
+              "writer": "2.11",
+              "collapse": 0.04233750745378649,
+              "z": 34.24991341731072
+            },
+            {
+              "writer": "3.7",
+              "collapse": 0.01956618962432916,
+              "z": 15.74299579805199
+            },
+            {
+              "writer": "2.9",
+              "collapse": 0.012447823494334988,
+              "z": 9.957690944895704
+            }
+          ]
+        },
+        {
+          "reader": "19.4",
+          "pattern": "induction",
+          "top_writer": "3.14",
+          "collapse": 0.020243612070407428,
+          "z": 11.50428007327285,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0005977153989197564,
+          "top_writers": [
+            {
+              "writer": "3.14",
+              "collapse": 0.020243612070407428,
+              "z": 11.50428007327285
+            },
+            {
+              "writer": "3.1",
+              "collapse": 0.017653512008422235,
+              "z": 9.987564545896383
+            },
+            {
+              "writer": "2.4",
+              "collapse": 0.016534332969292784,
+              "z": 9.332193639005288
+            },
+            {
+              "writer": "3.3",
+              "collapse": 0.011117998366736522,
+              "z": 6.16048652477624
+            }
+          ]
+        },
+        {
+          "reader": "16.9",
+          "pattern": "induction",
+          "top_writer": "3.14",
+          "collapse": 0.05338184788872832,
+          "z": 13.11353330146307,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0009270788470533672,
+          "top_writers": [
+            {
+              "writer": "3.14",
+              "collapse": 0.05338184788872832,
+              "z": 13.11353330146307
+            },
+            {
+              "writer": "3.1",
+              "collapse": 0.04748309662228617,
+              "z": 11.638863360431019
+            },
+            {
+              "writer": "2.4",
+              "collapse": 0.029337032187683985,
+              "z": 7.102402241622288
+            },
+            {
+              "writer": "2.3",
+              "collapse": 0.02489754313307611,
+              "z": 5.9925434313999455
+            }
+          ]
+        },
+        {
+          "reader": "15.4",
+          "pattern": "induction",
+          "top_writer": "3.14",
+          "collapse": 0.03112860200221112,
+          "z": 10.437211775757111,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0005122171394955099,
+          "top_writers": [
+            {
+              "writer": "3.14",
+              "collapse": 0.03112860200221112,
+              "z": 10.437211775757111
+            },
+            {
+              "writer": "3.1",
+              "collapse": 0.023561988416792717,
+              "z": 7.857731906711338
+            },
+            {
+              "writer": "2.3",
+              "collapse": 0.016969094542098273,
+              "z": 5.610195827784011
+            },
+            {
+              "writer": "1.11",
+              "collapse": 0.010944203831992742,
+              "z": 3.556293626425759
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gemma-2-2b",
+      "arch": "RoPE",
+      "n_layers": 26,
+      "prev_token_head": "21.7",
+      "n_readers": 6,
+      "n_live_edges": 0,
+      "edges": [
+        {
+          "reader": "6.3",
+          "pattern": "induction",
+          "top_writer": "5.0",
+          "collapse": 0.030721330827049913,
+          "z": 35.046336423300765,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 1.837045745998097e-05,
+          "top_writers": [
+            {
+              "writer": "5.0",
+              "collapse": 0.030721330827049913,
+              "z": 35.046336423300765
+            },
+            {
+              "writer": "5.4",
+              "collapse": 0.006173658897345987,
+              "z": 7.026042663311434
+            },
+            {
+              "writer": "3.5",
+              "collapse": 0.0057718792148347955,
+              "z": 6.567425456637098
+            },
+            {
+              "writer": "0.0",
+              "collapse": 0.0046234293258872435,
+              "z": 5.256510786232113
+            }
+          ]
+        },
+        {
+          "reader": "6.2",
+          "pattern": "induction",
+          "top_writer": "5.0",
+          "collapse": 0.05258067520483719,
+          "z": 37.24666686530561,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.00015641903106161084,
+          "top_writers": [
+            {
+              "writer": "5.0",
+              "collapse": 0.05258067520483719,
+              "z": 37.24666686530561
+            },
+            {
+              "writer": "3.5",
+              "collapse": 0.009612009160662644,
+              "z": 6.7180584194592505
+            },
+            {
+              "writer": "0.0",
+              "collapse": 0.009422157054259389,
+              "z": 6.58317127604536
+            },
+            {
+              "writer": "2.1",
+              "collapse": 0.008610210938824532,
+              "z": 6.006295442577468
+            }
+          ]
+        },
+        {
+          "reader": "1.4",
+          "pattern": "duplicate",
+          "top_writer": "0.0",
+          "collapse": 0.008278541231705558,
+          "z": 4.9366515264516755,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0004050980025551013,
+          "top_writers": [
+            {
+              "writer": "0.0",
+              "collapse": 0.008278541231705558,
+              "z": 4.9366515264516755
+            },
+            {
+              "writer": "0.2",
+              "collapse": 0.0059102759859981134,
+              "z": 3.451748428785523
+            },
+            {
+              "writer": "0.1",
+              "collapse": 0.005453242342089683,
+              "z": 3.165188181867508
+            },
+            {
+              "writer": "0.4",
+              "collapse": 0.0006855504658625518,
+              "z": 0.17584378788151178
+            }
+          ]
+        },
+        {
+          "reader": "8.1",
+          "pattern": "duplicate",
+          "top_writer": "6.1",
+          "collapse": 0.01625980770851112,
+          "z": 6.0410625344156665,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0003862681421668614,
+          "top_writers": [
+            {
+              "writer": "6.1",
+              "collapse": 0.01625980770851112,
+              "z": 6.0410625344156665
+            },
+            {
+              "writer": "6.2",
+              "collapse": 0.007934824061036677,
+              "z": 2.8727870151350396
+            },
+            {
+              "writer": "3.1",
+              "collapse": 0.007502027780851455,
+              "z": 2.708075837622691
+            },
+            {
+              "writer": "6.0",
+              "collapse": 0.00641073145278443,
+              "z": 2.292756410353365
+            }
+          ]
+        },
+        {
+          "reader": "3.2",
+          "pattern": "duplicate",
+          "top_writer": "2.6",
+          "collapse": 0.013986461240166559,
+          "z": 2.280910221749771,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0018211012108134547,
+          "top_writers": [
+            {
+              "writer": "2.6",
+              "collapse": 0.013986461240166559,
+              "z": 2.280910221749771
+            },
+            {
+              "writer": "0.1",
+              "collapse": 0.01172439097460891,
+              "z": 1.8567896713856717
+            },
+            {
+              "writer": "0.0",
+              "collapse": 0.010702756561518574,
+              "z": 1.6652411787733252
+            },
+            {
+              "writer": "2.5",
+              "collapse": 0.009952099315656347,
+              "z": 1.5244987937566499
+            }
+          ]
+        },
+        {
+          "reader": "5.4",
+          "pattern": "duplicate",
+          "top_writer": "4.4",
+          "collapse": 0.020955821378223674,
+          "z": 4.669507957840597,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": -0.0010008085247533265,
+          "top_writers": [
+            {
+              "writer": "4.4",
+              "collapse": 0.020955821378223674,
+              "z": 4.669507957840597
+            },
+            {
+              "writer": "3.1",
+              "collapse": 0.011417820714818807,
+              "z": 2.641065059432985
+            },
+            {
+              "writer": "2.5",
+              "collapse": 0.00866728169831655,
+              "z": 2.0561089945604367
+            },
+            {
+              "writer": "0.3",
+              "collapse": 0.005126357906957489,
+              "z": 1.3030621064486865
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "arch": "RoPE",
+      "n_layers": 16,
+      "prev_token_head": "0.2",
+      "n_readers": 6,
+      "n_live_edges": 3,
+      "edges": [
+        {
+          "reader": "10.23",
+          "pattern": "induction",
+          "top_writer": "1.9",
+          "collapse": 0.016359787759807603,
+          "z": 12.317658762920747,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.00025514181632631006,
+          "top_writers": [
+            {
+              "writer": "1.9",
+              "collapse": 0.016359787759807603,
+              "z": 12.317658762920747
+            },
+            {
+              "writer": "1.20",
+              "collapse": 0.006699835102789043,
+              "z": 4.929231788946369
+            },
+            {
+              "writer": "1.24",
+              "collapse": 0.005263481173841417,
+              "z": 3.830634674694454
+            },
+            {
+              "writer": "1.18",
+              "collapse": 0.00514299753835406,
+              "z": 3.7384826141240004
+            }
+          ]
+        },
+        {
+          "reader": "5.10",
+          "pattern": "induction",
+          "top_writer": "1.20",
+          "collapse": 0.2868460851886746,
+          "z": 40.53242336906741,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": 0.0025338424158278558,
+          "top_writers": [
+            {
+              "writer": "1.20",
+              "collapse": 0.2868460851886746,
+              "z": 40.53242336906741
+            },
+            {
+              "writer": "1.9",
+              "collapse": 0.1940596023206228,
+              "z": 27.304498430430975
+            },
+            {
+              "writer": "1.30",
+              "collapse": 0.06650468587296081,
+              "z": 9.11987920390913
+            },
+            {
+              "writer": "1.25",
+              "collapse": 0.0529280507760203,
+              "z": 7.184352557889199
+            }
+          ]
+        },
+        {
+          "reader": "6.8",
+          "pattern": "duplicate",
+          "top_writer": "1.9",
+          "collapse": 0.2008759886765403,
+          "z": 22.93266826247377,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": 0.0022097148480689256,
+          "top_writers": [
+            {
+              "writer": "1.9",
+              "collapse": 0.2008759886765403,
+              "z": 22.93266826247377
+            },
+            {
+              "writer": "0.31",
+              "collapse": 0.058746522167008944,
+              "z": 6.526220187650392
+            },
+            {
+              "writer": "0.29",
+              "collapse": 0.054579197395118316,
+              "z": 6.045172878038744
+            },
+            {
+              "writer": "1.28",
+              "collapse": 0.04434312998894387,
+              "z": 4.863591658365827
+            }
+          ]
+        },
+        {
+          "reader": "12.15",
+          "pattern": "induction",
+          "top_writer": "1.9",
+          "collapse": 0.03882626875636955,
+          "z": 10.044008615439983,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.00016921600921274605,
+          "top_writers": [
+            {
+              "writer": "1.9",
+              "collapse": 0.03882626875636955,
+              "z": 10.044008615439983
+            },
+            {
+              "writer": "0.27",
+              "collapse": 0.01780749649891309,
+              "z": 4.582838799399346
+            },
+            {
+              "writer": "1.18",
+              "collapse": 0.015270787727321867,
+              "z": 3.9237423875913247
+            },
+            {
+              "writer": "0.21",
+              "collapse": 0.014627613755653681,
+              "z": 3.7566307105859655
+            }
+          ]
+        },
+        {
+          "reader": "12.0",
+          "pattern": "duplicate",
+          "top_writer": "1.28",
+          "collapse": 0.02016467820534364,
+          "z": 9.384323532727144,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.000196045482551986,
+          "top_writers": [
+            {
+              "writer": "1.28",
+              "collapse": 0.02016467820534364,
+              "z": 9.384323532727144
+            },
+            {
+              "writer": "1.9",
+              "collapse": 0.018876379320002308,
+              "z": 8.778883304809295
+            },
+            {
+              "writer": "0.21",
+              "collapse": 0.01232908256937834,
+              "z": 5.701960020898108
+            },
+            {
+              "writer": "0.27",
+              "collapse": 0.011781399951455471,
+              "z": 5.444574803232556
+            }
+          ]
+        },
+        {
+          "reader": "4.16",
+          "pattern": "duplicate",
+          "top_writer": "1.9",
+          "collapse": 0.2969552982234802,
+          "z": 35.20971824304044,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": 0.0014721724989657466,
+          "top_writers": [
+            {
+              "writer": "1.9",
+              "collapse": 0.2969552982234802,
+              "z": 35.20971824304044
+            },
+            {
+              "writer": "1.26",
+              "collapse": 0.10902350806335989,
+              "z": 12.81579857597547
+            },
+            {
+              "writer": "0.29",
+              "collapse": 0.09255025007270751,
+              "z": 10.852847998091878
+            },
+            {
+              "writer": "1.27",
+              "collapse": 0.09206198362341221,
+              "z": 10.794666252298228
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "arch": "RoPE",
+      "n_layers": 28,
+      "prev_token_head": "13.4",
+      "n_readers": 6,
+      "n_live_edges": 1,
+      "edges": [
+        {
+          "reader": "14.3",
+          "pattern": "induction",
+          "top_writer": "2.10",
+          "collapse": 0.00152470377822484,
+          "z": 5.261410992414505,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 8.94254415381176e-05,
+          "top_writers": [
+            {
+              "writer": "2.10",
+              "collapse": 0.00152470377822484,
+              "z": 5.261410992414505
+            },
+            {
+              "writer": "0.8",
+              "collapse": 0.001073105298457411,
+              "z": 3.6059514589758366
+            },
+            {
+              "writer": "1.4",
+              "collapse": 0.001073105298457411,
+              "z": 3.6059514589758366
+            },
+            {
+              "writer": "3.2",
+              "collapse": 0.0009031969595350202,
+              "z": 2.98310529788013
+            }
+          ]
+        },
+        {
+          "reader": "8.3",
+          "pattern": "duplicate",
+          "top_writer": "0.4",
+          "collapse": 0.0032094686095012087,
+          "z": 5.441372336964746,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 7.222432876524306e-05,
+          "top_writers": [
+            {
+              "writer": "0.4",
+              "collapse": 0.0032094686095012087,
+              "z": 5.441372336964746
+            },
+            {
+              "writer": "5.1",
+              "collapse": 0.00300633768484924,
+              "z": 5.0890532647871725
+            },
+            {
+              "writer": "1.2",
+              "collapse": 0.0021396457396674726,
+              "z": 3.5858252234961356
+            },
+            {
+              "writer": "1.1",
+              "collapse": 0.00190491667118072,
+              "z": 3.178700962313105
+            }
+          ]
+        },
+        {
+          "reader": "19.3",
+          "pattern": "induction",
+          "top_writer": "1.4",
+          "collapse": 0.004971409840841912,
+          "z": 9.079731574133248,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.00018210292457296865,
+          "top_writers": [
+            {
+              "writer": "1.4",
+              "collapse": 0.004971409840841912,
+              "z": 9.079731574133248
+            },
+            {
+              "writer": "3.2",
+              "collapse": 0.00362384819900201,
+              "z": 6.524978203464633
+            },
+            {
+              "writer": "0.8",
+              "collapse": 0.002258076264704745,
+              "z": 3.935701138597665
+            },
+            {
+              "writer": "1.1",
+              "collapse": 0.0016025057362419916,
+              "z": 2.692848147461395
+            }
+          ]
+        },
+        {
+          "reader": "19.5",
+          "pattern": "induction",
+          "top_writer": "1.4",
+          "collapse": 0.01364885907072416,
+          "z": 4.609654304116946,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0005719064188084949,
+          "top_writers": [
+            {
+              "writer": "1.4",
+              "collapse": 0.01364885907072416,
+              "z": 4.609654304116946
+            },
+            {
+              "writer": "3.2",
+              "collapse": 0.01336050289317365,
+              "z": 4.5080081232102875
+            },
+            {
+              "writer": "0.8",
+              "collapse": 0.007045502604817401,
+              "z": 2.281956761354453
+            },
+            {
+              "writer": "2.10",
+              "collapse": 0.0060843153463157,
+              "z": 1.9431361583322597
+            }
+          ]
+        },
+        {
+          "reader": "2.3",
+          "pattern": "induction",
+          "top_writer": "1.4",
+          "collapse": 0.8465149916988266,
+          "z": 51.819882809322706,
+          "writer_is_prevtok_head": false,
+          "live": true,
+          "median_collapse": -0.00501743491292342,
+          "top_writers": [
+            {
+              "writer": "1.4",
+              "collapse": 0.8465149916988266,
+              "z": 51.819882809322706
+            },
+            {
+              "writer": "0.8",
+              "collapse": 0.23263242697905848,
+              "z": 14.462148014604214
+            },
+            {
+              "writer": "1.1",
+              "collapse": 0.11826111230826494,
+              "z": 7.502098182361088
+            },
+            {
+              "writer": "0.11",
+              "collapse": 0.053323407839833845,
+              "z": 3.5503235578172743
+            }
+          ]
+        },
+        {
+          "reader": "14.4",
+          "pattern": "induction",
+          "top_writer": "5.5",
+          "collapse": 0.01746450243023752,
+          "z": 2.855019774987732,
+          "writer_is_prevtok_head": false,
+          "live": false,
+          "median_collapse": 0.0004553550763285436,
+          "top_writers": [
+            {
+              "writer": "5.5",
+              "collapse": 0.01746450243023752,
+              "z": 2.855019774987732
+            },
+            {
+              "writer": "3.3",
+              "collapse": 0.016025479758083182,
+              "z": 2.613476909835698
+            },
+            {
+              "writer": "3.1",
+              "collapse": 0.013509705855715336,
+              "z": 2.1911991735558964
+            },
+            {
+              "writer": "0.8",
+              "collapse": 0.011899610558199915,
+              "z": 1.9209414223368235
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -63,6 +63,8 @@ The throughline: **a model is legible in the right basis even where it is *not* 
 - **[Discovered components](operators/discovered.md)** — the debugger run across *every* model: every head + MLP
   ranked by causal effect, flagged named-vs-**UNNAMED** (candidate new operators). *Gemma surfaced 6, Llama 16
   unnamed load-bearing candidates — leads to dossier next.*
+- **[Discovered circuit edges](circuits/discovered.md)** — de-novo key-patch over the top content readers in every
+  model. *Recovers prev-token→induction in the GPT-2 family (6/2/2 edges); Llama 3, Qwen 1, Gemma 0 (distributed).*
 
 ## The methodology & tools
 

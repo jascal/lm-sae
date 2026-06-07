@@ -140,6 +140,14 @@ prev-token key has no upstream writer to remove). Same absolute-position-family 
 
 {idx}
 
+## Discovered edges (de novo, cross-model)
+
+Beyond the named circuits, [**discovered circuit edges**](discovered.md) runs the key-patch over the top content
+readers in *every* model and keeps the edges that collapse the reader beyond a reader-matched null. It recovers
+the prev-token→induction K-chain de novo in the GPT-2 family (6/2/2 live edges) and finds localized edges in
+Llama (3) and Qwen (1), but **none in Gemma** (0 — its content-reader keys aren't sharply localized to one
+writer; RoPE distributes the circuit). 14 live edges total.
+
 ## Taxonomy & gaps
 
 - **Levels:** circuit (a DAG of operator nodes) → edge (writer-op → reader-op via a K/Q/V port) → the operator
