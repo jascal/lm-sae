@@ -28,9 +28,14 @@ The deep battery's arch-generic core — behavioural head-ID + mean-ablation cau
 
 _Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; **redundancy** cumulative-ablates the top heads in solo-effect order (bottleneck = one head ≈ the whole op; distributed = the population far exceeds any single head; **compensatory** cases — which head triggers the recovery — are dug in [outlier mechanism digs](outlier_digs.md)); channel = remove each upstream head from the reader's key → top collapser + the value/move channel. Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._
 
-## SAE-feature operands (GPT-2 section G)
+## SAE-feature operands (section G)
 
-Top head 7.2 reads SAE feature(s) `US/us`, `_Citizen/_citizens`, `I`; the OV copy-score on that feature's own tokens is **+0.00** (≈neutral). The feature-space operand basis (monosemantic features, not tokens) via the per-layer GPT-2 SAEs — see the [full SAE-operand table](sae_operands.md) for every operator. _Provisional, single corpus; for positional/addressing ops the read-feature is incidental (they attend by position, not content)._
+What this operator reads/writes in **feature** space (monosemantic SAE latents), via the per-layer GPT-2 SAEs / Gemma Scope — see the [full SAE-operand table](sae_operands.md). _READ = dominant key-feature where the head attends (glossed by top tokens); copy-score = OV→unembed on those tokens (+ copies / − suppresses). Provisional, single corpus; for positional/addressing ops the read-feature is incidental._
+
+| model | head | reads (SAE feature) | copy-score |
+|---|---|---|---|
+| gpt2 | 7.2 | `US/us`; `_Citizen/_citizens`; `I` | +0.00 (≈neutral) |
+| gemma-2-2b | 0.3 | `cius/▁belly/VIR`; `UMN/GIL/▁Cai`; `▁Citizen` | +0.10 (copies) |
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op sink`
 

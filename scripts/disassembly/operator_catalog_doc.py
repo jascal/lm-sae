@@ -104,17 +104,21 @@ def op_page(op, atlas, dossier, circuit_names=frozenset(), xrows=None, sae_rec=N
             lines += [f"GPT-2-only circuit op (literature DLA head-set): {', '.join(heads)}. No published head-set in the RoPE models — not in the cross-model catalog.", ""]
     # the arch-generic cross-model deep dossier (universal behavioural ops)
     lines += xdossier_section(op, xrows)
-    # section G — SAE-feature operands (GPT-2; supersedes the dossier's "NOT RUN" G when present)
-    if sae_rec and sae_rec.get("operands"):
-        o = sae_rec["operands"][0]; cs = o["copy_score"]
-        verdict = "copies it" if cs > 0.03 else "copy-suppresses it" if cs < -0.03 else "≈neutral"
-        reads = ", ".join(f"`{x['read_gloss']}`" for x in sae_rec["operands"])
-        lines += ["## SAE-feature operands (GPT-2 section G)", "",
-                  f"Top head {sae_rec['head']} reads SAE feature(s) {reads}; the OV copy-score on that feature's own "
-                  f"tokens is **{cs:+.2f}** ({verdict}). The feature-space operand basis (monosemantic features, not "
-                  "tokens) via the per-layer GPT-2 SAEs — see the [full SAE-operand table](sae_operands.md) for every "
-                  "operator. _Provisional, single corpus; for positional/addressing ops the read-feature is "
-                  "incidental (they attend by position, not content)._", ""]
+    # section G — SAE-feature operands (per model with an SAE; supersedes the dossier's "NOT RUN" G when present)
+    sae_rows = [r for r in (sae_rec or []) if r.get("operands")]
+    if sae_rows:
+        lines += ["## SAE-feature operands (section G)", "",
+                  "What this operator reads/writes in **feature** space (monosemantic SAE latents), via the per-layer "
+                  "GPT-2 SAEs / Gemma Scope — see the [full SAE-operand table](sae_operands.md). _READ = dominant "
+                  "key-feature where the head attends (glossed by top tokens); copy-score = OV→unembed on those tokens "
+                  "(+ copies / − suppresses). Provisional, single corpus; for positional/addressing ops the "
+                  "read-feature is incidental._", "",
+                  "| model | head | reads (SAE feature) | copy-score |", "|---|---|---|---|"]
+        for r in sae_rows:
+            reads = "; ".join(f"`{x['read_gloss'].replace(chr(10), '⏎').replace('|', '¦')}`" for x in r["operands"])
+            cs = r["operands"][0]["copy_score"]
+            lines.append(f"| {r['model']} | {r['head']} | {reads} | {cs:+.2f} ({'copies' if cs > 0.03 else 'suppresses' if cs < -0.03 else '≈neutral'}) |")
+        lines.append("")
     # the deep dossier (GPT-2)
     if dossier:
         A = dossier.get("A_identity", {}); B = dossier.get("B_causal", {}); C = dossier.get("C_channels", {})
@@ -148,7 +152,7 @@ def op_page(op, atlas, dossier, circuit_names=frozenset(), xrows=None, sae_rec=N
         if Fx:
             row = "; ".join(f"{c['model']} sig {c['behaviour_signal']:.2f}" + (f"/gain {c['gain']:+.1f}" if c.get('gain') is not None else "") for c in Fx if "error" not in c)
             lines += [f"**F · cross-model**: {row}", ""]
-        if dossier.get("G_sae_operands") and not sae_rec:
+        if dossier.get("G_sae_operands") and not sae_rows:
             lines += [f"**G · SAE operands**: {dossier['G_sae_operands']}", ""]
     lines += ["", f"_Data: `runs/disassembly/operators/dossiers/{op}/` + the catalog. Regenerate: [operator_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_catalog_doc.py)._"]
     return "\n".join(lines)
@@ -174,9 +178,12 @@ def main(argv=None):
         for op, rec in r.get("ops", {}).items():
             xdoss.setdefault(op, []).append({**rec, "model": r["model"]})
 
-    # SAE-feature operands (section G, GPT-2): op -> record
+    # SAE-feature operands (section G): op -> [per-model record]
     saej = json.loads((args.root / "operator_sae_operands_summary.json").read_text()) if (args.root / "operator_sae_operands_summary.json").exists() else {}
-    sae_ops = saej.get("operators", {})
+    sae_ops = {}
+    for mid, mr in saej.get("models", {}).items():
+        for op, rec in mr.get("operators", {}).items():
+            sae_ops.setdefault(op, []).append({**rec, "model": mid})
 
     def load_dossier(op):
         f = args.root / "dossiers" / op / "gpt2_summary.json"

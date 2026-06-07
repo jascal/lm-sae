@@ -13,9 +13,14 @@
 | Llama-3.2-1B | RoPE | 0.351 ± 0.003 | 19 | 0.31 | 0.00 | +1.382 ± 0.450 |
 | Qwen2.5-1.5B | RoPE | 0.172 ± 0.017 | 4 | 25.7 | 0.93 | -0.055 ± 0.012 |
 
-## SAE-feature operands (GPT-2 section G)
+## SAE-feature operands (section G)
 
-Top head 3.1 reads SAE feature(s) `_your/Your/_Your`, `The`, `_it/it`; the OV copy-score on that feature's own tokens is **-0.03** (≈neutral). The feature-space operand basis (monosemantic features, not tokens) via the per-layer GPT-2 SAEs — see the [full SAE-operand table](sae_operands.md) for every operator. _Provisional, single corpus; for positional/addressing ops the read-feature is incidental (they attend by position, not content)._
+What this operator reads/writes in **feature** space (monosemantic SAE latents), via the per-layer GPT-2 SAEs / Gemma Scope — see the [full SAE-operand table](sae_operands.md). _READ = dominant key-feature where the head attends (glossed by top tokens); copy-score = OV→unembed on those tokens (+ copies / − suppresses). Provisional, single corpus; for positional/addressing ops the read-feature is incidental._
+
+| model | head | reads (SAE feature) | copy-score |
+|---|---|---|---|
+| gpt2 | 3.1 | `_your/Your/_Your`; `The`; `_it/it` | -0.03 (≈neutral) |
+| gemma-2-2b | 24.6 | `▁the/⏎⏎/.`; `First`; `▁with/With/▁With` | +0.11 (copies) |
 
 
 _Data: `runs/disassembly/operators/dossiers/structural/` + the catalog. Regenerate: [operator_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_catalog_doc.py)._
