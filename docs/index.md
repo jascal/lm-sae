@@ -2,7 +2,11 @@
 title: Home
 ---
 
-# Disassembling a transformer's attention into a catalogued instruction set
+# A Field Guide to Attention
+
+### A cross-architecture, causally-validated catalog of transformer operators and circuits
+
+*Disassembling a transformer's attention into a catalogued instruction set — `lm-sae`.*
 
 A frozen language model computes in a basis we didn't choose. **`lm-sae`** reads that computation as a small,
 reused **instruction set** — names the **operators** (single attention heads / MLPs), collects the **circuits**

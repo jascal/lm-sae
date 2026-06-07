@@ -1,4 +1,8 @@
-# lm-sae — disassembling a transformer's attention into a catalogued instruction set
+# A Field Guide to Attention
+
+### A cross-architecture, causally-validated catalog of transformer operators and circuits
+
+*`lm-sae` — disassembling a transformer's attention into a catalogued instruction set.*
 
 A frozen language model computes in a basis we didn't choose. **`lm-sae` reads that computation as a small,
 reused *instruction set*** — names the operators (single attention heads / MLPs), collects the circuits
