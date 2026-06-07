@@ -17,4 +17,19 @@ The catalog shows which heads are *necessary*. This tests **sufficiency**: keep 
 | Llama-3.2-1B | 8 / 512 | 0.74 / 14.15 / 15.52 | **+9%** | +1% ± 2% |
 | Qwen2.5-1.5B | 8 / 336 | 0.36 / 17.76 / 17.03 | **-4%** | -2% ± 4% |
 
+## How many heads does induction need? (reconstruction curve)
+
+Rank every head by induction-mass, keep the top-K (ablate the rest), and watch coverage grow with K — the size at which it saturates is induction's *effective* circuit size.
+
+| model | K=4 | K=8 | K=16 | K=32 | K=64 | K=128 | K=256 |
+|---|---|---|---|---|---|---|---|
+| gpt2 | +4% | +7% | +12% | +20% | +22% | +97% | — |
+| gpt2-medium | +1% | +2% | +5% | +8% | +14% | +22% | +22% |
+| gpt2-large | +0% | +0% | +1% | +1% | +2% | +2% | +0% |
+| gemma-2-2b | +0% | +16% | +18% | +28% | +32% | +12% | — |
+| Llama-3.2-1B | +2% | +3% | +8% | +17% | +24% | +28% | +27% |
+| Qwen2.5-1.5B | +3% | +2% | -4% | -5% | -8% | -13% | -8% |
+
+_**No compact head-subset reconstructs induction in any model.** GPT-2-small only reaches near-full coverage at K≈128/144 (it needs nearly every head); gpt2-medium saturates at ~22% even with 256 heads; gpt2-large stays ~0% throughout; and the RoPE curves go **non-monotonic** — Gemma peaks ~32% then drops, Qwen goes **negative** (keeping more induction-mass heads *hurts* induction-NLL — the same interference / compensatory effect the [outlier digs](../operators/outlier_digs.md) traced to a synthetic-probe artifact). Induction is a property of the near-whole network, not an isolable subgraph._
+
 _**The honest result: necessity ≠ a small sufficient circuit.** No 8-head circuit *fully* reconstructs induction in any model (best +17%, GPT-2-small). The circuit beats its random control in 4/6 models — it is the **main** contributor — but coverage is modest, and it **decays with GPT-2 scale** (small +17% → medium +7% → large +0%) and fails in Qwen (−4%): in the larger / more distributed models the top induction + prev-token heads in isolation recover essentially nothing, because induction there is spread across a supporting cast the 8-head set excludes. So the catalogued circuit is causally necessary and the dominant driver, but not an executable small-circuit decompilation on its own — consistent with the distributed / non-monotonic induction-redundancy seen in the [dossier](../operators/induction.md). Provisional, single corpus; induction-NLL on repeated-random sequences. Data: [circuit_reconstruction_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/circuit_reconstruction_summary.json). Regenerate: [circuit_reconstruction.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_reconstruction.py)._
