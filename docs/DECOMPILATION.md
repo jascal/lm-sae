@@ -343,6 +343,11 @@ keys over the corpus, and decomposes the key variance into the fraction explaine
 **token** identity. The prediction: GPT-2 position-dominated (its keys must encode *where* — exactly what the
 sink heads broadcast), the RoPE models token-dominated (keys encode *what*; position is the rotation).
 
+*Method:* a between-group variance decomposition on the head's key vectors. `position_fraction` = the
+between-position-index variance (variance of the mean key at each absolute position) over the total key-
+covariance trace; `token_fraction` = the same over token identity (mean key per frequent token). Both are
+fractions of the same total, so `pos/tok` is a clean within-head ratio comparable across architectures.
+
 | model | pos. encoding | prev-token head | key var: **position** | key var: token | pos/tok |
 |---|---|---|---|---|---|
 | **GPT-2** | absolute (`wpe`) | 4.11 | **59%** | 18% | **3.3** |
@@ -356,9 +361,16 @@ encodes absolute position as key content → its prev-token head must *read that
 sink heads that **broadcast** it (the `validate_new_edges` collapse) → and GPT-2 is the only family member that
 **depends on its sink** (the sink-ablation result, position-independently = the absolute-positions signature). The
 RoPE models need none of this — position rides in the rotation — so they have no sink dependence and no
-positional-broadcast circuit. **Scope:** this is the *representational* confirmation (the key **is**
-position-encoded only in GPT-2), corroborating the *causal* GPT-2 result; a faithful key-only causal path-patch
-across RoPE models (forward-pointer (a)) is the heavier next step. ~33 s for all four models.
+positional-broadcast circuit. The figure (`cross_model_positional.png`, regenerable) shows the bars flip:
+position > token only for GPT-2. Note **Llama-3.2-1B's prev-token head is in *layer 0*** (head 0.2) and is the
+most token-pure of all (pos/tok 0.04) — it reads the raw token embedding directly and leans entirely on RoPE for
+position, the cleanest case of the RoPE pattern.
+
+**Scope.** This is the *representational* confirmation (the key **is** position-encoded only in GPT-2),
+corroborating the *causal* GPT-2 result; a faithful key-only causal path-patch across RoPE models
+(forward-pointer (a)) is the heavier next step. *Next:* re-run on an oracle-supervised host (#19/#20) — does
+training a more legible model shift the prev-token key's position-vs-token content, i.e. does supervision touch
+the positional machinery or only the feature substrate? ~33 s for all four models.
 `runs/gemma/cross_model_positional_summary.json`.
 
 ## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
