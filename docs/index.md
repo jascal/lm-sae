@@ -68,6 +68,8 @@ The throughline: **a model is legible in the right basis even where it is *not* 
 
 - **Disassembly** ([deep-dive](DISASSEMBLY.md)) — idiom library → opcode tables → coverage scorecard → causal
   validation → corpus robustness; 8/8 literature idioms recovered from weights, ~99% of content mass legible.
+- **[Architecture references](architectures.md)** — the host GPT-2 block (attention = MOVE, MLP = COMPUTE) + the
+  SAE, as [n-orca](https://github.com/jascal/n-orca) typed-DAG specs compiled to Mermaid.
 - **Decompilation** ([design + milestones](DECOMPILATION.md)) — reconstruction-coverage interpreter (M1), the
   composition-DAG extractor + path-patch gate (M2), MLP/COMPUTE nodes (M3), the forge-basis ceiling (M4), the
   cross-model ceiling (M5: the decompilable *fraction* is absolute-position-family-specific).

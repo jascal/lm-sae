@@ -24,6 +24,7 @@
         <a href="{{ '/operators/mlp_compute.html' | relative_url }}" class="btn">MLP / COMPUTE</a>
         <a href="{{ '/operators/discovered.html' | relative_url }}" class="btn">Discovered ops</a>
         <a href="{{ '/disassembly/' | relative_url }}" class="btn">Head listings</a>
+        <a href="{{ '/architectures.html' | relative_url }}" class="btn">Architectures</a>
         <a href="{{ '/DECOMPILATION.html' | relative_url }}" class="btn">Decompilation</a>
         <a href="{{ '/DISASSEMBLY.html' | relative_url }}" class="btn">Disassembly</a>
         <a href="{{ '/glossary.html' | relative_url }}" class="btn">Glossary</a>
@@ -42,5 +43,19 @@
         <span class="site-footer-credits">Amateur, exploratory home-science — a working catalog, provisional and descriptive. Generated from tracked result artifacts via <a href="https://pages.github.com">GitHub Pages</a>.</span>
       </footer>
     </main>
+    <script type="module">
+      // Render fenced ```mermaid blocks (n-orca-compiled architecture diagrams). GitHub Pages renders them as
+      // <pre><code class="language-mermaid">; convert to <pre class="mermaid"> and run mermaid.
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: false, theme: "neutral", securityLevel: "strict" });
+      document.querySelectorAll("code.language-mermaid").forEach((code) => {
+        const pre = code.closest("pre") || code;
+        const div = document.createElement("pre");
+        div.className = "mermaid";
+        div.textContent = code.textContent;
+        pre.replaceWith(div);
+      });
+      try { await mermaid.run(); } catch (e) { console.error("mermaid", e); }
+    </script>
   </body>
 </html>
