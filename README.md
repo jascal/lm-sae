@@ -158,11 +158,16 @@ is the single most load-bearing component for every behaviour** (induction +7.8,
 direct pointer to the MLP/COMPUTE catalog gap), candidate unnamed ops (induction→**7.6**, IOI→**5.9**), and a
 discovered circuit (7.6 fed by induction heads + candidate writers 2.11/5.9). These feed the next dossiers.
 
+The catalog now spans both instruction classes — **MOVE** (the [operator catalog](docs/operators/README.md), 7
+attention classes × 6 models) and **COMPUTE** (the [MLP catalog](docs/operators/mlp_compute.md): COMPUTE
+concentrates on an early-MLP detokenizer in 5/6 models, distributes in Gemma).
+
 ## Future work
 
-- **MLP / COMPUTE operator family** — the operator catalog is attention-only; MLP0 dominates causally, so the
-  COMPUTE class is the largest uncatalogued instruction family.
+- **Per-neuron MLP idioms cross-model** — the COMPUTE catalog has per-layer causal profiles for all models, but
+  per-*neuron* read→write idioms only for GPT-2 (the cheap token-unembedding basis); extend via per-layer SAEs.
 - **Cross-model circuit discovery** — `composition_dag` de-novo edge discovery is GPT-2-only; port to RoPE.
+- **Dossier the discovered candidates** (7.6, 5.9, 8.3) and the discovered edges.
 - **Dossier the discovered candidates** (7.6, 5.9, 8.3) and the discovered edges.
 - **Per-class SAE-feature operands** (what each op reads/writes in feature space) — needs a SAE.
 - **Executable decompilation** — recompile a path-patch-validated circuit and measure KL ≈ host (the M-series target).
@@ -223,7 +228,8 @@ regenerate anywhere. See [`scripts/README.md`](scripts/README.md) for the full p
    corpus-conditioned** (use the prose baseline). The catalog's causal column is *generic-prose* ΔNLL — task-specific
    ops read low there (see each dossier's section B).
 3. **IOI circuit ops are GPT-2-only** (literature DLA head-sets; no published set off GPT-2). **SSM** has no heads
-   (induction present only behaviourally). **MLP/COMPUTE** is not yet in the cross-model catalog.
+   (induction present only behaviourally) and no separate MLP block (excluded from the COMPUTE catalog). The
+   cross-model **MLP/COMPUTE** rows are per-*layer* causal profiles; per-*neuron* idioms are GPT-2-only.
 4. **Small/mid hosts** (GPT-2 family, 1–2B RoPE models, ≤790M Mamba) — not frontier scale.
 
 ## License

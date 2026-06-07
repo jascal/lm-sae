@@ -1104,6 +1104,40 @@ candidate circuit edges (2.11→7.6, 5.9→7.6) that are not yet in the catalog 
 `residual_vm_debugger.py`, `runs/disassembly/residual_vm_debugger_summary.json` (GPT-2; intervention harness is
 arch-generic, the QK edge-probe is GPT-2-specific here).
 
+## The other instruction class — MLP / COMPUTE, across models
+
+Attention **MOVES** operands; the MLP **COMPUTES** on them — and the discovery engine's loudest finding was that
+**MLP0 is the most load-bearing component of all**. The operator catalog was attention-only; `mlp_atlas.py` adds
+the COMPUTE class, surveyed across architectures: per (model, layer) it mean-ablates the whole MLP block and reads
+the causal ΔNLL on generic prose + induction. (Mamba/SSM is excluded — no separate MLP block, the COMPUTE analog
+of "no attention heads".)
+
+| model | L | all-MLP ablated ΔNLL (generic) | top generic MLP (depth, Δ) | top induction MLP (depth, Δ) |
+|---|---|---|---|---|
+| gpt2 | 12 | +2.09 | L0 (d0.0, +1.70) | L0 (d0.0, **+11.72**) |
+| gpt2-medium | 24 | +2.69 | L0 (d0.0, +7.32) | L0 (d0.0, **+20.94**) |
+| gpt2-large | 36 | +5.28 | L0 (d0.0, +3.67) | L0 (d0.0, **+13.57**) |
+| gemma-2-2b | 26 | **+10.74** | L25 (d1.0, +0.84) | L0 (d0.0, +4.25) |
+| llama-3.2-1b | 16 | +4.18 | L1 (d0.07, +7.35) | L1 (d0.07, **+12.65**) |
+| qwen-2.5-1.5b | 28 | +4.29 | L1 (d0.04, +7.64) | L2 (d0.07, **+13.91**) |
+
+**What the survey shows (descriptive):**
+1. **COMPUTE concentrates on an *early* MLP — the detokenizer — in 5 of 6 models** (GPT-2 family L0, Llama L1,
+   Qwen L1–L2): the single biggest COMPUTE op sits at depth ~0, and its ablation is **catastrophic for induction**
+   (+11.7…+20.9 ΔNLL — far above any single attention head, confirming the discovery engine's MLP0 finding).
+2. **Gemma-2 is the exception — distributed COMPUTE:** no single MLP dominates (top generic only +0.84), yet the
+   *whole-stack* ablation is the largest of all (+10.74). Its COMPUTE is spread across layers, not concentrated in
+   a detokenizer. (A second cross-architecture split, alongside Gemma's missing sink in the operator catalog.)
+3. **The whole-MLP-stack ablation is large in every model** — COMPUTE is load-bearing *everywhere*, unlike any
+   single attention-op class (no named attention op damages generic LM; the MLP stack always does).
+
+**GPT-2 deep characterization (harvested):** the COMPUTE vocabulary **is low-rank** (`mlp_catalog.py`: transform
+participation 22 vs 1666 random — a small reused set of read→write templates, heavier-tailed than attention's ~5);
+**MLPs carry the reconstruction coverage** (`mlp_ops.py`: MLP-only coverage +0.46 vs attention-only ≈0 — they
+interact); head↔MLP composition edges exist in weight space. Per-**neuron** read→write idioms are GPT-2-only (the
+cheap token-unembedding basis); the cross-model rows are per-**layer** causal profiles. `mlp_atlas.py`,
+`runs/disassembly/operators/mlp_compute_summary.json`, [`docs/operators/mlp_compute.md`](operators/mlp_compute.md).
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);

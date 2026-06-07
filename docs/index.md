@@ -50,6 +50,9 @@ The throughline: **a model is legible in the right basis even where it is *not* 
 - **[Circuit catalog](circuits/README.md)** — composed circuits, cross-model edge liveness + the GPT-2 discovered circuits
   (IOI Q-chain, V-composition virtual heads, 22 novel-live edges). *The induction edge is live in all 6 models
   (stronger in RoPE); positional-broadcast is GPT-2-small/medium-only.*
+- **[MLP / COMPUTE catalog](operators/mlp_compute.md)** — the *other* instruction class (attention MOVES, MLP
+  COMPUTES), per-layer causal profile across models. *COMPUTE concentrates on an early MLP — the detokenizer — in
+  5 of 6 models (catastrophic for induction); Gemma distributes it.*
 
 ## The methodology & tools
 
