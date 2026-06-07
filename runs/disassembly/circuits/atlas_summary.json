@@ -1,0 +1,349 @@
+{
+  "experiment": "circuit atlas \u2014 composed circuits x models (cross-model edges + GPT-2 discovered)",
+  "models": [
+    "gpt2",
+    "gpt2-medium",
+    "gpt2-large",
+    "gemma-2-2b",
+    "Llama-3.2-1B",
+    "Qwen2.5-1.5B"
+  ],
+  "cross_model_circuits": {
+    "induction": {
+      "scope": "cross-model",
+      "desc": "prev-token head --K--> induction head (the in-context-copy macro)",
+      "defining_edge": "prevtok_head -> induction (K)",
+      "by_model": {
+        "gpt2": {
+          "reader": "7.11",
+          "writer": "4.11",
+          "edge_collapse": 0.16921115961080155,
+          "is_prevtok_writer": true,
+          "is_sink_writer": true,
+          "value_mover": "1.5",
+          "value_dvout": 0.2564326721449286
+        },
+        "gpt2-medium": {
+          "reader": "7.2",
+          "writer": "2.15",
+          "edge_collapse": 0.2288375058513162,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "2.14",
+          "value_dvout": 0.14903452636666492
+        },
+        "gpt2-large": {
+          "reader": "11.19",
+          "writer": "3.14",
+          "edge_collapse": 0.07736587034201299,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "3.8",
+          "value_dvout": 0.10405407931361871
+        },
+        "gemma-2-2b": {
+          "reader": "4.4",
+          "writer": "0.0",
+          "edge_collapse": 0.18408563479243997,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "3.0",
+          "value_dvout": 0.11554088932101896
+        },
+        "Llama-3.2-1B": {
+          "reader": "2.26",
+          "writer": "1.20",
+          "edge_collapse": 0.7026140552400391,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "1.20",
+          "value_dvout": 0.17404085613254244
+        },
+        "Qwen2.5-1.5B": {
+          "reader": "2.3",
+          "writer": "1.4",
+          "edge_collapse": 0.8855864257873753,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "1.4",
+          "value_dvout": 0.2404184233390514
+        }
+      }
+    },
+    "positional_broadcast": {
+      "scope": "cross-model",
+      "desc": "early sink/write-hub --K--> prev-token head's key (absolute-position broadcast)",
+      "defining_edge": "sink-writer -> prevtok key (K)",
+      "by_model": {
+        "gpt2": {
+          "reader": "4.11",
+          "writer": "1.3",
+          "edge_collapse": 0.215007737135979,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "2.9",
+          "value_dvout": 0.21536530113749278
+        },
+        "gpt2-medium": {
+          "reader": "5.11",
+          "writer": "1.5",
+          "edge_collapse": 0.3188234282907662,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "2.14",
+          "value_dvout": 0.22007752836628292
+        },
+        "gpt2-large": {
+          "reader": "14.1",
+          "writer": "3.0",
+          "edge_collapse": 0.0010079207295059286,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "3.0",
+          "value_dvout": 0.06737425181214694
+        },
+        "gemma-2-2b": {
+          "reader": "21.7",
+          "writer": "5.4",
+          "edge_collapse": 0.002707540369339848,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "0.2",
+          "value_dvout": 0.048590569004138495
+        },
+        "Llama-3.2-1B": {
+          "reader": "0.2",
+          "skipped": true
+        },
+        "Qwen2.5-1.5B": {
+          "reader": "13.4",
+          "writer": "0.0",
+          "edge_collapse": 0.0037564418580693145,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "5.1",
+          "value_dvout": 0.11264735768854332
+        }
+      }
+    },
+    "duplicate": {
+      "scope": "cross-model",
+      "desc": "same-token reader (duplicate-token detection; IOI initiator)",
+      "defining_edge": "(reader-side; writer often layer-0)",
+      "by_model": {
+        "gpt2": {
+          "reader": "0.5",
+          "skipped": true
+        },
+        "gpt2-medium": {
+          "reader": "1.11",
+          "writer": "0.13",
+          "edge_collapse": 0.0018048798765299852,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "0.14",
+          "value_dvout": 0.015975810213063473
+        },
+        "gpt2-large": {
+          "reader": "6.17",
+          "writer": "1.1",
+          "edge_collapse": 0.04462012884570015,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "3.1",
+          "value_dvout": 0.3997090845050436
+        },
+        "gemma-2-2b": {
+          "reader": "1.4",
+          "writer": "0.2",
+          "edge_collapse": 0.02657846814199093,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "0.0",
+          "value_dvout": 0.1878404984280769
+        },
+        "Llama-3.2-1B": {
+          "reader": "1.22",
+          "writer": "0.17",
+          "edge_collapse": 0.09418709571229278,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "0.17",
+          "value_dvout": 0.27903123536512925
+        },
+        "Qwen2.5-1.5B": {
+          "reader": "6.6",
+          "writer": "0.6",
+          "edge_collapse": 0.12755066430464485,
+          "is_prevtok_writer": false,
+          "is_sink_writer": true,
+          "value_mover": "3.8",
+          "value_dvout": 0.12150016689697941
+        }
+      }
+    }
+  },
+  "gpt2_circuits": {
+    "ioi_q_chain": {
+      "kind": "Q-composition chain (GPT-2-only)",
+      "scope": "gpt2",
+      "stages": [
+        "duplicate",
+        "s_inhibition",
+        "name_mover"
+      ],
+      "writers": [
+        "10.0",
+        "8.3",
+        "8.10",
+        "6.7"
+      ],
+      "duplicate_heads": null,
+      "s_inhibition": [
+        "10.0",
+        "8.3",
+        "8.10",
+        "6.7"
+      ],
+      "name_movers": [
+        "9.9",
+        "11.2",
+        "8.11",
+        "10.0"
+      ],
+      "q_live_edges": 5,
+      "chain_top": [
+        [
+          "3.0",
+          "10.0",
+          "11.2",
+          0.0038224028231669998
+        ],
+        [
+          "3.0",
+          "8.10",
+          "10.0",
+          0.003427304911335039
+        ],
+        [
+          "3.0",
+          "8.10",
+          "9.9",
+          0.0032378193080974988
+        ],
+        [
+          "3.0",
+          "6.7",
+          "10.0",
+          0.0031465126804842837
+        ],
+        [
+          "3.0",
+          "6.7",
+          "9.9",
+          0.0031226004995204572
+        ]
+      ],
+      "named_edge_live_rate": 0.42857142857142855,
+      "ioi_baseline_logit_diff": 2.7526195287704467,
+      "name_mover_z": -2.172512152617327,
+      "duplicate_z": 5.963926080885061,
+      "s_inhibition_z": -1.702171401577731,
+      "negative_mover_z": 62.41397239659889,
+      "backup_namemover_z": 0.8435903361394431
+    },
+    "induction_kchain_weights": {
+      "kind": "K-composition (weight + path-patch, GPT-2)",
+      "scope": "gpt2",
+      "canonical_writer": "4.11",
+      "inductors": [
+        "7.11",
+        "5.0",
+        "5.5",
+        "6.9",
+        "0.0",
+        "5.1"
+      ],
+      "canonical_induction_live": 4,
+      "canonical_induction_edges": 5,
+      "K_induction_static": 0.06873766100185522,
+      "K_random_baseline": 0.03909262899650067,
+      "induction_top_rel_drop": 0.5611611045403996
+    },
+    "discovered_write_hub_edges": {
+      "kind": "DISCOVERED (novel-live composition edges)",
+      "scope": "gpt2",
+      "n_novel_live": 22,
+      "edges": [
+        "0.9->2.9",
+        "0.9->2.5",
+        "1.8->10.9",
+        "1.8->9.3",
+        "0.9->1.3",
+        "1.8->3.2",
+        "1.10->2.11",
+        "1.8->10.5",
+        "0.11->2.9",
+        "0.11->2.5"
+      ],
+      "named_by_pattern": {
+        "prevtok": 9,
+        "sink": 3,
+        "duplicate": 1
+      },
+      "n_named": 13,
+      "n_new_edges": 22
+    },
+    "v_virtual_heads": {
+      "kind": "V-composition (composed-OV 'virtual heads', GPT-2)",
+      "scope": "gpt2",
+      "top_edges": [
+        {
+          "edge": "5.9->6.7",
+          "dvout": 1.3178509771887035,
+          "static": 0.06967031948419498
+        },
+        {
+          "edge": "5.9->6.0",
+          "dvout": 0.6002250241626284,
+          "static": 0.07693833330893501
+        },
+        {
+          "edge": "5.5->6.7",
+          "dvout": 0.8730619090689721,
+          "static": 0.0738559223214546
+        },
+        {
+          "edge": "5.5->6.6",
+          "dvout": 0.71608716241074,
+          "static": 0.0724144413127739
+        },
+        {
+          "edge": "5.9->7.3",
+          "dvout": 0.5399571896929358,
+          "static": 0.07642483619134177
+        },
+        {
+          "edge": "3.0->4.3",
+          "dvout": 0.44254068067263236,
+          "static": 0.08083862899712245
+        },
+        {
+          "edge": "5.5->6.0",
+          "dvout": 0.3212937191990165,
+          "static": 0.06865237268045561
+        },
+        {
+          "edge": "3.7->4.7",
+          "dvout": 0.2713690730618233,
+          "static": 0.07511273564755161
+        }
+      ],
+      "topV_median_dvout": 0.21387540992208515,
+      "spearman_staticV_vs_dVout": 0.36,
+      "V_over_K_mean": 0.7954648723134081
+    }
+  },
+  "note_gaps": "succession/greater-than = MLP-dominated (no clean attention head); SSM = no heads.",
+  "n_circuits_catalogued": 7
+}

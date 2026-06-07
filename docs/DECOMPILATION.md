@@ -1033,6 +1033,46 @@ carried by the copy ops); **SSM/Mamba has no heads** (induction present only *be
 models (the atlas covers them at class level; full-depth cross-model is the next layer). `operator_atlas.py`,
 `operator_dossier.py`, `operator_catalog_doc.py`; `docs/operators/`; `runs/disassembly/operators/atlas_summary.json`.
 
+## The CIRCUIT catalog — composed circuits, surveyed & collected across models
+
+Operators are single head-classes; **circuits** are their *compositions* (a writer-op feeding a reader-op's K/Q/V
+port, chained). The same cataloging machinery applied one level up: `circuit_atlas.py` (cross-model edge liveness +
+harvest of the GPT-2 discovery artifacts) + `circuit_catalog_doc.py` → `docs/circuits/`. The primitive is the
+**edge** (writer-op → reader-op via a port); the discovery gate (`composition_dag` ΔTV path-patch vs a
+reader-matched null) is what *collects* them. **7 circuits catalogued** from two sources.
+
+**Cross-model circuit-edge liveness** (remove the writer from the reader's key → % attention collapse, 6 models):
+
+| circuit | defining edge | gpt2 | -medium | -large | gemma-2 | llama-3.2 | qwen-2.5 |
+|---|---|---|---|---|---|---|---|
+| **induction** | prev-tok head --K--> induction | +17% | +23% | +8% | +18% | **+70%** | **+89%** |
+| **positional_broadcast** | sink/hub --K--> prev-tok key | +22% | +32% | +0% | +0% | (skip) | +0% |
+| duplicate | same-token reader (writer often L0) | (skip) | +0% | +4% | +3% | +9% | +13% |
+
+1. **The induction edge (prev-token → induction) is live in *every* model — and *stronger* in RoPE** (Llama +70%,
+   Qwen +89% vs GPT-2 +8–23%): content matching lives in the key everywhere, so removing the predecessor-writer
+   collapses the induction reader's attention universally. (Cross-model **mechanism**-invariance, at the *edge*
+   level now, not just the node.)
+2. **positional_broadcast is GPT-2-small/medium-only** (+22%/+32%, ≈0 in gpt2-large/Gemma/Qwen, skip Llama) — the
+   same absolute-position signature as the operator atlas's sink: RoPE reads position from the rotation, so the
+   prev-token key has *no upstream writer to remove*. The decompilable plumbing circuit is family-specific even
+   though the content circuit is universal.
+
+**GPT-2 discovered / circuit-specific** (harvested from the committed discovery runs, no recompute — GPT-2-only):
+the **IOI Q-chain** duplicate→S-inhibition→name-mover (5 Q-edges live; causal z from `ioi_causal`: negative/
+copy-suppression **z=62** writes against IO, duplicate z=6.0; **self-repair**: −primaries ΔLD −0.002 but −both
+−1.04, backups are hot spares); the **V-composition "virtual heads"** (induction 5.9 → layer-6 value 6.7,
+ΔV-out 1.32 — composed-OV, changes *what* is moved); the induction **K-chain weights** (canonical writer 4.11,
+4/5 edges live); and the **22 NOVEL-LIVE discovered edges** (13 behaviourally named — mostly early sink/write-hub →
+prev-token-key broadcasters: the collection-goal output, `validate_new_edges`).
+
+**Taxonomy & gaps.** Levels: circuit (a DAG of operator nodes) → edge (writer→reader via a port) → operator class
+at each node. **Gaps:** succession/greater-than is **MLP-dominated** (no clean attention-composition circuit);
+**SSM/Mamba has no heads** (no composition edges; induction only behavioural). **Not yet run:** the IOI Q-chain /
+V-composition *cross-model* (no published head-sets off GPT-2); per-edge path-patch of all 22 discovered edges on
+the RoPE models. `circuit_atlas.py`, `circuit_catalog_doc.py`; `docs/circuits/`;
+`runs/disassembly/circuits/atlas_summary.json`.
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
