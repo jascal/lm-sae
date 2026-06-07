@@ -96,10 +96,54 @@ the forward pass and (b) the forgeable/low-χ fraction — that bounds how inter
 made *without* retraining. If the curve instead reaches ~1.0, the entanglement story is wrong and the model
 is fully decompilable (also a publishable result).
 
+## Execution model: an interpreter over the op-graph ("ResidualVM")
+
+The recompile-KL harness is most useful not as a one-shot metric but as a **steppable interpreter** over the
+extracted op-graph: run the named ops on the residual bus, in selectable *fidelity modes*, and watch
+reconstruction-KL — which makes decompilation **debuggable**, not just measurable. (Execution-model framing
+contributed by Grok; integrated + corrected here.)
+
+**The honest mechanics — dataflow per pass, "VM" only at the loop.** It is tempting to cast this as a von
+Neumann machine (fetch–decode–execute over a stored program). That is the wrong abstraction for a *single
+forward pass*: there is no program counter, no instruction fetched per cycle, no data-dependent control flow,
+and the weights are never modified by the data path. One pass is a **fixed-depth dataflow circuit** (closer to
+an ASIC / systolic array; Merrill's TC⁰) — the "ISA" (the op-catalog) is **hardwired and applied in
+parallel**, a *description* of fixed functional units, not a runtime dispatch. The stored-program /
+von-Neumann character appears **only at the autoregressive loop**: the residual stream + KV-cache as a
+read/write tape, the decode step as the clock, chain-of-thought as working memory (see the
+`llm-as-accreting-vm` framing). So the interpreter executes a **fixed circuit per token** and is a **VM at the
+generation level** — not a stored-program CPU per layer.
+
+What the frame *does* buy, mapped to checked-in results:
+
+| VM concept | what it actually is here | grounded in |
+|---|---|---|
+| memory hierarchy (registers/L1 vs main memory) | entanglement-tower levels: low-χ monosemantic core (addressable, cov95-high) vs high-χ entangled remainder | `mps_tower_*`, serve-tower cov95-saturation-vs-capability-cliff |
+| fidelity modes: full / preserve-hybrid / decompiled | exact host / verbatim-pin ~6–12% of atoms + forge the rest / run only the recompiled op-graph | `preserve_hybrid_tiny.py`, sae-forge `NativeModel` |
+| ISA vs model-specific microcode | the op-catalog (idioms) is invariant across architectures **and** languages; the **sink/plumbing policy is model-specific** | the 4-model + multilingual results |
+| associative memory bank | MLP neurons as content-addressable key→value stores | work-item 2 (the MLP gap) |
+| the recompiler / JIT | sae-forge projects the kept ops into a runnable module | reconstruction-coverage metric above |
+
+**What it adds beyond the metric (the real new lever): an interactive debugger.** Step layer-by-layer;
+breakpoint when a named idiom fires; inspect the low-χ "registers" (SAE latents); **ablate / preserve / swap a
+single op and watch reconstruction-KL move live**. That turns reconstruction-coverage from a number into a
+tool for *localizing* where decompilation fails — i.e. it operationalizes milestones 1+4.
+
+**The hard constraint the frame must not hide.** The entangled core is **preserve-or-pay**, not "approximate
+main memory": by the tower's no-go, fidelity modes move you *along* the interpretability↔capability frontier,
+never off it. An interpreter that "approximates the core cheaply" is just choosing a point on that frontier
+(and paying the capability cliff) — the ceiling is the forge tax, restated.
+
+Demarcation: adopt the execution layer, the memory-hierarchy mapping, the fidelity modes, and the ISA-vs-
+microcode framing; **drop the von-Neumann mechanics** (no per-layer instruction fetch) in favor of
+dataflow-circuit-per-pass + VM-at-the-loop. `COMPOSE` / `PRESERVE` / `TOWER_TRUNCATE` are not opcodes the model
+runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs on the interpreter).
+
 ## Milestones (each a PR, gated on the prior)
 
-1. **Recompile-KL harness** — structured forge over the disassembly's named ops; reconstruction-coverage
-   curve on the tiny GPT (CPU), then GPT-2. (Reuses sae-forge `NativeModel` + the forge loop.)
+1. **Recompile-KL harness, built as the interpreter** (§Execution model) — structured forge over the
+   disassembly's named ops with selectable fidelity modes + a trace, so the reconstruction-coverage curve is
+   debuggable from day one (tiny GPT on CPU, then GPT-2). (Reuses sae-forge `NativeModel` + the forge loop.)
 2. **Composition-DAG extractor** — weight-space edge scorer + path-patch gate; auto-recover induction + IOI;
    report new sub-DAGs. (Generalizes `path_patch_induction.py` / `composition_graph.py`.)
 3. **MLP ops** — neuron key→value catalog + named MLP idioms; add to the DAG + the recompile.
