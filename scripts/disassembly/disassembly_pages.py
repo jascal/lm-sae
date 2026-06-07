@@ -56,7 +56,7 @@ def causal_badge(rec, base_ind):
     ind = rec.get("induction_dNLL_mean"); std = rec.get("induction_dNLL_std", 0.0); gen = rec.get("generic_dNLL")
     pct = f", {ind / base_ind:.0%} of base" if base_ind else ""
     g = f", generic {gen:+.2f}" if gen is not None else ""
-    flag = " ⚠ **UNNAMED-candidate**" if not rec.get("named") else ""
+    flag = " ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)" if not rec.get("named") else ""
     return f" — ★ causal: induction ΔNLL **{ind:+.2f}**±{std:.2f}{pct}{g}{flag}"
 
 

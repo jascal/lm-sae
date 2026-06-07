@@ -26,8 +26,8 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `0.3  addr=long_range  WRITE=copy      bind '_of'->'_the'`
 - `0.4  addr=local       WRITE=transform bind '_of'->'_as'`
 - `0.5  addr=local       WRITE=transform bind '_,'->'_.'` [`duplicate`](../operators/duplicate.md)
-- `0.6  addr=long_range  WRITE=transform bind '_The'->'_,'` — ★ causal: induction ΔNLL **+0.23**±0.42, 5% of base, generic +0.00 ⚠ **UNNAMED-candidate**
-- `0.7  addr=long_range  WRITE=transform bind 's'->"_'"` — ★ causal: induction ΔNLL **+0.45**±0.11, 9% of base, generic +0.06 ⚠ **UNNAMED-candidate**
+- `0.6  addr=long_range  WRITE=transform bind '_The'->'_,'` — ★ causal: induction ΔNLL **+0.23**±0.42, 5% of base, generic +0.00 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `0.7  addr=long_range  WRITE=transform bind 's'->"_'"` — ★ causal: induction ΔNLL **+0.45**±0.11, 9% of base, generic +0.06 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `0.MLP.n7972  reads {_were,_Little,_=} -> writes {_were,_@,_a}` — ★ causal: induction ΔNLL **+3.65**±0.31, 73% of base, generic +0.29
 - `0.MLP.n6719  reads {_from,_game,_as} -> writes {_from,_with,_by}`
 - `0.MLP.n5397  reads {_was,0,_:} -> writes {_was,_were,_Valky}`
@@ -96,7 +96,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `5.3  addr=local       WRITE=transform bind '_were'->'8'`
 - `5.4  addr=self        WRITE=transform bind '_was'->'_were'`
 - `5.5  addr=local       WRITE=transform bind '_.'->'\n'`
-- `5.6  addr=long_range  WRITE=transform bind '8'->'3'` — ★ causal: induction ΔNLL **+0.43**±0.24, 9% of base, generic +0.01 ⚠ **UNNAMED-candidate**
+- `5.6  addr=long_range  WRITE=transform bind '8'->'3'` — ★ causal: induction ΔNLL **+0.43**±0.24, 9% of base, generic +0.01 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `5.7  addr=local       WRITE=transform bind '_Chronicles'->'_='`
 - `5.MLP.n5411  reads {_of,_to,_for} -> writes {_of,_to,_for}`
 - `5.MLP.n7736  reads {_of,_that,_and} -> writes {_of,_that,`
@@ -153,7 +153,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `9.3  addr=long_range  WRITE=transform bind '_.'->'\n'`
 - `9.4  addr=self        WRITE=copy      bind '_.'->'\n'`
 - `9.5  addr=self        WRITE=transform bind '_Valky'->'ria'`
-- `9.6  addr=local       WRITE=transform bind '_.'->'\n'` — ★ causal: induction ΔNLL **+0.12**±0.10, 2% of base, generic +0.05 ⚠ **UNNAMED-candidate**
+- `9.6  addr=local       WRITE=transform bind '_.'->'\n'` — ★ causal: induction ΔNLL **+0.12**±0.10, 2% of base, generic +0.05 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `9.7  addr=long_range  WRITE=transform bind '8'->'6'`
 - `9.MLP.n9050  reads {_and,_at,_@} -> writes {_and,_from,_for}`
 - `9.MLP.n4084  reads {s,_',_=} -> writes {s,_',_were}`
@@ -168,7 +168,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `10.3  addr=structural  WRITE=transform bind '\n'->'_.'`
 - `10.4  addr=long_range  WRITE=transform bind '9'->'8'` [`duplicate`](../operators/duplicate.md)
 - `10.5  addr=self        WRITE=copy      bind '_was'->'_were'`
-- `10.6  addr=structural  WRITE=transform bind '_.'->'\n'` — ★ causal: induction ΔNLL **+0.37**±0.03, 7% of base, generic +0.05 ⚠ **UNNAMED-candidate**
+- `10.6  addr=structural  WRITE=transform bind '_.'->'\n'` — ★ causal: induction ΔNLL **+0.37**±0.03, 7% of base, generic +0.05 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `10.7  addr=local       WRITE=transform bind '_.'->'\n'`
 - `10.MLP.n4928  reads {_for,_in,_with} -> writes {_for,_by,_with}`
 - `10.MLP.n5420  reads {_,,_and,_with} -> writes {_,,_:,_with}`
@@ -211,7 +211,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `13.4  addr=long_range  WRITE=transform bind '1'->'6'`
 - `13.5  addr=long_range  WRITE=transform bind '\n'->'_='`
 - `13.6  addr=local       WRITE=copy      bind '\n'->'_='`
-- `13.7  addr=local       WRITE=transform bind '\n'->'_='` — ★ causal: induction ΔNLL **+0.80**±0.07, 16% of base, generic +0.01 ⚠ **UNNAMED-candidate**
+- `13.7  addr=local       WRITE=transform bind '\n'->'_='` — ★ causal: induction ΔNLL **+0.80**±0.07, 16% of base, generic +0.01 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `13.MLP.n2161  reads {_with,_@,-@} -> writes {_with,_@,_by}`
 - `13.MLP.n4436  reads {_of,_to,_from} -> writes {_of,_@,-@}`
 - `13.MLP.n4320  reads {_for,_from,_of} -> writes {_for,_from,_by}`

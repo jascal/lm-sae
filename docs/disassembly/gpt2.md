@@ -23,8 +23,8 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `L0.H5  ADDR=content      WRITE=transform bind '_he'->'_his'` — ★ causal: induction ΔNLL **+0.19**±0.02, 39% of base, generic -0.00
 - `L0.H6  ADDR=diffuse      WRITE=copy      bind '_to'->'_for'`
 - `L0.H7  ADDR=relative-Δ   WRITE=transform bind 'I'->'CI'` [`prev-tok→induction-feed`](../operators/prevtok.md)
-- `L0.H8  ADDR=structural   WRITE=transform bind '_you'->'_I'` [`line-anchor`](../operators/structural.md) — ★ causal: induction ΔNLL **+0.23**±0.01, 46% of base, generic +0.04 ⚠ **UNNAMED-candidate**
-- `L0.H9  ADDR=structural   WRITE=transform bind '_for'->'_to'` [`line-anchor`](../operators/structural.md) — ★ causal: induction ΔNLL **+0.37**±0.01, 75% of base, generic +0.03 ⚠ **UNNAMED-candidate**
+- `L0.H8  ADDR=structural   WRITE=transform bind '_you'->'_I'` [`line-anchor`](../operators/structural.md) — ★ causal: induction ΔNLL **+0.23**±0.01, 46% of base, generic +0.04 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
+- `L0.H9  ADDR=structural   WRITE=transform bind '_for'->'_to'` [`line-anchor`](../operators/structural.md) — ★ causal: induction ΔNLL **+0.37**±0.01, 75% of base, generic +0.03 ⚠ [**UNNAMED-candidate**](../operators/discovered_xmodel.md)
 - `L0.H10 ADDR=structural   WRITE=transform bind '_your'->'_you'` — ★ causal: induction ΔNLL **+0.29**±0.03, 58% of base, generic +0.02
 - `L0.H11 ADDR=structural   WRITE=transform bind '_the'->'_his'` [`line-anchor`](../operators/structural.md)
 - `L0.MLP.n2733 reads {_of,_that,_is} -> writes {_the,_our,_to}` — ★ causal: induction ΔNLL **+11.75**±0.14, 2346% of base, generic +1.72
