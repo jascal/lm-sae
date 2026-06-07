@@ -82,8 +82,14 @@ they are load-bearing on their *own* task — see each op's dossier (section B) 
 ## The other instruction class: COMPUTE (MLP)
 
 Attention is the **MOVE** class; the **[MLP / COMPUTE catalog](mlp_compute.md)** is the other half of the
-instruction set (cross-model per-layer MLP causal profile + the GPT-2 neuron read→write idioms). The ResidualVM
-discovery engine found **MLP0 (the detokenizer) is the single most load-bearing component for every behaviour**.
+instruction set (cross-model per-layer MLP causal profile + the GPT-2 neuron read→write idioms). In the discovery
+sweeps the early-MLP detokenizer had the largest single-component causal effect of anything measured.
+
+## Growing the catalog: discovered components
+
+The [**discovered components**](discovered.md) page is the discovery engine run across *every* model — every head +
+MLP ranked by causal effect (multi-seed), flagged named-vs-**UNNAMED**. The UNNAMED load-bearing components are
+candidate operators not yet catalogued (e.g. Llama heads 0.31/1.31/1.29) — the leads to dossier next.
 
 ## Gaps (documented, not skipped)
 
