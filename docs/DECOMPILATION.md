@@ -240,12 +240,15 @@ right axis: train tiny GPTs from scratch across host widths, with/without an **a
 recovery loss** (a linear head from the residual must predict the exact per-token oracle labels), and measure
 native cov95 + capability.
 
-| host width | params | LM-loss unsup→sup | cov95 unsup→sup |
-|---|---|---|---|
-| 32 | 1.7M | 6.54→6.42 | 0.48→0.62 |
-| 64 | 3.4M | 6.21→6.16 | 0.62→0.79 |
-| 128 | 7.2M | 5.99→5.99 | 0.69→0.76 |
-| 256 | 16.0M | 6.04→6.05 | 0.45→0.69 |
+| host width | params | LM-loss unsup→sup | cov95 unsup→sup | Δcov95 |
+|---|---|---|---|---|
+| 32 | 1.7M | 6.54→6.42 | 0.48→0.62 | +0.14 |
+| 64 | 3.4M | 6.21→6.16 | 0.62→0.79 | +0.17 |
+| 128 | 7.2M | 5.99→5.99 | 0.69→0.76 | +0.07 |
+| 256 † | 16.0M | 6.04→6.05 | 0.45→0.69 | +0.24 |
+
+† w256 is **undertrained** (16M params on 107k tokens; its unsup LM loss 6.04 is *worse* than w128's 5.99) —
+its low unsupervised cov95 is a compute-budget artifact, not scarcity counter-evidence.
 
 - **Reachability — CONFIRMED.** Oracle-supervision lifts native cov95 at *every* width (+0.07…+0.24, mean
   **+0.155**) at **zero/negative capability cost** (mean **−0.037 nats** — it slightly *helps* LM loss). So
@@ -260,10 +263,20 @@ native cov95 + capability.
   artifact, not counter-evidence. So the forge tax is *partly* a capacity-scarcity artifact — relieved by width
   up to the training budget, and relieved more cheaply by supervision.
 
-Caveats: tiny hosts / short training / single seed; the aux loss pressures *linear recoverability* (which
-empirically lifts cov95 here but isn't a direct monosemanticity objective — a decorrelation / sparse-
-dictionary-in-the-loop term is the next refinement). But the direction is clear and the cost is ~zero, so the
-reachability lever is real. `host_width_sweep.py`, `runs/cov95_forge_tax/host_width_sweep_summary.json`.
+**Feeds milestone 1:** supervision yields cleaner, more monosemantic low-χ residuals — which are exactly the
+"registers" the ResidualVM interpreter reads, so a supervised host should decompile further (higher
+reconstruction-coverage at lower op-budget) than an unsupervised one. That's the direct hand-off to the
+recompile harness.
+
+Caveats + scope: the aux loss pressures **linear recoverability** of the oracle (a *proxy* — it lifts cov95
+here but is not a direct monosemanticity/decorrelation objective). The scarcity trend is only cleanly visible
+in the **well-trained regime** (≤w128 here); confirming it at w256+ needs more tokens/steps (compute scaling),
+not more width. Single seed, tiny hosts, short training. **Planned follow-ups:** (1) a decorrelation /
+sparse-dictionary-in-the-loop aux term (direct monosemanticity, not just recoverability); (2) multi-seed +
+adequately-trained wide hosts to clean the scarcity curve; (3) richer oracles (spaCy POS/NER) + curriculum
+annealing of the aux weight; (4) polygram geometry penalties. But the direction is clear and the cost is
+~zero, so the reachability lever is real. `host_width_sweep.py`,
+`runs/cov95_forge_tax/host_width_sweep_summary.json`.
 
 ## Boundaries / risks
 
