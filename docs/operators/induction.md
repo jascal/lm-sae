@@ -28,7 +28,7 @@ The deep battery's arch-generic core — behavioural head-ID + mean-ablation cau
 | Llama-3.2-1B | 10.23 | 93 | +1.24 | +0.01 | distributed (full +1.24 ≫ best 1h +0.77) | 1.9 (+2%, conc 64×) | 1.28 (0.08) |
 | Qwen2.5-1.5B | 14.3 | 98 | +2.10 | -0.00 | distributed (full +2.10 ≫ best 1h +0.51) | 2.10 (+0%, conc 17×) | 1.4 (0.07) |
 
-_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; **redundancy** cumulative-ablates the top heads in solo-effect order (bottleneck = one head ≈ the whole op; distributed = the population far exceeds any single head); channel = remove each upstream head from the reader's key → top collapser + the value/move channel. Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._
+_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; **redundancy** cumulative-ablates the top heads in solo-effect order (bottleneck = one head ≈ the whole op; distributed = the population far exceeds any single head; **compensatory** cases — which head triggers the recovery — are dug in [outlier mechanism digs](outlier_digs.md)); channel = remove each upstream head from the reader's key → top collapser + the value/move channel. Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op induction`
 

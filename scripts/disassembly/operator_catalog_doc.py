@@ -67,7 +67,8 @@ def xdossier_section(op, xrows):
         lines.append(f"| {r['model']} | {r['top_head']} | {r['n_heads_mass']} | {r['causal_induction_dNLL']:+.2f} | {r['causal_generic_dNLL']:+.2f} | {red} | {kc} | {vc} |")
     lines += ["", "_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; **redundancy** "
               "cumulative-ablates the top heads in solo-effect order (bottleneck = one head ≈ the whole op; distributed "
-              "= the population far exceeds any single head); channel = remove "
+              "= the population far exceeds any single head; **compensatory** cases — which head triggers the recovery "
+              "— are dug in [outlier mechanism digs](outlier_digs.md)); channel = remove "
               "each upstream head from the reader's key → top collapser + the value/move channel. "
               "Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). "
               "Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._", ""]

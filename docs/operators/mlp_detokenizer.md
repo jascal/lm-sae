@@ -84,4 +84,4 @@ Target-token mix: word-start 54%, continuation 28%, other 18%. Baseline NLL by c
 | 14 | 0.52 | **0.22** | +0.035 | +0.044 | +0.053 |
 | 26 | 0.96 | **0.05** | +0.285 | +0.627 | +0.254 |
 
-_Token-determinism = η² of the MLP-layer output on current-token identity (frequent tokens). Data: [mlp_detokenizer_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/mlp_detokenizer_summary.json). Regenerate: [mlp_detokenizer.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/mlp_detokenizer.py). See the [MLP / COMPUTE catalog](mlp_compute.md)._
+_Why Llama-3.2-1B's MLP0 is the context-determined outlier is dug in [outlier mechanism digs](outlier_digs.md) (it inherits the context-mixing of its layer-0 heads). Token-determinism = η² of the MLP-layer output on current-token identity (frequent tokens). Data: [mlp_detokenizer_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/mlp_detokenizer_summary.json). Regenerate: [mlp_detokenizer.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/mlp_detokenizer.py). See the [MLP / COMPUTE catalog](mlp_compute.md)._
