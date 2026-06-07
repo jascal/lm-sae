@@ -332,6 +332,35 @@ beyond the null *names* the edge's function; ΔTV with no named collapse is real
   "GPT-2 absolute-positions" hypothesis. `runs/disassembly/validate_new_edges_summary.json` (~40 s on CPU;
   re-run to regenerate the figure).
 
+### Cross-model: the positional broadcast is GPT-2-specific (forward-pointer (c), done)
+
+`scripts/gemma/cross_model_positional.py` runs the cross-model test. A *key-only* causal path-patch that
+respects each model's RoPE is non-trivial to do faithfully across architectures, so the test goes to the
+**representational** question the broadcast hypothesis really turns on: **is the prev-token head's position
+carried in the key *content* (absolute, must be written into the residual) or in the QK *rotation* (RoPE,
+applied at attention time)?** For each model it finds the top prev-token head, captures its **pre-rotation**
+keys over the corpus, and decomposes the key variance into the fraction explained by absolute **position** vs by
+**token** identity. The prediction: GPT-2 position-dominated (its keys must encode *where* — exactly what the
+sink heads broadcast), the RoPE models token-dominated (keys encode *what*; position is the rotation).
+
+| model | pos. encoding | prev-token head | key var: **position** | key var: token | pos/tok |
+|---|---|---|---|---|---|
+| **GPT-2** | absolute (`wpe`) | 4.11 | **59%** | 18% | **3.3** |
+| Gemma-2-2B | RoPE | 21.7 | 7% | 23% | 0.30 |
+| Llama-3.2-1B | RoPE | 0.2 | 2% | 64% | 0.04 |
+| Qwen-2.5-1.5B | RoPE | 13.4 | 9% | 25% | 0.35 |
+
+**CONFIRMED — a clean 1-vs-3 split (~10×).** Only GPT-2's prev-token key is position-dominated; every RoPE
+model's is token-dominated. This is the cross-model *explanation* that ties the positional thread together: GPT-2
+encodes absolute position as key content → its prev-token head must *read that content* → it depends on the early
+sink heads that **broadcast** it (the `validate_new_edges` collapse) → and GPT-2 is the only family member that
+**depends on its sink** (the sink-ablation result, position-independently = the absolute-positions signature). The
+RoPE models need none of this — position rides in the rotation — so they have no sink dependence and no
+positional-broadcast circuit. **Scope:** this is the *representational* confirmation (the key **is**
+position-encoded only in GPT-2), corroborating the *causal* GPT-2 result; a faithful key-only causal path-patch
+across RoPE models (forward-pointer (a)) is the heavier next step. ~33 s for all four models.
+`runs/gemma/cross_model_positional_summary.json`.
+
 ## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
 
 `dag_recompile.py` closes the loop between the two milestones: it feeds the M2-extracted live sub-DAG into M1's
