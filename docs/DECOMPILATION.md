@@ -183,7 +183,11 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
 4. **The ceiling test** — reconstruction-coverage plateau vs the tower's entangled core, same host; the
    unifying claim stands or falls. **First result DONE (v2, tiny GPT): `scripts/cov95_forge_tax/ceiling_test.py`** — content/factorability axes decouple; the capability plateau is GPU-scale-gated (see Ceiling test section).
 5. **Cross-model** — repeat the ceiling on Gemma-2 / Llama-3 / Qwen-2.5 (idea i) to test whether the
-   decompilable fraction is architecture-invariant like the mechanisms are.
+   decompilable fraction is architecture-invariant like the mechanisms are. **DONE (op-selection ceiling, GPT-2 +
+   3 RoPE models): `scripts/gemma/cross_model_ceiling.py`** — REFUTES the naive hypothesis: the named circuit
+   beats random everywhere (mechanisms invariant) but the decompilable *fraction* is **not** invariant — far
+   higher for GPT-2 than the larger RoPE models (see Cross-model ceiling section). The *forge-basis* ceiling
+   stays SAE/GPU-gated for non-GPT-2.
 
 ## First result (milestone 1, GPT-2)
 
@@ -540,6 +544,40 @@ widths) and **identifies the capability-ceiling test as GPU-scale-gated** — an
 unifying "one ceiling" claim is wrong as stated (≥2 axes), and the clean capability test is deferred to better
 forge hardware. (The tower's ~24% irreducible core is the target a GPU-scale capability curve would be
 compared against.) `ceiling_test.py`, `runs/cov95_forge_tax/ceiling_test_summary.json`.
+
+## Cross-model ceiling (milestone 5) — first result (GPT-2 + 3 RoPE models)
+
+The forge-basis ceiling (M4) needs per-layer SAEs + sae-forge forging, which Llama-3.2-1B / Qwen-2.5-1.5B don't
+have and which is globally broken at whole-model scale — so the cross-model ceiling goes to the **op-selection**
+metric, which is arch-generic: `cross_model_ceiling.py` runs M1's reconstruction-coverage harness
+(`coverage = 1 − KL(host‖keep)/KL(host‖all-ablated)`) on all four models and compares the **named induction
+circuit** (prev-token + induction heads, found behaviorally) to an **equal-size random** keep-set. The question:
+is the *decompilable fraction* architecture-invariant like the mechanisms are?
+
+| model | heads | induction circuit | random-same-size | circuit coverage | lift | ratio |
+|---|---|---|---|---|---|---|
+| **GPT-2** (abs-pos) | 144 | +0.202 (**20% of pass**) | +0.049 | | **+0.153** | **4.1×** |
+| Gemma-2-2B | 208 | +0.031 (3%) | +0.022 | | +0.009 | 1.4× |
+| Qwen-2.5-1.5B | 336 | +0.090 (9%) | +0.031 | | +0.060 | 2.9× |
+| Llama-3.2-1B | 512 | +0.034 (3%) | −0.000 | | +0.034 | n/a (random≈0) |
+
+**REFUTES the naive hypothesis — the decompilable fraction is *not* architecture-invariant.** The named circuit
+beats random in **all four** models (lift > 0 everywhere → the op-catalog is real and the *mechanisms* are
+invariant, as the idiom/causal work showed). But its **coverage-share is far higher for GPT-2**: its 5-head
+induction circuit reconstructs **20%** of the forward pass at **4.1×** a random 5-set, while the larger RoPE
+models reconstruct only **3–9%** at 1.4–2.9× (lift +0.009…+0.060). Even controlling for size (vs random-same-size
+lift), GPT-2's +0.153 dwarfs Gemma's +0.009 — so it isn't merely that 5 of 512 heads cover less; the larger
+models **distribute the induction computation across more heads** (more redundant), so a fixed named circuit
+explains proportionally less. The right-panel curves show it: GPT-2's random-budget coverage *rises* with heads
+kept while the RoPE models' stays flat/declining (random head-sets add ~nothing) — the redundancy signature.
+
+**Scope (honest).** (a) This is the **op-selection** ceiling (heads kept at full fidelity, complement
+mean-ablated); the **forge-basis** ceiling (M4) stays SAE/GPU-gated for non-GPT-2. (b) **GPT-2 is confounded** —
+it is both the smallest *and* the only absolute-position model, so scale and architecture-family can't be
+separated at n=4 (the same GPT-2-is-the-outlier pattern as the sink result). (c) The circuit is a fixed ~5 heads;
+the induction heads are behavioral picks (validated for GPT-2/Gemma, less certain for Llama/Qwen), but the
+size-controlled lift makes the conclusion robust to that. `cross_model_ceiling.py`,
+`runs/gemma/cross_model_ceiling_summary.json` (~2.5 min, 4 models).
 
 ## Reachability — host-width × oracle-supervision (first result)
 
