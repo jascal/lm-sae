@@ -1,0 +1,103 @@
+{
+  "experiment": "host-width x oracle-supervision sweep",
+  "widths": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "n_oracle_features": 29,
+  "rows": [
+    {
+      "width": 32,
+      "supervised": false,
+      "n_params": 1662176,
+      "lm_loss": 6.537973075919386,
+      "cov95": 0.4827586206896552,
+      "mauc": 0.9049810271852138,
+      "cov95_token": 0.7,
+      "cov95_lexical": 0.0
+    },
+    {
+      "width": 32,
+      "supervised": true,
+      "n_params": 1662176,
+      "lm_loss": 6.42139058549215,
+      "cov95": 0.6206896551724138,
+      "mauc": 0.9413858383617032,
+      "cov95_token": 0.75,
+      "cov95_lexical": 0.3333333333333333
+    },
+    {
+      "width": 64,
+      "supervised": false,
+      "n_params": 3422656,
+      "lm_loss": 6.21015426850347,
+      "cov95": 0.6206896551724138,
+      "mauc": 0.9317098990929789,
+      "cov95_token": 0.85,
+      "cov95_lexical": 0.1111111111111111
+    },
+    {
+      "width": 64,
+      "supervised": true,
+      "n_params": 3422656,
+      "lm_loss": 6.161494094031978,
+      "cov95": 0.7931034482758621,
+      "mauc": 0.9445279878669814,
+      "cov95_token": 1.0,
+      "cov95_lexical": 0.3333333333333333
+    },
+    {
+      "width": 128,
+      "supervised": false,
+      "n_params": 7238528,
+      "lm_loss": 5.987234298641159,
+      "cov95": 0.6896551724137931,
+      "mauc": 0.9136445929586224,
+      "cov95_token": 1.0,
+      "cov95_lexical": 0.0
+    },
+    {
+      "width": 128,
+      "supervised": true,
+      "n_params": 7238528,
+      "lm_loss": 5.994076609792223,
+      "cov95": 0.7586206896551724,
+      "mauc": 0.937731646529891,
+      "cov95_token": 1.0,
+      "cov95_lexical": 0.2222222222222222
+    },
+    {
+      "width": 256,
+      "supervised": false,
+      "n_params": 16049920,
+      "lm_loss": 6.042913019165199,
+      "cov95": 0.4482758620689655,
+      "mauc": 0.8885119320923336,
+      "cov95_token": 0.6,
+      "cov95_lexical": 0.1111111111111111
+    },
+    {
+      "width": 256,
+      "supervised": true,
+      "n_params": 16049920,
+      "lm_loss": 6.053823583190723,
+      "cov95": 0.6896551724137931,
+      "mauc": 0.915030972131058,
+      "cov95_token": 0.95,
+      "cov95_lexical": 0.1111111111111111
+    }
+  ],
+  "cov95_unsup_by_width": {
+    "32": 0.4827586206896552,
+    "64": 0.6206896551724138,
+    "128": 0.6896551724137931,
+    "256": 0.4482758620689655
+  },
+  "supervision_cov95_lift_mean": 0.15517241379310343,
+  "supervision_capability_cost_mean_nats": -0.036872447430535304,
+  "cov95_rise_narrowest_to_peak": 0.20689655172413796,
+  "cov95_peak_width": 128,
+  "widest_host_undertrained": true
+}
