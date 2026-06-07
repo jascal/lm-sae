@@ -142,10 +142,10 @@ def run_model(model_id, args, dev):
                 Lc = len(c)
                 for op, (hl, h, _sl, _hd) in here.items():
                     at = o.attentions[hl][0, h].float().cpu().numpy()
-                    for q in range(1, Lc):
-                        kf = dom[:q]; msk = kf >= 0
+                    for q in range(2, Lc):                                            # skip q=1 (only key is pos-0)
+                        kf = dom[1:q]; msk = kf >= 0                                   # exclude key position 0 (BOS/sink — not a content read)
                         if msk.any():
-                            np.add.at(read_w[op], kf[msk], at[q, :q][msk])
+                            np.add.at(read_w[op], kf[msk], at[q, 1:q][msk])
 
         def gloss(f):
             return "/".join(tok.convert_ids_to_tokens(t).replace("Ġ", "_") for t, _ in tokfreq.get(int(f), Counter()).most_common(3)) or "?"

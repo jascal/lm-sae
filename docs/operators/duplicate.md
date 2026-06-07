@@ -37,7 +37,7 @@ What this operator reads/writes in **feature** space (monosemantic SAE latents),
 | model | head | reads (SAE feature) | copy-score |
 |---|---|---|---|
 | gpt2 | 0.5 | `_you`; `_the`; `US` | +0.09 (copies) |
-| gemma-2-2b | 1.4 | `cius/▁belly/VIR`; `▁the`; `<bos>` | -0.15 (suppresses) |
+| gemma-2-2b | 1.4 | `cius/▁belly/VIR`; `▁the`; `UMN/GIL/▁Cai` | -0.15 (suppresses) |
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op duplicate`
 

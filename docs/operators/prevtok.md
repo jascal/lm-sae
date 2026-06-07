@@ -35,7 +35,7 @@ What this operator reads/writes in **feature** space (monosemantic SAE latents),
 | model | head | reads (SAE feature) | copy-score |
 |---|---|---|---|
 | gpt2 | 4.11 | `US`; `cius/ius`; `I` | +0.10 (copies) |
-| gemma-2-2b | 21.7 | `▁Citizen/./▁belly`; `▁the/▁a/▁to`; `<bos>` | -0.10 (suppresses) |
+| gemma-2-2b | 21.7 | `▁Citizen/./▁belly`; `▁the/▁a/▁to`; `First/▁first` | -0.10 (suppresses) |
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op prevtok`
 
