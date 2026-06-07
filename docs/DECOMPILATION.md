@@ -172,7 +172,10 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
 
 1. **Recompile-KL harness, built as the interpreter** (§Execution model) — **DONE (v1, GPT-2): `scripts/disassembly/residual_vm.py`** (see First result). v1 recompiles by *keeping ops at full fidelity and mean-ablating the complement*; v2 = feature-basis recompilation via sae-forge `NativeModel` (the ceiling test, milestone 4).
 2. **Composition-DAG extractor** — weight-space edge scorer + path-patch gate; auto-recover induction + IOI;
-   report new sub-DAGs. (Generalizes `path_patch_induction.py` / `composition_graph.py`.)
+   report new sub-DAGs. (Generalizes `path_patch_induction.py` / `composition_graph.py`.) **DONE (GPT-2):
+   `scripts/disassembly/composition_dag.py`** — static composition predicts dynamic writer specificity
+   (ρ=+0.37); the canonical induction K-chain and IOI Q-chain are auto-recovered AND live, imposters/random
+   rejected (0% FP); 22 new live edges surfaced (see Composition-DAG section).
 3. **MLP ops** — neuron key→value catalog + named MLP idioms; add to the DAG + the recompile.
 4. **The ceiling test** — reconstruction-coverage plateau vs the tower's entangled core, same host; the
    unifying claim stands or falls. **First result DONE (v2, tiny GPT): `scripts/cov95_forge_tax/ceiling_test.py`** — content/factorability axes decouple; the capability plateau is GPU-scale-gated (see Ceiling test section).
@@ -200,6 +203,54 @@ control + the named induction circuit.
   **feature-basis recompilation** (sae-forge `NativeModel`, milestone 4), where kept ops must be expressed in a
   clean basis and composition bottlenecks. Milestone 1 delivers the interpreter + metric + the op-selection
   result; the ceiling test is the next build. `runs/disassembly/residual_vm_gpt2_summary.json`.
+
+## Composition-DAG extractor (milestone 2) — first result (GPT-2)
+
+`composition_dag.py` unifies the two precursors into one extractor that reads the **call graph**, not one
+idiom. `composition_graph.py` gave the static adjacency (Elhage Q/K-composition on raw weights, mean-write
+removed) but only validated the single prev-token→induction K-edge; `path_patch_induction.py` gave the dynamic
+gate but measured an *induction-specific* collapse, so it could only confirm induction. M2 generalizes both:
+score the full K/Q composition DAG over all causal head pairs, then gate the strongest edges with an
+**idiom-agnostic** dynamic metric — the mean total-variation change in the reader's attention pattern when the
+writer is removed from that port (**ΔTV**), defined for *any* reader. GPT-2, Shakespeare, weights + two forward
+passes; 170 gated edges (105 K / 65 Q); attention recompute is exact (max|Δ| = 9.85e-7 vs the model).
+
+The one methodological move that makes this work: raw ΔTV **grows with reader depth/magnitude**, so a global
+random null is confounded (early-layer write-hubs dominate). The fix is a **reader-matched null** — for each
+reader, compare the real writer against *random causal writers into the same reader head* (the path-patching
+null that isolates writer *specificity* from reader depth). An edge is "live" if its ΔTV beats its reader's
+matched 2σ null; **specificity = ΔTV − matched null**.
+
+- **Static composition predicts dynamic liveness across the whole graph** — Spearman(static, ΔTV) = **+0.52**
+  over all 170 edges; Spearman(static, reader-matched specificity) = **+0.37**. This is the broad version of
+  `path_patch_induction`'s induction-only ρ: the weight-space score is a graph-wide predictor of which writes
+  actually shape which reads, not just for one idiom.
+- **The induction K-chain is auto-recovered AND live.** Static prev-token→induction K-composition 0.069 vs
+  causal baseline 0.042 (1.6×) vs random 0.039. Dynamically, the **canonical prev-token head 4.11 → inductors
+  is 4/5 live** (4.11→5.5/5.0/7.11/6.9 clear their matched nulls; 4.11→5.1 marginal), the strong-edge median
+  Δinduction is +0.015, and the **top edge collapses 56% of induction attention** under key-path patching (the
+  original strong readout, retained for induction edges).
+- **The IOI Q-chain is auto-recovered.** Static S-inhibition→name-mover Q-composition 0.065 vs causal 0.042
+  (1.5×); the recovered chain is duplicate-token (3.0) → S-inhibition (8.10/8.3/10.0) → name-mover
+  (9.9/10.0/11.2). Dynamically **5/11 S-inhib→name-mover Q-edges are live** — the real S-inhibition heads
+  8.10/8.3 reshape the name-movers' query attention; the spurious 6.7 (a Q-composition false-positive) does
+  **not** (negative specificity).
+- **The gate is selective — it rejects imposters.** Across the named cross-product, **43% of edges are live vs
+  0% random false-positives**. The selectivity is the point: the *non-canonical* high-prev-token writers
+  (2.2/3.2/3.7, which have high prev-token attention but aren't the prev-token head) → inductors are mostly
+  **dead**, and the spurious S-inhib head is dead. The extractor keeps the real sub-circuit and discards the
+  cross-product noise.
+- **22 new live edges surfaced** above their reader-matched 2σ nulls, not in induction/IOI — dominated by
+  early-layer **write-hubs** (0.9→2.5/2.9 at specificity +0.40; 1.8→{9.3, 10.5, 10.9} long-range into late
+  layers). These are *candidate* sub-DAGs (high-specificity writers feeding many readers, consistent with
+  positional / duplicate-token hubs), **not** validated circuits — behavioral labeling is future work.
+
+**Scope (honest).** (a) The dynamic gate runs on natural text, so the IOI Q-edges are confirmed by generic
+attention reshaping (ΔTV), not the IOI-task logit-difference — that task-specific causal validation already
+lives in `ioi_causal.py`; M2's contribution is the *unified static→dynamic* recovery. (b) ΔTV measures whether
+an edge *reshapes the reader's attention pattern* (Q/K composition); V-composition (writing values without
+moving attention) needs a different readout, not done here. (c) MLP nodes are absent — they are milestone 3.
+`runs/disassembly/composition_dag_summary.json` (re-run the script to regenerate the figure).
 
 ## Ceiling test (milestone 4) — first result (v2, tiny GPT)
 
