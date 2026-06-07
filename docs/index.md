@@ -9,7 +9,8 @@ reused **instruction set** — names the **operators** (single attention heads /
 question: can we **decompile** it — reconstruct the *computation* faithfully, not just label the components?
 
 This site is generated from the repo's tracked result artifacts and stays in sync with them. Source + how-to-run:
-[github.com/jascal/lm-sae](https://github.com/jascal/lm-sae).
+[github.com/jascal/lm-sae](https://github.com/jascal/lm-sae). New to the vocabulary? Every technical term is
+defined — with its canonical reference — in the **[Glossary](glossary.md)**.
 
 > **Mode — natural history, borrowed from biology.** A trained model is *grown*, not designed; we **catalog** the
 > operators it developed, **taxonomize** them, and derive **generalizable** principles by comparing across model
