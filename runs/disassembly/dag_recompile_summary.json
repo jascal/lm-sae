@@ -1,0 +1,217 @@
+{
+  "experiment": "M1<->M2 bridge: does the composition-DAG pick the recompile keep-set?",
+  "model": "gpt2",
+  "corpus": "shakespeare",
+  "n_heads": 144,
+  "floor_kl": 1.8219230848469476,
+  "spearman_connectivity_vs_importance_all": 0.2420866489832007,
+  "spearman_connectivity_vs_importance_touched": 0.021227364185110665,
+  "spearman_curve_importance_vs_connectivity": 0.9878787878787879,
+  "keepsets": {
+    "dag_circuit (induction+IOI)": {
+      "size": 12,
+      "coverage_dag": 0.33331017925550643,
+      "coverage_top_importance": 0.22954990880704662,
+      "coverage_random": 0.038384204204842176,
+      "importance_ranks": [
+        2,
+        8,
+        27,
+        39,
+        40,
+        54,
+        84,
+        96,
+        110,
+        131,
+        133,
+        142
+      ],
+      "heads": [
+        "2.2",
+        "3.2",
+        "3.7",
+        "4.11",
+        "5.0",
+        "5.5",
+        "6.9",
+        "7.11",
+        "8.3",
+        "8.10",
+        "10.0",
+        "11.2"
+      ]
+    },
+    "dag_all_live": {
+      "size": 30,
+      "coverage_dag": 0.36134778464201234,
+      "coverage_top_importance": 0.5412526126695424,
+      "coverage_random": 0.20229846388001946,
+      "importance_ranks": [
+        2,
+        6,
+        7,
+        8,
+        9,
+        11,
+        15,
+        24,
+        27,
+        29,
+        30,
+        38,
+        39,
+        40,
+        41,
+        43,
+        48,
+        49,
+        54,
+        56,
+        62,
+        63,
+        84,
+        96,
+        98,
+        102,
+        110,
+        131,
+        133,
+        142
+      ],
+      "heads": [
+        "0.9",
+        "0.11",
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.7",
+        "1.8",
+        "1.9",
+        "1.10",
+        "2.1",
+        "2.2",
+        "2.5",
+        "2.9",
+        "2.10",
+        "2.11",
+        "3.2",
+        "3.7",
+        "4.11",
+        "5.0",
+        "5.5",
+        "6.9",
+        "7.11",
+        "8.3",
+        "8.10",
+        "9.3",
+        "10.0",
+        "10.5",
+        "10.9",
+        "11.2",
+        "11.8"
+      ]
+    }
+  },
+  "curve": [
+    {
+      "budget": 2,
+      "coverage_importance": 0.005816637477952913,
+      "coverage_dag_connectivity": 0.013600762341518968,
+      "coverage_random": 0.0037388066082632843
+    },
+    {
+      "budget": 4,
+      "coverage_importance": 0.15287705123839135,
+      "coverage_dag_connectivity": 0.054045239170061876,
+      "coverage_random": 0.025164743020894137
+    },
+    {
+      "budget": 6,
+      "coverage_importance": 0.184669740245346,
+      "coverage_dag_connectivity": 0.0820575912372834,
+      "coverage_random": 0.05270244848329217
+    },
+    {
+      "budget": 8,
+      "coverage_importance": 0.20775806111893635,
+      "coverage_dag_connectivity": 0.13660721967524836,
+      "coverage_random": 0.027968292595035693
+    },
+    {
+      "budget": 12,
+      "coverage_importance": 0.22954990880704662,
+      "coverage_dag_connectivity": 0.18606546408573632,
+      "coverage_random": 0.081613143292046
+    },
+    {
+      "budget": 16,
+      "coverage_importance": 0.31183296492483337,
+      "coverage_dag_connectivity": 0.19301938859057377,
+      "coverage_random": 0.21886106966644797
+    },
+    {
+      "budget": 24,
+      "coverage_importance": 0.3910842822468985,
+      "coverage_dag_connectivity": 0.4157824263136095,
+      "coverage_random": 0.1695797755731199
+    },
+    {
+      "budget": 32,
+      "coverage_importance": 0.567706741092632,
+      "coverage_dag_connectivity": 0.31486629970832725,
+      "coverage_random": 0.23700013128679
+    },
+    {
+      "budget": 48,
+      "coverage_importance": 0.6099305887619524,
+      "coverage_dag_connectivity": 0.6362534229890882,
+      "coverage_random": 0.40758553031780054
+    },
+    {
+      "budget": 64,
+      "coverage_importance": 0.7151529987832617,
+      "coverage_dag_connectivity": 0.6897571329808962,
+      "coverage_random": 0.42592942747321605
+    }
+  ],
+  "top_importance_heads": [
+    "0.1",
+    "0.3",
+    "7.11",
+    "9.5",
+    "0.10",
+    "0.7",
+    "0.9",
+    "1.7",
+    "4.11",
+    "2.10",
+    "1.5",
+    "1.2",
+    "0.6",
+    "0.8",
+    "6.10",
+    "1.10"
+  ],
+  "dag_connectivity_heads": [
+    "0.9",
+    "1.8",
+    "0.11",
+    "2.9",
+    "2.5",
+    "1.3",
+    "10.9",
+    "4.11",
+    "1.10",
+    "2.11",
+    "3.2",
+    "9.3",
+    "10.5",
+    "11.8",
+    "1.2",
+    "10.0"
+  ],
+  "circuit_frac_of_optimal": 1.4520161693275944,
+  "circuit_coverage_over_random": 0.29492597505066426,
+  "circuit_keepset_matches_importance": true
+}
