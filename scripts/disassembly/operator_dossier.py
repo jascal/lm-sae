@@ -84,7 +84,10 @@ OPS = {
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--op", default="induction", choices=list(OPS))
+    p.add_argument("--op", default="induction", help="a registered op name (see OPS), or any label when --heads is given")
+    p.add_argument("--heads", default=None, help="ad-hoc head-set 'L.h,L.h,...' (a discovered candidate); bypasses the OPS registry")
+    p.add_argument("--kind", default="content", help="kind for an ad-hoc --heads op (content/positional/output/addressing)")
+    p.add_argument("--primary", default="induction", help="primary task for an ad-hoc --heads op (induction/copy_names/successor/ioi/generic)")
     p.add_argument("--pretrained", default="gpt2")
     p.add_argument("--ctx", type=int, default=96)
     p.add_argument("--eval-chunks", type=int, default=40)
@@ -101,7 +104,16 @@ def main(argv=None):
     p.add_argument("--output", type=Path, default=None)
     p.add_argument("--fig", type=Path, default=None)
     args = p.parse_args(argv)
-    op = args.op; spec = OPS[op]
+    op = args.op
+    custom_heads = None
+    if args.heads:                                                                  # ad-hoc discovered candidate
+        custom_heads = [(int(x.split(".")[0]), int(x.split(".")[1])) for x in args.heads.split(",") if x.strip()]
+        spec = dict(kind=args.kind, primary=args.primary, repeat=(args.kind == "content"),
+                    desc=f"ad-hoc head-set {args.heads} (discovered candidate; provided, not behaviourally re-found)")
+    else:
+        if op not in OPS:
+            raise SystemExit(f"--op {op} not in registry {list(OPS)}; pass --heads for an ad-hoc op")
+        spec = OPS[op]
     mtag = args.pretrained.split("/")[-1]                                           # dossiers/<op>/<model>_summary.{json,png}
     args.output = args.output or (args.outroot / "dossiers" / op / f"{mtag}_summary.json")
     args.fig = args.fig or (args.outroot / "dossiers" / op / f"{mtag}.png")
@@ -148,7 +160,11 @@ def main(argv=None):
     mass /= max(ntot, 1)
     prevtok_head = int(np.argmax(pmass / max(ntot, 1)))                            # the model's prev-token head (induction writer)
 
-    if op in LIT_OPS:                                                              # output/circuit ops: rank by IOI direct effect, not attention
+    if custom_heads is not None:                                                   # ad-hoc discovered candidate: use the given heads
+        op_heads_idx = [L * H + h for (L, h) in custom_heads]
+        id_note = "ad-hoc head-set (provided discovered candidate; signal = its mass on the op's reference pattern)"
+        ident = [{"head": name_of(i), "signal": float(mass[i]), "depth": (i // H) / (nL - 1)} for i in op_heads_idx]
+    elif op in LIT_OPS:                                                            # output/circuit ops: rank by IOI direct effect, not attention
         op_heads_idx = [L * H + h for (L, h) in LIT[op]]                            # literature set (DLA-defined; not weight/attn-readable)
         id_note = "circuit op — heads from literature (DLA-defined; not attention-mask-readable)"
         ident = [{"head": name_of(i), "signal": None, "depth": (i // H) / (nL - 1)} for i in op_heads_idx]
@@ -285,7 +301,7 @@ def main(argv=None):
     # reader B's KEY (match) vs VALUE (move) dependence on each upstream head (GPT-2 c_attn machinery).
     Wc = tr.h[LB].attn.c_proj
     channel = {"reader": name_of(reader), "note": "reader in layer 0 — no upstream; channel skipped" if LB == 0 else ""}
-    if LB > 0 and op in BEHAV_OPS:
+    if LB > 0 and (op in BEHAV_OPS or custom_heads is not None):
         upstream = [(L, h) for L in range(LB) for h in range(H)][: args.max_upstream]
 
         def head_contrib(L, captured, h):
@@ -304,7 +320,7 @@ def main(argv=None):
         with torch.no_grad():
             for s in probes:
                 capk.clear(); o = model(input_ids=torch.tensor([s], device=dev), output_attentions=True)
-                Msk = op_masks(s)[op]; attnB = o.attentions[LB][0, hB]
+                Msk = op_masks(s)[msk_op]; attnB = o.attentions[LB][0, hB]          # msk_op = the op's reference pattern (induction for ad-hoc/lit)
                 clean += float((attnB.float().cpu().numpy() * Msk).sum())
                 resid = capk["r"]; Bout = b_value_out(tr.h[LB].ln_1(resid), attnB); vtot += float(torch.linalg.norm(Bout.float()))
                 for (La, ha) in upstream:
