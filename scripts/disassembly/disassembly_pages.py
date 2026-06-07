@@ -84,8 +84,7 @@ def main(argv=None):
         index_rows.append((slug, title, arch, len(used)))
         print(f"  wrote docs/disassembly/{slug}.md ({len(body)} lines, {len(used)} operator roles linked)")
 
-    idx = ["---\ntitle: Head disassemblies\n---", "",
-           "# Per-head disassemblies", "",
+    idx = ["# Per-head disassemblies", "",  # no front-matter, so GitHub Pages' jekyll-readme-index promotes this to /disassembly/
            "The unified per-head listing for each model — every attention head's **addressing** (where it reads) × "
            "**write** (copy/transform) × top content binding × **operator role**, plus the per-layer MLP read→write "
            "neurons. Operator-role tags are hyperlinked to the [operator catalog](../operators/README.md). "

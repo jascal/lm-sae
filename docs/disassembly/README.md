@@ -1,7 +1,3 @@
----
-title: Head disassemblies
----
-
 # Per-head disassemblies
 
 The unified per-head listing for each model — every attention head's **addressing** (where it reads) × **write** (copy/transform) × top content binding × **operator role**, plus the per-layer MLP read→write neurons. Operator-role tags are hyperlinked to the [operator catalog](../operators/README.md). First-order and provisional (single-component reads + the induction idiom).
