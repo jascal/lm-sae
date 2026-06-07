@@ -175,7 +175,7 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
    report new sub-DAGs. (Generalizes `path_patch_induction.py` / `composition_graph.py`.)
 3. **MLP ops** — neuron key→value catalog + named MLP idioms; add to the DAG + the recompile.
 4. **The ceiling test** — reconstruction-coverage plateau vs the tower's entangled core, same host; the
-   unifying claim stands or falls.
+   unifying claim stands or falls. **First result DONE (v2, tiny GPT): `scripts/cov95_forge_tax/ceiling_test.py`** — content/factorability axes decouple; the capability plateau is GPU-scale-gated (see Ceiling test section).
 5. **Cross-model** — repeat the ceiling on Gemma-2 / Llama-3 / Qwen-2.5 (idea i) to test whether the
    decompilable fraction is architecture-invariant like the mechanisms are.
 
@@ -200,6 +200,38 @@ control + the named induction circuit.
   **feature-basis recompilation** (sae-forge `NativeModel`, milestone 4), where kept ops must be expressed in a
   clean basis and composition bottlenecks. Milestone 1 delivers the interpreter + metric + the op-selection
   result; the ceiling test is the next build. `runs/disassembly/residual_vm_gpt2_summary.json`.
+
+## Ceiling test (milestone 4) — first result (v2, tiny GPT)
+
+`ceiling_test.py` recompiles the tiny GPT by forcing computation **through the SAE feature basis** (sae-forge
+`NativeModel`, `native_in_basis`), sweeping SAE width 1–8×, measuring three things at once: forged-model
+output faithfulness (KL vs host; unigram floor 2.17), feature-content retention (mAUC), and monosemantic
+factorization (cov95).
+
+| width | forged-model KL | cov95 host→forged | mAUC host→forged |
+|---|---|---|---|
+| 1× | 43.3 | 0.60→0.00 | 0.92→0.67 |
+| 2× | 5.11 | 0.64→0.00 | 0.92→0.78 |
+| 4× | 5.08 | 0.64→0.12 | 0.93→0.84 |
+| 8× | 5.08 | 0.60→0.16 | 0.92→0.85 |
+
+The single-ceiling prediction is **refined into two axes — and the capability axis is scale-confounded**:
+- **Feature content reconstructs; monosemantic factorization does not.** mAUC retention ~86% (rises with
+  width) vs cov95 retention ~11% (collapses) — the forge tax in the recompilation frame: the basis carries
+  *what* the model represents, not a *monosemantic factorization* of it.
+- **The forged model's output is globally broken at every width** (KL 5–43 ≫ unigram 2.17 → negative capability
+  coverage; 1× catastrophic, 2–8× plateau at KL≈5.08). This is the known tiny-whole-model-forge artifact, **not**
+  the entangled-core ceiling — so this substrate *cannot* isolate the capability plateau-vs-core (the doc's
+  central prediction). Settling that needs a **high-quality GPU-scale forge** (SAELens + polygram compression)
+  the 8 GB box can't run.
+
+So milestone 4 **builds the harness and settles the content/factorability axis** (decoupled, robust across
+widths) and **identifies the capability-ceiling test as GPU-scale-gated** — an honest partial result: the
+unifying "one ceiling" claim is wrong as stated (≥2 axes), and the clean capability test is deferred to better
+forge hardware. (The tower's ~24% irreducible core is the target a GPU-scale capability curve would be
+compared against.) `ceiling_test.py`, `runs/cov95_forge_tax/ceiling_test_summary.json`.
+
+## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
   use norm-preserving mean-ablation + a random-op-budget control (the lesson from the entanglement-tower
