@@ -19,4 +19,4 @@ GPT-2-only circuit op (literature DLA head-set): 9.0, 9.7, 10.1, 10.2, 10.6, 11.
 **G · SAE operands**: NOT RUN — needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer.
 
 
-_Data: `runs/disassembly/operators/dossiers/backup_name_mover/` + the catalog. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/backup_name_mover/` + the catalog. Regenerate: [operator_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_catalog_doc.py)._

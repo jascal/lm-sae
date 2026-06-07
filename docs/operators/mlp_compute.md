@@ -42,4 +42,4 @@ _MLP0 is GPT-2's single most load-bearing component (recon-importance 0.77 of al
 - **Mamba / SSM** has **no separate MLP block** (the state-space mixer is the whole layer) — excluded, the COMPUTE analog of "no attention heads".
 - Per-**neuron** read→write idioms are catalogued for **GPT-2 only** (the cheap token-unembedding basis); the cross-model rows are per-**layer** causal profiles. RoPE neuron-idioms need the per-layer SAE / token-centroid basis (the `disassemble_gemma.py` route).
 
-_Data: `runs/disassembly/operators/mlp_compute_summary.json`. Regenerate: `mlp_atlas.py`._
+_Data: [runs/disassembly/operators/mlp_compute_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/mlp_compute_summary.json). Regenerate: [mlp_atlas.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/mlp_atlas.py)._

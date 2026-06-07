@@ -10,4 +10,4 @@ The indirect-object-identification circuit: **duplicate-token → S-inhibition �
 - causal z (`ioi_causal.py`): name-mover -2.172512152617327, S-inhibition -1.702171401577731, **negative/copy-suppression 62.41397239659889** (writes against IO), duplicate 5.963926080885061, backup name-mover 0.8435903361394431
 - **self-repair** (`self_repair.py`): −primaries ΔLD -0.0019234657287596768, −both 1.0389485120773314 → backups are hot spares (idle with primaries present, carry the circuit once they're gone).
 
-_Data: `runs/disassembly/circuits/atlas_summary.json` + the discovery artifacts. Regenerate: `circuit_catalog_doc.py`._
+_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json) + the discovery artifacts. Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._

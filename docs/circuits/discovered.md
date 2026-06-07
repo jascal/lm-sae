@@ -79,4 +79,4 @@ _6 models · top content readers × all upstream · faithful key-only patch._
 - A **live** edge = removing that upstream writer from the reader's key collapses the reader's content attention beyond a reader-matched null → a real K-composition edge. For induction readers the top writer is typically the model's **prev-token head** (the canonical induction wiring), recovered de novo here.
 - Provisional and descriptive. Value-channel (move) edges and Q-composition are not in this pass (key/match only). See the [circuit catalog](README.md) for the named circuits.
 
-_Data: `runs/disassembly/circuits/discovered_summary.json`. Regenerate: `circuit_discovery.py`._
+_Data: [runs/disassembly/circuits/discovered_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/discovered_summary.json). Regenerate: [circuit_discovery.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_discovery.py)._

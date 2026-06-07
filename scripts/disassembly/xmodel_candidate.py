@@ -204,7 +204,7 @@ def main(argv=None):
         kc = f"{ch['key_top']['head']} ({ch['key_top']['collapse']:+.0%})" if "key_top" in ch else "—"
         vc = f"{ch['value_top']['head']} ({ch['value_top']['dvout']:.2f})" if "value_top" in ch else "—"
         lines.append(f"| {r['model']} | {r['head']} | {r['reads_pattern']} | {r['causal_induction_dNLL']:+.2f} / {r['causal_generic_dNLL']:+.2f} | {kc} | {vc} |")
-    lines += ["", "_Data: `runs/disassembly/operators/xmodel_candidates_summary.json`. Regenerate: `xmodel_candidate.py`. "
+    lines += ["", "_Data: [runs/disassembly/operators/xmodel_candidates_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_candidates_summary.json). Regenerate: [xmodel_candidate.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/xmodel_candidate.py). "
               "The full per-op battery for these is the RoPE-dossier port (future); this is the channel + causal core._"]
     args.docs.mkdir(parents=True, exist_ok=True)
     (args.docs / "discovered_xmodel.md").write_text("\n".join(lines))

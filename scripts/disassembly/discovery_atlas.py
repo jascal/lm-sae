@@ -9,7 +9,7 @@ member of the behavioural operator catalog for that model — prev-token / induc
 local / structural, found by attention-mask mass — or, for GPT-2, a literature circuit head) or **UNNAMED**
 (a candidate new operator). The UNNAMED load-bearing components per model are the discovery output.
 
-Output: `runs/disassembly/operators/discovered_summary.json` + a generated `docs/operators/discovered.md`. This
+Output: [runs/disassembly/operators/discovered_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/discovered_summary.json) + a generated `docs/operators/discovered.md`. This
 grows the catalog the rigorous way — every component in every model, not one bespoke probe.
 """
 from __future__ import annotations
@@ -206,7 +206,7 @@ def write_doc(out, docs):
               "to give a [dossier](README.md). MLPs are flagged `mlp` (the COMPUTE class, see "
               "[MLP / COMPUTE](mlp_compute.md)).",
               "- Provisional and descriptive — measurements to be checked, not settled results.", "",
-              "_Data: `runs/disassembly/operators/discovered_summary.json`. Regenerate: `discovery_atlas.py`._"]
+              "_Data: [runs/disassembly/operators/discovered_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/discovered_summary.json). Regenerate: [discovery_atlas.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/discovery_atlas.py)._"]
     (docs / "discovered.md").write_text("\n".join(lines))
 
 

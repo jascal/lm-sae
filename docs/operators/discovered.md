@@ -128,4 +128,4 @@ Top components by induction ΔNLL (named in *italics*; **UNNAMED** = candidate o
 - **UNNAMED** = load-bearing on induction but not yet in any catalogued class — a candidate operator to give a [dossier](README.md). MLPs are flagged `mlp` (the COMPUTE class, see [MLP / COMPUTE](mlp_compute.md)).
 - Provisional and descriptive — measurements to be checked, not settled results.
 
-_Data: `runs/disassembly/operators/discovered_summary.json`. Regenerate: `discovery_atlas.py`._
+_Data: [runs/disassembly/operators/discovered_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/discovered_summary.json). Regenerate: [discovery_atlas.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/discovery_atlas.py)._

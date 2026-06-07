@@ -15,4 +15,4 @@ same-token reader (duplicate-token detection; IOI initiator)
 | Llama-3.2-1B | 1.22 | 0.17 | +9% | sink | 0.17 | 0.28 |
 | Qwen2.5-1.5B | 6.6 | 0.6 | +13% | sink | 3.8 | 0.12 |
 
-_Data: `runs/disassembly/circuits/atlas_summary.json`. Regenerate: `circuit_catalog_doc.py`._
+_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json). Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._

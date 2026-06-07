@@ -1,7 +1,7 @@
 """Generate the operator-catalog docs from the JSON artifacts — the survey as browsable markdown.
 
-Reads `runs/disassembly/operators/atlas_summary.json` (the cross-model matrix) + each
-`runs/disassembly/operators/dossiers/<op>/<model>.json` (the deep per-op dossiers) and emits:
+Reads [runs/disassembly/operators/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/atlas_summary.json) (the cross-model matrix) + each
+[runs/disassembly/operators/dossiers/<op>/<model>.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/dossiers/<op>/<model>.json) (the deep per-op dossiers) and emits:
   docs/operators/README.md   — the master operator x model matrix (signal + causal), the catalog index, the gaps.
   docs/operators/<op>.md     — one page per operator: its cross-model catalog row + its GPT-2 dossier (A-F).
 The docs are GENERATED, not hand-written, so re-running after new survey/dossier runs keeps the catalog in sync.
@@ -88,7 +88,7 @@ def op_page(op, atlas, dossier):
             lines += [f"**F · cross-model**: {row}", ""]
         if dossier.get("G_sae_operands"):
             lines += [f"**G · SAE operands**: {dossier['G_sae_operands']}", ""]
-    lines += ["", f"_Data: `runs/disassembly/operators/dossiers/{op}/` + the catalog. Regenerate: `operator_catalog_doc.py`._"]
+    lines += ["", f"_Data: `runs/disassembly/operators/dossiers/{op}/` + the catalog. Regenerate: [operator_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_catalog_doc.py)._"]
     return "\n".join(lines)
 
 
@@ -138,7 +138,7 @@ Two axes:
 > appreciable sink mass). Three levels of granularity:
 > 1. **class** (these {len(ops)} universal rows + {len(circuit)} GPT-2 circuit classes) — the operation;
 > 2. **instance** — an individual head realizing the class (the per-head listing is `disassemble_gpt2.py` →
->    `runs/disassembly/gpt2_disassembly.txt`; each dossier's section A lists the class's member heads);
+>    [runs/disassembly/gpt2_disassembly.txt](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/gpt2_disassembly.txt); each dossier's section A lists the class's member heads);
 > 3. **variant / sub-class** — structured differences *within* a class (e.g. induction's writer-branching, or
 >    token- vs subword-name-completion inductors; the sink "class" is largely *content heads in their idle state* —
 >    see `sink.md`). The dossiers (sections C/D/E) expose this intra-class structure.

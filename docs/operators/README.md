@@ -30,7 +30,7 @@ Two axes:
 > appreciable sink mass). Three levels of granularity:
 > 1. **class** (these 7 universal rows + 5 GPT-2 circuit classes) — the operation;
 > 2. **instance** — an individual head realizing the class (the per-head listing is `disassemble_gpt2.py` →
->    `runs/disassembly/gpt2_disassembly.txt`; each dossier's section A lists the class's member heads);
+>    [runs/disassembly/gpt2_disassembly.txt](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/gpt2_disassembly.txt); each dossier's section A lists the class's member heads);
 > 3. **variant / sub-class** — structured differences *within* a class (e.g. induction's writer-branching, or
 >    token- vs subword-name-completion inductors; the sink "class" is largely *content heads in their idle state* —
 >    see `sink.md`). The dossiers (sections C/D/E) expose this intra-class structure.
