@@ -39,7 +39,7 @@ def redundancy_verdict(rd):
     peak = max((c["effect"] for c in curve), default=full)
     peak_n = next((c["n"] for c in curve if c["effect"] == peak), len(curve))
     if peak > 0.1 and full < 0.7 * peak:
-        return f"**compensatory** (peak {peak:+.2f}@{peak_n}h → full {full:+.2f}; self-repair)"
+        return f"**compensatory** (peak {peak:+.2f}@{peak_n}h → full {full:+.2f}; non-monotonic)"
     if full <= 1.4 * ms and ms > 0.1:
         return f"**bottleneck** (best 1h {ms:+.2f} ≈ full {full:+.2f})"
     return f"distributed (full {full:+.2f} ≫ best 1h {ms:+.2f})"

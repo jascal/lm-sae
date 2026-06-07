@@ -23,8 +23,8 @@ The deep battery's arch-generic core — behavioural head-ID + mean-ablation cau
 |---|---|---|---|---|---|---|---|
 | gpt2 | 5.1 | 37 | +3.67 | +0.03 | distributed (full +3.67 ≫ best 1h +1.31) | 4.11 (+39%, conc 85×) | 1.10 (0.22) |
 | gpt2-medium | 11.1 | 103 | +0.70 | +0.09 | distributed (full +0.70 ≫ best 1h +0.12) | 4.13 (+8%, conc 118×) | 2.14 (0.08) |
-| gpt2-large | 16.0 | 145 | +0.63 | +0.01 | **compensatory** (peak +1.18@3h → full +0.63; self-repair) | 3.1 (+1%, conc 44×) | 3.11 (0.07) |
-| gemma-2-2b | 6.3 | 51 | +0.59 | -0.31 | **compensatory** (peak +1.98@2h → full +0.59; self-repair) | 5.0 (+3%, conc 1672×) | 5.5 (0.07) |
+| gpt2-large | 16.0 | 145 | +0.63 | +0.01 | **compensatory** (peak +1.18@3h → full +0.63; non-monotonic) | 3.1 (+1%, conc 44×) | 3.11 (0.07) |
+| gemma-2-2b | 6.3 | 51 | +0.59 | -0.31 | **compensatory** (peak +1.98@2h → full +0.59; non-monotonic) | 5.0 (+3%, conc 1672×) | 5.5 (0.07) |
 | Llama-3.2-1B | 10.23 | 93 | +1.24 | +0.01 | distributed (full +1.24 ≫ best 1h +0.77) | 1.9 (+2%, conc 64×) | 1.28 (0.08) |
 | Qwen2.5-1.5B | 14.3 | 98 | +2.10 | -0.00 | distributed (full +2.10 ≫ best 1h +0.51) | 2.10 (+0%, conc 17×) | 1.4 (0.07) |
 
