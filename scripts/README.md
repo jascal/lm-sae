@@ -103,6 +103,7 @@ only the opcode-table / layer-sweep are Gemma-specific — the disassembler and 
 | `disassemble_gemma.py` | **the unified per-head listing at GPT-2 parity, any model** (all-layer QK bind + OV WRITE + gated-MLP catalog; SAE-feature opcode at the SAE layer where a SAE exists) → `runs/gemma/`, committed `.txt` under `docs/listings/`. |
 | `gemma_causal.py` | induction-NLL causal validation (arch-general; `--model`). |
 | `sink_ablation.py` | block attention to the sink (key-0) and measure ΔNLL (arch-general) — is the sink load-bearing? Finds magnitude ≠ dependence (only GPT-2 depends). |
+| `multilingual_ops.py` | idiom-head invariance + attention budget across languages/scripts (the ops are language-universal; needs `datasets` to stream Wikipedia). |
 | `gemma_opcode_table.py` | QK opcode table with **Gemma Scope** SAE operands (Gemma-only; RoPE/GQA/RMSNorm-aware). |
 | `gemma_layer_sweep.py` | QK content-opcode legibility **across depth** (Gemma Scope; Gemma-only). |
 | `arch_config.py` | per-architecture knobs (RMSNorm gain offset, QK scale, SAE availability). |

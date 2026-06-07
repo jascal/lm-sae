@@ -91,6 +91,9 @@ basis / idiom* are load-bearing; U_A·U_C and χ can be omitted entirely.
 6. **An honest retraction**: a specific two-basis "writer-output `U_C`" circuit-preservation
    claim is falsified under compression control — a methodological caution about gameable
    circuit metrics. *(both)*
+7. **The op-catalog is language-universal**: on multilingual models the idiom heads are the *same* across
+   six languages / four scripts (induction-head identity Spearman +0.83–0.88, prev-token +0.98) with
+   near-constant attention budgets — language is operand-level, not mechanism-level. *(B)*
 
 ---
 
@@ -260,6 +263,13 @@ Gemma-only extras (need a per-layer SAE / are threshold-defined, so not cross-mo
 content-opcode legibility 7/8 at L12, peaks mid-network (`gemma_opcode_table_summary.json`,
 `gemma_layer_sweep_summary.json`); OV copy/transform split.
 
+**Multilingual — the ops are language-universal** (`multilingual_ops.py`, same-domain Wikipedia in
+en/fr/de/zh/ru/ar across 4 scripts, on Gemma-2 + Qwen-2.5): mechanism heads are language-invariant
+(per-head idiom-score Spearman: prev +0.98, induction +0.83–0.88, dup +0.77–0.83; the *same* top induction
+heads run in every language), and the attention budget barely shifts with script (Gemma sink steady at 2%,
+Qwen 47–51%; only the `structural` fraction dips for CJK/Arabic — fewer whitespace tokens). So language lives
+at the **operand** level, not in which heads run. `runs/gemma/multilingual_ops_*_summary.json`.
+
 **Sink ablation — magnitude ≠ dependence** (`sink_ablation.py`, block key-0 + renormalize, short-context
 ΔNLL): GPT-2 **+42%**, Gemma +2%, Llama +1%, Qwen +1%. Only GPT-2 is functionally dependent on its sink;
 Llama/Qwen sink *harder* (55/44%) yet shrug off its removal — the big sink is a redistributable no-op for
@@ -350,6 +360,7 @@ plumbing ~87% all 4 models (invariant)              runs/gemma/disasm_portable{,
 sink 45.6/3.9/55.0/44.4% (GPT2/Gemma/Llama/Qwen)    same (Gemma the low outlier; NOT GPT-2-specific)
 induction causal z 8.6/8.3/27.3/14.9 (all 4)        runs/{disassembly/causal_validation,gemma/{gemma,llama32_1b,qwen25_15b}_causal}_summary.json
 sink ablation dNLL +42/+2/+1/+1% (GPT2/Gem/Lla/Qwen) runs/gemma/sink_ablation_*_summary.json (magnitude != dependence; only GPT-2 depends)
+multilingual: idiom heads invariant (ind rho .83-.88) runs/gemma/multilingual_ops_*_summary.json (6 langs/4 scripts; budget ~const; language = operand-level)
 Gemma 7/8 QK opcodes legible at L12                  runs/gemma/gemma_opcode_table_summary.json
 writer-output U_C RETRACTED (0/6)                    runs/forge_revalidate_broad_summary.json
 ```

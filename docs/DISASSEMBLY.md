@@ -243,6 +243,37 @@ sink is essential for *long-context KV-cache eviction*, which this does not prob
 NLLs are not cross-comparable (tokenizer / no-BOS-per-chunk / Gemma's logit-softcap), so only the within-model
 Δ is the signal. `sink_ablation.py`, `runs/gemma/sink_ablation_*_summary.json`.
 
+### Multilingual: the ops are language-universal
+`multilingual_ops.py` runs the behavioral disassembly on the **same domain (Wikipedia) in six languages
+across four scripts** — en/fr/de (Latin), zh (CJK), ru (Cyrillic), ar (Arabic) — on the two multilingual
+models.
+
+**Mechanism heads are language-invariant.** Per-head idiom-score vectors correlate near-perfectly across
+language pairs: **prev-token Spearman +0.98**, **induction +0.88 (Gemma) / +0.83 (Qwen)**, duplicate
++0.83 / +0.77 — and the *same* top induction heads run in every language: Gemma **{4.4, 6.2, 6.3, 22.2/3/4}**
+(its causally-validated induction set) and Qwen **{2.3, 14.0, 14.3, 19.3}**, whether the input is English,
+Chinese, Russian, or Arabic.
+
+**The attention budget barely shifts with script** (stronger invariance than expected). Gemma-2-2B, per
+language:
+
+| lang | sink | self | prev | structural | local | content |
+|---|---|---|---|---|---|---|
+| en | 2% | 32% | 18% | 7% | 26% | 15% |
+| zh | 2% | 34% | 19% | 10% | 22% | 13% |
+| ru | 2% | 32% | 18% | 9% | 25% | 15% |
+| ar | 2% | 32% | 19% | 7% | 25% | 15% |
+
+(fr/de track en; Qwen likewise holds sink 47–51% across all six.) The only systematic script effect is small:
+the **structural** fraction dips for CJK/Arabic (Qwen 3% for zh/ar vs 6–7% Latin; Gemma 7% for ar) —
+consistent with fewer whitespace/newline tokens in those scripts.
+
+⇒ **the attention instruction set is language-universal**: the same idiom heads fire in the same proportions
+regardless of language; **language lives at the *operand* (token-identity) level**, not in which heads run or
+how attention is budgeted. Combined with the cross-architecture result, the ops are invariant across **both
+architecture and language** — what varies is the operands (and, across families, the sink).
+`multilingual_ops.py`, `runs/gemma/multilingual_ops_{gemma2,qwen25_15b}_summary.json`.
+
 ### The full listings
 The complete per-head listings are committed as reference artifacts (regenerate with the disassemblers):
 
