@@ -1,0 +1,271 @@
+{
+  "op": "duplicate",
+  "spec": {
+    "kind": "content",
+    "primary": "successor",
+    "repeat": true,
+    "desc": "duplicate-token head: attend to an earlier occurrence of the same token"
+  },
+  "model": "gpt2",
+  "prev_token_head": "4.11",
+  "A_identity": {
+    "note": "behavioural: top heads by attention mass on the duplicate pattern (>0.02)",
+    "op_heads": [
+      "0.5",
+      "3.0",
+      "0.1",
+      "1.11",
+      "0.10"
+    ],
+    "ranked": [
+      {
+        "head": "0.5",
+        "signal": 0.5886634832183366,
+        "depth": 0.0,
+        "in_lit": true
+      },
+      {
+        "head": "3.0",
+        "signal": 0.5250260139524247,
+        "depth": 0.2727272727272727,
+        "in_lit": true
+      },
+      {
+        "head": "0.1",
+        "signal": 0.3202383329509308,
+        "depth": 0.0,
+        "in_lit": true
+      },
+      {
+        "head": "1.11",
+        "signal": 0.17532143997869898,
+        "depth": 0.09090909090909091,
+        "in_lit": false
+      },
+      {
+        "head": "0.10",
+        "signal": 0.10542882846589254,
+        "depth": 0.0,
+        "in_lit": false
+      },
+      {
+        "head": "1.5",
+        "signal": 0.08017121997579184,
+        "depth": 0.09090909090909091,
+        "in_lit": true
+      },
+      {
+        "head": "4.4",
+        "signal": 0.05547070284607788,
+        "depth": 0.36363636363636365,
+        "in_lit": false
+      },
+      {
+        "head": "5.10",
+        "signal": 0.05328209772993699,
+        "depth": 0.45454545454545453,
+        "in_lit": false
+      }
+    ]
+  },
+  "B_causal": {
+    "tasks": [
+      "generic",
+      "induction",
+      "copy_names",
+      "successor",
+      "ioi"
+    ],
+    "op_effects": {
+      "generic": 0.07009021850552032,
+      "induction": 0.5675843711627254,
+      "copy_names": 3.1487280869770125,
+      "successor": -0.25185821147399096,
+      "ioi": 0.34547789972293763
+    },
+    "random_mean": {
+      "generic": 0.018814734637947507,
+      "induction": 0.5180920716669218,
+      "copy_names": 1.0693000902109788,
+      "successor": -0.012505800049090663,
+      "ioi": 0.003397950766686241
+    },
+    "threshold": {
+      "generic": 0.06310978199540693,
+      "induction": 1.3941351921656395,
+      "copy_names": 3.0243943401397724,
+      "successor": 0.059066714836970194,
+      "ioi": 0.25588889444335927
+    },
+    "serves": [
+      "generic",
+      "copy_names",
+      "ioi"
+    ],
+    "baselines": {
+      "generic": 5.010904661479749,
+      "induction": 0.6735760703599746,
+      "copy_names": 0.31579052265033236,
+      "successor": 5.380253285169601,
+      "ioi": 2.602486855643136
+    }
+  },
+  "C_channels": {
+    "reader": "0.5",
+    "note": "reader in layer 0 \u2014 no upstream; channel skipped"
+  },
+  "D_composition": {
+    "in_key": [],
+    "in_value": [],
+    "out_value": [
+      [
+        "9.9",
+        0.051926205440813215
+      ],
+      [
+        "7.10",
+        0.04935414733605966
+      ],
+      [
+        "11.2",
+        0.0472853583982303
+      ],
+      [
+        "7.2",
+        0.04713779100693265
+      ],
+      [
+        "10.7",
+        0.04638090043596396
+      ],
+      [
+        "9.6",
+        0.04477065209085
+      ]
+    ],
+    "out_key": [
+      [
+        "11.10",
+        0.04461796865984247
+      ],
+      [
+        "3.0",
+        0.04460692232603218
+      ],
+      [
+        "10.7",
+        0.04249929168234671
+      ],
+      [
+        "4.11",
+        0.04136087234661972
+      ],
+      [
+        "11.2",
+        0.04056962090901858
+      ],
+      [
+        "1.11",
+        0.0403960352030105
+      ]
+    ]
+  },
+  "E_redundancy": {
+    "primary_task": "successor",
+    "full_op_effect": -0.25185821147399096,
+    "max_single_head_effect": 0.0042494085275200455,
+    "population_gap": -0.256107620001511,
+    "bottleneck": false,
+    "solo": [
+      [
+        "3.0",
+        0.0042494085275200455
+      ],
+      [
+        "1.11",
+        -0.0034449998913887473
+      ],
+      [
+        "0.5",
+        -0.010365510719547232
+      ],
+      [
+        "0.1",
+        -0.029139700129645753
+      ],
+      [
+        "0.10",
+        -0.05870303670855152
+      ]
+    ],
+    "cumulative_curve": [
+      {
+        "after": "3.0",
+        "n": 1,
+        "effect": 0.0042494085275200455
+      },
+      {
+        "after": "1.11",
+        "n": 2,
+        "effect": 0.008632229741301916
+      },
+      {
+        "after": "0.5",
+        "n": 3,
+        "effect": -0.0026220344459079612
+      },
+      {
+        "after": "0.1",
+        "n": 4,
+        "effect": -0.03800174639486617
+      },
+      {
+        "after": "0.10",
+        "n": 5,
+        "effect": -0.25185821147399096
+      }
+    ],
+    "leave_one_out": [
+      {
+        "head": "0.5",
+        "marginal": -0.05141208430962768
+      },
+      {
+        "head": "3.0",
+        "marginal": -0.004443919429037935
+      },
+      {
+        "head": "0.1",
+        "marginal": -0.19295301232356327
+      },
+      {
+        "head": "1.11",
+        "marginal": 0.008032198595733564
+      },
+      {
+        "head": "0.10",
+        "marginal": -0.21385646507912479
+      }
+    ]
+  },
+  "F_cross_model": [
+    {
+      "model": "gpt2",
+      "behaviour_signal": 0.5886634832183366,
+      "gain": null
+    },
+    {
+      "model": "gpt2-medium",
+      "rope": false,
+      "behaviour_signal": 0.8942057291666666,
+      "gain": 12.599849054853575
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "rope": true,
+      "behaviour_signal": 0.9931640625,
+      "gain": 14.073302836851498
+    }
+  ],
+  "G_sae_operands": "NOT RUN \u2014 needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer."
+}

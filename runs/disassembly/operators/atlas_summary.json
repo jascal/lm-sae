@@ -1,0 +1,612 @@
+{
+  "experiment": "operator atlas \u2014 behavioural operators x models (universal/addressing catalog)",
+  "operators": [
+    "prevtok",
+    "induction",
+    "duplicate",
+    "sink",
+    "self",
+    "local",
+    "structural"
+  ],
+  "kinds": {
+    "prevtok": "positional",
+    "induction": "content",
+    "duplicate": "content",
+    "sink": "addressing",
+    "self": "addressing",
+    "local": "positional",
+    "structural": "structural"
+  },
+  "gpt2_circuit_ops": {
+    "name_mover": [
+      "9.6",
+      "9.9",
+      "10.0",
+      "10.10"
+    ],
+    "backup_name_mover": [
+      "9.0",
+      "9.7",
+      "10.1",
+      "10.2",
+      "10.6",
+      "11.2"
+    ],
+    "negative_mover": [
+      "10.7",
+      "11.10"
+    ],
+    "s_inhibition": [
+      "7.3",
+      "7.9",
+      "8.6",
+      "8.10"
+    ],
+    "coreference": [
+      "9.0"
+    ]
+  },
+  "note_circuit": "IOI circuit ops are GPT-2-only (literature DLA head-sets); see operator_dossier.py dossiers.",
+  "note_gaps": "succession/greater-than = MLP-dominated (no clean attention head); SSM (Mamba) = no heads (see ssm_induction.py).",
+  "results": [
+    {
+      "model": "gpt2",
+      "arch": "GPT-2/absolute",
+      "n_layers": 12,
+      "n_heads": 12,
+      "base_nll": 5.208365376790365,
+      "cells": {
+        "prevtok": {
+          "signal": 0.9635762048146082,
+          "n_heads": 31,
+          "top_head": "4.11",
+          "top_depth": 0.36,
+          "causal_dNLL": 0.023667810833643443,
+          "ablated": [
+            "4.11",
+            "2.2",
+            "3.2"
+          ]
+        },
+        "induction": {
+          "signal": 0.9218164869576446,
+          "n_heads": 22,
+          "top_head": "5.5",
+          "top_depth": 0.45,
+          "causal_dNLL": 0.006486971416170384,
+          "ablated": [
+            "5.5",
+            "7.10",
+            "5.1"
+          ]
+        },
+        "duplicate": {
+          "signal": 0.6175587551652892,
+          "n_heads": 4,
+          "top_head": "0.5",
+          "top_depth": 0.0,
+          "causal_dNLL": 0.11228158133370503,
+          "ablated": [
+            "0.5",
+            "3.0",
+            "0.1"
+          ]
+        },
+        "sink": {
+          "signal": 0.9541782924107143,
+          "n_heads": 117,
+          "top_head": "7.2",
+          "top_depth": 0.64,
+          "causal_dNLL": 0.023209223671564416,
+          "ablated": [
+            "7.2",
+            "5.1",
+            "6.9"
+          ]
+        },
+        "self": {
+          "signal": 0.8312895275297619,
+          "n_heads": 10,
+          "top_head": "0.1",
+          "top_depth": 0.0,
+          "causal_dNLL": 0.052627248612661326,
+          "ablated": [
+            "0.1",
+            "0.3",
+            "0.5"
+          ]
+        },
+        "local": {
+          "signal": 0.33533533978205854,
+          "n_heads": 16,
+          "top_head": "4.11",
+          "top_depth": 0.36,
+          "causal_dNLL": 0.000166684105282755,
+          "ablated": [
+            "4.11",
+            "2.2",
+            "2.9"
+          ]
+        },
+        "structural": {
+          "signal": 0.19203177918779088,
+          "n_heads": 2,
+          "top_head": "3.1",
+          "top_depth": 0.27,
+          "causal_dNLL": -0.045650348966083776,
+          "ablated": [
+            "3.1",
+            "2.6",
+            "1.1"
+          ]
+        }
+      }
+    },
+    {
+      "model": "gpt2-medium",
+      "arch": "GPT-2/absolute",
+      "n_layers": 24,
+      "n_heads": 16,
+      "base_nll": 4.925552222842262,
+      "cells": {
+        "prevtok": {
+          "signal": 0.9867621527777778,
+          "n_heads": 53,
+          "top_head": "5.11",
+          "top_depth": 0.22,
+          "causal_dNLL": 0.0013845534551713001,
+          "ablated": [
+            "5.11",
+            "4.13",
+            "6.7"
+          ]
+        },
+        "induction": {
+          "signal": 0.9144861284366324,
+          "n_heads": 62,
+          "top_head": "18.5",
+          "top_depth": 0.78,
+          "causal_dNLL": -0.01009889632936467,
+          "ablated": [
+            "18.5",
+            "11.1",
+            "9.9"
+          ]
+        },
+        "duplicate": {
+          "signal": 0.8582732460715554,
+          "n_heads": 6,
+          "top_head": "7.11",
+          "top_depth": 0.3,
+          "causal_dNLL": -0.005560823470826648,
+          "ablated": [
+            "7.11",
+            "1.4",
+            "4.6"
+          ]
+        },
+        "sink": {
+          "signal": 0.9586385726928711,
+          "n_heads": 334,
+          "top_head": "9.9",
+          "top_depth": 0.39,
+          "causal_dNLL": 0.010530489966982692,
+          "ablated": [
+            "9.9",
+            "10.8",
+            "18.14"
+          ]
+        },
+        "self": {
+          "signal": 0.44603980533660403,
+          "n_heads": 21,
+          "top_head": "5.13",
+          "top_depth": 0.22,
+          "causal_dNLL": 0.03474116249689985,
+          "ablated": [
+            "5.13",
+            "6.5",
+            "7.9"
+          ]
+        },
+        "local": {
+          "signal": 0.3375973824531801,
+          "n_heads": 28,
+          "top_head": "5.11",
+          "top_depth": 0.22,
+          "causal_dNLL": 0.0013845534551713001,
+          "ablated": [
+            "5.11",
+            "4.13",
+            "6.7"
+          ]
+        },
+        "structural": {
+          "signal": 0.247277983536957,
+          "n_heads": 4,
+          "top_head": "3.1",
+          "top_depth": 0.13,
+          "causal_dNLL": -0.05130109030102936,
+          "ablated": [
+            "3.1",
+            "2.7",
+            "23.2"
+          ]
+        }
+      }
+    },
+    {
+      "model": "gpt2-large",
+      "arch": "GPT-2/absolute",
+      "n_layers": 36,
+      "n_heads": 20,
+      "base_nll": 4.809689767020089,
+      "cells": {
+        "prevtok": {
+          "signal": 0.9575736969236344,
+          "n_heads": 81,
+          "top_head": "14.1",
+          "top_depth": 0.4,
+          "causal_dNLL": 0.015339079357329588,
+          "ablated": [
+            "14.1",
+            "12.12",
+            "15.19"
+          ]
+        },
+        "induction": {
+          "signal": 0.9625222387392659,
+          "n_heads": 76,
+          "top_head": "16.0",
+          "top_depth": 0.46,
+          "causal_dNLL": 0.011109028165303236,
+          "ablated": [
+            "16.0",
+            "19.4",
+            "16.9"
+          ]
+        },
+        "duplicate": {
+          "signal": 0.9578417785896742,
+          "n_heads": 23,
+          "top_head": "5.8",
+          "top_depth": 0.14,
+          "causal_dNLL": -0.001157996768042402,
+          "ablated": [
+            "5.8",
+            "5.19",
+            "8.14"
+          ]
+        },
+        "sink": {
+          "signal": 0.9637072366381448,
+          "n_heads": 553,
+          "top_head": "19.4",
+          "top_depth": 0.54,
+          "causal_dNLL": -0.0005926465231267386,
+          "ablated": [
+            "19.4",
+            "21.8",
+            "19.11"
+          ]
+        },
+        "self": {
+          "signal": 0.5469406975640191,
+          "n_heads": 74,
+          "top_head": "0.14",
+          "top_depth": 0.0,
+          "causal_dNLL": 0.0002519758920822568,
+          "ablated": [
+            "0.14",
+            "8.17",
+            "3.0"
+          ]
+        },
+        "local": {
+          "signal": 0.33647402383947883,
+          "n_heads": 42,
+          "top_head": "14.1",
+          "top_depth": 0.4,
+          "causal_dNLL": 0.015789673820375327,
+          "ablated": [
+            "14.1",
+            "12.12",
+            "13.10"
+          ]
+        },
+        "structural": {
+          "signal": 0.3789805283783175,
+          "n_heads": 6,
+          "top_head": "4.7",
+          "top_depth": 0.11,
+          "causal_dNLL": 0.0006608508882068875,
+          "ablated": [
+            "4.7",
+            "5.17",
+            "3.11"
+          ]
+        }
+      }
+    },
+    {
+      "model": "gemma-2-2b",
+      "arch": "RoPE",
+      "n_layers": 26,
+      "n_heads": 8,
+      "base_nll": 7.666809626988003,
+      "cells": {
+        "prevtok": {
+          "signal": 0.8432314918154762,
+          "n_heads": 107,
+          "top_head": "21.7",
+          "top_depth": 0.84,
+          "causal_dNLL": 0.08730307685004313,
+          "ablated": [
+            "21.7",
+            "0.0",
+            "21.6"
+          ]
+        },
+        "induction": {
+          "signal": 0.9409049286330042,
+          "n_heads": 26,
+          "top_head": "6.3",
+          "top_depth": 0.24,
+          "causal_dNLL": -0.2892575460766995,
+          "ablated": [
+            "6.3",
+            "6.2",
+            "22.3"
+          ]
+        },
+        "duplicate": {
+          "signal": 0.8508189808238636,
+          "n_heads": 11,
+          "top_head": "1.4",
+          "top_depth": 0.04,
+          "causal_dNLL": -0.9639270237513955,
+          "ablated": [
+            "1.4",
+            "0.1",
+            "8.1"
+          ]
+        },
+        "sink": {
+          "signal": 0.07417455892714243,
+          "n_heads": 0,
+          "top_head": "1.0",
+          "top_depth": 0.04,
+          "causal_dNLL": 0.001880476209851878,
+          "ablated": [
+            "1.0",
+            "0.6",
+            "10.3"
+          ]
+        },
+        "self": {
+          "signal": 0.949635726686508,
+          "n_heads": 149,
+          "top_head": "25.7",
+          "top_depth": 1.0,
+          "causal_dNLL": 0.5087723868233818,
+          "ablated": [
+            "25.7",
+            "24.4",
+            "6.0"
+          ]
+        },
+        "local": {
+          "signal": 0.312306151851531,
+          "n_heads": 48,
+          "top_head": "0.0",
+          "top_depth": 0.0,
+          "causal_dNLL": 0.5050472077869221,
+          "ablated": [
+            "0.0",
+            "5.0",
+            "21.7"
+          ]
+        },
+        "structural": {
+          "signal": 0.23442813806366503,
+          "n_heads": 7,
+          "top_head": "24.6",
+          "top_depth": 0.96,
+          "causal_dNLL": -0.1171231345524868,
+          "ablated": [
+            "24.6",
+            "19.3",
+            "4.7"
+          ]
+        }
+      }
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "arch": "RoPE",
+      "n_layers": 16,
+      "n_heads": 32,
+      "base_nll": 4.316886841304719,
+      "cells": {
+        "prevtok": {
+          "signal": 0.6846749441964286,
+          "n_heads": 46,
+          "top_head": "0.2",
+          "top_depth": 0.0,
+          "causal_dNLL": -0.004502662779793276,
+          "ablated": [
+            "0.2",
+            "8.26",
+            "9.28"
+          ]
+        },
+        "induction": {
+          "signal": 0.9372670827818311,
+          "n_heads": 40,
+          "top_head": "10.23",
+          "top_depth": 0.67,
+          "causal_dNLL": 0.0045201619466146425,
+          "ablated": [
+            "10.23",
+            "5.10",
+            "12.15"
+          ]
+        },
+        "duplicate": {
+          "signal": 0.7422006149922521,
+          "n_heads": 17,
+          "top_head": "6.8",
+          "top_depth": 0.4,
+          "causal_dNLL": 0.032842230418371976,
+          "ablated": [
+            "6.8",
+            "0.9",
+            "8.19"
+          ]
+        },
+        "sink": {
+          "signal": 0.996843998015873,
+          "n_heads": 472,
+          "top_head": "5.11",
+          "top_depth": 0.33,
+          "causal_dNLL": 0.001616244845919823,
+          "ablated": [
+            "5.11",
+            "10.2",
+            "2.20"
+          ]
+        },
+        "self": {
+          "signal": 0.9563337053571429,
+          "n_heads": 58,
+          "top_head": "15.14",
+          "top_depth": 1.0,
+          "causal_dNLL": 0.10247260199652786,
+          "ablated": [
+            "15.14",
+            "9.12",
+            "14.25"
+          ]
+        },
+        "local": {
+          "signal": 0.2731959342956543,
+          "n_heads": 8,
+          "top_head": "0.2",
+          "top_depth": 0.0,
+          "causal_dNLL": -0.0025711665077814416,
+          "ablated": [
+            "0.2",
+            "0.0",
+            "8.26"
+          ]
+        },
+        "structural": {
+          "signal": 0.3607815829190341,
+          "n_heads": 3,
+          "top_head": "0.31",
+          "top_depth": 0.0,
+          "causal_dNLL": 1.4727256290496342,
+          "ablated": [
+            "0.31",
+            "0.29",
+            "0.3"
+          ]
+        }
+      }
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "arch": "RoPE",
+      "n_layers": 28,
+      "n_heads": 12,
+      "base_nll": 4.170695229182168,
+      "cells": {
+        "prevtok": {
+          "signal": 0.7718594990079365,
+          "n_heads": 56,
+          "top_head": "13.4",
+          "top_depth": 0.48,
+          "causal_dNLL": 0.1960071382068449,
+          "ablated": [
+            "13.4",
+            "1.4",
+            "0.8"
+          ]
+        },
+        "induction": {
+          "signal": 0.9921305338541667,
+          "n_heads": 54,
+          "top_head": "14.3",
+          "top_depth": 0.52,
+          "causal_dNLL": 0.002141546824621976,
+          "ablated": [
+            "14.3",
+            "19.3",
+            "19.5"
+          ]
+        },
+        "duplicate": {
+          "signal": 0.9701085408528646,
+          "n_heads": 16,
+          "top_head": "8.3",
+          "top_depth": 0.3,
+          "causal_dNLL": -0.0009666563972592357,
+          "ablated": [
+            "8.3",
+            "5.11",
+            "6.6"
+          ]
+        },
+        "sink": {
+          "signal": 0.9984033978174603,
+          "n_heads": 292,
+          "top_head": "14.5",
+          "top_depth": 0.52,
+          "causal_dNLL": -0.00046538095625603404,
+          "ablated": [
+            "14.5",
+            "6.9",
+            "14.4"
+          ]
+        },
+        "self": {
+          "signal": 0.9995473710317461,
+          "n_heads": 43,
+          "top_head": "15.7",
+          "top_depth": 0.56,
+          "causal_dNLL": 3.7709836445157485,
+          "ablated": [
+            "15.7",
+            "0.6",
+            "0.10"
+          ]
+        },
+        "local": {
+          "signal": 0.2847134826003864,
+          "n_heads": 22,
+          "top_head": "1.4",
+          "top_depth": 0.04,
+          "causal_dNLL": 0.1960071382068449,
+          "ablated": [
+            "1.4",
+            "13.4",
+            "0.8"
+          ]
+        },
+        "structural": {
+          "signal": 0.1619480933672116,
+          "n_heads": 1,
+          "top_head": "25.7",
+          "top_depth": 0.93,
+          "causal_dNLL": -0.058847433423238726,
+          "ablated": [
+            "25.7",
+            "6.2",
+            "11.6"
+          ]
+        }
+      }
+    }
+  ]
+}

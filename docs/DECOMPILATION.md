@@ -972,8 +972,66 @@ channels · D composition in/out · E redundancy curve · F cross-model). First 
 *and* surfaces what the piecemeal layout obscured — the head-set sensitivity of the causal profile (B) and the
 **superadditivity** of the redundancy (E). SAE-feature operands (what induction reads/writes in feature space —
 the "subword name-completion" finding) are the one battery section **not** run here (needs a SAE); flagged as the
-next layer. `operator_dossier.py --op induction`, `runs/disassembly/dossier_induction_summary.json`, figure
-`runs/disassembly/dossier_induction.png`. The harness runs the same six sections for the other operators.
+next layer. `operator_dossier.py --op induction`, `runs/disassembly/operators/dossiers/induction/gpt2.json`. The
+harness runs the same six sections for the other operators.
+
+## The operator CATALOG — every operator class, surveyed across every model
+
+The dossier goes deep on one op; the **catalog** goes wide and turns the survey into a browsable artifact
+(`docs/operators/`, tree under `runs/disassembly/operators/`). Two instruments:
+**`operator_atlas.py`** (the cross-model matrix) + **`operator_dossier.py`** (the deep per-op pages), stitched into
+docs by **`operator_catalog_doc.py`**. The key framing the survey forced: **each "operator" is a CLASS — a family
+of heads — not a single head.** The atlas reports per-(class, model): behavioural **signal** (max head mass on the
+op's pattern), **membership** (# heads carrying it), top head + depth, and a uniform **causal ΔNLL** (mean-ablate
+top-3, generic prose).
+
+**The atlas — 7 universal/addressing operator classes × 6 models** (GPT-2 small/medium/large + Gemma-2-2B /
+Llama-3.2-1B / Qwen-2.5-1.5B). Signal (membership in parens for GPT-2):
+
+| class | kind | gpt2 | -medium | -large | gemma-2 | llama-3.2 | qwen-2.5 |
+|---|---|---|---|---|---|---|---|
+| prevtok | positional | .96 (31h) | .99 | .96 | .84 | .68 | .77 |
+| induction | content | .92 (22h) | .91 | .96 | .94 | .94 | **.99** |
+| duplicate | content | .62 (4h) | .86 | .96 | .85 | .74 | .97 |
+| **sink** | addressing | .95 (117h) | .96 | .96 | **.07 (0h)** | 1.00 | 1.00 |
+| self | addressing | .83 (10h) | .45 | .55 | .95 | .96 | **1.00** |
+| local | positional | .34 (16h) | .34 | .34 | .31 | .27 | .28 |
+| structural | structural | .19 (2h) | .25 | .38 | .23 | .36 | .16 |
+
+**What the survey shows (descriptive):**
+1. **Induction is the most universal class** — signal .91–.99 in *all six* (the content-copy op the SSM port +
+   cross-model ceiling already flagged as architecture-invariant). prev-token and duplicate are present
+   everywhere too (prev-token weaker in RoPE, .68–.84).
+2. **The sink is the one class that splits by architecture — and it splits 5-vs-1, not GPT-2-vs-rest:** present
+   in the GPT-2 family (.95–.96, 117–553 heads) AND Llama/Qwen (1.00, 292–472 heads), but **absent in Gemma-2
+   (.07, 0 heads)**. So "attention sink" is *common but not universal*; Gemma trained without one. **And it is
+   not load-bearing on prose anywhere** (causal ΔNLL ≈ 0 every model) — *present ≠ depended-on* (the
+   `sink_ablation` magnitude-vs-dependence point, now in the matrix; GPT-2's deeper dependence needs the
+   blocked-attention probe, not mean-ablation).
+3. **RoPE models lean on `self` where GPT-2 leans on the sink** — self signal 1.00/.96/.95 (RoPE) vs .45–.83
+   (GPT-2), and self is the **only universally load-bearing class on prose** (causal ΔNLL Qwen **+3.77**, Gemma
+   +0.51) — the diagonal/current-token read is a RoPE workhorse.
+4. **`structural` is sparse (1–7 heads) but occasionally load-bearing** — Llama's lone structural head ΔNLL
+   **+1.47**.
+
+**The deep dossiers — 9 GPT-2 operator classes** (`docs/operators/<op>.md`): the 7 idiom/addressing classes
+behaviourally found + the IOI **circuit** classes (name-mover, **backup name-mover**, **negative/copy-suppression**,
+S-inhibition, coreference), which are **GPT-2-only** (literature DLA head-sets, no published set in the RoPE
+models) so they sit outside the cross-model matrix. Highlights the catalog surfaced: the **sink "class" is largely
+content heads in their idle state** (its top-mass heads are 5.1/6.9/7.10 — the induction heads — so ablating
+"sink" hurts induction +4.6, not generic); **copy-suppression ablation *raises* IOI** (−0.54, it writes against
+IO); **backup name-movers serve successor**; and the **head-set sensitivity** the piecemeal scripts hid (the
+behavioural induction top-5 omits 7.11, so it does *not* damage successor where `instruction_reuse`'s literature
+set did +5.46).
+
+**Taxonomy (answering "N operators or N classes?"): classes.** (1) *class* = the operation (these rows);
+(2) *instance* = an individual head (the `disassemble_gpt2.py` per-head listing; each dossier §A lists members);
+(3) *variant* = intra-class structure (induction writer-branching; token vs subword-name-completion inductors;
+sink-as-idle-state). **Documented gaps:** succession/greater-than is **MLP-dominated** (no clean attention head —
+carried by the copy ops); **SSM/Mamba has no heads** (induction present only *behaviourally*, `ssm_induction.py`).
+**Not yet run:** the SAE-feature operands per class (needs a SAE); the deep dossier §C/§D/§E ported to the RoPE
+models (the atlas covers them at class level; full-depth cross-model is the next layer). `operator_atlas.py`,
+`operator_dossier.py`, `operator_catalog_doc.py`; `docs/operators/`; `runs/disassembly/operators/atlas_summary.json`.
 
 ## Boundaries / risks
 
