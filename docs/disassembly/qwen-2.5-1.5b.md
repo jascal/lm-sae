@@ -8,7 +8,9 @@ title: Qwen-2.5-1.5B disassembly
 
 Operator roles referenced (hyperlinked inline below): [duplicate](../operators/duplicate.md) · [induction](../operators/induction.md) · [prevtok](../operators/prevtok.md). Full raw listing: [`qwen25_15b_disassembly.txt`](https://github.com/jascal/lm-sae/blob/main/docs/listings/qwen25_15b_disassembly.txt). See the [operator catalog](../operators/README.md) for what each role means.
 
-_First-order, single-component reads (+ the induction idiom); provisional. Each head line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role. Lines like `L.MLP.n####` are **MLP neurons** (the COMPUTE class — `n####` is the neuron's index in that layer's gated-MLP intermediate dimension, e.g. Gemma-2-2B has 9216/layer), **not** attention heads; each lists the top read-tokens → write-tokens (the layer's most salient few)._
+> **Discovery pass (causal overlay).** The ★ badges below are from the cross-model discovery sweep ([discovered components](../operators/discovered.md), 3-seed): every head/MLP mean-ablated and ranked by its **induction-NLL** damage (base induction NLL 0.45). A head is flagged **⚠ UNNAMED-candidate** when it is load-bearing but matches no catalogued operator — a lead to dossier. **2 unnamed load-bearing** here: `1.6`, `1.5`. Only the sweep's top-ranked components carry a badge (most heads are not individually load-bearing).
+
+_First-order, single-component reads (+ the induction idiom); provisional. Each head line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role · ★ discovery-pass causal (when load-bearing). Lines like `L.MLP.n####` are **MLP neurons** (the COMPUTE class — `n####` is the neuron's index in that layer's gated-MLP intermediate dimension, e.g. Gemma-2-2B has 9216/layer), **not** attention heads; each lists the top read-tokens → write-tokens (the layer's most salient few)._
 
 - `Qwen/Qwen2.5-1.5B DISASSEMBLY  (28 layers x 12 heads + gated MLP; GQA n_kv=2, RoPE, RMSNorm)`
 - `corpus=wikitext  tokens=10000  token-operands=40  SAE-feature opcode: n/a (token-operand basis only)`
@@ -20,35 +22,35 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 
 - `0.0  addr=structural  WRITE=transform bind '_of'->'_by'`
 - `0.1  addr=self        WRITE=transform bind '6'->'_the'`
-- `0.2  addr=prev        WRITE=transform bind '>'->'_<' idioms` [`prev-token`](../operators/prevtok.md)
+- `0.2  addr=prev        WRITE=transform bind '>'->'_<'` [`prev-token`](../operators/prevtok.md)
 - `0.3  addr=self        WRITE=transform bind '_to'->'_a'`
 - `0.4  addr=long_range  WRITE=transform bind '_Ċ'->'>'`
-- `0.5  addr=self        WRITE=transform bind '>'->'_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
-- `0.6  addr=self        WRITE=transform bind '_was'->'_were'`
+- `0.5  addr=self        WRITE=transform bind '>'->'_Ċ'` [`prev-token`](../operators/prevtok.md)
+- `0.6  addr=self        WRITE=transform bind '_was'->'_were'` — ★ causal: induction ΔNLL **+0.21**±0.02, 47% of base, generic +0.43
 - `0.7  addr=self        WRITE=transform bind 'y'->'_Little'`
-- `0.8  addr=prev        WRITE=transform bind '_Ċ'->'>' idioms` [`prev-token`](../operators/prevtok.md)
-- `0.9  addr=long_range  WRITE=transform bind '>'->'_<' idioms` [`duplicate`](../operators/duplicate.md)
-- `0.10  addr=self        WRITE=transform bind '_for'->'_of'`
+- `0.8  addr=prev        WRITE=transform bind '_Ċ'->'>'` [`prev-token`](../operators/prevtok.md)
+- `0.9  addr=long_range  WRITE=transform bind '>'->'_<'` [`duplicate`](../operators/duplicate.md)
+- `0.10  addr=self        WRITE=transform bind '_for'->'_of'` — ★ causal: induction ΔNLL **+0.50**±0.09, 110% of base, generic +0.35
 - `0.11  addr=local       WRITE=transform bind 'y'->'_Little'`
-- `0.MLP.n3970  reads {s,_Chronicles,_in} -> writes {s,y,_were}`
+- `0.MLP.n3970  reads {s,_Chronicles,_in} -> writes {s,y,_were}` — ★ causal: induction ΔNLL **+7.71**±0.11, 1703% of base, generic +3.05
 - `0.MLP.n2981  reads {s,_Chronicles,y} -> writes {s,y,_were}`
 - `0.MLP.n2693  reads {_The,unk,>} -> writes {_at,_=,0}`
 
 ### Layer 1
 
 - `1.0  addr=local       WRITE=transform bind '0'->'_Rock'`
-- `1.1  addr=local       WRITE=transform bind '_of'->'_"' idioms` [`prev-token`](../operators/prevtok.md)
+- `1.1  addr=local       WRITE=transform bind '_of'->'_"'` [`prev-token`](../operators/prevtok.md)
 - `1.2  addr=long_range  WRITE=transform bind '_.'->'_Ċ'`
 - `1.3  addr=long_range  WRITE=transform bind '_Ċ'->'_as'`
-- `1.4  addr=prev        WRITE=transform bind '_game'->'_for' idioms` [`prev-token`](../operators/prevtok.md)
-- `1.5  addr=long_range  WRITE=transform bind '2'->'_'`
-- `1.6  addr=long_range  WRITE=transform bind "_'"->'_"'`
-- `1.7  addr=long_range  WRITE=transform bind '2'->'1' idioms` [`duplicate`](../operators/duplicate.md)
+- `1.4  addr=prev        WRITE=transform bind '_game'->'_for'` [`prev-token`](../operators/prevtok.md) — ★ causal: induction ΔNLL **+0.19**±0.01, 42% of base, generic -0.00
+- `1.5  addr=long_range  WRITE=transform bind '2'->'_'` — ★ causal: induction ΔNLL **+0.11**±0.02, 25% of base, generic +0.06 ⚠ **UNNAMED-candidate**
+- `1.6  addr=long_range  WRITE=transform bind "_'"->'_"'` — ★ causal: induction ΔNLL **+0.22**±0.08, 49% of base, generic +0.06 ⚠ **UNNAMED-candidate**
+- `1.7  addr=long_range  WRITE=transform bind '2'->'1'` [`duplicate`](../operators/duplicate.md)
 - `1.8  addr=long_range  WRITE=transform bind '_.'->'_Ċ'`
-- `1.9  addr=prev        WRITE=transform bind '_.'->'_"' idioms` [`prev-token`](../operators/prevtok.md)
+- `1.9  addr=prev        WRITE=transform bind '_.'->'_"'` [`prev-token`](../operators/prevtok.md)
 - `1.10  addr=self        WRITE=transform bind '_<'->'>'`
 - `1.11  addr=local       WRITE=transform bind '_Ċ'->'_='`
-- `1.MLP.n2754  reads {_and,_Chronicles,_Little} -> writes {_and,_,,_at}`
+- `1.MLP.n2754  reads {_and,_Chronicles,_Little} -> writes {_and,_,,_at}` — ★ causal: induction ΔNLL **+13.38**±0.08, 2956% of base, generic +8.03
 - `1.MLP.n1162  reads {8,>,_Chronicles} -> writes {8,unk,9}`
 - `1.MLP.n5601  reads {_=,_The,_.} -> writes {_=,_.,_The}`
 
@@ -57,16 +59,16 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `2.0  addr=sink        WRITE=transform bind '_.'->'_='`
 - `2.1  addr=sink        WRITE=transform bind "_'"->'_"'`
 - `2.2  addr=sink        WRITE=transform bind '_='->'>'`
-- `2.3  addr=sink        WRITE=transform bind '_Valk'->'y' idioms` [`induction`](../operators/induction.md)
+- `2.3  addr=sink        WRITE=transform bind '_Valk'->'y'` [`induction`](../operators/induction.md) — ★ causal: induction ΔNLL **+0.45**±0.04, 99% of base, generic -0.00
 - `2.4  addr=sink        WRITE=transform bind '_.'->'ria'`
-- `2.5  addr=sink        WRITE=transform bind '_='->'>' idioms` [`induction`](../operators/induction.md)
+- `2.5  addr=sink        WRITE=transform bind '_='->'>'` [`induction`](../operators/induction.md)
 - `2.6  addr=sink        WRITE=transform bind '_.'->'_,'`
 - `2.7  addr=sink        WRITE=transform bind '_,'->'_<'`
 - `2.8  addr=self        WRITE=transform bind '_'->'0'`
 - `2.9  addr=sink        WRITE=transform bind '_"'->'_<'`
 - `2.10  addr=sink        WRITE=transform bind '_"'->'>'`
 - `2.11  addr=sink        WRITE=transform bind 'ria'->'y'`
-- `2.MLP.n2417  reads {_Rock,_Little,_Valk} -> writes {_Ċ,_@,s}`
+- `2.MLP.n2417  reads {_Rock,_Little,_Valk} -> writes {_Ċ,_@,s}` — ★ causal: induction ΔNLL **+13.75**±0.19, 3038% of base, generic +5.72
 - `2.MLP.n3029  reads {_Rock,_=,>} -> writes {s,_@,_at}`
 - `2.MLP.n5714  reads {_",_Rock,_Little} -> writes {s,_Ċ,_@}`
 
@@ -74,9 +76,9 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 
 - `3.0  addr=sink        WRITE=transform bind '_the'->'_Valk'`
 - `3.1  addr=sink        WRITE=transform bind '_,'->'_'`
-- `3.2  addr=sink        WRITE=transform bind 'y'->'>' idioms` [`prev-token`](../operators/prevtok.md)
+- `3.2  addr=sink        WRITE=transform bind 'y'->'>'` [`prev-token`](../operators/prevtok.md)
 - `3.3  addr=sink        WRITE=transform bind '0'->'_'`
-- `3.4  addr=sink        WRITE=transform bind "_'"->'_"' idioms` [`duplicate`](../operators/duplicate.md)
+- `3.4  addr=sink        WRITE=transform bind "_'"->'_"'` [`duplicate`](../operators/duplicate.md)
 - `3.5  addr=sink        WRITE=copy      bind '_Little'->'_.'`
 - `3.6  addr=sink        WRITE=transform bind '>'->'_Valk'`
 - `3.7  addr=long_range  WRITE=transform bind '_.'->'_"'`
@@ -100,7 +102,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `4.7  addr=sink        WRITE=transform bind '_a'->'_was'`
 - `4.8  addr=sink        WRITE=transform bind '0'->"_'"`
 - `4.9  addr=sink        WRITE=transform bind '_the'->'_with'`
-- `4.10  addr=sink        WRITE=copy      bind '_"'->"_'" idioms` [`duplicate`](../operators/duplicate.md)
+- `4.10  addr=sink        WRITE=copy      bind '_"'->"_'"` [`duplicate`](../operators/duplicate.md)
 - `4.11  addr=sink        WRITE=transform bind '_were'->'_of'`
 - `4.MLP.n610   reads {_Little,_Rock,>} -> writes {_Ċ,s,_@}`
 - `4.MLP.n4228  reads {_of,_Chronicles,0} -> writes {>,_<,1}`
@@ -117,9 +119,9 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `5.6  addr=sink        WRITE=transform bind '6'->'_@'`
 - `5.7  addr=sink        WRITE=transform bind '_'->'0'`
 - `5.8  addr=sink        WRITE=copy      bind '_a'->'_was'`
-- `5.9  addr=sink        WRITE=transform bind '_'->'0' idioms` [`duplicate`](../operators/duplicate.md)
-- `5.10  addr=sink        WRITE=transform bind '_The'->'_=' idioms` [`duplicate`](../operators/duplicate.md)
-- `5.11  addr=sink        WRITE=transform bind '_<'->'>' idioms` [`duplicate`](../operators/duplicate.md)
+- `5.9  addr=sink        WRITE=transform bind '_'->'0'` [`duplicate`](../operators/duplicate.md)
+- `5.10  addr=sink        WRITE=transform bind '_The'->'_='` [`duplicate`](../operators/duplicate.md)
+- `5.11  addr=sink        WRITE=transform bind '_<'->'>'` [`duplicate`](../operators/duplicate.md)
 - `5.MLP.n8729  reads {_Rock,_in,>} -> writes {_and,s,_The}`
 - `5.MLP.n5209  reads {_the,unk,_<} -> writes {_the,>,_"}`
 - `5.MLP.n5242  reads {_the,_",_'} -> writes {_a,_Valk,_Ċ}`
@@ -127,13 +129,13 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 ### Layer 6
 
 - `6.0  addr=long_range  WRITE=copy      bind '_Ċ'->'s'`
-- `6.1  addr=sink        WRITE=copy      bind '_<'->'>' idioms` [`duplicate`](../operators/duplicate.md)
+- `6.1  addr=sink        WRITE=copy      bind '_<'->'>'` [`duplicate`](../operators/duplicate.md)
 - `6.2  addr=structural  WRITE=transform bind '_The'->'>'`
 - `6.3  addr=sink        WRITE=copy      bind 's'->'_were'`
 - `6.4  addr=sink        WRITE=transform bind '_were'->'_with'`
 - `6.5  addr=sink        WRITE=copy      bind '_,'->'>'`
-- `6.6  addr=sink        WRITE=transform bind '_The'->'_=' idioms` [`duplicate`](../operators/duplicate.md)
-- `6.7  addr=sink        WRITE=transform bind '_in'->'unk' idioms` [`duplicate`](../operators/duplicate.md)
+- `6.6  addr=sink        WRITE=transform bind '_The'->'_='` [`duplicate`](../operators/duplicate.md)
+- `6.7  addr=sink        WRITE=transform bind '_in'->'unk'` [`duplicate`](../operators/duplicate.md)
 - `6.8  addr=sink        WRITE=transform bind '>'->'_,'`
 - `6.9  addr=sink        WRITE=transform bind 'ria'->'_,'`
 - `6.10  addr=sink        WRITE=transform bind '2'->'_,'`
@@ -152,7 +154,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `7.5  addr=sink        WRITE=copy      bind '_Rock'->'_was'`
 - `7.6  addr=sink        WRITE=transform bind '_.'->'_were'`
 - `7.7  addr=local       WRITE=transform bind '_.'->'_Ċ'`
-- `7.8  addr=prev        WRITE=transform bind 'y'->'_were' idioms` [`prev-token`](../operators/prevtok.md)
+- `7.8  addr=prev        WRITE=transform bind 'y'->'_were'` [`prev-token`](../operators/prevtok.md)
 - `7.9  addr=local       WRITE=transform bind '_.'->'_Ċ'`
 - `7.10  addr=local       WRITE=transform bind '_,'->'2'`
 - `7.11  addr=long_range  WRITE=transform bind 'ria'->'_were'`
@@ -163,13 +165,13 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 ### Layer 8
 
 - `8.0  addr=sink        WRITE=transform bind '_Ċ'->'_"'`
-- `8.1  addr=sink        WRITE=transform bind '_"'->'>' idioms` [`duplicate`](../operators/duplicate.md)
+- `8.1  addr=sink        WRITE=transform bind '_"'->'>'` [`duplicate`](../operators/duplicate.md)
 - `8.2  addr=long_range  WRITE=transform bind 's'->'_Chronicles'`
-- `8.3  addr=sink        WRITE=transform bind '_'->'_,' idioms` [`duplicate`](../operators/duplicate.md)
-- `8.4  addr=sink        WRITE=copy      bind '9'->'0' idioms` [`duplicate`](../operators/duplicate.md)
+- `8.3  addr=sink        WRITE=transform bind '_'->'_,'` [`duplicate`](../operators/duplicate.md) — ★ causal: induction ΔNLL **+0.65**±0.01, 143% of base, generic +0.00
+- `8.4  addr=sink        WRITE=copy      bind '9'->'0'` [`duplicate`](../operators/duplicate.md)
 - `8.5  addr=sink        WRITE=copy      bind '_='->'_<'`
 - `8.6  addr=sink        WRITE=copy      bind '_,'->'_by'`
-- `8.7  addr=sink        WRITE=copy      bind '_'->'0' idioms` [`induction`](../operators/induction.md)
+- `8.7  addr=sink        WRITE=copy      bind '_'->'0'` [`induction`](../operators/induction.md)
 - `8.8  addr=sink        WRITE=transform bind '_='->'>'`
 - `8.9  addr=sink        WRITE=transform bind '_The'->'s'`
 - `8.10  addr=sink        WRITE=transform bind '_the'->'_with'`
@@ -187,7 +189,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `9.4  addr=sink        WRITE=transform bind '_.'->'_Ċ'`
 - `9.5  addr=sink        WRITE=copy      bind '_and'->'_='`
 - `9.6  addr=sink        WRITE=transform bind '_Rock'->'_Chronicles'`
-- `9.7  addr=sink        WRITE=transform bind 'unk'->'>' idioms` [`duplicate`](../operators/duplicate.md)
+- `9.7  addr=sink        WRITE=transform bind 'unk'->'>'` [`duplicate`](../operators/duplicate.md)
 - `9.8  addr=sink        WRITE=copy      bind 'unk'->'>'`
 - `9.9  addr=sink        WRITE=transform bind '_.'->'>'`
 - `9.10  addr=sink        WRITE=transform bind '_Valk'->'y'`
@@ -220,7 +222,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `11.1  addr=sink        WRITE=transform bind '_.'->'>'`
 - `11.2  addr=local       WRITE=transform bind '_,'->'_Ċ'`
 - `11.3  addr=sink        WRITE=transform bind '_The'->'_and'`
-- `11.4  addr=prev        WRITE=transform bind '_were'->'_"' idioms` [`prev-token`](../operators/prevtok.md)
+- `11.4  addr=prev        WRITE=transform bind '_were'->'_"'` [`prev-token`](../operators/prevtok.md)
 - `11.5  addr=sink        WRITE=transform bind '_<'->'_='`
 - `11.6  addr=structural  WRITE=transform bind '_<'->'unk'`
 - `11.7  addr=long_range  WRITE=transform bind 'unk'->'_<'`
@@ -235,7 +237,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 ### Layer 12
 
 - `12.0  addr=sink        WRITE=copy      bind '0'->'_'`
-- `12.1  addr=sink        WRITE=copy      bind '_'->'0' idioms` [`duplicate`](../operators/duplicate.md)
+- `12.1  addr=sink        WRITE=copy      bind '_'->'0'` [`duplicate`](../operators/duplicate.md)
 - `12.2  addr=sink        WRITE=transform bind '_Ċ'->'s'`
 - `12.3  addr=sink        WRITE=transform bind '0'->'_'`
 - `12.4  addr=sink        WRITE=transform bind '_<'->'>'`
@@ -245,7 +247,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `12.8  addr=sink        WRITE=copy      bind '_='->'unk'`
 - `12.9  addr=sink        WRITE=copy      bind '_'->'0'`
 - `12.10  addr=sink        WRITE=transform bind '_'->'0'`
-- `12.11  addr=sink        WRITE=transform bind '_'->'0' idioms` [`duplicate`](../operators/duplicate.md)
+- `12.11  addr=sink        WRITE=transform bind '_'->'0'` [`duplicate`](../operators/duplicate.md)
 - `12.MLP.n2510  reads {_,_<,_the} -> writes {_,_the,_<}`
 - `12.MLP.n7767  reads {_the,_,_to} -> writes {_the,y,_'}`
 - `12.MLP.n7717  reads {_,,_,_"} -> writes {_",_,,_.}`
@@ -256,7 +258,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `13.1  addr=sink        WRITE=transform bind '_'->'0'`
 - `13.2  addr=local       WRITE=transform bind '_,'->'8'`
 - `13.3  addr=sink        WRITE=transform bind '_<'->"_'"`
-- `13.4  addr=prev        WRITE=transform bind 'y'->'_Rock' idioms` [`prev-token`](../operators/prevtok.md)
+- `13.4  addr=prev        WRITE=transform bind 'y'->'_Rock'` [`prev-token`](../operators/prevtok.md) — ★ causal: induction ΔNLL **+0.25**±0.02, 54% of base, generic +0.01
 - `13.5  addr=sink        WRITE=copy      bind '0'->'unk'`
 - `13.6  addr=local       WRITE=transform bind 'unk'->'_<'`
 - `13.7  addr=sink        WRITE=transform bind 'unk'->'_<'`
@@ -270,11 +272,11 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 
 ### Layer 14
 
-- `14.0  addr=sink        WRITE=transform bind '_'->'0' idioms` [`induction`](../operators/induction.md)
-- `14.1  addr=sink        WRITE=copy      bind '_'->'0' idioms` [`induction`](../operators/induction.md)
-- `14.2  addr=sink        WRITE=transform bind '_'->'0' idioms` [`induction`](../operators/induction.md)
-- `14.3  addr=sink        WRITE=transform bind '_'->'0' idioms` [`induction`](../operators/induction.md)
-- `14.4  addr=sink        WRITE=copy      bind '_'->'0' idioms` [`induction`](../operators/induction.md)
+- `14.0  addr=sink        WRITE=transform bind '_'->'0'` [`induction`](../operators/induction.md)
+- `14.1  addr=sink        WRITE=copy      bind '_'->'0'` [`induction`](../operators/induction.md)
+- `14.2  addr=sink        WRITE=transform bind '_'->'0'` [`induction`](../operators/induction.md)
+- `14.3  addr=sink        WRITE=transform bind '_'->'0'` [`induction`](../operators/induction.md)
+- `14.4  addr=sink        WRITE=copy      bind '_'->'0'` [`induction`](../operators/induction.md)
 - `14.5  addr=sink        WRITE=copy      bind '_'->'0'`
 - `14.6  addr=sink        WRITE=transform bind '_'->'0'`
 - `14.7  addr=sink        WRITE=transform bind '>'->'unk'`
@@ -326,7 +328,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 
 - `17.0  addr=local       WRITE=transform bind 'unk'->'_<'`
 - `17.1  addr=sink        WRITE=transform bind '_<'->'unk'`
-- `17.2  addr=sink        WRITE=transform bind 'unk'->'_<' idioms` [`duplicate`](../operators/duplicate.md)
+- `17.2  addr=sink        WRITE=transform bind 'unk'->'_<'` [`duplicate`](../operators/duplicate.md)
 - `17.3  addr=sink        WRITE=transform bind '_Rock'->'_Chronicles'`
 - `17.4  addr=local       WRITE=transform bind 'y'->'_Valk'`
 - `17.5  addr=sink        WRITE=transform bind 'unk'->'_<'`
@@ -344,17 +346,17 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 
 - `18.0  addr=sink        WRITE=transform bind 'unk'->'_'`
 - `18.1  addr=sink        WRITE=transform bind '_'->'0'`
-- `18.2  addr=local       WRITE=transform bind '_.'->'_"' idioms` [`prev-token`](../operators/prevtok.md)
+- `18.2  addr=local       WRITE=transform bind '_.'->'_"'` [`prev-token`](../operators/prevtok.md)
 - `18.3  addr=sink        WRITE=transform bind '_'->'0'`
 - `18.4  addr=sink        WRITE=transform bind 'y'->'_the'`
 - `18.5  addr=sink        WRITE=transform bind '_<'->'unk'`
 - `18.6  addr=sink        WRITE=transform bind '_<'->'unk'`
 - `18.7  addr=sink        WRITE=transform bind '_'->'0'`
-- `18.8  addr=prev        WRITE=transform bind '_and'->'_=' idioms` [`prev-token`](../operators/prevtok.md)
+- `18.8  addr=prev        WRITE=transform bind '_and'->'_='` [`prev-token`](../operators/prevtok.md) — ★ causal: induction ΔNLL **+0.24**±0.03, 54% of base, generic +0.01
 - `18.9  addr=sink        WRITE=transform bind '_<'->'unk'`
 - `18.10  addr=self        WRITE=transform bind '_to'->'_the'`
 - `18.11  addr=local       WRITE=copy      bind '_Ċ'->"_'"`
-- `18.MLP.n4150  reads {_,_the,_.} -> writes {_,_<,_the}`
+- `18.MLP.n4150  reads {_,_the,_.} -> writes {_,_<,_the}` — ★ causal: induction ΔNLL **+0.22**±0.01, 48% of base, generic +0.03
 - `18.MLP.n658   reads {_the,_The,ria} -> writes {_the,_The,_"}`
 - `18.MLP.n6280  reads {_,,_.,_"} -> writes {_,,_.,_to}`
 
@@ -362,16 +364,16 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 
 - `19.0  addr=sink        WRITE=transform bind '_'->'0'`
 - `19.1  addr=sink        WRITE=transform bind '_'->'0'`
-- `19.2  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
-- `19.3  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `19.2  addr=sink        WRITE=transform bind '_<'->'unk'` [`induction`](../operators/induction.md)
+- `19.3  addr=sink        WRITE=transform bind '_<'->'unk'` [`induction`](../operators/induction.md)
 - `19.4  addr=sink        WRITE=transform bind '_'->'0'`
-- `19.5  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `19.5  addr=sink        WRITE=transform bind '_<'->'unk'` [`induction`](../operators/induction.md)
 - `19.6  addr=self        WRITE=transform bind '_='->'_Ċ'`
 - `19.7  addr=sink        WRITE=transform bind '0'->'_'`
 - `19.8  addr=sink        WRITE=transform bind 'unk'->'_<'`
 - `19.9  addr=long_range  WRITE=copy      bind '_='->"_'"`
 - `19.10  addr=sink        WRITE=transform bind '_Ċ'->'_were'`
-- `19.11  addr=local       WRITE=copy      bind '_.'->'_Ċ' idioms` [`prev-token`](../operators/prevtok.md)
+- `19.11  addr=local       WRITE=copy      bind '_.'->'_Ċ'` [`prev-token`](../operators/prevtok.md)
 - `19.MLP.n2523  reads {_the,_The,_in} -> writes {_the,_The,_<}`
 - `19.MLP.n6669  reads {_,0,_<} -> writes {_,_<,_the}`
 - `19.MLP.n748   reads {_,_<,_'} -> writes {_,_<,_"}`
@@ -414,11 +416,11 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 
 ### Layer 22
 
-- `22.0  addr=sink        WRITE=copy      bind '_the'->'_of' idioms` [`prev-token`](../operators/prevtok.md)
+- `22.0  addr=sink        WRITE=copy      bind '_the'->'_of'` [`prev-token`](../operators/prevtok.md)
 - `22.1  addr=sink        WRITE=copy      bind '_the'->'_as'`
-- `22.2  addr=sink        WRITE=copy      bind '_for'->'s' idioms` [`prev-token`](../operators/prevtok.md)
+- `22.2  addr=sink        WRITE=copy      bind '_for'->'s'` [`prev-token`](../operators/prevtok.md)
 - `22.3  addr=sink        WRITE=copy      bind '>'->'_by'`
-- `22.4  addr=sink        WRITE=copy      bind '_The'->'_the' idioms` [`duplicate`](../operators/duplicate.md)
+- `22.4  addr=sink        WRITE=copy      bind '_The'->'_the'` [`duplicate`](../operators/duplicate.md)
 - `22.5  addr=sink        WRITE=transform bind '_by'->'_for'`
 - `22.6  addr=sink        WRITE=transform bind '_of'->'_Rock'`
 - `22.7  addr=sink        WRITE=transform bind '_'->'0'`
@@ -433,15 +435,15 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 ### Layer 23
 
 - `23.0  addr=sink        WRITE=transform bind '_<'->'unk'`
-- `23.1  addr=sink        WRITE=copy      bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
-- `23.2  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
+- `23.1  addr=sink        WRITE=copy      bind '_<'->'unk'` [`induction`](../operators/induction.md)
+- `23.2  addr=sink        WRITE=transform bind '_<'->'unk'` [`induction`](../operators/induction.md)
 - `23.3  addr=sink        WRITE=transform bind '_'->'0'`
 - `23.4  addr=sink        WRITE=transform bind '_Ċ'->'_='`
 - `23.5  addr=sink        WRITE=copy      bind '_of'->'_Rock'`
 - `23.6  addr=sink        WRITE=transform bind '_the'->'_with'`
 - `23.7  addr=sink        WRITE=transform bind '_'->'9'`
-- `23.8  addr=sink        WRITE=transform bind '_<'->'unk' idioms` [`induction`](../operators/induction.md)
-- `23.9  addr=sink        WRITE=copy      bind '_a'->'_and' idioms` [`prev-token`](../operators/prevtok.md)
+- `23.8  addr=sink        WRITE=transform bind '_<'->'unk'` [`induction`](../operators/induction.md)
+- `23.9  addr=sink        WRITE=copy      bind '_a'->'_and'` [`prev-token`](../operators/prevtok.md)
 - `23.10  addr=sink        WRITE=transform bind '_<'->'2'`
 - `23.11  addr=sink        WRITE=copy      bind '_of'->'_in'`
 - `23.MLP.n6145  reads {_the,_The,_to} -> writes {_the,_The,_to}`
@@ -480,7 +482,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `25.9  addr=sink        WRITE=transform bind '_Ċ'->'_='`
 - `25.10  addr=structural  WRITE=transform bind '_'->'0'`
 - `25.11  addr=sink        WRITE=transform bind '_Ċ'->'_='`
-- `25.MLP.n2015  reads {_the,_The,y} -> writes {_the,_The,_of}`
+- `25.MLP.n2015  reads {_the,_The,y} -> writes {_the,_The,_of}` — ★ causal: induction ΔNLL **+0.23**±0.01, 51% of base, generic +0.12
 - `25.MLP.n8511  reads {_,9,unk} -> writes {_,_Little,_'}`
 - `25.MLP.n2     reads {_",_,,_} -> writes {_,,_.,_"}`
 
@@ -498,7 +500,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `26.9  addr=sink        WRITE=copy      bind '0'->'_'`
 - `26.10  addr=sink        WRITE=transform bind '2'->'_'`
 - `26.11  addr=sink        WRITE=transform bind '_Ċ'->'_='`
-- `26.MLP.n2908  reads {0,_',9} -> writes {s,_Ċ,_@}`
+- `26.MLP.n2908  reads {0,_',9} -> writes {s,_Ċ,_@}` — ★ causal: induction ΔNLL **+1.05**±0.02, 232% of base, generic +0.73
 - `26.MLP.n7035  reads {0,_of,9} -> writes {s,_Ċ,_@}`
 - `26.MLP.n974   reads {6,2,s} -> writes {s,_Ċ,_@}`
 
@@ -516,8 +518,8 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `27.9  addr=long_range  WRITE=copy      bind '_'->'2'`
 - `27.10  addr=self        WRITE=transform bind '2'->'0'`
 - `27.11  addr=long_range  WRITE=copy      bind '9'->'0'`
-- `27.MLP.n7132  reads {_@,_',_=} -> writes {_.,_",_=}`
+- `27.MLP.n7132  reads {_@,_',_=} -> writes {_.,_",_=}` — ★ causal: induction ΔNLL **+0.27**±0.05, 59% of base, generic +0.59
 - `27.MLP.n2573  reads {_in,_of,_at} -> writes {_in,_of,9}`
 - `27.MLP.n8467  reads {_,unk,_=} -> writes {_<,_Ċ,_'}`
 
-_Generated from the committed listing by `disassembly_pages.py`._
+_Generated from the committed listing + discovery sweep by `disassembly_pages.py`._
