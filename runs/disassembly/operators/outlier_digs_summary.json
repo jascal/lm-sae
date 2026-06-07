@@ -121,5 +121,88 @@
       "compensator": "4.4",
       "min_marginal": -1.1018995825513311
     }
+  ],
+  "suppressor": [
+    {
+      "model": "gemma-2-2b",
+      "base_nat": 0.3893911143124022,
+      "base_syn": 4.535496789700217,
+      "heads": [
+        {
+          "head": "4.4",
+          "ov_copy_score": 0.03585576091027475,
+          "nat_induction_dNLL": -0.043906242376518856,
+          "syn_induction_dNLL": -0.5999233927879408
+        },
+        {
+          "head": "22.4",
+          "ov_copy_score": 0.06764346720282909,
+          "nat_induction_dNLL": 0.07370501465942847,
+          "syn_induction_dNLL": 2.949483199411434
+        }
+      ]
+    },
+    {
+      "model": "gpt2-large",
+      "base_nat": 0.81862412236265,
+      "base_syn": 0.4552337631270793,
+      "heads": [
+        {
+          "head": "16.0",
+          "ov_copy_score": 0.08713761902947724,
+          "nat_induction_dNLL": 0.11342408945968663,
+          "syn_induction_dNLL": -0.01036414974672023
+        },
+        {
+          "head": "16.9",
+          "ov_copy_score": 0.03856606107435636,
+          "nat_induction_dNLL": 0.3307161439216635,
+          "syn_induction_dNLL": 0.6986374370217225
+        }
+      ]
+    }
+  ],
+  "llama_l0": [
+    {
+      "model": "Llama-3.2-1B",
+      "heads": [
+        {
+          "head": "0.31",
+          "induction_mass": 0.03435130417346954,
+          "duplicate_mass": 0.020668990825387566,
+          "ov_copy_score": 0.022767246641744423
+        },
+        {
+          "head": "0.29",
+          "induction_mass": 0.024643567475405605,
+          "duplicate_mass": 0.01422468979250301,
+          "ov_copy_score": -0.060374841969864555
+        },
+        {
+          "head": "0.13",
+          "induction_mass": 0.02493073723532937,
+          "duplicate_mass": 0.027530236677689987,
+          "ov_copy_score": -0.004996278103872146
+        },
+        {
+          "head": "0.14",
+          "induction_mass": 0.02958389303900979,
+          "duplicate_mass": 0.04515643553300337,
+          "ov_copy_score": -0.0093035377159328
+        },
+        {
+          "head": "1.31",
+          "induction_mass": 0.0332879749211398,
+          "duplicate_mass": 0.032599587670781395,
+          "ov_copy_score": -0.07740976234873174
+        },
+        {
+          "head": "1.29",
+          "induction_mass": 0.025552690029144287,
+          "duplicate_mass": 0.024735231545161118,
+          "ov_copy_score": 0.017036903618995913
+        }
+      ]
+    }
   ]
 }
