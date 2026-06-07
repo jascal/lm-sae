@@ -1,5 +1,7 @@
 # Circuit `duplicate` (cross-model)
 
+> **`circuit:duplicate`** — this is the **circuit** (a *composition* of operators: a writer-op feeding a reader-op's K/Q/V port). Not the [`duplicate` *operator*](../operators/duplicate.md), which is the head *class* this circuit is named after (the circuit is keyed by its **reader operator**). `circuit:duplicate` here vs `op:duplicate` there.
+
 same-token reader (duplicate-token detection; IOI initiator)
 
 **Defining edge:** `(reader-side; writer often layer-0)`

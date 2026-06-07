@@ -17,6 +17,11 @@ vocabulary — the natural-history reference for the [operator catalog](operator
 - **Circuit** — a **composition** of operators: a writer-op feeding a reader-op's K/Q/V port, chained into a DAG.
   *Here:* the [circuit catalog](circuits/README.md); the primitive is the *edge* (writer → reader via a port).
   Canonical framing: [Elhage et al., *A Mathematical Framework for Transformer Circuits* (2021)](https://transformer-circuits.pub/2021/framework/index.html).
+- **`op:` vs `circuit:` (a naming convention)** — a circuit is keyed by its **reader operator**, so a few names
+  (`induction`, `duplicate`) name *both* an operator and a circuit. They are different objects at different
+  levels: `op:induction` is the head *class*; `circuit:induction` is the *composition* (prev-token → induction)
+  that feeds it. When a name could mean either, qualify it `op:<name>` / `circuit:<name>`; the colliding catalog
+  pages cross-link to their namesake.
 - **MOVE vs COMPUTE** — the two instruction classes: attention **MOVES** operands between positions (a QK
   *addressing mode* × an OV *write op*); the MLP **COMPUTES** on them (key–value memories). *Here:* the operator
   catalog is MOVE; the [MLP catalog](operators/mlp_compute.md) is COMPUTE.

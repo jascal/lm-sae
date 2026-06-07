@@ -15,13 +15,19 @@ here, two sources:
 
 ## Circuit inventory (index)
 
-- [`induction`](induction.md) — cross-model
+- [`induction`](induction.md) — cross-model · **also an [operator](../operators/induction.md)** (`circuit:induction` here vs `op:induction` there)
 - [`positional_broadcast`](positional_broadcast.md) — cross-model
-- [`duplicate`](duplicate.md) — cross-model
+- [`duplicate`](duplicate.md) — cross-model · **also an [operator](../operators/duplicate.md)** (`circuit:duplicate` here vs `op:duplicate` there)
 - [`ioi_q_chain`](ioi_q_chain.md) — GPT-2 (Q-composition chain (GPT-2-only))
 - [`induction_kchain_weights`](induction_kchain_weights.md) — GPT-2 (K-composition (weight + path-patch, GPT-2))
 - [`discovered_write_hub_edges`](discovered_write_hub_edges.md) — GPT-2 (DISCOVERED (novel-live composition edges))
 - [`v_virtual_heads`](v_virtual_heads.md) — GPT-2 (V-composition (composed-OV 'virtual heads', GPT-2))
+
+> **Circuit vs operator — a naming note.** A few names (duplicate, induction) appear in
+> *both* this circuit catalog and the [operator catalog](../operators/README.md). A **circuit** is a *composition*
+> (`circuit:induction` = prev-token → induction); the same-named **operator** is the *head class* it is named
+> after and built around (`op:induction`). The coincidence is deliberate: a circuit is keyed by its **reader
+> operator**. Pages cross-link to their namesake.
 
 ## Cross-model circuit-edge liveness (remove the writer from the reader's key → attention collapse %)
 

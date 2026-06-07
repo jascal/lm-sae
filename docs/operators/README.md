@@ -6,8 +6,8 @@ A **working catalog** of attention operators — amateur, exploratory home-scien
 ## Catalog index
 
 - [`prevtok`](prevtok.md) — positional
-- [`induction`](induction.md) — content
-- [`duplicate`](duplicate.md) — content
+- [`induction`](induction.md) — content · **also a [circuit](../circuits/induction.md)** (`op:induction` here vs `circuit:induction` there)
+- [`duplicate`](duplicate.md) — content · **also a [circuit](../circuits/duplicate.md)** (`op:duplicate` here vs `circuit:duplicate` there)
 - [`sink`](sink.md) — addressing
 - [`self`](self.md) — addressing
 - [`local`](local.md) — positional
@@ -19,6 +19,12 @@ A **working catalog** of attention operators — amateur, exploratory home-scien
 - [`coreference`](coreference.md) — circuit
 
 **Discovered-candidate dossiers** (UNNAMED load-bearing heads from the [discovery sweep](discovered.md), given the full battery): [`discovered_7.6`](discovered_7.6.md).
+
+> **Operator vs circuit — a naming note.** A few names (duplicate, induction) appear in
+> *both* this operator catalog and the [circuit catalog](../circuits/README.md). They are different objects at
+> different levels: an **operator** is a *head class* (`op:induction`); the same-named **circuit** is the
+> *composition* that feeds/anchors it (`circuit:induction` = prev-token → induction). The circuit is named after
+> its **reader operator**, which is why the names coincide. Pages on either side cross-link to their namesake.
 
 ## How to read this catalog
 
