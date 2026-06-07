@@ -91,7 +91,9 @@ sweeps the early-MLP detokenizer had the largest single-component causal effect 
 
 The [**discovered components**](discovered.md) page is the discovery engine run across *every* model — every head +
 MLP ranked by causal effect (multi-seed), flagged named-vs-**UNNAMED**. The UNNAMED load-bearing components are
-candidate operators not yet catalogued (e.g. Llama heads 0.31/1.31/1.29) — the leads to dossier next.
+candidate operators not yet catalogued (e.g. Llama heads 0.31/1.31/1.29) — the leads to dossier next. The strongest
+RoPE candidates are profiled (causal + channel) on [**discovered candidates (cross-model)**](discovered_xmodel.md);
+Llama **0.31** is induction-load-bearing **+7.99** (an early induction-enabling head, uncatalogued).
 
 ## Gaps (documented, not skipped)
 
