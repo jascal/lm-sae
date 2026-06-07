@@ -30,6 +30,21 @@ def atlas_tables(atlas):
     return ok, ops, kinds, "\n".join(sig), "\n".join(cau), "\n".join(memb)
 
 
+def redundancy_verdict(rd):
+    """Classify the cumulative-ablation curve: distributed (superadditive population) / bottleneck (one head ≈ op) /
+    compensatory (non-monotonic — ablating the full set recovers vs the peak, i.e. self-repair among the heads)."""
+    if not rd:
+        return "—"
+    curve = rd.get("curve") or []; full = rd.get("full", 0.0); ms = rd.get("max_solo", 0.0)
+    peak = max((c["effect"] for c in curve), default=full)
+    peak_n = next((c["n"] for c in curve if c["effect"] == peak), len(curve))
+    if peak > 0.1 and full < 0.7 * peak:
+        return f"**compensatory** (peak {peak:+.2f}@{peak_n}h → full {full:+.2f}; self-repair)"
+    if full <= 1.4 * ms and ms > 0.1:
+        return f"**bottleneck** (best 1h {ms:+.2f} ≈ full {full:+.2f})"
+    return f"distributed (full {full:+.2f} ≫ best 1h {ms:+.2f})"
+
+
 def xdossier_section(op, xrows):
     """The arch-generic cross-model deep dossier (identity + causal + channel) for a universal behavioural op."""
     if not xrows:
@@ -39,8 +54,8 @@ def xdossier_section(op, xrows):
              "key-only path-patch channel (the model re-applies its own RoPE) — run across **every** model, not just "
              "GPT-2. (The full A–F dossier below stays GPT-2-only: its channel/composition math is written against "
              "GPT-2's fused-QKV layout, and the named *output* ops have no published head-set off GPT-2.)", "",
-             "| model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | KEY top writer (collapse) | VALUE top mover (ΔV-out) |",
-             "|---|---|---|---|---|---|---|"]
+             "| model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | redundancy (top heads) | KEY top writer (collapse) | VALUE top mover (ΔV-out) |",
+             "|---|---|---|---|---|---|---|---|"]
     for r in xrows:
         ch = r["channel"]
         if "key_top" in ch:
@@ -48,8 +63,11 @@ def xdossier_section(op, xrows):
             vc = f"{ch['value_top']['head']} ({ch['value_top']['dvout']:.2f})"
         else:
             kc = vc = "— (addresses by position/key-0)"
-        lines.append(f"| {r['model']} | {r['top_head']} | {r['n_heads_mass']} | {r['causal_induction_dNLL']:+.2f} | {r['causal_generic_dNLL']:+.2f} | {kc} | {vc} |")
-    lines += ["", "_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; channel = remove "
+        red = redundancy_verdict(r.get("redundancy"))
+        lines.append(f"| {r['model']} | {r['top_head']} | {r['n_heads_mass']} | {r['causal_induction_dNLL']:+.2f} | {r['causal_generic_dNLL']:+.2f} | {red} | {kc} | {vc} |")
+    lines += ["", "_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; **redundancy** "
+              "cumulative-ablates the top heads in solo-effect order (bottleneck = one head ≈ the whole op; distributed "
+              "= the population far exceeds any single head); channel = remove "
               "each upstream head from the reader's key → top collapser + the value/move channel. "
               "Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). "
               "Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._", ""]

@@ -17,14 +17,14 @@
 
 The deep battery's arch-generic core — behavioural head-ID + mean-ablation causal + the faithful key-only path-patch channel (the model re-applies its own RoPE) — run across **every** model, not just GPT-2. (The full A–F dossier below stays GPT-2-only: its channel/composition math is written against GPT-2's fused-QKV layout, and the named *output* ops have no published head-set off GPT-2.)
 
-| model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | KEY top writer (collapse) | VALUE top mover (ΔV-out) |
-|---|---|---|---|---|---|---|
-| gpt2 | 4.11 | 86 | +1.14 | +0.02 | — (addresses by position/key-0) | — (addresses by position/key-0) |
-| gemma-2-2b | 21.7 | 191 | +4.94 | +0.30 | — (addresses by position/key-0) | — (addresses by position/key-0) |
-| Llama-3.2-1B | 0.2 | 279 | +1.02 | -0.00 | — (addresses by position/key-0) | — (addresses by position/key-0) |
-| Qwen2.5-1.5B | 13.4 | 195 | +2.79 | +0.22 | — (addresses by position/key-0) | — (addresses by position/key-0) |
+| model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | redundancy (top heads) | KEY top writer (collapse) | VALUE top mover (ΔV-out) |
+|---|---|---|---|---|---|---|---|
+| gpt2 | 4.11 | 86 | +1.14 | +0.02 | distributed (full +1.14 ≫ best 1h +0.42) | — (addresses by position/key-0) | — (addresses by position/key-0) |
+| gemma-2-2b | 21.7 | 191 | +4.94 | +0.30 | distributed (full +4.94 ≫ best 1h +1.60) | — (addresses by position/key-0) | — (addresses by position/key-0) |
+| Llama-3.2-1B | 0.2 | 279 | +1.02 | -0.00 | distributed (full +1.02 ≫ best 1h +0.15) | — (addresses by position/key-0) | — (addresses by position/key-0) |
+| Qwen2.5-1.5B | 13.4 | 195 | +2.79 | +0.22 | distributed (full +2.79 ≫ best 1h +0.27) | — (addresses by position/key-0) | — (addresses by position/key-0) |
 
-_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; channel = remove each upstream head from the reader's key → top collapser + the value/move channel. Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._
+_Mean-ablate the op's top behavioural heads → induction-NLL / generic-NLL damage; **redundancy** cumulative-ablates the top heads in solo-effect order (bottleneck = one head ≈ the whole op; distributed = the population far exceeds any single head); channel = remove each upstream head from the reader's key → top collapser + the value/move channel. Data: [xmodel_dossiers_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/operators/xmodel_dossiers_summary.json). Regenerate: [operator_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/operator_dossier_xmodel.py)._
 
 ## Deep dossier (GPT-2) — `operator_dossier.py --op prevtok`
 

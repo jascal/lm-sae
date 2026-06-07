@@ -222,12 +222,21 @@ def dossier_one_model(model_id, ops, args, dev):
         if not top:
             top = [int(order[0])]
         reader_op = op
-        ind_d = ind_nll(set((i // H, i % H) for i in top)) - base_ind
-        gen_d = gen_nll(set((i // H, i % H) for i in top)) - base_gen
+        top_hh = [(i // H, i % H) for i in top]
+        ind_d = ind_nll(set(top_hh)) - base_ind
+        gen_d = gen_nll(set(top_hh)) - base_gen
+        # E. redundancy: per-head solo induction effect + cumulative-ablation curve → bottleneck vs distributed
+        solo = sorted([(f"{L}.{h}", ind_nll({(L, h)}) - base_ind) for (L, h) in top_hh], key=lambda r: -r[1])
+        acc = []; curve = []
+        for nm, _ in solo:
+            acc.append(tuple(int(x) for x in nm.split("."))); curve.append({"n": len(acc), "effect": ind_nll(set(acc)) - base_ind})
+        max_solo = max((e for _, e in solo), default=0.0)
+        redundancy = {"solo": solo, "curve": curve, "full": ind_d, "max_solo": max_solo,
+                      "bottleneck": bool(ind_d <= 1.4 * max_solo and max_solo > 0.1)}
         rec = {"op": op, "kind": kind, "heads": [name_of(i) for i in top],
                "top_head": name_of(top[0]), "top_mass": float(masses[op][top[0]]),
                "top_depth": (top[0] // H) / (nL - 1) if nL > 1 else 0.0,
-               "causal_induction_dNLL": ind_d, "causal_generic_dNLL": gen_d,
+               "causal_induction_dNLL": ind_d, "causal_generic_dNLL": gen_d, "redundancy": redundancy,
                "base_induction": base_ind, "base_generic": base_gen, "n_heads_mass": int((masses[op] > args.min_mass).sum())}
         rec["channel"] = channel(top[0]) if chan else {"note": f"{kind} op — addresses by position/key-0, not an upstream key writer; channel N/A"}
         out[op] = rec
