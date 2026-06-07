@@ -399,9 +399,18 @@ standout (z 118.8 vs a median 0.1% over the other upstream heads) — and the co
 positional broadcaster from #25. In the RoPE models, **no** upstream head's key-content removal collapses
 prev-token (max −0%): their rotation, untouched by the content patch, still aligns q−1. This is the decisive
 causal pairing for #26's representational split, and the third+fourth causal/representational signatures of
-GPT-2's learned absolute positions (with the sink-dependence and the cross-model ceiling). **Scope:** Llama-3.2's
-prev-token head is in *layer 0* (no upstream heads to patch), so the RoPE side rests on Gemma + Qwen; the patch
-is the *direct* A→B key path (`resid − A_out` at B's layer). `key_patch_cross_model.py`,
+GPT-2's learned absolute positions (with the sink-dependence and the cross-model ceiling). For scale: the −22%
+comes from removing **one** upstream head's key-content with the rest of the model fully intact — vs a **0.1%
+median** over the other ~47 upstream heads (the figure `key_patch_cross_model.png` is the lone red GPT-2 bar
+beside the flat RoPE bars). The zero-patch sanity (0.0) is the numerical-fidelity check: `norm(resid − A_out)`
+reproduces the clean key exactly when A_out is forced to zero.
+
+**Scope.** Llama-3.2's prev-token head is in *layer 0* (no upstream heads to patch), so the RoPE side rests on
+Gemma + Qwen — a real limitation for any model whose prev-token head sits at the very bottom (the patch needs an
+*upstream* writer). The patch is the *direct* A→B key path (`resid − A_out` at B's layer). *Next:* the same
+key-only / value-only forward patch generalizes to **any** circuit — induction heads, the validated V-edges
+(#28) — to probe content-vs-rotation dependence beyond prev-token; and re-running it on an oracle-supervised host
+tests whether supervision (#19/#20) shifts the key-content dependence. `key_patch_cross_model.py`,
 `runs/gemma/key_patch_cross_model_summary.json` (~85 s, 4 models).
 
 ## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
