@@ -176,7 +176,10 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
    `scripts/disassembly/composition_dag.py`** — static composition predicts dynamic writer specificity
    (ρ=+0.37); the canonical induction K-chain and IOI Q-chain are auto-recovered AND live, imposters/random
    rejected (0% FP); 22 new live edges surfaced (see Composition-DAG section).
-3. **MLP ops** — neuron key→value catalog + named MLP idioms; add to the DAG + the recompile.
+3. **MLP ops** — neuron key→value catalog + named MLP idioms; add to the DAG + the recompile. **DONE (GPT-2):
+   `scripts/disassembly/mlp_ops.py`** — the recompile now charges for MLPs (M1/bridge kept heads only); MLPs are
+   load-bearing, concentrated in L0 (the detokenizer); head↔MLP composition edges are weight-legible (see MLP
+   ops section).
 4. **The ceiling test** — reconstruction-coverage plateau vs the tower's entangled core, same host; the
    unifying claim stands or falls. **First result DONE (v2, tiny GPT): `scripts/cov95_forge_tax/ceiling_test.py`** — content/factorability axes decouple; the capability plateau is GPU-scale-gated (see Ceiling test section).
 5. **Cross-model** — repeat the ceiling on Gemma-2 / Llama-3 / Qwen-2.5 (idea i) to test whether the
@@ -333,6 +336,47 @@ keep-set score; (c) re-run on an oracle-supervised host (#19/#20) — a more leg
 live DAG and a higher-coverage keep-set. The script takes `--dag-summary` so any of these DAGs (other corpora,
 supervised models) drops straight in. `runs/disassembly/dag_recompile_summary.json` (re-run to regenerate the
 figure).
+
+## MLP ops in the DAG + the recompile (milestone 3) — first result (GPT-2)
+
+`mlp_ops.py` adds the **COMPUTE** instruction class. M1 and the bridge kept/ablated attention heads only — MLPs
+ran at full fidelity, so the coverage metric never charged for them — yet MLPs carry real computation
+(greater-than is MLP-dominated; `mlp_catalog.py` read the neuron key→value vocabulary). M3 extends the
+mean-ablation harness to keep/ablate **MLP layers** as well as heads (floor = all heads *and* all MLPs ablated),
+adds **head↔MLP composition edges** to the DAG, and names the load-bearing MLPs. GPT-2, Shakespeare, floor KL
+3.39.
+
+- **MLPs are load-bearing — and the load is concentrated in L0.** Removing *all* MLPs (heads intact) collapses
+  coverage to **−0.019** (≈ floor): attention alone cannot reconstruct the forward pass. The single most
+  important op in the whole recompile is the **layer-0 MLP** (marginal importance **+0.772**; next are L11 +0.08,
+  L1 +0.07) — GPT-2's **detokenizer**, the same `e_ext = e + MLP0(·)` enrichment the QK/copy disassembly already
+  reads through. Its top neurons read sentence-boundary punctuation (`. ; ?`) and write structural/line-start
+  tokens (newline, `I`, `First`) — detokenization / boundary formatting.
+- **A few MLPs reconstruct most (attention intact).** Sweeping the MLP budget with all heads kept, the
+  top-importance MLPs dominate a random-MLP control at every budget (L0 first):
+
+  | MLPs kept | top-importance | random |
+  |---|---|---|
+  | 1 | +0.118 | −0.002 |
+  | 2 | +0.257 | −0.004 |
+  | 4 | +0.436 | +0.313 |
+  | 8 | +0.819 | +0.595 |
+
+  A **combined sparse op-set** of just the 12 M2 circuit heads + the top-4 MLP layers reaches **+0.286** coverage
+  — a tiny MOVE+COMPUTE program (16 ops of 156).
+- **The DAG gains MLP nodes.** Head→MLP read edges (`‖OV_a · W_in^L‖`, mean-write removed) and MLP→head write
+  edges (`‖W_out^L · W_{Q/K}^B‖`) are weight-legible; top edges e.g. `2.1→L2`, `11.0→L11` (read) and `L1→2.2`,
+  `L0→4.11` (write). So the call graph now has typed head↔MLP edges, not just head↔head.
+
+**Scope (honest).** (a) Mean-ablating *all* MLPs is severe (L0 dominates), so "attention-only / MLP-only" are
+**necessity** statements, **not** a clean attention-vs-MLP credit split — attention's reconstruction value is
+the MLP-intact bridge (#23), where circuit heads reconstruct with MLPs on. (b) Static head↔MLP composition does
+**not** rank MLP recompile-importance (Spearman = **−0.43**): the most important MLPs are *early* (L0) and have
+the *fewest* incoming head→MLP edges (a depth confound), so the DAG edges give **structure**, importance comes
+from the recompile — the same lesson as the bridge's "ΔTV ≠ KL-importance." (c) The full per-neuron catalog +
+low-rank/named-idiom analysis lives in `mlp_catalog.py`; M3 reuses its read→write naming for the load-bearing
+layers only. (d) V-composition and MLP→MLP dynamic gating remain future work.
+`runs/disassembly/mlp_ops_summary.json` (re-run to regenerate the figure).
 
 ## Ceiling test (milestone 4) — first result (v2, tiny GPT)
 
