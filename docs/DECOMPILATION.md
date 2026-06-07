@@ -47,6 +47,16 @@ reconstruction_coverage(budget B) =
   the ordered DAG of ops that fire to produce the output, each edge path-patch-validated. A correct trace
   + a faithful recompile = a decompilation of that behavior.
 
+> **First results are live — and humbling.** The reconstruction-coverage idea is now run across six models for the
+> induction circuit and (GPT-2) the IOI circuit: **[Executable decompilation](circuits/reconstruction.md)** (keep
+> the circuit's heads, ablate the rest, measure induction-NLL / IOI logit-diff recovery + the budget *curve*) and
+> the **[attention-vs-MLP substrate](circuits/induction_substrate.md)** split. The honest headline: **no small
+> head-set is a *sufficient* decompilation** — induction recovers ≤30% from its named 8 heads (even under the
+> gentler resample-ablation), needs ~all heads to fully reconstruct, and leans on attention and the MLP substrate
+> roughly equally; even IOI's celebrated 26-head circuit is not sufficient in isolation. The named circuits are
+> necessary and the dominant drivers, but the behaviour is distributed across the near-whole network. So a faithful
+> decompilation here is *not* a tiny op-graph — the budget curve, not a single small circuit, is the real object.
+
 ## Four work-items
 
 ### 1. The composition DAG extractor

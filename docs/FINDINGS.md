@@ -51,6 +51,25 @@ vs RoPE) actually track **scale**.
   induction-**enablers**, not inductors (strong induction *causal* effect but weak induction *attention* — they set
   up the residual that a later head reads).
 
+## Is the computation an isolable circuit? (mostly no — it's distributed)
+
+The catalog names which heads are *necessary*. **[Executable decompilation](circuits/reconstruction.md)** tests
+*sufficiency* — keep only a circuit's heads, ablate the rest, see how much behaviour survives.
+
+- **No small head-set reconstructs induction.** The named 8-head circuit recovers at most ~17% (mean-ablation) /
+  ~30% (the gentler resample-ablation) of induction; coverage **decays with GPT-2 scale** (small → large +0%) and
+  the RoPE curves go non-monotonic (Qwen negative). You need *nearly every head* (GPT-2-small only hits ~full at
+  K≈128/144). Robust to ablation type — so it's a real property, not an artifact.
+- **Even IOI — the field's celebrated "complete" 26-head circuit — isn't sufficient in isolation** (keeping only
+  it gives a *negative* logit-diff, no better than random). Caveat: a harsh mean-ablation test; this speaks to
+  distributedness, not the validity of the IOI necessity/path-patching result.
+- **Induction is not an attention-only circuit** — it leans roughly *equally* on attention and the
+  [MLP substrate](circuits/induction_substrate.md); in GPT-2-small the early detokenizer **MLP0 alone** carries
+  almost the entire MLP dependence (Gemma is the exception — its clean standalone MLP0 isn't needed by induction).
+
+The through-line: the named circuits are causally **necessary and the dominant drivers**, but the behaviour is
+carried by the near-whole network — a clean decompilation into a tiny sufficient subgraph does not exist here.
+
 ## Methodological cautions — banked from the digs
 
 - **Synthetic repeated-random probes can manufacture apparent suppression.** A head that looks like it suppresses
