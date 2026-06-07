@@ -1,6 +1,7 @@
-# Operator catalog — the attention instruction set, surveyed across models
+# Operator catalog — attention operators, surveyed across models
 
-This is the **catalog** of GPT-2-family attention operators, measured exhaustively. Two axes:
+A **working catalog** of attention operators — amateur, exploratory home-science: provisional, descriptive, and
+*not* a definitive reference (one of many catalogs one could draw). Two axes:
 
 > **Taxonomy — classes, instances, variants (read this first).** Each row below is an operator **CLASS**, *not* a
 > single operator: it is a *family* of heads that realize the same operation. The **membership matrix** gives the

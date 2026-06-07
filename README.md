@@ -24,6 +24,10 @@ over wet biology: we can also **breed synthetic specimens and intervene at high 
 swap the sequence-mixer to a non-attention recurrence, manufacture ground-truth-feature substrates (the
 [sister track](docs/FORGE_TAX_TRACK.md)), and ablate / path-patch any component in milliseconds.
 
+> **Amateur, exploratory home-science — read it that way.** Everything here is *a working catalog*, not *the*
+> definitive one: findings are **descriptive and provisional** — measurements to be checked and re-run, not settled
+> results. Where a mechanism is unknown we still **list the specimen** with what we measured (e.g. MLP0) and say so.
+
 > A sister investigation — the **exact-lexical oracle** and the **cov95 forge tax** (what an SAE *feature basis*
 > destroys, and what you must preserve) — has moved to [`docs/FORGE_TAX_TRACK.md`](docs/FORGE_TAX_TRACK.md). It is
 > the "what the SAE misses" motivation for this disassembly work.
@@ -154,7 +158,7 @@ The catalogs survey what we *named*; the **programmatic** debugger (`residual_vm
 haven't. It is automation-first (returns structured data; UI-optional): `attribution_sweep` ablates every head +
 every MLP and flags strong **un-named** components (candidate new ops); `edge_probe` path-patches upstream writers
 (candidate circuit edges); `logit_lens_step` locates where the answer is decided. Driven on GPT-2 it found **MLP0
-is the single most load-bearing component for every behaviour** (induction +7.8, IOI +7.5, generic +1.8 — a
+had the largest single-component causal effect of anything measured** (induction +7.8, IOI +7.5, generic +1.8 — a
 direct pointer to the MLP/COMPUTE catalog gap), candidate unnamed ops (induction→**7.6**, IOI→**5.9**), and a
 discovered circuit (7.6 fed by induction heads + candidate writers 2.11/5.9). These feed the next dossiers.
 

@@ -115,8 +115,9 @@ def write_doc(out, gpt2_harvest, docs):
     models = [r for r in out["results"] if "layers" in r]
     lines = ["# Operator class `MLP` / COMPUTE", "",
              "Attention **MOVES** operands; the MLP **COMPUTES** on them. The [operator catalog](README.md) is "
-             "attention-only — but the ResidualVM discovery engine found **MLP0 is the single most load-bearing "
-             "component for every behaviour**. This is the COMPUTE class, surveyed across architectures.", "",
+             "attention-only — but in the ResidualVM discovery sweeps **MLP0 had the largest single-component causal "
+             "effect of anything measured** (induction / IOI / generic). A working catalog of the COMPUTE class "
+             "across architectures — provisional and descriptive.", "",
              "## Cross-model — per-layer MLP causal ΔNLL (mean-ablate the whole MLP block)", "",
              "Top MLP layers by causal damage when ablated (generic prose NLL; depth = layer/(L−1)):", "",
              "| model | arch | L | all-MLP ΔNLL (generic) | top generic-MLP (depth, ΔNLL) | top induction-MLP (depth, ΔNLL) |",
@@ -125,12 +126,41 @@ def write_doc(out, gpt2_harvest, docs):
         tg = r["top_generic"][0]; ti = r["top_induction"][0]
         lines.append(f"| {r['model']} | {r['arch']} | {r['n_layers']} | {r['all_mlp_ablated_generic_dNLL']:+.2f} | "
                      f"L{tg['layer']} (d{tg['depth']}, {tg['generic_dNLL']:+.2f}) | L{ti['layer']} (d{ti['depth']}, {ti['induction_dNLL']:+.2f}) |")
-    lines += ["", "**Reading it:** COMPUTE is **depth-organized** — an early MLP (the *detokenizer*, low depth) is the "
-              "biggest single COMPUTE op for induction in the GPT-2 family, and late MLPs carry generic-LM output. "
-              "The whole-MLP-stack ablation ΔNLL is large in every model (COMPUTE is load-bearing everywhere, unlike "
-              "any single attention-op class).", ""]
+    lines += ["", "**Reading it:** COMPUTE is **depth-organized** — an early MLP (commonly called the *detokenizer*, "
+              "low depth — a label, not a verified mechanism) is the biggest single COMPUTE op for induction in the "
+              "GPT-2 family, and late MLPs carry generic-LM output. The whole-MLP-stack ablation ΔNLL is large in "
+              "every model (COMPUTE is load-bearing everywhere, unlike any single attention-op class).", ""]
+    mc, mo = gpt2_harvest if gpt2_harvest else ({}, {})
+    gpt2 = next((r for r in models if r["model"] == "gpt2"), None)
+    if gpt2 and mo:
+        byL = {ly["layer"]: ly for ly in gpt2["layers"]}
+        imp = mo.get("mlp_importance", {}); named = mo.get("named_mlp_idioms", {})
+
+        def idiom_str(L):
+            ns = named.get(f"L{L}", [])
+            return "; ".join(f"`{'+'.join(n['reads'][:2])}→{'+'.join(n['writes'][:2])}`" for n in ns[:2]) or "(not catalogued)"
+        order = sorted({0, 1, 2, 11} | {int(k[1:]) for k in named}, key=lambda L: -imp.get(f"L{L}", 0))
+        lines += ["## Named MLP operators (GPT-2) — listed even where the mechanism is unverified", "",
+                  "In the natural-history spirit we **list the load-bearing MLP specimens with what we measured**, "
+                  "even where the mechanism is not established. (\"Detokenizer\" is the common *label* for L0; we "
+                  "record the behaviour and operands, not a mechanism claim.)", "",
+                  "| MLP | depth | causal ΔNLL (generic / induction) | recon-importance | top read→write neuron idioms | mechanism |",
+                  "|---|---|---|---|---|---|"]
+        for L in order:
+            ly = byL.get(L)
+            if not ly:
+                continue
+            mech = ('partial — the **"detokenizer"** label: writes sentence-initial / common tokens' if L == 0 else
+                    "partial — punctuation / output writes" if L == 11 else "**unverified** (listed by measured effect)")
+            tag = "**MLP0**" if L == 0 else f"MLP{L}"
+            lines.append(f"| {tag} | {ly['depth']} | {ly['generic_dNLL']:+.2f} / {ly['induction_dNLL']:+.2f} | "
+                         f"{imp.get(f'L{L}', 0):.2f} | {idiom_str(L)} | {mech} |")
+        lines += ["", "_MLP0 is GPT-2's single most load-bearing component (recon-importance 0.77 of all MLPs; "
+                  "ablating it costs induction +11.7 NLL) — listed here as a catalog entry even though *how* it works "
+                  "is only partially characterized. The other models' early load-bearing MLP (the detokenizer-analog) "
+                  "is in the cross-model table above; its per-neuron idioms are not yet run (no per-neuron basis off "
+                  "GPT-2 — a documented gap)._", ""]
     if gpt2_harvest:
-        mc, mo = gpt2_harvest
         cat = ", ".join(f"`{'+'.join(n['reads'][:2])}→{'+'.join(n['writes'][:2])}`" for n in mc.get("catalog", [])[:6])
         lines += ["## GPT-2 deep characterization (harvested)", "",
                   f"- **COMPUTE vocabulary is low-rank** (`mlp_catalog.py`): transform participation "
