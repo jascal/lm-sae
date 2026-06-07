@@ -9,6 +9,8 @@
       "n_layer": 12,
       "n_head": 12,
       "floor_kl": 1.720723756658968,
+      "rope": false,
+      "pos": "absolute",
       "circuit_heads": [
         "0.0",
         "4.11",
@@ -45,11 +47,56 @@
       ]
     },
     {
+      "model": "gpt2-medium",
+      "n_heads": 384,
+      "n_layer": 24,
+      "n_head": 16,
+      "floor_kl": 1.8823213002038381,
+      "rope": false,
+      "pos": "absolute",
+      "circuit_heads": [
+        "5.8",
+        "5.11",
+        "6.11",
+        "7.2",
+        "10.1"
+      ],
+      "circuit_size": 5,
+      "coverage_circuit": 0.19663498146923974,
+      "coverage_random_samesize": 0.011606464414115947,
+      "circuit_lift": 0.1850285170551238,
+      "circuit_over_random": 16.94185020117664,
+      "random_curve": [
+        {
+          "budget": 2,
+          "coverage_random": 0.03151902546222404
+        },
+        {
+          "budget": 5,
+          "coverage_random": 0.015493758968433607
+        },
+        {
+          "budget": 8,
+          "coverage_random": 0.02271113017637358
+        },
+        {
+          "budget": 16,
+          "coverage_random": 0.06136600477121523
+        },
+        {
+          "budget": 32,
+          "coverage_random": 0.06485422476136546
+        }
+      ]
+    },
+    {
       "model": "google/gemma-2-2b",
       "n_heads": 208,
       "n_layer": 26,
       "n_head": 8,
       "floor_kl": 3.939817995747561,
+      "rope": true,
+      "pos": "RoPE",
       "circuit_heads": [
         "4.4",
         "6.1",
@@ -91,6 +138,8 @@
       "n_layer": 16,
       "n_head": 32,
       "floor_kl": 2.02823897669555,
+      "rope": true,
+      "pos": "RoPE",
       "circuit_heads": [
         "0.2",
         "2.26",
@@ -132,6 +181,8 @@
       "n_layer": 28,
       "n_head": 12,
       "floor_kl": 4.967145130621693,
+      "rope": true,
+      "pos": "RoPE",
       "circuit_heads": [
         "2.3",
         "13.4",
