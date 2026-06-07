@@ -1,0 +1,171 @@
+{
+  "experiment": "key-only causal path-patch cross-model (does removing an upstream head's KEY content collapse prev-token?)",
+  "ctx": 64,
+  "chunks": 16,
+  "results": [
+    {
+      "model": "gpt2",
+      "rope": false,
+      "pos": "absolute",
+      "prevtok_head": "4.11",
+      "prevtok_mass": 0.9489814043045044,
+      "clean_prevtok": 0.9489814043045044,
+      "n_upstream": 48,
+      "sanity": 0.0,
+      "top_head": "1.3",
+      "top_collapse": 0.215007737135979,
+      "top_z": 118.75983846601616,
+      "top_is_sink": true,
+      "median_collapse": 0.0012732655807647457,
+      "top_rows": [
+        {
+          "head": "1.3",
+          "rel_collapse": 0.215007737135979,
+          "sink_mass": 0.6031093597412109,
+          "z": 118.75983846601616
+        },
+        {
+          "head": "1.8",
+          "rel_collapse": 0.09699537241573629,
+          "sink_mass": 0.17498278617858887,
+          "z": 53.18721805907321
+        },
+        {
+          "head": "1.9",
+          "rel_collapse": 0.04327183372226807,
+          "sink_mass": 0.2583026885986328,
+          "z": 23.336166281443365
+        },
+        {
+          "head": "2.11",
+          "rel_collapse": 0.02641291213902211,
+          "sink_mass": 0.5585117340087891,
+          "z": 13.96864222522063
+        },
+        {
+          "head": "1.10",
+          "rel_collapse": 0.012032774278125873,
+          "sink_mass": 0.002426738850772381,
+          "z": 5.978434389055527
+        },
+        {
+          "head": "0.10",
+          "rel_collapse": 0.01149368398216574,
+          "sink_mass": 0.08223661780357361,
+          "z": 5.678893206012046
+        }
+      ]
+    },
+    {
+      "model": "google/gemma-2-2b",
+      "rope": true,
+      "pos": "RoPE",
+      "prevtok_head": "21.7",
+      "prevtok_mass": 0.8215742111206055,
+      "clean_prevtok": 0.8215742111206055,
+      "n_upstream": 48,
+      "sanity": 0.0,
+      "top_head": "5.4",
+      "top_collapse": 0.002707540369339848,
+      "top_z": 4.849107304038198,
+      "top_is_sink": false,
+      "median_collapse": -4.498057419589243e-05,
+      "top_rows": [
+        {
+          "head": "5.4",
+          "rel_collapse": 0.002707540369339848,
+          "sink_mass": 0.0015244154637912288,
+          "z": 4.849107304038198
+        },
+        {
+          "head": "5.0",
+          "rel_collapse": 0.0011747184796449843,
+          "sink_mass": 0.027803703444078565,
+          "z": 2.14873990499447
+        },
+        {
+          "head": "5.2",
+          "rel_collapse": 0.0010127884125397716,
+          "sink_mass": 0.0631928137736395,
+          "z": 1.8634682259588018
+        },
+        {
+          "head": "3.7",
+          "rel_collapse": 0.0009170233190904522,
+          "sink_mass": 0.05463693698402494,
+          "z": 1.6947591684645893
+        },
+        {
+          "head": "5.5",
+          "rel_collapse": 0.0009077370069983969,
+          "sink_mass": 0.056495685246773064,
+          "z": 1.6783995022833322
+        },
+        {
+          "head": "4.4",
+          "rel_collapse": 0.0007817913992498981,
+          "sink_mass": 0.049544149893336,
+          "z": 1.4565215297000345
+        }
+      ]
+    },
+    {
+      "model": "unsloth/Llama-3.2-1B",
+      "note": "prev-token head in layer 0 \u2014 no upstream heads",
+      "prevtok_head": "0.2"
+    },
+    {
+      "model": "Qwen/Qwen2.5-1.5B",
+      "rope": true,
+      "pos": "RoPE",
+      "prevtok_head": "13.4",
+      "prevtok_mass": 0.7590923309326172,
+      "clean_prevtok": 0.7590923309326172,
+      "n_upstream": 48,
+      "sanity": 0.0,
+      "top_head": "0.0",
+      "top_collapse": 0.0037564418580693145,
+      "top_z": 1.84582248501005,
+      "top_is_sink": false,
+      "median_collapse": 0.0006156041840983158,
+      "top_rows": [
+        {
+          "head": "0.0",
+          "rel_collapse": 0.0037564418580693145,
+          "sink_mass": 0.04580621267086826,
+          "z": 1.84582248501005
+        },
+        {
+          "head": "0.2",
+          "rel_collapse": 0.0037187518059816627,
+          "sink_mass": 0.02696027877391316,
+          "z": 1.8236726151899294
+        },
+        {
+          "head": "1.0",
+          "rel_collapse": 0.0032438571496772473,
+          "sink_mass": 0.03390854026656598,
+          "z": 1.5445842554564098
+        },
+        {
+          "head": "1.2",
+          "rel_collapse": 0.0028543932781048436,
+          "sink_mass": 0.07209893316030502,
+          "z": 1.3157022673151637
+        },
+        {
+          "head": "0.5",
+          "rel_collapse": 0.002708658410032589,
+          "sink_mass": 0.022377726825652644,
+          "z": 1.2300561040106972
+        },
+        {
+          "head": "1.1",
+          "rel_collapse": 0.0025352841704293903,
+          "sink_mass": 0.03177044074982405,
+          "z": 1.1281667028381426
+        }
+      ]
+    }
+  ]
+}

@@ -372,10 +372,37 @@ position, the cleanest case of the RoPE pattern.
 
 **Scope.** This is the *representational* confirmation (the key **is** position-encoded only in GPT-2),
 corroborating the *causal* GPT-2 result; a faithful key-only causal path-patch across RoPE models
-(forward-pointer (a)) is the heavier next step. *Next:* re-run on an oracle-supervised host (#19/#20) — does
-training a more legible model shift the prev-token key's position-vs-token content, i.e. does supervision touch
-the positional machinery or only the feature substrate? ~33 s for all four models.
-`runs/gemma/cross_model_positional_summary.json`.
+(forward-pointer (a)) is the heavier next step — **now done** (next subsection). *Also next:* re-run on an
+oracle-supervised host (#19/#20) — does training a more legible model shift the prev-token key's
+position-vs-token content, i.e. does supervision touch the positional machinery or only the feature substrate?
+~33 s for all four models. `runs/gemma/cross_model_positional_summary.json`.
+
+### Cross-model: the *causal* key-only path-patch (the heavier confirmation)
+
+`key_patch_cross_model.py` does the causal complement #26 deferred. The representational test said GPT-2's
+prev-token key carries position-content and RoPE's doesn't; the causal test asks: **does removing an upstream
+head's *key content* collapse the prev-token attention?** It's a forward-pass intervention so each model applies
+its **own** RoPE — for the top prev-token head B, replace B's key input with `norm(resid − A_out)` (q untouched →
+key-only) for each upstream head A, and re-read B's attention. RoPE rotates the patched key, so the relative
+match is preserved; only the key *content* changes. The intervention is exact: the **zero-patch sanity is
+0.00e+00 on every model** (q/v untouched).
+
+| model | pos. enc. | prev-token head | top key-patch collapser | prev-token collapse | robust z |
+|---|---|---|---|---|---|
+| **GPT-2** | absolute | 4.11 | **sink head 1.3** | **−22%** | **118.8** |
+| Gemma-2-2B | RoPE | 21.7 | 5.4 (non-sink) | −0% | 4.8 |
+| Qwen-2.5-1.5B | RoPE | 13.4 | 0.0 (non-sink) | −0% | 1.8 |
+
+**CONFIRMED causally — GPT-2's prev-token attention is carried by KEY CONTENT; the RoPE models' by the rotation.**
+Removing the **sink head 1.3** from GPT-2's prev-token key collapses its prev-token attention **−22%**, a huge
+standout (z 118.8 vs a median 0.1% over the other upstream heads) — and the collapser *is a sink head*, the
+positional broadcaster from #25. In the RoPE models, **no** upstream head's key-content removal collapses
+prev-token (max −0%): their rotation, untouched by the content patch, still aligns q−1. This is the decisive
+causal pairing for #26's representational split, and the third+fourth causal/representational signatures of
+GPT-2's learned absolute positions (with the sink-dependence and the cross-model ceiling). **Scope:** Llama-3.2's
+prev-token head is in *layer 0* (no upstream heads to patch), so the RoPE side rests on Gemma + Qwen; the patch
+is the *direct* A→B key path (`resid − A_out` at B's layer). `key_patch_cross_model.py`,
+`runs/gemma/key_patch_cross_model_summary.json` (~85 s, 4 models).
 
 ## Circuit-structured keep-set selection (M1↔M2 bridge) — first result (GPT-2)
 
