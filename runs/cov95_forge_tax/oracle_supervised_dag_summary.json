@@ -1,0 +1,146 @@
+{
+  "experiment": "oracle-supervised DAG: does feature legibility buy circuit legibility?",
+  "width": 128,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "modes": [
+    "none",
+    "linear"
+  ],
+  "rows": [
+    {
+      "mode": "none",
+      "seed": 0,
+      "cov95": 0.6551724137931034,
+      "static_dynamic_rho": 0.21304347826086956,
+      "induction_recovery": 1.1060109461476775,
+      "prevtok_head": "1.3",
+      "induction_strength": 0.022846391285365482,
+      "key_pos_frac": 0.26658661390515986,
+      "key_tok_frac": 0.3447817955176479
+    },
+    {
+      "mode": "linear",
+      "seed": 0,
+      "cov95": 0.7586206896551724,
+      "static_dynamic_rho": 0.5403726708074534,
+      "induction_recovery": 1.2440089804257506,
+      "prevtok_head": "3.3",
+      "induction_strength": 0.03998924381328079,
+      "key_pos_frac": 0.04416320379887135,
+      "key_tok_frac": 0.5401019288285482
+    },
+    {
+      "mode": "none",
+      "seed": 1,
+      "cov95": 0.7241379310344828,
+      "static_dynamic_rho": 0.3819548872180451,
+      "induction_recovery": 1.3394580918420493,
+      "prevtok_head": "2.1",
+      "induction_strength": 0.027650877765889436,
+      "key_pos_frac": 0.3207809564622635,
+      "key_tok_frac": 0.4069893001573997
+    },
+    {
+      "mode": "linear",
+      "seed": 1,
+      "cov95": 0.7241379310344828,
+      "static_dynamic_rho": 0.7350649350649351,
+      "induction_recovery": 1.3669430825414959,
+      "prevtok_head": "2.0",
+      "induction_strength": 0.031054203313476636,
+      "key_pos_frac": 0.15110378409627562,
+      "key_tok_frac": 0.5123994134496888
+    },
+    {
+      "mode": "none",
+      "seed": 2,
+      "cov95": 0.6896551724137931,
+      "static_dynamic_rho": 0.7373913043478261,
+      "induction_recovery": 1.1049248124348545,
+      "prevtok_head": "2.3",
+      "induction_strength": 0.032024653407762636,
+      "key_pos_frac": 0.41612285111862635,
+      "key_tok_frac": 0.34627510333900013
+    },
+    {
+      "mode": "linear",
+      "seed": 2,
+      "cov95": 0.7241379310344828,
+      "static_dynamic_rho": 0.1849624060150376,
+      "induction_recovery": 1.4240706579770668,
+      "prevtok_head": "2.2",
+      "induction_strength": 0.03004704197622695,
+      "key_pos_frac": 0.2066320311638454,
+      "key_tok_frac": 0.4109298282527191
+    }
+  ],
+  "agg": {
+    "cov95": {
+      "none": {
+        "mean": 0.6896551724137931,
+        "std": 0.028155054514749183
+      },
+      "linear": {
+        "mean": 0.735632183908046,
+        "std": 0.016255328303139003
+      }
+    },
+    "static_dynamic_rho": {
+      "none": {
+        "mean": 0.44412988994224695,
+        "std": 0.21853216224520236
+      },
+      "linear": {
+        "mean": 0.48680000396247536,
+        "std": 0.2277509181707589
+      }
+    },
+    "induction_recovery": {
+      "none": {
+        "mean": 1.183464616808194,
+        "std": 0.11030493525212769
+      },
+      "linear": {
+        "mean": 1.3450075736481046,
+        "std": 0.0751284537462675
+      }
+    },
+    "key_pos_frac": {
+      "none": {
+        "mean": 0.33449680716201663,
+        "std": 0.06181350974398163
+      },
+      "linear": {
+        "mean": 0.1339663396863308,
+        "std": 0.06742550935175498
+      }
+    }
+  },
+  "linear_minus_none": {
+    "cov95": [
+      0.10344827586206895,
+      0.0,
+      0.03448275862068961
+    ],
+    "static_dynamic_rho": [
+      0.3273291925465839,
+      0.35311004784689,
+      -0.5524288983327885
+    ],
+    "induction_recovery": [
+      0.1379980342780731,
+      0.027484990699446543,
+      0.31914584554221226
+    ],
+    "key_pos_frac": [
+      -0.22242341010628852,
+      -0.1696771723659879,
+      -0.20949081995478094
+    ]
+  },
+  "conclusion": "PARTIAL / SUBSTRATE-DOMINATED: oracle-feature supervision reshapes the FEATURE substrate \u2014 cov95 +0.046; the prev-token key shifts TOKEN-ward (\u0394key-pos-frac -0.201, 3/3 seeds); a small but consistent induction-recoverability lifts (\u0394 +0.16, 3/3 seeds); the broad static\u2192dynamic agreement lifts but is NOISE-DOMINATED (\u0394\u03c1 +0.043 \u00b1 0.42). The feature-recovery loss acts mainly on WHAT the residual represents (features), with only a marginal spillover to circuit recoverability \u2014 knowledge and computation read as largely SEPARATE axes (the thesis), on a tiny host underpowered for circuit metrics."
+}
