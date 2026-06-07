@@ -80,6 +80,7 @@ Run order: idiom library → opcode tables → scorecard → causal validation �
 | `addressing_split.py` / `absolute_addressing.py` | the addressing taxonomy (content / relative-Δ / absolute-sink / structural). |
 | `coverage_scorecard.py` | "% of attention the catalog explains" + the dark-head work-list (`--corpus` for the prose baseline). |
 | `causal_validation.py` / `ioi_causal.py` | mean-ablation: are the named heads **load-bearing**? (induction-NLL; IOI logit-diff). |
+| `instruction_reuse.py` | **instruction reuse vs specialization** (the "LLM-as-VM" test) — head-class × task causal matrix (ablate each named op-class, measure damage to generic LM + induction-copy + IOI). Finds it **specialization-dominant**: most ops are task-specific (prev-token/duplicate→copy, S-inhibition→IOI), **none** serve generic LM (recruited on demand), and **induction is the one reused op** (copy + IOI). The metaphor's "reusable ISA" holds weakly: one shared low-level op + task-specialized accelerators (see [`docs/DECOMPILATION.md`](../docs/DECOMPILATION.md)). |
 | `corpus_robustness.py` | which claims are corpus-invariant vs corpus-conditioned. |
 | `disassemble_gpt2.py` | **the unified per-head listing** → `runs/disassembly/gpt2_disassembly.txt`. |
 | `residual_vm.py` | **decompilation milestone 1** — reconstruction-coverage interpreter: keep a head-set, mean-ablate the rest, `1 − KL/floor` vs budget + random + named-idiom set (see [`docs/DECOMPILATION.md`](../docs/DECOMPILATION.md)). |

@@ -1,0 +1,142 @@
+{
+  "experiment": "instruction reuse vs specialization (head-class x task causal matrix)",
+  "model": "gpt2",
+  "tasks": [
+    "generic",
+    "induction",
+    "ioi"
+  ],
+  "baselines": {
+    "generic": 4.999532612047697,
+    "induction": 0.6624949113984736,
+    "ioi": 2.916121063232422
+  },
+  "load_bearing_threshold": {
+    "generic": 0.05,
+    "induction": 0.4305844493789658,
+    "ioi": 0.23770499807641732
+  },
+  "random_effect": {
+    "generic": 0.002404960495080913,
+    "induction": 0.22180680903167377,
+    "ioi": 0.09477109388359398
+  },
+  "classes": {
+    "prev_token": {
+      "heads": [
+        "4.11"
+      ],
+      "size": 1,
+      "effects": {
+        "generic": 0.005146230439415838,
+        "induction": 0.6490716437313774,
+        "ioi": 0.17568819063488364
+      },
+      "serves": [
+        "induction"
+      ],
+      "n_serves": 1
+    },
+    "induction": {
+      "heads": [
+        "5.0",
+        "5.1",
+        "5.5",
+        "6.9",
+        "7.11"
+      ],
+      "size": 5,
+      "effects": {
+        "generic": 0.030726887997103092,
+        "induction": 6.525931911525994,
+        "ioi": 0.3078912395939198
+      },
+      "serves": [
+        "induction",
+        "ioi"
+      ],
+      "n_serves": 2
+    },
+    "duplicate_token": {
+      "heads": [
+        "0.1",
+        "0.5",
+        "3.0",
+        "1.5"
+      ],
+      "size": 4,
+      "effects": {
+        "generic": 0.04811660718987789,
+        "induction": 0.7295942262788943,
+        "ioi": -0.11267263597151982
+      },
+      "serves": [
+        "induction"
+      ],
+      "n_serves": 1
+    },
+    "name_mover": {
+      "heads": [
+        "9.6",
+        "9.9",
+        "10.0",
+        "10.10"
+      ],
+      "size": 4,
+      "effects": {
+        "generic": -0.00044626910093943515,
+        "induction": 0.09590769898044361,
+        "ioi": 0.02134598175792832
+      },
+      "serves": [],
+      "n_serves": 0
+    },
+    "s_inhibition": {
+      "heads": [
+        "7.3",
+        "7.9",
+        "8.6",
+        "8.10"
+      ],
+      "size": 4,
+      "effects": {
+        "generic": 0.004336193781802919,
+        "induction": -0.09536742079154924,
+        "ioi": 0.5770922756957186
+      },
+      "serves": [
+        "ioi"
+      ],
+      "n_serves": 1
+    },
+    "negative_mover": {
+      "heads": [
+        "10.7",
+        "11.10"
+      ],
+      "size": 2,
+      "effects": {
+        "generic": 0.001016868800130121,
+        "induction": -0.27107775258263694,
+        "ioi": -0.5998284711254298
+      },
+      "serves": [],
+      "n_serves": 0
+    }
+  },
+  "shared_core": [
+    "induction"
+  ],
+  "specialized": [
+    "prev_token",
+    "duplicate_token",
+    "s_inhibition"
+  ],
+  "serves_copy_and_ioi": [
+    "induction"
+  ],
+  "ioi_only": [
+    "s_inhibition"
+  ],
+  "serves_generic": []
+}

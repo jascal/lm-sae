@@ -835,6 +835,43 @@ at 59%), so the static→dynamic ρ is high-variance; a definitive circuit-legib
 circuits (GPT-2 scale), which the reachability lever can't retrain on this budget. `oracle_supervised_dag.py`,
 `runs/cov95_forge_tax/oracle_supervised_dag_summary.json`.
 
+## Instruction reuse vs specialization — is the op-catalog an ISA? (the "LLM-as-VM" test)
+
+The disassembly reads the named ops as a reusable *instruction set*. But are the same instructions recruited
+across *different tasks* (genuine reuse → one ISA), or does each task have dedicated heads (specialization)? We've
+shown the idioms are invariant across languages and architectures, never across *tasks within a model* —
+`instruction_reuse.py` is that test. It builds the **head-class × task causal matrix**: mean-ablate each named
+op-class and measure the damage to three distinct programs — **generic LM** (held-out next-token NLL),
+**induction** (NLL on the 2nd copy of a repeated random sequence), **IOI** (logit(IO)−logit(S)). A class
+"serves" a task if ablating it damages it beyond a random-head control.
+
+| op-class | generic | induction (copy) | IOI | serves |
+|---|---|---|---|---|
+| prev-token | +0.01 | **+0.65 ✓** | +0.18 | copy |
+| **induction** | +0.03 | **+6.53 ✓** | **+0.31 ✓** | **copy + IOI** |
+| duplicate-token | +0.05 | **+0.73 ✓** | −0.11 | copy |
+| name-mover | −0.00 | +0.10 | +0.02 | (self-repair, see caveat) |
+| S-inhibition | +0.00 | −0.10 | **+0.58 ✓** | IOI |
+| negative-mover | +0.00 | −0.27 | −0.60 | (writes *against* IO) |
+
+(values = ablation damage, + hurts the task; ✓ = beyond the random-head control.)
+
+**SPECIALIZATION-DOMINANT, with one genuinely reused instruction.** Three honest reads:
+1. **None of the named ops are load-bearing for *generic* LM** (every generic cell ≈ 0). The catalog is a set of
+   **in-context-task instructions recruited on demand**, not an always-on general ISA — they fire only when a
+   task exercises them.
+2. **Most ops are task-specific:** prev-token + duplicate serve the *copy* program; S-inhibition serves *IOI*;
+   they don't transfer.
+3. **The one clearly *reused* instruction is `induction`** — load-bearing across *both* the copy and IOI
+   programs (+6.53 and +0.31). So there is genuine instruction reuse, but it's narrow.
+
+So the VM metaphor's "reusable instruction set" holds only weakly: **a single shared low-level op (induction) +
+a stack of task-specialized accelerators, composed per task** — reuse *and* specialization, tilted toward
+specialization. **Caveat:** name-movers read ~0 here because mean-ablation triggers the known **IOI self-repair**
+(backup name-movers compensate) — *not* genuine unimportance; the IOI-task-specific metric in `ioi_causal.py`
+finds them load-bearing. The matrix is the cross-task causal generalization of that script's single-task
+double-dissociation. `instruction_reuse.py`, `runs/disassembly/instruction_reuse_summary.json`.
+
 ## Boundaries / risks
 
 - **Recompile faithfulness is OOD-sensitive** (partial reconstructions are low-norm inputs to `lm_head`);
