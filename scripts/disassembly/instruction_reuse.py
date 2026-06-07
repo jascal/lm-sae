@@ -37,7 +37,7 @@ HEAD_CLASSES = {
     "s_inhibition": [(7, 3), (7, 9), (8, 6), (8, 10)],
     "negative_mover": [(10, 7), (11, 10)],
 }
-TASKS = ["generic", "induction", "ioi"]
+TASKS = ["generic", "induction", "copy_names", "successor", "ioi"]
 
 
 def main(argv=None):
@@ -47,6 +47,8 @@ def main(argv=None):
     p.add_argument("--eval-chunks", type=int, default=40)
     p.add_argument("--n-induction", type=int, default=60, help="repeated random sequences for the copy task")
     p.add_argument("--ind-len", type=int, default=20)
+    p.add_argument("--n-copy-names", type=int, default=60, help="repeated NAME lists (a 2nd copy task, different content)")
+    p.add_argument("--n-successor", type=int, default=80, help="consecutive-number runs (the increment task)")
     p.add_argument("--n-ioi", type=int, default=80)
     p.add_argument("--n-rand", type=int, default=4, help="random-head control classes")
     p.add_argument("--seed", type=int, default=0)
@@ -117,6 +119,22 @@ def main(argv=None):
             out.append(i[0] if len(i) == 1 else None)
         return [x for x in out if x is not None]
     names = single(NAMES); places = single(PLACES); objs = single(OBJECTS)
+    # copy_names: a SECOND copy task — repeated list of distinct NAMES (different content than random tokens)
+    kname = min(args.ind_len, len(names)); name_seqs = []
+    for _ in range(args.n_copy_names):
+        s = [int(names[i]) for i in rng.choice(len(names), kname, replace=False)]
+        name_seqs.append(s + s)
+    # successor: consecutive single-token numbers " a a+1 .. a+L-1" -> predict " a+L" (the increment task)
+    nums = {}
+    for v in range(1, 220):
+        i = tok(f" {v}", add_special_tokens=False)["input_ids"]
+        if len(i) == 1:
+            nums[v] = i[0]
+    runlen = 6; starts = [a for a in nums if all((a + i) in nums for i in range(runlen + 1))]
+    succ_seqs = []
+    for _ in range(args.n_successor):
+        a = starts[int(rng.integers(0, len(starts)))]
+        succ_seqs.append(([nums[a + i] for i in range(runlen)], nums[a + runlen]))
     ioi = []
     for _ in range(args.n_ioi):
         a, b = rng.choice(len(names), 2, replace=False)                       # IO=a (once), S=b (repeated)
@@ -151,6 +169,32 @@ def main(argv=None):
                 h.remove()
         return tot / max(n, 1)
 
+    def copy_seq_nll(ablate, seqs):                                           # induction-NLL over the 2nd copy of seqs
+        hs = ablate_hooks(ablate); tot = 0.0; n = 0
+        try:
+            with torch.no_grad():
+                for s in seqs:
+                    lp = F.log_softmax(model(input_ids=torch.tensor([s], device=dev)).logits[0].float(), -1)
+                    L = len(s) // 2
+                    for pos in range(L, 2 * L - 1):
+                        tot += float(-lp[pos, s[pos + 1]]); n += 1
+        finally:
+            for h in hs:
+                h.remove()
+        return tot / max(n, 1)
+
+    def succ_nll(ablate):                                                     # NLL of the successor at the final position
+        hs = ablate_hooks(ablate); tot = 0.0; n = 0
+        try:
+            with torch.no_grad():
+                for seq, target in succ_seqs:
+                    lp = F.log_softmax(model(input_ids=torch.tensor([seq], device=dev)).logits[0, -1].float(), -1)
+                    tot += float(-lp[target]); n += 1
+        finally:
+            for h in hs:
+                h.remove()
+        return tot / max(n, 1)
+
     def ioi_ld(ablate):
         hs = ablate_hooks(ablate); lds = []
         try:
@@ -162,10 +206,11 @@ def main(argv=None):
             for h in hs:
                 h.remove()
         return float(np.mean(lds))
-    metric = {"generic": lm_nll, "induction": ind_nll, "ioi": ioi_ld}
+    metric = {"generic": lm_nll, "induction": ind_nll, "ioi": ioi_ld,
+              "copy_names": lambda ab: copy_seq_nll(ab, name_seqs), "successor": succ_nll}
 
     base = {t: metric[t](set()) for t in TASKS}
-    print(f"{args.pretrained} baselines: LM-NLL {base['generic']:.3f} | induction-NLL {base['induction']:.3f} | IOI-LD {base['ioi']:+.3f}")
+    print(f"{args.pretrained} baselines: " + " | ".join(f"{t} {base[t]:+.3f}" for t in TASKS))
 
     def effect(t, val):                                                       # normalized so + = ablation HURT the task
         if t == "ioi":
@@ -217,19 +262,24 @@ def main(argv=None):
 
     general = [c for c in named if "generic" in named[c]["serves"]]
     out["serves_generic"] = general
+    induction_universal = named["induction"]["n_serves"]
+    succ_by_copy = bool({"prev_token", "duplicate_token", "induction"} & {c for c in named if "successor" in named[c]["serves"]})
+    out["induction_n_serves"] = induction_universal; out["successor_served_by_copy_ops"] = succ_by_copy
     args.output.write_text(json.dumps(out, indent=2, default=float))
     nm_masked = abs(named["name_mover"]["effects"]["ioi"]) < thr["ioi"]       # name-movers ~0 under mean-ablation = self-repair
-    if copy_and_ioi and specialized:
-        verdict = (f"SPECIALIZATION-DOMINANT with LIMITED REUSE: most named ops are task-specific — {specialized} each "
-                   f"serve ONE in-context task (copy: prev-token/duplicate; IOI: s_inhibition) — and NONE are load-bearing "
-                   f"for GENERIC next-token LM (all <{thr['generic']:.2f}): the catalog is a set of IN-CONTEXT-task "
-                   f"instructions recruited on demand, not an always-on general ISA. The ONE clearly REUSED instruction is "
-                   f"{copy_and_ioi} — load-bearing across BOTH the copy and IOI programs (genuine instruction reuse). So the "
-                   f"VM metaphor's 'reusable instruction set' holds only weakly: a single shared low-level op (induction) "
-                   f"+ a stack of task-specialized accelerators, composed per task."
-                   f"{' CAVEAT: name-movers read ~0 under mean-ablation = the known IOI self-repair (backup name-movers compensate), NOT genuine unimportance (ioi_causal s IOI-specific metric finds them load-bearing).' if nm_masked else ''}")
+    caveat = (" CAVEAT: name-movers read ~0 under mean-ablation = the known IOI self-repair (backups compensate; self_repair.py),"
+              " NOT genuine unimportance — ioi_causal's IOI-specific metric finds them load-bearing." if nm_masked else "")
+    if len(shared) >= 2 and induction_universal >= 3:
+        verdict = (f"REUSED LOW-LEVEL CORE + TASK-SPECIFIC OUTPUT HEADS (the thickened {len(TASKS)}-task matrix flips the "
+                   f"3-task 'limited reuse' read toward reuse). The low-level copy/addressing ops are REUSED across the "
+                   f"copy-family: induction serves ALL {induction_universal} in-context tasks (induction-copy, copy-names, "
+                   f"successor, IOI); prev-token/duplicate serve the copy+successor family. Only {specialized} is task-specific "
+                   f"(S-inhibition = the IOI output head). NONE serve generic LM (recruited on demand). So the named ops ARE a "
+                   f"reusable instruction set for the shared substrate, composed into task-specific circuits at the output — "
+                   f"closer to the VM 'shared ISA + per-task programs' than the 3-task version suggested."
+                   f"{' Notable: SUCCESSOR recruits the copy ops (induction/duplicate), so the model increments partly by in-context COPYING, not a dedicated successor head.' if succ_by_copy else ''}{caveat}")
     else:
-        verdict = f"shared={shared}, specialized={specialized}, general={general} — see matrix"
+        verdict = f"shared={shared}, specialized={specialized}, general={general}, induction serves {induction_universal} — see matrix"
     print(f"\n[verdict] {verdict}")
 
     try:

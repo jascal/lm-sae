@@ -4,22 +4,30 @@
   "tasks": [
     "generic",
     "induction",
+    "copy_names",
+    "successor",
     "ioi"
   ],
   "baselines": {
     "generic": 4.999532612047697,
     "induction": 0.6624949113984736,
-    "ioi": 2.916121063232422
+    "copy_names": 0.3153548349362322,
+    "successor": 0.02632038134421843,
+    "ioi": 3.0297407150268554
   },
   "load_bearing_threshold": {
     "generic": 0.05,
-    "induction": 0.4305844493789658,
-    "ioi": 0.23770499807641732
+    "induction": 0.2702473257443297,
+    "copy_names": 0.7101316700617155,
+    "successor": 4.381927137297785,
+    "ioi": 0.185109137352929
   },
   "random_effect": {
-    "generic": 0.002404960495080913,
-    "induction": 0.22180680903167377,
-    "ioi": 0.09477109388359398
+    "generic": -0.00024679591626092234,
+    "induction": 0.11326970194250767,
+    "copy_names": 0.26231706639947805,
+    "successor": 1.1214869802693024,
+    "ioi": 0.009541179180394124
   },
   "classes": {
     "prev_token": {
@@ -30,12 +38,15 @@
       "effects": {
         "generic": 0.005146230439415838,
         "induction": 0.6490716437313774,
-        "ioi": 0.17568819063488364
+        "copy_names": 1.6908432022242614,
+        "successor": 0.45159077126339137,
+        "ioi": 0.15527738333603291
       },
       "serves": [
-        "induction"
+        "induction",
+        "copy_names"
       ],
-      "n_serves": 1
+      "n_serves": 2
     },
     "induction": {
       "heads": [
@@ -49,13 +60,17 @@
       "effects": {
         "generic": 0.030726887997103092,
         "induction": 6.525931911525994,
-        "ioi": 0.3078912395939198
+        "copy_names": 8.026904907957276,
+        "successor": 5.463728157763787,
+        "ioi": 0.2592071913978522
       },
       "serves": [
         "induction",
+        "copy_names",
+        "successor",
         "ioi"
       ],
-      "n_serves": 2
+      "n_serves": 4
     },
     "duplicate_token": {
       "heads": [
@@ -68,12 +83,16 @@
       "effects": {
         "generic": 0.04811660718987789,
         "induction": 0.7295942262788943,
-        "ioi": -0.11267263597151982
+        "copy_names": 7.456098799050989,
+        "successor": 22.699286168881613,
+        "ioi": -0.05412112690153379
       },
       "serves": [
-        "induction"
+        "induction",
+        "copy_names",
+        "successor"
       ],
-      "n_serves": 1
+      "n_serves": 3
     },
     "name_mover": {
       "heads": [
@@ -86,7 +105,9 @@
       "effects": {
         "generic": -0.00044626910093943515,
         "induction": 0.09590769898044361,
-        "ioi": 0.02134598175792832
+        "copy_names": 0.4981843313535963,
+        "successor": 0.421971402111499,
+        "ioi": 0.06373347579021323
       },
       "serves": [],
       "n_serves": 0
@@ -102,7 +123,9 @@
       "effects": {
         "generic": 0.004336193781802919,
         "induction": -0.09536742079154924,
-        "ioi": 0.5770922756957186
+        "copy_names": -0.12503250524712556,
+        "successor": -0.19472829013275755,
+        "ioi": 0.5667573435919632
       },
       "serves": [
         "ioi"
@@ -118,18 +141,20 @@
       "effects": {
         "generic": 0.001016868800130121,
         "induction": -0.27107775258263694,
-        "ioi": -0.5998284711254298
+        "copy_names": -0.4606571620709359,
+        "successor": -0.31705314107182647,
+        "ioi": -0.517242700453937
       },
       "serves": [],
       "n_serves": 0
     }
   },
   "shared_core": [
-    "induction"
+    "prev_token",
+    "induction",
+    "duplicate_token"
   ],
   "specialized": [
-    "prev_token",
-    "duplicate_token",
     "s_inhibition"
   ],
   "serves_copy_and_ioi": [
@@ -138,5 +163,7 @@
   "ioi_only": [
     "s_inhibition"
   ],
-  "serves_generic": []
+  "serves_generic": [],
+  "induction_n_serves": 4,
+  "successor_served_by_copy_ops": true
 }
