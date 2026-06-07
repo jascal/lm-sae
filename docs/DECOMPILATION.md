@@ -845,32 +845,36 @@ op-class and measure the damage to three distinct programs — **generic LM** (h
 **induction** (NLL on the 2nd copy of a repeated random sequence), **IOI** (logit(IO)−logit(S)). A class
 "serves" a task if ablating it damages it beyond a random-head control.
 
-| op-class | generic | induction (copy) | IOI | serves |
-|---|---|---|---|---|
-| prev-token | +0.01 | **+0.65 ✓** | +0.18 | copy |
-| **induction** | +0.03 | **+6.53 ✓** | **+0.31 ✓** | **copy + IOI** |
-| duplicate-token | +0.05 | **+0.73 ✓** | −0.11 | copy |
-| name-mover | −0.00 | +0.10 | +0.02 | (self-repair, see caveat) |
-| S-inhibition | +0.00 | −0.10 | **+0.58 ✓** | IOI |
-| negative-mover | +0.00 | −0.27 | −0.60 | (writes *against* IO) |
+The matrix is run with **five** tasks — generic, induction-copy, **copy-names** (a 2nd copy task, different
+content), **successor** (consecutive-number runs → increment), IOI:
+
+| op-class | generic | induction | copy-names | successor | IOI | serves |
+|---|---|---|---|---|---|---|
+| prev-token | +0.01 | **+0.65 ✓** | **+1.69 ✓** | +0.45 | +0.16 | copy family |
+| **induction** | +0.03 | **+6.53 ✓** | **+8.03 ✓** | **+5.46 ✓** | **+0.26 ✓** | **ALL 4 in-context** |
+| duplicate-token | +0.05 | **+0.73 ✓** | **+7.46 ✓** | **+22.7 ✓** | −0.05 | copy + successor |
+| name-mover | −0.00 | +0.10 | +0.50 | +0.42 | +0.06 | (self-repair) |
+| S-inhibition | +0.00 | −0.10 | −0.13 | −0.19 | **+0.58 ✓** | IOI |
+| negative-mover | +0.00 | −0.27 | −0.46 | −0.32 | −0.60 | (writes *against* IO) |
 
 (values = ablation damage, + hurts the task; ✓ = beyond the random-head control.)
 
-**SPECIALIZATION-DOMINANT, with one genuinely reused instruction.** Three honest reads:
-1. **None of the named ops are load-bearing for *generic* LM** (every generic cell ≈ 0). The catalog is a set of
-   **in-context-task instructions recruited on demand**, not an always-on general ISA — they fire only when a
-   task exercises them.
-2. **Most ops are task-specific:** prev-token + duplicate serve the *copy* program; S-inhibition serves *IOI*;
-   they don't transfer.
-3. **The one clearly *reused* instruction is `induction`** — load-bearing across *both* the copy and IOI
-   programs (+6.53 and +0.31). So there is genuine instruction reuse, but it's narrow.
+**A reused low-level core + task-specific output heads.** Thickening the matrix from 3 to 5 tasks *flips* the
+read toward reuse:
+1. **None of the named ops are load-bearing for *generic* LM** (every generic cell ≈ 0) — the catalog is
+   in-context-task instructions **recruited on demand**, not an always-on ISA.
+2. **The low-level copy/addressing ops are genuinely *reused* across the copy-family:** `induction` is
+   load-bearing for **all four** in-context tasks; prev-token + duplicate serve the copy+successor family. So the
+   shared substrate ops transfer.
+3. **Only the *output* head is task-specific:** S-inhibition serves IOI alone.
+4. **A bonus:** `successor` is carried by the *copy* ops (induction +5.46, duplicate +22.7), not a dedicated
+   successor head — **the model increments partly by in-context copying**.
 
-So the VM metaphor's "reusable instruction set" holds only weakly: **a single shared low-level op (induction) +
-a stack of task-specialized accelerators, composed per task** — reuse *and* specialization, tilted toward
-specialization. **Caveat:** name-movers read ~0 here because mean-ablation triggers the known **IOI self-repair**
-(backup name-movers compensate) — *not* genuine unimportance; the IOI-task-specific metric in `ioi_causal.py`
-finds them load-bearing. The matrix is the cross-task causal generalization of that script's single-task
-double-dissociation. `instruction_reuse.py`, `runs/disassembly/instruction_reuse_summary.json`.
+So the named ops *are* a **reusable instruction set for the shared substrate, composed into task-specific
+circuits at the output** — closer to the VM "shared ISA + per-task programs" than the 3-task version suggested,
+but with the architecture-specific caveat that none are always-on. **Caveat:** name-movers read ~0 only because
+mean-ablation triggers the **IOI self-repair** (quantified in `self_repair.py`) — not genuine unimportance.
+`instruction_reuse.py`, `runs/disassembly/instruction_reuse_summary.json`.
 
 **Self-repair, made causal (`self_repair.py`).** The name-mover caveat above is quantified: ablating the
 *primary* name-movers (9.6/9.9/10.0) drops the IOI logit-diff by **−0.002** (the circuit looks robust), but
