@@ -8,24 +8,26 @@ title: GPT-2 (small) disassembly
 
 Operator roles referenced (hyperlinked inline below): [induction](../operators/induction.md) · [prevtok](../operators/prevtok.md) · [structural](../operators/structural.md). Full raw listing: [`gpt2_disassembly.txt`](https://github.com/jascal/lm-sae/blob/main/docs/listings/gpt2_disassembly.txt). See the [operator catalog](../operators/README.md) for what each role means.
 
-_First-order, single-component reads (+ the induction idiom); provisional. Each head line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role. Lines like `L.MLP.n####` are **MLP neurons** (the COMPUTE class — `n####` is the neuron's index in that layer's gated-MLP intermediate dimension, e.g. Gemma-2-2B has 9216/layer), **not** attention heads; each lists the top read-tokens → write-tokens (the layer's most salient few)._
+> **Discovery pass (causal overlay).** The ★ badges below are from the cross-model discovery sweep ([discovered components](../operators/discovered.md), 3-seed): every head/MLP mean-ablated and ranked by its **induction-NLL** damage (base induction NLL 0.50). A head is flagged **⚠ UNNAMED-candidate** when it is load-bearing but matches no catalogued operator — a lead to dossier. **2 unnamed load-bearing** here: `0.9`, `0.8`. Only the sweep's top-ranked components carry a badge (most heads are not individually load-bearing).
+
+_First-order, single-component reads (+ the induction idiom); provisional. Each head line: head · ADDR (where it reads) · WRITE (copy/transform) · top content binding · operator role · ★ discovery-pass causal (when load-bearing). Lines like `L.MLP.n####` are **MLP neurons** (the COMPUTE class — `n####` is the neuron's index in that layer's gated-MLP intermediate dimension, e.g. Gemma-2-2B has 9216/layer), **not** attention heads; each lists the top read-tokens → write-tokens (the layer's most salient few)._
 
 
 ### Layer 0
 
 - `L0.H0  ADDR=diffuse      WRITE=copy      bind "'d"->'_is'` [`induction`](../operators/induction.md)
-- `L0.H1  ADDR=content      WRITE=transform bind '_is'->'_are'`
+- `L0.H1  ADDR=content      WRITE=transform bind '_is'->'_are'` — ★ causal: induction ΔNLL **+0.19**±0.03, 37% of base, generic +0.13
 - `L0.H2  ADDR=diffuse      WRITE=transform bind ','->';'`
-- `L0.H3  ADDR=content      WRITE=transform bind '_your'->'_you'`
+- `L0.H3  ADDR=content      WRITE=transform bind '_your'->'_you'` — ★ causal: induction ΔNLL **+0.73**±0.04, 146% of base, generic +0.08
 - `L0.H4  ADDR=relative-Δ   WRITE=transform bind 'IA'->'MAR'`
-- `L0.H5  ADDR=content      WRITE=transform bind '_he'->'_his'`
+- `L0.H5  ADDR=content      WRITE=transform bind '_he'->'_his'` — ★ causal: induction ΔNLL **+0.19**±0.02, 39% of base, generic -0.00
 - `L0.H6  ADDR=diffuse      WRITE=copy      bind '_to'->'_for'`
 - `L0.H7  ADDR=relative-Δ   WRITE=transform bind 'I'->'CI'` [`prev-tok→induction-feed`](../operators/prevtok.md)
-- `L0.H8  ADDR=structural   WRITE=transform bind '_you'->'_I'` [`line-anchor`](../operators/structural.md)
-- `L0.H9  ADDR=structural   WRITE=transform bind '_for'->'_to'` [`line-anchor`](../operators/structural.md)
-- `L0.H10 ADDR=structural   WRITE=transform bind '_your'->'_you'`
+- `L0.H8  ADDR=structural   WRITE=transform bind '_you'->'_I'` [`line-anchor`](../operators/structural.md) — ★ causal: induction ΔNLL **+0.23**±0.01, 46% of base, generic +0.04 ⚠ **UNNAMED-candidate**
+- `L0.H9  ADDR=structural   WRITE=transform bind '_for'->'_to'` [`line-anchor`](../operators/structural.md) — ★ causal: induction ΔNLL **+0.37**±0.01, 75% of base, generic +0.03 ⚠ **UNNAMED-candidate**
+- `L0.H10 ADDR=structural   WRITE=transform bind '_your'->'_you'` — ★ causal: induction ΔNLL **+0.29**±0.03, 58% of base, generic +0.02
 - `L0.H11 ADDR=structural   WRITE=transform bind '_the'->'_his'` [`line-anchor`](../operators/structural.md)
-- `L0.MLP.n2733 reads {_of,_that,_is} -> writes {_the,_our,_to}`
+- `L0.MLP.n2733 reads {_of,_that,_is} -> writes {_the,_our,_to}` — ★ causal: induction ΔNLL **+11.75**±0.14, 2346% of base, generic +1.72
 - `L0.MLP.n1899 reads {_in,,,_I} -> writes {_the,_our,_his}`
 - `L0.MLP.n1612 reads {_with,_in,_of} -> writes {,,_the,.}`
 
@@ -43,7 +45,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `L1.H9  ADDR=diffuse      WRITE=transform bind 'US'->'_with'`
 - `L1.H10 ADDR=structural   WRITE=transform bind '_not'->'_for'`
 - `L1.H11 ADDR=content      WRITE=transform bind '_is'->'_are'`
-- `L1.MLP.n1120 reads {_for,_to,And} -> writes {_for,First,_he}`
+- `L1.MLP.n1120 reads {_for,_to,And} -> writes {_for,First,_he}` — ★ causal: induction ΔNLL **+0.97**±0.27, 194% of base, generic +1.03
 - `L1.MLP.n2401 reads {_me,_not,.} -> writes {_for,First,_he}`
 - `L1.MLP.n242  reads {.,_have,!} -> writes {_for,First,And}`
 
@@ -96,15 +98,15 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `L4.H8  ADDR=absolute-sink WRITE=transform bind 'US'->'IA'`
 - `L4.H9  ADDR=diffuse      WRITE=transform bind ':'->'.'`
 - `L4.H10 ADDR=absolute-sink WRITE=transform bind 'IA'->'US'`
-- `L4.H11 ADDR=relative-Δ   WRITE=transform bind ':'->'IA'` [`prev-tok→induction-feed`](../operators/prevtok.md)
-- `L4.MLP.n923  reads {_for,First,_to} -> writes {_for,First,And}`
+- `L4.H11 ADDR=relative-Δ   WRITE=transform bind ':'->'IA'` [`prev-tok→induction-feed`](../operators/prevtok.md) — ★ causal: induction ΔNLL **+0.40**±0.01, 79% of base, generic +0.02
+- `L4.MLP.n923  reads {_for,First,_to} -> writes {_for,First,And}` — ★ causal: induction ΔNLL **+0.19**±0.01, 39% of base, generic -0.07
 - `L4.MLP.n541  reads {.,?,!} -> writes {.,!,?}`
 - `L4.MLP.n462  reads {.,:,?} -> writes {.,!,:}`
 
 ### Layer 5
 
 - `L5.H0  ADDR=absolute-sink WRITE=transform bind 'MAR'->'IA'` [`induction`](../operators/induction.md)
-- `L5.H1  ADDR=absolute-sink WRITE=transform bind 'MAR'->'CI'` [`induction`](../operators/induction.md)
+- `L5.H1  ADDR=absolute-sink WRITE=transform bind 'MAR'->'CI'` [`induction`](../operators/induction.md) — ★ causal: induction ΔNLL **+1.23**±0.03, 246% of base, generic +0.02
 - `L5.H2  ADDR=relative-Δ   WRITE=transform bind 'MAR'->':'`
 - `L5.H3  ADDR=structural   WRITE=transform bind ':'->'Ċ'`
 - `L5.H4  ADDR=relative-Δ   WRITE=transform bind 'CI'->':'`
@@ -145,7 +147,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `L7.H3  ADDR=absolute-sink WRITE=transform bind 'MAR'->'IA'`
 - `L7.H4  ADDR=absolute-sink WRITE=copy      bind '_and'->'_have'`
 - `L7.H5  ADDR=absolute-sink WRITE=transform bind 'MAR'->'IA'`
-- `L7.H6  ADDR=absolute-sink WRITE=transform bind 'MAR'->'US'`
+- `L7.H6  ADDR=absolute-sink WRITE=transform bind 'MAR'->'US'` — ★ causal: induction ΔNLL **+0.53**±0.02, 105% of base, generic -0.03
 - `L7.H7  ADDR=absolute-sink WRITE=transform bind 'MAR'->'IA'`
 - `L7.H8  ADDR=relative-Δ   WRITE=copy      bind 'US'->'CI'`
 - `L7.H9  ADDR=absolute-sink WRITE=transform bind '.'->'IA'`
@@ -162,7 +164,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `L8.H2  ADDR=structural   WRITE=copy      bind 'MAR'->'IA'`
 - `L8.H3  ADDR=absolute-sink WRITE=transform bind 'MAR'->'US'`
 - `L8.H4  ADDR=absolute-sink WRITE=copy      bind '.'->'Ċ'`
-- `L8.H5  ADDR=diffuse      WRITE=copy      bind 'US'->'MAR'`
+- `L8.H5  ADDR=diffuse      WRITE=copy      bind 'US'->'MAR'` — ★ causal: induction ΔNLL **+0.16**±0.00, 33% of base, generic -0.01
 - `L8.H6  ADDR=absolute-sink WRITE=transform bind 'US'->':'`
 - `L8.H7  ADDR=relative-Δ   WRITE=copy      bind '_our'->'_of'`
 - `L8.H8  ADDR=diffuse      WRITE=transform bind 'MAR'->'IA'`
@@ -205,7 +207,7 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `L10.H9  ADDR=absolute-sink WRITE=copy      bind '_your'->'_for'`
 - `L10.H10 ADDR=absolute-sink WRITE=transform bind 'MAR'->'CI'`
 - `L10.H11 ADDR=absolute-sink WRITE=copy      bind '_our'->'_of'`
-- `L10.MLP.n772  reads {_a,Ċ,!} -> writes {_a,_your,_the}`
+- `L10.MLP.n772  reads {_a,Ċ,!} -> writes {_a,_your,_the}` — ★ causal: induction ΔNLL **+0.18**±0.01, 36% of base, generic -0.25
 - `L10.MLP.n2114 reads {Ċ,'s,_that} -> writes {Ċ,?,:}`
 - `L10.MLP.n2288 reads {_have,'s,Ċ} -> writes {_have,'s,_is}`
 
@@ -223,8 +225,8 @@ _First-order, single-component reads (+ the induction idiom); provisional. Each 
 - `L11.H9  ADDR=absolute-sink WRITE=copy      bind 'MAR'->'CI'`
 - `L11.H10 ADDR=diffuse      WRITE=copy      bind 'MAR'->'CI'`
 - `L11.H11 ADDR=structural   WRITE=copy      bind 'And'->'_he'`
-- `L11.MLP.n2679 reads {Ċ,.,MAR} -> writes {.,Ċ,:}`
+- `L11.MLP.n2679 reads {Ċ,.,MAR} -> writes {.,Ċ,:}` — ★ causal: induction ΔNLL **+0.25**±0.03, 49% of base, generic +0.04
 - `L11.MLP.n1550 reads {_I,_they,I} -> writes {_I,_they,_you}`
 - `L11.MLP.n43   reads {_a,;,_not} -> writes {_a,_for,_with}`
 
-_Generated from the committed listing by `disassembly_pages.py`._
+_Generated from the committed listing + discovery sweep by `disassembly_pages.py`._
