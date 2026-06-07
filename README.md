@@ -138,6 +138,12 @@ The retrain experiments prove there is **no shortcut**:
   original, because *training toward capability inherently increases entanglement*
   (`mps_tower_geoforce_tiny.py`).
 
+…but those retrains used a **reconstruction** bottleneck — the mAUC axis that already survives. On the *right*
+axis, the no-go lifts: training from scratch with an **auxiliary oracle-feature-recovery loss** raises native
+cov95 at **every** host width (+0.07…+0.24, mean +0.155) at **zero/negative capability cost** — interpretable,
+equally-capable solutions are *reachable* via supervision, with the substrates as training signal
+(`cov95_forge_tax/host_width_sweep.py`; see [`docs/DECOMPILATION.md`](docs/DECOMPILATION.md)).
+
 Serving the tower (`serve_tower_tiny.py`) sharpens the frontier: the **interpretability** dial
 works (cov95 saturates at ~4 levels) but the **capability** dial is a cliff — the low-χ levels
 are predictively *inert*; by `lm_head` linearity the entangled **core alone** predicts as well
