@@ -221,10 +221,12 @@ reader, compare the real writer against *random causal writers into the same rea
 null that isolates writer *specificity* from reader depth). An edge is "live" if its ΔTV beats its reader's
 matched 2σ null; **specificity = ΔTV − matched null**.
 
-- **Static composition predicts dynamic liveness across the whole graph** — Spearman(static, ΔTV) = **+0.52**
-  over all 170 edges; Spearman(static, reader-matched specificity) = **+0.37**. This is the broad version of
-  `path_patch_induction`'s induction-only ρ: the weight-space score is a graph-wide predictor of which writes
-  actually shape which reads, not just for one idiom.
+- **Static composition predicts dynamic liveness across the whole graph.** The headline (cleaner, depth-
+  unconfounded) metric is **Spearman(static, reader-matched specificity) = +0.37**; the raw
+  Spearman(static, ΔTV) = +0.52 is higher but inflated by the depth co-scaling both quantities share, so the
+  specificity correlation is the one to trust. Either way the weight-space score is a graph-wide predictor of
+  which writes actually shape which reads — the broad version of `path_patch_induction`'s induction-only ρ,
+  not a single-idiom result.
 - **The induction K-chain is auto-recovered AND live.** Static prev-token→induction K-composition 0.069 vs
   causal baseline 0.042 (1.6×) vs random 0.039. Dynamically, the **canonical prev-token head 4.11 → inductors
   is 4/5 live** (4.11→5.5/5.0/7.11/6.9 clear their matched nulls; 4.11→5.1 marginal), the strong-edge median
@@ -241,16 +243,41 @@ matched 2σ null; **specificity = ΔTV − matched null**.
   **dead**, and the spurious S-inhib head is dead. The extractor keeps the real sub-circuit and discards the
   cross-product noise.
 - **22 new live edges surfaced** above their reader-matched 2σ nulls, not in induction/IOI — dominated by
-  early-layer **write-hubs** (0.9→2.5/2.9 at specificity +0.40; 1.8→{9.3, 10.5, 10.9} long-range into late
-  layers). These are *candidate* sub-DAGs (high-specificity writers feeding many readers, consistent with
-  positional / duplicate-token hubs), **not** validated circuits — behavioral labeling is future work.
+  early-layer **write-hubs** feeding many readers (consistent with positional / duplicate-token hubs). The
+  highest-specificity candidates:
+
+  | port | edge | ΔTV | reader null | specificity |
+  |---|---|---|---|---|
+  | K | 0.9→2.9 | 0.444 | 0.035 | **+0.410** |
+  | K | 0.9→2.5 | 0.449 | 0.044 | **+0.404** |
+  | K | 1.8→10.9 | 0.293 | 0.007 | **+0.287** |
+  | K | 1.8→9.3 | 0.333 | 0.088 | **+0.245** |
+  | Q | 0.9→1.3 | 0.259 | 0.018 | **+0.240** |
+  | K | 1.8→3.2 | 0.362 | 0.133 | **+0.230** |
+  | Q | 1.10→2.11 | 0.270 | 0.055 | **+0.215** |
+  | K | 1.8→10.5 | 0.198 | 0.021 | **+0.177** |
+
+  Two heads recur as hubs: **0.9** (a layer-0 writer dominating several layer-1/2 readers) and **1.8** (a
+  layer-1 writer reaching *long-range* into late-layer keys, 9.3/10.5/10.9). These are *candidate* sub-DAGs,
+  **not** validated circuits — behavioral labeling (and targeted single-edge path-patching, as for induction)
+  is the obvious follow-up; the full ranked list is in the summary JSON's `novel_live_edges`.
+
+**Feeds the recompile harness (milestones 1/4).** The live edges this extractor confirms are exactly the
+*keepable ops* the ResidualVM reconstruction-coverage interpreter (`residual_vm.py`) should retain: M1 selects
+heads by marginal ablation importance, but the DAG supplies the **structured op-set** (which writer→reader
+wires carry the computation), so a DAG-guided keep-set is the natural upgrade to M1's flat head-budget — and
+the recompile-KL then verifies the extracted sub-DAG *executes*. Completing the DAG with V-composition + MLP
+nodes (milestone 3) is what makes that op-set whole.
 
 **Scope (honest).** (a) The dynamic gate runs on natural text, so the IOI Q-edges are confirmed by generic
 attention reshaping (ΔTV), not the IOI-task logit-difference — that task-specific causal validation already
 lives in `ioi_causal.py`; M2's contribution is the *unified static→dynamic* recovery. (b) ΔTV measures whether
 an edge *reshapes the reader's attention pattern* (Q/K composition); V-composition (writing values without
 moving attention) needs a different readout, not done here. (c) MLP nodes are absent — they are milestone 3.
-`runs/disassembly/composition_dag_summary.json` (re-run the script to regenerate the figure).
+**Compute:** GPT-2, CPU-feasible — weights + two forward passes over the corpus (one for behavioural labels,
+one for the path-patch gate); the full run is **~70 s wall-clock and ~5 GB RAM on CPU** (no GPU), so it scales
+to any HF model the box can hold a forward pass of. `runs/disassembly/composition_dag_summary.json` (re-run the
+script to regenerate the figure).
 
 ## Ceiling test (milestone 4) — first result (v2, tiny GPT)
 
