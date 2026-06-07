@@ -23,7 +23,7 @@ collected with the tools here, two sources:
 **Reading it:** the **induction** edge (prev-token → induction) is live in *every* model (and *stronger* in RoPE —
 content matching lives in the key everywhere); **positional-broadcast** (sink/hub → prev-token key) is
 **GPT-2-small/medium-only** (the absolute-position plumbing — RoPE reads position from the rotation, so the
-prev-token key has no upstream writer to remove). Same absolute-position-family split as the operator atlas's sink.
+prev-token key has no upstream writer to remove). Same absolute-position-family split as the operator catalog's sink.
 
 ## Circuit inventory (index)
 
@@ -43,7 +43,7 @@ prev-token key has no upstream writer to remove). Same absolute-position-family 
 - **SSM (Mamba)** — no heads, so no composition edges; induction is present only behaviourally (`ssm_induction.py`).
 - **Not yet run:** the IOI Q-chain / V-composition cross-model (no published head-sets off GPT-2); full per-edge
   path-patch of all 22 discovered edges on the
-  RoPE models. The cross-model atlas covers the universal-reader edges.
+  RoPE models. The cross-model catalog covers the universal-reader edges.
 
 ## How this was made
 

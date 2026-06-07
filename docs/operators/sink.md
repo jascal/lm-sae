@@ -2,7 +2,7 @@
 
 **addressing** — attention sink: park attention on key-0 (the no-op / idle register)
 
-## Cross-model (atlas row)
+## Cross-model (catalog row)
 
 | model | arch | signal | #heads | top head | depth | causal ΔNLL |
 |---|---|---|---|---|---|---|
@@ -28,4 +28,4 @@
 **G · SAE operands**: NOT RUN — needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer.
 
 
-_Data: `runs/disassembly/operators/dossiers/sink/` + the atlas. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/sink/` + the catalog. Regenerate: `operator_catalog_doc.py`._

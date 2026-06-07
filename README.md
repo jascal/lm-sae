@@ -11,6 +11,15 @@ features.** Most of attention is positional/structural plumbing; the content-car
 *named*, causally load-bearing, corpus-robust op-catalog — and the catalog ports across architectures with a few
 sharp, architecture-specific exceptions.
 
+**Mode — natural history, borrowed from biology.** A trained model is something *grown*, not designed: the job is
+to **catalog** the operators it developed, **taxonomize** them (operators → circuits; class → instance → variant),
+and derive **generalizable** principles by comparing across model *species* (the absolute-position GPT-2 family vs
+RoPE vs a non-attention SSM). "Catalog," not "atlas," is deliberate — like a field biologist's catalog it is an
+honest, growing, causally-tested record of what we have observed, **not** a claim of completeness. The advantage
+over wet biology: we can also **breed synthetic specimens and intervene at high speed** — train hosts from scratch,
+swap the sequence-mixer to a non-attention recurrence, manufacture ground-truth-feature substrates (the
+[sister track](docs/FORGE_TAX_TRACK.md)), and ablate / path-patch any component in milliseconds.
+
 > A sister investigation — the **exact-lexical oracle** and the **cov95 forge tax** (what an SAE *feature basis*
 > destroys, and what you must preserve) — has moved to [`docs/FORGE_TAX_TRACK.md`](docs/FORGE_TAX_TRACK.md). It is
 > the "what the SAE misses" motivation for this disassembly work.
@@ -38,11 +47,11 @@ sharp, architecture-specific exceptions.
 |---|---|---|
 | disassembly | GPT-2 attention is a reused op-catalog; **8/8** literature idioms recovered from weights | ~99% of content mass legible, ~2% dark |
 | disassembly | named heads are **causally load-bearing** + **corpus-robust** | induction-NLL z=8.6; head identities ρ≈0.84 across corpora |
-| operator atlas | **7 universal operator classes × 6 models**; induction is the most universal | induction signal .91–.99 in all 6 |
-| operator atlas | the **sink** is common but **absent in Gemma**, and *present ≠ depended-on* | sink 0 heads in Gemma vs 117–553 elsewhere; prose-causal ≈0 everywhere |
-| operator atlas | RoPE leans on **self** where GPT-2 leans on the sink | self causal ΔNLL Qwen **+3.77** |
-| circuit atlas | the **induction edge** (prev-tok→induction) is live in **all 6** models, *stronger* in RoPE | key-collapse +17% (gpt2) … **+89%** (Qwen) |
-| circuit atlas | **positional-broadcast** (sink→prev-tok key) is **GPT-2-small/medium-only** | +22/+32% vs ≈0 elsewhere |
+| operator catalog | **7 universal operator classes × 6 models**; induction is the most universal | induction signal .91–.99 in all 6 |
+| operator catalog | the **sink** is common but **absent in Gemma**, and *present ≠ depended-on* | sink 0 heads in Gemma vs 117–553 elsewhere; prose-causal ≈0 everywhere |
+| operator catalog | RoPE leans on **self** where GPT-2 leans on the sink | self causal ΔNLL Qwen **+3.77** |
+| circuit catalog | the **induction edge** (prev-tok→induction) is live in **all 6** models, *stronger* in RoPE | key-collapse +17% (gpt2) … **+89%** (Qwen) |
+| circuit catalog | **positional-broadcast** (sink→prev-tok key) is **GPT-2-small/medium-only** | +22/+32% vs ≈0 elsewhere |
 | decompilation | the named induction circuit beats random everywhere, but the **decompilable *fraction* is absolute-position-family-specific** | abs-pos ~20% / 4–17× vs RoPE 3–9% |
 | SSM port | the in-context-copy **capability survives a non-attention mixer** | induction gain +12.1…+12.5 across Mamba **and** GPT-2 |
 | discovery | the ResidualVM engine finds **MLP0 as the top component for every behaviour** + unnamed candidate ops | MLP0 ΔNLL +7.8/+7.5/+1.8; candidates 7.6, 5.9 |
@@ -147,7 +156,7 @@ discovered circuit (7.6 fed by induction heads + candidate writers 2.11/5.9). Th
 
 ## Future work
 
-- **MLP / COMPUTE operator family** — the operator atlas is attention-only; MLP0 dominates causally, so the
+- **MLP / COMPUTE operator family** — the operator catalog is attention-only; MLP0 dominates causally, so the
   COMPUTE class is the largest uncatalogued instruction family.
 - **Cross-model circuit discovery** — `composition_dag` de-novo edge discovery is GPT-2-only; port to RoPE.
 - **Dossier the discovered candidates** (7.6, 5.9, 8.3) and the discovered edges.
@@ -164,12 +173,12 @@ lm-sae/
 ├── docs/
 │   ├── DECOMPILATION.md      ← decompilation design + all milestone/catalog results
 │   ├── DISASSEMBLY.md        ← GPT-2 + cross-model disassembly deep-dive
-│   ├── operators/            ← GENERATED operator catalog (atlas matrices + per-op pages)
+│   ├── operators/            ← GENERATED operator catalog (survey matrices + per-op pages)
 │   ├── circuits/             ← GENERATED circuit catalog (cross-model edges + per-circuit pages)
 │   ├── FORGE_TAX_TRACK.md    ← sister track: the oracle & cov95 forge tax
 │   └── listings/             ← committed full per-head disassembly listings (GPT-2 + Gemma)
 ├── scripts/                  ← grouped by research thread — see scripts/README.md
-│   └── disassembly/          ← op/circuit atlases, dossiers, the ResidualVM debugger, doc generators
+│   └── disassembly/          ← op/circuit catalog builders, dossiers, the ResidualVM debugger, doc generators
 └── runs/                     ← result artifacts; *_summary.json tracked — see runs/README.md
 ```
 
@@ -188,7 +197,7 @@ python3.12 -m venv .venv
 .venv/bin/python scripts/disassembly/coverage_scorecard.py --corpus wikitext
 .venv/bin/python scripts/disassembly/causal_validation.py
 
-# the operator catalog (atlas across models, then a deep dossier, then the docs)
+# the operator catalog (survey across models, then a deep dossier, then the docs)
 .venv/bin/python scripts/disassembly/operator_atlas.py            # needs the GPU for the RoPE models
 .venv/bin/python scripts/disassembly/operator_dossier.py --op induction
 .venv/bin/python scripts/disassembly/operator_catalog_doc.py      # regenerates docs/operators/ from JSON
@@ -207,10 +216,10 @@ regenerate anywhere. See [`scripts/README.md`](scripts/README.md) for the full p
 1. **First-order + superposition-limited.** Single-component instructions + named idioms + path-patched edges;
    the operand basis (token-centroid / SAE) caps fidelity. Not yet an *executable* decompilation.
 2. **Causal claims are metric-specific** (confirmed on the metric each idiom serves) and **coverage magnitudes are
-   corpus-conditioned** (use the prose baseline). The atlas causal column is *generic-prose* ΔNLL — task-specific
+   corpus-conditioned** (use the prose baseline). The catalog's causal column is *generic-prose* ΔNLL — task-specific
    ops read low there (see each dossier's section B).
 3. **IOI circuit ops are GPT-2-only** (literature DLA head-sets; no published set off GPT-2). **SSM** has no heads
-   (induction present only behaviourally). **MLP/COMPUTE** is not yet in the cross-model atlas.
+   (induction present only behaviourally). **MLP/COMPUTE** is not yet in the cross-model catalog.
 4. **Small/mid hosts** (GPT-2 family, 1–2B RoPE models, ≤790M Mamba) — not frontier scale.
 
 ## License

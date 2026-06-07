@@ -1,4 +1,4 @@
-"""The operator ATLAS — every (behavioural) operator measured across every model, one master matrix.
+"""The operator CATALOG (survey matrix) — every (behavioural) operator measured across every model.
 
 The per-op `operator_dossier.py` goes DEEP on one instruction in GPT-2. This goes WIDE: the full catalog of
 behaviourally-maskable operators × all cached architectures, in a single survey matrix. For each (operator,

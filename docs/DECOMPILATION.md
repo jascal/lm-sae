@@ -981,11 +981,11 @@ The dossier goes deep on one op; the **catalog** goes wide and turns the survey 
 (`docs/operators/`, tree under `runs/disassembly/operators/`). Two instruments:
 **`operator_atlas.py`** (the cross-model matrix) + **`operator_dossier.py`** (the deep per-op pages), stitched into
 docs by **`operator_catalog_doc.py`**. The key framing the survey forced: **each "operator" is a CLASS — a family
-of heads — not a single head.** The atlas reports per-(class, model): behavioural **signal** (max head mass on the
+of heads — not a single head.** The catalog reports per-(class, model): behavioural **signal** (max head mass on the
 op's pattern), **membership** (# heads carrying it), top head + depth, and a uniform **causal ΔNLL** (mean-ablate
 top-3, generic prose).
 
-**The atlas — 7 universal/addressing operator classes × 6 models** (GPT-2 small/medium/large + Gemma-2-2B /
+**The catalog matrix — 7 universal/addressing operator classes × 6 models** (GPT-2 small/medium/large + Gemma-2-2B /
 Llama-3.2-1B / Qwen-2.5-1.5B). Signal (membership in parens for GPT-2):
 
 | class | kind | gpt2 | -medium | -large | gemma-2 | llama-3.2 | qwen-2.5 |
@@ -1054,7 +1054,7 @@ reader-matched null) is what *collects* them. **7 circuits catalogued** from two
    collapses the induction reader's attention universally. (Cross-model **mechanism**-invariance, at the *edge*
    level now, not just the node.)
 2. **positional_broadcast is GPT-2-small/medium-only** (+22%/+32%, ≈0 in gpt2-large/Gemma/Qwen, skip Llama) — the
-   same absolute-position signature as the operator atlas's sink: RoPE reads position from the rotation, so the
+   same absolute-position signature as the operator catalog's sink: RoPE reads position from the rotation, so the
    prev-token key has *no upstream writer to remove*. The decompilable plumbing circuit is family-specific even
    though the content circuit is universal.
 
@@ -1088,10 +1088,10 @@ Run on GPT-2 across three behaviours (induction / IOI / generic LM), it immediat
 - **MLP0 is the single most load-bearing component for *every* behaviour** (induction ΔNLL **+7.8**, IOI **+7.5**,
   generic +1.8) — far above any attention head. The discovery engine's first finding is that **the biggest
   operator in the model is an MLP we have not catalogued** (the L0 detokenizer): a direct pointer to the
-  MLP/COMPUTE gap (the attention atlas is only half the instruction set).
+  MLP/COMPUTE gap (the attention catalog is only half the instruction set).
 - **Candidate UNNAMED operators**, by behaviour: induction → **7.6** (+0.36, *more* load-bearing than the
   prev-token head 4.11) and 2.11/8.1/8.5; IOI → **5.9** (+1.00), 8.3, 0.10, 1.3; generic → none above +0.05 (it is
-  distributed + MLP-carried — corroborates the operator atlas's "no named attention op serves generic LM").
+  distributed + MLP-carried — corroborates the operator catalog's "no named attention op serves generic LM").
 - **A discovered circuit**: edge-probing the discovered op **7.6** shows it is fed by the induction heads (5.1
   ΔNLL +1.26, 6.9) + the prev-token head (4.11 +0.40) + the candidate writers **2.11 / 5.9** — i.e. 7.6 is a
   *downstream induction-consumer* (a late induction-output mover) the literature head-set omits. A new circuit

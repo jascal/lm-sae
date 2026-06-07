@@ -1,8 +1,8 @@
 # Operator `self`
 
-**addressing** operator (universal/addressing — measured across all models in the atlas).
+**addressing** operator (universal/addressing — measured across all models in the catalog).
 
-## Cross-model (atlas row)
+## Cross-model (catalog row)
 
 | model | arch | signal | #heads | top head | depth | causal ΔNLL |
 |---|---|---|---|---|---|---|
@@ -14,4 +14,4 @@
 | Qwen2.5-1.5B | RoPE | 1.000 | 43 | 15.7 | 0.56 | +3.771 |
 
 
-_Data: `runs/disassembly/operators/dossiers/self/` + the atlas. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/self/` + the catalog. Regenerate: `operator_catalog_doc.py`._

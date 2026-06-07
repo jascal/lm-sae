@@ -17,14 +17,14 @@ This is the **catalog** of GPT-2-family attention operators, measured exhaustive
 
 
 - **Universal / addressing operators** (a position-or-token attention mask → measurable in *any* architecture):
-  `prevtok, induction, duplicate, sink, self, local, structural`. The **atlas** (6 models) below is their cross-model survey.
+  `prevtok, induction, duplicate, sink, self, local, structural`. The **catalog matrix** (6 models) below is their cross-model survey.
 - **GPT-2 circuit operators** (literature direct-logit-attribution head-sets, **no published head-set outside
   GPT-2**): `name_mover, backup_name_mover, negative_mover, s_inhibition, coreference`. Catalogued by their per-op dossiers (GPT-2), not the cross-model matrix.
 
-Each operator has a **page** (cross-model atlas row + the deep GPT-2 dossier: identity / causal×tasks / K-V
+Each operator has a **page** (cross-model catalog row + the deep GPT-2 dossier: identity / causal×tasks / K-V
 channels / composition / redundancy / cross-model). Per-op data lives under `runs/disassembly/operators/`.
 
-## Atlas — behavioural signal (max head mass on the op's pattern; *is the op present?*)
+## Catalog — behavioural signal (max head mass on the op's pattern; *is the op present?*)
 
 | operator class | kind | gpt2 | gpt2-medium | gpt2-large | gemma-2-2b | Llama-3.2-1B | Qwen2.5-1.5B |
 |---|---|---|---|---|---|---|---|
@@ -36,7 +36,7 @@ channels / composition / redundancy / cross-model). Per-op data lives under `run
 | **local** | positional | 0.34 | 0.34 | 0.34 | 0.31 | 0.27 | 0.28 |
 | **structural** | structural | 0.19 | 0.25 | 0.38 | 0.23 | 0.36 | 0.16 |
 
-## Atlas — membership (# heads carrying the op, mass > 0.15; *how many heads in the class?*)
+## Catalog — membership (# heads carrying the op, mass > 0.15; *how many heads in the class?*)
 
 | operator class | kind | gpt2 | gpt2-medium | gpt2-large | gemma-2-2b | Llama-3.2-1B | Qwen2.5-1.5B |
 |---|---|---|---|---|---|---|---|
@@ -48,7 +48,7 @@ channels / composition / redundancy / cross-model). Per-op data lives under `run
 | **local** | positional | 16 | 28 | 42 | 48 | 8 | 22 |
 | **structural** | structural | 2 | 4 | 6 | 7 | 3 | 1 |
 
-## Atlas — causal ΔNLL (mean-ablate top-3 heads, generic-prose NLL; *load-bearing on prose?*)
+## Catalog — causal ΔNLL (mean-ablate top-3 heads, generic-prose NLL; *load-bearing on prose?*)
 
 Note: this is **generic-prose** ΔNLL, so *task-specific* ops (induction, duplicate) read low here even though
 they are load-bearing on their *own* task — see each op's dossier (section B) for the task-specific causal.
@@ -80,9 +80,9 @@ they are load-bearing on their *own* task — see each op's dossier (section B) 
 
 ## Gaps (documented, not skipped)
 
-- **succession / greater-than** — MLP-dominated; no clean attention head, so no atlas row (the OV probe sees only
+- **succession / greater-than** — MLP-dominated; no clean attention head, so no catalog row (the OV probe sees only
   the attention-side shadow). It is carried by the *copy* ops (see `instruction_reuse.py`: successor ← induction/duplicate).
-- **SSM (Mamba)** — no attention heads, so the head-resolved atlas does not apply; induction is present
+- **SSM (Mamba)** — no attention heads, so the head-resolved catalog does not apply; induction is present
   *behaviourally* (NLL gain) — see `ssm_induction.py`.
 
 ## How this was made

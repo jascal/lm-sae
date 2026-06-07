@@ -1,0 +1,44 @@
+name: regenerate catalog docs
+
+# Keep the generated operator/circuit catalog pages in sync with the committed result artifacts.
+# The doc generators read only runs/**/*_summary.json and write docs/operators|circuits/ — they are
+# stdlib-only (no torch/GPU), so they run on a plain runner. GitHub Pages (served from /docs) rebuilds
+# on the resulting push, so the site stays current with the latest results.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "runs/disassembly/operators/**"
+      - "runs/disassembly/circuits/**"
+      - "runs/disassembly/*_summary.json"
+      - "scripts/disassembly/operator_catalog_doc.py"
+      - "scripts/disassembly/circuit_catalog_doc.py"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: regenerate catalog docs from the JSON artifacts
+        run: |
+          python scripts/disassembly/operator_catalog_doc.py
+          python scripts/disassembly/circuit_catalog_doc.py
+      - name: commit if the docs changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/operators docs/circuits
+          if git diff --cached --quiet; then
+            echo "catalog docs already in sync"
+          else
+            git commit -m "Auto-regenerate catalog docs from result artifacts [skip ci]"
+            git push
+          fi

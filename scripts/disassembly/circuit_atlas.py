@@ -1,4 +1,4 @@
-"""The circuit ATLAS — composed multi-operator circuits, surveyed/collected across models.
+"""The circuit CATALOG (survey matrix) — composed multi-operator circuits, surveyed/collected across models.
 
 Operators are single head-classes (`operator_atlas.py`); CIRCUITS are their *compositions* — a writer-op feeding a
 reader-op's K/Q/V port, chained. This catalogs them the same way: a circuits × models matrix + an inventory that

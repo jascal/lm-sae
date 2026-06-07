@@ -2,7 +2,7 @@
 
 **content** — duplicate-token head: attend to an earlier occurrence of the same token
 
-## Cross-model (atlas row)
+## Cross-model (catalog row)
 
 | model | arch | signal | #heads | top head | depth | causal ΔNLL |
 |---|---|---|---|---|---|---|
@@ -30,4 +30,4 @@
 **G · SAE operands**: NOT RUN — needs a SAE (sae_lens / Gemma Scope); the op's feature-space read/write operands are the next layer.
 
 
-_Data: `runs/disassembly/operators/dossiers/duplicate/` + the atlas. Regenerate: `operator_catalog_doc.py`._
+_Data: `runs/disassembly/operators/dossiers/duplicate/` + the catalog. Regenerate: `operator_catalog_doc.py`._

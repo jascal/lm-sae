@@ -1,0 +1,13 @@
+title: "lm-sae — disassembling attention into an instruction set"
+description: "An operator + circuit catalog for transformer attention, surveyed across model families, with a programmatic discovery engine."
+theme: jekyll-theme-cayman
+show_downloads: false
+# render front-matter-less markdown (the generated catalog pages) with the theme layout
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+# keep build artifacts / non-page assets out of the site
+exclude:
+  - listings/
