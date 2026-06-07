@@ -81,15 +81,22 @@ The throughline: **a model is legible in the right basis even where it is *not* 
 
 ## Cross-architecture synthesis
 
-**Mechanisms are invariant** (idioms, induction causal in all four RoPE/abs-pos models, K/Q/V composition); **the
-positional register is absolute-position-family-specific** (three independent signatures: the sink, the
-positional-broadcast circuit, the decompilable fraction). One level deeper, the in-context-copy *capability*
-survives even a non-attention mixer (Mamba), though the *mechanism* is unverified without head-resolution.
+See **[Cross-model findings](FINDINGS.md)** for the curated narrative. In brief: the **mechanisms are invariant**
+(idioms, induction causal in all six models) and the **positional register is absolute-position-family-specific**
+(the sink, the positional-broadcast circuit, the decompilable fraction) — but several things people credit to
+*architecture* actually track **scale** (induction's single-prev-token-writer key is a GPT-2-*small* trait that
+distributes with size; the token-determined MLP "embedding block" widens with scale). The recurring outliers are
+**Gemma** (low-sink, distributed key, strongest MLP0 extended-embedding) and **Llama** (context-determined MLP0,
+layer-0 induction *enablers* not inductors). Banked cautions: synthetic probes can manufacture apparent
+suppression; **high causal effect ≠ doing the named operation**; present ≠ depended-on. One level deeper, the
+in-context-copy *capability* survives a non-attention mixer (Mamba), though the *mechanism* is unverified.
 
 ## Future work
 
-MLP/COMPUTE operator family · cross-model circuit discovery · dossier the discovered candidates · per-class
-SAE-feature operands · executable decompilation (recompile a validated circuit, KL ≈ host).
+Per-class **SAE-feature operands** (what each op reads/writes in feature space — the last catalog-depth gap) ·
+executable decompilation (recompile a validated circuit, KL ≈ host) · the outlier follow-ups in
+[Cross-model findings](FINDINGS.md). *(Done: the MLP/COMPUTE family, cross-model circuit discovery, dossiering the
+discovered candidates, the cross-model deep dossier across all six models, and the MLP extended-embedding test.)*
 
 ## Sister track
 
