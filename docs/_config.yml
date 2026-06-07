@@ -1,5 +1,5 @@
-title: "lm-sae — disassembling attention into an instruction set"
-description: "An operator + circuit catalog for transformer attention, surveyed across model families, with a programmatic discovery engine."
+title: "A Field Guide to Attention"
+description: "A cross-architecture, causally-validated catalog of transformer operators and circuits (the lm-sae disassembly → decompilation program)."
 theme: jekyll-theme-cayman
 show_downloads: false
 # render front-matter-less markdown (the generated catalog pages) with the theme layout
