@@ -1,5 +1,5 @@
 title: "A Field Guide to Attention"
-description: "A cross-architecture, causally-validated catalog of transformer operators and circuits (the lm-sae disassembly → decompilation program)."
+description: "A cross-architecture, causally-validated catalog of transformer operators and circuits."
 theme: jekyll-theme-cayman
 show_downloads: false
 # render front-matter-less markdown (the generated catalog pages) with the theme layout

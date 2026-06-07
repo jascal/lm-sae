@@ -2,7 +2,7 @@
 
 ### A cross-architecture, causally-validated catalog of transformer operators and circuits
 
-*`lm-sae` — disassembling a transformer's attention into a catalogued instruction set.*
+*A [**TastyBots**](https://tastybots.net) project · [@tastybots](https://x.com/tastybots) · `lm-sae`.*
 
 A frozen language model computes in a basis we didn't choose. **`lm-sae` reads that computation as a small,
 reused *instruction set*** — names the operators (single attention heads / MLPs), collects the circuits
