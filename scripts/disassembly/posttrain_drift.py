@@ -29,14 +29,20 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-# base -> instruct, with the induction shared-writer layer (from circuit_writer_cluster_summary, dominant writer).
+# base -> post-trained, with the induction shared-writer layer + family. RoPE = instruct-tuned; the GPT-2 pairs use
+# DialoGPT (a real GPT-2 fine-tune, dialogue domain) — distributed induction (no single early node) is the contrast
+# the "does RoPE suffer MORE" question needs.
 PAIRS = [
-    {"name": "Llama-3.2-1B", "base": "unsloth/Llama-3.2-1B", "instruct": "unsloth/Llama-3.2-1B-Instruct", "writer_layer": 0},
-    {"name": "Qwen2.5-1.5B", "base": "Qwen/Qwen2.5-1.5B", "instruct": "Qwen/Qwen2.5-1.5B-Instruct", "writer_layer": 3},
-    {"name": "gemma-2-2b", "base": "google/gemma-2-2b", "instruct": "google/gemma-2-2b-it", "writer_layer": 0},
+    {"name": "Llama-3.2-1B", "base": "unsloth/Llama-3.2-1B", "instruct": "unsloth/Llama-3.2-1B-Instruct", "writer_layer": 0, "gpt2": False},
+    {"name": "Qwen2.5-1.5B", "base": "Qwen/Qwen2.5-1.5B", "instruct": "Qwen/Qwen2.5-1.5B-Instruct", "writer_layer": 3, "gpt2": False},
+    {"name": "gemma-2-2b", "base": "google/gemma-2-2b", "instruct": "google/gemma-2-2b-it", "writer_layer": 0, "gpt2": False},
+    {"name": "gpt2->DialoGPT-sm", "base": "gpt2", "instruct": "microsoft/DialoGPT-small", "writer_layer": 4, "gpt2": True},
+    {"name": "gpt2-med->DialoGPT-md", "base": "gpt2-medium", "instruct": "microsoft/DialoGPT-medium", "writer_layer": 6, "gpt2": True},
 ]
 ATTN = ["q_proj", "k_proj", "v_proj", "o_proj"]
 MLP = ["gate_proj", "up_proj", "down_proj"]
+GPT2_ATTN = ["attn.c_attn", "attn.c_proj"]
+GPT2_MLP = ["mlp.c_fc", "mlp.c_proj"]
 
 
 def repo_reader(repo):
@@ -59,8 +65,19 @@ def repo_reader(repo):
         return (lambda n: h.get_tensor(n)), set(h.keys())
 
 
-def weight_drift(base_id, inst_id, nL):
-    gb, kb = repo_reader(base_id); gi, ki = repo_reader(inst_id)
+def model_params(model_id):
+    """Full named-parameters reader (module paths, format-agnostic — for GPT-2/.bin checkpoints). Returns (get, keys)."""
+    import torch
+    from transformers import AutoModelForCausalLM
+    m = AutoModelForCausalLM.from_pretrained(model_id, dtype=torch.float32, low_cpu_mem_usage=True)
+    d = {k: v.detach() for k, v in m.named_parameters()}
+    del m
+    return (lambda n: d.get(n)), set(d)
+
+
+def weight_drift(base_id, inst_id, nL, is_gpt2=False):
+    reader = model_params if is_gpt2 else repo_reader                       # GPT-2 lacks uniform safetensors keys/.bin
+    gb, kb = reader(base_id); gi, ki = reader(inst_id)
 
     def rel(name):
         if name not in kb or name not in ki:
@@ -69,13 +86,21 @@ def weight_drift(base_id, inst_id, nL):
         return float((wi - wb).norm() / (wb.norm() + 1e-9))
     curve = []
     for L in range(nL):
-        pre = f"model.layers.{L}."
-        a = [rel(pre + f"self_attn.{p}.weight") for p in ATTN]; a = [x for x in a if x is not None]
-        m = [rel(pre + f"mlp.{p}.weight") for p in MLP]; m = [x for x in m if x is not None]
-        row = {"layer": L, "attn_drift": float(np.mean(a)) if a else None, "mlp_drift": float(np.mean(m)) if m else None}
-        for p in ATTN + MLP:
-            comp = "self_attn." if p in ATTN else "mlp."
-            row[p] = rel(pre + f"{comp}{p}.weight")
+        if is_gpt2:                                                          # GPT-2: fused c_attn QKV + c_proj; Conv1D names
+            pre = f"transformer.h.{L}."
+            a = [rel(pre + f"{p}.weight") for p in GPT2_ATTN]; a = [x for x in a if x is not None]
+            m = [rel(pre + f"{p}.weight") for p in GPT2_MLP]; m = [x for x in m if x is not None]
+            row = {"layer": L, "attn_drift": float(np.mean(a)) if a else None, "mlp_drift": float(np.mean(m)) if m else None}
+            for p in GPT2_ATTN + GPT2_MLP:
+                row[p.split(".")[-1]] = rel(pre + f"{p}.weight")
+        else:
+            pre = f"model.layers.{L}."
+            a = [rel(pre + f"self_attn.{p}.weight") for p in ATTN]; a = [x for x in a if x is not None]
+            m = [rel(pre + f"mlp.{p}.weight") for p in MLP]; m = [x for x in m if x is not None]
+            row = {"layer": L, "attn_drift": float(np.mean(a)) if a else None, "mlp_drift": float(np.mean(m)) if m else None}
+            for p in ATTN + MLP:
+                comp = "self_attn." if p in ATTN else "mlp."
+                row[p] = rel(pre + f"{comp}{p}.weight")
         curve.append(row)
     return curve
 
@@ -130,8 +155,9 @@ def main(argv=None):
     for pr in pairs:
         print(f"\n=== {pr['name']} (base {pr['base']} -> instruct {pr['instruct']}) ===")
         try:
-            nL = AutoConfig.from_pretrained(pr["base"]).num_hidden_layers
-            curve = weight_drift(pr["base"], pr["instruct"], nL)
+            cfg = AutoConfig.from_pretrained(pr["base"])
+            nL = cfg.num_hidden_layers
+            curve = weight_drift(pr["base"], pr["instruct"], nL, pr.get("gpt2", False))
             attn = np.array([r["attn_drift"] for r in curve if r["attn_drift"] is not None])
             mlp = np.array([r["mlp_drift"] for r in curve if r["mlp_drift"] is not None])
             early = attn[: max(nL // 4, 1)].mean(); late = attn[-max(nL // 4, 1):].mean()
