@@ -155,6 +155,15 @@ convergence was measured on small hosts.)
 > rank). A concrete efficiency lever — rank-r per-layer factorisation, no retraining — with the compressible fraction
 > **architecture-dependent** and shrinking with scale. (Caveat: this is the per-layer *write-subspace* rank, not the
 > full input→output map; data-dependent PCA. `runs/disassembly/core_rank_summary.json`.)
+>
+> **And the layers SHARE that subspace.** The cross-layer sharing measure: the *union* of all layers' top-64 write-
+> subspaces has effective rank **278 (GPT-2) / 517 (large) / 658 (Gemma) / 570 (Llama)** — far below the no-sharing
+> bound (nL·64, capped at d): the whole model's per-layer writes collectively span only **~⅓–⅖ of d**, and layer pairs
+> are **~2× more aligned than chance** (overlap 0.05–0.16 vs 0.03–0.08 random). So the entangled core is a **shared
+> moderate-rank subspace**, not nL distinct ones — the strongest decompile/simplify lever yet: one shared
+> ~300-direction basis captures most layers' composition (decompile *its* structure; or a single global low-rank
+> projection serves every layer on CPU). Sharing is partial (overlap ≪ 1) and grows with scale — compact, but not a
+> few templates.
 
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
