@@ -83,6 +83,13 @@
       "mean_participation_ratio": 5.240719459419861,
       "mean_pr_frac": 0.006823853462786277,
       "mean_rank95": 249.91666666666666,
+      "cross_layer_sharing": {
+        "per_layer_rank": 64,
+        "union_effective_rank": 278.1572714434106,
+        "no_sharing_upper_bound": 768,
+        "random_overlap": 0.08333333333333333,
+        "mean_pairwise_overlap": 0.16009342568841847
+      },
       "truncation_curve": [
         {
           "rank": 15,
@@ -125,205 +132,6 @@
           "rank_frac": 1.0,
           "nll": 5.225602476160288,
           "nll_increase": 6.053894239244073e-07
-        }
-      ]
-    },
-    {
-      "model": "gpt2-medium",
-      "n_layers": 24,
-      "d_model": 1024,
-      "base_generic_nll": 4.962092199155346,
-      "effective_rank_by_layer": {
-        "0": {
-          "participation_ratio": 1.3740388489979551,
-          "pr_frac": 0.0013418348134745656,
-          "rank90": 5,
-          "rank95": 63
-        },
-        "1": {
-          "participation_ratio": 5.643136838989382,
-          "pr_frac": 0.0055108758193255685,
-          "rank90": 218,
-          "rank95": 349
-        },
-        "2": {
-          "participation_ratio": 1.7027885952811632,
-          "pr_frac": 0.001662879487579261,
-          "rank90": 60,
-          "rank95": 196
-        },
-        "3": {
-          "participation_ratio": 1.0044254130499533,
-          "pr_frac": 0.000980884192431595,
-          "rank90": 1,
-          "rank95": 1
-        },
-        "4": {
-          "participation_ratio": 4.949050420270913,
-          "pr_frac": 0.004833057051045813,
-          "rank90": 290,
-          "rank95": 447
-        },
-        "5": {
-          "participation_ratio": 3.778713950683702,
-          "pr_frac": 0.003690150342464553,
-          "rank90": 301,
-          "rank95": 461
-        },
-        "6": {
-          "participation_ratio": 9.258821538931759,
-          "pr_frac": 0.009041817909113046,
-          "rank90": 377,
-          "rank95": 534
-        },
-        "7": {
-          "participation_ratio": 18.787308212121367,
-          "pr_frac": 0.018346980675899772,
-          "rank90": 420,
-          "rank95": 574
-        },
-        "8": {
-          "participation_ratio": 30.95435616149488,
-          "pr_frac": 0.030228863438959842,
-          "rank90": 451,
-          "rank95": 601
-        },
-        "9": {
-          "participation_ratio": 24.656427594702922,
-          "pr_frac": 0.024078542572952073,
-          "rank90": 412,
-          "rank95": 566
-        },
-        "10": {
-          "participation_ratio": 42.493543071206176,
-          "pr_frac": 0.04149760065547478,
-          "rank90": 434,
-          "rank95": 586
-        },
-        "11": {
-          "participation_ratio": 55.71342659743743,
-          "pr_frac": 0.05440764316155999,
-          "rank90": 459,
-          "rank95": 608
-        },
-        "12": {
-          "participation_ratio": 45.411365620525366,
-          "pr_frac": 0.0443470367387943,
-          "rank90": 458,
-          "rank95": 606
-        },
-        "13": {
-          "participation_ratio": 17.06878091780758,
-          "pr_frac": 0.016668731365046464,
-          "rank90": 419,
-          "rank95": 572
-        },
-        "14": {
-          "participation_ratio": 12.173784282014035,
-          "pr_frac": 0.01188846121290433,
-          "rank90": 402,
-          "rank95": 556
-        },
-        "15": {
-          "participation_ratio": 8.689110369324592,
-          "pr_frac": 0.008485459345043547,
-          "rank90": 372,
-          "rank95": 527
-        },
-        "16": {
-          "participation_ratio": 6.507932076479579,
-          "pr_frac": 0.006355402418437089,
-          "rank90": 337,
-          "rank95": 494
-        },
-        "17": {
-          "participation_ratio": 6.299268373748053,
-          "pr_frac": 0.006151629271238333,
-          "rank90": 328,
-          "rank95": 484
-        },
-        "18": {
-          "participation_ratio": 4.608916106620679,
-          "pr_frac": 0.004500894635371757,
-          "rank90": 283,
-          "rank95": 440
-        },
-        "19": {
-          "participation_ratio": 3.5239728838787427,
-          "pr_frac": 0.0034413797694128347,
-          "rank90": 250,
-          "rank95": 407
-        },
-        "20": {
-          "participation_ratio": 2.7521966070104344,
-          "pr_frac": 0.0026876919990336274,
-          "rank90": 193,
-          "rank95": 347
-        },
-        "21": {
-          "participation_ratio": 1.5602422128610138,
-          "pr_frac": 0.0015236740359970838,
-          "rank90": 25,
-          "rank95": 135
-        },
-        "22": {
-          "participation_ratio": 2.0096903389583654,
-          "pr_frac": 0.0019625882216390287,
-          "rank90": 2,
-          "rank95": 3
-        },
-        "23": {
-          "participation_ratio": 2.283173762190616,
-          "pr_frac": 0.0022296618771392735,
-          "rank90": 3,
-          "rank95": 4
-        }
-      },
-      "mean_participation_ratio": 13.050186283107777,
-      "mean_pr_frac": 0.012744322542097439,
-      "mean_rank95": 398.375,
-      "truncation_curve": [
-        {
-          "rank": 20,
-          "rank_frac": 0.01953125,
-          "nll": 6.800868764397732,
-          "nll_increase": 1.8387765652423864
-        },
-        {
-          "rank": 51,
-          "rank_frac": 0.0498046875,
-          "nll": 6.236713569694788,
-          "nll_increase": 1.2746213705394425
-        },
-        {
-          "rank": 102,
-          "rank_frac": 0.099609375,
-          "nll": 5.792427907234921,
-          "nll_increase": 0.8303357080795752
-        },
-        {
-          "rank": 204,
-          "rank_frac": 0.19921875,
-          "nll": 5.34988840551098,
-          "nll_increase": 0.3877962063556346
-        },
-        {
-          "rank": 409,
-          "rank_frac": 0.3994140625,
-          "nll": 5.010289273712052,
-          "nll_increase": 0.04819707455670663
-        },
-        {
-          "rank": 716,
-          "rank_frac": 0.69921875,
-          "nll": 4.900059814257168,
-          "nll_increase": -0.06203238489817764
-        },
-        {
-          "rank": 1024,
-          "rank_frac": 1.0,
-          "nll": 4.962092255026547,
-          "nll_increase": 5.5871200999035864e-08
         }
       ]
     },
@@ -553,6 +361,13 @@
       "mean_participation_ratio": 23.951244395419245,
       "mean_pr_frac": 0.018711909683921286,
       "mean_rank95": 476.3888888888889,
+      "cross_layer_sharing": {
+        "per_layer_rank": 64,
+        "union_effective_rank": 516.9570130524603,
+        "no_sharing_upper_bound": 1280,
+        "random_overlap": 0.05,
+        "mean_pairwise_overlap": 0.09876714523822543
+      },
       "truncation_curve": [
         {
           "rank": 25,
@@ -764,6 +579,13 @@
       "mean_participation_ratio": 4.598187537099234,
       "mean_pr_frac": 0.001995741118532654,
       "mean_rank95": 508.8076923076923,
+      "cross_layer_sharing": {
+        "per_layer_rank": 64,
+        "union_effective_rank": 658.0798422845529,
+        "no_sharing_upper_bound": 1664,
+        "random_overlap": 0.027777777777777776,
+        "mean_pairwise_overlap": 0.06114273398541487
+      },
       "truncation_curve": [
         {
           "rank": 46,
@@ -915,6 +737,13 @@
       "mean_participation_ratio": 20.672503828070212,
       "mean_pr_frac": 0.010093996009799908,
       "mean_rank95": 621.375,
+      "cross_layer_sharing": {
+        "per_layer_rank": 64,
+        "union_effective_rank": 570.460215609039,
+        "no_sharing_upper_bound": 1024,
+        "random_overlap": 0.03125,
+        "mean_pairwise_overlap": 0.0530027915413181
+      },
       "truncation_curve": [
         {
           "rank": 40,
@@ -957,6 +786,205 @@
           "rank_frac": 1.0,
           "nll": 4.311809070522571,
           "nll_increase": 0.001222571308758802
+        }
+      ]
+    },
+    {
+      "model": "gpt2-medium",
+      "n_layers": 24,
+      "d_model": 1024,
+      "base_generic_nll": 4.962092199155346,
+      "effective_rank_by_layer": {
+        "0": {
+          "participation_ratio": 1.3740388489979551,
+          "pr_frac": 0.0013418348134745656,
+          "rank90": 5,
+          "rank95": 63
+        },
+        "1": {
+          "participation_ratio": 5.643136838989382,
+          "pr_frac": 0.0055108758193255685,
+          "rank90": 218,
+          "rank95": 349
+        },
+        "2": {
+          "participation_ratio": 1.7027885952811632,
+          "pr_frac": 0.001662879487579261,
+          "rank90": 60,
+          "rank95": 196
+        },
+        "3": {
+          "participation_ratio": 1.0044254130499533,
+          "pr_frac": 0.000980884192431595,
+          "rank90": 1,
+          "rank95": 1
+        },
+        "4": {
+          "participation_ratio": 4.949050420270913,
+          "pr_frac": 0.004833057051045813,
+          "rank90": 290,
+          "rank95": 447
+        },
+        "5": {
+          "participation_ratio": 3.778713950683702,
+          "pr_frac": 0.003690150342464553,
+          "rank90": 301,
+          "rank95": 461
+        },
+        "6": {
+          "participation_ratio": 9.258821538931759,
+          "pr_frac": 0.009041817909113046,
+          "rank90": 377,
+          "rank95": 534
+        },
+        "7": {
+          "participation_ratio": 18.787308212121367,
+          "pr_frac": 0.018346980675899772,
+          "rank90": 420,
+          "rank95": 574
+        },
+        "8": {
+          "participation_ratio": 30.95435616149488,
+          "pr_frac": 0.030228863438959842,
+          "rank90": 451,
+          "rank95": 601
+        },
+        "9": {
+          "participation_ratio": 24.656427594702922,
+          "pr_frac": 0.024078542572952073,
+          "rank90": 412,
+          "rank95": 566
+        },
+        "10": {
+          "participation_ratio": 42.493543071206176,
+          "pr_frac": 0.04149760065547478,
+          "rank90": 434,
+          "rank95": 586
+        },
+        "11": {
+          "participation_ratio": 55.71342659743743,
+          "pr_frac": 0.05440764316155999,
+          "rank90": 459,
+          "rank95": 608
+        },
+        "12": {
+          "participation_ratio": 45.411365620525366,
+          "pr_frac": 0.0443470367387943,
+          "rank90": 458,
+          "rank95": 606
+        },
+        "13": {
+          "participation_ratio": 17.06878091780758,
+          "pr_frac": 0.016668731365046464,
+          "rank90": 419,
+          "rank95": 572
+        },
+        "14": {
+          "participation_ratio": 12.173784282014035,
+          "pr_frac": 0.01188846121290433,
+          "rank90": 402,
+          "rank95": 556
+        },
+        "15": {
+          "participation_ratio": 8.689110369324592,
+          "pr_frac": 0.008485459345043547,
+          "rank90": 372,
+          "rank95": 527
+        },
+        "16": {
+          "participation_ratio": 6.507932076479579,
+          "pr_frac": 0.006355402418437089,
+          "rank90": 337,
+          "rank95": 494
+        },
+        "17": {
+          "participation_ratio": 6.299268373748053,
+          "pr_frac": 0.006151629271238333,
+          "rank90": 328,
+          "rank95": 484
+        },
+        "18": {
+          "participation_ratio": 4.608916106620679,
+          "pr_frac": 0.004500894635371757,
+          "rank90": 283,
+          "rank95": 440
+        },
+        "19": {
+          "participation_ratio": 3.5239728838787427,
+          "pr_frac": 0.0034413797694128347,
+          "rank90": 250,
+          "rank95": 407
+        },
+        "20": {
+          "participation_ratio": 2.7521966070104344,
+          "pr_frac": 0.0026876919990336274,
+          "rank90": 193,
+          "rank95": 347
+        },
+        "21": {
+          "participation_ratio": 1.5602422128610138,
+          "pr_frac": 0.0015236740359970838,
+          "rank90": 25,
+          "rank95": 135
+        },
+        "22": {
+          "participation_ratio": 2.0096903389583654,
+          "pr_frac": 0.0019625882216390287,
+          "rank90": 2,
+          "rank95": 3
+        },
+        "23": {
+          "participation_ratio": 2.283173762190616,
+          "pr_frac": 0.0022296618771392735,
+          "rank90": 3,
+          "rank95": 4
+        }
+      },
+      "mean_participation_ratio": 13.050186283107777,
+      "mean_pr_frac": 0.012744322542097439,
+      "mean_rank95": 398.375,
+      "truncation_curve": [
+        {
+          "rank": 20,
+          "rank_frac": 0.01953125,
+          "nll": 6.800868764397732,
+          "nll_increase": 1.8387765652423864
+        },
+        {
+          "rank": 51,
+          "rank_frac": 0.0498046875,
+          "nll": 6.236713569694788,
+          "nll_increase": 1.2746213705394425
+        },
+        {
+          "rank": 102,
+          "rank_frac": 0.099609375,
+          "nll": 5.792427907234921,
+          "nll_increase": 0.8303357080795752
+        },
+        {
+          "rank": 204,
+          "rank_frac": 0.19921875,
+          "nll": 5.34988840551098,
+          "nll_increase": 0.3877962063556346
+        },
+        {
+          "rank": 409,
+          "rank_frac": 0.3994140625,
+          "nll": 5.010289273712052,
+          "nll_increase": 0.04819707455670663
+        },
+        {
+          "rank": 716,
+          "rank_frac": 0.69921875,
+          "nll": 4.900059814257168,
+          "nll_increase": -0.06203238489817764
+        },
+        {
+          "rank": 1024,
+          "rank_frac": 1.0,
+          "nll": 4.962092255026547,
+          "nll_increase": 5.5871200999035864e-08
         }
       ]
     },

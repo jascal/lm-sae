@@ -107,6 +107,20 @@ def run_model(mid, args):
                 h.remove()
         return tot / max(k, 1)
 
+    # ---- cross-layer subspace sharing: do the layers write into a SHARED subspace (→ one global low-rank core)? ----
+    rs = min(args.share_rank, d // 2)
+    stacked = np.concatenate([bases[L][:, :rs].cpu().numpy() for L in range(nL)], axis=1)   # (d, nL*rs)
+    sv = np.linalg.svd(stacked, compute_uv=False)
+    overlaps = []
+    for i in range(nL):
+        Bi = bases[i][:, :rs].cpu().numpy()
+        for j in range(i + 1, nL):
+            M = Bi.T @ bases[j][:, :rs].cpu().numpy()
+            overlaps.append(float(np.square(M).sum() / rs))         # mean squared principal cosine (1=identical, rs/d=random)
+    sharing = {"per_layer_rank": rs, "union_effective_rank": participation_ratio(sv ** 2),
+               "no_sharing_upper_bound": min(nL * rs, d), "random_overlap": rs / d,
+               "mean_pairwise_overlap": float(np.mean(overlaps)) if overlaps else 0.0}
+
     base_nll = gen_nll()
     ranks = sorted({min(int(d * int(r) / 100), d) for r in args.rank_fracs.split(",")} | {d})
     ranks = [r for r in ranks if r >= 1]
@@ -119,7 +133,7 @@ def run_model(mid, args):
             "mean_participation_ratio": float(np.mean([eff[L]["participation_ratio"] for L in range(nL)])),
             "mean_pr_frac": float(np.mean([eff[L]["pr_frac"] for L in range(nL)])),
             "mean_rank95": float(np.mean([eff[L]["rank95"] for L in range(nL)])),
-            "truncation_curve": curve}
+            "cross_layer_sharing": sharing, "truncation_curve": curve}
 
 
 def main(argv=None):
@@ -128,6 +142,7 @@ def main(argv=None):
     p.add_argument("--ctx", type=int, default=64)
     p.add_argument("--fit", type=int, default=40, help="chunks for the covariance/PCA fit")
     p.add_argument("--eval", type=int, default=20, help="chunks for the NLL eval")
+    p.add_argument("--share-rank", type=int, default=64, help="per-layer rank for the cross-layer sharing analysis")
     p.add_argument("--rank-fracs", default="2,5,10,20,40,70", help="rank fractions of d to truncate to (percent)")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly"))
@@ -144,6 +159,10 @@ def main(argv=None):
             results.append(r)
             print(f"  d{r['d_model']} {r['n_layers']}L | mean participation-ratio {r['mean_participation_ratio']:.0f} "
                   f"({r['mean_pr_frac']:.0%} of d) | mean rank95 {r['mean_rank95']:.0f}/{r['d_model']}")
+            sh = r["cross_layer_sharing"]
+            print(f"  cross-layer sharing: union effective-rank {sh['union_effective_rank']:.0f} vs no-sharing "
+                  f"{sh['no_sharing_upper_bound']} (per-layer rank {sh['per_layer_rank']}); mean pairwise overlap "
+                  f"{sh['mean_pairwise_overlap']:.2f} (random {sh['random_overlap']:.2f})")
             print("  truncation (rank-frac → generic-NLL increase): " +
                   " · ".join(f"{c['rank_frac']:.0%}:{c['nll_increase']:+.2f}" for c in r["truncation_curve"]))
         except Exception as e:  # pragma: no cover
