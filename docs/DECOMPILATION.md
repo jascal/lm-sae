@@ -373,6 +373,28 @@ reconstruction of #146 was complete-but-illegible; the sparse 32×d is legible-b
 the triangle — *legible-AND-complete is itself blocked by the forge tax*, because composing sparse monosemantic features
 across layers is exactly the composition that doesn't factor through the feature basis. (`runs/disassembly/legible_corner_summary.json`.)
 
+### Minimum-to-run frontier — how small can the stored weights get (`min_to_run.py`)
+
+How few stored bytes reproduce the model? Low-rank-factorize every attention + MLP weight matrix to rank r (embeddings
+left intact), and measure fidelity vs stored size. **No-retrain SVD truncation is useless** (the weights are not
+low-rank): even at rank 512 (89% of the weights kept) ΔNLL is +1.1 and agreement-with-the-full-model only 26%; at low
+rank it is near-random. **But distilling the factors** (init from SVD, train them ~400 steps, everything else frozen)
+recovers most of it:
+
+| GPT-2 weights (85 M) | rank 8 (1% kept) | rank 32 (6%) | rank 64 (11%) | rank 128 (22%) |
+|---|---|---|---|---|
+| no-retrain SVD ΔNLL | +3.20 | +2.54 | +2.51 | +2.40 |
+| **distilled ΔNLL** | +0.54 | +0.36 | **+0.26** | +0.28 |
+
+So with light distillation the composition weights factor to **~6–11% of their size** for a model still *capable* on
+the corpus (ΔNLL +0.26 at rank 64 ≈ 9× weight compression). Two honest caveats: (1) this measures a *capable* model,
+not a *faithful copy* of GPT-2 — top-1 agreement with the original stays ~24–35% at 400 steps; matching the original
+needs proper teacher-distillation + far more training; (2) it compresses the stored *weights*, and with the embeddings
+left intact the full model size is dominated by the vocab. Placed against the flat end — pylm reproduces ~half the
+model at ~1.6 MB of flat tables and *zero* matmul — this is the first point on the size-vs-fidelity curve: pure-flat
+retrieval (cheap, ~half) → distilled-low-rank composition (capable, ~⅒ the weights) → the full model. Mapping the curve
+faithfully across model sizes is ongoing. (`runs/disassembly/min_to_run_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
