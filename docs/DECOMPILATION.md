@@ -404,6 +404,18 @@ flat end — pylm reproduces ~half the model at ~1.6 MB of flat tables and *zero
 the size-vs-fidelity curve: pure-flat retrieval (cheap, ~half) → distilled-low-rank composition (capable at ~⅒ the
 weights; ~⅓-faithful so far) → the full model. (`runs/disassembly/min_to_run_summary.json`.)
 
+**Data scale and variety move faithfulness — and reveal it is content-dependent.** Scaling the distillation corpus
+(single-domain Shakespeare 12.8 k → 280 k tokens) lifted rank-64 faithful agreement 34% → 38%; a *diverse* 5-domain
+corpus (drama + 3 novels + code) lifted it to 41% — monotone, no wall (so the cap is recipe/data-shaped, not a proven
+floor). Adding Wikipedia (6 domains) and breaking agreement down **per domain** exposes a huge spread the aggregate
+hid: **austen 85% · shakespeare 34% · melville 33% · code 26% · shelley 25% · wiki 24%.** The reading: a low-rank copy
+reproduces GPT-2 *where its behaviour is retrieval / memorization* (Pride & Prejudice — heavily-reproduced in WebText,
+near-deterministic — 85%) and *fails where it is composition* (Wikipedia facts, code structure — 24–26%). So the ~⅓
+aggregate is a mix of near-fully-reproducible retrieval content and near-irreducible composition content — the same
+retrieval-vs-composition split, now measured by domain. *(Confound: austen's 85% conflates "memorized/predictable" with
+"stylistically self-consistent" — train and eval are the same novel — so the absolute spread over-states it; but the
+composition-heavy domains being hardest is the robust signal.)* (`runs/disassembly/min_to_run_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
