@@ -41,10 +41,27 @@ vs RoPE) actually track **scale**.
   digged-into mechanism is **not** negative-head self-repair — it is substantially a *synthetic repeated-random
   probe artifact* ([outlier digs](operators/outlier_digs.md)).
 
+## Knowledge — where facts live, and moving them
+
+The catalog is about *mechanisms*; the [knowledge axis](circuits/causal_tracing.md) is the decompiler goal ("the
+model IS the database").
+
+- **The ROME two-site flow is architecture-invariant.** [Causal tracing](circuits/causal_tracing.md) (subject
+  corruption + restoration) recovers the same structure in GPT-2 ×3, Llama, Qwen: an **early MLP store at the
+  subject** (peak depth ≈0) feeds a **late attention readout at the last token** (depth ≈0.6–0.9). Cross-model,
+  which ROME never did.
+- **The store is editable by activation patch.** [Patching](circuits/fact_patching.md) the early-MLP store at the
+  subject with a different fact's activation **transplants the fact 100% of the time** (France's run answers Rome)
+  in those five models — the decompile→recompile loop made concrete, sufficiency complementing necessity.
+
 ## The outliers — where the next questions are
 
-- **Gemma-2-2B** is the recurring exception: a near-absent attention-sink (~4% vs 44–55%), the most *distributed*
-  induction key, the *strongest* MLP0 extended-embedding (η² 0.91), and a non-monotonic induction-redundancy curve.
+- **Gemma-2-2B is the recurring exception across seven independent measurements**: a near-absent attention-sink
+  (~4% vs 44–55%), the most *distributed* induction key, a non-monotonic (compensatory) induction-redundancy curve,
+  the *strongest* MLP0 extended-embedding (η² 0.91), induction that doesn't lean on MLP0, a **late** fact site
+  (vs early elsewhere), and **fact-transplant-resistant** early MLPs (3% flip vs 100%). Gemma stores and routes
+  information differently enough that it falls out of nearly every cross-model regularity — the single most
+  informative "third architecture" in the set.
 - **Llama-3.2-1B**'s MLP0 is the lone *context*-determined early MLP (η² ≈ 0). [Dug](operators/outlier_digs.md):
   it is not intrinsic — Llama's layer-0 attention is comparable in size to the embedding **and** the most
   context-determined of any model, so MLP0 ingests a context-mixed input. Those same layer-0 heads are
