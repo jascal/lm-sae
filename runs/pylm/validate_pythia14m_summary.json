@@ -1,0 +1,43 @@
+{
+  "model": "EleutherAI/pythia-14m",
+  "n_eval": 4000,
+  "pylm_corpus_top1": 0.265,
+  "instruction_breakdown": {
+    "bigram": {
+      "fired": 1157,
+      "share": 0.28925,
+      "accuracy": 0.17718236819360414
+    },
+    "induction-2": {
+      "fired": 290,
+      "share": 0.0725,
+      "accuracy": 0.2896551724137931
+    },
+    "induction-3": {
+      "fired": 441,
+      "share": 0.11025,
+      "accuracy": 0.691609977324263
+    },
+    "quad": {
+      "fired": 1030,
+      "share": 0.2575,
+      "accuracy": 0.24660194174757283
+    },
+    "trigram": {
+      "fired": 1016,
+      "share": 0.254,
+      "accuracy": 0.20669291338582677
+    },
+    "unigram": {
+      "fired": 66,
+      "share": 0.0165,
+      "accuracy": 0.030303030303030304
+    }
+  },
+  "program_loc": 54,
+  "store_kb": 1490.3203125,
+  "model_corpus_top1": 0.278,
+  "pylm_model_agreement": 0.55075,
+  "decompilable_fraction": 0.55075,
+  "pylm_over_model_acc": 0.9532374066430308
+}

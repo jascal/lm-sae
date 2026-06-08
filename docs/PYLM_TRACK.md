@@ -124,10 +124,27 @@ sparse); (2) **store-first arbitration** — trusting the model-captured n-gram 
 better than the corpus-modal). So ~50% (GPT-2) is a **genuine ceiling** — the remaining half is real composition /
 generalisation a flat store + an in-context-copy macro cannot hold, the entangled core the forge tax measures.
 
+## Showcase — the whole small LLM (Pythia-14m), decompiled and generating
+
+The goal's literal headline. Pythia-14m (6 layers, d128) is the smallest real LLM here and the most-fully decompiled:
+a **49-line pure-Python program + a 1.5 MB flat store reproduces 95% of its next-token accuracy** (pylm 26.5% vs the
+model's 27.8%) and **55% of its exact top-1 tokens** — with no neural net running. It generates (pure-Python
+`predict`, the tokenizer for I/O only):
+
+```
+seed:  "The meaning of life is"
+pylm (greedy):  " a good man,\nI am not sure,\nI am not sure, …"        (induction-3 loop, 28/40 tokens)
+pylm (temp 0.8):" not the\n\nI am a man,\n\nI am not sure, I will not\nbeautiful, and I have to the other way …"
+```
+
+Rough — it is a 14M-parameter model — but it is a *whole* small LLM running as a tiny symbolic program over flat
+files, every token attributable to a named idiom. (`pylm/store_pythia14m.json`,
+`runs/pylm/validate_pythia14m_summary.json`.)
+
 ## Next steps
 
-- **Smaller hosts pushed further** (Pythia-14m, already 56%): optimise the idiom mix where the decompilable fraction
-  is highest — how *fully* can the smallest LLM be reduced to a small program?
+- **Optimise the idiom mix on the smallest host** further — the levers above plateau on GPT-2, but the head-room is
+  largest where the decompilable fraction is highest.
 - **Factual corpora** where the knowledge table moves the next-token metric (on tiny-Shakespeare relations don't
   appear, so the table is a capability demo, not a metric lift).
 - The ceiling itself is the result: pylm makes "the decompilable fraction" a running artifact, and the levers above
