@@ -16,3 +16,9 @@ runs/**/forge_example/**
 # editor swap files
 *.swp
 *.swo
+
+# pylm per-model ladder stores (regenerable via pylm/ladder.py; the canonical store.json/store_captured.json stay tracked)
+pylm/store_pythia-*.json
+pylm/store_gpt2.json
+pylm/holdout_pythia-*.json
+pylm/holdout_gpt2.json
