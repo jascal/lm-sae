@@ -674,6 +674,20 @@ is the load-bearing tension for minimum-to-run: the flat-decompilable part (know
 *harder*, not easier, at scale. (Caveat: the recovery-fraction is *native-basis* effective density — a learned overcomplete
 basis could shift the absolute numbers; the monotone *trend* is the result.) (`runs/disassembly/mlp_kv_sparsity_summary.json`.)
 
+### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
+
+Storage-sparsity (low-rank, native top-k, an L1-SAE up to 43×d) doesn't sparsify the MLP content. A different axis is
+*runtime* conditional sparsity (MoEfication): cluster each MLP's neurons into K experts and per token only *compute* the
+active experts — you still store every expert, but run few. Test: cluster K=64 experts (k-means on the up-projection keys,
+so co-activating neurons group), route at the expert level (keep the top-E experts per token by activation mass), measure
+content recovery. Result (K=64, avg expert ≈48 neurons): content recovers (ΔNLL → small) only near **E≈48/64 (75%) for
+pythia-160m** and **E≈32/64 (50%) for gpt2** — comparable to the neuron-level top-k (~60–67%). So this *static* MoEfication
+does **not** make the content expert-sparse; it is about as dense over experts as over neurons (the copy/dup family is
+somewhat more expert-localized). **Caveat — this is the floor, not the ceiling:** the clustering (key-direction k-means)
+and router (mass top-E) are naive; a *learned* router / co-activation clustering can concentrate routing far more (that is
+what a trained MoE / the feature-native model would learn). So conditional-compute remains an open lever — a static
+read-off doesn't deliver it, but the learned version is untested. (`runs/disassembly/mlp_experts_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
