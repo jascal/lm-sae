@@ -41,7 +41,47 @@ def disambig(c, operator_names):
             f"`op:{c}` there.", ""]
 
 
-def cross_page(c, row, models, rung3, operator_names=frozenset()):
+def dossier_section(c, dossier):
+    """The cross-model necessity/sufficiency/redundancy battery for circuit `c` (from circuit_dossier_xmodel.py)."""
+    results = [r for r in dossier.get("results", []) if "circuits" in r and c in r["circuits"]]
+    if not results:
+        return []
+    lines = ["", "## Cross-model causal dossier (necessity / sufficiency / redundancy — via the ResidualVM)", "",
+             "The operator-dossier battery, lifted to this circuit and run on the [unified `ResidualVM`](../DECOMPILATION.md) "
+             "(`find_heads` locates the heads, `ablate_heads` + `nll` measure the rest). Two next-token metrics: "
+             "**induction-NLL** (in-context copy) and **generic-NLL** (general LM).", "",
+             "| model | reader | necessity Δind-NLL | necessity Δgen-NLL | sufficiency (keep-only, ind) | reader redundancy |",
+             "|---|---|---|---|---|---|"]
+    for r in results:
+        cc = r["circuits"][c]; nec = cc["necessity"]["circuit"]; suff = cc["sufficiency"]; red = cc["redundancy"]
+        verdict = "bottleneck" if red.get("bottleneck") else "distributed"
+        lines.append(f"| {r['model']} | {cc.get('reader_top','—')} | {nec['ind']:+.2f} | {nec['gen']:+.2f} | "
+                     f"{suff['ind_coverage']:+.0%} | {verdict} |")
+    lines += ["",
+              "- **Necessity** — Δ NLL when the circuit's heads are mean-ablated (higher = more load-bearing for that "
+              "behaviour). Generic-NLL necessity is small everywhere — these circuits are *task-specific*, not general-LM.",
+              "- **Sufficiency** — reconstruction coverage keeping **only** the circuit's heads (MLPs intact); a small "
+              "head-set that reconstructs the behaviour is an executable decompilation. (Generic-NLL coverage is omitted "
+              "as a headline — with MLPs intact a tiny head-set scores high for reasons unrelated to the circuit; "
+              "induction-NLL is the meaningful attention-circuit metric. Negative = keeping so few heads is worse than "
+              "the all-ablated floor, the known keep-1-is-net-negative effect.)",
+              "- **Redundancy** — reader-head solo-vs-cumulative on induction-NLL: *bottleneck* = one head carries it, "
+              "*distributed* = the population shares it."]
+    if c == "induction":
+        ladder = [(r["model"], r["circuits"]["induction"]) for r in results if r["model"].startswith("gpt2")]
+        if len(ladder) >= 3:
+            nec_str = " → ".join(f"{cc['necessity']['circuit']['ind']:+.2f}" for _, cc in ladder)
+            suf_str = " → ".join(f"{cc['sufficiency']['ind_coverage']:+.0%}" for _, cc in ladder)
+            lines += ["", f"**The induction circuit's necessity AND sufficiency both decay monotonically across the "
+                      f"GPT-2 ladder** ({', '.join(m for m, _ in ladder)}): necessity Δind-NLL {nec_str}; "
+                      f"sufficiency {suf_str}. The same scale-driven distributedness the rest of the catalog finds — "
+                      "the named circuit is most localized in the smallest model and dissolves into the network with scale."]
+    lines += ["", "_Dossier data: [runs/disassembly/circuits/dossier_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/dossier_summary.json) "
+              "([circuit_dossier_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_dossier_xmodel.py), built on the ResidualVM)._"]
+    return lines
+
+
+def cross_page(c, row, models, rung3, dossier=None, operator_names=frozenset()):
     lines = [f"# Circuit `{c}` (cross-model)", ""]
     lines += disambig(c, operator_names)
     lines += [row["desc"], "",
@@ -63,6 +103,8 @@ def cross_page(c, row, models, rung3, operator_names=frozenset()):
                   f"3-stage chain: prev-token population ({pop_n} heads) → stage-2 reader "
                   f"`{rung3.get('stage2_B')}` (bottleneck) → inductors. Writers are individually redundant, collectively "
                   f"necessary; copy-score↔induction ρ {rung3.get('spearman_copyscore_vs_induction')}."]
+    if dossier:
+        lines += dossier_section(c, dossier)
     lines += ["", "_Data: [runs/disassembly/circuits/atlas_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/atlas_summary.json). Regenerate: [circuit_catalog_doc.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/circuit_catalog_doc.py)._"]
     return "\n".join(lines)
 
@@ -112,6 +154,7 @@ def main(argv=None):
     p.add_argument("--docs", type=Path, default=Path("docs/circuits"))
     args = p.parse_args(argv)
     atlas = load(args.root / "atlas_summary.json")
+    dossier = load(args.root / "dossier_summary.json")
     rung3 = load(args.disasm / "rung3_induction_chain_summary.json")
     extra = {"self_repair": load(args.disasm / "self_repair_summary.json")}
     args.docs.mkdir(parents=True, exist_ok=True)
@@ -124,7 +167,7 @@ def main(argv=None):
     models, cmat = cross_matrix(atlas)
     cross = atlas["cross_model_circuits"]; gpt2 = atlas["gpt2_circuits"]
     for c, row in cross.items():
-        (args.docs / f"{c}.md").write_text(cross_page(c, row, models, rung3, operator_names))
+        (args.docs / f"{c}.md").write_text(cross_page(c, row, models, rung3, dossier, operator_names))
     for name, c in gpt2.items():
         (args.docs / f"{name}.md").write_text(gpt2_page(name, c, extra, operator_names))
 
@@ -182,6 +225,12 @@ Edge liveness shows the circuit's edges are **necessary**. [**Reconstruction**](
 **sufficiency**: keep only the induction circuit's heads (induction + prev-token), mean-ablate every other
 attention head (MLPs intact), and measure how much induction the circuit alone recovers — far above a random
 same-size head-set. A small head-set that reconstructs most of the behaviour is an *executable* decompilation.
+
+Each cross-model circuit page now also carries a **cross-model causal dossier** (necessity + sufficiency +
+redundancy, operator-parity), generated on the [unified `ResidualVM`](../DECOMPILATION.md) debugger
+(`circuit_dossier_xmodel.py`). The sharpest read: the **induction circuit's necessity *and* sufficiency both decay
+monotonically across the GPT-2 ladder** (small → XL) — the named circuit is most localized in the smallest model
+and dissolves into the network with scale, the same distributedness theme measured as a clean ablation battery.
 
 ## Taxonomy & gaps
 

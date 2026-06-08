@@ -57,6 +57,12 @@ Edge liveness shows the circuit's edges are **necessary**. [**Reconstruction**](
 attention head (MLPs intact), and measure how much induction the circuit alone recovers — far above a random
 same-size head-set. A small head-set that reconstructs most of the behaviour is an *executable* decompilation.
 
+Each cross-model circuit page now also carries a **cross-model causal dossier** (necessity + sufficiency +
+redundancy, operator-parity), generated on the [unified `ResidualVM`](../DECOMPILATION.md) debugger
+(`circuit_dossier_xmodel.py`). The sharpest read: the **induction circuit's necessity *and* sufficiency both decay
+monotonically across the GPT-2 ladder** (small → XL) — the named circuit is most localized in the smallest model
+and dissolves into the network with scale, the same distributedness theme measured as a clean ablation battery.
+
 ## Taxonomy & gaps
 
 - **Levels:** circuit (a DAG of operator nodes) → edge (writer-op → reader-op via a K/Q/V port) → the operator
