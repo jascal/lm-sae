@@ -23,7 +23,7 @@ from pathlib import Path
 class PyLM:
     """The decompiled LM. Operates on token-id sequences; tokenization is a flat-file preprocessing step."""
 
-    def __init__(self, store_path):
+    def __init__(self, store_path, knowledge_path=None):
         s = json.loads(Path(store_path).read_text())
         self.quad = s.get("quad", {})  # "a,b,c" -> [next_id, ...] (4-gram, the deepest memorised context)
         self.tri = s["tri"]          # "a,b" -> [next_id, ...] (ranked corpus successors)
@@ -31,6 +31,10 @@ class PyLM:
         self.uni = s["uni"]          # [next_id, ...] (most frequent tokens)
         self.min_induction = s.get("min_induction_match", 3)
         self.min_accept = s.get("min_induction_accept", 2)  # ignore 1-token "induction" (it's noise, ~chance)
+        self.knowledge = None        # optional flat fact table (the 'database'); a relational lookup, not statistics
+        if knowledge_path:
+            from knowledge import KnowledgeStore
+            self.knowledge = KnowledgeStore(knowledge_path)
 
     def predict(self, ctx, k=1):
         """Next-token prediction for a token-id context. Returns the top-1 id (or a ranked list if k>1)."""
@@ -43,6 +47,10 @@ class PyLM:
         return (ranked[0] if ranked else self.uni[0]), fired
 
     def _candidates(self, ctx):
+        if self.knowledge is not None:                      # KNOWLEDGE — a stored fact (relational lookup) beats a guess
+            fact, rel = self.knowledge.lookup(ctx)
+            if fact is not None:
+                return [fact], f"knowledge:{rel}"
         ind, tag = self._induction(ctx)
         if ind is not None:
             return [ind], tag

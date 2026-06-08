@@ -96,11 +96,39 @@ the model into local n-gram tables provably discards it). pylm turns "the decomp
 **running artifact**: ~half of a real LLM *is* a small symbolic program over flat knowledge; the rest is the
 irreducible core the forge tax measures.
 
+## The flat-file knowledge store — "the model IS the database", literally
+
+Beyond statistics, pylm carries a **flat fact table** (`knowledge.py`): relations read out of the model
+(`The capital of {S} is →` argmax over the *object set* — the constrained readout `relation_decompile` uses, so the
+fact is read out even when a high-frequency token outranks it in full vocab) into a flat JSON `{capital: {France:
+Paris, …}}`. `PyLM` (given `--knowledge`) does a pure-Python **relational lookup** that fires *before* induction/
+n-gram — answering factual prompts the n-gram never saw, and *generalising across phrasings* (it's the relation
+operator, not a surface n-gram):
+
+```
+'The capital of France is' → 'Paris'   [knowledge:capital]    (n-gram alone: 'a')
+'The capital of Japan is'  → 'Tokyo'   [knowledge:capital]    (n-gram alone: 'the')
+'The language of Italy is' → 'Italian' [knowledge:language]   (n-gram alone: 'the')
+```
+
+The facts are read out of **gpt2-large at 100%** correct — but **gpt2-small's are mostly wrong** (France→"the"):
+factual recall *emerges with scale* (~160M; see the [scaling laws](scaling.md)), so the database a model carries is a
+function of its size. pylm faithfully decompiles whichever it is — including the small model's ignorance.
+
+## Levers that plateau — the decompilable fraction is a real ceiling, not a tuning artifact
+
+Two pushes to raise it both **failed**, which is the point (the program kills its own ideas): (1) **deeper memorised
+context** — adding a 5-gram store left GPT-2's decompilable fraction flat (49.0% → 48.6%; held-out 5-grams are too
+sparse); (2) **store-first arbitration** — trusting the model-captured n-gram over induction *lowered* agreement
+(49.7% → 48.4%): induction-first is right because the model genuinely *does* induction (the in-context copy matches it
+better than the corpus-modal). So ~50% (GPT-2) is a **genuine ceiling** — the remaining half is real composition /
+generalisation a flat store + an in-context-copy macro cannot hold, the entangled core the forge tax measures.
+
 ## Next steps
 
-- **Knowledge relations** read out of the weights (`relation_decompile`) as a flat fact table — the database half,
-  for factual corpora (on tiny-Shakespeare the conditional distillation is what matters).
-- **Sharper idiom arbitration** (blend induction with the captured store by confidence) and **longer captured
-  context** to push the decompilable fraction up toward — but not past — the forge-tax ceiling.
-- **Smaller hosts** (Pythia-14m): the [scaling laws](scaling.md) predict a *higher* decompilable fraction for smaller
-  models (induction/knowledge emerge with scale), so a tiny LLM should decompile to a smaller program more fully.
+- **Smaller hosts pushed further** (Pythia-14m, already 56%): optimise the idiom mix where the decompilable fraction
+  is highest — how *fully* can the smallest LLM be reduced to a small program?
+- **Factual corpora** where the knowledge table moves the next-token metric (on tiny-Shakespeare relations don't
+  appear, so the table is a capability demo, not a metric lift).
+- The ceiling itself is the result: pylm makes "the decompilable fraction" a running artifact, and the levers above
+  show it is robust — you cannot memorise your way past the composition.

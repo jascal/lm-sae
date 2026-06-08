@@ -35,6 +35,7 @@ def sample_rank(cands, temp, rng):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--store", default="pylm/store_captured.json")
+    p.add_argument("--knowledge", default=None, help="optional flat fact table (pylm/knowledge.json)")
     p.add_argument("--tokenizer", default="gpt2", help="BPE tokenizer for human-readable I/O (a flat file, not a net)")
     p.add_argument("--seed-text", default="First Citizen:\nBefore we proceed any further, hear me speak.")
     p.add_argument("--n", type=int, default=60, help="tokens to generate")
@@ -46,7 +47,7 @@ def main(argv=None):
 
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(args.tokenizer)
-    lm = PyLM(args.store)
+    lm = PyLM(args.store, knowledge_path=args.knowledge)
     rng = random.Random(args.rng)
 
     ctx = tok(args.seed_text)["input_ids"]; gen = []; trace = []
