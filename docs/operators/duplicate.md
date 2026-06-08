@@ -21,6 +21,7 @@ The deep battery's arch-generic core — behavioural head-ID + mean-ablation cau
 
 | model | top head | #heads (mass≥thr) | causal induction ΔNLL | causal generic ΔNLL | redundancy (top heads) | KEY top writer (collapse) | VALUE top mover (ΔV-out) |
 |---|---|---|---|---|---|---|---|
+| gpt2-xl | 4.12 | 155 | +0.32 | +0.00 | distributed (full +0.32 ≫ best 1h +0.11) | 2.6 (+6%, conc 220×) | 2.13 (0.34) |
 | gpt2 | 0.5 | 11 | +0.49 | +0.23 | distributed (full +0.49 ≫ best 1h +0.12) | — (addresses by position/key-0) | — (addresses by position/key-0) |
 | gpt2-medium | 7.11 | 31 | +0.15 | -0.00 | distributed (full +0.15 ≫ best 1h +0.04) | 2.13 (+13%, conc 712×) | 2.7 (0.29) |
 | gpt2-large | 5.8 | 106 | +0.39 | +0.00 | distributed (full +0.39 ≫ best 1h +0.14) | 3.3 (+31%, conc 865×) | 3.17 (0.24) |

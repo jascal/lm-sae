@@ -56,7 +56,8 @@ def dossier_one_model(model_id, ops, args, dev):
     is_gpt2 = "gpt2" in model_id.lower()
     if is_gpt2:
         from transformers import GPT2LMHeadModel
-        model = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager").eval().to(dev)
+        gkw = {"dtype": torch.bfloat16} if "xl" in model_id else {}              # gpt2-xl (1.5B) won't fit in fp32 on a small GPU
+        model = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager", **gkw).eval().to(dev)
     else:
         model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", dtype=torch.bfloat16).eval().to(dev)
     a = _arch(model); H = a["H"]; hd = a["hd"]; nL = model.config.num_hidden_layers
@@ -279,10 +280,13 @@ def main(argv=None):
         except Exception as e:  # pragma: no cover
             print(f"  [skip] {e}"); results.append({"model": mid, "error": str(e)})
 
-    out = {"experiment": "arch-generic cross-model operator dossier (universal behavioural ops)",
-           "ops": ops, "results": results}
+    sumpath = args.outdir / "xmodel_dossiers_summary.json"
+    prior = json.loads(sumpath.read_text()).get("results", []) if sumpath.exists() else []   # merge: keep models not re-run
+    done = {r["model"] for r in results}
+    merged = results + [r for r in prior if r.get("model") not in done]
+    out = {"experiment": "arch-generic cross-model operator dossier (universal behavioural ops)", "ops": ops, "results": merged}
     args.outdir.mkdir(parents=True, exist_ok=True)
-    (args.outdir / "xmodel_dossiers_summary.json").write_text(json.dumps(out, indent=2, default=float))
+    sumpath.write_text(json.dumps(out, indent=2, default=float))
     print(f"\n[done] {len([r for r in results if 'ops' in r])} models → {args.outdir / 'xmodel_dossiers_summary.json'}")
     return out
 

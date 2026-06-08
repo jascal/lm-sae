@@ -13,8 +13,8 @@ import argparse
 import json
 from pathlib import Path
 
-ORDER = ["gpt2", "gpt2-medium", "gpt2-large", "Gemma-2-2B/gemma-2-2b", "Llama-3.2-1B", "Qwen2.5-1.5B"]
-PARAMS = {"gpt2": "124M", "gpt2-medium": "355M", "gpt2-large": "774M", "gemma-2-2b": "2.6B",
+ORDER = ["gpt2", "gpt2-medium", "gpt2-large", "gpt2-xl", "Gemma-2-2B/gemma-2-2b", "Llama-3.2-1B", "Qwen2.5-1.5B"]
+PARAMS = {"gpt2": "124M", "gpt2-medium": "355M", "gpt2-large": "774M", "gpt2-xl": "1.5B", "gemma-2-2b": "2.6B",
           "Llama-3.2-1B": "1.2B", "Qwen2.5-1.5B": "1.5B"}
 
 
@@ -91,15 +91,17 @@ def main(argv=None):
                  f"{fnum(r['succ_depth'])} | {fnum(r['trace_depth'])} |")
     L += ["", "## What the columns show", "",
           "- **Induction key-collapse** — how much removing the single top prev-token writer collapses the induction "
-          "head's attention. GPT-2-small **+39%** (one dominant writer) → medium +8% → large +1%: the single-writer "
-          "circuit is a *small-model* trait; larger GPT-2 distribute the key like the RoPE models (~0–3%).",
+          "head's attention. The full GPT-2 ladder is monotone to zero: small (124M) **+39%** (one dominant writer) → "
+          "medium +8% → large +1% → **xl (1.5B) +0%**. The single-writer circuit is a *small-model* trait; by 1.5B GPT-2 "
+          "distributes the key entirely, like the RoPE models (~0–3%).",
           "- **Induction redundancy** — distributed (superadditive population) in the small models, **compensatory** "
           "(non-monotonic) in gpt2-large + Gemma: the population self-interferes once big enough.",
           "- **Reconstruction coverage** — how much the named 8-head induction circuit reconstructs in isolation. "
           "Decays with GPT-2 scale (small +17%/+30% → large +0%/+5%): bigger models spread induction across a wider "
           "supporting cast, so no compact circuit suffices ([reconstruction](circuits/reconstruction.md)).",
           "- **MLP0 token-determinism** — the early MLP is an [extended embedding](operators/mlp_detokenizer.md); the "
-          "token-determined block *widens* with GPT-2 scale (small: just L0; large: L0–L2).",
+          "token-determined block *widens and strengthens* with GPT-2 scale (small 0.63 → large 0.75 → xl 0.80; the "
+          "block also spreads from just L0 to L0–L2).",
           "- **Succession / knowledge depth** — the [succession](operators/succession.md) MLP and the "
           "[causal-trace](circuits/causal_tracing.md) knowledge site both sit deeper as the model grows "
           "(GPT-2-small ≈ L0–L2 / depth 0.1; gpt2-large ≈ L7–9 / depth 0.2 and a broad early-mid plateau).", "",
