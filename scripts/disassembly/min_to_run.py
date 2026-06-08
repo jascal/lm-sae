@@ -31,7 +31,7 @@ def run_model(mid, args):
     vm = ResidualVM(mid, device=args.device); t = vm.torch; tok = vm.tok; nL = vm.nL
     txt = urllib.request.urlopen(urllib.request.Request(
         "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
-        headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "ignore")[:120000]
+        headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "ignore")[:args.corpus_chars]
     ids = tok(txt)["input_ids"]
     chunks = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8][: args.eval]
 
@@ -140,6 +140,7 @@ def main(argv=None):
     p.add_argument("--ranks", default="8,16,32,64,128,256,512", help="SVD ranks to truncate the weight matrices to")
     p.add_argument("--distill-steps", type=int, default=0, help="if >0, also distill the low-rank factors (train them)")
     p.add_argument("--train", type=int, default=200, help="train chunks for distillation")
+    p.add_argument("--corpus-chars", type=int, default=120000, help="chars of corpus to fetch (more = more distill data)")
     p.add_argument("--lr", type=float, default=1e-3, help="distillation learning rate")
     p.add_argument("--match-teacher", action="store_true", help="distill to the full model's top-1 (faithful) vs corpus NLL (capable)")
     p.add_argument("--device", default="cuda")
