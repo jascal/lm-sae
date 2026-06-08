@@ -341,6 +341,28 @@ but it cannot be small *and* legible *and* complete at once — you pick the cor
 runtime; distillation for a cheap one; an overcomplete feature-native model for an interpretable one).
 (`runs/disassembly/feature_native_distill_summary.json`.)
 
+**Building the legible corner — and pricing it (`feature_native_sae.py`).** Training the overcomplete corner directly
+(an SAE on each layer's update — MSE + L1, the standard recipe — vs the tight rank-32 PCA bottleneck) makes the size
+cost explicit. At 2×d (F=1536), the SAE is **complete** (99% variance, ΔNLL ≈ 0) and **big** (28 M params), but sweeping
+the L1 weight λ∈{.02,.1,.4,1} it **never gets sparse or legible**: L0 stays ≥ 0.30 (≥30% of features active) and
+logit-lens peak-z is flat (~4.8, *below* the tight bottleneck's 5.0):
+
+| corner | ΔNLL | variance | L0 (sparsity) | size |
+|---|---|---|---|---|
+| tight rank-32 (small) | +0.58 | 65% | — (dense by construction) | 0.6 M |
+| SAE 2×d, λ=0.02 | +0.01 | 99% | **0.81** | 28 M |
+| SAE 2×d, λ=1.0 | +0.00 | 94% | **0.30** | 28 M |
+
+Two structural reasons it won't sparsify at 2×: the update is genuinely **high-rank** (rank-95 ≈ ⅓·d, from core_rank),
+so reconstructing it *needs* ~⅓·d active features — L0 can't fall below ~256/F; and **2×d is not enough
+overcompleteness** — real monosemantic SAEs run 8–64×d (jbloom's GPT-2 SAE is **32×d = 24,576**), where ~256/24,576 ≈ 1%
+*can* be sparse. So **the size cost of legibility scales with the update's intrinsic rank**: the more entangled the core,
+the more overcomplete (bigger) the legible basis must be. That is the triangle's deepest form — small/legible/complete
+trade against each other *because* the composition is high-rank, and the legible corner's price (overcompleteness) is set
+by exactly the Θ(d) rank that the compressed corner squeezes out. (Proper monosemantic training at 8–64×d is the
+sae-forge sub-project; here the 2× run prices the corner and confirms the trade-off is structural, not a tuning miss.)
+(`runs/disassembly/feature_native_sae_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A

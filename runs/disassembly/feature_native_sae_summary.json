@@ -1,0 +1,79 @@
+{
+  "experiment": "overcomplete feature-native SAE vs tight bottleneck \u2014 completing the small/legible/complete triangle",
+  "results": [
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "d_model": 768,
+      "base_nll": 5.371307065974306,
+      "steps": 600,
+      "configs": [
+        {
+          "kind": "tight",
+          "width": 32,
+          "lambda": null,
+          "nll": 5.9530696271646155,
+          "peak_z": 5.004942877584161,
+          "closed_frac": 0.11276041666666665,
+          "code_L0_frac": null,
+          "variance_explained": 0.6469475304087003,
+          "trainable_params_M": 0.589824,
+          "width_over_d": 0.041666666666666664,
+          "nll_increase": 0.5817625611903097
+        },
+        {
+          "kind": "sae",
+          "width": 1536,
+          "lambda": 0.02,
+          "nll": 5.383235352341419,
+          "peak_z": 4.8000175464438515,
+          "closed_frac": 0.00125,
+          "code_L0_frac": 0.8133765409390131,
+          "variance_explained": 0.9949617932240168,
+          "trainable_params_M": 28.329984,
+          "width_over_d": 2.0,
+          "nll_increase": 0.011928286367113294
+        },
+        {
+          "kind": "sae",
+          "width": 1536,
+          "lambda": 0.1,
+          "nll": 5.335069332604892,
+          "peak_z": 4.7051492903588095,
+          "closed_frac": 0.0025,
+          "code_L0_frac": 0.6756745378176371,
+          "variance_explained": 0.9867384831110636,
+          "trainable_params_M": 28.329984,
+          "width_over_d": 2.0,
+          "nll_increase": -0.03623773336941394
+        },
+        {
+          "kind": "sae",
+          "width": 1536,
+          "lambda": 0.4,
+          "nll": 5.312771382129849,
+          "peak_z": 4.772333934689351,
+          "closed_frac": 0.007250000000000001,
+          "code_L0_frac": 0.4520634685953458,
+          "variance_explained": 0.9651840130488077,
+          "trainable_params_M": 28.329984,
+          "width_over_d": 2.0,
+          "nll_increase": -0.05853568384445662
+        },
+        {
+          "kind": "sae",
+          "width": 1536,
+          "lambda": 1.0,
+          "nll": 5.371388546310205,
+          "peak_z": 4.761757182235638,
+          "closed_frac": 0.01175,
+          "code_L0_frac": 0.3000892288982868,
+          "variance_explained": 0.9395273824532827,
+          "trainable_params_M": 28.329984,
+          "width_over_d": 2.0,
+          "nll_increase": 8.148033589883141e-05
+        }
+      ]
+    }
+  ]
+}
