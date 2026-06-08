@@ -65,6 +65,16 @@ model IS the database").
 - **The store is editable by activation patch.** [Patching](circuits/fact_patching.md) the early-MLP store at the
   subject with a different fact's activation **transplants the fact 100% of the time** (France's run answers Rome)
   in those five models — the decompile→recompile loop made concrete, sufficiency complementing necessity.
+- **But it's a *verified* write of the whole entity, not a single fact-row** (`fact_edit_xmodel.py`, the ROME triad
+  cross-model). The early-MLP store edit is **efficacious** (band-patch flips the capital 100% in 5/6; Gemma 0%,
+  resistant — its store is distributed), **generalizes** (holds under a paraphrase prompt, 100%), and is
+  **position-localized** (patching a relation token instead of the subject flips nothing, 0%). The catch is
+  **entity-leakage**: editing the *capital* store also flips the subject's *language* **56–100%** of the time (Llama
+  the worst, a *full* entity swap at 100%; GPT-2 ~60%). So at this site the addressable unit is the **entity, not the
+  fact** — you can't surgically rewrite one row without dragging the entity's other facts along. And **editability
+  granularity tracks the store's concentration**: GPT-2/Llama edit at a *single* early MLP, but **Qwen needs the whole
+  early band** (single-layer 0% → band 100%), exactly the model whose detokenizer substrate is spread across L0–L2
+  ([MLP nodes](circuits/README.md)). The decompiler can write to the database, but the row it writes is the entity.
 
 ## The outliers — where the next questions are
 
