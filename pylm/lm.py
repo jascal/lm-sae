@@ -43,17 +43,26 @@ class PyLM:
         return (ranked[0] if ranked else self.uni[0]), fired
 
     def _candidates(self, ctx):
-        # 1. INDUCTION — the longest local context (≥ min_accept tokens) that recurs earlier in ctx; predict the
-        #    token that followed its last earlier occurrence (in-context copy). 1-token "matches" are ~chance noise,
-        #    so we only accept span ≥ min_accept and let the n-gram store handle the rest.
+        ind, tag = self._induction(ctx)
+        if ind is not None:
+            return [ind], tag
+        return self._ngram(ctx)
+
+    def _induction(self, ctx):
+        # INDUCTION — the longest local context (≥ min_accept tokens) that recurs earlier in ctx; predict the token
+        # that followed its last earlier occurrence (in-context copy). 1-token "matches" are ~chance noise, so we
+        # only accept span ≥ min_accept and let the n-gram store handle the rest.
         for span in range(self.min_induction, self.min_accept - 1, -1):
             if len(ctx) <= span:
                 continue
             tail = ctx[-span:]
             for i in range(len(ctx) - span - 1, -1, -1):
                 if ctx[i:i + span] == tail:
-                    return [ctx[i + span]], f"induction-{span}"
-        # 2. N-GRAM backoff — the flat-file store: 4-gram → trigram → bigram → unigram.
+                    return ctx[i + span], f"induction-{span}"
+        return None, None
+
+    def _ngram(self, ctx):
+        # N-GRAM backoff — the flat-file store: 4-gram → trigram → bigram → unigram.
         if self.quad and len(ctx) >= 3:
             q = self.quad.get(f"{ctx[-3]},{ctx[-2]},{ctx[-1]}")
             if q:
@@ -66,6 +75,14 @@ class PyLM:
         if b:
             return b, "bigram"
         return self.uni, "unigram"
+
+    def ranked(self, ctx, k=8):
+        """Ranked candidate ids the LM considers — the induction copy (if any) first, then the n-gram backoff list.
+        Gives a *pool* to sample from (the flat store keeps no probabilities, so generation samples over rank)."""
+        ind, _ = self._induction(ctx)
+        ng, _ = self._ngram(ctx)
+        out = ([ind] if ind is not None else []) + [c for c in ng if c != ind]
+        return out[:k]
 
 
 def program_loc():
