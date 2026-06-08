@@ -6,1338 +6,830 @@
       "n_layers": 12,
       "cut": 6,
       "d": 768,
+      "rank": 24,
       "n_positions": 10240,
-      "coupling_participation_ratio_chi": 1.353470547257562,
+      "coupling_participation_ratio_chi": 28.968104935934605,
+      "resolved": true,
       "channels": [
         {
           "channel": 0,
-          "sigma": 0.6718835834081576,
-          "sigma_frac": 0.8590120286395644,
+          "sigma": 0.0005696862460505895,
+          "sigma_frac": 0.06655821887000012,
           "writer_layers": [
-            0,
-            7,
-            1
-          ],
-          "reader_layers": [
-            11,
-            10,
-            3
-          ],
-          "writer_profile": [
-            0.122,
-            0.111,
-            0.063,
-            0.11,
-            0.062,
-            0.099,
-            0.074,
-            0.112,
-            0.071,
-            0.064,
-            0.064,
-            0.049
-          ],
-          "reader_profile": [
-            0.044,
-            0.039,
-            0.03,
-            0.044,
-            0.028,
-            0.04,
-            0.028,
-            0.033,
-            0.024,
-            0.044,
-            0.101,
-            0.546
-          ],
-          "lens_write": [
-            " intr",
-            " co",
-            " far",
-            " charged",
-            " mon",
-            " material",
-            " striking",
-            " apparent"
-          ],
-          "lens_read": [
-            "\\n",
-            ",",
-            ".",
-            ":",
-            ")",
-            ";",
-            "\\n\\n",
-            "\""
-          ],
-          "dup_lift": 0.66,
-          "pos_corr": -0.32,
-          "label": "positional",
-          "persistence": 0.28,
-          "register_frac": 0.04,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "bling",
-              "dup": 0.0
-            },
-            {
-              "token": "bury",
-              "dup": 0.0
-            },
-            {
-              "token": " The",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n\\n",
-              "dup": 1.0
-            },
-            {
-              "token": " the",
-              "dup": 0.0
-            },
-            {
-              "token": " the",
-              "dup": 0.0
-            }
-          ]
-        },
-        {
-          "channel": 1,
-          "sigma": 0.018932375265823097,
-          "sigma_frac": 0.024205291639311625,
-          "writer_layers": [
-            3,
-            7,
+            1,
+            6,
             2
           ],
           "reader_layers": [
-            3,
-            7,
-            0
-          ],
-          "writer_profile": [
-            0.082,
-            0.091,
-            0.111,
-            0.177,
-            0.028,
-            0.045,
-            0.048,
-            0.147,
-            0.088,
-            0.088,
-            0.071,
-            0.024
-          ],
-          "reader_profile": [
-            0.12,
-            0.108,
-            0.075,
-            0.131,
-            0.05,
-            0.09,
-            0.053,
-            0.131,
-            0.079,
-            0.07,
-            0.068,
-            0.025
+            8,
+            10,
+            9
           ],
           "lens_write": [
-            " natural",
-            " neutral",
-            " free",
-            " rise",
-            " body",
-            " sine",
-            " mer",
-            " mixed"
+            "AndroidRuntime",
+            "Invoke",
+            "Bankr",
+            "SEQUENTIAL",
+            "---|",
+            "){#",
+            "IRQHandler",
+            "printStackTrace"
           ],
           "lens_read": [
-            " finances",
-            " correspondence",
-            " social",
-            " pitch",
-            " brush",
-            " systematically",
-            " strictly",
-            " mysterious"
+            "",
+            "\\n\\n           ",
+            "\\n\\n                                             ",
+            "",
+            "",
+            "",
+            "                                                                 ",
+            "\\n            \\n           "
           ],
-          "dup_lift": 0.86,
-          "pos_corr": -0.18,
+          "dup_lift": 1.06,
+          "pos_corr": -0.08,
+          "persistence": 0.17,
+          "register_frac": 0.1,
           "label": "content/other",
-          "persistence": 0.2,
-          "register_frac": 0.06,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "\\n",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n\\n",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n\\n",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n\\n",
-              "dup": 0.0
-            }
-          ]
+          "broadcast": false
         },
         {
-          "channel": 2,
-          "sigma": 0.010553980126565523,
-          "sigma_frac": 0.013493402879044988,
+          "channel": 1,
+          "sigma": 0.00052127536446509,
+          "sigma_frac": 0.06090222475991727,
           "writer_layers": [
-            6,
+            2,
             3,
-            7
+            4
           ],
           "reader_layers": [
-            6,
-            3,
-            7
-          ],
-          "writer_profile": [
-            0.066,
-            0.053,
-            0.088,
-            0.099,
-            0.082,
-            0.086,
-            0.123,
-            0.096,
-            0.091,
-            0.073,
-            0.068,
-            0.075
-          ],
-          "reader_profile": [
-            0.068,
-            0.06,
-            0.081,
-            0.115,
-            0.08,
-            0.085,
-            0.122,
-            0.106,
-            0.104,
-            0.073,
-            0.067,
-            0.039
+            11,
+            7,
+            8
           ],
           "lens_write": [
             "\ufffd",
             "\ufffd",
+            "\ufffd\ufffd",
             "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd"
+          ],
+          "lens_read": [
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
             "\ufffd",
             "\ufffd",
             "\ufffd",
             "\ufffd",
             "\ufffd"
           ],
-          "lens_read": [
-            "blockList",
-            "toolt",
-            "doibase",
-            "nolimits",
-            "biggl",
-            "displaystyle",
-            "mathchoice",
-            "micromachines"
-          ],
-          "dup_lift": 1.83,
-          "pos_corr": 0.11,
+          "dup_lift": 1.71,
+          "pos_corr": 0.09,
+          "persistence": 0.44,
+          "register_frac": 0.72,
           "label": "induction/duplicate",
-          "persistence": 0.26,
-          "register_frac": 0.43,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "os",
-              "dup": 1.0
-            },
-            {
-              "token": "zer",
-              "dup": 1.0
-            },
-            {
-              "token": "os",
-              "dup": 1.0
-            },
-            {
-              "token": "os",
-              "dup": 1.0
-            },
-            {
-              "token": "int",
-              "dup": 1.0
-            },
-            {
-              "token": "int",
-              "dup": 1.0
-            }
-          ]
+          "broadcast": false
+        },
+        {
+          "channel": 2,
+          "sigma": 0.000514634157696601,
+          "sigma_frac": 0.06012631188379921,
+          "writer_layers": [
+            6,
+            1,
+            5
+          ],
+          "reader_layers": [
+            8,
+            7,
+            9
+          ],
+          "lens_write": [
+            "casters",
+            "woke",
+            "NotNull",
+            "ishop",
+            "reserved",
+            "indow",
+            "arser",
+            "DEBUG"
+          ],
+          "lens_read": [
+            " nucleotide",
+            " nitrogen",
+            " yield",
+            " args",
+            " internal",
+            " inner",
+            " overhead",
+            "ainties"
+          ],
+          "dup_lift": 1.42,
+          "pos_corr": -0.23,
+          "persistence": 0.11,
+          "register_frac": 0.06,
+          "label": "induction/duplicate",
+          "broadcast": false
         },
         {
           "channel": 3,
-          "sigma": 0.005773657128792997,
-          "sigma_frac": 0.007381696837591669,
-          "writer_layers": [
-            6,
-            5,
-            7
-          ],
-          "reader_layers": [
-            6,
-            7,
-            5
-          ],
-          "writer_profile": [
-            0.053,
-            0.034,
-            0.039,
-            0.042,
-            0.097,
-            0.151,
-            0.182,
-            0.144,
-            0.112,
-            0.072,
-            0.061,
-            0.014
-          ],
-          "reader_profile": [
-            0.026,
-            0.026,
-            0.041,
-            0.038,
-            0.097,
-            0.149,
-            0.184,
-            0.152,
-            0.122,
-            0.073,
-            0.07,
-            0.023
-          ],
-          "lens_write": [
-            "\u043e\ufffd",
-            "RETURN",
-            "\ub2c8\ub2e4",
-            "\u636e",
-            "\u0434\u0435",
-            "\u043b\u0435",
-            "\ufffd",
-            "\u9664"
-          ],
-          "lens_read": [
-            "####",
-            "######",
-            "#####",
-            "\u041d",
-            "\u0414",
-            "###",
-            "\u041c",
-            "\u041e"
-          ],
-          "dup_lift": 1.4,
-          "pos_corr": 0.18,
-          "label": "induction/duplicate",
-          "persistence": 0.26,
-          "register_frac": 0.12,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "]",
-              "dup": 1.0
-            },
-            {
-              "token": "]",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "]",
-              "dup": 0.0
-            }
-          ]
-        },
-        {
-          "channel": 4,
-          "sigma": 0.0046592309663643855,
-          "sigma_frac": 0.005956888281173555,
-          "writer_layers": [
-            6,
-            7,
-            0
-          ],
-          "reader_layers": [
-            6,
-            7,
-            8
-          ],
-          "writer_profile": [
-            0.121,
-            0.042,
-            0.052,
-            0.049,
-            0.056,
-            0.06,
-            0.183,
-            0.177,
-            0.097,
-            0.052,
-            0.045,
-            0.067
-          ],
-          "reader_profile": [
-            0.071,
-            0.067,
-            0.052,
-            0.032,
-            0.06,
-            0.061,
-            0.233,
-            0.165,
-            0.11,
-            0.058,
-            0.076,
-            0.017
-          ],
-          "lens_write": [
-            "ock",
-            "lock",
-            "ick",
-            "atus",
-            "ott",
-            "ump",
-            "bridge",
-            "ill"
-          ],
-          "lens_read": [
-            "alus",
-            "autiful",
-            "ennial",
-            "oneliness",
-            "ISING",
-            "osto",
-            "medsc",
-            "hers"
-          ],
-          "dup_lift": 1.15,
-          "pos_corr": 0.09,
-          "label": "content/other",
-          "persistence": 0.08,
-          "register_frac": 0.21,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": " curs",
-              "dup": 0.0
-            },
-            {
-              "token": " fav",
-              "dup": 0.0
-            },
-            {
-              "token": "antage",
-              "dup": 0.0
-            },
-            {
-              "token": "ortun",
-              "dup": 0.0
-            },
-            {
-              "token": "OL",
-              "dup": 0.0
-            },
-            {
-              "token": "ric",
-              "dup": 0.0
-            }
-          ]
-        },
-        {
-          "channel": 5,
-          "sigma": 0.0037429830501728312,
-          "sigma_frac": 0.004785453228047171,
+          "sigma": 0.00048160249569664386,
+          "sigma_frac": 0.056267119908787445,
           "writer_layers": [
             0,
-            7,
-            6
+            1,
+            3
           ],
           "reader_layers": [
-            6,
-            7,
-            5
-          ],
-          "writer_profile": [
-            0.109,
-            0.093,
-            0.083,
-            0.055,
-            0.064,
-            0.091,
-            0.105,
-            0.107,
-            0.072,
-            0.072,
-            0.043,
-            0.105
-          ],
-          "reader_profile": [
-            0.051,
-            0.09,
-            0.08,
-            0.053,
-            0.073,
-            0.118,
-            0.141,
-            0.119,
-            0.096,
-            0.08,
-            0.07,
-            0.028
+            8,
+            9,
+            7
           ],
           "lens_write": [
-            "\ufffd\ufffd",
-            "\ufffd\ufffd",
-            "\ufffd",
-            "\ufffd\ufffd",
-            "\ufffd",
-            "\ufffd",
-            "\ufffd",
-            "\ufffd\ufffd"
+            " predominantly",
+            " biologically",
+            " targeted",
+            " detectable",
+            " interacting",
+            " heterogeneous",
+            " ([**",
+            " globally"
           ],
           "lens_read": [
             " microorganisms",
             " bacterial",
+            " microbial",
             " bacteria",
-            " lipids",
             " biofilm",
-            " biomass",
-            " membranes",
-            " membrane"
+            " organisms",
+            " taxa",
+            " intracellular"
           ],
-          "dup_lift": 1.55,
+          "dup_lift": 1.35,
           "pos_corr": 0.17,
+          "persistence": 0.44,
+          "register_frac": 0.71,
           "label": "induction/duplicate",
-          "persistence": 0.18,
-          "register_frac": 0.45,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": " to",
-              "dup": 1.0
-            },
-            {
-              "token": " membrane",
-              "dup": 0.0
-            },
-            {
-              "token": " associations",
-              "dup": 0.0
-            },
-            {
-              "token": " cells",
-              "dup": 0.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": " related",
-              "dup": 0.0
-            }
-          ]
+          "broadcast": false
+        },
+        {
+          "channel": 4,
+          "sigma": 0.0004457892239746373,
+          "sigma_frac": 0.05208294380439818,
+          "writer_layers": [
+            2,
+            4,
+            6
+          ],
+          "reader_layers": [
+            7,
+            8,
+            9
+          ],
+          "lens_write": [
+            " initial",
+            " selective",
+            " seasonal",
+            " vigorous",
+            " highest",
+            " additional",
+            " linear",
+            " extrinsic"
+          ],
+          "lens_read": [
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd"
+          ],
+          "dup_lift": 1.21,
+          "pos_corr": 0.07,
+          "persistence": 0.08,
+          "register_frac": 0.05,
+          "label": "content/other",
+          "broadcast": false
+        },
+        {
+          "channel": 5,
+          "sigma": 0.00041838910279134956,
+          "sigma_frac": 0.04888170228694044,
+          "writer_layers": [
+            5,
+            2,
+            3
+          ],
+          "reader_layers": [
+            8,
+            7,
+            11
+          ],
+          "lens_write": [
+            "\u3063\u3066",
+            "\u606f",
+            "\u0630",
+            "\ufffd",
+            "\ufffd",
+            "\u304b\u3089",
+            "\u7531",
+            "\u064a\u0631"
+          ],
+          "lens_read": [
+            "Acknowled",
+            "Materials",
+            "microorganisms",
+            "\u0423",
+            "=========================",
+            "Acknowledgments",
+            "Supplemental",
+            "RESULTS"
+          ],
+          "dup_lift": 2.13,
+          "pos_corr": 0.06,
+          "persistence": 0.36,
+          "register_frac": 0.04,
+          "label": "induction/duplicate",
+          "broadcast": false
         },
         {
           "channel": 6,
-          "sigma": 0.002457717845017886,
-          "sigma_frac": 0.0031422247008377193,
+          "sigma": 0.00037954337499895586,
+          "sigma_frac": 0.044343234892835606,
           "writer_layers": [
-            7,
-            11,
-            8
+            2,
+            6,
+            5
           ],
           "reader_layers": [
-            6,
+            11,
             7,
-            8
-          ],
-          "writer_profile": [
-            0.069,
-            0.035,
-            0.052,
-            0.043,
-            0.064,
-            0.07,
-            0.116,
-            0.152,
-            0.132,
-            0.079,
-            0.046,
-            0.141
-          ],
-          "reader_profile": [
-            0.05,
-            0.062,
-            0.055,
-            0.082,
-            0.072,
-            0.068,
-            0.149,
-            0.146,
-            0.124,
-            0.076,
-            0.082,
-            0.034
+            9
           ],
           "lens_write": [
-            " cub",
-            " advantage",
-            " modulo",
-            " eq",
-            " lest",
-            " functor",
-            " justice",
-            " argu"
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd"
           ],
           "lens_read": [
-            ",)",
-            "[,",
-            ",[",
-            " anyway",
-            ".]",
-            " \u0097",
-            ".)",
-            ".["
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd"
           ],
-          "dup_lift": 2.09,
-          "pos_corr": 0.15,
-          "label": "induction/duplicate",
-          "persistence": 0.22,
-          "register_frac": 0.12,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "ype",
-              "dup": 1.0
-            },
-            {
-              "token": " 1",
-              "dup": 1.0
-            },
-            {
-              "token": ")",
-              "dup": 1.0
-            },
-            {
-              "token": ")",
-              "dup": 1.0
-            },
-            {
-              "token": ",",
-              "dup": 1.0
-            },
-            {
-              "token": " range",
-              "dup": 0.0
-            }
-          ]
+          "dup_lift": 1.06,
+          "pos_corr": -0.04,
+          "persistence": 0.23,
+          "register_frac": 0.07,
+          "label": "content/other",
+          "broadcast": false
         },
         {
           "channel": 7,
-          "sigma": 0.0023515277449886562,
-          "sigma_frac": 0.003006459256495655,
+          "sigma": 0.00034468983753387794,
+          "sigma_frac": 0.04027118753154403,
           "writer_layers": [
+            5,
             6,
-            7,
-            8
+            2
           ],
           "reader_layers": [
-            7,
-            6,
-            9
-          ],
-          "writer_profile": [
-            0.088,
-            0.057,
-            0.062,
-            0.053,
-            0.071,
-            0.073,
-            0.172,
-            0.156,
-            0.092,
-            0.082,
-            0.074,
-            0.019
-          ],
-          "reader_profile": [
-            0.053,
-            0.061,
-            0.055,
-            0.047,
-            0.071,
-            0.093,
-            0.165,
-            0.18,
-            0.087,
-            0.099,
-            0.067,
-            0.021
+            9,
+            11,
+            7
           ],
           "lens_write": [
-            "hee",
-            "ook",
-            " lounge",
-            "bugs",
-            "opan",
-            "hammer",
-            "master",
-            "fiddle"
+            " logo",
+            " wait",
+            " menus",
+            "\ufffd",
+            " menu",
+            " meanwhile",
+            " USS",
+            "EMPL"
           ],
           "lens_read": [
-            " shall",
-            " thou",
-            " thee",
-            "kes",
-            " else",
-            " should",
-            "ild",
-            "ksi"
+            " document",
+            " return",
+            " starting",
+            " start",
+            " status",
+            " index",
+            " exit",
+            " can"
           ],
           "dup_lift": 1.38,
-          "pos_corr": 0.1,
+          "pos_corr": -0.2,
+          "persistence": 0.44,
+          "register_frac": 0.01,
           "label": "induction/duplicate",
-          "persistence": 0.15,
-          "register_frac": 0.1,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": " such",
-              "dup": 1.0
-            },
-            {
-              "token": " such",
-              "dup": 0.0
-            },
-            {
-              "token": " such",
-              "dup": 0.0
-            },
-            {
-              "token": "_",
-              "dup": 1.0
-            },
-            {
-              "token": " such",
-              "dup": 0.0
-            },
-            {
-              "token": " leading",
-              "dup": 0.0
-            }
-          ]
+          "broadcast": false
         },
         {
           "channel": 8,
-          "sigma": 0.0019037333021835535,
-          "sigma_frac": 0.0024339481515564237,
+          "sigma": 0.00031913490634654984,
+          "sigma_frac": 0.037285525309635775,
           "writer_layers": [
-            11,
-            6,
-            8
-          ],
-          "reader_layers": [
             6,
             5,
-            7
+            4
           ],
-          "writer_profile": [
-            0.078,
-            0.055,
-            0.078,
-            0.055,
-            0.063,
-            0.083,
-            0.126,
-            0.077,
-            0.094,
-            0.071,
-            0.066,
-            0.154
-          ],
-          "reader_profile": [
-            0.059,
-            0.073,
-            0.076,
-            0.048,
-            0.068,
-            0.127,
-            0.181,
-            0.104,
-            0.097,
-            0.072,
-            0.066,
-            0.03
+          "reader_layers": [
+            7,
+            10,
+            9
           ],
           "lens_write": [
-            "\ufffd",
-            "\ufffd",
             "\ufffd\ufffd",
-            "\ufffd",
-            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
             "\ufffd\ufffd",
             "\ufffd",
             "\ufffd"
           ],
           "lens_read": [
-            " pitch",
-            " surname",
-            " standard",
-            " length",
-            " pulse",
-            " size",
-            " stride",
-            " mask"
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd"
           ],
-          "dup_lift": 1.63,
-          "pos_corr": 0.14,
-          "label": "induction/duplicate",
-          "persistence": 0.11,
-          "register_frac": 0.07,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "asts",
-              "dup": 0.0
-            },
-            {
-              "token": "a",
-              "dup": 0.0
-            },
-            {
-              "token": "a",
-              "dup": 0.0
-            },
-            {
-              "token": "ilis",
-              "dup": 0.0
-            },
-            {
-              "token": "eness",
-              "dup": 1.0
-            },
-            {
-              "token": "a",
-              "dup": 0.0
-            }
-          ]
+          "dup_lift": 1.05,
+          "pos_corr": 0.15,
+          "persistence": 0.3,
+          "register_frac": 0.31,
+          "label": "content/other",
+          "broadcast": false
         },
         {
           "channel": 9,
-          "sigma": 0.001374695631335764,
-          "sigma_frac": 0.0017575665073488146,
+          "sigma": 0.0002958651436968159,
+          "sigma_frac": 0.03456684644696159,
           "writer_layers": [
-            7,
             6,
-            9
+            0,
+            2
           ],
           "reader_layers": [
+            8,
             7,
-            6,
-            8
-          ],
-          "writer_profile": [
-            0.078,
-            0.086,
-            0.068,
-            0.049,
-            0.074,
-            0.073,
-            0.117,
-            0.134,
-            0.097,
-            0.112,
-            0.073,
-            0.039
-          ],
-          "reader_profile": [
-            0.107,
-            0.059,
-            0.059,
-            0.037,
-            0.067,
-            0.078,
-            0.118,
-            0.125,
-            0.11,
-            0.091,
-            0.108,
-            0.04
+            10
           ],
           "lens_write": [
-            " pract",
-            " physically",
-            "pen",
-            "fore",
-            "agles",
-            "cause",
-            "aps",
-            " indefinitely"
+            " yet",
+            "_",
+            "xt",
+            " particularly",
+            "periodic",
+            "zo",
+            "++){",
+            "ips"
           ],
           "lens_read": [
-            "bigcup",
-            "soon",
-            "esides",
-            "ruly",
-            "eas",
-            "esteem",
-            "like",
-            "arse"
+            " dominant",
+            " consequently",
+            " probably",
+            " affected",
+            " only",
+            " necessarily",
+            " almost",
+            " cultured"
           ],
-          "dup_lift": 1.67,
-          "pos_corr": 0.02,
+          "dup_lift": 1.89,
+          "pos_corr": 0.09,
+          "persistence": 0.22,
+          "register_frac": 0.03,
           "label": "induction/duplicate",
-          "persistence": 0.4,
-          "register_frac": 0.05,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": " and",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            }
-          ]
+          "broadcast": false
         },
         {
           "channel": 10,
-          "sigma": 0.0012926139621565803,
-          "sigma_frac": 0.0016526240100220133,
+          "sigma": 0.0002865899090583171,
+          "sigma_frac": 0.033483191889001646,
           "writer_layers": [
-            8,
+            6,
+            4,
+            5
+          ],
+          "reader_layers": [
+            7,
             11,
+            10
+          ],
+          "lens_write": [
+            "highest",
+            "\u0440\u0430\u0432",
+            "\u043b\u0435\u043d",
+            " highest",
+            "\u0438\u0440",
+            "\u043e\u0437",
+            "\u0430\u0442\u0435\u043b",
+            "\u0443\u043c"
+          ],
+          "lens_read": [
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            " \\n           ",
+            " \\n         ",
+            "                      "
+          ],
+          "dup_lift": 1.85,
+          "pos_corr": 0.13,
+          "persistence": 0.18,
+          "register_frac": 0.01,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 11,
+          "sigma": 0.0002625166676324352,
+          "sigma_frac": 0.03067064009783217,
+          "writer_layers": [
+            6,
+            5,
+            4
+          ],
+          "reader_layers": [
+            11,
+            8,
             7
+          ],
+          "lens_write": [
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd"
+          ],
+          "lens_read": [
+            " enough",
+            " another",
+            " nothing",
+            " although",
+            " their",
+            " besides",
+            " something",
+            "aline"
+          ],
+          "dup_lift": 1.61,
+          "pos_corr": 0.06,
+          "persistence": 0.47,
+          "register_frac": 0.0,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 12,
+          "sigma": 0.0002571303654454748,
+          "sigma_frac": 0.030041341633379102,
+          "writer_layers": [
+            2,
+            6,
+            0
+          ],
+          "reader_layers": [
+            9,
+            8,
+            11
+          ],
+          "lens_write": [
+            "aptop",
+            "LET",
+            "\"];",
+            "orf",
+            "ATURE",
+            "\u22ef",
+            ":.",
+            ")];"
+          ],
+          "lens_read": [
+            "){\\",
+            ":#",
+            " media",
+            ")}{\\",
+            ":",
+            "\":\"\",",
+            "))**(-",
+            "))**("
+          ],
+          "dup_lift": 2.04,
+          "pos_corr": 0.06,
+          "persistence": 0.27,
+          "register_frac": 0.01,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 13,
+          "sigma": 0.0002205267138785993,
+          "sigma_frac": 0.025764822989442986,
+          "writer_layers": [
+            5,
+            6,
+            2
+          ],
+          "reader_layers": [
+            11,
+            7,
+            10
+          ],
+          "lens_write": [
+            "wich",
+            "xico",
+            " best",
+            "unes",
+            "under",
+            "blind",
+            " under",
+            "ians"
+          ],
+          "lens_read": [
+            " consume",
+            " cure",
+            " trick",
+            " require",
+            " massacre",
+            "atics",
+            " overthrow",
+            "apons"
+          ],
+          "dup_lift": 1.39,
+          "pos_corr": -0.05,
+          "persistence": 0.41,
+          "register_frac": 0.01,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 14,
+          "sigma": 0.00021576553622658853,
+          "sigma_frac": 0.025208559771858926,
+          "writer_layers": [
+            6,
+            5,
+            0
+          ],
+          "reader_layers": [
+            7,
+            11,
+            8
+          ],
+          "lens_write": [
+            " enough",
+            "etable",
+            ";",
+            " Bears",
+            " boxes",
+            " Alternatively",
+            " pads",
+            " assembl"
+          ],
+          "lens_read": [
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd"
+          ],
+          "dup_lift": 1.67,
+          "pos_corr": 0.06,
+          "persistence": 0.31,
+          "register_frac": 0.02,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 15,
+          "sigma": 0.00020599368911289757,
+          "sigma_frac": 0.02406688443132514,
+          "writer_layers": [
+            0,
+            6,
+            5
+          ],
+          "reader_layers": [
+            7,
+            11,
+            9
+          ],
+          "lens_write": [
+            " themselves",
+            " their",
+            "\ufffd\ufffd",
+            " some",
+            "antly",
+            " exactly",
+            " certain",
+            " any"
+          ],
+          "lens_read": [
+            "them",
+            "mat",
+            " them",
+            "rand",
+            "such",
+            ".",
+            "overs",
+            "ify"
+          ],
+          "dup_lift": 1.86,
+          "pos_corr": 0.07,
+          "persistence": 0.28,
+          "register_frac": 0.0,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 16,
+          "sigma": 0.00019367750252625862,
+          "sigma_frac": 0.022627945983784526,
+          "writer_layers": [
+            6,
+            5,
+            0
           ],
           "reader_layers": [
             8,
             7,
-            5
-          ],
-          "writer_profile": [
-            0.075,
-            0.062,
-            0.072,
-            0.054,
-            0.065,
-            0.067,
-            0.084,
-            0.123,
-            0.164,
-            0.049,
-            0.041,
-            0.145
-          ],
-          "reader_profile": [
-            0.058,
-            0.06,
-            0.082,
-            0.043,
-            0.085,
-            0.104,
-            0.074,
-            0.146,
-            0.186,
-            0.075,
-            0.063,
-            0.024
+            9
           ],
           "lens_write": [
+            "sec",
+            "substack",
+            "frast",
+            "r\u00f3",
+            " Member",
+            "subsec",
+            "/\u2212",
+            "ter"
+          ],
+          "lens_read": [
             "\ufffd",
             "\ufffd",
-            "\ufffd\ufffd",
-            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
             "\ufffd\ufffd",
             "\ufffd",
             "\ufffd",
             "\ufffd"
           ],
-          "lens_read": [
-            " yes",
-            "\u10d4",
-            "\u0646\u0627",
-            "\u0630",
-            "\u0629",
-            "\u0e30",
-            " \u0623\u0646",
-            " ye"
-          ],
-          "dup_lift": 1.43,
-          "pos_corr": 0.15,
+          "dup_lift": 1.9,
+          "pos_corr": 0.1,
+          "persistence": 0.41,
+          "register_frac": 0.01,
           "label": "induction/duplicate",
-          "persistence": 0.23,
-          "register_frac": 0.26,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            }
-          ]
+          "broadcast": false
         },
         {
-          "channel": 11,
-          "sigma": 0.0011487318245690418,
-          "sigma_frac": 0.0014686687982171348,
+          "channel": 17,
+          "sigma": 0.00018231872254798935,
+          "sigma_frac": 0.021300864332909134,
           "writer_layers": [
-            7,
+            1,
+            2,
+            3
+          ],
+          "reader_layers": [
+            11,
+            10,
+            7
+          ],
+          "lens_write": [
+            " various",
+            " comparison",
+            " successive",
+            " respective",
+            " breast",
+            "tees",
+            " heat",
+            " mass"
+          ],
+          "lens_read": [
+            "structor",
+            " antiqu",
+            " Mes",
+            " fun",
+            " friendship",
+            "fluence",
+            " appointments",
+            "cible"
+          ],
+          "dup_lift": 1.41,
+          "pos_corr": -0.2,
+          "persistence": 0.17,
+          "register_frac": 0.01,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 18,
+          "sigma": 0.00016778756311340521,
+          "sigma_frac": 0.01960314370723682,
+          "writer_layers": [
+            6,
+            1,
+            5
+          ],
+          "reader_layers": [
             8,
+            7,
             11
+          ],
+          "lens_write": [
+            "\u09cd",
+            " syn",
+            " gall",
+            "\u03c4\u03ae",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\u03c4\u03bf",
+            " conjunction"
+          ],
+          "lens_read": [
+            "GU",
+            "CAL",
+            "PLL",
+            "PASS",
+            "OTT",
+            "Scene",
+            "CONT",
+            "Aut"
+          ],
+          "dup_lift": 1.4,
+          "pos_corr": -0.09,
+          "persistence": 0.23,
+          "register_frac": 0.01,
+          "label": "induction/duplicate",
+          "broadcast": false
+        },
+        {
+          "channel": 19,
+          "sigma": 0.00014884454593534188,
+          "sigma_frac": 0.017389971997130715,
+          "writer_layers": [
+            6,
+            0,
+            5
           ],
           "reader_layers": [
             7,
             9,
-            8
-          ],
-          "writer_profile": [
-            0.075,
-            0.055,
-            0.055,
-            0.036,
-            0.055,
-            0.068,
-            0.101,
-            0.163,
-            0.114,
-            0.09,
-            0.08,
-            0.109
-          ],
-          "reader_profile": [
-            0.073,
-            0.08,
-            0.052,
-            0.035,
-            0.056,
-            0.055,
-            0.083,
-            0.173,
-            0.13,
-            0.153,
-            0.087,
-            0.024
+            11
           ],
           "lens_write": [
-            " themselves",
-            " alike",
-            " some",
-            "finder",
-            " candidates",
-            " theirs",
-            "lain",
-            " heaven"
+            "\ufffd",
+            "\u3068\u3044",
+            "its",
+            "\u6211\u4eec",
+            "\u4ed6",
+            "our",
+            "\u306a\u3069",
+            "uppose"
           ],
           "lens_read": [
-            " that",
-            "that",
-            " it",
-            "to",
-            " what",
-            "up",
-            "put",
-            " to"
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd"
           ],
-          "dup_lift": 1.72,
-          "pos_corr": 0.1,
+          "dup_lift": 1.41,
+          "pos_corr": 0.02,
+          "persistence": 0.27,
+          "register_frac": 0.01,
           "label": "induction/duplicate",
-          "persistence": 0.03,
-          "register_frac": 0.02,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": " 1",
-              "dup": 1.0
-            },
-            {
-              "token": ")",
-              "dup": 1.0
-            },
-            {
-              "token": " 1",
-              "dup": 0.0
-            },
-            {
-              "token": ")",
-              "dup": 1.0
-            },
-            {
-              "token": ")",
-              "dup": 1.0
-            },
-            {
-              "token": " 1",
-              "dup": 1.0
-            }
-          ]
-        },
-        {
-          "channel": 12,
-          "sigma": 0.0010937938290657184,
-          "sigma_frac": 0.0013984298459163275,
-          "writer_layers": [
-            8,
-            11,
-            10
-          ],
-          "reader_layers": [
-            10,
-            7,
-            2
-          ],
-          "writer_profile": [
-            0.093,
-            0.061,
-            0.066,
-            0.045,
-            0.062,
-            0.072,
-            0.076,
-            0.066,
-            0.119,
-            0.11,
-            0.112,
-            0.117
-          ],
-          "reader_profile": [
-            0.095,
-            0.093,
-            0.106,
-            0.039,
-            0.07,
-            0.086,
-            0.071,
-            0.11,
-            0.104,
-            0.087,
-            0.117,
-            0.022
-          ],
-          "lens_write": [
-            " simply",
-            " finally",
-            " explicitly",
-            " also",
-            " certainly",
-            " ultimately",
-            " definitely",
-            " clearly"
-          ],
-          "lens_read": [
-            " usually",
-            " replaced",
-            " detected",
-            " rarely",
-            " normally",
-            " probably",
-            " introduced",
-            " denoted"
-          ],
-          "dup_lift": 0.98,
-          "pos_corr": 0.07,
-          "label": "content/other",
-          "persistence": 0.3,
-          "register_frac": 0.07,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": " may",
-              "dup": 0.0
-            },
-            {
-              "token": " is",
-              "dup": 1.0
-            },
-            {
-              "token": " may",
-              "dup": 0.0
-            },
-            {
-              "token": "inous",
-              "dup": 0.0
-            },
-            {
-              "token": " was",
-              "dup": 1.0
-            },
-            {
-              "token": " common",
-              "dup": 0.0
-            }
-          ]
-        },
-        {
-          "channel": 13,
-          "sigma": 0.0009835194552792125,
-          "sigma_frac": 0.0012574426036729655,
-          "writer_layers": [
-            5,
-            6,
-            1
-          ],
-          "reader_layers": [
-            6,
-            8,
-            0
-          ],
-          "writer_profile": [
-            0.077,
-            0.107,
-            0.103,
-            0.07,
-            0.092,
-            0.109,
-            0.107,
-            0.077,
-            0.073,
-            0.063,
-            0.098,
-            0.023
-          ],
-          "reader_profile": [
-            0.101,
-            0.075,
-            0.093,
-            0.068,
-            0.094,
-            0.098,
-            0.115,
-            0.087,
-            0.106,
-            0.073,
-            0.064,
-            0.024
-          ],
-          "lens_write": [
-            "\u043b\u0435\u0434",
-            "\u0443\u043c",
-            "\u043e\u043b\u044c\u0437",
-            "\u70b9",
-            "\u0436",
-            "\u0435\u0433\u043e",
-            " \u0434\u043e",
-            "\u1ff6"
-          ],
-          "lens_read": [
-            "links",
-            "offs",
-            ")->",
-            ")},",
-            "bud",
-            "carbon",
-            "acity",
-            ":\"){"
-          ],
-          "dup_lift": 1.61,
-          "pos_corr": 0.1,
-          "label": "induction/duplicate",
-          "persistence": 0.49,
-          "register_frac": 0.02,
-          "broadcast": false,
-          "top_tokens_when_firing": [
-            {
-              "token": ".",
-              "dup": 0.0
-            },
-            {
-              "token": ".",
-              "dup": 1.0
-            },
-            {
-              "token": ".",
-              "dup": 0.0
-            },
-            {
-              "token": ".",
-              "dup": 0.0
-            },
-            {
-              "token": ".",
-              "dup": 1.0
-            },
-            {
-              "token": ".",
-              "dup": 0.0
-            }
-          ]
+          "broadcast": false
         }
       ]
     }

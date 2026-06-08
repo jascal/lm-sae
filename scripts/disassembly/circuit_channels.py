@@ -43,13 +43,8 @@ def _fetch(url, n):
         return ""
 
 
-def run_model(mid, args):
-    from residual_vm import ResidualVM
-    vm = ResidualVM(mid, device=args.device, dtype="fp32"); t = vm.torch; tok = vm.tok; nL = vm.nL; d = vm.d
-    cut = args.cut if args.cut > 0 else nL // 2
-    WU = vm.model.get_output_embeddings().weight.detach().float().cpu().numpy()    # (vocab, d) unembedding, logit lens
-
-    # corpus: single-source (Shakespeare) or DIVERSE (sources tagged → register/topic-broadcast test)
+def build_corpus(args, tok):
+    """single-source (Shakespeare) or DIVERSE (shakespeare+austen+code+wiki) chunks, each tagged with a source id."""
     def _chunk(txt):
         idx = tok(txt)["input_ids"]
         return [idx[i:i + args.ctx] for i in range(0, len(idx), args.ctx) if len(idx[i:i + args.ctx]) >= 16]
@@ -58,13 +53,124 @@ def run_model(mid, args):
         per = max(args.chars, 120000); cap = max(1, args.fit // 4)
         sources = {"shakespeare": _fetch(CORPUS, per), "austen": _gutenberg(1342, per),
                    "code": _local_code(per), "wiki": _fetch_wiki(per)}
-        chunks = []; csrc = []; src_names = []
-        for si, (nm, txt) in enumerate(s for s in sources.items()):
+        chunks = []; csrc = []; names = []
+        for si, (nm, txt) in enumerate(sources.items()):
             cc = _chunk(txt)[:cap]
             if cc:
-                src_names.append(nm); chunks += cc; csrc += [si] * len(cc)
+                names.append(nm); chunks += cc; csrc += [si] * len(cc)
+        return chunks, csrc, names
+    chunks = _chunk(_fetch(CORPUS, args.chars))[: args.fit]
+    return chunks, [0] * len(chunks), ["shakespeare"]
+
+
+def _lens(WU, tok, vec, topn=8):
+    s = WU @ vec; idx = np.argsort(-s)[:topn]
+    return [tok.decode([int(i)]).replace("\n", "\\n") for i in idx]
+
+
+def _firing(act, DUP, POS, CID, SRC, dup_base):
+    """firing-pattern signatures of a channel's per-position activation: duplicate enrichment, positional correlation,
+    PERSISTENCE (lag-1 autocorr within chunk = held/broadcast), REGISTER fraction (between-source variance = topic)."""
+    aa = np.abs(act); hi = aa >= np.quantile(aa, 0.9)
+    dup_lift = aa[hi].size and DUP[hi].mean() / max(dup_base, 1e-6) or 0.0
+    pos_corr = float(np.corrcoef(aa, POS)[0, 1])
+    acs = []
+    for cid in np.unique(CID):
+        a = act[CID == cid]
+        if len(a) > 3:
+            a0 = a - a.mean(); den = (a0[:-1] ** 2).sum()
+            if den > 1e-9:
+                acs.append(float((a0[:-1] * a0[1:]).sum() / den))
+    persistence = float(np.mean(acs)) if acs else 0.0
+    if len(np.unique(SRC)) > 1:
+        means = np.array([act[SRC == s].mean() for s in np.unique(SRC)])
+        register_frac = float(np.var(means) / (np.var(act) + 1e-9))
     else:
-        chunks = _chunk(_fetch(CORPUS, args.chars))[: args.fit]; csrc = [0] * len(chunks); src_names = ["shakespeare"]
+        register_frac = float("nan")
+    label = ("induction/duplicate" if dup_lift > 1.3 else "positional" if abs(pos_corr) > 0.3 else "content/other")
+    return {"dup_lift": round(float(dup_lift), 2), "pos_corr": round(pos_corr, 2), "persistence": round(persistence, 2),
+            "register_frac": round(register_frac, 2), "label": label,
+            "broadcast": bool(persistence > 0.5 and (register_frac > 0.3 or np.isnan(register_frac)))}
+
+
+def run_resolved(mid, args):
+    """PER-LAYER-RESOLVED channels (faithful core_mps coupling, χ≈16). Per-layer top-r PCA + standardise each layer's
+    write; at a cut, SVD the (early-layers·r)×(late-layers·r) standardised cross-covariance into channels that MIX
+    layers. Each channel: writer/reader LAYER profile (which layers' coords carry it), logit-lens of the early/late
+    d-space directions (reconstructed from the per-layer PCA bases), and firing pattern."""
+    from residual_vm import ResidualVM
+    vm = ResidualVM(mid, device=args.device, dtype="fp32"); t = vm.torch; tok = vm.tok; nL = vm.nL; d = vm.d
+    r = args.rank; cut = args.cut if args.cut > 0 else nL // 2
+    WU = vm.model.get_output_embeddings().weight.detach().float().cpu().numpy()
+    chunks, csrc, src_names = build_corpus(args, tok)
+
+    def capture():
+        cap = {}
+        hks = [vm.layers[L].register_forward_hook(
+            (lambda L: lambda m, i, o: cap.__setitem__(L, ((o[0] if isinstance(o, tuple) else o) - i[0]).detach()))(L))
+            for L in range(nL)]
+        return cap, hks
+
+    # pass 1: per-layer write covariance → top-r PCA basis + std (for standardising the coords)
+    cov = {L: np.zeros((d, d)) for L in range(nL)}
+    cap, hks = capture()
+    with t.no_grad():
+        for c in chunks:
+            cap.clear(); vm.model(input_ids=t.tensor([c], device=vm.dev))
+            for L in range(nL):
+                u = cap[L][0].float().cpu().numpy(); cov[L] += u.T @ u
+    for h in hks:
+        h.remove()
+    bases = {}; std = {}
+    for L in range(nL):
+        w, V = np.linalg.eigh(cov[L]); order = np.argsort(-w)[:r]
+        bases[L] = V[:, order].astype(np.float32); std[L] = np.sqrt(np.clip(w[order], 1e-9, None)).astype(np.float32)
+
+    # pass 2: standardised per-layer coords → (early·r)×(late·r) cross-covariance + stored coords for firing
+    el = list(range(cut + 1)); ll = list(range(cut + 1, nL)); nE = len(el) * r; nLt = len(ll) * r
+    Cb = np.zeros((nE, nLt)); EC = []; IDS = []; DUP = []; POS = []; CID = []; SRC = []
+    cap, hks = capture()
+    with t.no_grad():
+        for ci, c in enumerate(chunks):
+            cap.clear(); vm.model(input_ids=t.tensor([c], device=vm.dev))
+            ec = np.concatenate([(cap[L][0].float().cpu().numpy() @ bases[L]) / std[L] for L in el], 1)   # (seq,nE)
+            lc = np.concatenate([(cap[L][0].float().cpu().numpy() @ bases[L]) / std[L] for L in ll], 1)   # (seq,nLt)
+            Cb += ec.T @ lc
+            seen = set()
+            for p in range(len(c)):
+                dup = 1.0 if c[p] in seen else 0.0; seen.add(c[p])
+                EC.append(ec[p]); IDS.append(c[p]); DUP.append(dup); POS.append(p); CID.append(ci); SRC.append(csrc[ci])
+    for h in hks:
+        h.remove()
+    Cb /= max(len(EC), 1)
+    EC = np.asarray(EC); DUP = np.asarray(DUP); POS = np.asarray(POS, float); CID = np.asarray(CID); SRC = np.asarray(SRC)
+
+    U, S, Vh = np.linalg.svd(Cb, full_matrices=False)                                   # channels mixing layers
+    p2 = S / S.sum(); chi = float(1.0 / (p2 ** 2).sum())
+    K = min(args.channels, len(S)); dup_base = DUP.mean()
+    channels = []
+    for i in range(K):
+        pi = U[:, i]; qi = Vh[i]
+        wr = np.array([np.abs(pi[k * r:(k + 1) * r]).sum() for k in range(len(el))])    # early-layer profile
+        rd = np.array([np.abs(qi[k * r:(k + 1) * r]).sum() for k in range(len(ll))])    # late-layer profile
+        ud = sum((bases[el[k]] @ pi[k * r:(k + 1) * r]) for k in range(len(el)))        # early d-direction
+        wd = sum((bases[ll[k]] @ qi[k * r:(k + 1) * r]) for k in range(len(ll)))        # late d-direction
+        fs = _firing(EC @ pi, DUP, POS, CID, SRC, dup_base)
+        channels.append({"channel": i, "sigma": float(S[i]), "sigma_frac": float(S[i] / S.sum()),
+                         "writer_layers": [int(el[k]) for k in np.argsort(-wr)[:3]],
+                         "reader_layers": [int(ll[k]) for k in np.argsort(-rd)[:3]],
+                         "lens_write": _lens(WU, tok, ud), "lens_read": _lens(WU, tok, wd), **fs})
+    return {"model": mid.split("/")[-1], "n_layers": nL, "cut": cut, "d": d, "rank": r, "n_positions": len(EC),
+            "coupling_participation_ratio_chi": chi, "resolved": True, "channels": channels}
+
+
+def run_model(mid, args):
+    from residual_vm import ResidualVM
+    vm = ResidualVM(mid, device=args.device, dtype="fp32"); t = vm.torch; tok = vm.tok; nL = vm.nL; d = vm.d
+    cut = args.cut if args.cut > 0 else nL // 2
+    WU = vm.model.get_output_embeddings().weight.detach().float().cpu().numpy()    # (vocab, d) unembedding, logit lens
+
+    chunks, csrc, src_names = build_corpus(args, tok)             # single-source or diverse (sources tagged)
 
     def capture():
         cap = {}
@@ -215,6 +321,8 @@ def main(argv=None):
     p.add_argument("--cut", type=int, default=0, help="layer cut (0 = nL//2)")
     p.add_argument("--channels", type=int, default=16, help="top coupling channels to characterise")
     p.add_argument("--top-ctx", type=int, default=200)
+    p.add_argument("--resolved", action="store_true", help="PER-LAYER-RESOLVED coupling (core_mps-style, exposes χ≈16) vs aggregate cut")
+    p.add_argument("--rank", type=int, default=24, help="per-layer PCA rank for the resolved coupling")
     p.add_argument("--diverse", action="store_true", help="diverse corpus (shakespeare+austen+code+wiki) → register/topic-broadcast test")
     p.add_argument("--causal", action="store_true", help="ablate each top channel at the cut, measure targeted ΔNLL (punct/dup/other)")
     p.add_argument("--causal-k", type=int, default=8, help="how many top channels to causally ablate")
@@ -227,7 +335,7 @@ def main(argv=None):
     for mid in [m.strip() for m in args.models.split(",") if m.strip()]:
         print(f"\n=== {mid} ===")
         try:
-            r = run_model(mid, args)
+            r = run_resolved(mid, args) if args.resolved else run_model(mid, args)
             if args.device == "cuda" and torch.cuda.is_available():
                 torch.cuda.empty_cache()
             results.append(r)

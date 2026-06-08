@@ -588,6 +588,19 @@ ones — and even those read as a *register difference between docs* more than a
 stayed ~0.2–0.3; none crossed a strong-broadcast threshold; 64-token chunks + 4 coarse sources, so a first cut).
 (`runs/disassembly/circuit_channels_summary.json`.)
 
+**Per-layer-RESOLVED channels expose the area-law bond (`--resolved`).** The aggregate cut collapsed to one channel
+(χ≈1.3) because summing all early/late writes destroys the per-layer structure. The faithful version (core_mps-style:
+top-r PCA + standardise *each* layer's write, then SVD the (early-layers·r)×(late-layers·r) cross-covariance into channels
+that *mix* layers) recovers it: on pythia-160m (r=24, cut 6/12) the coupling **participation ratio is χ≈29 with a FLAT
+spectrum** (top channels 6.7% → 1.7%, no dominant one) — the area-law structure, decomposed into ~20–30 roughly-equal
+channels. What they are: **mostly the induction / copy machinery** — nearly every channel is duplicate-enriched (dup×1.3–2.1)
+with writer layers **early (0–6) → reader layers late (7–11)**, i.e. *early-detect → late-act* copy circuits; **persistence
+is higher** here (several at +0.41–0.47). And the **register/topic broadcasts are sharper**: ch3 `microorganisms bacterial
+microbial bacteria` (register **0.71**, persistence **0.44** — a held science register, the clearest topic-broadcast), ch1
+(register **0.72**, byte/script tokens — a language/script register), ch8 (0.31). So the χ≈16–29 area-law bond decomposes
+into ~20–30 channels: **dominantly induction/copy (early→late), plus a handful of genuine register/topic broadcasts** —
+still a correlational lens (the causal caveat above stands). (`runs/disassembly/circuit_channels_summary.json`, `--resolved`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
