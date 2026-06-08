@@ -460,6 +460,34 @@ last-word accuracy 37–46% vs ~30%. This is the capability counterpart to the l
 (more capability ⇒ more entangled composition ⇒ less flat-reproducible) and the baseline any compressed core is judged
 against. (`runs/disassembly/benchmark_summary.json`.)
 
+**The clean Pythia ladder confirms the capacity-binding (controlled).** The GPT-2 family confounds size with training
+recipe/data; the **Pythia ladder** holds those fixed (same Pile data, same GPT-NeoX architecture, same tokenizer — only
+width/depth differ), so it isolates *size*. (`min_to_run.py` now factors GPT-NeoX / `nn.Linear` weights as well as
+GPT-2 Conv1D — `composition_mats` factors the *effective* in→out map, `Wᵀ` for Linear.) At dims identical to the GPT-2
+anchors — pythia-160m = 768/12 ≡ gpt2-small, pythia-410m = 1024/24 ≡ gpt2-medium — over 2500 steps at lr 1e-4:
+**self-distillation recovers at every rung** (pythia-70m ΔNLL **+0.13**, pythia-160m **+0.63** at full rank), while a
+**bigger teacher degrades a smaller student at every rank** — pythia-70m←160m **+3.9**, pythia-160m←410m **+4.0**, and a
+*two*-rung gap (160m←1b) is no better (**+3.9**). The bigger teacher's distribution is unreachable for the smaller
+student; chasing it drags it off being a good model of its own size — the same capacity-binding the confounded GPT-2
+ladder could only hint at. Two method caveats logged (not findings): at lr 3e-4 the cross-teacher KL *diverges*
+(ΔNLL +169 — an optimization blow-up, **not** capacity; lr 1e-4 is stable), and GPT-NeoX no-retrain SVD-truncation is
+far more destructive than GPT-2's at the same dims (+6.40 vs +2.18 ΔNLL at rank 256) — the same linear-low-rank form
+fits NeoX *worse*. (`runs/disassembly/min_to_run_summary.json`, keys `pythia-*@self` / `@teacher=*`.)
+
+**The low-rank *basis* was the weak link — not low-rank itself: functional (activation-weighted) SVD is near-lossless
+with *no* retraining (`--data-aware`).** Plain SVD minimizes ‖W−AB‖_F, spending rank on weight directions the
+activations never visit; the model only cares about ‖X(W−AB)‖. Whitening each matrix by its input covariance `C`, taking
+the rank-r SVD in *that* norm (`P = C^{-1/2}U` plays U's role, so the factor pipeline is unchanged), and unwhitening —
+**no training** — collapses the no-retrain error at the *same* rank: on pythia-160m, rank-256 ΔNLL **+6.40 → +0.45**
+(14×) and rank-512 **+4.43 → +0.07** (~lossless); on gpt2, rank-256 **+2.18 → +0.11** (20×) and rank-512 **+1.13 →
+−0.04** (denoises). The headline: data-aware *no-retrain* at rank 256 (**+0.45**) **matches/beats** the *trained*
+self-distill at the same rank (+0.65 after 2500 steps) — so the earlier "you must *train* the factors to move off the
+SVD subspace" was an artifact of the **wrong norm**; the right low-rank subspace is *analytic*, and 2500 gradient steps
+were largely rediscovering it. This sharpens (does not close) the open question: the residual floor — data-aware still
+wants **~⅓–½ rank** for lossless — is the genuinely-*composed* core, and whether *richer* forms (cross-layer TT/MPS,
+a nonlinear bottleneck, or a sparse-overcomplete basis) beat that floor is the next test, rather than whether linear
+low-rank per se is too weak. (`runs/disassembly/min_to_run_summary.json`, keys `*@svd` vs `*@svd+daware`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
