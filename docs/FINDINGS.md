@@ -222,12 +222,21 @@ and the prev-token writer head, base vs instruct).
   induction-NLL on repeated-random is mildly out-of-distribution for any post-trained model, so part of every
   degradation may be distribution shift, not circuit damage. (`runs/disassembly/posttrain_drift_summary.json`.)
 
+- **Post-training *consolidates* the writer-dependency structure rather than breaking it.** Re-running the
+  writer-dependency clustering (above) on the post-trained models — base → instruct/fine-tune, same settings, every
+  zero-patch sanity 0.0 — the **shared-front-end fraction and profile-cosine *rise* in all four**: Llama 88% → **100%**
+  (writer 0.2 unchanged), Qwen 75% → 88% (3.2 unchanged), Gemma 50% → 75%, and GPT-2-medium's *fragmented* **2-cluster**
+  structure collapses to **1 cluster** under DialoGPT (38% → 62% shared, profile-cos 0.58 → **0.90**). So fine-tuning
+  doesn't redistribute induction off the shared writer — the readers lean on it **more** afterward (plausibly because
+  instruction/dialogue tuning *sharpens* attention). The distribution structure is not just robust but *reinforced*.
+
 **Verdict.** RoPE's shared early-writer front-end is **exposed** (not depth-protected) but **robust** — under realistic
 post-training the predecessor-writer head persists (or, in Gemma, reorganizes to an even-earlier one while induction
-*improves*), and the **direct GPT-2 comparison shows no extra fragility** from the concentration (GPT-2's distributed
-induction degrades at least as much under a heavier fine-tune, writer head surviving in both). The single-point-of-
-failure worry isn't borne out; the failure mode that appears is graded *performance* degradation proportional to
-fine-tuning intensity, not structural breakage of the shared early node.
+*improves*), the **direct GPT-2 comparison shows no extra fragility** from the concentration (GPT-2's distributed
+induction degrades at least as much under a heavier fine-tune, writer head surviving in both), and the writer-dependency
+structure is **consolidated, not broken**, by post-training. The single-point-of-failure worry isn't borne out; the
+failure mode that appears is graded *performance* degradation proportional to fine-tuning intensity, not structural
+breakage of the shared early node.
 
 ## Methodological cautions — banked from the digs
 
