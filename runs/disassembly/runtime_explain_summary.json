@@ -1,0 +1,130 @@
+{
+  "experiment": "auditable runtime \u2014 per-token explanation at both the pylm-idiom and model-circuit level",
+  "results": [
+    {
+      "model": "gpt2",
+      "induction_heads": [
+        "5.5",
+        "7.10",
+        "5.1"
+      ],
+      "demo": "The cat sat on the mat. The dog ran in the park. The cat sat on the",
+      "demo_trace": [
+        {
+          "pos": 8,
+          "model_top1": " sat",
+          "pylm": ",",
+          "idiom": "bigram",
+          "agree": false,
+          "circuit": "MLP/content (distributed)",
+          "induction_attn": null
+        },
+        {
+          "pos": 9,
+          "model_top1": " up",
+          "pylm": " to",
+          "idiom": "bigram",
+          "agree": false,
+          "circuit": "MLP/content (distributed)",
+          "induction_attn": null
+        },
+        {
+          "pos": 10,
+          "model_top1": " the",
+          "pylm": " the",
+          "idiom": "bigram",
+          "agree": true,
+          "circuit": "MLP/content (distributed)",
+          "induction_attn": null
+        },
+        {
+          "pos": 11,
+          "model_top1": " other",
+          "pylm": " world",
+          "idiom": "trigram",
+          "agree": false,
+          "circuit": "MLP/content (distributed)",
+          "induction_attn": null
+        },
+        {
+          "pos": 12,
+          "model_top1": ".",
+          "pylm": ",",
+          "idiom": "trigram",
+          "agree": false,
+          "circuit": "MLP/content (distributed)",
+          "induction_attn": null
+        },
+        {
+          "pos": 13,
+          "model_top1": " The",
+          "pylm": "\n",
+          "idiom": "bigram",
+          "agree": false,
+          "circuit": "MLP/content (distributed)",
+          "induction_attn": null
+        },
+        {
+          "pos": 14,
+          "model_top1": " cat",
+          "pylm": " dog",
+          "idiom": "induction-2",
+          "agree": false,
+          "circuit": "induction head 5.5 (attn 0.23\u2192pos 8 'dog')",
+          "induction_attn": 0.22861094772815704
+        },
+        {
+          "pos": 15,
+          "model_top1": " sat",
+          "pylm": "-",
+          "idiom": "bigram",
+          "agree": false,
+          "circuit": "MLP/content (distributed)",
+          "induction_attn": null
+        },
+        {
+          "pos": 16,
+          "model_top1": " on",
+          "pylm": " on",
+          "idiom": "induction-2",
+          "agree": true,
+          "circuit": "induction head 5.5 (attn 0.37\u2192pos 3 'on')",
+          "induction_attn": 0.3693394064903259
+        },
+        {
+          "pos": 17,
+          "model_top1": " the",
+          "pylm": " the",
+          "idiom": "induction-3",
+          "agree": true,
+          "circuit": "induction head 5.5 (attn 0.47\u2192pos 4 'the')",
+          "induction_attn": 0.4737093448638916
+        }
+      ],
+      "n_eval": 299,
+      "attribution": {
+        "quad": {
+          "share": 0.2140468227424749,
+          "agreement": 0.578125
+        },
+        "trigram": {
+          "share": 0.26421404682274247,
+          "agreement": 0.5316455696202531
+        },
+        "bigram": {
+          "share": 0.26755852842809363,
+          "agreement": 0.5
+        },
+        "induction-2": {
+          "share": 0.10367892976588629,
+          "agreement": 0.3870967741935484
+        },
+        "induction-3": {
+          "share": 0.1505016722408027,
+          "agreement": 0.8
+        }
+      },
+      "induction_mean_attn_to_source": 0.2635846623360473
+    }
+  ]
+}
