@@ -105,13 +105,15 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
 - **The big-O: Θ(model size).** Functional per-layer rank and the shared basis are both Θ(d) (a constant fraction
   ~⅓–⅖, growing with width); the grammar head is ~O(1). Low-rank simplification buys a constant factor, not a big-O
   cut — the irreducible core scales *with* the model.
-- **But across the layer chain it is an area-law MPS.** Viewed as a tensor network over layer-"sites"
-  (`core_mps.py`), the **bond dimension is ~16 and flat across every cut, independent of depth/width** (gpt2/medium/
-  large all χ≈16; χ/max-bond *shrinks* with scale 0.11→0.037). So cross-layer entanglement is **O(1)** while the
-  per-layer write is Θ(d): "wide locally, thin across cuts" — a **tensor-train**. The core is *not* one global basis
-  (#132) but *is* an MPS, so a global TT surrogate at χ≈16 is a concrete CPU lever, and bigger models are *more*
-  MPS-compressible. The composition graph is densely coupled (adjacent > distant), and the ontology of typed
-  directions is grammar-at-the-rim / content-in-the-core.
+- **Across the layer chain the *coupling* is area-law, but the *runnable* bond is Θ(d).** Viewed as a tensor network
+  over layer-"sites" (`core_mps.py`), the cross-cut coupling spectrum has **participation ratio ~16, flat with
+  depth/width** — area-law on the coupling. **But that PR is not a runnable state size:** the no-retrain TT surrogate
+  (`core_tt.py`, embedding-protected running bond) shows χ≈16 *badly* degrades NLL (ΔNLL +1.4 to +3.1), the runnable
+  bond is ~⅓·d, **per-layer truncation beats the running-bond TT at every χ**, and the TT *compounds* error with depth
+  (χ=256 ΔNLL +0.23→+0.75→+0.98 over 12→24→36 layers — *worse* with scale, not better). So the only free CPU lever is
+  core_rank's per-layer rank-⅓·d (a ~3× constant-factor FLOP saving, lossless, no retrain), **not** a χ≈16 collapse;
+  the Θ(d) core (forge tax) is the floor. The composition graph is densely coupled (adjacent > distant); the ontology
+  of typed directions is grammar-at-the-rim / content-in-the-core.
 - **Made runnable (pylm).** A flat-file **grammar** idiom decompiles the scaffold ([pylm track](PYLM_TRACK.md)), but
   adds ~nothing to the *token*-level decompilable fraction (49.0→49.5%) — grammar is categorial; the n-gram modes
   already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled

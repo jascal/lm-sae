@@ -243,14 +243,38 @@ very different number, and the cleanest CPU-simplification result yet:
 | gpt2-medium | 24 | **15.5** | 14–16 | 288 | 0.056 |
 | gpt2-large | 36 | **16.4** | 14–18 | 432 | 0.037 |
 
-**The bond dimension is ~16 and FLAT — independent of depth and width.** Adding layers to either side of a cut does
-*not* raise the cross-cut rank: that is the defining signature of an **area-law MPS**. So the cross-layer entanglement
-is **O(1) (~16)** while the per-layer write subspace is Θ(d) — the composition is "wide locally, thin across cuts,"
-exactly a **tensor-train**. This reconciles the #132 result (a *single global basis* fails at low rank) with
-simplifiability: the core is **not** one frozen subspace, but it **is** an MPS — a chain of ~16-dim bonds with
-per-layer rotation tensors — and because χ/max-bond *shrinks* with scale, **bigger models are *more* MPS-compressible
-per cut**. A global tensor-train surrogate at bond χ≈16 is the concrete CPU lever (beyond core_rank's per-layer
-low-rank), and the bond is a real handle to *decompile* (read the ~16-dim shared backbone at each cut).
+**The bond dimension's *participation ratio* is ~16 and FLAT — independent of depth and width.** Adding layers to
+either side of a cut does *not* raise the dominant cross-cut coupling: an **area-law** signature on the *coupling
+spectrum*. **Honest correction (see the TT surrogate below):** χ≈16 here is the **participation ratio** of the
+cross-cut correlation spectrum — a *coupling-concentration* measure dominated by a few high-variance directions — **not**
+the rank you need to *reconstruct* the computation (exactly the core_rank gap: participation ratio ≈ 16, but rank-95 ≈
+250). So "the layers communicate through a 16-dim channel" is true of the dominant *coupling*, **false** as a runnable
+state dimension. The honest statement: the cross-layer coupling is heavy-tailed-low-rank (dominant head O(1), flat with
+depth), the *runnable* bond is Θ(d) (next), and the simplification lever stays core_rank's per-layer low-rank.
+
+#### …and the TT surrogate confirms it — the runnable bond is Θ(d), not 16 (`core_tt.py`)
+
+Turning the bond into a **runnable, no-retrain surrogate** settles the CPU question. The residual carries two things —
+the token EMBEDDING (full-rank, injected once) and the inter-layer COMPUTATION — so the faithful tensor-train protects
+`resid_0` in full and forces only the *carried computation* through a χ-dim bond:
+`resid_{L+1} ← resid_0 + B_L Bᵀ_L (resid_{L+1} − resid_0)`. ΔNLL vs the full model (generic next-token):
+
+| ΔNLL | χ=16 | χ=64 | χ=256 | reading |
+|---|---|---|---|---|
+| **TT** (emb-protected bond) gpt2 / med / large | +1.37 / +2.94 / +3.11 | +0.77 / +1.94 / +2.41 | **+0.23 / +0.75 / +0.98** | the χ≈16 bond is **unusable**; runnable bond ~⅓·d |
+| **per-layer** (core_rank) | +1.15 / +2.09 / +2.71 | +0.54 / +1.14 / +1.34 | **+0.10 / +0.27 / +0.36** | **better at every χ** — the real lever |
+| **resid** (full-residual control) | +1.44 / +2.90 / +3.14 | ≈ TT | ≈ TT | emb-protection barely helps |
+
+Three honest findings: (1) **at the area-law bond χ≈16, NLL is badly degraded** (+1.4 to +3.1) — the participation
+ratio is not a runnable state size; (2) the **runnable no-retrain bond is ~⅓·d**, and **per-layer truncation beats the
+running-bond TT at every χ** (the TT compounds error across cuts, so it gets *worse* with depth: χ=256 ΔNLL
++0.23→+0.75→+0.98 as layers go 12→24→36 — the *opposite* of "bigger = more compressible"); (3) protecting the
+embedding barely helps (TT ≈ resid control), so the un-compressible content is the *computation*, not the tokens. **So
+the only free CPU lever is core_rank's per-layer rank-⅓·d — a constant-factor (~3×) FLOP saving, lossless, no retrain —
+NOT a χ≈16 tensor-train collapse.** The hard floor is the Θ(d) core (the forge tax): the irreducible composition is a
+constant *fraction* of the model, so no fixed-size surrogate beats the model's own size without retraining. (A
+*retrained* TT — learn the cores instead of PCA-projecting activations — could reach a lower bond; that is the
+sae-forge feature-native direction, outside the no-retrain frame. `runs/disassembly/core_tt_summary.json`.)
 
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
