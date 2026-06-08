@@ -193,11 +193,40 @@ def run_model(mid, args):
 
     full_params = int(sum(W.shape[0] * W.shape[1] for W in mats))
     orig = [W.detach().clone() for W in mats]
-    # precompute SVD of each EFFECTIVE matrix once — kept on CPU (~1.5GB) so the GPU fits both student + teacher
-    svds = []
-    for W, lin in zip(mats, is_lin):
-        U, S, Vh = torch.linalg.svd(eff(W, lin).detach().float().cpu(), full_matrices=False)
-        svds.append((U, S, Vh))
+
+    def input_covariances():
+        """per-matrix input covariance Cⱼ = E[xxᵀ] over the corpus — for FUNCTIONAL (data-aware) low-rank, which
+        minimizes ‖X(W−AB)‖ (the directions the activations actually visit) instead of ‖W−AB‖_F (every direction)."""
+        cov = [None] * len(mods); cnt = [0] * len(mods); hs = []
+        for j, mod in enumerate(mods):
+            def mk(j):
+                def hook(m, i):
+                    x = i[0].detach().reshape(-1, i[0].shape[-1]).float(); g = x.t() @ x
+                    cov[j] = g if cov[j] is None else cov[j] + g; cnt[j] += x.shape[0]
+                return hook
+            hs.append(mod.register_forward_pre_hook(mk(j)))
+        with t.no_grad():
+            for c in (chunks + train_chunks):
+                vm.model(input_ids=t.tensor([c], device=vm.dev))
+        for h in hs:
+            h.remove()
+        return [(cov[j] / max(cnt[j], 1)).cpu() for j in range(len(mods))]
+
+    def daware_factor(M, C, ridge=1e-3):
+        """functional rank-r factors: SVD in the data norm. Returns (P, S, Vh) where M_r = (P[:,:r]*S[:r])@Vh[:r],
+        P = C^{-1/2}U taking U's role — so set_rank / fit_distill below are unchanged (plain SVD is P=U, C=I)."""
+        C = C + ridge * C.diag().mean() * t.eye(C.shape[0])
+        w, Q = t.linalg.eigh(C); w = w.clamp_min(1e-8)
+        Chalf = (Q * w.sqrt()) @ Q.t(); Cinv = (Q * w.rsqrt()) @ Q.t()
+        U, S, Vh = t.linalg.svd(Chalf @ M, full_matrices=False)
+        return Cinv @ U, S, Vh
+
+    # precompute (data-aware or plain) low-rank factors of each EFFECTIVE matrix once — kept on CPU (GPU fits student+teacher)
+    if args.data_aware:
+        covs = input_covariances()
+        svds = [daware_factor(eff(W, lin).detach().float().cpu(), covs[j]) for j, (W, lin) in enumerate(zip(mats, is_lin))]
+    else:
+        svds = [torch.linalg.svd(eff(W, lin).detach().float().cpu(), full_matrices=False) for W, lin in zip(mats, is_lin)]
 
     def gen(metric_top1=None):
         tot = 0.0; k = 0; agree = 0; preds = []; dom_hit = {}; dom_tot = {}
@@ -284,14 +313,22 @@ def run_model(mid, args):
     curve = []
     for r in ranks:
         set_rank(r); nll0, _, agree0, _ = gen(metric_top1=full_top1); restore()   # no-retrain SVD baseline
-        nll_d, agree_d, per_dom, agree_tch = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None, None, None))
+        try:
+            nll_d, agree_d, per_dom, agree_tch = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None, None, None))
+        except torch.cuda.OutOfMemoryError:                            # one rank OOM (big factors) → drop that rank, keep the curve
+            nll_d, agree_d, per_dom, agree_tch = (None, None, None, None)
+            print(f"    rank {r:4d}: distill OOM — skipped (SVD baseline kept)"); torch.cuda.empty_cache()
         stored = int(sum(r * (W.shape[0] + W.shape[1]) for W in mats))
         curve.append({"rank": r, "svd_nll_increase": nll0 - full_nll, "svd_agreement": agree0,
                       "distilled_nll_increase": (nll_d - full_nll) if nll_d is not None else None,
                       "distilled_agreement": agree_d, "distilled_agreement_teacher": agree_tch,
                       "distilled_per_domain": per_dom, "stored_params": stored,
                       "compression_ratio": stored / full_params, "params_saved_frac": 1 - stored / full_params})
-    return {"model": mid.split("/")[-1], "n_layers": nL, "full_nll": full_nll, "teacher": args.teacher,
+    tag = args.tag or (f"teacher={args.teacher.split('/')[-1]}" if args.teacher
+                       else ("self" if args.match_teacher else "nll"))   # distinguish self/cross-teacher runs in the json
+    if args.data_aware:
+        tag += "+daware"
+    return {"model": mid.split("/")[-1] + "@" + tag, "n_layers": nL, "full_nll": full_nll, "teacher": args.teacher,
             "transformer_weight_params_M": full_params / 1e6, "distill_steps": args.distill_steps, "curve": curve}
 
 
@@ -309,6 +346,8 @@ def main(argv=None):
     p.add_argument("--lr", type=float, default=1e-3, help="distillation learning rate")
     p.add_argument("--match-teacher", action="store_true", help="distill to a teacher (faithful) vs corpus NLL (capable)")
     p.add_argument("--teacher", default="", help="a SEPARATE teacher model (same tokenizer), e.g. gpt2-xl → gpt2-large core")
+    p.add_argument("--tag", default="", help="suffix for the summary-json model key (auto: self/teacher=<id>/nll)")
+    p.add_argument("--data-aware", action="store_true", help="functional (activation-weighted) low-rank vs Frobenius SVD")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly"))
     args = p.parse_args(argv)

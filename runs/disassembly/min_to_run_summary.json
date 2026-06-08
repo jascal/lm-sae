@@ -2,6 +2,642 @@
   "experiment": "minimum-to-run frontier \u2014 fidelity vs stored size under no-retrain low-rank weight factorization",
   "results": [
     {
+      "model": "gpt2@svd+daware",
+      "n_layers": 12,
+      "full_nll": 5.227525975875766,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 0,
+      "curve": [
+        {
+          "rank": 8,
+          "svd_nll_increase": 2.252678382462321,
+          "svd_agreement": 0.25727513227513227,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 1179648,
+          "compression_ratio": 0.013888888888888888,
+          "params_saved_frac": 0.9861111111111112
+        },
+        {
+          "rank": 16,
+          "svd_nll_increase": 2.0339974712237394,
+          "svd_agreement": 0.2156084656084656,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 2359296,
+          "compression_ratio": 0.027777777777777776,
+          "params_saved_frac": 0.9722222222222222
+        },
+        {
+          "rank": 32,
+          "svd_nll_increase": 1.4323308131551178,
+          "svd_agreement": 0.22354497354497355,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 4718592,
+          "compression_ratio": 0.05555555555555555,
+          "params_saved_frac": 0.9444444444444444
+        },
+        {
+          "rank": 64,
+          "svd_nll_increase": 1.0407765575902852,
+          "svd_agreement": 0.28835978835978837,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 9437184,
+          "compression_ratio": 0.1111111111111111,
+          "params_saved_frac": 0.8888888888888888
+        },
+        {
+          "rank": 128,
+          "svd_nll_increase": 0.6852968545706437,
+          "svd_agreement": 0.373015873015873,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 18874368,
+          "compression_ratio": 0.2222222222222222,
+          "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 256,
+          "svd_nll_increase": 0.10985458520868718,
+          "svd_agreement": 0.5707671957671958,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": -0.04241382810348515,
+          "svd_agreement": 0.8029100529100529,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 75497472,
+          "compression_ratio": 0.8888888888888888,
+          "params_saved_frac": 0.11111111111111116
+        }
+      ]
+    },
+    {
+      "model": "gpt2@svd",
+      "n_layers": 12,
+      "full_nll": 5.227525975875766,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 0,
+      "curve": [
+        {
+          "rank": 8,
+          "svd_nll_increase": 3.2033259480075102,
+          "svd_agreement": 0.0958994708994709,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 1179648,
+          "compression_ratio": 0.013888888888888888,
+          "params_saved_frac": 0.9861111111111112
+        },
+        {
+          "rank": 16,
+          "svd_nll_increase": 3.4589535621726206,
+          "svd_agreement": 0.017195767195767195,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 2359296,
+          "compression_ratio": 0.027777777777777776,
+          "params_saved_frac": 0.9722222222222222
+        },
+        {
+          "rank": 32,
+          "svd_nll_increase": 2.541520547077126,
+          "svd_agreement": 0.20238095238095238,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 4718592,
+          "compression_ratio": 0.05555555555555555,
+          "params_saved_frac": 0.9444444444444444
+        },
+        {
+          "rank": 64,
+          "svd_nll_increase": 2.512925239402769,
+          "svd_agreement": 0.10714285714285714,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 9437184,
+          "compression_ratio": 0.1111111111111111,
+          "params_saved_frac": 0.8888888888888888
+        },
+        {
+          "rank": 128,
+          "svd_nll_increase": 2.396290054174946,
+          "svd_agreement": 0.0787037037037037,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 18874368,
+          "compression_ratio": 0.2222222222222222,
+          "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 256,
+          "svd_nll_increase": 2.176717792568371,
+          "svd_agreement": 0.10383597883597884,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 1.1282591547508591,
+          "svd_agreement": 0.25992063492063494,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 75497472,
+          "compression_ratio": 0.8888888888888888,
+          "params_saved_frac": 0.11111111111111116
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m@svd+daware",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 0,
+      "curve": [
+        {
+          "rank": 8,
+          "svd_nll_increase": 3.4654043782003487,
+          "svd_agreement": 0.15476190476190477,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 1179648,
+          "compression_ratio": 0.013888888888888888,
+          "params_saved_frac": 0.9861111111111112
+        },
+        {
+          "rank": 16,
+          "svd_nll_increase": 2.465475478344449,
+          "svd_agreement": 0.24603174603174602,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 2359296,
+          "compression_ratio": 0.027777777777777776,
+          "params_saved_frac": 0.9722222222222222
+        },
+        {
+          "rank": 32,
+          "svd_nll_increase": 2.2807541420017188,
+          "svd_agreement": 0.27116402116402116,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 4718592,
+          "compression_ratio": 0.05555555555555555,
+          "params_saved_frac": 0.9444444444444444
+        },
+        {
+          "rank": 64,
+          "svd_nll_increase": 1.3708106024689242,
+          "svd_agreement": 0.3425925925925926,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 9437184,
+          "compression_ratio": 0.1111111111111111,
+          "params_saved_frac": 0.8888888888888888
+        },
+        {
+          "rank": 128,
+          "svd_nll_increase": 0.9305107645008581,
+          "svd_agreement": 0.4193121693121693,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 18874368,
+          "compression_ratio": 0.2222222222222222,
+          "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 256,
+          "svd_nll_increase": 0.4504798520436495,
+          "svd_agreement": 0.5535714285714286,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 0.07141157159493705,
+          "svd_agreement": 0.7645502645502645,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 75497472,
+          "compression_ratio": 0.8888888888888888,
+          "params_saved_frac": 0.11111111111111116
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m@svd",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 0,
+      "curve": [
+        {
+          "rank": 8,
+          "svd_nll_increase": 5.689186695280051,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 1179648,
+          "compression_ratio": 0.013888888888888888,
+          "params_saved_frac": 0.9861111111111112
+        },
+        {
+          "rank": 16,
+          "svd_nll_increase": 5.594253478982615,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 2359296,
+          "compression_ratio": 0.027777777777777776,
+          "params_saved_frac": 0.9722222222222222
+        },
+        {
+          "rank": 32,
+          "svd_nll_increase": 5.347824107054202,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 4718592,
+          "compression_ratio": 0.05555555555555555,
+          "params_saved_frac": 0.9444444444444444
+        },
+        {
+          "rank": 64,
+          "svd_nll_increase": 5.174534045087751,
+          "svd_agreement": 0.007275132275132275,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 9437184,
+          "compression_ratio": 0.1111111111111111,
+          "params_saved_frac": 0.8888888888888888
+        },
+        {
+          "rank": 128,
+          "svd_nll_increase": 5.30550230161112,
+          "svd_agreement": 0.03439153439153439,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 18874368,
+          "compression_ratio": 0.2222222222222222,
+          "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 256,
+          "svd_nll_increase": 6.402407863435443,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 4.432050128902861,
+          "svd_agreement": 0.031084656084656083,
+          "distilled_nll_increase": null,
+          "distilled_agreement": null,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": null,
+          "stored_params": 75497472,
+          "compression_ratio": 0.8888888888888888,
+          "params_saved_frac": 0.11111111111111116
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m@teacher=pythia-1b",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "EleutherAI/pythia-1b",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 6.402407863435443,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": 3.8792241162062426,
+          "distilled_agreement": 0.29365079365079366,
+          "distilled_agreement_teacher": 0.28306879103183746,
+          "distilled_per_domain": {
+            "shakespeare": 0.29365079365079366
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 4.432050128902861,
+          "svd_agreement": 0.031084656084656083,
+          "distilled_nll_increase": 3.949067724096248,
+          "distilled_agreement": 0.21362433862433863,
+          "distilled_agreement_teacher": 0.21560847153887153,
+          "distilled_per_domain": {
+            "shakespeare": 0.21362433862433863
+          },
+          "stored_params": 75497472,
+          "compression_ratio": 0.8888888888888888,
+          "params_saved_frac": 0.11111111111111116
+        },
+        {
+          "rank": 768,
+          "svd_nll_increase": -5.568347491546888e-06,
+          "svd_agreement": 1.0,
+          "distilled_nll_increase": 4.29937738176896,
+          "distilled_agreement": 0.2123015873015873,
+          "distilled_agreement_teacher": 0.19708995272715887,
+          "distilled_per_domain": {
+            "shakespeare": 0.2123015873015873
+          },
+          "stored_params": 113246208,
+          "compression_ratio": 1.3333333333333333,
+          "params_saved_frac": -0.33333333333333326
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m@teacher=pythia-410m",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "EleutherAI/pythia-410m",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 6.402407863435443,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": 4.090871554434117,
+          "distilled_agreement": 0.29034391534391535,
+          "distilled_agreement_teacher": 0.28240741478900117,
+          "distilled_per_domain": {
+            "shakespeare": 0.29034391534391535
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 4.432050128902861,
+          "svd_agreement": 0.031084656084656083,
+          "distilled_nll_increase": 3.9753967146974345,
+          "distilled_agreement": 0.31216931216931215,
+          "distilled_agreement_teacher": 0.3128306958824396,
+          "distilled_per_domain": {
+            "shakespeare": 0.31216931216931215
+          },
+          "stored_params": 75497472,
+          "compression_ratio": 0.8888888888888888,
+          "params_saved_frac": 0.11111111111111116
+        },
+        {
+          "rank": 768,
+          "svd_nll_increase": -5.568347491546888e-06,
+          "svd_agreement": 1.0,
+          "distilled_nll_increase": 4.117182591010413,
+          "distilled_agreement": 0.25462962962962965,
+          "distilled_agreement_teacher": 0.25198413245379925,
+          "distilled_per_domain": {
+            "shakespeare": 0.25462962962962965
+          },
+          "stored_params": 113246208,
+          "compression_ratio": 1.3333333333333333,
+          "params_saved_frac": -0.33333333333333326
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m@self",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 6.402407863435443,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": 0.6528642378970284,
+          "distilled_agreement": 0.43915343915343913,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.43915343915343913
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 4.432050128902861,
+          "svd_agreement": 0.031084656084656083,
+          "distilled_nll_increase": 0.6291228655935761,
+          "distilled_agreement": 0.42724867724867727,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.42724867724867727
+          },
+          "stored_params": 75497472,
+          "compression_ratio": 0.8888888888888888,
+          "params_saved_frac": 0.11111111111111116
+        },
+        {
+          "rank": 768,
+          "svd_nll_increase": -5.568347491546888e-06,
+          "svd_agreement": 1.0,
+          "distilled_nll_increase": 0.8120220448919104,
+          "distilled_agreement": 0.419973544973545,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.419973544973545
+          },
+          "stored_params": 113246208,
+          "compression_ratio": 1.3333333333333333,
+          "params_saved_frac": -0.33333333333333326
+        }
+      ]
+    },
+    {
+      "model": "pythia-70m@teacher=pythia-160m",
+      "n_layers": 6,
+      "full_nll": 4.7759022600533045,
+      "teacher": "EleutherAI/pythia-160m",
+      "transformer_weight_params_M": 18.874368,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 3.7008578832327172,
+          "svd_agreement": 0.14947089947089948,
+          "distilled_nll_increase": 3.9670742242643238,
+          "distilled_agreement": 0.062169312169312166,
+          "distilled_agreement_teacher": 0.05753968438754479,
+          "distilled_per_domain": {
+            "shakespeare": 0.062169312169312166
+          },
+          "stored_params": 12582912,
+          "compression_ratio": 0.6666666666666666,
+          "params_saved_frac": 0.33333333333333337
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 6.669341393816808e-06,
+          "svd_agreement": 1.0,
+          "distilled_nll_increase": 3.8567079856185478,
+          "distilled_agreement": 0.08134920634920635,
+          "distilled_agreement_teacher": 0.07208994907947879,
+          "distilled_per_domain": {
+            "shakespeare": 0.08134920634920635
+          },
+          "stored_params": 25165824,
+          "compression_ratio": 1.3333333333333333,
+          "params_saved_frac": -0.33333333333333326
+        },
+        {
+          "rank": 768,
+          "svd_nll_increase": 6.669341393816808e-06,
+          "svd_agreement": 1.0,
+          "distilled_nll_increase": 3.8567079856185478,
+          "distilled_agreement": 0.08134920634920635,
+          "distilled_agreement_teacher": 0.07208994907947879,
+          "distilled_per_domain": {
+            "shakespeare": 0.08134920634920635
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 2.0,
+          "params_saved_frac": -1.0
+        }
+      ]
+    },
+    {
+      "model": "pythia-70m@self",
+      "n_layers": 6,
+      "full_nll": 4.7759022600533045,
+      "teacher": "",
+      "transformer_weight_params_M": 18.874368,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 3.7008578832327172,
+          "svd_agreement": 0.14947089947089948,
+          "distilled_nll_increase": 0.2829053568221509,
+          "distilled_agreement": 0.5198412698412699,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.5198412698412699
+          },
+          "stored_params": 12582912,
+          "compression_ratio": 0.6666666666666666,
+          "params_saved_frac": 0.33333333333333337
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 6.669341393816808e-06,
+          "svd_agreement": 1.0,
+          "distilled_nll_increase": 0.1331781889142576,
+          "distilled_agreement": 0.5588624338624338,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.5588624338624338
+          },
+          "stored_params": 25165824,
+          "compression_ratio": 1.3333333333333333,
+          "params_saved_frac": -0.33333333333333326
+        },
+        {
+          "rank": 768,
+          "svd_nll_increase": 6.669341393816808e-06,
+          "svd_agreement": 1.0,
+          "distilled_nll_increase": 0.1331781889142576,
+          "distilled_agreement": 0.5588624338624338,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.5588624338624338
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 2.0,
+          "params_saved_frac": -1.0
+        }
+      ]
+    },
+    {
       "model": "gpt2-medium",
       "n_layers": 24,
       "full_nll": 4.942307014378515,
@@ -38,10 +674,6 @@
           "params_saved_frac": 0.33333333333333337
         }
       ]
-    },
-    {
-      "model": "gpt2-large",
-      "error": "CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 7.53 GiB of which 14.69 MiB is free. Including non-PyTorch memory, this process has 7.50 GiB memory in use. Of the allocated memory 7.30 GiB is allocated by PyTorch, and 93.71 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
     },
     {
       "model": "gpt2",
