@@ -1,0 +1,1487 @@
+{
+  "experiment": "cross-layer communication channels (candidate circuits) decomposed from the activation coupling",
+  "results": [
+    {
+      "model": "pythia-160m",
+      "n_layers": 12,
+      "cut": 6,
+      "d": 768,
+      "n_positions": 7680,
+      "coupling_participation_ratio_chi": 1.2931856461922346,
+      "channels": [
+        {
+          "channel": 0,
+          "sigma": 0.710274685279667,
+          "sigma_frac": 0.8788825526464918,
+          "writer_layers": [
+            0,
+            3,
+            1
+          ],
+          "reader_layers": [
+            11,
+            10,
+            9
+          ],
+          "writer_profile": [
+            0.124,
+            0.109,
+            0.066,
+            0.111,
+            0.065,
+            0.099,
+            0.09,
+            0.103,
+            0.068,
+            0.062,
+            0.062,
+            0.041
+          ],
+          "reader_profile": [
+            0.041,
+            0.035,
+            0.028,
+            0.04,
+            0.027,
+            0.032,
+            0.027,
+            0.021,
+            0.022,
+            0.047,
+            0.114,
+            0.566
+          ],
+          "lens_write": [
+            " intr",
+            " sk",
+            " situation",
+            " indeed",
+            " bound",
+            " far",
+            " pitch",
+            " fell"
+          ],
+          "lens_read": [
+            "\\n",
+            ",",
+            " I",
+            ".",
+            ";",
+            ":",
+            "!",
+            "'t"
+          ],
+          "dup_lift": 0.85,
+          "pos_corr": -0.21,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": "The",
+              "dup": 0.0
+            },
+            {
+              "token": "The",
+              "dup": 0.0
+            },
+            {
+              "token": ",",
+              "dup": 0.0
+            },
+            {
+              "token": " The",
+              "dup": 0.0
+            },
+            {
+              "token": "The",
+              "dup": 0.0
+            },
+            {
+              "token": "The",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 1,
+          "sigma": 0.01943838981898844,
+          "sigma_frac": 0.02405275313553288,
+          "writer_layers": [
+            3,
+            7,
+            2
+          ],
+          "reader_layers": [
+            3,
+            7,
+            0
+          ],
+          "writer_profile": [
+            0.091,
+            0.093,
+            0.125,
+            0.175,
+            0.028,
+            0.039,
+            0.04,
+            0.139,
+            0.086,
+            0.098,
+            0.07,
+            0.016
+          ],
+          "reader_profile": [
+            0.123,
+            0.107,
+            0.079,
+            0.134,
+            0.05,
+            0.085,
+            0.063,
+            0.126,
+            0.073,
+            0.07,
+            0.067,
+            0.022
+          ],
+          "lens_write": [
+            "documentclass",
+            "CLUDING",
+            "icrobial",
+            "CLUSION",
+            "astolic",
+            "APTER",
+            "CHANTABILITY",
+            "\u0430\u0442\u0435\u043b"
+          ],
+          "lens_read": [
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd"
+          ],
+          "dup_lift": 1.21,
+          "pos_corr": -0.21,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": "\\n",
+              "dup": 0.0
+            },
+            {
+              "token": "\\n",
+              "dup": 0.0
+            },
+            {
+              "token": "\\n",
+              "dup": 0.0
+            },
+            {
+              "token": "\\n",
+              "dup": 0.0
+            },
+            {
+              "token": "\\n",
+              "dup": 0.0
+            },
+            {
+              "token": "\\n",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 2,
+          "sigma": 0.008094921202567235,
+          "sigma_frac": 0.010016526222081545,
+          "writer_layers": [
+            9,
+            7,
+            3
+          ],
+          "reader_layers": [
+            3,
+            10,
+            7
+          ],
+          "writer_profile": [
+            0.081,
+            0.074,
+            0.09,
+            0.103,
+            0.067,
+            0.045,
+            0.091,
+            0.112,
+            0.08,
+            0.124,
+            0.056,
+            0.075
+          ],
+          "reader_profile": [
+            0.077,
+            0.075,
+            0.106,
+            0.133,
+            0.057,
+            0.042,
+            0.078,
+            0.114,
+            0.056,
+            0.08,
+            0.12,
+            0.061
+          ],
+          "lens_write": [
+            " living",
+            " newly",
+            " smallest",
+            " same",
+            " taste",
+            " old",
+            " new",
+            " sample"
+          ],
+          "lens_read": [
+            " worse",
+            " force",
+            " wound",
+            " his",
+            " willingly",
+            " defeat",
+            " speed",
+            " blind"
+          ],
+          "dup_lift": 2.77,
+          "pos_corr": 0.13,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            }
+          ]
+        },
+        {
+          "channel": 3,
+          "sigma": 0.007252473955871644,
+          "sigma_frac": 0.008974095452703503,
+          "writer_layers": [
+            6,
+            0,
+            5
+          ],
+          "reader_layers": [
+            6,
+            5,
+            4
+          ],
+          "writer_profile": [
+            0.117,
+            0.051,
+            0.06,
+            0.085,
+            0.094,
+            0.11,
+            0.134,
+            0.093,
+            0.077,
+            0.065,
+            0.063,
+            0.052
+          ],
+          "reader_profile": [
+            0.074,
+            0.058,
+            0.085,
+            0.097,
+            0.1,
+            0.106,
+            0.146,
+            0.096,
+            0.093,
+            0.056,
+            0.065,
+            0.023
+          ],
+          "lens_write": [
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "ier",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd"
+          ],
+          "lens_read": [
+            "arynge",
+            "ubicin",
+            "inea",
+            "inates",
+            "osities",
+            "ercul",
+            "oxacin",
+            "elihood"
+          ],
+          "dup_lift": 1.75,
+          "pos_corr": 0.1,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": " gar",
+              "dup": 0.0
+            },
+            {
+              "token": "bell",
+              "dup": 0.0
+            },
+            {
+              "token": " super",
+              "dup": 0.0
+            },
+            {
+              "token": " trump",
+              "dup": 0.0
+            },
+            {
+              "token": "flu",
+              "dup": 0.0
+            },
+            {
+              "token": "s",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 4,
+          "sigma": 0.004374052270530042,
+          "sigma_frac": 0.00541238242697466,
+          "writer_layers": [
+            7,
+            6,
+            5
+          ],
+          "reader_layers": [
+            6,
+            7,
+            5
+          ],
+          "writer_profile": [
+            0.046,
+            0.027,
+            0.055,
+            0.043,
+            0.069,
+            0.128,
+            0.195,
+            0.199,
+            0.114,
+            0.056,
+            0.045,
+            0.023
+          ],
+          "reader_profile": [
+            0.021,
+            0.041,
+            0.064,
+            0.048,
+            0.071,
+            0.133,
+            0.206,
+            0.173,
+            0.106,
+            0.069,
+            0.049,
+            0.019
+          ],
+          "lens_write": [
+            " real",
+            " kind",
+            " perfect",
+            " rep",
+            " common",
+            " conduct",
+            " best",
+            " smooth"
+          ],
+          "lens_read": [
+            "vict",
+            "counsel",
+            "placian",
+            "equation",
+            "exception",
+            "ambiguation",
+            "blockList",
+            "necess"
+          ],
+          "dup_lift": 0.98,
+          "pos_corr": 0.21,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": " to",
+              "dup": 1.0
+            },
+            {
+              "token": "Nob",
+              "dup": 0.0
+            },
+            {
+              "token": " of",
+              "dup": 1.0
+            },
+            {
+              "token": "antage",
+              "dup": 0.0
+            },
+            {
+              "token": "IR",
+              "dup": 0.0
+            },
+            {
+              "token": "IR",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 5,
+          "sigma": 0.0030247028107207624,
+          "sigma_frac": 0.0037427189541980755,
+          "writer_layers": [
+            6,
+            7,
+            5
+          ],
+          "reader_layers": [
+            6,
+            7,
+            8
+          ],
+          "writer_profile": [
+            0.084,
+            0.044,
+            0.064,
+            0.037,
+            0.065,
+            0.107,
+            0.177,
+            0.144,
+            0.076,
+            0.059,
+            0.043,
+            0.099
+          ],
+          "reader_profile": [
+            0.043,
+            0.043,
+            0.063,
+            0.05,
+            0.051,
+            0.1,
+            0.202,
+            0.158,
+            0.129,
+            0.065,
+            0.057,
+            0.039
+          ],
+          "lens_write": [
+            "\u0c41",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\u0abe",
+            "\ufffd",
+            "\u0c3f",
+            "\ufffd"
+          ],
+          "lens_read": [
+            " CAR",
+            " LU",
+            " AUTHOR",
+            " MAR",
+            " SE",
+            " FR",
+            " COUNTY",
+            " ESP"
+          ],
+          "dup_lift": 2.1,
+          "pos_corr": 0.16,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": "US",
+              "dup": 1.0
+            },
+            {
+              "token": "US",
+              "dup": 1.0
+            },
+            {
+              "token": "IN",
+              "dup": 1.0
+            },
+            {
+              "token": "US",
+              "dup": 1.0
+            },
+            {
+              "token": "US",
+              "dup": 1.0
+            },
+            {
+              "token": "US",
+              "dup": 1.0
+            }
+          ]
+        },
+        {
+          "channel": 6,
+          "sigma": 0.002534238507313312,
+          "sigma_frac": 0.003135826257760505,
+          "writer_layers": [
+            6,
+            7,
+            8
+          ],
+          "reader_layers": [
+            6,
+            7,
+            5
+          ],
+          "writer_profile": [
+            0.054,
+            0.061,
+            0.06,
+            0.035,
+            0.06,
+            0.084,
+            0.154,
+            0.131,
+            0.115,
+            0.104,
+            0.104,
+            0.038
+          ],
+          "reader_profile": [
+            0.042,
+            0.036,
+            0.054,
+            0.047,
+            0.083,
+            0.122,
+            0.165,
+            0.129,
+            0.097,
+            0.112,
+            0.088,
+            0.025
+          ],
+          "lens_write": [
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\u0637",
+            "\u0635",
+            "\u03c1\u03c7",
+            "\ufffd\ufffd",
+            "\ufffd"
+          ],
+          "lens_read": [
+            "smallcaps",
+            "vphantom",
+            "mathds",
+            "textstyle",
+            "textsf",
+            "ciparum",
+            "overset",
+            "rvert"
+          ],
+          "dup_lift": 2.19,
+          "pos_corr": 0.13,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": ":",
+              "dup": 1.0
+            },
+            {
+              "token": ":",
+              "dup": 1.0
+            },
+            {
+              "token": ".",
+              "dup": 1.0
+            },
+            {
+              "token": ":",
+              "dup": 1.0
+            },
+            {
+              "token": ":",
+              "dup": 1.0
+            },
+            {
+              "token": ":",
+              "dup": 1.0
+            }
+          ]
+        },
+        {
+          "channel": 7,
+          "sigma": 0.0018510456834615018,
+          "sigma_frac": 0.002290454367953928,
+          "writer_layers": [
+            0,
+            6,
+            7
+          ],
+          "reader_layers": [
+            7,
+            6,
+            8
+          ],
+          "writer_profile": [
+            0.131,
+            0.061,
+            0.069,
+            0.054,
+            0.09,
+            0.074,
+            0.117,
+            0.108,
+            0.09,
+            0.045,
+            0.073,
+            0.088
+          ],
+          "reader_profile": [
+            0.067,
+            0.076,
+            0.064,
+            0.036,
+            0.058,
+            0.103,
+            0.158,
+            0.172,
+            0.11,
+            0.069,
+            0.061,
+            0.026
+          ],
+          "lens_write": [
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd"
+          ],
+          "lens_read": [
+            "ubicin",
+            "atinib",
+            "ollah",
+            "rapeut",
+            "lium",
+            "idone",
+            "chemia",
+            "upiter"
+          ],
+          "dup_lift": 0.61,
+          "pos_corr": 0.12,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": " horns",
+              "dup": 0.0
+            },
+            {
+              "token": "ons",
+              "dup": 0.0
+            },
+            {
+              "token": " seat",
+              "dup": 0.0
+            },
+            {
+              "token": " affection",
+              "dup": 0.0
+            },
+            {
+              "token": "ians",
+              "dup": 0.0
+            },
+            {
+              "token": "agues",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 8,
+          "sigma": 0.001682792948529961,
+          "sigma_frac": 0.002082261120705983,
+          "writer_layers": [
+            11,
+            6,
+            8
+          ],
+          "reader_layers": [
+            6,
+            4,
+            5
+          ],
+          "writer_profile": [
+            0.07,
+            0.059,
+            0.082,
+            0.051,
+            0.098,
+            0.084,
+            0.122,
+            0.059,
+            0.099,
+            0.052,
+            0.043,
+            0.181
+          ],
+          "reader_profile": [
+            0.044,
+            0.041,
+            0.059,
+            0.055,
+            0.134,
+            0.116,
+            0.153,
+            0.11,
+            0.088,
+            0.112,
+            0.073,
+            0.015
+          ],
+          "lens_write": [
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd"
+          ],
+          "lens_read": [
+            " authorities",
+            " legislation",
+            " establishment",
+            " offices",
+            " activity",
+            " community",
+            " church",
+            " population"
+          ],
+          "dup_lift": 1.3,
+          "pos_corr": 0.03,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": " the",
+              "dup": 0.0
+            },
+            {
+              "token": "There",
+              "dup": 0.0
+            },
+            {
+              "token": " your",
+              "dup": 0.0
+            },
+            {
+              "token": " the",
+              "dup": 0.0
+            },
+            {
+              "token": " the",
+              "dup": 0.0
+            },
+            {
+              "token": " their",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 9,
+          "sigma": 0.0015051287122582935,
+          "sigma_frac": 0.0018624222319992133,
+          "writer_layers": [
+            6,
+            7,
+            5
+          ],
+          "reader_layers": [
+            10,
+            6,
+            7
+          ],
+          "writer_profile": [
+            0.09,
+            0.066,
+            0.066,
+            0.048,
+            0.08,
+            0.095,
+            0.126,
+            0.119,
+            0.081,
+            0.095,
+            0.077,
+            0.057
+          ],
+          "reader_profile": [
+            0.085,
+            0.075,
+            0.048,
+            0.044,
+            0.084,
+            0.061,
+            0.128,
+            0.127,
+            0.122,
+            0.049,
+            0.131,
+            0.046
+          ],
+          "lens_write": [
+            " alright",
+            " okay",
+            " arbitration",
+            " anything",
+            " emergency",
+            " zebrafish",
+            "lists",
+            " deadline"
+          ],
+          "lens_read": [
+            "biamo",
+            "apor",
+            "avor",
+            "ietzsche",
+            "arroll",
+            "atra",
+            "orts",
+            "ivil"
+          ],
+          "dup_lift": 2.37,
+          "pos_corr": 0.03,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": ",",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": ",",
+              "dup": 1.0
+            },
+            {
+              "token": ",",
+              "dup": 0.0
+            },
+            {
+              "token": ",",
+              "dup": 1.0
+            },
+            {
+              "token": "I",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 10,
+          "sigma": 0.0013758236500083663,
+          "sigma_frac": 0.001702422212942385,
+          "writer_layers": [
+            11,
+            0,
+            4
+          ],
+          "reader_layers": [
+            5,
+            6,
+            9
+          ],
+          "writer_profile": [
+            0.105,
+            0.055,
+            0.084,
+            0.061,
+            0.094,
+            0.077,
+            0.094,
+            0.064,
+            0.073,
+            0.077,
+            0.032,
+            0.185
+          ],
+          "reader_profile": [
+            0.096,
+            0.064,
+            0.073,
+            0.062,
+            0.068,
+            0.14,
+            0.121,
+            0.087,
+            0.076,
+            0.11,
+            0.071,
+            0.031
+          ],
+          "lens_write": [
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\\n\\n                   ",
+            "            \\n "
+          ],
+          "lens_read": [
+            " thee",
+            " thy",
+            " him",
+            "LY",
+            " unto",
+            "ED",
+            "MED",
+            ",["
+          ],
+          "dup_lift": 0.72,
+          "pos_corr": -0.05,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": " sound",
+              "dup": 0.0
+            },
+            {
+              "token": " praise",
+              "dup": 0.0
+            },
+            {
+              "token": " they",
+              "dup": 0.0
+            },
+            {
+              "token": "atter",
+              "dup": 0.0
+            },
+            {
+              "token": " make",
+              "dup": 0.0
+            },
+            {
+              "token": " deliver",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 11,
+          "sigma": 0.0012151897130957474,
+          "sigma_frac": 0.001503656344692653,
+          "writer_layers": [
+            7,
+            9,
+            0
+          ],
+          "reader_layers": [
+            7,
+            8,
+            6
+          ],
+          "writer_profile": [
+            0.108,
+            0.069,
+            0.074,
+            0.049,
+            0.071,
+            0.082,
+            0.098,
+            0.147,
+            0.068,
+            0.136,
+            0.087,
+            0.013
+          ],
+          "reader_profile": [
+            0.07,
+            0.081,
+            0.073,
+            0.052,
+            0.08,
+            0.065,
+            0.093,
+            0.182,
+            0.114,
+            0.089,
+            0.076,
+            0.027
+          ],
+          "lens_write": [
+            " its",
+            " their",
+            " those",
+            " any",
+            " the",
+            " some",
+            " certain",
+            "wards"
+          ],
+          "lens_read": [
+            " the",
+            " their",
+            " these",
+            " such",
+            " hers",
+            " those",
+            " them",
+            " another"
+          ],
+          "dup_lift": 0.64,
+          "pos_corr": 0.01,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": " my",
+              "dup": 0.0
+            },
+            {
+              "token": " my",
+              "dup": 0.0
+            },
+            {
+              "token": " my",
+              "dup": 0.0
+            },
+            {
+              "token": " my",
+              "dup": 0.0
+            },
+            {
+              "token": " good",
+              "dup": 0.0
+            },
+            {
+              "token": " my",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 12,
+          "sigma": 0.0010845066561748849,
+          "sigma_frac": 0.0013419512170362578,
+          "writer_layers": [
+            6,
+            10,
+            1
+          ],
+          "reader_layers": [
+            7,
+            8,
+            1
+          ],
+          "writer_profile": [
+            0.078,
+            0.089,
+            0.079,
+            0.047,
+            0.084,
+            0.075,
+            0.125,
+            0.088,
+            0.068,
+            0.084,
+            0.104,
+            0.078
+          ],
+          "reader_profile": [
+            0.085,
+            0.115,
+            0.08,
+            0.048,
+            0.09,
+            0.075,
+            0.112,
+            0.132,
+            0.116,
+            0.063,
+            0.069,
+            0.015
+          ],
+          "lens_write": [
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd\ufffd",
+            "\ufffd",
+            "\ufffd",
+            "\ufffd"
+          ],
+          "lens_read": [
+            " and",
+            " Fern",
+            " Jr",
+            " etc",
+            "raph",
+            " Lightning",
+            " Ole",
+            " Skin"
+          ],
+          "dup_lift": 2.28,
+          "pos_corr": 0.08,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            }
+          ]
+        },
+        {
+          "channel": 13,
+          "sigma": 0.000906883498637903,
+          "sigma_frac": 0.0011221631584997704,
+          "writer_layers": [
+            7,
+            6,
+            5
+          ],
+          "reader_layers": [
+            9,
+            7,
+            6
+          ],
+          "writer_profile": [
+            0.087,
+            0.066,
+            0.083,
+            0.063,
+            0.09,
+            0.1,
+            0.121,
+            0.17,
+            0.079,
+            0.061,
+            0.049,
+            0.032
+          ],
+          "reader_profile": [
+            0.053,
+            0.065,
+            0.051,
+            0.046,
+            0.092,
+            0.096,
+            0.101,
+            0.141,
+            0.097,
+            0.156,
+            0.069,
+            0.031
+          ],
+          "lens_write": [
+            " flow",
+            "STM",
+            " flowing",
+            "NOS",
+            " downhill",
+            " manually",
+            " suited",
+            "onies"
+          ],
+          "lens_read": [
+            "~~~",
+            "[",
+            "[_",
+            "Bigg",
+            ".\"[",
+            ")))**",
+            "\f",
+            "\"`"
+          ],
+          "dup_lift": 2.01,
+          "pos_corr": 0.09,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            },
+            {
+              "token": "\\n",
+              "dup": 1.0
+            }
+          ]
+        },
+        {
+          "channel": 14,
+          "sigma": 0.0008671772786310895,
+          "sigma_frac": 0.0010730313159622725,
+          "writer_layers": [
+            9,
+            6,
+            5
+          ],
+          "reader_layers": [
+            9,
+            6,
+            5
+          ],
+          "writer_profile": [
+            0.062,
+            0.062,
+            0.08,
+            0.068,
+            0.071,
+            0.097,
+            0.125,
+            0.051,
+            0.078,
+            0.129,
+            0.088,
+            0.089
+          ],
+          "reader_profile": [
+            0.061,
+            0.051,
+            0.08,
+            0.073,
+            0.082,
+            0.113,
+            0.13,
+            0.086,
+            0.08,
+            0.159,
+            0.063,
+            0.022
+          ],
+          "lens_write": [
+            " guys",
+            " readers",
+            " reader",
+            " organizers",
+            " structured",
+            " understanding",
+            " clarification",
+            "ability"
+          ],
+          "lens_read": [
+            " if",
+            " although",
+            " however",
+            " though",
+            " since",
+            " doctor",
+            " gentlemen",
+            " aunt"
+          ],
+          "dup_lift": 1.78,
+          "pos_corr": 0.1,
+          "label": "induction/duplicate",
+          "top_tokens_when_firing": [
+            {
+              "token": ",",
+              "dup": 0.0
+            },
+            {
+              "token": ",",
+              "dup": 1.0
+            },
+            {
+              "token": ",",
+              "dup": 0.0
+            },
+            {
+              "token": ",",
+              "dup": 0.0
+            },
+            {
+              "token": ",",
+              "dup": 0.0
+            },
+            {
+              "token": ",",
+              "dup": 0.0
+            }
+          ]
+        },
+        {
+          "channel": 15,
+          "sigma": 0.0008215293704494863,
+          "sigma_frac": 0.0010165473233646435,
+          "writer_layers": [
+            11,
+            6,
+            7
+          ],
+          "reader_layers": [
+            8,
+            10,
+            2
+          ],
+          "writer_profile": [
+            0.08,
+            0.064,
+            0.071,
+            0.047,
+            0.079,
+            0.082,
+            0.119,
+            0.111,
+            0.079,
+            0.064,
+            0.065,
+            0.139
+          ],
+          "reader_profile": [
+            0.075,
+            0.073,
+            0.097,
+            0.041,
+            0.096,
+            0.094,
+            0.096,
+            0.081,
+            0.13,
+            0.075,
+            0.128,
+            0.013
+          ],
+          "lens_write": [
+            " happened",
+            "wise",
+            " exists",
+            " happens",
+            " distinguishes",
+            " occurred",
+            "uelle",
+            " occurs"
+          ],
+          "lens_read": [
+            " is",
+            " was",
+            "ates",
+            "illi",
+            " occurs",
+            " hath",
+            " appears",
+            " tends"
+          ],
+          "dup_lift": 0.63,
+          "pos_corr": 0.06,
+          "label": "content/other",
+          "top_tokens_when_firing": [
+            {
+              "token": " will",
+              "dup": 0.0
+            },
+            {
+              "token": " shall",
+              "dup": 0.0
+            },
+            {
+              "token": "What",
+              "dup": 0.0
+            },
+            {
+              "token": "What",
+              "dup": 0.0
+            },
+            {
+              "token": "'ll",
+              "dup": 0.0
+            },
+            {
+              "token": " shall",
+              "dup": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
