@@ -1,0 +1,83 @@
+{
+  "experiment": "fact transplant via MLP-store activation patching",
+  "results": [
+    {
+      "model": "gpt2",
+      "rope": false,
+      "n_layers": 12,
+      "n_facts": 16,
+      "patch_band": [
+        0,
+        2
+      ],
+      "pairs": 64,
+      "flip_rate": 1.0,
+      "mean_logitdiff_shift": 4.323022864758968
+    },
+    {
+      "model": "gpt2-medium",
+      "rope": false,
+      "n_layers": 24,
+      "n_facts": 16,
+      "patch_band": [
+        0,
+        5
+      ],
+      "pairs": 64,
+      "flip_rate": 1.0,
+      "mean_logitdiff_shift": 8.75963031500578
+    },
+    {
+      "model": "gpt2-large",
+      "rope": false,
+      "n_layers": 36,
+      "n_facts": 16,
+      "patch_band": [
+        0,
+        8
+      ],
+      "pairs": 64,
+      "flip_rate": 1.0,
+      "mean_logitdiff_shift": 8.717432457953691
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "n_layers": 26,
+      "n_facts": 16,
+      "patch_band": [
+        0,
+        5
+      ],
+      "pairs": 64,
+      "flip_rate": 0.03125,
+      "mean_logitdiff_shift": -9.292968776077032
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "rope": true,
+      "n_layers": 16,
+      "n_facts": 16,
+      "patch_band": [
+        0,
+        3
+      ],
+      "pairs": 64,
+      "flip_rate": 1.0,
+      "mean_logitdiff_shift": 10.23144531995058
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "rope": true,
+      "n_layers": 28,
+      "n_facts": 16,
+      "patch_band": [
+        0,
+        6
+      ],
+      "pairs": 64,
+      "flip_rate": 1.0,
+      "mean_logitdiff_shift": 7.533691421151161
+    }
+  ]
+}
