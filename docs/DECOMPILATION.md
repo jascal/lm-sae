@@ -662,6 +662,18 @@ the small models and *more* at scale (pythia-1b: keeping 25% of d_ff still leave
 **grows with model size**, consistent with the Θ(d) forge tax; it was not a single-model artifact.
 (`runs/disassembly/{core_residual,content_mechanism,mlp_kv_sparsity}_summary.json`.)
 
+**Does the core grow faster or slower than the model? — FASTER, on both axes.** The fraction of MLP neurons needed to
+recover *content* (top-k recovery, content ΔNLL < +0.3) **rises monotonically with scale**: pythia-70m ~48% of d_ff →
+160m ~60% → 410m ~64% → 1b ~68% (equivalently, at a fixed 25%-of-width slice the leftover content error grows with size,
+70m +0.96 → 410m/1b ~+3–4). So the dense content code is a *growing fraction of an already-growing width* — it outpaces
+the MLP width (compute axis). And the **behavioral** axis agrees: the pylm decompilable fraction *falls* 56% → 45%
+(pythia-14m → 1.4b), so the core's behavioral share *rises* 44% → 55%. Both say the entangled core grows **faster** than
+the model — scaling does not dilute it, it concentrates it; bigger models are *more* irreducible, and the gap widens. This
+is the load-bearing tension for minimum-to-run: the flat-decompilable part (knowledge + structure) does not keep pace; the
+*computed* part outgrows it — and it is why the unsquirrel route had to be *learned reconstruction* (sae-forge), getting
+*harder*, not easier, at scale. (Caveat: the recovery-fraction is *native-basis* effective density — a learned overcomplete
+basis could shift the absolute numbers; the monotone *trend* is the result.) (`runs/disassembly/mlp_kv_sparsity_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
