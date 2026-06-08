@@ -424,6 +424,11 @@ wiki 16 · grimm 18 · code 20). So at fixed low-rank capacity, *more* variety s
 lifting it: **capacity becomes the binding constraint across breadth.** This says the variety push needs *more rank in
 proportion to the breadth* — consistent with the composition being Θ(d) and content-spanning — and reframes the earlier
 34→41% climb as "variety helps until the rank-64 budget is spent." (Still about this approach, not a floor.)
+**Multilingual sharpens it:** adding 6 non-English Wikipedia domains (rank 128, 21 domains) drops the aggregate to 21%,
+and the tail is dominated by the non-English domains — `wiki_ru 0% · wiki_fr 4% · wiki_ja 5% · wiki_de/es 10%` — because
+GPT-2 is **out-of-distribution** there: its non-English predictions are the *least* retrieval-like (no memorised
+non-English n-grams) and so the hardest for a low-rank copy to reproduce, while heavily-memorised English stays high
+(stoker 77 · austen 75). The reproducible-vs-not split tracks how *in-distribution / memorised* the content is.
 
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
