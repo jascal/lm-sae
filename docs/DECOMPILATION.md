@@ -566,6 +566,28 @@ live at the **component (head/MLP) level**, where targeted ablation works (the c
 **Other caveats:** *aggregate*-cut version (χ≈1.3, dominated by ch0; the per-layer-*resolved* `core_mps` coupling, χ≈16, would
 expose finer channels); some lenses are rare-token noise. (`runs/disassembly/circuit_channels_summary.json`.)
 
+**Did the catalog miss these — head-level circuits or known classes? (`head_category_scan.py`).** Mean-ablate each
+attention head, split ΔNLL by next-token category (punct / dup / other). On pythia-160m: **induction is a real localized
+head circuit** — `L1.H3` (dup ΔNLL +0.35, targeted +0.30) + L0.H1 / L2.H8 / L10.H5, confirming the catalog; **punctuation /
+boundary has NO clean head** (every effect ~+0.05, distributed) — so the dominant boundary *channel* is real correlationally
+but **not a localizable circuit** (we didn't "miss" a clean one — the behaviour is diffuse); and **copy-suppression** (a
+known anti-induction class the catalog lacks) shows only a **weak hint** — `L0.H11` ablation *lowers* dup-NLL (−0.09), the
+suppression signature, expected stronger on larger models (it was characterised on GPT-2 medium/large). Net: the
+grammar/boundary channels are *distributed computation*, not missed-localizable-circuits; copy-suppression is a genuine but
+faint catalog gap at this scale. (`runs/disassembly/head_category_scan_summary.json`.)
+
+**Are the channels topic broadcasts? (`circuit_channels.py --diverse`).** A "topic broadcast" would be a channel *set early
+and held / read across the document* — so on a diverse corpus (Shakespeare / Austen / code / wiki) each channel gets a
+**persistence** (lag-1 autocorrelation, held-across-positions) and a **register fraction** (between-source variance, encodes
+which topic). Mostly **no**: the dominant + structural channels are per-token circuits — ch0 punctuation (register 0.04), the
+induction family (register ~0.05–0.12) — firing on *local events* identically across topics. But a **minority are
+register/topic signals** (high between-source variance = they encode *what kind of text*): ch5 `microorganisms bacterial
+lipids` (reg **0.45**, science), ch2 LaTeX/code tokens (reg **0.43**, code), ch10 multilingual scripts (reg 0.26). So
+topic-broadcasting is a *real but minority* phenomenon — the **content/register** channels, not the high-variance structural
+ones — and even those read as a *register difference between docs* more than a strongly *held* within-doc signal (persistence
+stayed ~0.2–0.3; none crossed a strong-broadcast threshold; 64-token chunks + 4 coarse sources, so a first cut).
+(`runs/disassembly/circuit_channels_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
