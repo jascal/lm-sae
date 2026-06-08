@@ -533,6 +533,32 @@ CP's HOSVD-diagonal init is rough; but the monotonic ordering holds regardless, 
 independent, so a better CP init would not overturn it. A *targeted* cross-layer form — adjacent-only coupling, not
 type-global sharing — remains untested.) (`runs/disassembly/min_to_run_summary.json`, keys `*@retrain+share-both` / `+share-cp`.)
 
+### Seeing the cross-layer channels — circuits teased from the activation coupling (`circuit_channels.py`)
+
+The survey's resolution (computation = sparse circuits, weights = high-rank/distinct) says circuits should be visible in the
+*activation flow*, which **is** low-dimensional. This isolates them: capture every layer's residual write Δ_L, form the
+aggregate early write (layers ≤ cut) and late write (layers > cut) per token, **unit-normalise each (directional coupling,
+else the last layer's magnitude swamps it)**, and SVD the d×d cross-covariance C = Σ_p e_p⊗ℓ_p into **channels** (u_i early-dir,
+w_i late-dir). Each channel is then separately represented: writer/reader **layer profile** (directional, magnitude-normalised),
+**logit-lens** of u_i/w_i, and a **firing pattern** (per-position activation e_p·u_i, its duplicate-token enrichment and
+positional correlation). pythia-160m, cut 6/12:
+
+- **A dominant clause-boundary channel** (ch0, 88% of the coupling): writer layers **[0,1,3] → reader [9,10,11]**, logit-lens
+  `\n , I . ;` — early layers write a sentence-structure signal that late layers read to place punctuation. A clean *early→late*
+  circuit.
+- **Induction / duplicate family** (firing duplicate-enriched ≥1.7×): ch2 (`worse force wound`, ×2.77), ch6 (LaTeX tokens, ×2.19),
+  ch9 (×2.37), ch12 (×2.28), ch13 (×2.01) — the catalog's induction, surfacing as coupling channels.
+- **Grammar channels** the catalog does *not* name as cross-layer channels: ch14 `if although however though since` (discourse
+  connectives, mid-layers 5–9), ch11 `the their these such` (determiners), ch15 `is was occurs` (auxiliary/copula).
+- **Content-domain channels**: ch8 `authorities legislation establishment` (formal/legal), ch10 `thee thy unto` (archaic).
+
+So circuits are *visible, teasable, and separately represented* from the high-dimensional activations. **Caveats (honest):** this
+is the *aggregate* cut version, so it is dominated by the one boundary channel (participation ratio χ≈1.3 here) — the per-layer
+*resolved* coupling (`core_mps`'s nL·r cross-block, χ≈16) would expose finer channels; some channels' lenses are rare-token noise;
+and this is *correlational* (which directions co-vary cross-layer), not yet *causal*. The natural next steps — per-layer-resolved
+channels and a causal ablation (project a channel out at the cut, measure the targeted behaviour drop) — would turn each channel
+from a candidate into a confirmed, load-bearing circuit. (`runs/disassembly/circuit_channels_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
