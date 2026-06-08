@@ -95,43 +95,275 @@
           "rank": 15,
           "rank_frac": 0.01953125,
           "nll": 6.3953032450594325,
-          "nll_increase": 1.169701374288568
+          "nll_increase": 1.169701374288568,
+          "global_nll_increase": 5.280571664890227
         },
         {
           "rank": 38,
           "rank_frac": 0.049479166666666664,
           "nll": 6.0285491626630705,
-          "nll_increase": 0.802947291892206
+          "nll_increase": 0.802947291892206,
+          "global_nll_increase": 5.059342524074946
         },
         {
           "rank": 76,
           "rank_frac": 0.09895833333333333,
           "nll": 5.698384863427666,
-          "nll_increase": 0.4727829926568017
+          "nll_increase": 0.4727829926568017,
+          "global_nll_increase": 4.476573330261269
         },
         {
           "rank": 153,
           "rank_frac": 0.19921875,
           "nll": 5.5479241569527415,
-          "nll_increase": 0.3223222861818771
+          "nll_increase": 0.3223222861818771,
+          "global_nll_increase": 2.079222777096988
         },
         {
           "rank": 307,
           "rank_frac": 0.3997395833333333,
           "nll": 5.289334604843686,
-          "nll_increase": 0.0637327340728211
+          "nll_increase": 0.0637327340728211,
+          "global_nll_increase": 0.8968418750296614
         },
         {
           "rank": 537,
           "rank_frac": 0.69921875,
           "nll": 5.188383404306094,
-          "nll_increase": -0.03721846646477012
+          "nll_increase": -0.03721846646477012,
+          "global_nll_increase": 0.2120710854785841
         },
         {
           "rank": 768,
           "rank_frac": 1.0,
           "nll": 5.225602476160288,
-          "nll_increase": 6.053894239244073e-07
+          "nll_increase": 6.053894239244073e-07,
+          "global_nll_increase": 7.235955097328883e-07
+        }
+      ]
+    },
+    {
+      "model": "gemma-2-2b",
+      "n_layers": 26,
+      "d_model": 2304,
+      "base_generic_nll": 8.340669342904123,
+      "effective_rank_by_layer": {
+        "0": {
+          "participation_ratio": 4.011244819568657,
+          "pr_frac": 0.0017409916751600074,
+          "rank90": 112,
+          "rank95": 259
+        },
+        "1": {
+          "participation_ratio": 2.6807402436311074,
+          "pr_frac": 0.0011635157307426681,
+          "rank90": 240,
+          "rank95": 454
+        },
+        "2": {
+          "participation_ratio": 3.271405319092959,
+          "pr_frac": 0.001419880780856319,
+          "rank90": 358,
+          "rank95": 590
+        },
+        "3": {
+          "participation_ratio": 11.078258992334767,
+          "pr_frac": 0.0048082721320897425,
+          "rank90": 602,
+          "rank95": 859
+        },
+        "4": {
+          "participation_ratio": 4.89240776188266,
+          "pr_frac": 0.002123440868872682,
+          "rank90": 469,
+          "rank95": 740
+        },
+        "5": {
+          "participation_ratio": 5.842461773768478,
+          "pr_frac": 0.0025357907004203463,
+          "rank90": 386,
+          "rank95": 641
+        },
+        "6": {
+          "participation_ratio": 6.717451700173528,
+          "pr_frac": 0.0029155606337558713,
+          "rank90": 430,
+          "rank95": 697
+        },
+        "7": {
+          "participation_ratio": 4.120452670088771,
+          "pr_frac": 0.0017883909158371404,
+          "rank90": 328,
+          "rank95": 585
+        },
+        "8": {
+          "participation_ratio": 6.6015950518391895,
+          "pr_frac": 0.0028652756301385373,
+          "rank90": 437,
+          "rank95": 705
+        },
+        "9": {
+          "participation_ratio": 4.4854048194440175,
+          "pr_frac": 0.0019467902862170215,
+          "rank90": 312,
+          "rank95": 562
+        },
+        "10": {
+          "participation_ratio": 3.6055447826590954,
+          "pr_frac": 0.0015649065896957879,
+          "rank90": 213,
+          "rank95": 430
+        },
+        "11": {
+          "participation_ratio": 5.593198927524172,
+          "pr_frac": 0.0024276037011823665,
+          "rank90": 221,
+          "rank95": 429
+        },
+        "12": {
+          "participation_ratio": 6.263361409212208,
+          "pr_frac": 0.0027184728338594654,
+          "rank90": 258,
+          "rank95": 470
+        },
+        "13": {
+          "participation_ratio": 4.281053917619156,
+          "pr_frac": 0.0018580963184110918,
+          "rank90": 158,
+          "rank95": 335
+        },
+        "14": {
+          "participation_ratio": 3.166319934059705,
+          "pr_frac": 0.0013742708047134134,
+          "rank90": 202,
+          "rank95": 413
+        },
+        "15": {
+          "participation_ratio": 3.288090508564639,
+          "pr_frac": 0.0014271226165645133,
+          "rank90": 203,
+          "rank95": 404
+        },
+        "16": {
+          "participation_ratio": 4.42953820572381,
+          "pr_frac": 0.0019225426240120705,
+          "rank90": 294,
+          "rank95": 519
+        },
+        "17": {
+          "participation_ratio": 5.3302579034069,
+          "pr_frac": 0.002313479992798134,
+          "rank90": 362,
+          "rank95": 601
+        },
+        "18": {
+          "participation_ratio": 4.4735222167246445,
+          "pr_frac": 0.0019416329065645157,
+          "rank90": 368,
+          "rank95": 613
+        },
+        "19": {
+          "participation_ratio": 3.7617168990985856,
+          "pr_frac": 0.0016326896263448723,
+          "rank90": 323,
+          "rank95": 561
+        },
+        "20": {
+          "participation_ratio": 2.2359543868414233,
+          "pr_frac": 0.0009704663137332566,
+          "rank90": 225,
+          "rank95": 445
+        },
+        "21": {
+          "participation_ratio": 3.023709904927774,
+          "pr_frac": 0.0013123740906804573,
+          "rank90": 191,
+          "rank95": 399
+        },
+        "22": {
+          "participation_ratio": 5.759553421571482,
+          "pr_frac": 0.002499806172557067,
+          "rank90": 350,
+          "rank95": 578
+        },
+        "23": {
+          "participation_ratio": 5.241515537851452,
+          "pr_frac": 0.0022749633410813594,
+          "rank90": 325,
+          "rank95": 561
+        },
+        "24": {
+          "participation_ratio": 3.372764179263897,
+          "pr_frac": 0.0014638733416943999,
+          "rank90": 122,
+          "rank95": 294
+        },
+        "25": {
+          "participation_ratio": 2.0253506777070167,
+          "pr_frac": 0.0008790584538658926,
+          "rank90": 19,
+          "rank95": 85
+        }
+      },
+      "mean_participation_ratio": 4.598187537099234,
+      "mean_pr_frac": 0.001995741118532654,
+      "mean_rank95": 508.8076923076923,
+      "cross_layer_sharing": {
+        "per_layer_rank": 64,
+        "union_effective_rank": 658.0798422845529,
+        "no_sharing_upper_bound": 1664,
+        "random_overlap": 0.027777777777777776,
+        "mean_pairwise_overlap": 0.06114273398541487
+      },
+      "truncation_curve": [
+        {
+          "rank": 46,
+          "rank_frac": 0.019965277777777776,
+          "nll": 9.818268139261221,
+          "nll_increase": 1.477598796357098,
+          "global_nll_increase": 14.571588485505588
+        },
+        {
+          "rank": 115,
+          "rank_frac": 0.04991319444444445,
+          "nll": 9.018325131823353,
+          "nll_increase": 0.6776557889192301,
+          "global_nll_increase": 10.308998876840564
+        },
+        {
+          "rank": 230,
+          "rank_frac": 0.0998263888888889,
+          "nll": 8.721985777934721,
+          "nll_increase": 0.3813164350305982,
+          "global_nll_increase": 8.442727981006081
+        },
+        {
+          "rank": 460,
+          "rank_frac": 0.1996527777777778,
+          "nll": 8.26768599502386,
+          "nll_increase": -0.07298334788026217,
+          "global_nll_increase": 4.132803919527953
+        },
+        {
+          "rank": 921,
+          "rank_frac": 0.3997395833333333,
+          "nll": 8.3513549218808,
+          "nll_increase": 0.01068557897667688,
+          "global_nll_increase": 0.16115771097238252
+        },
+        {
+          "rank": 1612,
+          "rank_frac": 0.6996527777777778,
+          "nll": 8.290329195276025,
+          "nll_increase": -0.050340147628098464,
+          "global_nll_increase": -0.39341443896160655
+        },
+        {
+          "rank": 2304,
+          "rank_frac": 1.0,
+          "nll": 8.338510114219158,
+          "nll_increase": -0.0021592286849649867,
+          "global_nll_increase": -0.17223796882539233
         }
       ]
     },
@@ -410,224 +642,6 @@
           "rank_frac": 1.0,
           "nll": 4.979647152369158,
           "nll_increase": 8.317098565413517e-08
-        }
-      ]
-    },
-    {
-      "model": "gemma-2-2b",
-      "n_layers": 26,
-      "d_model": 2304,
-      "base_generic_nll": 8.340669342904123,
-      "effective_rank_by_layer": {
-        "0": {
-          "participation_ratio": 4.011244819568657,
-          "pr_frac": 0.0017409916751600074,
-          "rank90": 112,
-          "rank95": 259
-        },
-        "1": {
-          "participation_ratio": 2.6807402436311074,
-          "pr_frac": 0.0011635157307426681,
-          "rank90": 240,
-          "rank95": 454
-        },
-        "2": {
-          "participation_ratio": 3.271405319092959,
-          "pr_frac": 0.001419880780856319,
-          "rank90": 358,
-          "rank95": 590
-        },
-        "3": {
-          "participation_ratio": 11.078258992334767,
-          "pr_frac": 0.0048082721320897425,
-          "rank90": 602,
-          "rank95": 859
-        },
-        "4": {
-          "participation_ratio": 4.89240776188266,
-          "pr_frac": 0.002123440868872682,
-          "rank90": 469,
-          "rank95": 740
-        },
-        "5": {
-          "participation_ratio": 5.842461773768478,
-          "pr_frac": 0.0025357907004203463,
-          "rank90": 386,
-          "rank95": 641
-        },
-        "6": {
-          "participation_ratio": 6.717451700173528,
-          "pr_frac": 0.0029155606337558713,
-          "rank90": 430,
-          "rank95": 697
-        },
-        "7": {
-          "participation_ratio": 4.120452670088771,
-          "pr_frac": 0.0017883909158371404,
-          "rank90": 328,
-          "rank95": 585
-        },
-        "8": {
-          "participation_ratio": 6.6015950518391895,
-          "pr_frac": 0.0028652756301385373,
-          "rank90": 437,
-          "rank95": 705
-        },
-        "9": {
-          "participation_ratio": 4.4854048194440175,
-          "pr_frac": 0.0019467902862170215,
-          "rank90": 312,
-          "rank95": 562
-        },
-        "10": {
-          "participation_ratio": 3.6055447826590954,
-          "pr_frac": 0.0015649065896957879,
-          "rank90": 213,
-          "rank95": 430
-        },
-        "11": {
-          "participation_ratio": 5.593198927524172,
-          "pr_frac": 0.0024276037011823665,
-          "rank90": 221,
-          "rank95": 429
-        },
-        "12": {
-          "participation_ratio": 6.263361409212208,
-          "pr_frac": 0.0027184728338594654,
-          "rank90": 258,
-          "rank95": 470
-        },
-        "13": {
-          "participation_ratio": 4.281053917619156,
-          "pr_frac": 0.0018580963184110918,
-          "rank90": 158,
-          "rank95": 335
-        },
-        "14": {
-          "participation_ratio": 3.166319934059705,
-          "pr_frac": 0.0013742708047134134,
-          "rank90": 202,
-          "rank95": 413
-        },
-        "15": {
-          "participation_ratio": 3.288090508564639,
-          "pr_frac": 0.0014271226165645133,
-          "rank90": 203,
-          "rank95": 404
-        },
-        "16": {
-          "participation_ratio": 4.42953820572381,
-          "pr_frac": 0.0019225426240120705,
-          "rank90": 294,
-          "rank95": 519
-        },
-        "17": {
-          "participation_ratio": 5.3302579034069,
-          "pr_frac": 0.002313479992798134,
-          "rank90": 362,
-          "rank95": 601
-        },
-        "18": {
-          "participation_ratio": 4.4735222167246445,
-          "pr_frac": 0.0019416329065645157,
-          "rank90": 368,
-          "rank95": 613
-        },
-        "19": {
-          "participation_ratio": 3.7617168990985856,
-          "pr_frac": 0.0016326896263448723,
-          "rank90": 323,
-          "rank95": 561
-        },
-        "20": {
-          "participation_ratio": 2.2359543868414233,
-          "pr_frac": 0.0009704663137332566,
-          "rank90": 225,
-          "rank95": 445
-        },
-        "21": {
-          "participation_ratio": 3.023709904927774,
-          "pr_frac": 0.0013123740906804573,
-          "rank90": 191,
-          "rank95": 399
-        },
-        "22": {
-          "participation_ratio": 5.759553421571482,
-          "pr_frac": 0.002499806172557067,
-          "rank90": 350,
-          "rank95": 578
-        },
-        "23": {
-          "participation_ratio": 5.241515537851452,
-          "pr_frac": 0.0022749633410813594,
-          "rank90": 325,
-          "rank95": 561
-        },
-        "24": {
-          "participation_ratio": 3.372764179263897,
-          "pr_frac": 0.0014638733416943999,
-          "rank90": 122,
-          "rank95": 294
-        },
-        "25": {
-          "participation_ratio": 2.0253506777070167,
-          "pr_frac": 0.0008790584538658926,
-          "rank90": 19,
-          "rank95": 85
-        }
-      },
-      "mean_participation_ratio": 4.598187537099234,
-      "mean_pr_frac": 0.001995741118532654,
-      "mean_rank95": 508.8076923076923,
-      "cross_layer_sharing": {
-        "per_layer_rank": 64,
-        "union_effective_rank": 658.0798422845529,
-        "no_sharing_upper_bound": 1664,
-        "random_overlap": 0.027777777777777776,
-        "mean_pairwise_overlap": 0.06114273398541487
-      },
-      "truncation_curve": [
-        {
-          "rank": 46,
-          "rank_frac": 0.019965277777777776,
-          "nll": 9.818268139261221,
-          "nll_increase": 1.477598796357098
-        },
-        {
-          "rank": 115,
-          "rank_frac": 0.04991319444444445,
-          "nll": 9.018325131823353,
-          "nll_increase": 0.6776557889192301
-        },
-        {
-          "rank": 230,
-          "rank_frac": 0.0998263888888889,
-          "nll": 8.721985777934721,
-          "nll_increase": 0.3813164350305982
-        },
-        {
-          "rank": 460,
-          "rank_frac": 0.1996527777777778,
-          "nll": 8.26768599502386,
-          "nll_increase": -0.07298334788026217
-        },
-        {
-          "rank": 921,
-          "rank_frac": 0.3997395833333333,
-          "nll": 8.3513549218808,
-          "nll_increase": 0.01068557897667688
-        },
-        {
-          "rank": 1612,
-          "rank_frac": 0.6996527777777778,
-          "nll": 8.290329195276025,
-          "nll_increase": -0.050340147628098464
-        },
-        {
-          "rank": 2304,
-          "rank_frac": 1.0,
-          "nll": 8.338510114219158,
-          "nll_increase": -0.0021592286849649867
         }
       ]
     },
