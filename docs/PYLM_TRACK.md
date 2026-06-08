@@ -221,6 +221,30 @@ model; the entangled composition ≈ the other half** — the three flat buckets
 basis, sufficient for half, and the complement is the forge tax made runnable.
 (`pylm/store_grammar.json`, `runs/pylm/validate_grammar_summary.json` vs `validate_nogrammar_summary.json`.)
 
+## The auditable artifact — per-token explanation at BOTH levels (`runtime_explain.py`)
+
+The "auditable corner" of the small/legible/complete triangle, made concrete: an explainer that attributes every
+predicted token at *both* the **symbolic** level (which pylm idiom fired — induction / n-gram / grammar / knowledge)
+*and* the **model-circuit** level (which mechanism carries it, with attention evidence), and *verifies* the symbolic
+idiom against the real circuit. For an induction prediction it locates the model's induction head (behaviourally) and
+reports its attention from the query to the **copy-source** position; content predictions are attributed to the
+distributed MLP/composition bulk, knowledge to the readout. A demo trace:
+
+```
+[16] model ' on'  | pylm ' on'  [induction-2] ✓  ← induction head 5.5 (attn 0.37 → pos 3 'on')
+[17] model ' the' | pylm ' the' [induction-3] ✓  ← induction head 5.5 (attn 0.47 → pos 4 'the')
+[11] model ' other' | pylm ' world' [trigram]  ✗  ← MLP/content (distributed)
+```
+
+Over 299 held-out tokens (GPT-2): the attribution mix is `induction-3` 15% @ 80% agreement (clean head evidence),
+`induction-2` 10% @ 39%, and the n-gram/content idioms (`bigram`/`trigram`/`quad`) 74% @ ~50–58% (the distributed
+bulk). The symbolic **induction idiom is confirmed in the model** — the located head 5.5 attends a mean **0.26** to the
+copy-source over the 76 induction tokens. So every prediction is **attributable end-to-end: program idiom ↔ model
+circuit ↔ evidence** — a runtime-explainable artifact that fuses the decompiled program (pylm), the operator/circuit
+catalog (induction located + verified), and the live model (ResidualVM attention probing). This is the *legible* corner
+made runnable; it reproduces the decompilable ~half and *says why* for each token, with the irreducible composition
+honestly labelled "distributed." (`runs/disassembly/runtime_explain_summary.json`.)
+
 ## Next steps
 
 - **Optimise the idiom mix on the smallest host** further — the levers above plateau on GPT-2, but the head-room is
