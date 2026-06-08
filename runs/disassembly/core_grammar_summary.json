@@ -2,6 +2,178 @@
   "experiment": "is the entangled core a generic grammar \u2014 corpus-invariance + closed-class dominance of the shared write-basis",
   "results": [
     {
+      "model": "Llama-3.2-1B",
+      "d_model": 2048,
+      "core_dim_K": 578,
+      "corpora": {
+        "shakespeare": 578,
+        "novel": 571,
+        "code": 581
+      },
+      "chance_overlap": 0.2822265625,
+      "generic": {
+        "core_overlap": {
+          "shakespeare~novel": 0.4612487679574878,
+          "shakespeare~code": 0.3650707437939879,
+          "novel~code": 0.3739028484168174
+        },
+        "tail_overlap": {
+          "shakespeare~novel": 0.3220942404695308,
+          "shakespeare~code": 0.2932978748661153,
+          "novel~code": 0.29603041765655774
+        },
+        "mean_core_overlap": 0.4000741200560977,
+        "mean_tail_overlap": 0.3038075109974013,
+        "binned": {
+          "top16": {
+            "overlap": 0.41333025000270557,
+            "chance": 0.0078125
+          },
+          "mid16_64": {
+            "overlap": 0.15633126873215422,
+            "chance": 0.0234375
+          },
+          "deep64_K": {
+            "overlap": 0.33057959171780593,
+            "chance": 0.2509765625
+          }
+        }
+      },
+      "grammatical": {
+        "closed_top16": 0.30000000000000004,
+        "closed_mid16_64": 0.18541666666666667,
+        "closed_deep64_K": 0.023151750972762643,
+        "closed_tail": 0.006401384083044983,
+        "closed_random": 0.008131487889273354,
+        "closed_core_all": 0.04429065743944637,
+        "closed_vocab_size": 491
+      },
+      "core_examples": [
+        [
+          "\u00c2\u0143i",
+          "\u00c5\u00bce",
+          "\u00c5\u013dcie",
+          "\u00c5\u00bcy",
+          "z\u00c4\u0127",
+          "asto",
+          "\u00c5\u00ba",
+          "eled"
+        ],
+        [
+          "imei",
+          "mute",
+          "acos",
+          ".Bundle",
+          "YK",
+          "fried",
+          "\u00c3\u00a9e",
+          "_quatre"
+        ],
+        [
+          "\u00e2\u0122\u0136",
+          "_\u00e2\u0122\u0136",
+          "(",
+          ":",
+          "...",
+          "\u00e2\u0122\u0135",
+          "\u00e2\u0122\u0136as",
+          "*"
+        ],
+        [
+          "_himself",
+          "_ourselves",
+          "_herself",
+          "_themselves",
+          "\u00c2\u0142h",
+          "_weren",
+          "_Himself",
+          "_aren"
+        ],
+        [
+          "_http",
+          "_#",
+          "http",
+          "_Lia",
+          "_programm",
+          "_racist",
+          "_Dimension",
+          "_indicator"
+        ],
+        [
+          "_the",
+          "_a",
+          "_an",
+          "_using",
+          "ukan",
+          "_Xavier",
+          "_facing",
+          "_im"
+        ]
+      ],
+      "tail_examples": [
+        [
+          "_ric",
+          "op",
+          "_K\u00c3\u00bcr",
+          "Case",
+          "_Oak",
+          "_case",
+          "ric",
+          "_Seek"
+        ],
+        [
+          "UMP",
+          "urger",
+          "odium",
+          "MZ",
+          "_Satellite",
+          "_b\u00c3\u00acnh",
+          "_Literature",
+          "umper"
+        ],
+        [
+          "_Norm",
+          "_norm",
+          "_NL",
+          "normally",
+          "_Tre",
+          "_Es",
+          "_Emp",
+          "_reck"
+        ],
+        [
+          "i\u00c4\u0129",
+          "icom",
+          "a\u00c5\u00be",
+          "chter",
+          "_toen",
+          "Child",
+          "ormal",
+          "a\u00c4\u0129"
+        ],
+        [
+          "\u00e5\u0131\u00b7",
+          "_cer",
+          "_mell",
+          "bucks",
+          "_worth",
+          ",(",
+          "_sometime",
+          "_pf"
+        ],
+        [
+          "\u00d1\u012c",
+          "_corner",
+          "amb",
+          "ao",
+          "urring",
+          "_O",
+          "_overse",
+          "ectomy"
+        ]
+      ]
+    },
+    {
       "model": "gpt2",
       "d_model": 768,
       "core_dim_K": 278,
