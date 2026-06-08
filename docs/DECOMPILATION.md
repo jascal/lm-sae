@@ -499,6 +499,17 @@ does not shrink the composed core. (Recipe-shaped, not a proven floor: a stronge
 TT/MPS, a nonlinear bottleneck, or a sparse-overcomplete basis — is the open path to beating ~⅔d.)
 (`runs/disassembly/min_to_run_summary.json`, keys `*@retrain` / `@retrain+daware`.)
 
+**Richer-form survey vs the linear floor — (1/3) a per-matrix nonlinear bottleneck does not help.** First of the three
+richer forms (`--nonlinear`): an α-gated GELU bottleneck `code + α·GELU(code)`, with α a learnable per-code-channel gate
+**init 0** — a strict *superset* of the linear factor, so it starts exactly at the data-aware linear baseline and can
+only improve by adding nonlinearity. Data-aware-init + 2500-step self-distill on pythia-160m lands **within noise of
+linear at every rank**: ΔNLL **+0.77 / +0.61 / +0.44 / +0.35** at rank 32 / 64 / 128 / 256 (vs linear's
++0.77 / +0.60 / +0.45 / +0.37); the α gate moves off 0 but nets nothing. So per-matrix *nonlinearity* is not the missing
+structure either — the floor is robust to **{linear, nonlinear} × {Frobenius, data-aware} × {no-retrain, retrain}**, i.e.
+to *any per-matrix method*. That points the remaining two tests (cross-layer coupling, sparse-overcompleteness) at
+structure that **spans matrices** — consistent with the area-law cross-layer entanglement the composition graph shows.
+(`runs/disassembly/min_to_run_summary.json`, key `*@retrain+daware+nl`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
