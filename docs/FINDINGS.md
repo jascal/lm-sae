@@ -147,6 +147,36 @@ writers, fragmenting with scale); in the **RoPE family it decomposes one circuit
 front-end**. The "more distributed with scale" headline is two different mechanisms underneath, split by the same
 absolute-vs-RoPE line that separates the positional register everywhere else in the catalog.
 
+### Does the population scale with INPUT size? — yes, a separate axis from model size ("same function, more inputs")
+
+A distinct hypothesis for *why* induction distributes: not (only) more parameters, but the **same function applied
+over a larger input domain** — more distinct token-types to induct over → more heads recruited, each covering a
+slice. We test it by **holding the model fixed and scaling the input** (`circuit_input_scaling.py`, confound-free —
+one forward pass, induction *attention mass* per head, no ablation):
+
+- **More input token-types recruits more induction heads — in 6/7 models.** Sweeping the probe vocabulary V = 8 →
+  1024 (repeat length fixed), the **scale-invariant** effective number of active induction heads (Hill number, so
+  *not* just an overall-magnitude effect) **rises monotonically and then saturates**: GPT-2 12 → 20, GPT-2-medium 23
+  → 52, GPT-2-large 39 → 72, GPT-2-XL 63 → 122; Llama 25 → 46, Qwen 28 → 47. The top head's share stays low and flat
+  (1–8%) throughout — the extra inputs are absorbed by *recruiting more heads*, not by loading the dominant one
+  harder. This is direct support for "same function block over more possible inputs": input-diversity is its own
+  driver of the head count, on top of (and separable from) model size.
+- **Gemma is the exception (again).** Its active induction population **saturates almost immediately** (effective-N
+  28 → 21 as V grows, n_active flat ~40) and the top-share *rises* (2% → 9%) — Gemma covers a wider input domain by
+  *concentrating* a fixed small head-set, not recruiting. The recurring "third architecture" falls out of this
+  regularity too.
+- **It's input *diversity*, not raw length.** The complementary context-length sweep (more positions, vocabulary
+  fixed) runs the *other* way — n_active *drops* as the repeat lengthens — but that axis is confounded (short probes
+  give few induction targets, so the per-head mass estimate is noisy and over-counts active heads), so the clean
+  signal is the **vocabulary** axis: it is the breadth of the *input type-space*, not the amount of input, that
+  pulls in more heads. (`runs/disassembly/circuits/input_scaling_summary.json`.)
+
+**Synthesis across the three tests.** A distributing induction circuit is (1) **not** a weighted ensemble of
+duplicates (OV-cosine ≈0), (2) made of **structurally heterogeneous heads** — separable parallel sub-circuits in the
+absolute-position family, one shared-front-end decomposition in the RoPE family — and (3) its head-count is driven by
+**input-domain breadth** as a first-class axis alongside model size (the same function tiled over more token-types),
+GPU-cheaply confirmable on a single model. Gemma is the exception to (2)'s and (3)'s regularities, as it is to most.
+
 ## Methodological cautions — banked from the digs
 
 - **Synthetic repeated-random probes can manufacture apparent suppression.** A head that looks like it suppresses
