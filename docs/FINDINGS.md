@@ -111,9 +111,18 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   (`core_tt.py`, embedding-protected running bond) shows χ≈16 *badly* degrades NLL (ΔNLL +1.4 to +3.1), the runnable
   bond is ~⅓·d, **per-layer truncation beats the running-bond TT at every χ**, and the TT *compounds* error with depth
   (χ=256 ΔNLL +0.23→+0.75→+0.98 over 12→24→36 layers — *worse* with scale, not better). So the only free CPU lever is
-  core_rank's per-layer rank-⅓·d (a ~3× constant-factor FLOP saving, lossless, no retrain), **not** a χ≈16 collapse;
-  the Θ(d) core (forge tax) is the floor. The composition graph is densely coupled (adjacent > distant); the ontology
-  of typed directions is grammar-at-the-rim / content-in-the-core.
+  core_rank's per-layer rank-⅓·d (a ~3× constant-factor FLOP saving, lossless, no retrain), **not** a χ≈16 collapse.
+  The composition graph is densely coupled (adjacent > distant); the ontology of typed directions is
+  grammar-at-the-rim / content-in-the-core.
+- **The Θ(d) floor is a FROZEN-LINEAR artifact — with retraining it falls ~30×** (`core_distill.py`). The no-retrain
+  results all freeze weights + use a fixed PCA basis, which says nothing about a *learned* representation. Training a
+  per-layer rank-r update-bottleneck (init from PCA = the no-retrain floor; base model frozen; ~300 steps): a **trained
+  rank-8 update (1% of d) is lossless** on GPT-2 (ΔNLL +0.03 vs the no-retrain +1.78), a ~30× rank reduction; a
+  rank-256 control trains to ΔNLL≈0, ruling out a domain-adaptation confound. So the "entangled core" is **not
+  irreducible** — only the frozen-linear route was blocked; detangling/compressing it is tractable *with learning*
+  (the sae-forge feature-native direction). Scope: this compresses the per-layer *update*, not full internal FLOPs;
+  gpt2-large needs more rank/steps (rank-8→76%, rank-64→88% in 250 steps) — the lossless rank grows modestly with
+  size/budget but stays ≪ the frozen floor.
 - **Made runnable (pylm).** A flat-file **grammar** idiom decompiles the scaffold ([pylm track](PYLM_TRACK.md)), but
   adds ~nothing to the *token*-level decompilable fraction (49.0→49.5%) — grammar is categorial; the n-gram modes
   already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled
