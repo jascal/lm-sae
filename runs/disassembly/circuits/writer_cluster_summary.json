@@ -2,6 +2,130 @@
   "experiment": "induction population: separable parallel circuits vs one decomposition (writer-dependency clustering)",
   "results": [
     {
+      "model": "Llama-3.2-1B-Instruct",
+      "rope": true,
+      "pop_size": 8,
+      "readers": [
+        "2.26",
+        "5.8",
+        "5.10",
+        "10.23",
+        "10.21",
+        "13.20",
+        "9.8",
+        "2.20"
+      ],
+      "reader_top_writers": {
+        "2.26": "0.2",
+        "5.8": "0.2",
+        "5.10": "0.2",
+        "10.23": "0.2",
+        "10.21": "0.2",
+        "13.20": "0.2",
+        "9.8": "0.2",
+        "2.20": "0.2"
+      },
+      "n_distinct_top_writers": 1,
+      "most_common_writer": "0.2",
+      "shared_front_end_frac": 1.0,
+      "profile_pairwise_cosine": 0.8084634815021179,
+      "separable_components_cos0.5": 1,
+      "sanity_max": 0.0
+    },
+    {
+      "model": "Qwen2.5-1.5B-Instruct",
+      "rope": true,
+      "pop_size": 8,
+      "readers": [
+        "2.3",
+        "14.3",
+        "14.0",
+        "19.3",
+        "14.1",
+        "8.7",
+        "14.2",
+        "19.2"
+      ],
+      "reader_top_writers": {
+        "2.3": "1.4",
+        "14.3": "3.2",
+        "14.0": "3.2",
+        "19.3": "3.2",
+        "14.1": "3.2",
+        "8.7": "3.2",
+        "14.2": "3.2",
+        "19.2": "3.2"
+      },
+      "n_distinct_top_writers": 2,
+      "most_common_writer": "3.2",
+      "shared_front_end_frac": 0.875,
+      "profile_pairwise_cosine": 0.7102324761505084,
+      "separable_components_cos0.5": 1,
+      "sanity_max": 0.0
+    },
+    {
+      "model": "gemma-2-2b-it",
+      "rope": true,
+      "pop_size": 8,
+      "readers": [
+        "4.4",
+        "6.2",
+        "6.1",
+        "14.0",
+        "6.4",
+        "22.3",
+        "7.6",
+        "6.3"
+      ],
+      "reader_top_writers": {
+        "4.4": "0.0",
+        "6.2": "0.0",
+        "6.1": "5.0",
+        "14.0": "5.0",
+        "6.4": "5.0",
+        "22.3": "5.0",
+        "7.6": "5.0",
+        "6.3": "5.0"
+      },
+      "n_distinct_top_writers": 2,
+      "most_common_writer": "5.0",
+      "shared_front_end_frac": 0.75,
+      "profile_pairwise_cosine": 0.7653614444431396,
+      "separable_components_cos0.5": 1,
+      "sanity_max": 0.0
+    },
+    {
+      "model": "DialoGPT-medium",
+      "rope": true,
+      "pop_size": 8,
+      "readers": [
+        "7.2",
+        "6.1",
+        "5.8",
+        "10.1",
+        "11.1",
+        "9.9",
+        "9.4",
+        "13.14"
+      ],
+      "reader_top_writers": {
+        "7.2": "2.4",
+        "6.1": "1.14",
+        "5.8": "1.14",
+        "10.1": "2.4",
+        "11.1": "1.14",
+        "9.9": "1.14",
+        "9.4": "2.10",
+        "13.14": "1.14"
+      },
+      "n_distinct_top_writers": 3,
+      "most_common_writer": "1.14",
+      "shared_front_end_frac": 0.625,
+      "profile_pairwise_cosine": 0.902833352510654,
+      "separable_components_cos0.5": 1,
+      "sanity_max": 0.0
+    },
+    {
       "model": "gpt2",
       "rope": false,
       "pop_size": 8,
