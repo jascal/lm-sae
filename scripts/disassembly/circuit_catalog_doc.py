@@ -145,7 +145,40 @@ def ioi_xmodel_section(dossier):
     return lines
 
 
-def gpt2_page(name, c, extra, ioi_dossier=None, operator_names=frozenset()):
+def vcomp_xmodel_section(vdossier):
+    """Cross-model V-composition (composed-OV virtual heads) for the v_virtual_heads page."""
+    results = [r for r in vdossier.get("results", []) if "by_writer" in r]
+    if not results:
+        return []
+    order = {"gpt2": 0, "gpt2-medium": 1, "gpt2-large": 2, "gemma-2-2b": 3, "Llama-3.2-1B": 4, "Qwen2.5-1.5B": 5}
+    results.sort(key=lambda r: order.get(r["model"], 9))
+    lines = ["", "## Cross-model (the value pathway is not GPT-2-only — via the ResidualVM)", "",
+             "Static **V-composition** `‖W_V^B · OV_A‖ / (‖OV_A‖‖W_V^B‖)` — how much of induction head A's OV output "
+             "lands in downstream head B's *value*-read subspace (a composed-OV virtual head; the same weight basis the "
+             "catalog scores K/Q composition in, arch-generic incl. GQA). The control is whether induction-A's "
+             "V-composition into downstream values **exceeds a random non-induction writer's** (specificity).", "",
+             "| model | composed-OV writer (induction) | → reader values | specificity vs random |",
+             "|---|---|---|---|"]
+    for r in results:
+        rv = ", ".join(f"`{e['reader']}`" for e in (r.get("best_top_edges") or [])[:4])
+        lines.append(f"| {r['model']} | `{r['best_writer']}` | {rv} | {r['best_specificity']:+.3f} |")
+    lines += ["",
+              "- **V-composition is architecture-invariant** — in every model an induction head's OV output feeds "
+              "downstream heads' **values** with positive specificity over a random writer, *locally* (the induction "
+              "head feeds the *next* layers' value heads). Induction content re-read as a value (a 2-hop OV copy) is a "
+              "universal motif, completing the cross-model K/Q/**V** composition-edge triad.",
+              "- **Scope / honesty.** The static signal is *weak* (specificity ≤0.04) — consistent with the GPT-2 "
+              "finding that these virtual heads are output-*redundant* (`vcomposition.py`; they add ~nothing to the "
+              "recompile keep-set). In the GQA models the reader values come out as a **contiguous block** of heads "
+              "(e.g. Llama `13.20`–`13.23`) because query heads in one KV group **share `W_V`**, so their V-composition "
+              "is identical — a grouping artifact, not four distinct readers. Dynamic ΔV-out confirmation stays "
+              "GPT-2-validated (ρ(static, ΔV-out) = +0.36).",
+              "", "_Data: [runs/disassembly/circuits/vcomposition_xmodel_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/vcomposition_xmodel_summary.json) "
+              "([vcomposition_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/vcomposition_xmodel.py), built on the ResidualVM)._"]
+    return lines
+
+
+def gpt2_page(name, c, extra, ioi_dossier=None, vcomp_dossier=None, operator_names=frozenset()):
     lines = [f"# Circuit `{name}` (GPT-2)", ""]
     lines += disambig(name, operator_names)
     lines += [f"**{c.get('kind','')}** — scope: {c.get('scope','gpt2')}", ""]
@@ -169,6 +202,8 @@ def gpt2_page(name, c, extra, ioi_dossier=None, operator_names=frozenset()):
                   "(the third Elhage edge type — changes what is moved, not where attention points).", "",
                   "- top V-edges: " + ", ".join(f"`{e['edge']}` (ΔV-out {e['dvout']:.2f})" for e in c.get("top_edges", [])[:5]),
                   f"- median ΔV-out {c.get('topV_median_dvout')}; static-V↔ΔV-out ρ {c.get('spearman_staticV_vs_dVout')}; V/K {c.get('V_over_K_mean')}"]
+        if vcomp_dossier:
+            lines += vcomp_xmodel_section(vcomp_dossier)
     elif name == "discovered_write_hub_edges":
         lines += ["**DISCOVERED** (not pre-named): novel composition edges that survived the path-patch liveness gate vs a "
                   "reader-matched null — the collection-goal output.", "",
@@ -194,6 +229,7 @@ def main(argv=None):
     atlas = load(args.root / "atlas_summary.json")
     dossier = load(args.root / "dossier_summary.json")
     ioi_dossier = load(args.root / "ioi_xmodel_summary.json")
+    vcomp_dossier = load(args.root / "vcomposition_xmodel_summary.json")
     rung3 = load(args.disasm / "rung3_induction_chain_summary.json")
     extra = {"self_repair": load(args.disasm / "self_repair_summary.json")}
     args.docs.mkdir(parents=True, exist_ok=True)
@@ -208,7 +244,8 @@ def main(argv=None):
     for c, row in cross.items():
         (args.docs / f"{c}.md").write_text(cross_page(c, row, models, rung3, dossier, operator_names))
     for name, c in gpt2.items():
-        (args.docs / f"{name}.md").write_text(gpt2_page(name, c, extra, ioi_dossier if name == "ioi_q_chain" else None, operator_names))
+        (args.docs / f"{name}.md").write_text(gpt2_page(name, c, extra, ioi_dossier if name == "ioi_q_chain" else None,
+                                                        vcomp_dossier if name == "v_virtual_heads" else None, operator_names))
 
     all_circuits = list(cross) + list(gpt2)
 
@@ -281,9 +318,14 @@ and dissolves into the network with scale, the same distributedness theme measur
   negative/copy-suppression movers, duplicate-token initiator) and its load-bearing necessity are found
   behaviourally in all 6 models via the ResidualVM — closing the old "no head-set off GPT-2" gap. The precise
   *Q-composition edge wiring* stays GPT-2-validated.
-- **Still GPT-2-only:** V-composition cross-model; full per-edge path-patch of all
+- **V-composition is now cross-model too** (the [`v_virtual_heads`](v_virtual_heads.md) page): the composed-OV
+  virtual heads (an induction head's output re-read as a downstream **value**) are weight-legible in all 6 models —
+  so the full Elhage **K / Q / V** composition-edge triad is now measured across models (induction K-chain, IOI
+  Q-chain, V-virtual-heads). Dynamic ΔV-out confirmation stays GPT-2-validated.
+- **Still GPT-2-only:** full per-edge path-patch of all
   {gpt2.get('discovered_write_hub_edges', {}).get('n_novel_live', '?')} discovered write-hub edges on the RoPE
-  models. The cross-model catalog covers the universal-reader edges + the IOI operators.
+  models (they are GPT-2 absolute-position plumbing — predicted absent in RoPE). The cross-model catalog covers the
+  universal-reader edges, the IOI operators, and all three composition-edge types.
 
 ## How this was made
 

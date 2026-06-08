@@ -73,9 +73,14 @@ and dissolves into the network with scale, the same distributedness theme measur
   negative/copy-suppression movers, duplicate-token initiator) and its load-bearing necessity are found
   behaviourally in all 6 models via the ResidualVM — closing the old "no head-set off GPT-2" gap. The precise
   *Q-composition edge wiring* stays GPT-2-validated.
-- **Still GPT-2-only:** V-composition cross-model; full per-edge path-patch of all
+- **V-composition is now cross-model too** (the [`v_virtual_heads`](v_virtual_heads.md) page): the composed-OV
+  virtual heads (an induction head's output re-read as a downstream **value**) are weight-legible in all 6 models —
+  so the full Elhage **K / Q / V** composition-edge triad is now measured across models (induction K-chain, IOI
+  Q-chain, V-virtual-heads). Dynamic ΔV-out confirmation stays GPT-2-validated.
+- **Still GPT-2-only:** full per-edge path-patch of all
   22 discovered write-hub edges on the RoPE
-  models. The cross-model catalog covers the universal-reader edges + the IOI operators.
+  models (they are GPT-2 absolute-position plumbing — predicted absent in RoPE). The cross-model catalog covers the
+  universal-reader edges, the IOI operators, and all three composition-edge types.
 
 ## How this was made
 
