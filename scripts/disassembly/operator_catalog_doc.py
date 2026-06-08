@@ -75,7 +75,36 @@ def xdossier_section(op, xrows):
     return lines
 
 
-def op_page(op, atlas, dossier, circuit_names=frozenset(), xrows=None, sae_rec=None):
+# IOI-family operator -> (field in the cross-model IOI dossier, how it was found). Lets the GPT-2-only literature
+# ops carry a behaviourally-found cross-model head-set (ioi_xmodel.py), closing "no head-set off GPT-2".
+IOI_OP_FIELD = {
+    "name_mover": ("name_movers", "by **end→indirect-object copy-attention** (heads that copy the IO name)"),
+    "negative_mover": ("negative_movers", "by the **ablation sweep** (end→IO heads whose removal *raises* the IO−S logit-diff = copy-suppression)"),
+    "s_inhibition": ("load_bearing_heads", "by the **ablation sweep** (the most logit-diff-load-bearing heads — the S-inhibition that lets the name-movers write IO)"),
+}
+
+
+def ioi_op_section(op, ioi_results):
+    """Cross-model head-set for an IOI-family operator, found behaviourally via the ResidualVM IOI dossier."""
+    spec = IOI_OP_FIELD.get(op)
+    if not spec or not ioi_results:
+        return None
+    field, how = spec
+    order = {"gpt2": 0, "gpt2-medium": 1, "gpt2-large": 2, "gemma-2-2b": 3, "Llama-3.2-1B": 4, "Qwen2.5-1.5B": 5}
+    rows = sorted([r for r in ioi_results if r.get(field)], key=lambda r: order.get(r["model"], 9))
+    if not rows:
+        return None
+    lines = ["## Cross-model (found behaviourally — IOI dossier)", "",
+             f"The literature head-set above is GPT-2. The unified [`ResidualVM`](../DECOMPILATION.md) locates this "
+             f"operator {how} in **every** model ([cross-model IOI dossier](../circuits/ioi_q_chain.md)) — so it is no "
+             "longer GPT-2-only:", "", "| model | heads (top) |", "|---|---|"]
+    for r in rows:
+        lines.append(f"| {r['model']} | {', '.join('`' + h['head'] + '`' for h in r[field][:4])} |")
+    lines.append("")
+    return lines
+
+
+def op_page(op, atlas, dossier, circuit_names=frozenset(), xrows=None, sae_rec=None, ioi_results=None):
     kinds = atlas["kinds"]; ok = [r for r in atlas["results"] if "cells" in r]
     lines = [f"# Operator `{op}`", ""]
     if op in circuit_names:
@@ -100,8 +129,13 @@ def op_page(op, atlas, dossier, circuit_names=frozenset(), xrows=None, sae_rec=N
         lines.append("")
     else:
         heads = atlas.get("gpt2_circuit_ops", {}).get(op)
+        ioi_sec = ioi_op_section(op, ioi_results)
         if heads:
-            lines += [f"GPT-2-only circuit op (literature DLA head-set): {', '.join(heads)}. No published head-set in the RoPE models — not in the cross-model catalog.", ""]
+            tail = ("The RoPE head-set is now found **behaviourally** (below)." if ioi_sec
+                    else "No published head-set in the RoPE models — not in the cross-model catalog.")
+            lines += [f"GPT-2 literature DLA head-set: {', '.join(heads)}. {tail}", ""]
+        if ioi_sec:
+            lines += ioi_sec
     # the arch-generic cross-model deep dossier (universal behavioural ops)
     lines += xdossier_section(op, xrows)
     # section G — SAE-feature operands (per model with an SAE; supersedes the dossier's "NOT RUN" G when present)
@@ -185,19 +219,23 @@ def main(argv=None):
         for op, rec in mr.get("operators", {}).items():
             sae_ops.setdefault(op, []).append({**rec, "model": mid})
 
+    # cross-model IOI dossier (ioi_xmodel.py) — gives the GPT-2-only IOI-family ops a behavioural cross-model head-set
+    ioij = json.loads((args.root.parent / "circuits" / "ioi_xmodel_summary.json").read_text()) if (args.root.parent / "circuits" / "ioi_xmodel_summary.json").exists() else {}
+    ioi_results = ioij.get("results", [])
+
     def load_dossier(op):
         f = args.root / "dossiers" / op / "gpt2_summary.json"
         return json.loads(f.read_text()) if f.exists() else None
 
     all_ops = list(atlas["operators"]) + list(atlas.get("gpt2_circuit_ops", {}))
     for op in all_ops:
-        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names, xdoss.get(op), sae_ops.get(op)))
+        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names, xdoss.get(op), sae_ops.get(op), ioi_results))
 
     # discovered-candidate dossiers: any dossiers/<op>/ not in the registered set (e.g. discovered_7.6)
     dossier_dir = args.root / "dossiers"
     discovered = sorted(d.name for d in dossier_dir.iterdir() if d.is_dir() and d.name not in all_ops and (d / "gpt2_summary.json").exists()) if dossier_dir.exists() else []
     for op in discovered:
-        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names, xdoss.get(op), sae_ops.get(op)))
+        (args.docs / f"{op}.md").write_text(op_page(op, atlas, load_dossier(op), circuit_names, xdoss.get(op), sae_ops.get(op), ioi_results))
 
     ok, ops, kinds, sig_tbl, cau_tbl, memb_tbl = atlas_tables(atlas)
     circuit = atlas.get("gpt2_circuit_ops", {})

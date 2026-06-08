@@ -2,7 +2,20 @@
 
 **output** — copy-suppression / negative name-mover: writes against the copied token
 
-GPT-2-only circuit op (literature DLA head-set): 10.7, 11.10. No published head-set in the RoPE models — not in the cross-model catalog.
+GPT-2 literature DLA head-set: 10.7, 11.10. The RoPE head-set is now found **behaviourally** (below).
+
+## Cross-model (found behaviourally — IOI dossier)
+
+The literature head-set above is GPT-2. The unified [`ResidualVM`](../DECOMPILATION.md) locates this operator by the **ablation sweep** (end→IO heads whose removal *raises* the IO−S logit-diff = copy-suppression) in **every** model ([cross-model IOI dossier](../circuits/ioi_q_chain.md)) — so it is no longer GPT-2-only:
+
+| model | heads (top) |
+|---|---|
+| gpt2 | `10.7`, `9.6`, `11.10`, `10.1` |
+| gpt2-medium | `18.9`, `22.14`, `16.15`, `20.7` |
+| gpt2-large | `32.0`, `26.0`, `29.17`, `30.0` |
+| gemma-2-2b | `22.4`, `22.0`, `23.7`, `18.5` |
+| Llama-3.2-1B | `12.15`, `15.12`, `12.29`, `10.25` |
+| Qwen2.5-1.5B | `23.8`, `25.4`, `22.7`, `27.11` |
 
 ## SAE-feature operands (section G)
 

@@ -2,7 +2,7 @@
 
 **output** — IOI backup name-mover: the self-repair spares that wake when primaries are ablated
 
-GPT-2-only circuit op (literature DLA head-set): 9.0, 9.7, 10.1, 10.2, 10.6, 11.2. No published head-set in the RoPE models — not in the cross-model catalog.
+GPT-2 literature DLA head-set: 9.0, 9.7, 10.1, 10.2, 10.6, 11.2. No published head-set in the RoPE models — not in the cross-model catalog.
 
 ## SAE-feature operands (section G)
 
