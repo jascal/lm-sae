@@ -164,6 +164,15 @@ convergence was measured on small hosts.)
 > ~300-direction basis captures most layers' composition (decompile *its* structure; or a single global low-rank
 > projection serves every layer on CPU). Sharing is partial (overlap ≪ 1) and grows with scale — compact, but not a
 > few templates.
+>
+> **…but a *single* global basis is not a free lunch (honest refinement).** Forcing *every* layer through the one
+> shared union-basis at low rank is **much worse** than per-layer PCA (GPT-2 at 10% rank: **+4.48** global vs +0.47
+> per-layer ΔNLL; Gemma +8.44 vs +0.38), only catching up at ~40–70% rank (Gemma's global basis is even slightly
+> *better* than per-layer at 70%, −0.39 — its sharing is strongest). So the partial overlap does **not** let you
+> collapse the core to one tiny global basis: the efficient simplification is **per-layer** low-rank (lossless at
+> ~70% GPT-2 / ~20% Gemma), with a moderate-rank *global* basis a second-best. The core is a *shared-but-partial*
+> moderate-rank subspace — compact, reused across layers, but with real per-layer structure: "not a few templates,
+> not a dense slab," made quantitative.
 
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 

@@ -78,12 +78,13 @@ def run_model(mid, args):
         w, V = np.linalg.eigh(cov[L]); order = np.argsort(-w)
         bases[L] = t.tensor(V[:, order].astype(np.float32), device=vm.dev)      # columns = components, desc
 
-    def gen_nll(ablate_rank=None):
-        """generic next-token NLL; if ablate_rank=r, project every layer's update onto its top-r PCA subspace."""
+    def gen_nll(ablate_rank=None, glob=False):
+        """generic next-token NLL; ablate_rank=r projects every layer's update onto a rank-r subspace —
+        per-layer PCA (glob=False) or the single SHARED global basis Ug (glob=True)."""
         hs = []
         if ablate_rank is not None:
             for L in range(nL):
-                Vr = bases[L][:, :ablate_rank]                              # (d, r)
+                Vr = (Ug[:, :ablate_rank] if glob else bases[L][:, :ablate_rank])   # (d, r): shared vs per-layer
 
                 def mk(L, Vr):
                     def hook(m, i, o):
@@ -110,7 +111,8 @@ def run_model(mid, args):
     # ---- cross-layer subspace sharing: do the layers write into a SHARED subspace (→ one global low-rank core)? ----
     rs = min(args.share_rank, d // 2)
     stacked = np.concatenate([bases[L][:, :rs].cpu().numpy() for L in range(nL)], axis=1)   # (d, nL*rs)
-    sv = np.linalg.svd(stacked, compute_uv=False)
+    Ug, sv, _ = np.linalg.svd(stacked, full_matrices=False)                  # Ug columns = the SHARED global basis
+    Ug = t.tensor(Ug.astype(np.float32), device=vm.dev)
     overlaps = []
     for i in range(nL):
         Bi = bases[i][:, :rs].cpu().numpy()
@@ -126,8 +128,9 @@ def run_model(mid, args):
     ranks = [r for r in ranks if r >= 1]
     curve = []
     for r in ranks:
-        nll = gen_nll(ablate_rank=r)
-        curve.append({"rank": r, "rank_frac": r / d, "nll": nll, "nll_increase": nll - base_nll})
+        nll = gen_nll(ablate_rank=r); gnll = gen_nll(ablate_rank=r, glob=True)
+        curve.append({"rank": r, "rank_frac": r / d, "nll": nll, "nll_increase": nll - base_nll,
+                      "global_nll_increase": gnll - base_nll})
     return {"model": mid.split("/")[-1], "n_layers": nL, "d_model": d, "base_generic_nll": base_nll,
             "effective_rank_by_layer": {str(L): eff[L] for L in range(nL)},
             "mean_participation_ratio": float(np.mean([eff[L]["participation_ratio"] for L in range(nL)])),
@@ -163,8 +166,10 @@ def main(argv=None):
             print(f"  cross-layer sharing: union effective-rank {sh['union_effective_rank']:.0f} vs no-sharing "
                   f"{sh['no_sharing_upper_bound']} (per-layer rank {sh['per_layer_rank']}); mean pairwise overlap "
                   f"{sh['mean_pairwise_overlap']:.2f} (random {sh['random_overlap']:.2f})")
-            print("  truncation (rank-frac → generic-NLL increase): " +
+            print("  truncation per-layer (rank-frac → ΔNLL): " +
                   " · ".join(f"{c['rank_frac']:.0%}:{c['nll_increase']:+.2f}" for c in r["truncation_curve"]))
+            print("  truncation GLOBAL shared-basis (rank-frac → ΔNLL): " +
+                  " · ".join(f"{c['rank_frac']:.0%}:{c['global_nll_increase']:+.2f}" for c in r["truncation_curve"]))
         except Exception as e:  # pragma: no cover
             import traceback; traceback.print_exc(); print(f"  [skip] {e}"); results.append({"model": mid.split("/")[-1], "error": str(e)})
 
