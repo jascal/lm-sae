@@ -1,0 +1,167 @@
+{
+  "experiment": "controlled scaling laws on the Pythia ladder (induction strength/distribution, knowledge emergence, read-out depth)",
+  "results": [
+    {
+      "model": "pythia-14m",
+      "n_layers": 6,
+      "d_model": 128,
+      "induction": {
+        "base_nll": 2.0879964780650058,
+        "all_ablated_delta": 8.280775188507203,
+        "effective_n_blocks": 4.759772590157756,
+        "top_block_share": 0.2747788242515956,
+        "top_block": 3,
+        "top_block_frac": 0.6
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 0.5833333333333334,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.9142857142857143
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 0.7777777777777778,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.8857142857142858
+        }
+      }
+    },
+    {
+      "model": "pythia-70m",
+      "n_layers": 6,
+      "d_model": 512,
+      "induction": {
+        "base_nll": 2.1744823778863065,
+        "all_ablated_delta": 7.136386820583581,
+        "effective_n_blocks": 3.8537200398973503,
+        "top_block_share": 0.3371343063885874,
+        "top_block": 0,
+        "top_block_frac": 0.0
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 0.8333333333333334,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.78
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 0.8888888888888888,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.825
+        }
+      }
+    },
+    {
+      "model": "pythia-160m",
+      "n_layers": 12,
+      "d_model": 768,
+      "induction": {
+        "base_nll": 0.9945281064193252,
+        "all_ablated_delta": 9.211299945772181,
+        "effective_n_blocks": 4.700415691275937,
+        "top_block_share": 0.38961907306119037,
+        "top_block": 0,
+        "top_block_frac": 0.0
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 1.0,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.6818181818181818
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 1.0,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "model": "pythia-410m",
+      "n_layers": 24,
+      "d_model": 1024,
+      "induction": {
+        "base_nll": 0.539682526492037,
+        "all_ablated_delta": 10.98819914123548,
+        "effective_n_blocks": 4.7167931521749455,
+        "top_block_share": 0.3041444869253389,
+        "top_block": 0,
+        "top_block_frac": 0.0
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 1.0,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.5688405797101449
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 1.0,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.5314009661835749
+        }
+      }
+    },
+    {
+      "model": "pythia-1b",
+      "n_layers": 16,
+      "d_model": 2048,
+      "induction": {
+        "base_nll": 0.4478440997481812,
+        "all_ablated_delta": 10.931149289404164,
+        "effective_n_blocks": 3.593064834800919,
+        "top_block_share": 0.3961080785790832,
+        "top_block": 0,
+        "top_block_frac": 0.0
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 1.0,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.6055555555555555
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 1.0,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.5703703703703704
+        }
+      }
+    },
+    {
+      "model": "pythia-1.4b",
+      "n_layers": 24,
+      "d_model": 2048,
+      "induction": {
+        "base_nll": 0.4813756434984195,
+        "all_ablated_delta": 11.310109556827229,
+        "effective_n_blocks": 3.5996284154310003,
+        "top_block_share": 0.4440195515223935,
+        "top_block": 0,
+        "top_block_frac": 0.0
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 1.0,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.5181159420289855
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 1.0,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.6859903381642511
+        }
+      }
+    }
+  ]
+}
