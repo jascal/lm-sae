@@ -1,0 +1,16 @@
+{
+  "experiment": "does NLL-only compression align with legibility \u2014 trained vs PCA write-direction interpretability",
+  "results": [
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "d_model": 768,
+      "rank": 32,
+      "steps": 300,
+      "pca_peak_z": 5.004013409604465,
+      "trained_peak_z": 4.961112268621489,
+      "pca_closed_frac": 0.10260416666666668,
+      "trained_closed_frac": 0.0890625
+    }
+  ]
+}
