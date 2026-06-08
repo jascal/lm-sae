@@ -280,6 +280,54 @@
       "resample_circuit_coverage_std": 0.000791972892341485,
       "resample_all_ablated_nll": 17.811136025149807,
       "resample_circuit_nll": 17.766813826398785
+    },
+    {
+      "model": "gpt2-xl",
+      "rope": false,
+      "n_heads_total": 1200,
+      "circuit_size": 8,
+      "base_ind_nll": 0.4278314103398925,
+      "all_attn_ablated_nll": 11.192311001827521,
+      "circuit_only_nll": 11.147805866031419,
+      "n_seeds": 3,
+      "circuit_coverage": 0.005425984069971913,
+      "circuit_coverage_std": 0.0011474937252272865,
+      "random_coverage_mean": 0.008653232097780265,
+      "random_coverage_std": 0.003619448151508907,
+      "curve": [
+        {
+          "k": 4,
+          "coverage": 0.0110304034370874
+        },
+        {
+          "k": 8,
+          "coverage": 0.011952876912080093
+        },
+        {
+          "k": 16,
+          "coverage": 0.017061884325421897
+        },
+        {
+          "k": 32,
+          "coverage": 0.022407636344009475
+        },
+        {
+          "k": 64,
+          "coverage": 0.04602349235920774
+        },
+        {
+          "k": 128,
+          "coverage": 0.09420058682783233
+        },
+        {
+          "k": 256,
+          "coverage": 0.16400099342817692
+        }
+      ],
+      "resample_circuit_coverage": 0.06859284862185604,
+      "resample_circuit_coverage_std": 0.004373850083531895,
+      "resample_all_ablated_nll": 12.932721951463638,
+      "resample_circuit_nll": 12.127146850471531
     }
   ],
   "ioi_gpt2": {

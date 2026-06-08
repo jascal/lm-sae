@@ -16,6 +16,7 @@ The catalog shows which heads are *necessary*. This tests **sufficiency**: keep 
 | gemma-2-2b | 8 / 208 | 5.22 / 17.78 / 19.76 | **+14% ± 0%** | +7% ± 0% | +2% ± 5% |
 | Llama-3.2-1B | 8 / 512 | 0.73 / 14.22 / 15.69 | **+10% ± 0%** | +10% ± 0% | +1% ± 2% |
 | Qwen2.5-1.5B | 8 / 336 | 0.49 / 17.56 / 17.04 | **-4% ± 1%** | +0% ± 0% | -1% ± 2% |
+| gpt2-xl | 8 / 1200 | 0.43 / 11.15 / 11.19 | **+1% ± 0%** | +7% ± 0% | +1% ± 0% |
 
 _Coverage is **mean ± σ over 3 probe-resample seeds** — the error bars confirm the scaling/distributedness trend is not a single-seed artifact._
 
@@ -31,6 +32,7 @@ Rank every head by induction-mass, keep the top-K (ablate the rest), and watch c
 | gemma-2-2b | +1% | +17% | +20% | +30% | +34% | +13% | — |
 | Llama-3.2-1B | +3% | +4% | +9% | +18% | +25% | +29% | +28% |
 | Qwen2.5-1.5B | +3% | +2% | -3% | -5% | -8% | -13% | -8% |
+| gpt2-xl | +1% | +1% | +2% | +2% | +5% | +9% | +16% |
 
 _**No compact head-subset reconstructs induction in any model.** GPT-2-small only reaches near-full coverage at K≈128/144 (it needs nearly every head); gpt2-medium saturates at ~22% even with 256 heads; gpt2-large stays ~0% throughout; and the RoPE curves go **non-monotonic** — Gemma peaks ~32% then drops, Qwen goes **negative** (keeping more induction-mass heads *hurts* induction-NLL — the same interference / compensatory effect the [outlier digs](../operators/outlier_digs.md) traced to a synthetic-probe artifact). Induction is a property of the near-whole network, not an isolable subgraph._
 

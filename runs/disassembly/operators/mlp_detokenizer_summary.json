@@ -432,6 +432,78 @@
           "cont_over_start": 2.2024199720560125
         }
       ]
+    },
+    {
+      "model": "gpt2-xl",
+      "rope": false,
+      "n_layers": 48,
+      "token_counts": {
+        "word-start": 2522,
+        "continuation": 1741,
+        "other": 817
+      },
+      "baseline_by_cat": {
+        "word-start": 5.200582156952426,
+        "continuation": 4.5953292456446135,
+        "other": 2.290510414530451
+      },
+      "layers": [
+        {
+          "layer": 0,
+          "depth": 0.0,
+          "determinism": 0.8009701477264605,
+          "dNLL": {
+            "word-start": 8.746933183621206,
+            "continuation": 3.9747096137791775,
+            "other": 5.801060807352289
+          },
+          "cont_over_start": 0.4544117955790373
+        },
+        {
+          "layer": 1,
+          "depth": 0.02127659574468085,
+          "determinism": 0.7359867071708092,
+          "dNLL": {
+            "word-start": 0.025633526852006483,
+            "continuation": 0.02745030203939791,
+            "other": -0.017694370191449593
+          },
+          "cont_over_start": 1.070874959886732
+        },
+        {
+          "layer": 2,
+          "depth": 0.0425531914893617,
+          "determinism": 0.701601633506653,
+          "dNLL": {
+            "word-start": 0.00469876104177569,
+            "continuation": -0.006461800459152123,
+            "other": -0.0014724120554130415
+          },
+          "cont_over_start": -1.3752136790319027
+        },
+        {
+          "layer": 24,
+          "depth": 0.5106382978723404,
+          "determinism": 0.26700072047209755,
+          "dNLL": {
+            "word-start": 0.009049794063775707,
+            "continuation": -0.017302899530103666,
+            "other": 0.009366442022487487
+          },
+          "cont_over_start": -1.9119661075342351
+        },
+        {
+          "layer": 46,
+          "depth": 0.9787234042553191,
+          "determinism": 0.35396054660137,
+          "dNLL": {
+            "word-start": 0.031303680472289486,
+            "continuation": -0.40110096614221113,
+            "other": -0.00837240767103209
+          },
+          "cont_over_start": -12.813220684937416
+        }
+      ]
     }
   ]
 }

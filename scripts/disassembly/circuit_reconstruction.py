@@ -31,7 +31,7 @@ def run_model(model_id, circuit_heads, args, dev):
     from transformers import AutoTokenizer
     if is_gpt2:
         from transformers import GPT2LMHeadModel
-        m = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager").eval().to(dev)
+        m = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager", **({"dtype": torch.bfloat16} if "xl" in model_id else {})).eval().to(dev)
     else:
         from transformers import AutoModelForCausalLM
         m = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", dtype=torch.bfloat16).eval().to(dev)
@@ -297,7 +297,8 @@ def main(argv=None):
     sumpath = args.outdir / "circuit_reconstruction_summary.json"
     out = json.loads(sumpath.read_text()) if sumpath.exists() else {}            # preserve extra blocks (e.g. ioi_gpt2)
     out["experiment"] = "executable decompilation — induction-circuit reconstruction coverage"
-    out["results"] = results
+    done = {r["model"] for r in results}                                         # merge: keep models not re-run this call
+    out["results"] = results + [r for r in out.get("results", []) if r.get("model") not in done]
     args.outdir.mkdir(parents=True, exist_ok=True)
     sumpath.write_text(json.dumps(out, indent=2, default=float))
     write_doc(out, args.docs)

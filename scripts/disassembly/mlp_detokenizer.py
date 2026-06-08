@@ -47,7 +47,7 @@ def run_model(model_id, args, dev):
     is_gpt2 = "gpt2" in model_id.lower()
     if is_gpt2:
         from transformers import GPT2LMHeadModel
-        model = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager").eval().to(dev)
+        model = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager", **({"dtype": torch.bfloat16} if "xl" in model_id else {})).eval().to(dev)
     else:
         model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", dtype=torch.bfloat16).eval().to(dev)
     mlps = mlp_blocks(model); nL = len(mlps)
@@ -222,9 +222,12 @@ def main(argv=None):
                 torch.cuda.empty_cache()
         except Exception as e:  # pragma: no cover
             print(f"  [skip] {e}"); results.append({"model": mid, "error": str(e)})
-    out = {"experiment": "early-MLP detokenizer test (token-category ablation)", "results": results}
+    sumpath = args.outdir / "mlp_detokenizer_summary.json"
+    prior = json.loads(sumpath.read_text()).get("results", []) if sumpath.exists() else []   # merge: keep models not re-run
+    done = {r.get("model") for r in results}
+    out = {"experiment": "early-MLP detokenizer test (token-category ablation)", "results": results + [r for r in prior if r.get("model") not in done]}
     args.outdir.mkdir(parents=True, exist_ok=True)
-    (args.outdir / "mlp_detokenizer_summary.json").write_text(json.dumps(out, indent=2, default=float))
+    sumpath.write_text(json.dumps(out, indent=2, default=float))
     write_doc(out, args.docs)
     print(f"\n[done] {len([r for r in results if 'layers' in r])} models → {args.outdir / 'mlp_detokenizer_summary.json'} + {args.docs / 'mlp_detokenizer.md'}")
     return out
