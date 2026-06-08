@@ -117,10 +117,35 @@ population's **spread across depth**.
 
 **Verdict.** Of the user's two framings — "weighted ensemble?" vs "heterogeneous circuits with overlapping function
 woven in?" — the data favors the **second** and rejects the first: as a circuit distributes it recruits
-*structurally different* heads spread across depth, not duplicates of itself. *Open (the clean next test):* whether
-those heterogeneous heads form ≥2 *separable* sub-circuits (cluster the population by its upstream writer-dependency
-via the key-patch) or one decomposed circuit — the structural axis says "not duplicates," but "several complete
-parallel circuits" vs "one decomposition" needs the writer-clustering follow-up.
+*structurally different* heads spread across depth, not duplicates of itself.
+
+### Separable parallel circuits or one decomposition? — it splits by architecture family
+
+"Structurally different heads woven in" is consistent with *either* several **complete parallel circuits** (each
+fed by its own upstream predecessor-writer) *or* **one circuit decomposed** behind a shared front-end. The
+discriminator is each induction reader's **upstream writer-dependency**: we ran the faithful key-only patch
+(`circuit_writer_cluster.py`, on the `circuit_content_patch` machinery; every zero-patch sanity = 0.0) over the
+*whole* induction population, then clustered the readers by *which* upstream head, removed from their key, collapses
+their induction attention. Shared writers → one decomposition; distinct writers → separable circuits.
+
+- **The GPT-2 (absolute-position) family fragments into separable sub-circuits with scale.** Across small → medium →
+  large the induction readers split into **1 → 2 → 3** writer-defined clusters and their writer-profile similarity
+  drops (pairwise cosine **0.58 → 0.58 → 0.21**) — GPT-2-large's readers draw on **6 distinct** top-writers, only 25%
+  sharing one front-end. So the heterogeneous heads aren't one decomposed circuit; they are increasingly **separate
+  circuits with different upstream wiring**, woven in as the model grows. (Not perfectly monotonic — GPT-2-XL
+  partially re-concentrates, 75% on one writer / 2 clusters — so this is a trend, with n=8 readers and a coarse
+  cosine-0.5 component threshold; the robust signal is GPT-2-large as the most fragmented point.)
+- **The RoPE family keeps one shared writer front-end (closer to a decomposition).** Gemma / Llama / Qwen each have a
+  **single** reader cluster (component count 1) with high profile-cosine (**0.68–0.76**) and one dominant
+  predecessor-writer feeding most readers — Llama's layer-0 head **0.2 feeds 88%** of its induction readers, Gemma's
+  **0.0** half of them. RoPE puts the predecessor signal in one early writer the whole population reads, so there the
+  distribution is one circuit's labour split across readers, not parallel circuits.
+
+**Net.** As an induction circuit "distributes," it is **not** becoming a weighted ensemble of duplicates (OV-operation
+cosine ≈0). In the **absolute-position family it weaves in genuinely separable sub-circuits** (distinct upstream
+writers, fragmenting with scale); in the **RoPE family it decomposes one circuit behind a shared early-writer
+front-end**. The "more distributed with scale" headline is two different mechanisms underneath, split by the same
+absolute-vs-RoPE line that separates the positional register everywhere else in the catalog.
 
 ## Methodological cautions — banked from the digs
 
