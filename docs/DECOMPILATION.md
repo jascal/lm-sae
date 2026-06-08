@@ -363,6 +363,16 @@ by exactly the Θ(d) rank that the compressed corner squeezes out. (Proper monos
 sae-forge sub-project; here the 2× run prices the corner and confirms the trade-off is structural, not a tuning miss.)
 (`runs/disassembly/feature_native_sae_summary.json`.)
 
+**The real legible corner, characterized — and it is *not* complete (`legible_corner.py`).** A *properly-trained* 32×d
+SAE (jbloom GPT-2, F=24,576, resid_pre, all layers) is genuinely **sparse** (mean L0 **0.025** — ~624 active of 24,576)
+and **legible** (decoder logit-lens peak-z **6.99**, well above the 2×d SAE's 4.8 and PCA's 5.0) — confirming legibility
+needs the high overcompleteness #146 predicted. **But composed across all 12 layers it pays the forge tax in full:** the
+SAE-bottleneck generic NLL is **5.22 → 9.16 (Δ +3.94, near-random)** — *not* complete. So the legible corner is
+**legible + sparse + big but NOT complete**: **sparsity and completeness themselves trade off** (the dense 2×d
+reconstruction of #146 was complete-but-illegible; the sparse 32×d is legible-but-forge-tax-incomplete). This sharpens
+the triangle — *legible-AND-complete is itself blocked by the forge tax*, because composing sparse monosemantic features
+across layers is exactly the composition that doesn't factor through the feature basis. (`runs/disassembly/legible_corner_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
