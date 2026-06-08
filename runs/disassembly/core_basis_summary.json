@@ -1,0 +1,905 @@
+{
+  "experiment": "decompile the structure of the entangled core's shared cross-layer write-basis",
+  "results": [
+    {
+      "model": "gpt2-medium",
+      "n_layers": 24,
+      "d_model": 1024,
+      "core_dim_K": 410,
+      "share_rank": 64,
+      "token_logit_alignment": {
+        "core_in_logit_subspace": 0.3884776019189204,
+        "random_in_logit_subspace": 0.4006953770586774,
+        "chance": 0.400390625,
+        "K": 410,
+        "d": 1024
+      },
+      "operator_alignment": {
+        "induction": {
+          "heads": [
+            "11.1",
+            "9.9",
+            "12.1",
+            "6.1"
+          ],
+          "top_mass": 0.8527811713840651,
+          "core_capture": 0.42045800344098255
+        },
+        "prevtok": {
+          "heads": [
+            "5.11",
+            "6.7",
+            "4.13",
+            "8.1"
+          ],
+          "top_mass": 0.9803678379502407,
+          "core_capture": 0.4471914344466411
+        },
+        "duplicate": {
+          "heads": [
+            "7.11",
+            "1.4",
+            "4.6",
+            "6.4"
+          ],
+          "top_mass": 0.7832454753958661,
+          "core_capture": 0.4602586712477031
+        },
+        "sink": {
+          "heads": [
+            "13.2",
+            "14.1",
+            "12.2",
+            "18.2"
+          ],
+          "top_mass": 0.9499008544655734,
+          "core_capture": 0.4672941821251825
+        },
+        "_random_heads": {
+          "heads": [
+            "17.13",
+            "23.1",
+            "0.0",
+            "18.5",
+            "10.12",
+            "13.6",
+            "23.7",
+            "7.14"
+          ],
+          "core_capture": 0.44018155411464466
+        },
+        "_chance": 0.400390625
+      },
+      "logit_lens": {
+        "core_mean_peak_z": 5.926417862845799,
+        "random_mean_peak_z": 4.802496517846057,
+        "directions": [
+          {
+            "dir": 0,
+            "peak_z": 6.399397527516447,
+            "top_tokens": [
+              "_the",
+              ",",
+              "_a",
+              "_and",
+              "_\"",
+              "-",
+              "_in",
+              "\\n"
+            ]
+          },
+          {
+            "dir": 1,
+            "peak_z": 2.426440770179489,
+            "top_tokens": [
+              "eatures",
+              "lishes",
+              "geoning",
+              "yrinth",
+              "sych",
+              "hiba",
+              "uably",
+              "duino"
+            ]
+          },
+          {
+            "dir": 2,
+            "peak_z": 7.13272077296486,
+            "top_tokens": [
+              "-",
+              ",",
+              ".",
+              "_and",
+              "a",
+              "\\n",
+              "i",
+              "_("
+            ]
+          },
+          {
+            "dir": 3,
+            "peak_z": 9.07025451643423,
+            "top_tokens": [
+              ".",
+              ";",
+              ",",
+              "!,",
+              "!",
+              "!.",
+              ".<",
+              ".("
+            ]
+          },
+          {
+            "dir": 4,
+            "peak_z": 5.407516373941316,
+            "top_tokens": [
+              "_hath",
+              "_thou",
+              ",\u00e2\u0122\u0136",
+              "_unto",
+              "soever",
+              "ught",
+              "ieth",
+              "_shall"
+            ]
+          },
+          {
+            "dir": 5,
+            "peak_z": 4.48686093571962,
+            "top_tokens": [
+              "_affair",
+              ".\u00ef\u00bf\u00bd",
+              "_deed",
+              ".",
+              "_\u00c2\u0143",
+              ".[",
+              "cule",
+              ".?"
+            ]
+          },
+          {
+            "dir": 6,
+            "peak_z": 6.866447828855953,
+            "top_tokens": [
+              "_them",
+              "_him",
+              "_our",
+              "_the",
+              "_their",
+              "_your",
+              "_those",
+              "_theirs"
+            ]
+          },
+          {
+            "dir": 7,
+            "peak_z": 7.682803469306545,
+            "top_tokens": [
+              "\\n",
+              "<|endoftext|>",
+              "\\n\\n",
+              "_the",
+              "_this",
+              "_Lindsey",
+              "\\n\u00c2\u0142",
+              "_these"
+            ]
+          },
+          {
+            "dir": 8,
+            "peak_z": 4.934935058679726,
+            "top_tokens": [
+              "_Thou",
+              "_thou",
+              "_sir",
+              "_ye",
+              "\\n",
+              "_Nay",
+              "_Dear",
+              "_Sir"
+            ]
+          },
+          {
+            "dir": 9,
+            "peak_z": 5.164219801421138,
+            "top_tokens": [
+              "_conclud",
+              "_agre",
+              "_conclude",
+              "_challeng",
+              "_disapp",
+              "_confir",
+              "_arrang",
+              "_accomp"
+            ]
+          },
+          {
+            "dir": 10,
+            "peak_z": 6.6708272341088435,
+            "top_tokens": [
+              "_you",
+              "_I",
+              "_YOU",
+              "you",
+              "_we",
+              "_You",
+              "You",
+              "_guys"
+            ]
+          },
+          {
+            "dir": 11,
+            "peak_z": 4.386533068219532,
+            "top_tokens": [
+              "_evils",
+              "_goodness",
+              "_deeds",
+              "_sins",
+              "_mortals",
+              "_heavens",
+              "_belongs",
+              "_exists"
+            ]
+          },
+          {
+            "dir": 12,
+            "peak_z": 7.997187242307977,
+            "top_tokens": [
+              "\\n",
+              "_and",
+              "_of",
+              "_have",
+              "_&",
+              "_in",
+              "_for",
+              "_which"
+            ]
+          },
+          {
+            "dir": 13,
+            "peak_z": 5.618647125713868,
+            "top_tokens": [
+              "_conclud",
+              "_the",
+              "_ende",
+              "_a",
+              "_his",
+              "_be",
+              ",",
+              "_warr"
+            ]
+          },
+          {
+            "dir": 14,
+            "peak_z": 4.83031950616401,
+            "top_tokens": [
+              "_relocate",
+              "_integrate",
+              "_evacuate",
+              "_organize",
+              "_stabilize",
+              "_manage",
+              "_seize",
+              "_bury"
+            ]
+          },
+          {
+            "dir": 15,
+            "peak_z": 5.747574573999234,
+            "top_tokens": [
+              "\\n",
+              "\\n\\n",
+              "_My",
+              "chers",
+              "_Sky",
+              "<|endoftext|>",
+              "_Homs",
+              "_my"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "model": "gpt2-large",
+      "n_layers": 36,
+      "d_model": 1280,
+      "core_dim_K": 517,
+      "share_rank": 64,
+      "token_logit_alignment": {
+        "core_in_logit_subspace": 0.3920511932174137,
+        "random_in_logit_subspace": 0.40449609516516755,
+        "chance": 0.40390625,
+        "K": 517,
+        "d": 1280
+      },
+      "operator_alignment": {
+        "induction": {
+          "heads": [
+            "16.0",
+            "19.4",
+            "16.9",
+            "15.4"
+          ],
+          "top_mass": 0.9453255696730181,
+          "core_capture": 0.46839791541165254
+        },
+        "prevtok": {
+          "heads": [
+            "14.1",
+            "12.12",
+            "15.19",
+            "13.10"
+          ],
+          "top_mass": 0.9950092947760294,
+          "core_capture": 0.42801621905554393
+        },
+        "duplicate": {
+          "heads": [
+            "5.8",
+            "5.19",
+            "8.14",
+            "7.5"
+          ],
+          "top_mass": 0.9237306659871881,
+          "core_capture": 0.4675520707904886
+        },
+        "sink": {
+          "heads": [
+            "33.10",
+            "32.17",
+            "31.0",
+            "30.7"
+          ],
+          "top_mass": 0.9381105234456617,
+          "core_capture": 0.4354574623968656
+        },
+        "_random_heads": {
+          "heads": [
+            "3.18",
+            "18.12",
+            "16.12",
+            "12.8",
+            "15.3",
+            "19.3",
+            "5.7",
+            "4.2"
+          ],
+          "core_capture": 0.45519371138328857
+        },
+        "_chance": 0.40390625
+      },
+      "logit_lens": {
+        "core_mean_peak_z": 5.059270673933115,
+        "random_mean_peak_z": 4.505159712771519,
+        "directions": [
+          {
+            "dir": 0,
+            "peak_z": 9.244382357147147,
+            "top_tokens": [
+              "\u011c",
+              "\u00fe",
+              "\u0104",
+              "\u010b",
+              "\u0102",
+              "\u0111",
+              "\u00fd",
+              "\u0105"
+            ]
+          },
+          {
+            "dir": 1,
+            "peak_z": 4.311594378883738,
+            "top_tokens": [
+              "gling",
+              "ipop",
+              "ando",
+              "volent",
+              "nosis",
+              "_Doodle",
+              "aneously",
+              "athed"
+            ]
+          },
+          {
+            "dir": 2,
+            "peak_z": 6.30426213131798,
+            "top_tokens": [
+              ",",
+              ".",
+              ";",
+              "!",
+              ":",
+              "?",
+              ",\u00e2\u0122\u0136",
+              ".\""
+            ]
+          },
+          {
+            "dir": 3,
+            "peak_z": 4.343823196535548,
+            "top_tokens": [
+              "_thy",
+              "_mighty",
+              "_ye",
+              "_thou",
+              "_behold",
+              "_honour",
+              "_wit",
+              "_nob"
+            ]
+          },
+          {
+            "dir": 4,
+            "peak_z": 4.397208438319332,
+            "top_tokens": [
+              "_the",
+              "_a",
+              "_your",
+              "_their",
+              "_these",
+              "_this",
+              "_it",
+              "_our"
+            ]
+          },
+          {
+            "dir": 5,
+            "peak_z": 3.704843386547447,
+            "top_tokens": [
+              "you",
+              "your",
+              "them",
+              "lest",
+              "give",
+              "bring",
+              "fy",
+              "our"
+            ]
+          },
+          {
+            "dir": 6,
+            "peak_z": 5.27093201647936,
+            "top_tokens": [
+              "\u0109",
+              "\u0107",
+              "\u0101",
+              "\u0116",
+              "\u0113",
+              "\u0106",
+              "_TheNitrome",
+              "\u0111"
+            ]
+          },
+          {
+            "dir": 7,
+            "peak_z": 4.699018747352714,
+            "top_tokens": [
+              "_wish",
+              "_do",
+              "_make",
+              "_get",
+              "_know",
+              "_go",
+              "_find",
+              "_stand"
+            ]
+          },
+          {
+            "dir": 8,
+            "peak_z": 6.022719601711666,
+            "top_tokens": [
+              "\u011f",
+              "\u010b",
+              "\u010c",
+              "\u00fb",
+              "InstoreAndOnline",
+              "\u011d",
+              "embedreportprint",
+              "_RandomRedditor"
+            ]
+          },
+          {
+            "dir": 9,
+            "peak_z": 3.9623364875839107,
+            "top_tokens": [
+              "\\n",
+              "_You",
+              "_Don",
+              "_Who",
+              "_Sir",
+              "_Just",
+              "_Think",
+              "_Say"
+            ]
+          },
+          {
+            "dir": 10,
+            "peak_z": 5.14242190860275,
+            "top_tokens": [
+              "\\n",
+              "_stale",
+              "_traction",
+              "_vulner",
+              "\\n\u00c2\u0142",
+              "_painful",
+              "_sharper",
+              "_lighter"
+            ]
+          },
+          {
+            "dir": 11,
+            "peak_z": 4.684346761873705,
+            "top_tokens": [
+              "_contribute",
+              "_receive",
+              "_them",
+              "_their",
+              "_succeed",
+              "_serve",
+              "_participate",
+              "_themselves"
+            ]
+          },
+          {
+            "dir": 12,
+            "peak_z": 3.989027313518807,
+            "top_tokens": [
+              "_instituted",
+              "_endowed",
+              "_whereby",
+              "_entit",
+              "_conduc",
+              "Of",
+              "_condu",
+              "_wherein"
+            ]
+          },
+          {
+            "dir": 13,
+            "peak_z": 5.53349781616127,
+            "top_tokens": [
+              "\u010b",
+              "\u0103",
+              "\u0101",
+              "\u0115",
+              "\u010e",
+              "embedreportprint",
+              "\u0108",
+              "\u00ff"
+            ]
+          },
+          {
+            "dir": 14,
+            "peak_z": 4.849474561228978,
+            "top_tokens": [
+              "_aboard",
+              "_ashore",
+              "_onto",
+              "_atop",
+              "_onstage",
+              "_inside",
+              "_downstairs",
+              "_upstairs"
+            ]
+          },
+          {
+            "dir": 15,
+            "peak_z": 4.488441679665499,
+            "top_tokens": [
+              "_I",
+              "_happens",
+              "_does",
+              "_is",
+              "_You",
+              "_you",
+              "_of",
+              "_we"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "d_model": 768,
+      "core_dim_K": 278,
+      "share_rank": 64,
+      "token_logit_alignment": {
+        "core_in_logit_subspace": 0.33160358409733415,
+        "random_in_logit_subspace": 0.3607898242440603,
+        "chance": 0.3619791666666667,
+        "K": 278,
+        "d": 768
+      },
+      "operator_alignment": {
+        "induction": {
+          "heads": [
+            "5.5",
+            "7.10",
+            "5.1",
+            "6.9"
+          ],
+          "top_mass": 0.8786710792117649,
+          "core_capture": 0.39248127117577236
+        },
+        "prevtok": {
+          "heads": [
+            "4.11",
+            "6.8",
+            "2.2",
+            "3.7"
+          ],
+          "top_mass": 0.9947295521580896,
+          "core_capture": 0.4040106954803798
+        },
+        "duplicate": {
+          "heads": [
+            "0.5",
+            "3.0",
+            "0.1",
+            "1.11"
+          ],
+          "top_mass": 0.6184697601530287,
+          "core_capture": 0.4286196107001606
+        },
+        "sink": {
+          "heads": [
+            "5.7",
+            "4.10",
+            "8.4",
+            "6.1"
+          ],
+          "top_mass": 0.9257416059804517,
+          "core_capture": 0.4097555004180745
+        },
+        "_random_heads": {
+          "heads": [
+            "1.11",
+            "1.8",
+            "2.3",
+            "10.6",
+            "5.11",
+            "6.11",
+            "10.3",
+            "9.11"
+          ],
+          "core_capture": 0.39267231468303393
+        },
+        "_chance": 0.3619791666666667
+      },
+      "logit_lens": {
+        "core_mean_peak_z": 5.212894542459753,
+        "random_mean_peak_z": 4.607597087386865,
+        "directions": [
+          {
+            "dir": 0,
+            "peak_z": 7.169204954726685,
+            "top_tokens": [
+              "_the",
+              ",",
+              "_and",
+              "-",
+              "_a",
+              ".",
+              "_in",
+              "_\""
+            ]
+          },
+          {
+            "dir": 1,
+            "peak_z": 6.537250063884581,
+            "top_tokens": [
+              ",",
+              "_and",
+              ".",
+              "_in",
+              "-",
+              "_the",
+              "_to",
+              "_of"
+            ]
+          },
+          {
+            "dir": 2,
+            "peak_z": 4.256489610248688,
+            "top_tokens": [
+              ".",
+              ";",
+              ".:",
+              ":",
+              "atic",
+              ".\u00e2\u0122\u0136",
+              "atically",
+              ","
+            ]
+          },
+          {
+            "dir": 3,
+            "peak_z": 6.108679457568736,
+            "top_tokens": [
+              "!,",
+              ",\u00e2\u0122\u0136",
+              ",",
+              "_insofar",
+              ";",
+              ".\u00e2\u0122\u0136",
+              "!.",
+              "!"
+            ]
+          },
+          {
+            "dir": 4,
+            "peak_z": 5.212493986632823,
+            "top_tokens": [
+              "_have",
+              "_HAVE",
+              "_chose",
+              "_took",
+              "_inhabit",
+              "_saw",
+              "_find",
+              "'ve"
+            ]
+          },
+          {
+            "dir": 5,
+            "peak_z": 5.452859706597739,
+            "top_tokens": [
+              "_thee",
+              "_thy",
+              "_thou",
+              "_ye",
+              "_yourselves",
+              "_beware",
+              "_slay",
+              "areth"
+            ]
+          },
+          {
+            "dir": 6,
+            "peak_z": 4.8793443958098885,
+            "top_tokens": [
+              "hearted",
+              "_soul",
+              ",\u00e2\u0122\u0136",
+              "_ears",
+              "_souls",
+              "!'",
+              "_heart",
+              "_robe"
+            ]
+          },
+          {
+            "dir": 7,
+            "peak_z": 4.831336739175418,
+            "top_tokens": [
+              "_of",
+              "_and",
+              "_thereof",
+              "_&",
+              "_in",
+              "_among",
+              "_upon",
+              "_abundance"
+            ]
+          },
+          {
+            "dir": 8,
+            "peak_z": 4.399305614815063,
+            "top_tokens": [
+              "gh",
+              "ught",
+              "'d",
+              ",\u00e2\u0122\u0136",
+              "'s",
+              "ems",
+              "ESE",
+              "ought"
+            ]
+          },
+          {
+            "dir": 9,
+            "peak_z": 5.6800422538083435,
+            "top_tokens": [
+              "_Thou",
+              "_yea",
+              "_sir",
+              "_alas",
+              "_Why",
+              "_oh",
+              "_Where",
+              "_thou"
+            ]
+          },
+          {
+            "dir": 10,
+            "peak_z": 6.997423717286644,
+            "top_tokens": [
+              "_happens",
+              "_happened",
+              "_is",
+              "_occurs",
+              "_was",
+              "_occurred",
+              "_we",
+              "_he"
+            ]
+          },
+          {
+            "dir": 11,
+            "peak_z": 5.067875247587053,
+            "top_tokens": [
+              "\\n",
+              "\\n\u00c2\u0142",
+              "_descended",
+              "_spawned",
+              "_littered",
+              "_spun",
+              "_ooz",
+              "_marqu"
+            ]
+          },
+          {
+            "dir": 12,
+            "peak_z": 3.896970731723623,
+            "top_tokens": [
+              "you",
+              "_ya",
+              "_you",
+              "_wrap",
+              "_snap",
+              "_crawl",
+              "_hello",
+              "_hatch"
+            ]
+          },
+          {
+            "dir": 13,
+            "peak_z": 4.239274407285755,
+            "top_tokens": [
+              "_nets",
+              "_treatments",
+              "_lasts",
+              "_develops",
+              "_interests",
+              "actions",
+              "_tabs",
+              "_clauses"
+            ]
+          },
+          {
+            "dir": 14,
+            "peak_z": 4.355592013631153,
+            "top_tokens": [
+              "_Them",
+              "_danced",
+              "_Himself",
+              "_Gets",
+              "_Everywhere",
+              "_hurled",
+              "_sings",
+              "_flourished"
+            ]
+          },
+          {
+            "dir": 15,
+            "peak_z": 4.322169778573851,
+            "top_tokens": [
+              "\\n",
+              "Allow",
+              "efficiency",
+              "profit",
+              "rule",
+              "fill",
+              "luster",
+              "_compensate"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

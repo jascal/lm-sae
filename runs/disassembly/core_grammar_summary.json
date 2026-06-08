@@ -1,0 +1,177 @@
+{
+  "experiment": "is the entangled core a generic grammar \u2014 corpus-invariance + closed-class dominance of the shared write-basis",
+  "results": [
+    {
+      "model": "gpt2",
+      "d_model": 768,
+      "core_dim_K": 278,
+      "corpora": {
+        "shakespeare": 278,
+        "novel": 279,
+        "code": 304
+      },
+      "chance_overlap": 0.3619791666666667,
+      "generic": {
+        "core_overlap": {
+          "shakespeare~novel": 0.5246411754502244,
+          "shakespeare~code": 0.43948189806245935,
+          "novel~code": 0.48059809114088875
+        },
+        "tail_overlap": {
+          "shakespeare~novel": 0.4632095211042447,
+          "shakespeare~code": 0.4067876220278024,
+          "novel~code": 0.43394994400523756
+        },
+        "mean_core_overlap": 0.4815737215511908,
+        "mean_tail_overlap": 0.43464902904576147,
+        "binned": {
+          "top16": {
+            "overlap": 0.4408511818058871,
+            "chance": 0.020833333333333332
+          },
+          "mid16_64": {
+            "overlap": 0.23041177001744964,
+            "chance": 0.0625
+          },
+          "deep64_K": {
+            "overlap": 0.3453028104934544,
+            "chance": 0.2786458333333333
+          }
+        }
+      },
+      "grammatical": {
+        "closed_top16": 0.275,
+        "closed_mid16_64": 0.025000000000000005,
+        "closed_deep64_K": 0.0032710280373831778,
+        "closed_tail": 0.0010791366906474822,
+        "closed_random": 0.0014388489208633094,
+        "closed_core_all": 0.022661870503597123,
+        "closed_vocab_size": 487
+      },
+      "core_examples": [
+        [
+          "_the",
+          ",",
+          "_and",
+          "-",
+          "_a",
+          ".",
+          "_in",
+          "_\""
+        ],
+        [
+          ",",
+          "_and",
+          ".",
+          "_in",
+          "-",
+          "_the",
+          "_to",
+          "_of"
+        ],
+        [
+          ".",
+          ";",
+          ".:",
+          ":",
+          "atic",
+          ".\u00e2\u0122\u0136",
+          "atically",
+          ","
+        ],
+        [
+          "!,",
+          ",\u00e2\u0122\u0136",
+          ",",
+          "_insofar",
+          ";",
+          ".\u00e2\u0122\u0136",
+          "!.",
+          "!"
+        ],
+        [
+          "_have",
+          "_HAVE",
+          "_chose",
+          "_took",
+          "_inhabit",
+          "_saw",
+          "_find",
+          "'ve"
+        ],
+        [
+          "_thee",
+          "_thy",
+          "_thou",
+          "_ye",
+          "_yourselves",
+          "_beware",
+          "_slay",
+          "areth"
+        ]
+      ],
+      "tail_examples": [
+        [
+          "\u00e9\u0139\u013a",
+          "inventoryQuantity",
+          "uana",
+          "yll",
+          "ureen",
+          "_Lear",
+          "advertising",
+          "izont"
+        ],
+        [
+          "}}}",
+          "_Nationwide",
+          "_Maxim",
+          "_quotas",
+          "gov",
+          "_metric",
+          "_Mandatory",
+          "igraph"
+        ],
+        [
+          "orial",
+          "_Pengu",
+          "rights",
+          "etsy",
+          "elia",
+          "Policy",
+          "erman",
+          "_imag"
+        ],
+        [
+          "NPR",
+          "abyte",
+          "atu",
+          "occup",
+          "rg",
+          "fecture",
+          "ATIVE",
+          "inventoryQuantity"
+        ],
+        [
+          "eva",
+          "uberty",
+          "ua",
+          "_Forestry",
+          "NS",
+          "AAF",
+          "breeding",
+          "_ATK"
+        ],
+        [
+          "_Loading",
+          "_automakers",
+          "_largeDownload",
+          "_attm",
+          "_\u00e8\u00a3\u0131\u00e8",
+          "_Jing",
+          "efully",
+          "redients"
+        ]
+      ]
+    }
+  ]
+}
