@@ -261,26 +261,33 @@ def run_model(mid, args):
         """factor every weight W≈A·B at rank r (SVD init), TRAIN the factors to match the full model (others frozen)."""
         for p in vm.model.parameters():
             p.requires_grad_(False)
-        A = []; B = []
+        A = []; B = []; alpha = []
         for (W, (U, S, Vh)) in zip(mats, svds):
             s = S[:r].sqrt()
             A.append((U[:, :r] * s).detach().clone().to(vm.dev).requires_grad_(True))   # svds live on CPU
             B.append((s[:, None] * Vh[:r]).detach().clone().to(vm.dev).requires_grad_(True))
+            # nonlinear bottleneck: code → code + α·GELU(code); α a learnable per-code-channel gate init 0 (strict
+            # superset of the linear factor — at α=0 it IS the data-aware linear map, so the init is the linear baseline)
+            alpha.append(t.zeros(r, device=vm.dev, requires_grad=True) if args.nonlinear else None)
         factor_on = [True]; hs = []                                   # reuse the arch-generic `mods` from run_model
 
         def mk(j):
             def hook(m, i, o):
                 if not factor_on[0]:                                  # off → teacher (self-distill case)
                     return None
-                y = (i[0] @ A[j].to(i[0].dtype)) @ B[j].to(i[0].dtype)   # low-rank product, no d×4d materialization
+                code = i[0] @ A[j].to(i[0].dtype)                     # (.., r) bottleneck code
+                if args.nonlinear:
+                    code = code + alpha[j].to(code.dtype) * t.nn.functional.gelu(code)
+                y = code @ B[j].to(i[0].dtype)                        # low-rank product, no d×4d materialization
                 return y if m.bias is None else y + m.bias            # Llama/Qwen Linear carries no bias
             return hook
         for j, mod in enumerate(mods):
             hs.append(mod.register_forward_hook(mk(j)))
+        params = A + B + ([a for a in alpha if a is not None])        # alpha trained alongside the factors
         if args.teacher:                                              # gradient checkpointing — fits fp32-large training on a small GPU
             vm.model.config.use_cache = False
             vm.model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
-        opt = torch.optim.Adam(A + B, lr=args.lr); rng = np.random.default_rng(0); T = 2.0
+        opt = torch.optim.Adam(params, lr=args.lr); rng = np.random.default_rng(0); T = 2.0
         for s in range(steps):
             j = int(rng.integers(0, len(train))); tid = t.tensor([train[j]], device=vm.dev)
             if args.match_teacher and teacher_soft is not None:       # top-k KL to the precomputed SEPARATE-teacher targets
@@ -298,7 +305,7 @@ def run_model(mid, args):
             else:                                                     # corpus NLL (capable, not faithful)
                 logits = vm.model(input_ids=tid).logits[0]
                 loss = t.nn.functional.cross_entropy(logits[:-1].float(), tid[0, 1:])
-            opt.zero_grad(); loss.backward(); t.nn.utils.clip_grad_norm_(A + B, 1.0); opt.step()   # clip → stable
+            opt.zero_grad(); loss.backward(); t.nn.utils.clip_grad_norm_(params, 1.0); opt.step()   # clip → stable
         factor_on[0] = True
         if args.teacher:
             vm.model.gradient_checkpointing_disable(); vm.model.config.use_cache = True
@@ -328,6 +335,8 @@ def run_model(mid, args):
                        else ("self" if args.match_teacher else "nll"))   # distinguish self/cross-teacher runs in the json
     if args.data_aware:
         tag += "+daware"
+    if args.nonlinear:
+        tag += "+nl"
     return {"model": mid.split("/")[-1] + "@" + tag, "n_layers": nL, "full_nll": full_nll, "teacher": args.teacher,
             "transformer_weight_params_M": full_params / 1e6, "distill_steps": args.distill_steps, "curve": curve}
 
@@ -348,6 +357,7 @@ def main(argv=None):
     p.add_argument("--teacher", default="", help="a SEPARATE teacher model (same tokenizer), e.g. gpt2-xl → gpt2-large core")
     p.add_argument("--tag", default="", help="suffix for the summary-json model key (auto: self/teacher=<id>/nll)")
     p.add_argument("--data-aware", action="store_true", help="functional (activation-weighted) low-rank vs Frobenius SVD")
+    p.add_argument("--nonlinear", action="store_true", help="α-gated GELU bottleneck (code+α·gelu(code)); superset of linear, α init 0")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly"))
     args = p.parse_args(argv)
