@@ -49,6 +49,11 @@ def _arch(model):
         L = list(model.transformer.h)
         return dict(is_gpt2=True, layers=L, oproj=[b.attn.c_proj for b in L], norm=[b.ln_1 for b in L],
                     cattn=[b.attn.c_attn for b in L], hd=cfg.n_embd // H, H=H, nkv=H, d=cfg.n_embd)
+    if hasattr(model, "gpt_neox"):                                             # GPT-NeoX (Pythia ladder)
+        L = list(model.gpt_neox.layers)                                        # fused qkv, dense o_proj; heads slice d
+        return dict(is_gpt2=False, is_neox=True, layers=L, oproj=[ly.attention.dense for ly in L],
+                    norm=[ly.input_layernorm for ly in L], qkv=[ly.attention.query_key_value for ly in L],
+                    hd=cfg.hidden_size // H, H=H, nkv=H, d=cfg.hidden_size)
     raise SystemExit("unknown architecture")
 
 

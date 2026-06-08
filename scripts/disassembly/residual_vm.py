@@ -63,14 +63,19 @@ class ResidualVM:
         from mlp_atlas import mlp_blocks
         self.torch = torch
         self.is_gpt2 = "gpt2" in model_id.lower()
-        dt = torch.bfloat16 if (dtype == "bf16" or (dtype == "auto" and (not self.is_gpt2 or "xl" in model_id))) else None
+        if dtype == "fp32":                                                  # EXPLICIT fp32 — Pythia ships fp16; None→fp16→nan
+            dt = torch.float32
+        elif dtype == "bf16":
+            dt = torch.bfloat16
+        else:                                                                # auto: bf16 for non-GPT-2 / gpt2-xl (memory)
+            dt = torch.bfloat16 if (not self.is_gpt2 or "xl" in model_id) else None
         from transformers import AutoTokenizer
         if self.is_gpt2:
             from transformers import GPT2LMHeadModel
             self.model = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager", **({"dtype": dt} if dt else {}))
         else:
             from transformers import AutoModelForCausalLM
-            self.model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", dtype=torch.bfloat16)
+            self.model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", **({"dtype": dt} if dt else {}))
         self.dev = device if torch.cuda.is_available() else "cpu"
         self.model = self.model.eval().to(self.dev)
         self.tok = AutoTokenizer.from_pretrained(model_id)
