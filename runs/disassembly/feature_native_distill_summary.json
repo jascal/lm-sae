@@ -1,0 +1,46 @@
+{
+  "experiment": "feature-native distillation \u2014 does an L1 legibility term give small AND legible?",
+  "results": [
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "d_model": 768,
+      "rank": 32,
+      "steps": 300,
+      "rows": [
+        {
+          "lambda": 0.0,
+          "nll": 5.17217253308069,
+          "peak_z": 4.961112268621488,
+          "closed_frac": 0.0890625,
+          "code_active_frac": 0.4958577473958333,
+          "nll_increase_vs_lambda0": 0.0
+        },
+        {
+          "lambda": 0.01,
+          "nll": 5.193525812094202,
+          "peak_z": 4.934613378502438,
+          "closed_frac": 0.09531250000000001,
+          "code_active_frac": 0.4903076171875,
+          "nll_increase_vs_lambda0": 0.02135327901351225
+        },
+        {
+          "lambda": 0.05,
+          "nll": 5.214817816113022,
+          "peak_z": 4.947330826792912,
+          "closed_frac": 0.09661458333333334,
+          "code_active_frac": 0.48822428385416666,
+          "nll_increase_vs_lambda0": 0.04264528303233206
+        },
+        {
+          "lambda": 0.2,
+          "nll": 5.359421020518205,
+          "peak_z": 4.980667424543639,
+          "closed_frac": 0.09817708333333335,
+          "code_active_frac": 0.4858154296875,
+          "nll_increase_vs_lambda0": 0.18724848743751554
+        }
+      ]
+    }
+  ]
+}

@@ -317,6 +317,30 @@ enabling facts are all in hand (smaller = more decompilable; compression is trac
 extractors + pylm + runtime idiom-traces exist), but the missing ingredient is the legibility objective, not more
 compression. (`runs/disassembly/compress_legibility_summary.json`.)
 
+#### …and a naive legibility term can't fix it on a tight bottleneck — the small / legible / complete trade-off triangle (`feature_native_distill.py`)
+
+Adding the obvious legibility objective — an **L1 sparsity penalty on the bottleneck codes** (the sae-style term) —
+does *not* rescue legibility on a compressive rank-32 bottleneck: sweeping λ ∈ {0, 0.01, 0.05, 0.2}, peak-z stays ~4.95
+and the code-active fraction stays ~0.50 (L1 *doesn't sparsify*), while NLL only rises (+0.19 at λ=0.2). The reason is
+structural: a *tight* (rank < d) bottleneck has **no room** to be sparse — every direction is genuinely used, so L1
+shrinks them all uniformly instead of zeroing any. **Legibility needs *overcompleteness*** — an SAE has *more* features
+than dimensions and *then* sparsifies, which is the room to specialize — and overcompleteness is the **opposite of
+compression**. So the user's "train smaller *and* extract clean features" runs into the forge tax as a **trade-off
+triangle — small / legible / complete, pick ~two**:
+
+| corner | small | legible | complete | what it is |
+|---|---|---|---|---|
+| **pylm** | ✓ (49 LOC + flat) | ✓ (every token = a named idiom) | ✗ (~half) | the decompiled program |
+| **low-rank distill (#142)** | ✓ (~30×) | ✗ (legibility-neutral) | ✓ (lossless) | compression |
+| **SAE / feature-native** | ✗ (overcomplete) | ✓ (sparse monosemantic) | ✓ | the legible basis |
+
+The forge tax *is* this triangle: monosemanticity (overcomplete + sparse) and compactness (tight low-rank) pull in
+opposite directions, and the full-fidelity composition resists both unless you pay one of them. The whole pipeline
+(train smaller → extract features/knowledge/circuits → the small Python program → runtime explainability) is buildable,
+but it cannot be small *and* legible *and* complete at once — you pick the corner per use-case (pylm for an auditable
+runtime; distillation for a cheap one; an overcomplete feature-native model for an interpretable one).
+(`runs/disassembly/feature_native_distill_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
