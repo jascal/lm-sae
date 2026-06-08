@@ -4,16 +4,24 @@
     {
       "model": "gpt2",
       "n_layers": 12,
-      "full_nll": 5.227525975875766,
+      "full_nll": 3.6575717668769347,
       "transformer_weight_params_M": 84.934656,
-      "distill_steps": 5000,
+      "distill_steps": 6000,
       "curve": [
         {
           "rank": 64,
-          "svd_nll_increase": 2.5128357873379112,
-          "svd_agreement": 0.10714285714285714,
-          "distilled_nll_increase": 0.6424541799470536,
-          "distilled_agreement": 0.3783068783068783,
+          "svd_nll_increase": 4.337776889899786,
+          "svd_agreement": 0.049933862433862435,
+          "distilled_nll_increase": 1.783682125515195,
+          "distilled_agreement": 0.3776455026455027,
+          "distilled_per_domain": {
+            "shakespeare": 0.3412698412698413,
+            "austen": 0.8472222222222222,
+            "shelley": 0.24801587301587302,
+            "melville": 0.32936507936507936,
+            "code": 0.2638888888888889,
+            "wiki": 0.2361111111111111
+          },
           "stored_params": 9437184,
           "compression_ratio": 0.1111111111111111,
           "params_saved_frac": 0.8888888888888888

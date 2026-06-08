@@ -25,15 +25,68 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 
+def _fetch(url, n):
+    try:
+        return urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}),
+                                      timeout=20).read().decode("utf-8", "ignore")[:n]
+    except Exception:
+        return ""
+
+
+def _fetch_wiki(n):
+    """encyclopedic prose from the Wikipedia API (plaintext extracts of diverse topics) — a big slice of GPT-2's data."""
+    titles = ("Physics|World_War_II|Photosynthesis|Roman_Empire|Jupiter|Computer|Evolution|Democracy|Coffee|"
+              "Mathematics|Climate|Internet|Medicine|Music|Volcano|Economics|Bacteria|Renaissance|Galaxy|Election")
+    url = ("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=1&exlimit=20&titles="
+           + titles)
+    try:
+        import json as _j
+        raw = _j.loads(urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}),
+                                               timeout=25).read().decode("utf-8", "ignore"))
+        pages = raw["query"]["pages"]
+        return "\n\n".join(p.get("extract", "") for p in pages.values())[:n]
+    except Exception:
+        return ""
+
+
+def _local_code(n):
+    root = Path(__file__).resolve().parents[2]; txt = []
+    for p in sorted(root.glob("scripts/disassembly/*.py")) + sorted(root.glob("pylm/*.py")):
+        txt.append(p.read_text(errors="ignore"))
+        if sum(len(x) for x in txt) > n:
+            break
+    return "".join(txt)[:n]
+
+
+def build_chunks(args, tok):
+    """single-domain (Shakespeare) or DIVERSE (drama + novels + code) chunk lists; diverse eval samples across domains."""
+    SH = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
+    if not args.diverse:
+        ids = tok(_fetch(SH, args.corpus_chars))["input_ids"]
+        ch = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
+        return ch[args.eval: args.eval + args.train], ch[: args.eval], ["shakespeare"] * len(ch[: args.eval])
+    per = max(args.corpus_chars, 300000)
+    sources = {  # diverse domains: drama, three novels (different eras/styles), and code
+        "shakespeare": _fetch(SH, per), "austen": _fetch("https://www.gutenberg.org/files/1342/1342-0.txt", per),
+        "shelley": _fetch("https://www.gutenberg.org/files/84/84-0.txt", per),
+        "melville": _fetch("https://www.gutenberg.org/files/2701/2701-0.txt", per), "code": _local_code(per),
+        "wiki": _fetch_wiki(per)}
+    train = []; ev = []; evdom = []; ne = max(1, args.eval // max(sum(1 for v in sources.values() if v), 1))
+    for name, txt in sources.items():
+        if not txt:
+            continue
+        ids = tok(txt)["input_ids"]
+        ch = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
+        ev += ch[:ne]; evdom += [name] * len(ch[:ne]); train += ch[ne:]   # held-out eval from EACH domain (labelled)
+    rng = np.random.default_rng(0); rng.shuffle(train)
+    return train[: args.train], ev, evdom
+
+
 def run_model(mid, args):
     import torch
     from residual_vm import ResidualVM
     vm = ResidualVM(mid, device=args.device); t = vm.torch; tok = vm.tok; nL = vm.nL
-    txt = urllib.request.urlopen(urllib.request.Request(
-        "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
-        headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "ignore")[:args.corpus_chars]
-    ids = tok(txt)["input_ids"]
-    chunks = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8][: args.eval]
+    train_chunks, chunks, ev_dom = build_chunks(args, tok)
 
     # the composition weight matrices (GPT-2 Conv1D: weight shape (in, out))
     mats = []
@@ -50,7 +103,7 @@ def run_model(mid, args):
         svds.append((U, S, Vh))
 
     def gen(metric_top1=None):
-        tot = 0.0; k = 0; agree = 0; preds = []
+        tot = 0.0; k = 0; agree = 0; preds = []; dom_hit = {}; dom_tot = {}
         with t.no_grad():
             for ci, c in enumerate(chunks):
                 lg = vm.logits(c).float(); lp = t.log_softmax(lg, -1); y = c[1:]
@@ -59,10 +112,12 @@ def run_model(mid, args):
                 for p in range(len(y)):
                     tot += float(-lp[p, y[p]]); k += 1
                 if metric_top1 is not None:
-                    agree += int((top1 == metric_top1[ci].to(top1.device)).sum())
-        return tot / max(k, 1), preds, (agree / max(k, 1) if metric_top1 is not None else None)
+                    a = int((top1 == metric_top1[ci].to(top1.device)).sum()); agree += a
+                    d = ev_dom[ci]; dom_hit[d] = dom_hit.get(d, 0) + a; dom_tot[d] = dom_tot.get(d, 0) + len(y)
+        per_dom = {d: dom_hit[d] / max(dom_tot[d], 1) for d in dom_tot}
+        return tot / max(k, 1), preds, (agree / max(k, 1) if metric_top1 is not None else None), per_dom
 
-    full_nll, full_top1, _ = gen()
+    full_nll, full_top1, _, _ = gen()
 
     def set_rank(r):
         for (W, (U, S, Vh)) in zip(mats, svds):
@@ -73,9 +128,7 @@ def run_model(mid, args):
         for W, o in zip(mats, orig):
             W.data.copy_(o)
 
-    # held-out train chunks for distillation (disjoint from eval)
-    allc = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
-    train = allc[args.eval: args.eval + args.train]
+    train = train_chunks                                              # diverse or single-domain (from build_chunks)
 
     def fit_distill(r, steps):
         """factor every weight W≈A·B at rank r (SVD init), TRAIN the factors to match the full model (others frozen)."""
@@ -113,20 +166,20 @@ def run_model(mid, args):
                 loss = t.nn.functional.cross_entropy(logits[:-1].float(), tid[0, 1:])
             opt.zero_grad(); loss.backward(); opt.step()
         factor_on[0] = True
-        nll, _, agree = gen(metric_top1=full_top1)
+        nll, _, agree, per_dom = gen(metric_top1=full_top1)
         for h in hs:
             h.remove()
-        return nll, agree
+        return nll, agree, per_dom
 
     ranks = sorted({int(x) for x in args.ranks.split(",")})
     curve = []
     for r in ranks:
-        set_rank(r); nll0, _, agree0 = gen(metric_top1=full_top1); restore()   # no-retrain SVD baseline
-        nll_d, agree_d = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None))
+        set_rank(r); nll0, _, agree0, _ = gen(metric_top1=full_top1); restore()   # no-retrain SVD baseline
+        nll_d, agree_d, per_dom = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None, None))
         stored = int(sum(r * (W.shape[0] + W.shape[1]) for W in mats))
         curve.append({"rank": r, "svd_nll_increase": nll0 - full_nll, "svd_agreement": agree0,
                       "distilled_nll_increase": (nll_d - full_nll) if nll_d is not None else None,
-                      "distilled_agreement": agree_d, "stored_params": stored,
+                      "distilled_agreement": agree_d, "distilled_per_domain": per_dom, "stored_params": stored,
                       "compression_ratio": stored / full_params, "params_saved_frac": 1 - stored / full_params})
     return {"model": mid.split("/")[-1], "n_layers": nL, "full_nll": full_nll,
             "transformer_weight_params_M": full_params / 1e6, "distill_steps": args.distill_steps, "curve": curve}
@@ -141,6 +194,7 @@ def main(argv=None):
     p.add_argument("--distill-steps", type=int, default=0, help="if >0, also distill the low-rank factors (train them)")
     p.add_argument("--train", type=int, default=200, help="train chunks for distillation")
     p.add_argument("--corpus-chars", type=int, default=120000, help="chars of corpus to fetch (more = more distill data)")
+    p.add_argument("--diverse", action="store_true", help="distill on a diverse multi-domain corpus (drama+novels+code)")
     p.add_argument("--lr", type=float, default=1e-3, help="distillation learning rate")
     p.add_argument("--match-teacher", action="store_true", help="distill to the full model's top-1 (faithful) vs corpus NLL (capable)")
     p.add_argument("--device", default="cuda")
@@ -164,6 +218,9 @@ def main(argv=None):
                       if c['distilled_nll_increase'] is not None else "distilled --")
                 print(f"    rank {c['rank']:4d}  stored {c['compression_ratio']:.0%} ({c['params_saved_frac']:.0%} saved)  "
                       f"| SVD ΔNLL {c['svd_nll_increase']:+.2f} agree {c['svd_agreement']:.0%}  | {dd}")
+                if c.get("distilled_per_domain"):
+                    print("        per-domain faithful agreement: " +
+                          " ".join(f"{d} {v:.0%}" for d, v in sorted(c["distilled_per_domain"].items(), key=lambda x: -x[1])))
         except Exception as e:  # pragma: no cover
             import traceback
             traceback.print_exc(); print(f"  [skip] {e}"); results.append({"model": mid.split("/")[-1], "error": str(e)})
