@@ -58,6 +58,18 @@ vs RoPE) actually track **scale**.
 The catalog is about *mechanisms*; the [knowledge axis](circuits/causal_tracing.md) is the decompiler goal ("the
 model IS the database").
 
+- **The READ side — dump the table, and decompile where it's queried** (`relation_decompile.py`). Treating a relation
+  (capital-of, language-of) as a database table: the model's table is **100% complete** for these common facts in all
+  six models (every subject's object read out correctly, vs 7–11% chance), and the logit-lens locates **where in depth
+  the relation resolves** (the earliest layer the object is decodable from the last-token residual). Two cross-model
+  reads: (i) the read-out depth **shrinks with GPT-2 scale** — capital resolves at **76% → 60% → 40%** of depth
+  (small → large) — bigger models retrieve the fact *earlier* (more post-retrieval compute); (ii) **`language` resolves
+  earlier than `capital`** in almost every model (e.g. Llama 39% vs 52%, Gemma 41% vs 69%) — a more directly-bound
+  attribute is queried sooner. So the read side of "the model IS the database" is concrete: the table is queryable and
+  complete, and its query site is locatable and scale-dependent. (A faithful *linear* relation operator — the LRE that
+  would make the table a standalone queryable view — needs the model's Jacobian, which OOMs the 2-B models on a 7.5 GB
+  GPU; the robust logit-lens read is the cross-model version.)
+
 - **The ROME two-site flow is architecture-invariant.** [Causal tracing](circuits/causal_tracing.md) (subject
   corruption + restoration) recovers the same structure in GPT-2 ×3, Llama, Qwen: an **early MLP store at the
   subject** (peak depth ≈0) feeds a **late attention readout at the last token** (depth ≈0.6–0.9). Cross-model,
