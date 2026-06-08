@@ -75,6 +75,13 @@ model IS the database").
   granularity tracks the store's concentration**: GPT-2/Llama edit at a *single* early MLP, but **Qwen needs the whole
   early band** (single-layer 0% → band 100%), exactly the model whose detokenizer substrate is spread across L0–L2
   ([MLP nodes](circuits/README.md)). The decompiler can write to the database, but the row it writes is the entity.
+- **And there is no fact-addressable site *at any depth*** (`fact_site_sweep.py`, efficacy-vs-leakage per layer). We
+  looked for a *later* layer where the edit stays efficacious but stops leaking — a layer where the row would be the
+  *fact*. None exists: in every editable model the best fact-specificity is at **L0** (the entity store), and no deeper
+  single-MLP edit keeps efficacy while shedding leakage (lowest leakage ~50%, GPT-2-large). So entity-addressability is
+  **depth-invariant** — a single fact is not an independently editable row at any single-MLP site via activation
+  patching. Surgical single-fact editing would need weight surgery (ROME's rank-1) or a cleaner basis, not a better
+  *location* — a hard limit for the "model IS the database" framing, measured cross-model.
 
 ## The outliers — where the next questions are
 
