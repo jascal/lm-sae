@@ -119,6 +119,15 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled
   composition, the forge tax restated. So the flat-file basis {induction, grammar, n-gram, knowledge} is *sufficient
   for half*, and the complement is the core.
+- **The *recursive* syntax is in the composition, not the basis** (`recursive_syntax.py`). Subject–verb agreement
+  across attractors (*"the key near the cabinets **is**"*) is a hierarchical dependency: the model agrees with the
+  **head** ~100% across depth (gpt2 small/large, Llama), resisting the nearest noun, with the logit-diff *degrading*
+  with distance (bounded forward-pass depth, TC⁰). But (a) the **flat pylm** program follows the nearest attractor
+  (0% head / 100% attractor at depth ≥ 1) — it's not in the decompilation; and (b) **ablating attention collapses the
+  model to the attractor** at depth ≥ 1 (depth-0 survives — the number is local), while MLP-ablation just destroys the
+  readout. So **attention composition carries the head's number across the attractors.** Categorial grammar lives in
+  the static basis (decompilable); recursive/hierarchical syntax lives in the composition — the entangled core the
+  forge tax measures. "Simpler-than-Chomsky" in the basis, Chomskyan in the composition.
 
 ## Knowledge — where facts live, and moving them
 
