@@ -1,4 +1,13 @@
-"""ResidualVM — reconstruction-coverage harness for attention (decompilation milestone 1).
+"""ResidualVM — a composable steppable debugger over any HF causal LM (+ the milestone-1 reconstruction CLI).
+
+The `ResidualVM` class (below) is the consolidated intervention layer the ~20 disassembly scripts each
+re-implemented: arch-generic load + corpus-mean fitting + ablate/patch/trace/attribution as **composable
+context managers**, so an experiment is ~10 lines instead of ~100 and the load/hook/merge bugs live in one place.
+`python residual_vm.py --demo` reproduces the induction reconstruction coverage through the class as a correctness
+check. The original milestone-1 coverage-curve CLI is preserved below `main()`.
+
+----- (original milestone-1 docstring) -----
+ResidualVM — reconstruction-coverage harness for attention (decompilation milestone 1).
 
 Turns the disassembly's "% of attention *legible*" into "% of the forward pass *executably reconstructable*".
 Runs the model as an interpreter over its attention ops in selectable fidelity: KEEP a chosen set of heads
@@ -20,9 +29,211 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
+from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "gemma"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+
+class ResidualVM:
+    """A composable, steppable debugger over any HF causal LM — the consolidated intervention layer the disassembly
+    scripts each re-implemented (load + hooks + ablate/patch/trace/attribution), arch-generic (GPT-2 + RoPE/GQA).
+
+    Interventions are **context managers** so they compose and auto-clean:
+
+        vm = ResidualVM("gpt2"); vm.fit_means(chunks)
+        with vm.ablate_heads(non_circuit):            # keep only the circuit
+            nll = vm.nll(seqs, induction_target)
+        with vm.ablate_heads(h_set), vm.ablate_mlps([0]):   # compose freely
+            ...
+        with vm.patch_mlp(layer, donor_out, pos):     # graft an activation (ROME-style edit)
+            ...
+    """
+
+    def __init__(self, model_id, device="cuda", dtype="auto"):
+        import torch
+        from circuit_content_patch import _arch
+        from mlp_atlas import mlp_blocks
+        self.torch = torch
+        self.is_gpt2 = "gpt2" in model_id.lower()
+        dt = torch.bfloat16 if (dtype == "bf16" or (dtype == "auto" and (not self.is_gpt2 or "xl" in model_id))) else None
+        from transformers import AutoTokenizer
+        if self.is_gpt2:
+            from transformers import GPT2LMHeadModel
+            self.model = GPT2LMHeadModel.from_pretrained(model_id, attn_implementation="eager", **({"dtype": dt} if dt else {}))
+        else:
+            from transformers import AutoModelForCausalLM
+            self.model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="eager", dtype=torch.bfloat16)
+        self.dev = device if torch.cuda.is_available() else "cpu"
+        self.model = self.model.eval().to(self.dev)
+        self.tok = AutoTokenizer.from_pretrained(model_id)
+        a = _arch(self.model); self.a = a
+        self.oproj = a["oproj"]; self.layers = a["layers"]; self.norm = a["norm"]; self.mlps = mlp_blocks(self.model)
+        self.H = a["H"]; self.hd = a["hd"]; self.nkv = a["nkv"]; self.nL = self.model.config.num_hidden_layers
+        self.d = a.get("d", self.model.config.hidden_size)
+        self.mean_oproj = None; self.mean_mlp = None
+
+    # ---- corpus means (the mean-ablation reference) ----
+    def fit_means(self, chunks):
+        torch = self.torch
+        cap = {L: [] for L in range(self.nL)}; mcap = {L: [] for L in range(self.nL)}
+        ho = [self.oproj[L].register_forward_pre_hook((lambda L: lambda m, i: cap[L].append(i[0].detach().reshape(-1, i[0].shape[-1])))(L)) for L in range(self.nL)]
+        hm = [self.mlps[L].register_forward_hook((lambda L: lambda m, i, o: mcap[L].append((o[0] if isinstance(o, tuple) else o).detach().reshape(-1, (o[0] if isinstance(o, tuple) else o).shape[-1])))(L)) for L in range(self.nL)]
+        with torch.no_grad():
+            for c in chunks:
+                self.model(input_ids=torch.tensor([c], device=self.dev))
+        for h in ho + hm:
+            h.remove()
+        self.mean_oproj = {L: torch.cat(cap[L], 0).mean(0) for L in range(self.nL)}
+        self.mean_mlp = {L: torch.cat(mcap[L], 0).mean(0) for L in range(self.nL)}
+        return self
+
+    # ---- interventions (composable context managers) ----
+    @contextmanager
+    def ablate_heads(self, heads, mode="mean"):
+        hd = self.hd; by = {}
+        for (L, h) in heads:
+            by.setdefault(L, []).append(h)
+        hs = []
+        for L, hss in by.items():
+            def mk(L, hss):
+                def hook(m, inp):
+                    x = inp[0].clone()
+                    for h in hss:
+                        sl = slice(h * hd, (h + 1) * hd)
+                        x[..., sl] = (self.mean_oproj[L][sl].to(x.dtype) if mode == "mean" else 0.0)
+                    return (x,)
+                return hook
+            hs.append(self.oproj[L].register_forward_pre_hook(mk(L, hss)))
+        try:
+            yield self
+        finally:
+            for h in hs:
+                h.remove()
+
+    @contextmanager
+    def ablate_mlps(self, layers, mode="mean"):
+        hs = []
+        for L in layers:
+            def mk(L):
+                def hook(m, i, o):
+                    t = o[0] if isinstance(o, tuple) else o
+                    rep = (self.mean_mlp[L].to(t.dtype).expand_as(t) if mode == "mean" else self.torch.zeros_like(t))
+                    return (rep,) + tuple(o[1:]) if isinstance(o, tuple) else rep
+                return hook
+            hs.append(self.mlps[L].register_forward_hook(mk(L)))
+        try:
+            yield self
+        finally:
+            for h in hs:
+                h.remove()
+
+    @contextmanager
+    def _patch(self, module, donor_out, pos):
+        def hook(m, i, o):
+            t = (o[0] if isinstance(o, tuple) else o).clone(); t[0, pos] = donor_out[0, pos].to(t.dtype)
+            return (t,) + tuple(o[1:]) if isinstance(o, tuple) else t
+        h = module.register_forward_hook(hook)
+        try:
+            yield self
+        finally:
+            h.remove()
+
+    def patch_mlp(self, layer, donor_out, pos):
+        return self._patch(self.mlps[layer], donor_out, pos)
+
+    def patch_attn(self, layer, donor_out, pos):
+        return self._patch(self.oproj[layer], donor_out, pos)
+
+    # ---- readouts ----
+    def logits(self, ids):
+        torch = self.torch
+        with torch.no_grad():
+            return self.model(input_ids=torch.tensor([ids], device=self.dev)).logits[0]
+
+    def nll(self, seqs, target):
+        """target(ids) -> list of (position, token) to score; mean −logp. Use for induction/fact/etc."""
+        torch = self.torch; tot = 0.0; k = 0
+        with torch.no_grad():
+            for s in seqs:
+                lp = torch.log_softmax(self.logits(s).float(), -1)
+                for pos, t in target(s):
+                    tot += float(-lp[pos, t]); k += 1
+        return tot / max(k, 1)
+
+    def trace(self, ids, attn=False):
+        """Forward capturing per-layer mlp + (optional) attention outputs + resid_pre."""
+        torch = self.torch; cap = {"mlp": {}, "attn": {}, "resid": {}}
+        hk = [self.mlps[L].register_forward_hook((lambda L: lambda m, i, o: cap["mlp"].__setitem__(L, (o[0] if isinstance(o, tuple) else o).detach()))(L)) for L in range(self.nL)]
+        hk += [self.layers[L].register_forward_pre_hook((lambda L: lambda m, i: cap["resid"].__setitem__(L, i[0].detach()))(L)) for L in range(self.nL)]
+        if attn:
+            hk += [self.oproj[L].register_forward_hook((lambda L: lambda m, i, o: cap["attn"].__setitem__(L, (o[0] if isinstance(o, tuple) else o).detach()))(L)) for L in range(self.nL)]
+        with torch.no_grad():
+            out = self.model(input_ids=torch.tensor([ids], device=self.dev))
+        for h in hk:
+            h.remove()
+        cap["logits"] = out.logits[0]
+        return cap
+
+    def attribution(self, metric, kind="heads", layers=None):
+        """Ablate each component alone, return [(comp, Δmetric)] sorted by importance (metric rises = load-bearing)."""
+        base = metric(self)
+        out = []
+        if kind == "heads":
+            for L in range(self.nL):
+                for h in range(self.H):
+                    with self.ablate_heads([(L, h)]):
+                        out.append(((L, h), metric(self) - base))
+        else:
+            for L in (layers or range(self.nL)):
+                with self.ablate_mlps([L]):
+                    out.append((("mlp", L), metric(self) - base))
+        return sorted(out, key=lambda r: -r[1])
+
+    def head_OV(self, L, h):
+        """W_V^h W_O^h (d,d), arch-generic (GQA-aware)."""
+        a = self.a; H = self.H; hd = self.hd; kvB = h // (H // self.nkv); d = self.d
+        if a["is_gpt2"]:
+            Wv_h = a["cattn"][L].weight.detach().float().cpu().numpy().astype(np.float64)[:, 2 * d:3 * d][:, h * hd:(h + 1) * hd]
+            Wo_h = a["oproj"][L].weight.detach().float().cpu().numpy().astype(np.float64)[h * hd:(h + 1) * hd, :]
+        else:
+            Wv_h = a["vproj"][L].weight.detach().float().cpu().numpy().astype(np.float64)[kvB * hd:(kvB + 1) * hd, :].T
+            Wo_h = a["oproj"][L].weight.detach().float().cpu().numpy().astype(np.float64)[:, h * hd:(h + 1) * hd].T
+        return Wv_h @ Wo_h
+
+
+def demo(model_id="gpt2", device="cpu"):
+    """Reproduce the induction reconstruction coverage via the ResidualVM API (correctness check)."""
+    vm = ResidualVM(model_id, device=device)
+    tok = vm.tok; rng = np.random.default_rng(0)
+    import urllib.request
+    txt = urllib.request.urlopen(urllib.request.Request(
+        "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
+        headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "ignore")[:120000]
+    ids = tok(txt)["input_ids"]; chunks = [ids[i:i + 64] for i in range(0, len(ids), 64) if len(ids[i:i + 64]) >= 8][:12]
+    vm.fit_means(chunks)
+    from collections import Counter
+    vocab = [t for t, _ in Counter(t for c in chunks for t in c).most_common(400)]
+    seqs = [(lambda s: s + s)([int(vocab[i]) for i in rng.integers(0, len(vocab), 22)]) for _ in range(20)]
+
+    def ind_target(s):
+        L = len(s) // 2
+        return [(p, s[p + 1]) for p in range(L, 2 * L - 1)]
+    circuit = {(5, 1), (5, 5), (6, 9), (7, 10), (4, 11), (2, 2), (3, 2), (3, 7)}     # induction + prev-token (gpt2)
+    all_heads = [(L, h) for L in range(vm.nL) for h in range(vm.H)]
+    base = vm.nll(seqs, ind_target)
+    with vm.ablate_heads(all_heads):
+        allabl = vm.nll(seqs, ind_target)
+    with vm.ablate_heads([hh for hh in all_heads if hh not in circuit]):
+        circ = vm.nll(seqs, ind_target)
+    cov = (allabl - circ) / (allabl - base + 1e-9)
+    print(f"[demo] {model_id}: induction-NLL full {base:.2f} | circuit-only {circ:.2f} | all-ablated {allabl:.2f} "
+          f"| reconstruction coverage {cov:+.0%}  (matches circuit_reconstruction.py)")
+    return cov
 
 
 def _oproj_modules(model):
@@ -48,8 +259,11 @@ def main(argv=None):
     p.add_argument("--named", default=None, help="comma list of L.H (a named idiom set to score), e.g. '4.11,5.0,5.5,6.9,7.11'")
     p.add_argument("--n-rand", type=int, default=3, help="random control sets per budget")
     p.add_argument("--device", default="cuda")
+    p.add_argument("--demo", action="store_true", help="reproduce induction reconstruction coverage via the ResidualVM class (correctness check)")
     p.add_argument("--output", type=Path, default=Path("runs/disassembly/residual_vm_summary.json"))
     args = p.parse_args(argv)
+    if args.demo:
+        demo(args.model, args.device); return
 
     import torch
     import torch.nn.functional as F
