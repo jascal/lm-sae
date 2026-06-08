@@ -307,10 +307,34 @@ attention-**sink**, the **positional-broadcast** circuit (early write-hubs → p
 catalog](circuits/README.md)), and the larger **decompilable fraction**. RoPE reads relative position from the
 rotation, so it has no positional-broadcast plumbing to remove.
 
-## Beyond attention
+## Beyond attention — Mamba (SSM) across the themes
 
-The in-context-copy *capability* survives a non-attention mixer (Mamba shows an induction-NLL gain), but the
-*mechanism* is unverified without head-resolution — a documented edge of the current tools.
+Mamba has no attention heads and no per-layer MLP — just a residual stream of SSM `mixer` blocks — so the
+attention-based catalog (heads, K/Q/V composition, name-movers) has no analog. But the *arch-generic* themes run on
+it via a Mamba-specific harness (`mamba_themes.py`, the Mamba ladder 130m/370m/790m), and the result splits cleanly
+into **what is attention-specific** and **what is architecture-invariant**:
+
+- **The copy *mechanism* is layer-distributed, not head-localized.** In-context copy works (induction-NLL 0.86 → 0.59
+  → 0.53, *improving* with scale) and is causally load-bearing (ablating all SSM layers costs **+14 to +20**
+  induction-NLL). But where a transformer localizes induction to a few **heads** (and GPT-2-small to *one* dominant
+  prev-token writer), Mamba spreads it across **~7 layers** (effective-N 6.6–7.2 of N), no single layer carrying more
+  than 23–32%. The SSM realises the same capability as a *distributed multi-layer* computation — there is no head to
+  name, so the disassembly's head-circuits genuinely have no SSM counterpart.
+- **But the knowledge themes are architecture-invariant.** On the *same* axes as the six transformers, Mamba behaves
+  like a transformer:
+  - **READ** — the relation table is **complete** (capital 100% across the ladder; language 78–100%), and the
+    logit-lens read-out depth **shrinks with scale** exactly as in the transformers — capital **86% → 81% → 52%**,
+    language **79% → 76% → 40%** (130m → 790m). Bigger SSMs retrieve facts earlier, the same scaling law.
+  - **WRITE** — grafting a donor subject's early-layer **residual** transplants the fact **100%** of the time, and it
+    is **entity-leaky** (editing the capital flips the language **91% → 100% → 100%**) — *more* leaky than the
+    transformers (56–67%). So the SSM's knowledge store is the same **entity-addressable, not fact-addressable**
+    residual content the transformers showed, with the same depth-invariant entanglement.
+
+**The through-line.** What is *attention-specific* is the **mechanism's localization** — head-circuits, the
+positional register, name-movers — none of which survive into the SSM (induction goes layer-distributed). What is
+*architecture-invariant* is the **knowledge-storage character** — a complete, queryable table whose read-out site
+shrinks with scale, stored as an editable but entity-leaky residual. "The model IS the database" is a property of the
+residual-stream LM, not of attention; the *circuits* that fill the database are what the mixer choice decides.
 
 ---
 
