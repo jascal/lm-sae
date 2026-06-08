@@ -631,6 +631,23 @@ still be **flat-decompilable** (a big KV lookup = the Θ(size) flat-knowledge te
 composition — which is exactly the crux of whether the core unsquirrels into flat storage or stays computed.
 (`runs/disassembly/content_mechanism_summary.json`.)
 
+### The crux: the MLP content is DENSE, not a sparse key-value lookup (`mlp_kv_sparsity.py`)
+
+MLPs read as key-value memories — if only a few neurons fire per token, the content is a sparse lookup (flat-decompilable,
+the Θ(size) term); if it needs most of the width, it is dense composition (the irreducible forge tax). Test: mask the
+post-activation MLP hidden to its **top-k neurons per token** at every layer, ΔNLL by category. pythia-160m (d_ff=3072,
+baseline content NLL 5.69), ΔNLL on **content** keeping top-k: k=64 (2.1%) **+3.52**, k=256 (8.3%) +2.97, k=512 (16.7%)
++2.40, k=1024 (**33.3%**) **+1.07** — still far from recovered keeping a *third* of the width. A sparse lookup would recover
+at small k; this does not. So **the MLP content computation is DENSE in the native neuron basis, not a sparse KV lookup** —
+the core does *not* trivially flat-decompile into a (big) lookup table; it is genuinely distributed computation.
+
+This closes the decompilation arc: native-basis truncation (dense, here) and weight factorization (the whole survey,
+plateaus at ⅔d) both fail to sparsify/shrink the content core. The one route left — and now the *indicated* one — is a
+**learned overcomplete basis** (SAE / feature-native): because the native representation is dense, any sparsity must be
+*learned*, not found by truncation or factorization. (Framing: this shows the *native* basis is dense and
+truncation/factorization don't sparsify it; whether a *learned* overcomplete basis does is genuinely open — achievability
+is not foreclosed, it's the sae-forge sub-project's bet.) (`runs/disassembly/mlp_kv_sparsity_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
