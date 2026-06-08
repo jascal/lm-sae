@@ -25,10 +25,12 @@ class PyLM:
 
     def __init__(self, store_path):
         s = json.loads(Path(store_path).read_text())
+        self.quad = s.get("quad", {})  # "a,b,c" -> [next_id, ...] (4-gram, the deepest memorised context)
         self.tri = s["tri"]          # "a,b" -> [next_id, ...] (ranked corpus successors)
         self.bi = s["bi"]            # "b"   -> [next_id, ...]
         self.uni = s["uni"]          # [next_id, ...] (most frequent tokens)
-        self.min_induction = s.get("min_induction_match", 2)
+        self.min_induction = s.get("min_induction_match", 3)
+        self.min_accept = s.get("min_induction_accept", 2)  # ignore 1-token "induction" (it's noise, ~chance)
 
     def predict(self, ctx, k=1):
         """Next-token prediction for a token-id context. Returns the top-1 id (or a ranked list if k>1)."""
@@ -41,16 +43,21 @@ class PyLM:
         return (ranked[0] if ranked else self.uni[0]), fired
 
     def _candidates(self, ctx):
-        # 1. INDUCTION — the longest local context (up to min_induction tokens) that recurs earlier in ctx;
-        #    predict the token that followed its last earlier occurrence (in-context copy).
-        for span in range(self.min_induction, 0, -1):
+        # 1. INDUCTION — the longest local context (≥ min_accept tokens) that recurs earlier in ctx; predict the
+        #    token that followed its last earlier occurrence (in-context copy). 1-token "matches" are ~chance noise,
+        #    so we only accept span ≥ min_accept and let the n-gram store handle the rest.
+        for span in range(self.min_induction, self.min_accept - 1, -1):
             if len(ctx) <= span:
                 continue
             tail = ctx[-span:]
             for i in range(len(ctx) - span - 1, -1, -1):
                 if ctx[i:i + span] == tail:
                     return [ctx[i + span]], f"induction-{span}"
-        # 2. N-GRAM backoff — corpus statistics (flat-file store), trigram → bigram → unigram.
+        # 2. N-GRAM backoff — the flat-file store: 4-gram → trigram → bigram → unigram.
+        if self.quad and len(ctx) >= 3:
+            q = self.quad.get(f"{ctx[-3]},{ctx[-2]},{ctx[-1]}")
+            if q:
+                return q, "quad"
         if len(ctx) >= 2:
             t = self.tri.get(f"{ctx[-2]},{ctx[-1]}")
             if t:

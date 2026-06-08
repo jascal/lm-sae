@@ -1,9 +1,16 @@
 # pylm — a decompiled language model in pure Python (no neural-net code or concepts)
 
+> **The narrative, results, and design rationale live in the sister-effort thread:
+> [`docs/PYLM_TRACK.md`](../docs/PYLM_TRACK.md).** This README is the module quick-start.
+
 **Goal.** Fully decompile and reimplement a whole small LLM's *behaviour* as a **small pure-Python program** plus
 **flat-file knowledge stores** — the program's literal end-goal ("the model IS the database"; the accreting-VM
 framing). No matrix, no attention, no layer — only the catalogued idioms expressed as plain Python over flat data,
 validated against the corpus *and* against the real model.
+
+**Dependencies (the constraint, satisfied).** `lm.py` — the decompiled LM that *runs* — imports **only `json` and
+`pathlib`** (pure stdlib, zero ML). The neural net is touched only by the one-time **decompiler** (`build.py`
+tokenizer / `capture.py` reads the model) and the **validator** (`--no-model` skips it) — never by the running pylm.
 
 **The split (bias: small code, flat data).**
 - **The program** — [`lm.py`](lm.py), `PyLM.predict`: deliberately tiny (currently **43 lines of code**). The reused
@@ -15,26 +22,19 @@ validated against the corpus *and* against the real model.
 - **The data** — [`store.json`](store.json) (~1 MB), a flat n-gram successor table built from the corpus by
   [`build.py`](build.py) over the target model's token ids (the BPE tokenizer is a flat-file artifact, not a net).
 
-**First result** (GPT-2, tiny-Shakespeare, 4000 held-out positions; [`validate.py`](validate.py)):
+**Result** (GPT-2, tiny-Shakespeare, 4000 held-out positions; ~49 LOC of pure Python):
 
-| | value |
-|---|---|
-| program size | **43 LOC** of pure Python |
-| data size | ~1 MB flat n-gram file |
-| pylm corpus top-1 next-token accuracy | **29.7%** |
-| GPT-2 corpus top-1 (the ceiling) | 34.6% |
-| **pylm reproduces** | **86%** of the model's accuracy |
-| **pylm ↔ model top-1 agreement (decompilable fraction)** | **35%** |
+| decompiler | pylm corpus top-1 | GPT-2 ceiling | **pylm↔model agreement (decompilable fraction)** |
+|---|---|---|---|
+| corpus-fit (`build.py`) | 31.9% | 34.6% | **35%** |
+| **model-capture (`capture.py`, MI)** | 29.0% | 34.6% | **49%** |
 
-Per-instruction (share @ accuracy): `induction-3` 11% **@68%** · `trigram` 34%@32% · `induction-1` 25%@21% ·
-`bigram` 22%@19% · `induction-2` 7%@29% · `unigram` 2%@3%. The longer the in-context match, the more accurate it is —
-induction (the catalog's keystone) carries genuine predictive weight as plain Python; the n-gram store carries the
-bulk.
+Capturing the model's own predictions (vs fitting the corpus) raises the decompilable fraction **35% → 49%** — a
+49-line pure-Python program + flat store reproduces gpt2's *exact* next token half the time, with no neural net in
+the running artifact. Induction carries real weight (the longest in-context match, `induction-3`, is the most accurate
+idiom at **68%**). The gap to 100% is the entangled core the [forge tax](../docs/DECOMPILATION.md) measures — pylm
+turns "the decompilable fraction" from a metric into a **running artifact**. Full narrative:
+[`docs/PYLM_TRACK.md`](../docs/PYLM_TRACK.md).
 
-**Why the gap matters.** pylm does *not* reach 100% — and it can't: the un-reproduced fraction is the entangled core
-the [forge tax](../docs/DECOMPILATION.md) measures (composition that doesn't factor through any clean basis). pylm
-turns "the decompilable fraction" from a metric into a **running artifact**: how much of a real LLM is a small
-symbolic program over flat knowledge, and how much is irreducible.
-
-**Run.** `python pylm/build.py --model gpt2` then `python pylm/validate.py --model gpt2` (add `--no-model` for
-corpus-only, no torch). Outputs `runs/pylm/validate_summary.json`.
+**Run.** corpus route: `python pylm/build.py --model gpt2`; model route: `python pylm/capture.py --model gpt2`; then
+`python pylm/validate.py --model gpt2` (add `--no-model` for corpus-only, no torch).

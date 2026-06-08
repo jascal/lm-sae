@@ -37,16 +37,21 @@ def main(argv=None):
     cut = int(len(ids) * (1 - args.holdout))
     train, hold = ids[:cut], ids[cut:]
 
-    tri = defaultdict(Counter); bi = defaultdict(Counter); uni = Counter()
+    quad = defaultdict(Counter); tri = defaultdict(Counter); bi = defaultdict(Counter); uni = Counter()
     for i, c in enumerate(train):
         uni[c] += 1
         if i >= 1:
             bi[train[i - 1]][c] += 1
         if i >= 2:
             tri[(train[i - 2], train[i - 1])][c] += 1
+        if i >= 3:
+            quad[(train[i - 3], train[i - 2], train[i - 1])][c] += 1
 
     store = {
-        "model": args.model, "min_induction_match": args.min_induction, "n_train_tokens": len(train),
+        "model": args.model, "min_induction_match": args.min_induction, "min_induction_accept": 2,
+        "n_train_tokens": len(train), "source": "corpus",
+        "quad": {f"{a},{b},{c}": [d for d, _ in cnt.most_common(args.tri_topk)]
+                 for (a, b, c), cnt in quad.items() if cnt.total() >= args.tri_min},
         "tri": {f"{a},{b}": [c for c, _ in cnt.most_common(args.tri_topk)]
                 for (a, b), cnt in tri.items() if cnt.total() >= args.tri_min},
         "bi": {str(b): [c for c, _ in cnt.most_common(args.bi_topk)] for b, cnt in bi.items()},
