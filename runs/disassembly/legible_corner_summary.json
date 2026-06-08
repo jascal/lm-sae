@@ -1,0 +1,19 @@
+{
+  "experiment": "characterize the real legible corner \u2014 a properly-trained 32\u00d7d SAE (jbloom GPT-2)",
+  "results": [
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "d_model": 768,
+      "sae_features": 24576,
+      "overcompleteness": 32.0,
+      "base_nll": 5.215125358760374,
+      "bottleneck_nll": 9.159485622767418,
+      "bottleneck_nll_increase": 3.9443602640070443,
+      "mean_L0_frac": 0.025407527059239026,
+      "mean_L0_count": 624.4153850078583,
+      "decoder_peak_z": 6.99422109588464,
+      "decoder_closed_frac": 0.03764583333333334
+    }
+  ]
+}
