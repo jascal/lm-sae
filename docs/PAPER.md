@@ -40,6 +40,26 @@ Qwen2.5-1.5B** (RoPE/GQA/RMSNorm) — and find the mechanisms are **architecture
 Most of attention is positional plumbing; the content-carrying minority is largely named,
 causal, and shared across models.
 
+### Alternative title / abstract (C-framing — the cross-model decompilation program)
+
+**Title:** *Necessity isn't sufficiency: named circuits are distributed, and how distributed tracks scale (a
+six-model decompilation study).*
+
+**Abstract (draft).** Mechanistic interpretability names *necessary* components — heads whose ablation hurts. We test
+**sufficiency** across six transformers (GPT-2 small/medium/large, Gemma-2-2B, Llama-3.2-1B, Qwen2.5-1.5B): keeping
+only a named circuit's heads and ablating the rest. **No small head-set reconstructs induction** (≤30% even under
+on-distribution resample-ablation), and **even IOI's celebrated 26-head circuit is not sufficient in isolation** — the
+catalogued circuits are causally dominant but the behaviour is carried by the near-whole network. We then show that
+**much of what is usually attributed to architecture (absolute-position vs RoPE) actually tracks scale**: across the
+GPT-2 ladder the *same* circuits become more distributed (induction's single-prev-token-writer key-collapse decays
+39→8→1%, reconstruction coverage falls, redundancy turns compensatory, the load-bearing MLP sites broaden). Porting
+ROME causal tracing cross-model (it had only been run on GPT-2/GPT-J), we recover an architecture-invariant two-site
+knowledge flow — an early MLP store at the subject feeding a late attention readout — and edit facts by activation
+patch (100% transplant in 5/6 models; Gemma's storage is distributed). Finally, when in-context evidence contradicts
+stored memory, the induction circuit is the override mechanism, with an architecture-dependent evidence threshold
+(RoPE needs ≥2 occurrences; GPT-2 fires on one). Throughout, Gemma-2 is the recurring outlier and small models are
+unusually localized — a caution for circuit claims read off a single small model.
+
 > **Writing note — define the coined terms, do not assume them.** "Forge / forging / forge tax",
 > "cov95", "the oracle", "operand basis", "preserve-verbatim", "U_A / U_C", and "χ" are
 > **vocabulary internal to this research program**, not standard ML terms a NEMI reader will
@@ -94,6 +114,37 @@ basis / idiom* are load-bearing; U_A·U_C and χ can be omitted entirely.
 7. **The op-catalog is language-universal**: on multilingual models the idiom heads are the *same* across
    six languages / four scripts (induction-head identity Spearman +0.83–0.88, prev-token +0.98) with
    near-constant attention budgets — language is operand-level, not mechanism-level. *(B)*
+
+**From disassembly to executable decompilation (C — the cross-model program, [Results D](#results-d) below):**
+
+8. **Necessity ≠ sufficiency — named circuits are distributed.** Keeping only a named circuit's heads (ablating the
+   rest, MLPs intact) reconstructs ≤17% (mean-ablation) / ≤30% (resample, on-distribution) of induction in any of six
+   models, and **even IOI's celebrated 26-head circuit is not sufficient in isolation** (negative logit-diff, no
+   better than a random head-set). The catalogued circuits are causally *necessary and dominant* but the behaviour is
+   carried by the near-whole network. *(C)*
+9. **Much of what looks architectural tracks *scale*.** Across the GPT-2 ladder (124M→774M) the *same* named circuits
+   become more distributed: induction's single-prev-token-writer key-collapse decays 39%→8%→1% (small models have one
+   dominant writer; larger ones distribute it like the RoPE models), reconstruction coverage decays, redundancy turns
+   compensatory, and the token-determined MLP "embedding block" and the load-bearing succession/knowledge MLP sites
+   broaden and deepen. Absolute-vs-RoPE is real (the sink, positional broadcast), but small models are unusually
+   *localized*. *(C)*
+10. **Cross-model knowledge localization.** ROME causal tracing (subject corruption + restoration), **run across six
+    models** (ROME did GPT-2/GPT-J), recovers an architecture-invariant **two-site flow** — an early MLP store at the
+    subject (depth≈0) feeding a late attention readout at the last token (depth≈0.6–0.9) — and the early store is
+    **editable by activation patch** (100% fact-transplant in 5/6 models; **Gemma's storage is distributed**, no band
+    transplants). *(C)*
+11. **Induction is the in-context-override mechanism, with an architecture-dependent threshold.** When an in-context
+    statement contradicts a stored fact, ablating the induction heads swings the model back to memory; the RoPE
+    family's apparent "memory-dominance" is a *one-shot* effect — at ≥2 repetitions all six models flip to 100%
+    context-win (RoPE induction needs ≥2 occurrences to fire; GPT-2 fires on one). *(C)*
+12. **Filled gaps and feature-space operands.** Succession (the +1 operator) is 95–100% MLP-computed in early-mid MLPs
+    (GPT-2; RoPE tokenizers lack single-token numbers); MLP0 is a token-determined "extended embedding" in 5/6 models;
+    per-operator SAE-feature operands (GPT-2 + Gemma) give the feature-space read + copy/suppress sign. *(C)*
+
+> **Recurring meta-findings (state as methodological cautions):** high causal effect ≠ doing the named operation
+> (Llama's most induction-causal head is an *enabler*, not an inductor); synthetic repeated-random probes can
+> manufacture apparent suppression; **Gemma is the recurring outlier across seven independent measurements** — the
+> single most informative third architecture. See [Cross-model findings](FINDINGS.md) and [Scaling synthesis](scaling.md).
 
 ---
 
@@ -290,8 +341,37 @@ The full per-head listings are committed under [`listings/`](listings/)
 appendix; regenerate via `disassemble_{gpt2,gemma}.py` (the `runs/` copies + per-head `.json` are
 git-ignored).
 
+<a id="results-d"></a>
+## Results D — executable decompilation, knowledge & the scaling thesis (C)
+
+The cross-model program built on the catalog. All numbers regenerate from `runs/disassembly/**`; the browsable
+pages are linked. **The headline: a faithful decompilation here is not a tiny op-graph — the named circuits are
+necessary and dominant, but the behaviour is distributed, and how distributed tracks *scale*.**
+
+**Reconstruction (sufficiency).** Keep only the induction circuit's heads (induction + prev-token), ablate the rest,
+MLPs intact; coverage = (NLL_all-ablated − NLL_circuit) / (NLL_all-ablated − NLL_full). No 8-head circuit is
+sufficient: gpt2 +17%/+30% (mean/resample) → gpt2-large +0%/+5%; needs ~all heads (curve hits ~full only at
+K≈128/144). IOI's 26-head circuit in isolation gives a **negative** logit-diff. ([reconstruction](circuits/reconstruction.md))
+
+**Substrate.** Induction leans ~equally on attention and the MLP substrate; MLP0 (the detokenizer) carries nearly the
+whole MLP dependence in GPT-2-small. ([substrate](circuits/induction_substrate.md))
+
+**Knowledge.** ROME causal trace (cross-model): early MLP store at the subject (depth≈0) → late attention readout at
+the last token (depth≈0.6–0.9), architecture-invariant. Patching the store **transplants the fact 100%** in 5/6
+(Gemma's is distributed). ([tracing](circuits/causal_tracing.md), [transplant](circuits/fact_patching.md))
+
+**Context vs memory.** Induction is the in-context-override mechanism; RoPE "memory-dominance" is one-shot only — at
+≥2 repetitions all six flip to 100% context-win. ([context vs memory](circuits/context_vs_memory.md))
+
+**The scaling table** ([scaling.md](scaling.md)): induction key-collapse 39→8→1%, reconstruction +30→+5%, redundancy
+distributed→compensatory, the embedding/knowledge MLP sites broaden/deepen — the GPT-2 ladder makes "scale, not just
+architecture" readable in one place.
+
 ## Limitations (state these explicitly)
 
+0. **Sufficiency under mean-ablation is a harsh, off-distribution test** — it understates circuit coverage (resample
+   is gentler); the reconstruction *negatives* are robust across both ablation types, but the IOI "not sufficient"
+   result speaks to distributedness, not to the validity of the IOI necessity/path-patching work.
 1. **Partial oracle** — covers a slice of features; cov95 ≠ total interpretability.
 2. **Small hosts** — GPT-2-small / 7.2M tiny GPT / Gemma-2-2B, not frontier scale; the tiny GPT
    compiles relations aggressively; full-GPT-2 forge over a 24k SAE hits an over-completeness
