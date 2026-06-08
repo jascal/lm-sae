@@ -177,6 +177,36 @@ absolute-position family, one shared-front-end decomposition in the RoPE family 
 **input-domain breadth** as a first-class axis alongside model size (the same function tiled over more token-types),
 GPU-cheaply confirmable on a single model. Gemma is the exception to (2)'s and (3)'s regularities, as it is to most.
 
+### Does RoPE's shared early-writer front-end make induction fragile to post-training?
+
+If RoPE hangs most of its induction population off **one** shared early predecessor-writer (Llama L0 head 0.2 feeds
+88% of readers), is that a single point of failure post-training could break — or is the early node *protected*
+because fine-tuning adjusts late layers more? We measured both on three base→instruct pairs of the same model
+(`posttrain_drift.py`): per-layer weight drift vs depth (lazy safetensors reads) + induction survival (induction-NLL
+and the prev-token writer head, base vs instruct).
+
+- **Early layers are NOT meaningfully shielded.** The attention weight-drift is roughly flat across depth — early/late
+  ratio **0.84–0.93** — and the induction writer's own layer drifts at **0.92–0.99×** the model mean. So the "early
+  nodes get adjusted less" backstop is at best *marginally* true; the shared early writer is **not** protected by
+  being early. Post-training reaches it.
+- **Yet the circuit is resilient, not fragile — no catastrophic single-point break.** The shared writer **head
+  survives** post-training where the model is lightly tuned (Qwen: ~1% drift, induction-NLL unchanged 0.35→0.35,
+  writer 13.4→13.4) and even where it is heavily tuned (Llama: ~13% drift, induction-NLL degrades 0.78→1.73 but the
+  writer head 0.2 **persists** — performance drops, structure holds). **Gemma reorganizes adaptively**: its writer
+  *moves* (layer 21.7 → 0.0) and induction gets **better** (NLL 4.87→3.35). In none of the three did the shared
+  front-end catastrophically break the population.
+- **"Suffers more" is post-training-*intensity*-dependent, not architectural.** These "instruct" models differ ~13×
+  in how far they moved (Qwen ~1% vs Llama ~13% relative attn drift), and induction damage tracks *that*, not RoPE
+  per se. **Caveats:** no GPT-2 base/instruct pair exists, so the comparison is RoPE-internal (the "more than GPT-2"
+  half is structural inference — GPT-2's distributed induction has no single early node to break); and induction-NLL
+  on repeated-random is mildly out-of-distribution for a chat-tuned model, so part of Llama's degradation may be
+  distribution shift, not circuit damage. (`runs/disassembly/posttrain_drift_summary.json`.)
+
+**Verdict.** RoPE's shared early-writer front-end is **exposed** (not depth-protected) but **robust** — under realistic
+post-training the predecessor-writer head persists (or, in Gemma, reorganizes to an even-earlier one while induction
+*improves*). The single-point-of-failure worry isn't borne out here; the failure mode that does appear is graded
+*performance* degradation under heavy tuning, not structural breakage.
+
 ## Methodological cautions — banked from the digs
 
 - **Synthetic repeated-random probes can manufacture apparent suppression.** A head that looks like it suppresses
