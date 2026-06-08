@@ -24,7 +24,11 @@ not to trust."
   copy-attention rankings disagree (the Hydra effect, cross-model).
 - **The early MLP is largely an "extended embedding" in 5/6 models** — MLP0's output is mostly fixed by the current
   token identity (token-determinism η²: GPT-2 0.63, Gemma 0.91, Qwen 0.65), the classic detokenizer reading
-  ([MLP extended-embedding test](operators/mlp_detokenizer.md)).
+  ([MLP extended-embedding test](operators/mlp_detokenizer.md)). And the **induction circuit routes through these
+  early MLPs in *every* model** — ablating all MLPs (attention intact) costs +8.7 to +17.5 induction-NLL, so a
+  faithful circuit is **not** attention-only ([MLP nodes in the circuit DAG](circuits/README.md)). The substrate's
+  *concentration* tracks the family, mirroring the attention side: GPT-2/Gemma pin it to a single **MLP0**, the RoPE
+  models (Llama L1+L0, Qwen L2+L1+L0) spread it across the first two–three MLPs.
 - **In feature space, the copy/suppress split survives** — reading operators in monosemantic SAE features (the
   [SAE-feature operands](operators/sae_operands.md), GPT-2 + Gemma): the copy ops have positive OV copy-scores on
   their read-feature's tokens and `negative_mover` is the only non-positive circuit op (copy-suppression). The
