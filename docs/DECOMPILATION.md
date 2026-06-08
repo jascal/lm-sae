@@ -276,6 +276,33 @@ constant *fraction* of the model, so no fixed-size surrogate beats the model's o
 *retrained* TT — learn the cores instead of PCA-projecting activations — could reach a lower bond; that is the
 sae-forge feature-native direction, outside the no-retrain frame. `runs/disassembly/core_tt_summary.json`.)
 
+#### …but with RETRAINING the floor falls ~30× — the core is *not* irreducible (`core_distill.py`)
+
+The no-retrain results above all freeze the weights and use a *linear, fixed (PCA) basis* — so the Θ(d) floor they
+hit says nothing about whether a *learned* low-rank representation exists. This builds one: a rank-r bottleneck on each
+layer's update, **initialised from PCA** (step 0 = the no-retrain floor) and then **trained** (base model frozen, only
+the bottleneck factors, ~300 steps). The floor collapses:
+
+| GPT-2 rank (per-layer update) | no-retrain ΔNLL | **trained ΔNLL** |
+|---|---|---|
+| 8 (1% of d) | +1.78 | **+0.03** (≈ lossless) |
+| 16 (2%) | +1.28 | −0.10 |
+| 32 (4%) | +0.97 | −0.18 |
+| 256 (33%, adaptation control) | +0.24 | −0.00 |
+
+**A *trained* rank-8 update (1% of d) is lossless, vs the no-retrain floor of ~⅓·d (256) — a ~30× rank reduction.**
+The rank-256 control trains to ΔNLL ≈ 0 (no meaningful domain-adaptation bonus), so the comparison to the full model
+is fair: trained rank-8 genuinely matches it. **So the "Θ(d) entangled core" was an artifact of *freezing + linear
+PCA*, not a property of the function** — exactly the right caution: the no-retrain experiments measure the wrong thing
+for "is the core compressible." Scale nuance: gpt2-large needs more rank/steps (rank-8 recovers 76%, rank-64 88% in
+250 steps; rank-512 *overfit* — an optimization artifact of a huge bottleneck under-trained), so the lossless rank
+grows modestly with size and training budget — but it stays far below the no-retrain floor. **Honest scope:** this
+compresses the per-layer *update* (the residual write), not the full internal attention+MLP FLOPs, and uses a small
+eval (20 chunks) + cheap training; a rigorous version (more steps, general eval, factoring the output projection for
+real FLOP savings) is the natural follow-up. But the qualitative claim is settled: **detangling/compressing the core
+is tractable with learning — "irreducible" is falsified; only the frozen-linear route was blocked.**
+(`runs/disassembly/core_distill_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A

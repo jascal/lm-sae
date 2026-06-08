@@ -1,0 +1,100 @@
+{
+  "experiment": "retrained low-rank surrogate \u2014 does training the per-layer bottleneck factors beat the no-retrain PCA floor?",
+  "results": [
+    {
+      "model": "gpt2-large",
+      "n_layers": 36,
+      "d_model": 1280,
+      "base_nll": 5.004034998122168,
+      "steps": 250,
+      "curve": [
+        {
+          "rank": 8,
+          "rank_frac": 0.00625,
+          "pca_init_nll_increase": 2.736752095760237,
+          "distilled_nll_increase": 0.6647689385288977,
+          "recovered_frac": 0.7570956684170428
+        },
+        {
+          "rank": 16,
+          "rank_frac": 0.0125,
+          "pca_init_nll_increase": 2.7810445498890557,
+          "distilled_nll_increase": 0.516889641599124,
+          "recovered_frac": 0.8141383094277492
+        },
+        {
+          "rank": 64,
+          "rank_frac": 0.05,
+          "pca_init_nll_increase": 1.3558650855426961,
+          "distilled_nll_increase": 0.1575909638041777,
+          "recovered_frac": 0.8837709109228219
+        },
+        {
+          "rank": 512,
+          "rank_frac": 0.4,
+          "pca_init_nll_increase": 0.20225817708899463,
+          "distilled_nll_increase": 0.27613028357125824,
+          "recovered_frac": -0.36523668682013044
+        }
+      ]
+    },
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "d_model": 768,
+      "base_nll": 5.347991038641374,
+      "steps": 300,
+      "curve": [
+        {
+          "rank": 2,
+          "rank_frac": 0.0026041666666666665,
+          "pca_init_nll_increase": 2.463089024906979,
+          "distilled_nll_increase": 0.4544223870596307,
+          "recovered_frac": 0.8155071203417861
+        },
+        {
+          "rank": 4,
+          "rank_frac": 0.005208333333333333,
+          "pca_init_nll_increase": 2.15437118040182,
+          "distilled_nll_increase": 0.329715826971265,
+          "recovered_frac": 0.8469549583791924
+        },
+        {
+          "rank": 8,
+          "rank_frac": 0.010416666666666666,
+          "pca_init_nll_increase": 1.7819352972389817,
+          "distilled_nll_increase": 0.032522294226325243,
+          "recovered_frac": 0.9817488916254609
+        },
+        {
+          "rank": 16,
+          "rank_frac": 0.020833333333333332,
+          "pca_init_nll_increase": 1.2801664254837162,
+          "distilled_nll_increase": -0.10408527312709293,
+          "recovered_frac": 1.0813060482255374
+        },
+        {
+          "rank": 32,
+          "rank_frac": 0.041666666666666664,
+          "pca_init_nll_increase": 0.964887184042337,
+          "distilled_nll_increase": -0.17581850556068446,
+          "recovered_frac": 1.1822166450839395
+        },
+        {
+          "rank": 64,
+          "rank_frac": 0.08333333333333333,
+          "pca_init_nll_increase": 0.6569279733766473,
+          "distilled_nll_increase": -0.002660269343929933,
+          "recovered_frac": 1.0040495601523194
+        },
+        {
+          "rank": 256,
+          "rank_frac": 0.3333333333333333,
+          "pca_init_nll_increase": 0.23673234446859315,
+          "distilled_nll_increase": -0.0035343381964620946,
+          "recovered_frac": 1.0149296802023222
+        }
+      ]
+    }
+  ]
+}
