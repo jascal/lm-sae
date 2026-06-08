@@ -210,7 +210,11 @@ finite, content-free **categorial** scaffold (determiner-slot, punctuation-slot,
 distributional POS basis, **not** the recursive/hierarchical syntax of generative UG (which, if present, lives in the
 *composition* of these categories across positions — i.e. in the entangled bulk that pays the forge tax, not in the
 static write-basis). And it is **learned, not innate** — a generic transformer grows the scaffold from data with no
-syntactic prior. (`runs/disassembly/core_grammar_summary.json`.)
+syntactic prior. **Cross-architecture (RoPE):** Llama-3.2-1B reproduces the dissociation — top-16 directions
+**0.41 vs 0.01 chance (41×) corpus-invariant** and **0.30 vs 0.01 (30×) closed-class** (with a clean reflexive-pronoun
+direction `_himself _ourselves _herself _themselves` and a punctuation direction visible through the multilingual-byte
+noise), everything deeper neither. The grammar head is **architecture-general**, not a GPT-2 quirk.
+(`runs/disassembly/core_grammar_summary.json`.)
 
 ### Big-O of the core: Θ(model size), not a few templates
 
@@ -225,6 +229,41 @@ capability." The pylm sister track makes the consequence runnable — a flat-fil
 compact scaffold (see [pylm track](PYLM_TRACK.md)), but adds little to the *token*-level decompilable fraction
 (grammar is categorial; the n-gram modes already absorb it), and the un-decompiled ~50% is exactly the content that
 is **neither n-gram nor relational fact** — the entangled composition, the forge tax restated.
+
+### The core as a TENSOR NETWORK — MPS bond-dimension levels + the composition graph (`core_mps.py`)
+
+The per-layer write rank is Θ(d) (above), but that is the *single-cut* rank. Treating the sequence of per-layer
+updates (Δ₁ … Δ_nL) as a state over layer-"sites" and measuring the **bond dimension χ** across each layer cut (the
+effective rank of the cross-correlation between layers ≤ L and > L — the q-orca / entanglement-tower view) gives a
+very different number, and the cleanest CPU-simplification result yet:
+
+| GPT-2 | layers | mean χ | χ range across cuts | max-bond mid-stack | χ / max-bond (mid) |
+|---|---|---|---|---|---|
+| gpt2 | 12 | **15.9** | 15–16 | 144 | 0.11 |
+| gpt2-medium | 24 | **15.5** | 14–16 | 288 | 0.056 |
+| gpt2-large | 36 | **16.4** | 14–18 | 432 | 0.037 |
+
+**The bond dimension is ~16 and FLAT — independent of depth and width.** Adding layers to either side of a cut does
+*not* raise the cross-cut rank: that is the defining signature of an **area-law MPS**. So the cross-layer entanglement
+is **O(1) (~16)** while the per-layer write subspace is Θ(d) — the composition is "wide locally, thin across cuts,"
+exactly a **tensor-train**. This reconciles the #132 result (a *single global basis* fails at low rank) with
+simplifiability: the core is **not** one frozen subspace, but it **is** an MPS — a chain of ~16-dim bonds with
+per-layer rotation tensors — and because χ/max-bond *shrinks* with scale, **bigger models are *more* MPS-compressible
+per cut**. A global tensor-train surrogate at bond χ≈16 is the concrete CPU lever (beyond core_rank's per-layer
+low-rank), and the bond is a real handle to *decompile* (read the ~16-dim shared backbone at each cut).
+
+**The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
+every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
+and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
+banded DAG over layers: local-dominant but globally coupled, condensing through the low bond.
+
+**Ontology** (each layer's top write directions typed grammar / content by logit-lens): grammar concentrates at the
+**boundaries** — the embedding end (detokenise into grammatical classes) and, most strongly, the **output end** (write
+the grammatical next-token classes) — and is sparse in the **middle** (content / compute). The U-shape is cleanest in
+gpt2-small (`4 5 1 1 2 2 1 2 3 7 5 8`); in larger models the output-end concentration dominates and the embedding-end
+grammar is partly masked by rare-/byte-token directions. So the **typed graph**: grammatical scaffold at the rim,
+entangled content composition in the core — the ontology of "what the core is made of," per layer.
+(`runs/disassembly/core_mps_summary.json`.)
 
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 

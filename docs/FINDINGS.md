@@ -105,6 +105,13 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
 - **The big-O: Θ(model size).** Functional per-layer rank and the shared basis are both Θ(d) (a constant fraction
   ~⅓–⅖, growing with width); the grammar head is ~O(1). Low-rank simplification buys a constant factor, not a big-O
   cut — the irreducible core scales *with* the model.
+- **But across the layer chain it is an area-law MPS.** Viewed as a tensor network over layer-"sites"
+  (`core_mps.py`), the **bond dimension is ~16 and flat across every cut, independent of depth/width** (gpt2/medium/
+  large all χ≈16; χ/max-bond *shrinks* with scale 0.11→0.037). So cross-layer entanglement is **O(1)** while the
+  per-layer write is Θ(d): "wide locally, thin across cuts" — a **tensor-train**. The core is *not* one global basis
+  (#132) but *is* an MPS, so a global TT surrogate at χ≈16 is a concrete CPU lever, and bigger models are *more*
+  MPS-compressible. The composition graph is densely coupled (adjacent > distant), and the ontology of typed
+  directions is grammar-at-the-rim / content-in-the-core.
 - **Made runnable (pylm).** A flat-file **grammar** idiom decompiles the scaffold ([pylm track](PYLM_TRACK.md)), but
   adds ~nothing to the *token*-level decompilable fraction (49.0→49.5%) — grammar is categorial; the n-gram modes
   already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled
