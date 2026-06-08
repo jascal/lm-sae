@@ -1,0 +1,60 @@
+{
+  "experiment": "does chain-of-thought buy back recursion depth \u2014 Dyck bracket matching, direct vs CoT by nesting depth",
+  "results": [
+    {
+      "model": "Qwen2.5-1.5B-Instruct",
+      "depths": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12
+      ],
+      "by_depth": {
+        "2": {
+          "direct_acc": 0.85,
+          "cot_acc": 0.5,
+          "direct_n": 20,
+          "cot_n": 20,
+          "n": 20
+        },
+        "4": {
+          "direct_acc": 0.65,
+          "cot_acc": 0.85,
+          "direct_n": 20,
+          "cot_n": 20,
+          "n": 20
+        },
+        "6": {
+          "direct_acc": 0.65,
+          "cot_acc": 0.7368421052631579,
+          "direct_n": 20,
+          "cot_n": 19,
+          "n": 20
+        },
+        "8": {
+          "direct_acc": 0.65,
+          "cot_acc": 0.5,
+          "direct_n": 20,
+          "cot_n": 18,
+          "n": 20
+        },
+        "10": {
+          "direct_acc": 0.55,
+          "cot_acc": 0.7058823529411765,
+          "direct_n": 20,
+          "cot_n": 17,
+          "n": 20
+        },
+        "12": {
+          "direct_acc": 0.5,
+          "cot_acc": 0.42857142857142855,
+          "direct_n": 20,
+          "cot_n": 14,
+          "n": 20
+        }
+      }
+    }
+  ]
+}
