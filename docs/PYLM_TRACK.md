@@ -147,6 +147,27 @@ sparse); (2) **store-first arbitration** — trusting the model-captured n-gram 
 better than the corpus-modal). So ~50% (GPT-2) is a **genuine ceiling** — the remaining half is real composition /
 generalisation a flat store + an in-context-copy macro cannot hold, the entangled core the forge tax measures.
 
+## The context ceiling — longer context can't crack the core (the ∞-gram, `context_ceiling.py`)
+
+The sharpest version of "more flat data won't help": push the n-gram store to **unbounded context** — the ∞-gram /
+longest-suffix predictor over the whole training stream — and measure the decompilable fraction (∞-gram↔model top-1)
+as the allowed context length K grows. On GPT-2 / tiny-Shakespeare:
+
+| context cap K | 1 | 2 | 3 | 4 | 8 | 16 | 32 |
+|---|---|---|---|---|---|---|---|
+| ∞-gram ↔ model | 26.5% | 32.3% | 32.5% | 31.7% | 31.7% | 31.9% | **31.9%** |
+
+**It saturates at a trigram and never moves** — the mean matched suffix tops out at **3.4** because held-out exact
+matches longer than ~3 tokens *do not exist* in a 300 K-token store. So an *unbounded*-context corpus lookup ≈ a
+trigram: the **memorization ceiling is 31.9%**, and the **composition residual — the 68% not crackable by any amount of
+flat context — is genuine composition, not missing memory.** (This is the rigorous form of the 5-gram-plateau lever.)
+pylm reaches ~49% only by adding **in-context induction** (copying from the *prompt itself*, not the corpus store) —
+the cheaply-recoverable part of the composition — leaving ~50% as the irreducible core the forge tax measures. Net for
+the resource question: you **cannot** crack more of the core by storing longer context (the data is too sparse for it
+to matter); the un-decompiled half is composition. *(Caveat: the trigram saturation is partly a 300 K-token store-size
+artifact — a far larger corpus would surface some longer matches — but the gain is bounded by, and well below, the
+composition residual.)*
+
 ## Showcase — the whole small LLM (Pythia-14m), decompiled and generating
 
 The goal's literal headline. Pythia-14m (6 layers, d128) is the smallest real LLM here and the most-fully decompiled:

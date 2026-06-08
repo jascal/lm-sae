@@ -1,0 +1,79 @@
+{
+  "model": "gpt2",
+  "n_eval": 1500,
+  "model_corpus_top1": 0.42933333333333334,
+  "memorization_ceiling": 0.31933333333333336,
+  "composition_residual": 0.6806666666666666,
+  "curve": [
+    {
+      "cap": 1,
+      "decompilable_fraction": 0.26466666666666666,
+      "corpus_top1": 0.27,
+      "coverage": 0.9533333333333334,
+      "mean_matched_suffix": 1.0
+    },
+    {
+      "cap": 2,
+      "decompilable_fraction": 0.32266666666666666,
+      "corpus_top1": 0.3393333333333333,
+      "coverage": 0.9753333333333334,
+      "mean_matched_suffix": 1.7956254272043746
+    },
+    {
+      "cap": 3,
+      "decompilable_fraction": 0.32466666666666666,
+      "corpus_top1": 0.342,
+      "coverage": 0.9753333333333334,
+      "mean_matched_suffix": 2.3328776486671225
+    },
+    {
+      "cap": 4,
+      "decompilable_fraction": 0.31666666666666665,
+      "corpus_top1": 0.33266666666666667,
+      "coverage": 0.9753333333333334,
+      "mean_matched_suffix": 2.696514012303486
+    },
+    {
+      "cap": 6,
+      "decompilable_fraction": 0.31666666666666665,
+      "corpus_top1": 0.33266666666666667,
+      "coverage": 0.9753333333333334,
+      "mean_matched_suffix": 3.0950102529049897
+    },
+    {
+      "cap": 8,
+      "decompilable_fraction": 0.31666666666666665,
+      "corpus_top1": 0.33266666666666667,
+      "coverage": 0.9753333333333334,
+      "mean_matched_suffix": 3.2952836637047165
+    },
+    {
+      "cap": 12,
+      "decompilable_fraction": 0.31933333333333336,
+      "corpus_top1": 0.336,
+      "coverage": 0.978,
+      "mean_matched_suffix": 3.403544648943422
+    },
+    {
+      "cap": 16,
+      "decompilable_fraction": 0.31933333333333336,
+      "corpus_top1": 0.336,
+      "coverage": 0.978,
+      "mean_matched_suffix": 3.408316291751875
+    },
+    {
+      "cap": 24,
+      "decompilable_fraction": 0.31933333333333336,
+      "corpus_top1": 0.336,
+      "coverage": 0.978,
+      "mean_matched_suffix": 3.408316291751875
+    },
+    {
+      "cap": 32,
+      "decompilable_fraction": 0.31933333333333336,
+      "corpus_top1": 0.336,
+      "coverage": 0.978,
+      "mean_matched_suffix": 3.408316291751875
+    }
+  ]
+}
