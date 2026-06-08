@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -33,18 +34,56 @@ def _fetch(url, n):
         return ""
 
 
+def _gutenberg(book_id, n):
+    """Project Gutenberg plaintext — try the two common URL layouts."""
+    for url in (f"https://www.gutenberg.org/files/{book_id}/{book_id}-0.txt",
+                f"https://www.gutenberg.org/cache/epub/{book_id}/pg{book_id}.txt"):
+        txt = _fetch(url, n)
+        if len(txt) > 1000:
+            return txt
+    return ""
+
+
 def _fetch_wiki(n):
     """encyclopedic prose from the Wikipedia API (plaintext extracts of diverse topics) — a big slice of GPT-2's data."""
     titles = ("Physics|World_War_II|Photosynthesis|Roman_Empire|Jupiter|Computer|Evolution|Democracy|Coffee|"
-              "Mathematics|Climate|Internet|Medicine|Music|Volcano|Economics|Bacteria|Renaissance|Galaxy|Election")
-    url = ("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=1&exlimit=20&titles="
-           + titles)
+              "Mathematics|Climate|Internet|Medicine|Music|Volcano|Economics|Bacteria|Renaissance|Galaxy|Election|"
+              "Quantum_mechanics|French_Revolution|DNA|Ancient_Egypt|Black_hole|Linguistics|Immune_system|Philosophy|"
+              "Ocean|Architecture|Chemistry|Buddhism|Glacier|Algorithm|Constitution|Neuron|Painting|Earthquake|"
+              "Probability|Ecosystem")
+    out = []
+    for batch in [titles.split("|")[i:i + 20] for i in range(0, len(titles.split("|")), 20)]:
+        url = ("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=1&exlimit=20"
+               "&titles=" + "|".join(batch))
+        try:
+            import json as _j
+            raw = _j.loads(urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}),
+                                                  timeout=25).read().decode("utf-8", "ignore"))
+            out += [p.get("extract", "") for p in raw["query"]["pages"].values()]
+        except Exception:
+            pass
+    return "\n\n".join(out)[:n]
+
+
+_LANG_TITLES = {  # major (long) articles per language — multilingual diversity (GPT-2's OOD tail)
+    "fr": "France|Physique|Histoire|Mathématiques|Musique|Philosophie|Science|Allemagne|Paris|Univers|Biologie|Guerre",
+    "de": "Deutschland|Physik|Geschichte|Mathematik|Musik|Philosophie|Wissenschaft|Frankreich|Berlin|Universum|Biologie|Krieg",
+    "es": "España|Física|Historia|Matemáticas|Música|Filosofía|Ciencia|Francia|Madrid|Universo|Biología|Guerra",
+    "ru": "Россия|Физика|История|Математика|Музыка|Философия|Наука|Франция|Москва|Вселенная|Биология|Война",
+    "it": "Italia|Fisica|Storia|Matematica|Musica|Filosofia|Scienza|Francia|Roma|Universo|Biologia|Guerra",
+    "zh": "中国|物理学|历史|数学|音乐|哲学|科学|法国|北京|宇宙|生物学|战争",
+    "ja": "日本|物理学|歴史|数学|音楽|哲学|科学|フランス|東京|宇宙|生物学|戦争"}
+
+
+def _fetch_wiki_lang(lang, n):
+    """plaintext of major articles in a given language — multilingual diversity (GPT-2's OOD tail)."""
+    url = (f"https://{lang}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=1&exlimit=20"
+           "&titles=" + urllib.parse.quote(_LANG_TITLES.get(lang, ""), safe="|"))
     try:
         import json as _j
         raw = _j.loads(urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}),
-                                               timeout=25).read().decode("utf-8", "ignore"))
-        pages = raw["query"]["pages"]
-        return "\n\n".join(p.get("extract", "") for p in pages.values())[:n]
+                                              timeout=25).read().decode("utf-8", "ignore"))
+        return "\n\n".join(p.get("extract", "") for p in raw["query"]["pages"].values())[:n]
     except Exception:
         return ""
 
@@ -66,11 +105,14 @@ def build_chunks(args, tok):
         ch = [ids[i:i + args.ctx] for i in range(0, len(ids), args.ctx) if len(ids[i:i + args.ctx]) >= 8]
         return ch[args.eval: args.eval + args.train], ch[: args.eval], ["shakespeare"] * len(ch[: args.eval])
     per = max(args.corpus_chars, 300000)
-    sources = {  # diverse domains: drama, three novels (different eras/styles), and code
-        "shakespeare": _fetch(SH, per), "austen": _fetch("https://www.gutenberg.org/files/1342/1342-0.txt", per),
-        "shelley": _fetch("https://www.gutenberg.org/files/84/84-0.txt", per),
-        "melville": _fetch("https://www.gutenberg.org/files/2701/2701-0.txt", per), "code": _local_code(per),
-        "wiki": _fetch_wiki(per)}
+    books = {"austen": 1342, "shelley": 84, "melville": 2701, "doyle": 1661, "dickens": 98, "darwin": 1228,
+             "stoker": 345, "carroll": 11, "grimm": 2591, "machiavelli": 1232, "twain": 76, "kjv": 10}
+    sources = {"shakespeare": _fetch(SH, per), "code": _local_code(per), "wiki": _fetch_wiki(per)}
+    for name, bid in books.items():                                   # drama + 12 books across genres/eras + code + wiki
+        sources[name] = _gutenberg(bid, per)
+    if args.multilingual:                                             # + random Wikipedia in 7 other languages
+        for lang in ("fr", "de", "es", "ru", "it", "zh", "ja"):
+            sources[f"wiki_{lang}"] = _fetch_wiki_lang(lang, per)
     train = []; ev = []; evdom = []; ne = max(1, args.eval // max(sum(1 for v in sources.values() if v), 1))
     for name, txt in sources.items():
         if not txt:
@@ -195,6 +237,7 @@ def main(argv=None):
     p.add_argument("--train", type=int, default=200, help="train chunks for distillation")
     p.add_argument("--corpus-chars", type=int, default=120000, help="chars of corpus to fetch (more = more distill data)")
     p.add_argument("--diverse", action="store_true", help="distill on a diverse multi-domain corpus (drama+novels+code)")
+    p.add_argument("--multilingual", action="store_true", help="add random Wikipedia in 7 non-English languages")
     p.add_argument("--lr", type=float, default=1e-3, help="distillation learning rate")
     p.add_argument("--match-teacher", action="store_true", help="distill to the full model's top-1 (faithful) vs corpus NLL (capable)")
     p.add_argument("--device", default="cuda")

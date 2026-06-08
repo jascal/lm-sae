@@ -1,0 +1,234 @@
+{
+  "model": "gpt2",
+  "n_closed_class": 487,
+  "n_skeleton_rules": 12272,
+  "lexicon": {
+    "determiners": [
+      "a",
+      "an",
+      "any",
+      "each",
+      "either",
+      "every",
+      "her",
+      "his",
+      "its",
+      "my",
+      "neither",
+      "no",
+      "our",
+      "some",
+      "that",
+      "the",
+      "their",
+      "these",
+      "this",
+      "those",
+      "your"
+    ],
+    "prepositions": [
+      "about",
+      "above",
+      "after",
+      "at",
+      "below",
+      "between",
+      "by",
+      "down",
+      "for",
+      "from",
+      "in",
+      "into",
+      "of",
+      "off",
+      "on",
+      "out",
+      "over",
+      "through",
+      "to",
+      "under",
+      "up",
+      "with"
+    ],
+    "conjunctions": [
+      "although",
+      "and",
+      "as",
+      "because",
+      "but",
+      "if",
+      "nor",
+      "or",
+      "since",
+      "so",
+      "than",
+      "then",
+      "unless",
+      "when",
+      "where",
+      "whereas",
+      "while",
+      "yet"
+    ],
+    "pronouns": [
+      "he",
+      "hers",
+      "him",
+      "i",
+      "it",
+      "me",
+      "mine",
+      "ours",
+      "she",
+      "theirs",
+      "them",
+      "they",
+      "us",
+      "we",
+      "what",
+      "which",
+      "who",
+      "whom",
+      "whose",
+      "you",
+      "yours"
+    ],
+    "auxiliaries": [
+      "am",
+      "are",
+      "be",
+      "been",
+      "being",
+      "can",
+      "could",
+      "did",
+      "do",
+      "does",
+      "had",
+      "has",
+      "have",
+      "having",
+      "is",
+      "may",
+      "might",
+      "must",
+      "shall",
+      "should",
+      "was",
+      "were",
+      "will",
+      "would"
+    ],
+    "particles": [
+      "also",
+      "hence",
+      "here",
+      "however",
+      "just",
+      "no",
+      "not",
+      "now",
+      "only",
+      "there",
+      "therefore",
+      "thus",
+      "too",
+      "very"
+    ]
+  },
+  "punctuation": [
+    ".",
+    ",",
+    ";",
+    ":",
+    "!",
+    "?",
+    "'",
+    "\"",
+    "(",
+    ")",
+    "[",
+    "]",
+    "{",
+    "}",
+    "-",
+    "—",
+    "…",
+    "/"
+  ],
+  "example_rules": [
+    [
+      "· · :",
+      "'\\n'"
+    ],
+    [
+      "· : '\\n'",
+      "'\\n'"
+    ],
+    [
+      ": '\\n' ·",
+      ","
+    ],
+    [
+      "'\\n' · we",
+      "to"
+    ],
+    [
+      "· we ·",
+      ","
+    ],
+    [
+      "· any ·",
+      "."
+    ],
+    [
+      "any · ,",
+      "'\\n'"
+    ],
+    [
+      "· , ·",
+      ","
+    ],
+    [
+      ", · me",
+      ","
+    ],
+    [
+      "· me ·",
+      ","
+    ],
+    [
+      "me · .",
+      "'\\n'"
+    ],
+    [
+      "· . '\\n'",
+      "'\\n'"
+    ],
+    [
+      "'\\n' '\\n' ·",
+      ":"
+    ],
+    [
+      "'\\n' · :",
+      "'\\n'"
+    ],
+    [
+      "'\\n' · ·",
+      ","
+    ],
+    [
+      "· · ,",
+      "'\\n'"
+    ],
+    [
+      ", · .",
+      "'\\n'"
+    ],
+    [
+      "You are ·",
+      "to"
+    ]
+  ],
+  "note": "lexicon/categories are language-universal (English closed class) and the scaffold is corpus-invariant + cross-architecture (PR #133); the skeleton TABLE is model/tokenizer-captured"
+}

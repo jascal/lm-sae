@@ -416,6 +416,15 @@ retrieval-vs-composition split, now measured by domain. *(Confound: austen's 85%
 "stylistically self-consistent" — train and eval are the same novel — so the absolute spread over-states it; but the
 composition-heavy domains being hardest is the robust signal.)* (`runs/disassembly/min_to_run_summary.json`.)
 
+**Variety helps only up to capacity — then it dilutes (at fixed rank).** Pushing to **15 domains** (12 novels across
+genres/eras + drama + code + wiki) at the *same* rank-64 / 12 k steps drops the aggregate to **30%**, and the per-domain
+breakdown shows why: the copy faithfully holds only the heavily-memorized domains (austen 76% · stoker/Dracula 73% ·
+dickens 46%) while the rest — and the composition-heavy ones especially — fall to **12–32%** (kjv 12 · machiavelli 12 ·
+wiki 16 · grimm 18 · code 20). So at fixed low-rank capacity, *more* variety spreads the model thinner rather than
+lifting it: **capacity becomes the binding constraint across breadth.** This says the variety push needs *more rank in
+proportion to the breadth* — consistent with the composition being Θ(d) and content-spanning — and reframes the earlier
+34→41% climb as "variety helps until the rank-64 budget is spent." (Still about this approach, not a floor.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
