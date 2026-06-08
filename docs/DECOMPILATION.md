@@ -325,6 +325,17 @@ This closes the grammar loop and ties it to the forge tax: **the categorial gram
 measures).** "Simpler-than-Chomsky" in the basis, Chomskyan in the composition — demonstrated, not assumed.
 (`runs/disassembly/recursive_syntax_summary.json`.)
 
+**Which heads carry it — the number-mover circuit (`agreement_circuit.py`).** Per-head ablation over the depth-≥1
+stimuli localizes a **small, distinct circuit** (GPT-2, base agreement logit-diff +2.55): the load-bearing heads are
+**7.4** (ablation drop +0.85), **10.9** (+0.51), **8.5** (+0.50), **2.10** (+0.50), concentrated in **mid-to-late
+layers**. The late movers show the clean signature — they attend **from the verb to the HEAD noun**, not the nearest
+attractor (**10.9: verb→head 0.31 vs verb→attractor 0.07**; 10.5: 0.35 vs 0.06; 11.10: 0.29 vs 0.09) — literally
+*moving the head's number to the verb slot*. There is also an early **attractor-tracker** (0.3 attends 97% to the last
+token; 2.10 leans to the attractor) — the local pathway the agreement heads override. Crucially, **none of the
+number-movers are induction / prev-token / duplicate heads** (all `UNNAMED`): the agreement circuit is a **distinct
+operator class**, a new catalog entry — the composition that does the recursive work, made of heads the copy-idiom
+catalog doesn't name. (`runs/disassembly/agreement_circuit_summary.json`.)
+
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
 The recompile-KL harness is most useful not as a one-shot metric but as a **steppable interpreter** over the
