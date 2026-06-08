@@ -389,12 +389,17 @@ recovers most of it:
 So with light distillation the composition weights factor to **~6–11% of their size** for a model still *capable* on
 the corpus (ΔNLL +0.26 at rank 64 ≈ 9× weight compression). Two notes on scope: (1) this is a *capable* model, not a
 *faithful copy* of GPT-2 — **faithfulness** (top-1 agreement with the original) is a separate, harder axis: distilling
-the factors *to the teacher* (hard-label CE and soft-KL, 1500 steps, ranks 32–256) **plateaus at ~34% agreement, flat
-across rank** (6% → 44% of weights) and recipe. That flatness is evidence these *light-distillation recipes* cap at
-~⅓ faithful reproduction — it is **not** a proof that a faithful low-rank copy is impossible; whether the cap is
-architectural (a low-rank-factored model can't hold the composition) or merely a training-budget limit (200 chunks /
-1500 steps / all matrices factored at once) is **open**, and only a properly-engineered, larger-scale distillation
-would settle it. (2) It compresses the stored *weights*, with the embeddings/vocab left intact. Placed against the
+the factors *to the teacher* (hard-label CE and soft-KL, 1500 steps, ranks 32–256) **plateaus at ~34–38% agreement,
+flat across rank** (6% → 44% of weights), **recipe**, *and* **data** — scaling the distillation corpus ~20× (12.8 k →
+280 k tokens) and steps to 5 000 moved rank-64 only 34% → 38%. So the cap is *not* primarily data-starvation. The clean
+dissociation: the factored model is *capable* (NLL ΔNLL +0.26–0.64) but predicts *different* tokens than the original
+on the composition-dependent ~60% — a similarly-good *different* model, not a faithful copy. **Careful framing (per the
+necessity-vs-method discipline):** this is robust evidence that *this approach* — factoring all 48 matrices at one rank
++ single-GPU distillation — caps at ~⅓ faithful agreement; it is **not** an impossibility proof. Notably, the #142
+*output*-bottleneck (rank-8 on the per-layer update, NLL-lossless) **is** the faithful compression that weight-factoring
+isn't — but it keeps the full weight matrices, so it doesn't shrink storage. The real tension surfacing here is
+**faithful ⟂ small-storage**: compressing the *output* preserves the model's exact behaviour but not its size;
+compressing the *weights* shrinks size but yields a capable-not-faithful model. (2) It compresses the stored *weights*, with the embeddings/vocab left intact. Placed against the
 flat end — pylm reproduces ~half the model at ~1.6 MB of flat tables and *zero* matmul — this is the first point on
 the size-vs-fidelity curve: pure-flat retrieval (cheap, ~half) → distilled-low-rank composition (capable at ~⅒ the
 weights; ~⅓-faithful so far) → the full model. (`runs/disassembly/min_to_run_summary.json`.)
