@@ -96,6 +96,24 @@ the model into local n-gram tables provably discards it). pylm turns "the decomp
 **running artifact**: ~half of a real LLM *is* a small symbolic program over flat knowledge; the rest is the
 irreducible core the forge tax measures.
 
+## Sequence-level validation — what free generation does (and why teacher-forced is the metric)
+
+Teacher-forced top-1 agreement (above) is the decompilable fraction. A harsher, sequence-level check
+(`rollout.py`): roll out generation from held-out seeds with both pylm and the model.
+
+- **Free greedy generation diverges almost immediately** — fidelity horizon **~1 token** (median 0) before pylm's
+  greedy rollout first differs from the model's. This is *not* a pylm failure: greedy rollout is trajectory-chaotic
+  (one different token forks the path), so *any* two distinct models diverge within a token or two. It just means
+  free-rollout match is the wrong yardstick.
+- **Teacher-forced on the model's own generated path, agreement is 59–63% and *rises* to 74–84%** by token 20 —
+  because the model's greedy generation becomes repetitive and pylm's **induction macro nails the loop** (the model
+  loops under greedy; pylm reproduces *why*). Consistent with, and slightly above, the held-out teacher-forced fraction.
+- **pylm's greedy generation vs the actual corpus: ~4%** — greedy text (model *or* pylm) doesn't reproduce natural
+  text; this measures greedy-vs-natural, not decompilation fidelity.
+
+Net: the right "how much of the model" metric is **teacher-forced top-1 agreement** (49–55%); pylm is a faithful
+*next-token* decompiler, not a trajectory-matcher (no symbolic model is, under greedy).
+
 ## The flat-file knowledge store — "the model IS the database", literally
 
 Beyond statistics, pylm carries a **flat fact table** (`knowledge.py`): relations read out of the model
