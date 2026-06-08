@@ -29,6 +29,8 @@ def mlp_blocks(model):
         return [b.mlp for b in model.transformer.h]
     if hasattr(model, "model") and hasattr(model.model, "layers"):                  # RoPE (Gemma/Llama/Qwen)
         return [ly.mlp for ly in model.model.layers]
+    if hasattr(model, "gpt_neox"):                                                  # GPT-NeoX (Pythia)
+        return [ly.mlp for ly in model.gpt_neox.layers]
     raise SystemExit("no per-layer MLP blocks (SSM? — excluded)")
 
 

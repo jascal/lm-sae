@@ -10,7 +10,7 @@ Per rank r: SVD-truncate c_attn / attn.c_proj / mlp.c_fc / mlp.c_proj of every l
   FIDELITY  generic next-token NLL, and top-1 AGREEMENT with the unmodified model (the same metric as pylm's
             decompilable fraction — what fraction of the model's tokens the compressed model still predicts);
   SIZE      stored params of the factored transformer weights (r·(m+n) per matrix) vs the full m·n, as a ratio.
-GPT-2 only (the anchor; nn.Conv1D weights). Output: runs/disassembly/min_to_run_summary.json.
+Arch-generic: GPT-2 (Conv1D), Pythia/GPT-NeoX and Llama/Qwen (nn.Linear). Output: runs/disassembly/min_to_run_summary.json.
 """
 from __future__ import annotations
 
@@ -124,6 +124,38 @@ def build_chunks(args, tok):
     return train[: args.train], ev, evdom
 
 
+def composition_mats(model):
+    """(module, is_linear) for every attention+MLP weight matrix, arch-generic.
+
+    The forward-hook below replaces each module's output with a low-rank product, so we need the *effective* in→out map
+    M such that `out = x @ M (+ bias)`:  Conv1D (GPT-2) stores weight as (in, out) → M = W;  nn.Linear (GPT-NeoX/Pythia,
+    Llama/Qwen) stores it as (out, in) → M = Wᵀ. We carry the is_linear flag so SVD and writeback use the right side.
+    """
+    recs = []
+    if hasattr(model, "transformer") and hasattr(model.transformer, "h"):           # GPT-2 (Conv1D)
+        for blk in model.transformer.h:
+            recs += [(blk.attn.c_attn, False), (blk.attn.c_proj, False),
+                     (blk.mlp.c_fc, False), (blk.mlp.c_proj, False)]
+    elif hasattr(model, "gpt_neox"):                                                 # Pythia / GPT-NeoX (Linear, fused qkv)
+        for ly in model.gpt_neox.layers:
+            recs += [(ly.attention.query_key_value, True), (ly.attention.dense, True),
+                     (ly.mlp.dense_h_to_4h, True), (ly.mlp.dense_4h_to_h, True)]
+    elif hasattr(model, "model") and hasattr(model.model, "layers"):                 # Llama/Qwen RoPE (Linear, split qkv)
+        for ly in model.model.layers:
+            a, mlp = ly.self_attn, ly.mlp
+            recs += [(a.q_proj, True), (a.k_proj, True), (a.v_proj, True), (a.o_proj, True),
+                     (mlp.gate_proj, True), (mlp.up_proj, True), (mlp.down_proj, True)]
+    else:
+        raise SystemExit("min_to_run: unknown architecture for weight factorization")
+    return recs
+
+
+def _student_dtype(mid):
+    """fp32 for small models (stable factor training); bf16 only for the genuinely large ones (memory)."""
+    big = any(s in mid.lower() for s in ("-xl", "1.4b", "1.5b", "2.8b", "6.9b", "7b", "8b"))
+    return "auto" if big else "fp32"
+
+
 def run_model(mid, args):
     import torch
     from residual_vm import ResidualVM
@@ -150,20 +182,21 @@ def run_model(mid, args):
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-    vm = ResidualVM(mid, device=args.device); nL = vm.nL   # now the student, alone on the GPU (fp32 → stable training)
+    vm = ResidualVM(mid, device=args.device, dtype=_student_dtype(mid)); nL = vm.nL   # student alone on GPU (fp32 → stable)
 
-    # the composition weight matrices (GPT-2 Conv1D: weight shape (in, out))
-    mats = []
-    for L in range(nL):
-        blk = vm.model.transformer.h[L]
-        for mod in (blk.attn.c_attn, blk.attn.c_proj, blk.mlp.c_fc, blk.mlp.c_proj):
-            mats.append(mod.weight)
+    # the composition weight matrices, arch-generic (Conv1D or Linear)
+    recs = composition_mats(vm.model)
+    mods = [m for (m, _) in recs]; mats = [m.weight for (m, _) in recs]; is_lin = [lin for (_, lin) in recs]
+
+    def eff(W, lin):                       # effective in→out matrix (out = x @ eff): Conv1D weight is (in,out), Linear (out,in)
+        return W.t() if lin else W
+
     full_params = int(sum(W.shape[0] * W.shape[1] for W in mats))
     orig = [W.detach().clone() for W in mats]
-    # precompute SVD of each matrix once — kept on CPU (~1.5GB) so the GPU fits both student + teacher
+    # precompute SVD of each EFFECTIVE matrix once — kept on CPU (~1.5GB) so the GPU fits both student + teacher
     svds = []
-    for W in mats:
-        U, S, Vh = torch.linalg.svd(W.detach().float().cpu(), full_matrices=False)
+    for W, lin in zip(mats, is_lin):
+        U, S, Vh = torch.linalg.svd(eff(W, lin).detach().float().cpu(), full_matrices=False)
         svds.append((U, S, Vh))
 
     def gen(metric_top1=None):
@@ -184,8 +217,9 @@ def run_model(mid, args):
     full_nll, full_top1, _, _ = gen()
 
     def set_rank(r):
-        for (W, (U, S, Vh)) in zip(mats, svds):
-            Wr = (U[:, :r] * S[:r]) @ Vh[:r]
+        for (W, lin, (U, S, Vh)) in zip(mats, is_lin, svds):
+            Mr = (U[:, :r] * S[:r]) @ Vh[:r]                          # (in, out) effective; transpose back if Linear
+            Wr = Mr.t() if lin else Mr
             W.data.copy_(Wr.to(device=W.device, dtype=W.dtype))
 
     def restore():
@@ -203,17 +237,14 @@ def run_model(mid, args):
             s = S[:r].sqrt()
             A.append((U[:, :r] * s).detach().clone().to(vm.dev).requires_grad_(True))   # svds live on CPU
             B.append((s[:, None] * Vh[:r]).detach().clone().to(vm.dev).requires_grad_(True))
-        mods = []
-        for L in range(nL):
-            blk = vm.model.transformer.h[L]
-            mods += [blk.attn.c_attn, blk.attn.c_proj, blk.mlp.c_fc, blk.mlp.c_proj]
-        factor_on = [True]; hs = []
+        factor_on = [True]; hs = []                                   # reuse the arch-generic `mods` from run_model
 
         def mk(j):
             def hook(m, i, o):
                 if not factor_on[0]:                                  # off → teacher (self-distill case)
                     return None
-                return (i[0] @ A[j].to(i[0].dtype)) @ B[j].to(i[0].dtype) + m.bias   # low-rank product, no d×4d materialization
+                y = (i[0] @ A[j].to(i[0].dtype)) @ B[j].to(i[0].dtype)   # low-rank product, no d×4d materialization
+                return y if m.bias is None else y + m.bias            # Llama/Qwen Linear carries no bias
             return hook
         for j, mod in enumerate(mods):
             hs.append(mod.register_forward_hook(mk(j)))
