@@ -142,6 +142,20 @@ reconstruction-coverage curve should plateau at the entangled-core fraction prec
 the template count stays small and whether the irreducible floor itself grows with capability — the tower
 convergence was measured on small hosts.)
 
+> **Core-rank result — the core is heavy-tailed low-rank, and CPU-simplifiable without retraining (`core_rank.py`).**
+> Measuring the empirical rank of each layer's **residual update** (its contribution to the residual) over 6 models:
+> the spectrum is **heavy-tailed** — a tiny dominant head (participation ratio **5–33**, ~1–2% of d) but a real tail,
+> so the *functional* rank (energy-95 / accuracy-preserving) is **~⅓ of d** (hundreds of directions: rank-95
+> 250→398→476 across the GPT-2 ladder), and the dominant-direction count **grows with scale** (PR 5→13→24) —
+> consistent with the entangled core growing with capability, and with the forge tax's "no tiny basis." So the core
+> decompiles into a **moderate-rank** structure, not ~5 templates. **But it is substantially CPU-simplifiable for
+> free:** a *no-retrain* low-rank projection of every layer's update onto its top-r PCA subspace is **~lossless at 70%
+> rank** in GPT-2 (≈ +0.05 NLL at 40%), and **Gemma-2 is lossless at ~20%** (its update is the lowest functional rank
+> — ~80% of write-dims droppable), while **Llama/Qwen** are the least compressible (need ~70%+; higher functional
+> rank). A concrete efficiency lever — rank-r per-layer factorisation, no retraining — with the compressible fraction
+> **architecture-dependent** and shrinking with scale. (Caveat: this is the per-layer *write-subspace* rank, not the
+> full input→output map; data-dependent PCA. `runs/disassembly/core_rank_summary.json`.)
+
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
 The recompile-KL harness is most useful not as a one-shot metric but as a **steppable interpreter** over the
