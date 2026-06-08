@@ -221,6 +221,28 @@ model; the entangled composition ≈ the other half** — the three flat buckets
 basis, sufficient for half, and the complement is the forge tax made runnable.
 (`pylm/store_grammar.json`, `runs/pylm/validate_grammar_summary.json` vs `validate_nogrammar_summary.json`.)
 
+### The grammar, made readable (`grammar_rules.py`)
+
+The flat store keeps the grammar as token ids; `grammar_rules.py` decodes it into a human-readable inventory — the
+**closed-class lexicon by grammatical category** (the scaffold the idiom operates over) plus example skeleton rules:
+
+| category | words (GPT-2 single-token closed class) |
+|---|---|
+| determiners (21) | a an any each either every her his its my neither no our some that the their these this those your |
+| prepositions (22) | about above after at below between by down for from in into of off on out over through to under up with |
+| conjunctions (18) | although and as because but if nor or since so than then unless when where whereas while yet |
+| pronouns (21) | he hers him i it me mine ours she theirs them they us we what which who whom whose you yours |
+| auxiliaries (24) | am are be been being can could did do does had has have having is may might must shall should was were will would |
+| particles (14) | also hence here however just no not now only there therefore thus too very |
+| punctuation (18) | `. , ; : ! ? ' " ( ) [ ] { } - — … /` |
+
+**What is universal vs model-specific.** The *lexicon and categories* are language-universal (these are English's
+closed class) and the *scaffold* is corpus-invariant + cross-architecture (the core-structure result: the grammar head
+overlaps 22× chance across corpora and reproduces on Llama). The *skeleton → next-token transition table* (`skel`,
+12 K rules), by contrast, is **model/tokenizer-captured** — the categories stay, the specific transitions are read out
+of a given model. So the grammar is published as: a universal categorial inventory + a model-specific transition table,
+both regenerable from `pylm/store_grammar.json` → `runs/pylm/grammar_rules_summary.json`.
+
 ## The auditable artifact — per-token explanation at BOTH levels (`runtime_explain.py`)
 
 The "auditable corner" of the small/legible/complete triangle, made concrete: an explainer that attributes every
