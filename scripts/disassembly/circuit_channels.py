@@ -132,6 +132,44 @@ def run_model(mid, args):
             "dup_lift": round(float(dup_lift), 2), "pos_corr": round(pos_corr, 2), "label": label,
             "top_tokens_when_firing": top_ctx})
 
+    # ---- CAUSAL: project a channel OUT at the cut (late layers can't read it) → targeted behaviour drop? ----
+    if args.causal:
+        PUNCT = set('.,;:!?"\'()-\n—’“”…`')
+        vocab = WU.shape[0]
+        punct_id = np.zeros(vocab, bool)
+        for v in range(vocab):
+            s = tok.decode([v]).strip()
+            if s != "" and all(ch in PUNCT for ch in s):
+                punct_id[v] = True
+
+        def nll_split(udir):                                          # mean NLL on punct / duplicate / other next-tokens
+            hk = []
+            if udir is not None:
+                uu = t.tensor(udir, device=vm.dev, dtype=t.float32); uu = uu / uu.norm()
+
+                def hook(m, i, o):
+                    out = o[0] if isinstance(o, tuple) else o
+                    new = (out.float() - (out.float() @ uu)[..., None] * uu).to(out.dtype)
+                    return (new,) + tuple(o[1:]) if isinstance(o, tuple) else new
+                hk.append(vm.layers[cut].register_forward_hook(hook))
+            tot = {"punct": 0.0, "dup": 0.0, "other": 0.0}; cnt = {"punct": 0, "dup": 0, "other": 0}
+            with t.no_grad():
+                for c in chunks:
+                    lp = t.log_softmax(vm.model(input_ids=t.tensor([c], device=vm.dev)).logits[0].float(), -1)
+                    seen = set()
+                    for pp in range(len(c) - 1):
+                        seen.add(c[pp]); nxt = c[pp + 1]
+                        cat = "punct" if punct_id[nxt] else ("dup" if nxt in seen else "other")
+                        tot[cat] += -float(lp[pp, nxt]); cnt[cat] += 1
+            for h in hk:
+                h.remove()
+            return {k: tot[k] / max(cnt[k], 1) for k in tot}
+        base = nll_split(None)
+        for ch in channels[: args.causal_k]:                         # ablate each top channel's early-dir at the cut
+            ab = nll_split(U[:, ch["channel"]])
+            ch["causal_dNLL"] = {k: round(ab[k] - base[k], 3) for k in base}
+        print(f"  [causal] baseline NLL punct {base['punct']:.2f} · dup {base['dup']:.2f} · other {base['other']:.2f}")
+
     # participation ratio of the coupling spectrum (the χ this decomposition is enumerating)
     p2 = (S / S.sum()); chi = float(1.0 / (p2 ** 2).sum())
     return {"model": mid.split("/")[-1], "n_layers": nL, "cut": cut, "d": d, "n_positions": len(E),
@@ -147,6 +185,8 @@ def main(argv=None):
     p.add_argument("--cut", type=int, default=0, help="layer cut (0 = nL//2)")
     p.add_argument("--channels", type=int, default=16, help="top coupling channels to characterise")
     p.add_argument("--top-ctx", type=int, default=200)
+    p.add_argument("--causal", action="store_true", help="ablate each top channel at the cut, measure targeted ΔNLL (punct/dup/other)")
+    p.add_argument("--causal-k", type=int, default=8, help="how many top channels to causally ablate")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly"))
     args = p.parse_args(argv)
@@ -163,9 +203,11 @@ def main(argv=None):
             print(f"  cut {r['cut']}/{r['n_layers']} · coupling χ≈{r['coupling_participation_ratio_chi']:.1f} · "
                   f"{r['n_positions']} positions · top-{len(r['channels'])} channels:")
             for ch in r["channels"]:
+                cz = ch.get("causal_dNLL")
+                ctxt = (f" | ablate ΔNLL punct {cz['punct']:+.2f} dup {cz['dup']:+.2f} other {cz['other']:+.2f}" if cz else "")
                 print(f"   ch{ch['channel']:2d} σ {ch['sigma_frac']:.1%} | W{ch['writer_layers']}→R{ch['reader_layers']} "
                       f"| {ch['label']:20s} dup×{ch['dup_lift']:.2f} pos{ch['pos_corr']:+.2f} "
-                      f"| read-lens: {' '.join(ch['lens_read'][:5])}")
+                      f"| read-lens: {' '.join(ch['lens_read'][:4])}{ctxt}")
         except Exception as e:  # pragma: no cover
             import traceback
             traceback.print_exc(); print(f"  [skip] {e}"); results.append({"model": mid.split("/")[-1], "error": str(e)})

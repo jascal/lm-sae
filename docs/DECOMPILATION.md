@@ -552,12 +552,19 @@ positional correlation). pythia-160m, cut 6/12:
   connectives, mid-layers 5–9), ch11 `the their these such` (determiners), ch15 `is was occurs` (auxiliary/copula).
 - **Content-domain channels**: ch8 `authorities legislation establishment` (formal/legal), ch10 `thee thy unto` (archaic).
 
-So circuits are *visible, teasable, and separately represented* from the high-dimensional activations. **Caveats (honest):** this
-is the *aggregate* cut version, so it is dominated by the one boundary channel (participation ratio χ≈1.3 here) — the per-layer
-*resolved* coupling (`core_mps`'s nL·r cross-block, χ≈16) would expose finer channels; some channels' lenses are rare-token noise;
-and this is *correlational* (which directions co-vary cross-layer), not yet *causal*. The natural next steps — per-layer-resolved
-channels and a causal ablation (project a channel out at the cut, measure the targeted behaviour drop) — would turn each channel
-from a candidate into a confirmed, load-bearing circuit. (`runs/disassembly/circuit_channels_summary.json`.)
+So circuits are *visible, teasable, and separately representable* from the high-dimensional activations — **correlationally**.
+The honest limit shows up under **causal** ablation (`--causal`: project a channel's direction out of the residual at the cut,
+so late layers can't read it, and split ΔNLL by next-token category — punctuation / duplicate / other). Baseline NLL punct 2.51 /
+dup 1.94 / other 5.60. **Ablating a single channel direction is NOT cleanly targeted:** the dominant ch0 (88%) is catastrophic
+*everywhere* (ΔNLL +2.87 / +3.54 / +5.20 — a high-variance general axis, not a punctuation-specific circuit), while every small
+interpretable channel is **diffuse and weak** (mostly +0.04–0.2, "other" rising as much as "dup" — the *induction-labeled*
+channels do not specifically hurt duplicate-token prediction). So the layered answer to "can a circuit be **separately
+represented**?": **correlationally yes** (decompose + label the coupling channels), but **causally, as a single residual
+direction, no** (one-direction ablation is global or diffuse — redundancy/distribution defeats it); causal circuits ARE real but
+live at the **component (head/MLP) level**, where targeted ablation works (the catalog: induction, the number-mover via
+`agreement_circuit`). The channel decomposition is a correlational *lens* on the coupling, not its causal factorization.
+**Other caveats:** *aggregate*-cut version (χ≈1.3, dominated by ch0; the per-layer-*resolved* `core_mps` coupling, χ≈16, would
+expose finer channels); some lenses are rare-token noise. (`runs/disassembly/circuit_channels_summary.json`.)
 
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
