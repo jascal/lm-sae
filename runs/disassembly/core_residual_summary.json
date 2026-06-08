@@ -2,40 +2,116 @@
   "experiment": "where the data-aware low-rank residual concentrates (punct/dup/other)",
   "results": [
     {
-      "model": "pythia-160m",
+      "model": "gpt2",
       "baseline": {
-        "punct": 2.5733003987602983,
-        "dup": 2.031235477529331,
-        "other": 5.63344794936816
+        "punct": 2.7530627100896394,
+        "dup": 2.399829186097781,
+        "other": 6.62075104060706
       },
       "counts": {
-        "punct": 736,
-        "dup": 979,
-        "other": 3325
+        "punct": 488,
+        "dup": 621,
+        "other": 2041
       },
       "curve": [
         {
           "rank": 64,
-          "dNLL_punct": 0.32659961368493784,
-          "dNLL_dup": 0.9240406725215835,
-          "dNLL_other": 1.6570283610911343,
-          "concentration_dup_over_other": 0.5576492796752519
+          "dNLL_punct": 0.5879588182404882,
+          "dNLL_dup": 0.8663949840688758,
+          "dNLL_other": 0.9295611261536214,
+          "concentration_dup_over_other": 0.9320473487546058
         },
         {
           "rank": 128,
-          "dNLL_punct": 0.2604137976677916,
-          "dNLL_dup": 0.5033931376116447,
-          "dNLL_other": 1.0158990900840124,
-          "concentration_dup_over_other": 0.49551490106610924
+          "dNLL_punct": 0.025913947800529247,
+          "dNLL_dup": 0.5415946700299594,
+          "dNLL_other": 0.7284648495556585,
+          "concentration_dup_over_other": 0.7434739913900332
         },
         {
           "rank": 256,
-          "dNLL_punct": 0.05334580238369435,
-          "dNLL_dup": 0.10313258281525384,
-          "dNLL_other": 0.4834093002431423,
-          "concentration_dup_over_other": 0.21334422517323642
+          "dNLL_punct": -0.11496871683009902,
+          "dNLL_dup": -0.0151981258248024,
+          "dNLL_other": 0.05919719125582201,
+          "concentration_dup_over_other": -0.2567372749559363
         }
       ]
+    },
+    {
+      "model": "pythia-70m",
+      "baseline": {
+        "punct": 2.891293907676887,
+        "dup": 2.2252976765003187,
+        "other": 6.086503144776564
+      },
+      "counts": {
+        "punct": 483,
+        "dup": 618,
+        "other": 2049
+      },
+      "curve": [
+        {
+          "rank": 64,
+          "dNLL_punct": 0.17558531011560818,
+          "dNLL_dup": 0.7305586619323727,
+          "dNLL_other": 0.9921503920003998,
+          "concentration_dup_over_other": 0.7363386308027985
+        },
+        {
+          "rank": 128,
+          "dNLL_punct": 0.019550488282218836,
+          "dNLL_dup": 0.29404799231632506,
+          "dNLL_other": 0.5687378025777354,
+          "concentration_dup_over_other": 0.5170185460972868
+        },
+        {
+          "rank": 256,
+          "dNLL_punct": 0.007542862720772092,
+          "dNLL_dup": 0.1096179154701531,
+          "dNLL_other": 0.1894809643696158,
+          "concentration_dup_over_other": 0.5785167668758925
+        }
+      ]
+    },
+    {
+      "model": "pythia-410m",
+      "baseline": {
+        "punct": 2.408668348351667,
+        "dup": 1.7648698294668177,
+        "other": 5.299448351753412
+      },
+      "counts": {
+        "punct": 483,
+        "dup": 618,
+        "other": 2049
+      },
+      "curve": [
+        {
+          "rank": 64,
+          "dNLL_punct": 1.6280913190756134,
+          "dNLL_dup": 1.324446301375002,
+          "dNLL_other": 2.2732197097432767,
+          "concentration_dup_over_other": 0.5826301325453256
+        },
+        {
+          "rank": 128,
+          "dNLL_punct": 0.8820431498645789,
+          "dNLL_dup": 0.6379197165261201,
+          "dNLL_other": 1.2949033612154155,
+          "concentration_dup_over_other": 0.49263886027349585
+        },
+        {
+          "rank": 256,
+          "dNLL_punct": 0.31470157096006224,
+          "dNLL_dup": 0.2312103404683188,
+          "dNLL_other": 0.6186404110816195,
+          "concentration_dup_over_other": 0.37373947119027584
+        }
+      ]
+    },
+    {
+      "model": "pythia-1b",
+      "error": "CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 7.53 GiB of which 222.69 MiB is free. Including non-PyTorch memory, this process has 7.30 GiB memory in use. Of the allocated memory 7.11 GiB is allocated by PyTorch, and 21.06 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
     }
   ]
 }
