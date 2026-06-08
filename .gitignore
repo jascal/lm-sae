@@ -22,3 +22,9 @@ pylm/store_pythia-*.json
 pylm/store_gpt2.json
 pylm/holdout_pythia-*.json
 pylm/holdout_gpt2.json
+
+# pylm modern per-model stores (regenerable via ladder.py)
+pylm/store_Qwen*.json
+pylm/store_Llama*.json
+pylm/holdout_Qwen*.json
+pylm/holdout_Llama*.json

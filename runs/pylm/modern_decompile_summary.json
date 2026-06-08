@@ -1,0 +1,28 @@
+{
+  "experiment": "pylm decompilable fraction on MODERN models (Qwen2.5, Llama-3.2) vs the GPT-2/Pythia era",
+  "results": [
+    {
+      "model": "Qwen/Qwen2.5-1.5B",
+      "model_corpus_top1": 0.4023333333333333,
+      "decompilable_fraction": 0.3463333333333333,
+      "pylm_over_model_acc": 0.5758077864727229,
+      "pylm_corpus_top1": 0.23166666666666666,
+      "program_loc": 62,
+      "store_kb": 1950.3671875
+    },
+    {
+      "model": "meta-llama/Llama-3.2-3B",
+      "model_corpus_top1": 0.5103333333333333,
+      "decompilable_fraction": 0.313,
+      "pylm_over_model_acc": 0.45003265751136645,
+      "pylm_corpus_top1": 0.22966666666666666,
+      "program_loc": 62,
+      "store_kb": 1964.470703125
+    }
+  ],
+  "reference_era": {
+    "pythia-14m": 0.563,
+    "pythia-1.4b": 0.449,
+    "gpt2": 0.497
+  }
+}
