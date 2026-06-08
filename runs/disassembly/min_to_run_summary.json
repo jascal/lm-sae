@@ -2,6 +2,124 @@
   "experiment": "minimum-to-run frontier \u2014 fidelity vs stored size under no-retrain low-rank weight factorization",
   "results": [
     {
+      "model": "pythia-160m@retrain+share-cp",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 23.013826959314954,
+          "svd_agreement": 0.0,
+          "distilled_nll_increase": 2.013492671483955,
+          "distilled_agreement": 0.26256613756613756,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.26256613756613756
+          },
+          "stored_params": 3158016,
+          "compression_ratio": 0.037181712962962965,
+          "params_saved_frac": 0.962818287037037
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 22.942741180032804,
+          "svd_agreement": 0.0,
+          "distilled_nll_increase": 1.9200350707982023,
+          "distilled_agreement": 0.2824074074074074,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.2824074074074074
+          },
+          "stored_params": 6316032,
+          "compression_ratio": 0.07436342592592593,
+          "params_saved_frac": 0.9256365740740741
+        },
+        {
+          "rank": 768,
+          "svd_nll_increase": 22.90788622441635,
+          "svd_agreement": 0.0,
+          "distilled_nll_increase": 1.8506582373742102,
+          "distilled_agreement": 0.29365079365079366,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.29365079365079366
+          },
+          "stored_params": 9474048,
+          "compression_ratio": 0.1115451388888889,
+          "params_saved_frac": 0.8884548611111112
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m@retrain+share-both",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 6.986272655276548,
+          "svd_agreement": 0.027777777777777776,
+          "distilled_nll_increase": 1.3042211553442824,
+          "distilled_agreement": 0.3002645502645503,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.3002645502645503
+          },
+          "stored_params": 6291456,
+          "compression_ratio": 0.07407407407407407,
+          "params_saved_frac": 0.9259259259259259
+        },
+        {
+          "rank": 384,
+          "svd_nll_increase": 7.26290081406601,
+          "svd_agreement": 0.07804232804232804,
+          "distilled_nll_increase": 1.2473216959633788,
+          "distilled_agreement": 0.30357142857142855,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.30357142857142855
+          },
+          "stored_params": 11796480,
+          "compression_ratio": 0.1388888888888889,
+          "params_saved_frac": 0.8611111111111112
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 7.044849561760818,
+          "svd_agreement": 0.0,
+          "distilled_nll_increase": 1.1864176266771258,
+          "distilled_agreement": 0.328042328042328,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.328042328042328
+          },
+          "stored_params": 18874368,
+          "compression_ratio": 0.2222222222222222,
+          "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 768,
+          "svd_nll_increase": 5.807257627257116,
+          "svd_agreement": 0.09193121693121693,
+          "distilled_nll_increase": 1.155309727147503,
+          "distilled_agreement": 0.30886243386243384,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.30886243386243384
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        }
+      ]
+    },
+    {
       "model": "pythia-160m@retrain+daware+nl",
       "n_layers": 12,
       "full_nll": 4.436619751542811,

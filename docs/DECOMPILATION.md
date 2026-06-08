@@ -510,6 +510,29 @@ to *any per-matrix method*. That points the remaining two tests (cross-layer cou
 structure that **spans matrices** — consistent with the area-law cross-layer entanglement the composition graph shows.
 (`runs/disassembly/min_to_run_summary.json`, key `*@retrain+daware+nl`.)
 
+**Richer-form survey — (2/3) cross-layer weight-sharing HURTS, monotonically (`--share both` / `--share cp`).** Testing
+whether the layers share composition structure that per-matrix methods miss. Two joint factorizations of the layer
+*stack*, compared to independent per-matrix at **matched stored size** (pythia-160m, data-aware+retrain independent
+baseline): **Tucker** (`--share both`: shared in/out bases per matrix-type + a per-layer full core `k×k`) and **CP**
+(`--share cp`: shared rank-1 atoms `read⊗write`, each layer a per-atom *scalar* gate — i.e. the literal "cross-layer
+**circuit**" form, atoms capped at `d` so storage tops out ~11%). Trained 2500 steps, self-distill. ΔNLL at matched
+storage: independent **+0.60** (11%) → Tucker **+1.16–1.30** → CP **+1.85–2.01** — a clean **monotonic ordering:
+`independent < Tucker < CP`** (the *more* sharing is forced, the *worse* it gets; init-robust — Tucker has a good HOSVD
+init). So the **weight-level "few circuits" hypothesis is falsified**: the layers' composition weights occupy genuinely
+**distinct** subspaces; there is no compact shared cross-layer *weight* structure to exploit.
+
+The resolution (and it reconciles this with the circuit catalog): **two different objects had opposite answers.**
+*Weight*-circuits — can the weight *matrices* be rebuilt from a few shared cross-layer atoms? **No** (this survey:
+high-rank, layer-distinct). *Activation*-circuits — do a few computational *pathways* carry the forward pass? **Yes** (the
+reconstruction-coverage milestone: induction / number-mover / …). These are consistent: **a few sparse pathways threaded
+through high-dimensional, layer-distinct weight matrices.** The *computation* is few-circuits (why the model reads as
+circuits); the *weights* are Θ(d) and distinct (why the size / forge-tax doesn't compress). Net for the survey: the
+~⅔d per-matrix data-aware floor is robust to **{linear, nonlinear} × {per-matrix, cross-layer Tucker, cross-layer CP}** —
+the composed core's *size* is genuinely ~⅔d per layer and layer-distinct, even though its *wiring* is sparse. (Caveat:
+CP's HOSVD-diagonal init is rough; but the monotonic ordering holds regardless, and even good-init Tucker loses to
+independent, so a better CP init would not overturn it. A *targeted* cross-layer form — adjacent-only coupling, not
+type-global sharing — remains untested.) (`runs/disassembly/min_to_run_summary.json`, keys `*@retrain+share-both` / `+share-cp`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A

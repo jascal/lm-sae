@@ -257,6 +257,41 @@ def run_model(mid, args):
 
     train = train_chunks                                              # diverse or single-domain (from build_chunks)
 
+    def train_factors(params, factor_on, steps):
+        """shared distillation loop: train `params` to match the full model (top-k KL to a separate teacher, else
+        self-distill KL, else corpus NLL). Used by both the per-matrix and the cross-layer (shared) factorizations."""
+        if args.teacher:                                              # gradient checkpointing — fits fp32-large training on a small GPU
+            vm.model.config.use_cache = False
+            vm.model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+        opt = torch.optim.Adam(params, lr=args.lr); rng = np.random.default_rng(0); T = 2.0
+        for s in range(steps):
+            j = int(rng.integers(0, len(train))); tid = t.tensor([train[j]], device=vm.dev)
+            if args.match_teacher and teacher_soft is not None:       # top-k KL to the precomputed SEPARATE-teacher targets
+                slp = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / TT, -1)
+                idx, t_lp = teacher_soft[j]; idx = idx.to(vm.dev); t_lp = t_lp.to(vm.dev)   # precomputed on CPU
+                s_lp = t.log_softmax(slp.gather(-1, idx), -1)         # student renormalised over the teacher's top-k
+                loss = (t_lp.exp() * (t_lp - s_lp)).sum(-1).mean() * (TT * TT)
+            elif args.match_teacher:                                  # self-teacher: student WITHOUT its factors
+                with t.no_grad():
+                    factor_on[0] = False
+                    teach = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
+                    factor_on[0] = True
+                student = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
+                loss = t.nn.functional.kl_div(student, teach, log_target=True, reduction="batchmean") * (T * T)
+            else:                                                     # corpus NLL (capable, not faithful)
+                logits = vm.model(input_ids=tid).logits[0]
+                loss = t.nn.functional.cross_entropy(logits[:-1].float(), tid[0, 1:])
+            opt.zero_grad(); loss.backward(); t.nn.utils.clip_grad_norm_(params, 1.0); opt.step()   # clip → stable
+        factor_on[0] = True
+        if args.teacher:
+            vm.model.gradient_checkpointing_disable(); vm.model.config.use_cache = True
+
+    def eval_after():
+        nll, preds, agree, per_dom = gen(metric_top1=full_top1)
+        agree_teacher = (float(np.mean([float((p == teacher_top1[i].to(p.device)).float().mean())
+                                        for i, p in enumerate(preds)])) if teacher_top1 is not None else None)
+        return nll, agree, per_dom, agree_teacher
+
     def fit_distill(r, steps):
         """factor every weight W≈A·B at rank r (SVD init), TRAIN the factors to match the full model (others frozen)."""
         for p in vm.model.parameters():
@@ -284,48 +319,74 @@ def run_model(mid, args):
         for j, mod in enumerate(mods):
             hs.append(mod.register_forward_hook(mk(j)))
         params = A + B + ([a for a in alpha if a is not None])        # alpha trained alongside the factors
-        if args.teacher:                                              # gradient checkpointing — fits fp32-large training on a small GPU
-            vm.model.config.use_cache = False
-            vm.model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
-        opt = torch.optim.Adam(params, lr=args.lr); rng = np.random.default_rng(0); T = 2.0
-        for s in range(steps):
-            j = int(rng.integers(0, len(train))); tid = t.tensor([train[j]], device=vm.dev)
-            if args.match_teacher and teacher_soft is not None:       # top-k KL to the precomputed SEPARATE-teacher targets
-                slp = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / TT, -1)
-                idx, t_lp = teacher_soft[j]; idx = idx.to(vm.dev); t_lp = t_lp.to(vm.dev)   # precomputed on CPU
-                s_lp = t.log_softmax(slp.gather(-1, idx), -1)         # student renormalised over the teacher's top-k
-                loss = (t_lp.exp() * (t_lp - s_lp)).sum(-1).mean() * (TT * TT)
-            elif args.match_teacher:                                  # self-teacher: student WITHOUT its factors
-                with t.no_grad():
-                    factor_on[0] = False
-                    teach = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
-                    factor_on[0] = True
-                student = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
-                loss = t.nn.functional.kl_div(student, teach, log_target=True, reduction="batchmean") * (T * T)
-            else:                                                     # corpus NLL (capable, not faithful)
-                logits = vm.model(input_ids=tid).logits[0]
-                loss = t.nn.functional.cross_entropy(logits[:-1].float(), tid[0, 1:])
-            opt.zero_grad(); loss.backward(); t.nn.utils.clip_grad_norm_(params, 1.0); opt.step()   # clip → stable
-        factor_on[0] = True
-        if args.teacher:
-            vm.model.gradient_checkpointing_disable(); vm.model.config.use_cache = True
-        nll, preds, agree, per_dom = gen(metric_top1=full_top1)
-        agree_teacher = (float(np.mean([float((p == teacher_top1[i].to(p.device)).float().mean())
-                                        for i, p in enumerate(preds)])) if teacher_top1 is not None else None)
+        train_factors(params, factor_on, steps)
+        nll, agree, per_dom, agree_teacher = eval_after()
         for h in hs:
             h.remove()
         return nll, agree, per_dom, agree_teacher
 
+    def fit_share(k, steps):
+        """CROSS-LAYER (Tucker): per matrix-TYPE, a SHARED column basis U_t (in,k) + row basis V_t (k,out) reused by
+        all nL layers, with a per-layer core C (k,k). Tests whether layers share composition bases — a joint
+        factorization of the layer stack vs independent per-matrix at matched stored size. HOSVD init, then trained.
+        Returns the no-retrain (HOSVD) baseline AND the trained result, plus the shared stored-param count."""
+        per_layer = len(mods) // nL
+        for p in vm.model.parameters():
+            p.requires_grad_(False)
+        U_t = {}; V_t = {}; C = [None] * len(mods)                    # shared bases per type; per-matrix core (or CP loadings)
+        cp = (args.share == "cp")                                     # CP: each layer = per-layer SCALING of shared rank-1 atoms
+        for ty in range(per_layer):
+            idxs = [ty + per_layer * L for L in range(nL)]
+            Ms = [eff(mats[j], is_lin[j]).detach().float().cpu() for j in idxs]   # (in,out) per layer, same shape
+            Uh = t.linalg.svd(t.cat(Ms, dim=1), full_matrices=False).U[:, :k]      # shared input/read basis (in,k)
+            Vh = t.linalg.svd(t.cat(Ms, dim=0), full_matrices=False).Vh[:k]        # shared output/write basis (k,out)
+            U_t[ty] = Uh.clone().to(vm.dev).requires_grad_(True)
+            V_t[ty] = Vh.clone().to(vm.dev).requires_grad_(True)
+            for j, M in zip(idxs, Ms):                                # Tucker: full (k,k) core; CP: just the k diagonal loadings
+                core = Uh.t() @ M @ Vh.t()                            # (k,k)
+                C[j] = ((core.diagonal().clone() if cp else core.clone())).to(vm.dev).requires_grad_(True)
+        Uof = [U_t[j % per_layer] for j in range(len(mods))]; Vof = [V_t[j % per_layer] for j in range(len(mods))]
+        factor_on = [True]; hs = []
+
+        def mk(j):
+            def hook(m, i, o):
+                if not factor_on[0]:
+                    return None
+                code = i[0] @ Uof[j].to(i[0].dtype)                   # (..,k) read into the shared basis
+                if cp:                                                # CP "circuit": per-layer scalar gate on each shared atom
+                    y = (code * C[j].to(code.dtype)) @ Vof[j].to(i[0].dtype)
+                else:                                                 # Tucker: per-layer full recombination
+                    y = (code @ C[j].to(i[0].dtype)) @ Vof[j].to(i[0].dtype)
+                return y if m.bias is None else y + m.bias
+            return hook
+        for j, mod in enumerate(mods):
+            hs.append(mod.register_forward_hook(mk(j)))
+        nll0, _, agree0, _ = gen(metric_top1=full_top1)               # no-retrain HOSVD baseline (factors at init)
+        params = list(U_t.values()) + list(V_t.values()) + C
+        train_factors(params, factor_on, steps)
+        nll, agree, per_dom, agree_teacher = eval_after()
+        for h in hs:
+            h.remove()
+        core_sz = len(mods) * k if cp else len(mods) * k * k          # CP: nL·k diagonal loadings; Tucker: nL·k² cores
+        stored = int(sum(mats[ty].shape[0] * k + k * mats[ty].shape[1] for ty in range(per_layer)) + core_sz)
+        return nll0, agree0, nll, agree, per_dom, agree_teacher, stored
+
     ranks = sorted({int(x) for x in args.ranks.split(",")})
     curve = []
     for r in ranks:
-        set_rank(r); nll0, _, agree0, _ = gen(metric_top1=full_top1); restore()   # no-retrain SVD baseline
-        try:
-            nll_d, agree_d, per_dom, agree_tch = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None, None, None))
-        except torch.cuda.OutOfMemoryError:                            # one rank OOM (big factors) → drop that rank, keep the curve
-            nll_d, agree_d, per_dom, agree_tch = (None, None, None, None)
-            print(f"    rank {r:4d}: distill OOM — skipped (SVD baseline kept)"); torch.cuda.empty_cache()
-        stored = int(sum(r * (W.shape[0] + W.shape[1]) for W in mats))
+        if args.share != "none":                                       # cross-layer factorization (Tucker or CP)
+            try:
+                nll0, agree0, nll_d, agree_d, per_dom, agree_tch, stored = fit_share(r, args.distill_steps)
+            except torch.cuda.OutOfMemoryError:
+                print(f"    rank {r:4d}: share OOM — skipped"); torch.cuda.empty_cache(); continue
+        else:
+            set_rank(r); nll0, _, agree0, _ = gen(metric_top1=full_top1); restore()   # no-retrain SVD baseline
+            try:
+                nll_d, agree_d, per_dom, agree_tch = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None, None, None))
+            except torch.cuda.OutOfMemoryError:                        # one rank OOM (big factors) → drop that rank, keep the curve
+                nll_d, agree_d, per_dom, agree_tch = (None, None, None, None)
+                print(f"    rank {r:4d}: distill OOM — skipped (SVD baseline kept)"); torch.cuda.empty_cache()
+            stored = int(sum(r * (W.shape[0] + W.shape[1]) for W in mats))
         curve.append({"rank": r, "svd_nll_increase": nll0 - full_nll, "svd_agreement": agree0,
                       "distilled_nll_increase": (nll_d - full_nll) if nll_d is not None else None,
                       "distilled_agreement": agree_d, "distilled_agreement_teacher": agree_tch,
@@ -337,6 +398,8 @@ def run_model(mid, args):
         tag += "+daware"
     if args.nonlinear:
         tag += "+nl"
+    if args.share != "none":
+        tag += f"+share-{args.share}"
     return {"model": mid.split("/")[-1] + "@" + tag, "n_layers": nL, "full_nll": full_nll, "teacher": args.teacher,
             "transformer_weight_params_M": full_params / 1e6, "distill_steps": args.distill_steps, "curve": curve}
 
@@ -358,6 +421,8 @@ def main(argv=None):
     p.add_argument("--tag", default="", help="suffix for the summary-json model key (auto: self/teacher=<id>/nll)")
     p.add_argument("--data-aware", action="store_true", help="functional (activation-weighted) low-rank vs Frobenius SVD")
     p.add_argument("--nonlinear", action="store_true", help="α-gated GELU bottleneck (code+α·gelu(code)); superset of linear, α init 0")
+    p.add_argument("--share", default="none", choices=["none", "both", "cp"],
+                   help="cross-layer: 'both'=Tucker (shared bases+per-layer core); 'cp'=shared rank-1 atoms+per-layer scalar loadings (=circuits)")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly"))
     args = p.parse_args(argv)
