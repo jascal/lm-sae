@@ -442,6 +442,24 @@ if it lacks the capacity. (A *capability* benchmark — `benchmark.py`, held-out
 last-word accuracy — scores whether a produced core is *good* even when it isn't a *faithful* copy.)
 (`runs/disassembly/teacher_distill_summary.json`.)
 
+**Capability ladder (the baselines).** Scoring the full models on the benchmark (held-out perplexity · next-token ·
+last-word, distinct from the distillation corpus):
+
+| model | perplexity | next-token | last-word |
+|---|---|---|---|
+| gpt2 | 62.4 | 27.9% | 26.5% |
+| gpt2-medium | 47.4 | 31.2% | 27.5% |
+| gpt2-large | 41.6 | 32.8% | 30.0% |
+| gpt2-xl | 38.7 | 33.8% | 29.5% |
+| **Qwen2.5-1.5B** | **22.5** | 37.2% | 37.5% |
+| **Llama-3.2-3B** | **18.9** | 39.6% | 46.5% |
+
+The GPT-2 family improves smoothly with size (62→39 ppl), but the **modern models are in a different regime** —
+Qwen2.5-1.5B (22.5) and Llama-3.2-3B (18.9) roughly *halve* GPT-2-XL's perplexity at similar/smaller size, with
+last-word accuracy 37–46% vs ~30%. This is the capability counterpart to the lower modern *decompilable fraction*
+(more capability ⇒ more entangled composition ⇒ less flat-reproducible) and the baseline any compressed core is judged
+against. (`runs/disassembly/benchmark_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
