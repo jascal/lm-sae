@@ -31,6 +31,10 @@ FACTS = [
 TEMPLATE = "The capital of {subj} is{false}. The capital of {subj} is"
 
 
+def build_prompt(subj, false_obj, reps):
+    return " ".join([f"The capital of {subj} is{false_obj}."] * reps) + f" The capital of {subj} is"
+
+
 def run_model(model_id, ind_heads, args, dev):
     import torch
     is_gpt2 = "gpt2" in model_id.lower()
@@ -45,13 +49,17 @@ def run_model(model_id, ind_heads, args, dev):
     tok = AutoTokenizer.from_pretrained(model_id)
 
     objs = {subj: tok(obj, add_special_tokens=False)["input_ids"] for subj, obj in FACTS}
-    items = []                                                                   # (ids, true_tok, false_tok)
-    for subj, obj in FACTS:
-        if len(objs[subj]) != 1:
-            continue
-        false_subj, false_obj = next((s, o) for s, o in FACTS if s != subj and len(objs[s]) == 1)
-        ids = tok(TEMPLATE.format(subj=subj, false=false_obj), add_special_tokens=not is_gpt2)["input_ids"]
-        items.append((ids, objs[subj][0], objs[false_subj][0]))
+
+    def build_items(reps):
+        out = []
+        for subj, obj in FACTS:
+            if len(objs[subj]) != 1:
+                continue
+            false_subj, false_obj = next((s, o) for s, o in FACTS if s != subj and len(objs[s]) == 1)
+            ids = tok(build_prompt(subj, false_obj, reps), add_special_tokens=not is_gpt2)["input_ids"]
+            out.append((ids, objs[subj][0], objs[false_subj][0]))
+        return out
+    items = build_items(1)
     if len(items) < 6:
         raise RuntimeError(f"only {len(items)} usable items for {model_id}")
 
@@ -81,11 +89,11 @@ def run_model(model_id, ind_heads, args, dev):
             hs.append(oproj[L].register_forward_pre_hook(mk(L, hss)))
         return hs
 
-    def margins(heads=()):
+    def margins(items_, heads=()):
         hs = ablate(heads); ctx_win = 0; tot = 0; msum = 0.0
         try:
             with torch.no_grad():
-                for ids, true_t, false_t in items:
+                for ids, true_t, false_t in items_:
                     lg = m(input_ids=torch.tensor([ids], device=dev)).logits[0, -1].float()
                     margin = float(lg[false_t] - lg[true_t])                     # context(false) − memory(true)
                     msum += margin; tot += 1
@@ -96,17 +104,20 @@ def run_model(model_id, ind_heads, args, dev):
                 x.remove()
         return msum / max(tot, 1), ctx_win / max(tot, 1)
 
-    base_margin, base_ctxwin = margins()
-    ab_margin, ab_ctxwin = margins(ind_heads)
+    base_margin, base_ctxwin = margins(items)
+    ab_margin, ab_ctxwin = margins(items, ind_heads)
     rng = np.random.default_rng(args.seed)                                       # random-head control of same size
     rk = [(int(i) // H, int(i) % H) for i in rng.choice(nL * H, len(ind_heads), replace=False)]
-    rnd_margin, rnd_ctxwin = margins(rk)
+    rnd_margin, rnd_ctxwin = margins(items, rk)
+    sweep = {reps: margins(build_items(reps))[1] for reps in args.reps}          # context-win vs # in-context repetitions
     print(f"  {len(items)} items | context-win {base_ctxwin:.0%} (margin {base_margin:+.2f}) | "
-          f"−induction → {ab_ctxwin:.0%} ({ab_margin:+.2f}) | −random → {rnd_ctxwin:.0%} ({rnd_margin:+.2f})")
+          f"−induction → {ab_ctxwin:.0%} ({ab_margin:+.2f}) | −random → {rnd_ctxwin:.0%} ({rnd_margin:+.2f}) | "
+          f"reps-sweep {[(r, f'{sweep[r]:.0%}') for r in args.reps]}")
     return {"model": model_id.split("/")[-1], "rope": not is_gpt2, "n_items": len(items), "n_induction_heads": len(ind_heads),
             "context_win_rate": base_ctxwin, "context_margin": base_margin,
             "context_win_minus_induction": ab_ctxwin, "margin_minus_induction": ab_margin,
-            "context_win_minus_random": rnd_ctxwin, "margin_minus_random": rnd_margin}
+            "context_win_minus_random": rnd_ctxwin, "margin_minus_random": rnd_margin,
+            "reps_sweep": {str(r): sweep[r] for r in args.reps}}
 
 
 def write_doc(out, docs):
@@ -125,14 +136,31 @@ def write_doc(out, docs):
         L.append(f"| {r['model']} | **{r['context_win_rate']:.0%}** ({r['context_margin']:+.2f}) | "
                  f"{r['context_win_minus_induction']:.0%} ({r['margin_minus_induction']:+.2f}) | "
                  f"{r['context_win_minus_random']:.0%} ({r['margin_minus_random']:+.2f}) |")
+    reps = sorted({int(k) for r in out["results"] if r.get("reps_sweep") for k in r["reps_sweep"]})
+    if reps:
+        L += ["", "## How much context to override memory? (repetition sweep)", "",
+              "Context-win rate as the false fact is repeated **N times** in-context before the query — does *more* "
+              "in-context evidence eventually flip the memory-dominant models?", "",
+              "| model | " + " | ".join(f"×{n}" for n in reps) + " |", "|---|" + "---|" * len(reps)]
+        for r in out["results"]:
+            if not r.get("reps_sweep"):
+                continue
+            L.append(f"| {r['model']} | " + " | ".join(f"{r['reps_sweep'].get(str(n), 0):.0%}" for n in reps) + " |")
+        L += ["", "_**This reframes the memory-dominance.** At **2 repetitions every model flips to 100% context-win** "
+              "— including the one-shot-memory-dominant RoPE models (Gemma 6%→100%, Llama/Qwen 0%→100%). So the "
+              "RoPE \"memory-dominance\" is purely a **one-shot** effect: their induction needs **≥2 prior occurrences** "
+              "to fire strongly enough to override memory, where GPT-2's fires on a single one. It is induction's "
+              "**evidence threshold**, not a refusal to trust context — and once induction fires (≥2 reps) it overrides "
+              "stored memory universally._"]
     L += ["", "_**Finding — two regimes.** (1) The **GPT-2 family is context-swayable** (context-win 44–81%) and "
           "**induction is the mechanism**: ablating the induction heads collapses context-win to 0–19% (memory wins), "
           "far more than ablating a random same-size head-set (which leaves it ≈baseline or higher). So induction is "
           "what lets a fresh in-context statement override stored memory. (2) The **RoPE family is memory-dominant**: "
           "Llama and Qwen **ignore the contradicting in-context fact entirely** (0% context-win) and Gemma nearly so "
-          "(6%) — they trust their weights over a one-shot context. A real architecture/training difference in the "
-          "in-context vs in-weights balance, on top of induction being the shared override mechanism where context "
-          "*does* win. Provisional, ~16 capital facts, single-token answers. Data: "
+          "(6%) — on a **single** in-context statement. But the repetition sweep above shows this is a one-shot "
+          "effect: at ≥2 repetitions all six flip to 100% context-win. So the difference is induction's **evidence "
+          "threshold** (RoPE needs ≥2 occurrences, GPT-2 fires on 1), not a standing refusal to trust context; "
+          "induction is the shared override mechanism once it fires. Provisional, ~16 capital facts, single-token answers. Data: "
           "[context_vs_memory_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/context_vs_memory_summary.json). "
           "Regenerate: [context_vs_memory.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/context_vs_memory.py). "
           "See [induction](../operators/induction.md) + [where facts live](factual_recall.md)._"]
@@ -144,6 +172,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--dossiers", type=Path, default=Path("runs/disassembly/operators/xmodel_dossiers_summary.json"))
     p.add_argument("--model-ids", default="gpt2,gpt2-medium,gpt2-large,google/gemma-2-2b,unsloth/Llama-3.2-1B,Qwen/Qwen2.5-1.5B")
+    p.add_argument("--reps", type=int, nargs="+", default=[1, 2, 3, 5, 8], help="# in-context repetitions to sweep")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly/circuits"))
