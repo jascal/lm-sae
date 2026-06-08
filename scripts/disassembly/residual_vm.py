@@ -75,7 +75,7 @@ class ResidualVM:
         self.oproj = a["oproj"]; self.layers = a["layers"]; self.norm = a["norm"]; self.mlps = mlp_blocks(self.model)
         self.H = a["H"]; self.hd = a["hd"]; self.nkv = a["nkv"]; self.nL = self.model.config.num_hidden_layers
         self.d = a.get("d", self.model.config.hidden_size)
-        self.mean_oproj = None; self.mean_mlp = None
+        self.mean_oproj = None; self.mean_mlp = None; self._sae = {}
 
     # ---- corpus means (the mean-ablation reference) ----
     def fit_means(self, chunks):
@@ -194,6 +194,47 @@ class ResidualVM:
                     out.append((("mlp", L), metric(self) - base))
         return sorted(out, key=lambda r: -r[1])
 
+    # ---- feature-level interventions (SAE latents — the next rung toward feature-native decompilation) ----
+    def load_sae(self, layer):
+        """Cache the resid SAE for a layer: GPT-2 jbloom (all layers) / Gemma Scope (8 layers). torch on device."""
+        if layer in self._sae:
+            return self._sae[layer]
+        t = self.torch
+        if self.is_gpt2:
+            from huggingface_hub import hf_hub_download
+            from safetensors.numpy import load_file
+            st = load_file(hf_hub_download("jbloom/GPT2-Small-SAEs-Reformatted", f"blocks.{layer}.hook_resid_pre/sae_weights.safetensors"))
+            w = {k: st[k] for k in ("W_enc", "b_enc", "W_dec", "b_dec")}; thr = None
+        else:
+            from scope_loader import scope_npz
+            d = np.load(scope_npz(layer)); w = {k: d[k] for k in ("W_enc", "b_enc", "W_dec", "b_dec")}; thr = d["threshold"]
+        sae = {k.lower().replace("_", ""): t.tensor(v.astype(np.float32), device=self.dev) for k, v in w.items()}
+        sae["thr"] = t.tensor(thr.astype(np.float32), device=self.dev) if thr is not None else None
+        self._sae[layer] = sae
+        return sae
+
+    def _feat_act(self, sae, x, feat):
+        pre = (x.float() - sae["bdec"]) @ sae["wenc"][:, feat] + sae["benc"][feat]
+        return self.torch.relu(pre) if sae["thr"] is None else self.torch.where(pre > sae["thr"][feat], pre, self.torch.zeros_like(pre))
+
+    @contextmanager
+    def set_feature(self, layer, feat, target):
+        """Set SAE feature `feat` at resid-layer `layer` to `target` activation (target=0 → ablate). Composable."""
+        sae = self.load_sae(layer)
+
+        def pre(m, inp):
+            x = inp[0]
+            delta = (target - self._feat_act(sae, x, feat)).unsqueeze(-1) * sae["wdec"][feat]
+            return (x + delta.to(x.dtype),) + inp[1:]
+        h = self.layers[layer].register_forward_pre_hook(pre)
+        try:
+            yield self
+        finally:
+            h.remove()
+
+    def ablate_feature(self, layer, feat):
+        return self.set_feature(layer, feat, 0.0)
+
     def head_OV(self, L, h):
         """W_V^h W_O^h (d,d), arch-generic (GQA-aware)."""
         a = self.a; H = self.H; hd = self.hd; kvB = h // (H // self.nkv); d = self.d
@@ -236,6 +277,26 @@ def demo(model_id="gpt2", device="cpu"):
     return cov
 
 
+def feat_demo(model_id="gpt2", device="cpu", layer=5):
+    """Feature-level surgery: ablate the subject's dominant SAE feature and watch the fact prediction drop."""
+    vm = ResidualVM(model_id, device=device); tok = vm.tok; t = vm.torch
+    ids = tok("The capital of France is")["input_ids"]
+    paris = tok(" Paris", add_special_tokens=False)["input_ids"][0]
+    fr = tok(" France", add_special_tokens=False)["input_ids"][0]
+    spos = max(i for i, x in enumerate(ids) if x == fr)
+    sae = vm.load_sae(layer)
+    resid = vm.trace(ids)["resid"][layer][0]
+    pre = (resid[spos].float() - sae["bdec"]) @ sae["wenc"] + sae["benc"]
+    feat = int(t.relu(pre).argmax().cpu())
+    top = vm.tok.convert_ids_to_tokens(int(((sae["wdec"][feat]) @ vm.model.get_output_embeddings().weight.float().T).argmax().cpu())).replace("Ġ", "_")
+    base = float(t.log_softmax(vm.logits(ids).float(), -1)[-1, paris])
+    with vm.ablate_feature(layer, feat):
+        abl = float(t.log_softmax(vm.logits(ids).float(), -1)[-1, paris])
+    print(f"[feat-demo] {model_id}: ablate the dominant feature #{feat} (promotes '{top}') at L{layer} of ' France' "
+          f"→ logp(' Paris') {base:.2f} → {abl:.2f} (Δ {abl - base:+.2f}). Feature-level surgery works.")
+    return abl - base
+
+
 def _oproj_modules(model):
     """(output-projection module per layer, head_dim) for the mean-ablation slice — arch-generic."""
     cfg = model.config
@@ -260,10 +321,13 @@ def main(argv=None):
     p.add_argument("--n-rand", type=int, default=3, help="random control sets per budget")
     p.add_argument("--device", default="cuda")
     p.add_argument("--demo", action="store_true", help="reproduce induction reconstruction coverage via the ResidualVM class (correctness check)")
+    p.add_argument("--feat-demo", action="store_true", help="feature-level surgery demo: ablate a subject SAE feature, watch the fact drop")
     p.add_argument("--output", type=Path, default=Path("runs/disassembly/residual_vm_summary.json"))
     args = p.parse_args(argv)
     if args.demo:
         demo(args.model, args.device); return
+    if args.feat_demo:
+        feat_demo(args.model, args.device); return
 
     import torch
     import torch.nn.functional as F
