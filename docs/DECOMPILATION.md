@@ -334,7 +334,43 @@ attractor (**10.9: verb→head 0.31 vs verb→attractor 0.07**; 10.5: 0.35 vs 0.
 token; 2.10 leans to the attractor) — the local pathway the agreement heads override. Crucially, **none of the
 number-movers are induction / prev-token / duplicate heads** (all `UNNAMED`): the agreement circuit is a **distinct
 operator class**, a new catalog entry — the composition that does the recursive work, made of heads the copy-idiom
-catalog doesn't name. (`runs/disassembly/agreement_circuit_summary.json`.)
+catalog doesn't name. **Cross-scale:** gpt2-large reproduces it — the movers are again UNNAMED mid-to-late heads
+(24.3 with verb→head 0.42 vs 0.03; 32.5, 25.4, 15.10, 14.0 at the same ~60–90% relative depth).
+(`runs/disassembly/agreement_circuit_summary.json`.)
+
+### The recursion depth limit — distance is interference-bounded, nesting breaks sooner, but the ceiling does *not* grow with layers (`recursion_depth.py`)
+
+Is recursion depth-limited by the number of layers? Theory says a single forward pass is a fixed-depth circuit (TC⁰),
+so **genuine nesting** (each embedded clause resolved before the outer one — stack-like) is layer-bounded, while mere
+**distance** (the head noun is far away) is **not** — attention jumps directly across any distance in one layer.
+Testing both — PP-distance (*"the key near the dogs near the tables is"*) vs center-embedding (*"the key that the dogs
+that the cat sees chase is"*), scoring the outer verb's agreement with the head across depth 0–5:
+
+| nesting ceiling (acc ≥ 75%) | gpt2 12L | Llama 16L | gpt2-medium 24L | gpt2-large 36L |
+|---|---|---|---|---|
+| **distance** (PP modifiers) | 5+ | 5+ | 5+ | 5+ (gradual, never crosses 0) |
+| **nesting** (center-embedding) | **5** | **3** | **3** | **2** (logit-diff crosses 0 at depth 5) |
+
+- **Distance is interference-bounded, not layer-bounded** — accuracy stays ≥ 75% through depth 5 in every model, the
+  logit-diff decays gradually (+5 → +1) and never flips: more attractors just add noise to a one-hop lookup.
+- **Nesting breaks sooner** — center-embedding degrades faster (logit-diff halves by depth 2; flips negative for
+  gpt2-large), consistent with genuine recursion being harder than distance.
+- **…but the nesting ceiling does *not* grow with layers — it *shrinks* with model size** (12L → 5, 16L → 3, 24L → 3,
+  36L → 2). The *opposite* of "more layers → deeper recursion."
+
+**Honest conclusion: the TC⁰ layer-bound is real in principle but is *not* the binding constraint here.** Every model
+has 12–36 layers — far more than the depth ~2–3 where center-embedding breaks — so they fail for **distributional /
+interference** reasons, not layer exhaustion: deep center-embedding is vanishingly rare in training (and unparseable
+for humans past ~2), each level adds more opposite-number signal (nouns *and* inner verbs), and a bigger/better model
+commits *harder* to the dominant local-natural parse → it breaks *earlier*. So the answer to "is recursion
+layer-limited?" is: **yes in principle (one pass is TC⁰), but empirically these models cap at center-embedding depth
+~2–3 — far below any layer limit — and layer count is not the active constraint; training distribution + interference
+are.** The genuine layer-bound would bind only for *in-distribution* recursion pushed past the data's depth, which
+natural language essentially never does (the human depth-2 center-embedding limit is itself this phenomenon); to go
+deeper a model uses the **decode loop / chain-of-thought** (TC⁰ per step, Turing-complete across steps), trading
+within-pass depth for sequence length. *(Caveat: nesting adds more+stronger attractors per level than distance, so
+"nesting harder" is partly more interference, not purely stack depth; the robust, size-monotone result is the ceiling
+shrinking with capability.)* (`runs/disassembly/recursion_depth_summary.json`.)
 
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
