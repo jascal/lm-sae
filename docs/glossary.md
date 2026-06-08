@@ -99,6 +99,52 @@ vocabulary — the natural-history reference for the [operator catalog](operator
   feature basis; the "tax" = forging preserves accuracy (mAUC) but collapses monosemanticity (cov95). *Here:* the
   [forge-tax track](FORGE_TAX_TRACK.md).
 
+## Acronyms & symbols (quick reference)
+
+The bare abbreviations and symbols used throughout the catalog, in one place.
+
+- **MLP** (multi-layer perceptron) — the per-layer feed-forward block; the **COMPUTE** instruction class. *Here:*
+  `MLP0` = the layer-0 MLP (the detokenizer / [extended embedding](operators/mlp_detokenizer.md)); the
+  [MLP catalog](operators/mlp_compute.md), and MLPs as circuit nodes in the [circuit catalog](circuits/README.md).
+- **NLL** (negative log-likelihood) — `−log p(correct token)`, the prediction loss/metric. *Here:* **induction-NLL**
+  (on repeated-random sequences) and **generic-NLL** (on prose) are the two behaviours nearly every causal test scores.
+- **KL** (Kullback–Leibler divergence) — directed distance between two distributions. *Here:* `KL(host ‖ recompiled)`
+  is the faithfulness oracle behind [reconstruction coverage](DECOMPILATION.md).
+- **logit-diff** — `logit(IO) − logit(S)` at the last position, the **IOI** metric (how much the model prefers the
+  indirect object over the subject).
+- **DLA** (direct logit attribution) — a component's *direct* contribution to a token's logit through the unembedding.
+  *Here:* the literature IOI head-sets are DLA-derived.
+- **η² (eta-squared)** — the fraction of a quantity's variance explained by a categorical label (one-way ANOVA).
+  *Here:* MLP0 **token-determinism** (η² of the MLP0 output explained by the current token,
+  [extended-embedding test](operators/mlp_detokenizer.md)) and the domain-tiling test.
+- **read-out depth** — the relative depth (`layer / n_layers`) at which the **logit lens** first decodes the answer —
+  *where a relation resolves* in the forward pass ([scaling synthesis](scaling.md), [findings](FINDINGS.md)).
+- **entity-leakage** — when editing one fact of a subject (its capital) also flips another (its language): evidence the
+  editable unit is the **entity, not the fact** ([findings](FINDINGS.md)).
+- **effective-N / Hill number** — `(Σxᵢ)² / Σxᵢ²`, the *effective* count of contributors in a distribution (1 = one
+  dominant, N = N equal). *Here:* how many heads/layers share induction; how many features carry a contribution.
+- **LRE** (linear relational embedding) — the hypothesis that a relation is ≈ a linear map from the subject
+  representation to the object. [Hernandez et al. (2023)](https://arxiv.org/abs/2308.09124).
+- **ROME** (rank-one model editing) — editing a stored fact by a rank-1 weight update to an MLP at the subject token.
+  [Meng et al. (2022)](https://arxiv.org/abs/2202.05262).
+- **IOI** (indirect-object identification) — the templated *"When Mary and John …, John gave a drink to → Mary"* task
+  and its circuit (duplicate → S-inhibition → name-mover). [Wang et al. (2022)](https://arxiv.org/abs/2211.00593).
+- **ResidualVM** — this project's steppable debugger: an arch-generic intervention layer (ablate / patch / trace /
+  attribution / find-operators / edit-SAE-features) over any HF causal LM ([DECOMPILATION.md](DECOMPILATION.md)).
+- **BOS** — the beginning-of-sequence token (position 0), where the attention **sink** parks.
+- **KV-cache** — the cached keys/values of past tokens; the autoregressive read/write "tape."
+- **ΔTV / ΔV-out** — the composition-gate readouts: **ΔTV** = total-variation change in a reader's *attention* when a
+  writer is removed (K/Q-composition); **ΔV-out** = relative change in a reader's *output* (V-composition).
+- **resid / residual stream** — the running per-token vector each block reads from and adds to (the shared "bus").
+- **`L.H` notation** — `layer.head`; e.g. `4.11` is layer 4, head 11 (GPT-2's prev-token head).
+- **W_E / W_U** — token embedding / unembedding matrices. **W_Q / W_K / W_V / W_O** — attention query / key / value /
+  output projections. **W_in / W_out** — the MLP's in (gate/up) / out (down) projections.
+- **d / d_model** — the residual-stream (hidden) width; **n_layers** (depth), **n_heads / H**, **d_head / hd**.
+- **bf16 / fp32** — bfloat16 / 32-bit float weight precision (bf16 used to fit the larger models on a 7.5 GB GPU).
+- **OOD** (out-of-distribution) — *Here:* the repeated-random induction probe is mildly OOD for chat-tuned models.
+- **TC⁰** — the circuit-complexity class a single bounded-depth forward pass sits in (the dataflow-circuit-per-pass
+  vs VM-at-the-loop framing in [DECOMPILATION.md](DECOMPILATION.md)).
+
 ---
 
 _Missing a term, or want a canonical link added? It belongs here — open an issue on
