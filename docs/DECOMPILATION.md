@@ -198,6 +198,17 @@ runs — they are *extracted descriptions* (the DAG) or *execution modes* (knobs
    random everywhere (mechanisms invariant) but the decompilable *fraction* is **not** invariant; the gpt2-medium
    control **disentangles** it — the high fraction tracks the **absolute-position family, not scale** (see
    Cross-model ceiling section). The *forge-basis* ceiling stays SAE/GPU-gated for non-GPT-2.
+6. **Executable decompilation & knowledge, across six models** — **DONE.** The reconstruction-coverage idea (M1)
+   run as a *sufficiency* test over GPT-2 ×3 + Gemma/Llama/Qwen: **no small head-set is sufficient** for induction
+   (≤30% even under resample-ablation; seed-stable ±0–1%) and even IOI's 26-head circuit isn't, in isolation
+   ([reconstruction](circuits/reconstruction.md), [substrate](circuits/induction_substrate.md)). Knowledge ported
+   cross-model: ROME causal tracing recovers an architecture-invariant early-MLP-store → late-attention-readout
+   flow, and the store is **editable by activation patch** (100% fact-transplant in 5/6, generalizing across
+   relations; Gemma's storage is distributed) ([tracing](circuits/causal_tracing.md),
+   [transplant](circuits/fact_patching.md)). **Nuance vs M5:** the *forge-basis decompilable fraction* (M5) is
+   absolute-position-**family**-specific, but the *head-ablation reconstruction coverage / circuit distributedness*
+   (M6) tracks **scale** — different metrics, both true ([scaling synthesis](scaling.md)): small models are
+   unusually localized, so a faithful decompilation is the **budget curve**, not a tiny op-graph.
 
 ## First result (milestone 1, GPT-2)
 
