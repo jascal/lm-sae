@@ -372,6 +372,30 @@ within-pass depth for sequence length. *(Caveat: nesting adds more+stronger attr
 "nesting harder" is partly more interference, not purely stack depth; the robust, size-monotone result is the ceiling
 shrinking with capability.)* (`runs/disassembly/recursion_depth_summary.json`.)
 
+### Does the decode loop buy back the depth? — chain-of-thought, partially (`cot_depth.py`)
+
+Theory's escape hatch: a single pass is TC⁰, but the **decode loop** is Turing-complete *across* steps, so chain-of-
+thought should trade within-pass depth for sequence length and lift the ceiling. Testing it on the canonical
+bounded-recursion task — **Dyck bracket matching** at nesting depth d (balanced vs one mismatched closer, chance 50%) —
+with an instruction-tuned model that can reason (Qwen2.5-1.5B-Instruct), **direct answer** vs **CoT**:
+
+| depth | 2 | 4 | 6 | 8 | 10 | 12 |
+|---|---|---|---|---|---|---|
+| **direct** | 85% | 65% | 65% | 65% | 55% | **50%** (chance) |
+| **CoT** | 50% | **85%** | **74%** | 50% | **71%** | 43% |
+
+- **Direct collapses cleanly to chance by depth 12** — the single-forward-pass recursion limit, demonstrated on a clean
+  recursion task (no distributional confound this time: brackets are uniform across depth).
+- **CoT beats direct at moderate depth (4/6/10)** — the loop *does* buy back depth, as the theory predicts.
+- **But it is noisy and reliability-bounded at 1.5B**: CoT trails direct at depths 2/8/12, and its *coverage* drops with
+  depth (a parseable "Answer:" emerges in only 14/20 cases at depth 12 — the small model rambles past the token budget
+  without concluding). So the escape hatch is real but its quality is gated by the model's own reasoning reliability;
+  a larger / reasoning-tuned model would show it cleaner (as the CoT literature does).
+
+Net: the within-pass depth limit is real and clean (direct → chance), and the decode loop is a genuine but
+reliability-bounded escape — **depth is traded for tokens, only as well as the model can actually reason step by step.**
+(`runs/disassembly/cot_depth_summary.json`.)
+
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
 The recompile-KL harness is most useful not as a one-shot metric but as a **steppable interpreter** over the
