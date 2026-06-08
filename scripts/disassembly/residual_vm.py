@@ -3,8 +3,11 @@
 The `ResidualVM` class (below) is the consolidated intervention layer the ~20 disassembly scripts each
 re-implemented: arch-generic load + corpus-mean fitting + ablate/patch/trace/attribution as **composable
 context managers**, so an experiment is ~10 lines instead of ~100 and the load/hook/merge bugs live in one place.
-`python residual_vm.py --demo` reproduces the induction reconstruction coverage through the class as a correctness
-check. The original milestone-1 coverage-curve CLI is preserved below `main()`.
+It also **finds** operators — `attn`/`head_mass`/`find_heads` read the attention pattern to locate an op's heads
+behaviourally, `head_op_mass` reads a single head's mass *under active ablations* (so necessity-on-attention is one
+call) — and edits SAE latents (`set_feature`/`ablate_feature`). `python residual_vm.py --demo` reproduces the
+induction reconstruction coverage through the class; `--probe-demo` uses it to locate+confirm the induction circuit;
+`--feat-demo` does feature-level surgery. The original milestone-1 coverage-curve CLI is preserved below `main()`.
 
 ----- (original milestone-1 docstring) -----
 ResidualVM — reconstruction-coverage harness for attention (decompilation milestone 1).
@@ -194,6 +197,50 @@ class ResidualVM:
                     out.append((("mlp", L), metric(self) - base))
         return sorted(out, key=lambda r: -r[1])
 
+    # ---- attention-pattern probing (edge_probe / attribution_sweep — find operators & read behaviour) ----
+    def attn(self, ids):
+        """Per-layer attention-probability matrices for one sequence: list[nL] of tensors [H, q, k] (eager)."""
+        torch = self.torch
+        with torch.no_grad():
+            o = self.model(input_ids=torch.tensor([ids], device=self.dev), output_attentions=True)
+        return [al[0] for al in o.attentions]
+
+    @staticmethod
+    def op_masks(ids):
+        """(query,key) boolean mask each universal behavioural op attends along — for head-finding / behaviour reads."""
+        ca = np.array(ids); n = len(ca); qi = np.arange(n); pv = np.full(n, -1); pv[1:] = ca[:-1]
+        return {
+            "induction": (pv[None, :] == ca[:, None]) & (qi[None, :] >= 1) & (qi[None, :] < qi[:, None]),
+            "duplicate": (ca[None, :] == ca[:, None]) & (qi[None, :] < qi[:, None]),
+            "prevtok": (qi[None, :] == (qi[:, None] - 1)) & (qi[:, None] >= 1),
+            "sink": (qi[None, :] == 0) & (qi[:, None] >= 1),
+        }
+
+    def head_mass(self, seqs, op):
+        """Mean attention mass each head puts on op's reference mask over seqs → np array [nL*H] (composes w/ ablations)."""
+        NH = self.nL * self.H; mass = np.zeros(NH); ntot = 0
+        for s in seqs:
+            att = self.attn(s); M = self.op_masks(s)[op]; ntot += int(M.sum())
+            for L in range(self.nL):
+                mass[L * self.H:(L + 1) * self.H] += (att[L].float().cpu().numpy() * M[None]).sum((1, 2))
+        return mass / max(ntot, 1)
+
+    def head_op_mass(self, seqs, head, op):
+        """Mean mass a SPECIFIC head (L,h) puts on op's mask over seqs — composes with active ablations (behaviour read)."""
+        L, h = head; tot = 0.0; ntot = 0
+        for s in seqs:
+            M = self.op_masks(s)[op]; ntot += int(M.sum())
+            tot += float((self.attn(s)[L][h].float().cpu().numpy() * M).sum())
+        return tot / max(ntot, 1)
+
+    def find_heads(self, seqs, op, top=4, min_mass=0.05):
+        """Behaviourally LOCATE an operator: the top heads by attention mass on op's mask (≥ min_mass). Returns (heads, mass)."""
+        mass = self.head_mass(seqs, op); order = np.argsort(-mass)
+        heads = [(int(i) // self.H, int(i) % self.H) for i in order[:top] if mass[int(i)] > min_mass]
+        if not heads:
+            heads = [(int(order[0]) // self.H, int(order[0]) % self.H)]
+        return heads, mass
+
     # ---- feature-level interventions (SAE latents — the next rung toward feature-native decompilation) ----
     def load_sae(self, layer):
         """Cache the resid SAE for a layer: GPT-2 jbloom (all layers) / Gemma Scope (8 layers). torch on device."""
@@ -297,6 +344,36 @@ def feat_demo(model_id="gpt2", device="cpu", layer=5):
     return abl - base
 
 
+def probe_demo(model_id="gpt2", device="cpu"):
+    """Use the VM as a TOOL to find an operator: behaviourally locate the induction + prev-token heads, then
+    confirm them causally (ablate → induction-NLL rises). Demonstrates find_heads + head_op_mass + ablate_heads."""
+    vm = ResidualVM(model_id, device=device); tok = vm.tok; rng = np.random.default_rng(0)
+    import urllib.request
+    txt = urllib.request.urlopen(urllib.request.Request(
+        "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
+        headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "ignore")[:120000]
+    ids = tok(txt)["input_ids"]; chunks = [ids[i:i + 64] for i in range(0, len(ids), 64) if len(ids[i:i + 64]) >= 8][:12]
+    vm.fit_means(chunks)
+    from collections import Counter
+    vocab = [t for t, _ in Counter(t for c in chunks for t in c).most_common(400)]
+    seqs = [(lambda s: s + s)([int(vocab[i]) for i in rng.integers(0, len(vocab), 22)]) for _ in range(16)]
+    ind_heads, imass = vm.find_heads(seqs, "induction", top=4)
+    pv_heads, pmass = vm.find_heads(seqs, "prevtok", top=2)
+
+    def ind_target(s):
+        L = len(s) // 2
+        return [(p, s[p + 1]) for p in range(L, 2 * L - 1)]
+    base = vm.nll(seqs, ind_target)
+    with vm.ablate_heads(ind_heads):
+        abl = vm.nll(seqs, ind_target)
+    nm = lambda hs: ", ".join(f"{L}.{h}" for L, h in hs)            # noqa: E731
+    print(f"[probe-demo] {model_id}: VM located induction heads [{nm(ind_heads)}] "
+          f"(top mass {imass.max():.2f}), prev-token heads [{nm(pv_heads)}] (top mass {pmass.max():.2f}); "
+          f"ablating the induction heads raises induction-NLL {base:.2f} → {abl:.2f} (Δ {abl - base:+.2f}). "
+          f"The debugger finds AND confirms the operator.")
+    return ind_heads, pv_heads
+
+
 def _oproj_modules(model):
     """(output-projection module per layer, head_dim) for the mean-ablation slice — arch-generic."""
     cfg = model.config
@@ -322,12 +399,15 @@ def main(argv=None):
     p.add_argument("--device", default="cuda")
     p.add_argument("--demo", action="store_true", help="reproduce induction reconstruction coverage via the ResidualVM class (correctness check)")
     p.add_argument("--feat-demo", action="store_true", help="feature-level surgery demo: ablate a subject SAE feature, watch the fact drop")
+    p.add_argument("--probe-demo", action="store_true", help="use the VM to FIND an operator: locate induction/prev-token heads behaviourally, confirm causally")
     p.add_argument("--output", type=Path, default=Path("runs/disassembly/residual_vm_summary.json"))
     args = p.parse_args(argv)
     if args.demo:
         demo(args.model, args.device); return
     if args.feat_demo:
         feat_demo(args.model, args.device); return
+    if args.probe_demo:
+        probe_demo(args.model, args.device); return
 
     import torch
     import torch.nn.functional as F
