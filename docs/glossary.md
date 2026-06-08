@@ -87,6 +87,11 @@ vocabulary — the natural-history reference for the [operator catalog](operator
   [Zhang & Sennrich (2019)](https://arxiv.org/abs/1910.07467).
 - **Gated MLP (SwiGLU / GeGLU)** — the gated MLP variants in RoPE-family models. *Here:* the COMPUTE block whose
   per-layer profile the MLP catalog measures. [Shazeer, *GLU Variants* (2020)](https://arxiv.org/abs/2002.05202).
+- **GPT-NeoX / parallel residual** — the architecture of the **Pythia** ladder: rotary position + LayerNorm + dense
+  GELU MLP, with attention and MLP computed in **parallel** (both read the block input, summed together:
+  `y = x + attn(ln x) + mlp(ln x)`) rather than serially. *Here:* the controlled scale ladder (one architecture, same
+  data, 14m→1.4b) behind the [scaling laws](scaling.md); see [architectures](architectures.md).
+  [Black et al., *GPT-NeoX* (2022)](https://arxiv.org/abs/2204.06745); [Biderman et al., *Pythia* (2023)](https://arxiv.org/abs/2304.01373).
 - **SSM / Mamba** — a state-space sequence mixer with **no attention** (a learned linear recurrence). *Here:* the
   no-attention control — does the in-context-copy capability survive losing attention? [Gu & Dao, *Mamba* (2023)](https://arxiv.org/abs/2312.00752).
 
@@ -129,6 +134,11 @@ The bare abbreviations and symbols used throughout the catalog, in one place.
   [Meng et al. (2022)](https://arxiv.org/abs/2202.05262).
 - **IOI** (indirect-object identification) — the templated *"When Mary and John …, John gave a drink to → Mary"* task
   and its circuit (duplicate → S-inhibition → name-mover). [Wang et al. (2022)](https://arxiv.org/abs/2211.00593).
+- **RoPE** (rotary position embedding) — relative position applied as a rotation of the query/key at attention time
+  (no learned absolute-position vector). *Here:* the Llama/Qwen/Gemma/Pythia families; the recurring absolute-vs-RoPE
+  split (see [Absolute vs RoPE position](#architecture-features-the-species-we-compare)). [Su et al. (2021)](https://arxiv.org/abs/2104.09864).
+- **MHA / GQA** — multi-head attention (each head has its own K/V) vs grouped-query attention (query heads **share**
+  K/V heads). *Here:* GPT-2/Pythia are MHA; the RoPE family is GQA (handled by `h → h//(H/n_kv)` in the reader).
 - **ResidualVM** — this project's steppable debugger: an arch-generic intervention layer (ablate / patch / trace /
   attribution / find-operators / edit-SAE-features) over any HF causal LM ([DECOMPILATION.md](DECOMPILATION.md)).
 - **BOS** — the beginning-of-sequence token (position 0), where the attention **sink** parks.

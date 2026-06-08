@@ -5,7 +5,9 @@ title: Cross-model findings
 # Cross-model findings — what the catalog has (and hasn't) shown
 
 A curated, **descriptive** reading of the catalog's cross-model results — natural history across six transformer
-models (GPT-2 small/medium/large, Gemma-2-2B, Llama-3.2-1B, Qwen2.5-1.5B) plus a non-attention control (Mamba).
+models (GPT-2 small/medium/large, Gemma-2-2B, Llama-3.2-1B, Qwen2.5-1.5B), a non-attention control (Mamba), and a
+controlled scale ladder (the GPT-NeoX **Pythia** family, 14m–1.4b — one architecture, same data, six sizes — used
+for the [scaling laws](scaling.md)).
 Amateur, provisional, single-corpus where noted; every claim links to the page with the data. The headline is not
 "here is the mechanism" but "here is what is invariant, what scales, where the outliers are, and what we learned
 not to trust."

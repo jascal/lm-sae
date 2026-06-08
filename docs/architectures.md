@@ -13,6 +13,8 @@ hosts we disassemble, plus the SAE the forge-tax sister track acts on — not re
 - **GPT-2** (small / medium / large) — absolute position, LayerNorm, dense MLP.
 - **RoPE family** (Llama-3.2-1B, Qwen-2.5-1.5B) — RoPE, grouped-query attention, RMSNorm, SwiGLU.
 - **Gemma-2-2B** — the RoPE outlier: sandwich (pre+post) norm, GeGLU; no sink, distributed COMPUTE.
+- **GPT-NeoX** (Pythia 14m → 1.4b) — rotary position, LayerNorm, dense GELU, **parallel residual**; the controlled
+  scaling ladder (one architecture, same data, six sizes).
 - **Mamba** (130m / 370m / 790m) — state-space mixer, no attention, no separate MLP.
 
 ## GPT-2 block — the host the catalog disassembles
@@ -124,6 +126,49 @@ flowchart TD
     classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
     class y output;
 ```
+
+## GPT-NeoX block — the controlled scaling ladder (Pythia)
+
+The **Pythia** ladder (EleutherAI, 14m → 1.4b) is **one GPT-NeoX architecture at six sizes trained on the same data**
+— the clean control behind the [scaling laws](scaling.md) (architecture held fixed). The block keeps GPT-2's
+**LayerNorm** and **dense GELU** MLP but takes position from a **rotary** embedding (like the RoPE family), with
+standard multi-head attention (no GQA). Its one distinctive feature is the **parallel residual**: attention and MLP
+both read the *block input* `x` (each through its own LayerNorm) and are summed into the residual *together* —
+`y = x + attn(ln_a x) + mlp(ln_m x)` — rather than the serial attention-*then*-MLP of GPT-2 / RoPE / Gemma. Same
+MOVE (attention) + COMPUTE (MLP) split, so the arch-generic disassembly (logit-lens read-out, block ablation,
+knowledge READ/WRITE) runs on it directly. Verified by n-orca: **VALID, 12.60M params/block (Pythia-410m dims),
+depth 5.** Spec: [`specs/gpt_neox_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/specs/gpt_neox_block.n.orca.md).
+
+```mermaid
+%% architecture GPTNeoXBlock
+flowchart TD
+    x(("x<br/>[input]"))
+    attn_norm["attn_norm<br/>LayerNorm(d_model)"]
+    attn["attn — MOVE<br/>MultiHeadAttention(d_model, n_heads) + RoPE"]
+    ff_norm["ff_norm<br/>LayerNorm(d_model)"]
+    mlp["mlp — COMPUTE<br/>FeedForward(d_model, d_ff) — dense GELU"]
+    add_attn["add_attn<br/>Add()"]
+    add_mlp["add_mlp<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x : (B,S,d_model)" --> attn_norm
+    x -- "x_par : (B,S,d_model)" --> ff_norm
+    attn_norm -- "x_normed : (B,S,d_model)" --> attn
+    ff_norm -- "x_par_normed : (B,S,d_model)" --> mlp
+    attn -- "attn_out : (B,S,d_model)" --> add_attn
+    x -- "x_skip : (B,S,d_model)" --> add_attn
+    add_attn -- "h : (B,S,d_model)" --> add_mlp
+    mlp -- "mlp_out : (B,S,d_model)" --> add_mlp
+    add_mlp -- "y_out : (B,S,d_model)" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+Note `x` fans out to **both** `attn_norm` and `ff_norm` (the parallel residual): the MLP reads the block input, not
+the post-attention residual. The disassembly reads the operators inside `attn` and `mlp` exactly as in the other
+families. (Pythia sizes scale `d_model`/`n_layers`: 14m d128/6L · 70m d512/6L · 160m d768/12L · 410m d1024/24L ·
+1b d2048/16L · 1.4b d2048/24L.)
 
 ## Mamba block — the no-attention control (SSM)
 
