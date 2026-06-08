@@ -29,12 +29,13 @@ not to trust."
 The sharpest lesson of the cross-model pass: several things people attribute to *architecture* (absolute-position
 vs RoPE) actually track **scale**.
 
-- **Induction's key-addressing sharpness decays with size.** GPT-2-small reads induction off **one** dominant
-  prev-token writer (head 4.11, +39% key-collapse when removed); gpt2-medium +8%, gpt2-large +1% — until the
-  largest GPT-2 distributes the key like the RoPE models (~0–3%). One dominant writer is a *small-model*
-  phenomenon, not an absolute-position one ([induction dossier](operators/induction.md)).
-- **The token-determined "embedding block" widens with scale.** In GPT-2-small only L0 is token-determined; in
-  gpt2-large L0–L2 all are (~0.7) ([MLP test](operators/mlp_detokenizer.md)).
+- **Induction's key-addressing sharpness decays monotonically with size, to zero.** Across the full GPT-2 ladder
+  (124M→1.5B) the key-collapse from removing the single top prev-token writer goes **+39% → +8% → +1% → +0%** — by
+  GPT-2-XL the one-dominant-writer circuit is gone and the key is distributed like the RoPE models (~0–3%). One
+  dominant writer is a *small-model* phenomenon, not an absolute-position one ([induction dossier](operators/induction.md),
+  [scaling synthesis](scaling.md)).
+- **The token-determined "embedding block" widens *and strengthens* with scale.** MLP0 determinism climbs
+  0.63 → 0.75 → 0.80 over the GPT-2 ladder and the block spreads from L0 to L0–L2 ([MLP test](operators/mlp_detokenizer.md)).
 - **Induction redundancy shifts from distributed to non-monotonic with scale.** Small GPT-2 / Llama / Qwen
   induction is a distributed, superadditive population; gpt2-large and Gemma give a *non-monotonic* ablation curve
   (ablating the top heads together damages induction less than ablating a subset). **Caveat (important):** the
