@@ -26,4 +26,23 @@ The single clearest cross-cutting finding: several properties usually attributed
 
 **The thesis:** as models scale, the *same* named circuits become **more distributed** — single dominant writers give way to populations, compact circuits stop being sufficient, and the load-bearing MLP sites broaden and deepen. Absolute-vs-RoPE is a real axis (the sink, positional broadcast), but much of what looks architectural is the small models being unusually *localized*. See [Cross-model findings](FINDINGS.md).
 
+## The controlled ladder — Pythia (architecture held fixed)
+
+The table above mixes the GPT-2 ladder with heterogeneous RoPE models, so *architecture and scale are confounded*. The **Pythia** ladder (one GPT-NeoX architecture, the *same* training data, 14M→1.4B) is the clean control (`scaling_laws.py`, arch-generic block-level + logit-lens — no head resolution needed). Three quantities turn into monotone laws with architecture fixed:
+
+| pythia | d×L | induction-NLL | all-block-ablated Δ | capital table | capital read-out depth | language read-out depth |
+|---|---|---|---|---|---|---|
+| pythia-14m | 128×6 | 2.09 | +8.3 | 58% | 91% | 89% |
+| pythia-70m | 512×6 | 2.17 | +7.1 | 83% | 78% | 82% |
+| pythia-160m | 768×12 | 0.99 | +9.2 | 100% | 68% | 67% |
+| pythia-410m | 1024×24 | 0.54 | +11.0 | 100% | 57% | 53% |
+| pythia-1b | 2048×16 | 0.45 | +10.9 | 100% | 61% | 57% |
+| pythia-1.4b | 2048×24 | 0.48 | +11.3 | 100% | 52% | 69% |
+
+- **Induction emerges and strengthens with scale** — induction-NLL falls 2.1 → 2.2 → **0.99** → 0.54 → 0.45 → 0.48 (a sharp turn-on between 70M and 160M), and removing all blocks costs *more* with size (+8.3 → +11.3): induction is both stronger and more load-bearing as the model grows.
+- **The knowledge table fills with scale** — the capital relation is **58% → 83% → 100%** complete (14M → 70M → 160M+): the database is populated by ~160M. Strikingly, factual recall and induction **turn on at the same scale (~160M)** — the in-context-copy mechanism and factual retrieval emerge together.
+- **The relation read-out depth shrinks with scale** — capital resolves at **91% → 78% → 68% → 57% → … → 52%** of depth: bigger models retrieve the fact *earlier*, monotone on a controlled ladder (the same law the [knowledge READ](FINDINGS.md) found across the heterogeneous set, now architecture-clean).
+
+**This is the thesis on a clean axis:** with architecture fixed, induction *appears and sharpens*, the fact table *fills*, and retrieval *moves earlier* — all monotone in size. Scale, not architecture.
+
 _Assembled from the committed `runs/disassembly/**` summaries. Regenerate: [scaling_synthesis.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/scaling_synthesis.py)._
