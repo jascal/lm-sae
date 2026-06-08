@@ -86,6 +86,8 @@ The catalog names which heads are *necessary*. **[Executable decompilation](circ
 
 The through-line: the named circuits are causally **necessary and the dominant drivers**, but the behaviour is
 carried by the near-whole network — a clean decompilation into a tiny sufficient subgraph does not exist here.
+(The reconstruction-coverage numbers are **seed-stable**, ±0–1% over three probe-resample seeds, so the
+scaling/distributedness trend is not a single-seed artifact.)
 
 ## Methodological cautions — banked from the digs
 
