@@ -174,6 +174,58 @@ convergence was measured on small hosts.)
 > moderate-rank subspace — compact, reused across layers, but with real per-layer structure: "not a few templates,
 > not a dense slab," made quantitative.
 
+### What IS the shared subspace? — decompile its *structure* (`core_basis_decompile.py`)
+
+Knowing the core is a shared ~300-direction subspace ("how big") invites the deeper question: **is that basis
+interpretable** ("what is it")? Three tests on the union basis `Ug` (top-K, K = its effective rank), GPT-2 s/m/l:
+
+| test | what it asks | result (gpt2 / medium / large) | reading |
+|---|---|---|---|
+| **(A) token/logit** | does `Ug` lie in `W_U`'s top-K logit subspace? | **0.33 / 0.39 / 0.39** vs chance **0.36 / 0.40 / 0.40** | **at/below chance** — the core is *not* the readout subspace; it is upstream compute |
+| **(B) operators** | is `Ug` built from the catalog ops' OV-write subspaces? | induction/prev-tok/dup/sink **0.39–0.47**, random heads **0.39–0.46**, chance 0.36–0.40 | named ≈ random — the core is the **aggregate of all writers**, not a few named idioms |
+| **(C) logit-lens** | do `Ug`'s directions decode to coherent tokens? | peak-z **5.2 / 5.9 / 5.1** vs random **4.6 / 4.8 / 4.5** | **readable** — top dirs = function-words, punctuation, a verb axis, a register axis |
+
+So the entangled core's shared basis is **logit-lens-readable per direction, but is neither the readout subspace
+nor the named-operator basis** — it is a broad write-basis whose *individual* directions decode to grammatical /
+lexical classes while *collectively* it is the sum of every layer's writers. (`runs/disassembly/core_basis_summary.json`.)
+
+### Is the core a *generic grammar*? — the compact head is, the bulk is content (`core_grammar.py`)
+
+The logit-lens (C) hint — directions decode to grammatical *classes*, not content — is the Chomsky hypothesis: **is
+the core a content-free grammatical scaffold?** A grammar core would be both *generic* (corpus-invariant) and
+*grammatical* (closed-class). Fitting `Ug` on three structurally distinct corpora (Shakespeare drama / a modern novel
+/ Python source) and binning the shared directions by sharedness rank (GPT-2):
+
+| sharedness rank | cross-corpus overlap vs chance | closed-class fraction vs random | verdict |
+|---|---|---|---|
+| **top-16** (most shared) | **0.44 vs 0.02** (22× chance) | **0.28 vs 0.00** (28× base) | **generic AND grammatical** — the grammar head |
+| mid 16–64 | 0.23 vs 0.06 (4×) | 0.03 | fading |
+| deep 64–K | 0.35 vs 0.28 (~1×) | 0.00 | content (corpus-specific) |
+| content tail | 0.43 vs 0.36 (~1×) | 0.00 | content / rare-token (`inventoryQuantity`, `_Lear`) |
+
+**The dissociation is clean: the top ~16 most-shared directions are *both* corpus-invariant (22× chance) *and*
+closed-class/grammatical (28× the base rate); everything deeper is neither.** So there **is** a generic grammar — but
+it is a **compact head of ~5–16 directions**, not the whole Θ(d) core. This is the "simpler-than-Chomsky" version: a
+finite, content-free **categorial** scaffold (determiner-slot, punctuation-slot, verb-slot, pronoun-slot) — a learned
+distributional POS basis, **not** the recursive/hierarchical syntax of generative UG (which, if present, lives in the
+*composition* of these categories across positions — i.e. in the entangled bulk that pays the forge tax, not in the
+static write-basis). And it is **learned, not innate** — a generic transformer grows the scaffold from data with no
+syntactic prior. (`runs/disassembly/core_grammar_summary.json`.)
+
+### Big-O of the core: Θ(model size), not a few templates
+
+Putting the rank results together answers "how many templates / what scaling": the functional per-layer rank is
+**Θ(d)** (rank-95 ≈ ⅓–⅖·d at *every* scale: 250/768, 398/1024, 476/1280, 509/2304 — a constant *fraction*, growing
+with width), the shared union basis is **Θ(d)** (K ≈ ⅓–⅖·d), so the full per-layer composition is **~Θ(nL·d)
+directions ≈ Θ(nL·d²) parameters — a constant fraction of the model** (the forge-tax floor). The "few templates"
+(the dominant-variance head, PR 5–33) is only the *tip* and grows slowly (~O(nL)); the **grammar head is smaller
+still (~O(1), ~16 directions)**. Net: low-rank truncation buys a **constant factor** (~⅓–⅔), **not** a big-O
+reduction; and the irreducible core scales **with the model**, consistent with "the entangled core grows with
+capability." The pylm sister track makes the consequence runnable — a flat-file **grammar** idiom decompiles the
+compact scaffold (see [pylm track](PYLM_TRACK.md)), but adds little to the *token*-level decompilable fraction
+(grammar is categorial; the n-gram modes already absorb it), and the un-decompiled ~50% is exactly the content that
+is **neither n-gram nor relational fact** — the entangled composition, the forge tax restated.
+
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
 The recompile-KL harness is most useful not as a one-shot metric but as a **steppable interpreter** over the

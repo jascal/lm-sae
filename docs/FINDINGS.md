@@ -84,6 +84,33 @@ what the SAE features are trained to carry), each relative to its own clean base
   and this is the *reconstruction/NLL* route to the tax, complementary to (and agreeing with) the cov95/mAUC route,
   not the full sae-forge `NativeModel` weight-projection ceiling test ([DECOMPILATION.md](DECOMPILATION.md) M4).
 
+## What IS the entangled core — a compact grammar head on a content bulk
+
+Having localized the core as a shared moderate-rank subspace ([DECOMPILATION.md](DECOMPILATION.md), `core_rank.py`),
+we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, GPT-2 s/m/l):
+
+- **It is not the readout subspace, and not the named operators.** The shared union basis lies *at/below chance* in
+  the unembedding's top logit directions (0.33–0.39 vs 0.36–0.40), and the catalog ops' OV-write subspaces
+  (induction/prev-tok/dup/sink) sit at ~chance inside it (≈ random heads). The core is the **aggregate of every
+  layer's writers**, not a few idioms and not "where logits are written."
+- **Its most-shared head is a generic grammar.** Binning the shared directions by sharedness and fitting on three
+  structurally distinct corpora (Shakespeare / a modern novel / Python), the **top ~16 directions are *both*
+  corpus-invariant (overlap 0.44 vs chance 0.02 — 22×) *and* closed-class/grammatical (0.28 vs 0.00 random — 28× the
+  base rate)**; everything deeper is *neither* (corpus-specific, content/rare-token). So there is a content-free
+  grammatical scaffold — but it is a **compact head (~5–16 directions), not the whole Θ(d) core**.
+- **A "simpler-than-Chomsky" grammar, and learned.** What a linear write-basis encodes is a **categorial** scaffold
+  (determiner-slot, punctuation-slot, verb-slot) — a distributional POS basis, *not* recursive/hierarchical syntax
+  (which, if present, lives in the *composition* of categories — the entangled bulk that pays the forge tax). And it
+  emerges from data in a generic learner with no syntactic prior.
+- **The big-O: Θ(model size).** Functional per-layer rank and the shared basis are both Θ(d) (a constant fraction
+  ~⅓–⅖, growing with width); the grammar head is ~O(1). Low-rank simplification buys a constant factor, not a big-O
+  cut — the irreducible core scales *with* the model.
+- **Made runnable (pylm).** A flat-file **grammar** idiom decompiles the scaffold ([pylm track](PYLM_TRACK.md)), but
+  adds ~nothing to the *token*-level decompilable fraction (49.0→49.5%) — grammar is categorial; the n-gram modes
+  already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled
+  composition, the forge tax restated. So the flat-file basis {induction, grammar, n-gram, knowledge} is *sufficient
+  for half*, and the complement is the core.
+
 ## Knowledge — where facts live, and moving them
 
 The catalog is about *mechanisms*; the [knowledge axis](circuits/causal_tracing.md) is the decompiler goal ("the
