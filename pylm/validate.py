@@ -58,7 +58,8 @@ def main(argv=None):
         import torch
         from transformers import AutoModelForCausalLM
         dev = args.device if torch.cuda.is_available() else "cpu"
-        m = AutoModelForCausalLM.from_pretrained(args.model).eval().to(dev)
+        big = any(s in args.model for s in ("1b", "1.4b", "2.8b", "-xl", "-large"))
+        m = AutoModelForCausalLM.from_pretrained(args.model, **({"dtype": torch.bfloat16} if big else {})).eval().to(dev)
         model_correct = 0; agree = 0
         with torch.no_grad():
             for j, i in enumerate(positions):
