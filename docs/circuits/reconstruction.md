@@ -8,14 +8,16 @@ The catalog shows which heads are *necessary*. This tests **sufficiency**: keep 
 
 **coverage = (NLL_all-attn-ablated − NLL_circuit-only) / (NLL_all-attn-ablated − NLL_full)** — 1 = the circuit alone fully reconstructs induction, 0 = no better than ablating all attention. A random same-size head-set is the control.
 
-| model | circuit size / total heads | induction-NLL (full / circuit-only / all-ablated) | **circuit coverage** (mean-abl) | coverage (resample-abl) | random control |
+| model | circuit size / total heads | induction-NLL (full / circuit-only / all-ablated) | **circuit coverage** (mean-abl, ±σ) | coverage (resample-abl, ±σ) | random control |
 |---|---|---|---|---|---|
-| gpt2 | 8 / 144 | 0.63 / 9.07 / 10.81 | **+17%** | +30% | +1% ± 0% |
-| gpt2-medium | 8 / 384 | 0.54 / 10.06 / 10.80 | **+7%** | +24% | +1% ± 0% |
-| gpt2-large | 8 / 720 | 0.50 / 10.40 / 10.40 | **+0%** | +5% | +0% ± 0% |
-| gemma-2-2b | 8 / 208 | 4.54 / 17.58 / 19.66 | **+14%** | +7% | -1% ± 5% |
-| Llama-3.2-1B | 8 / 512 | 0.74 / 14.15 / 15.52 | **+9%** | +10% | +1% ± 2% |
-| Qwen2.5-1.5B | 8 / 336 | 0.36 / 17.76 / 17.03 | **-4%** | +0% | -2% ± 4% |
+| gpt2 | 8 / 144 | 0.62 / 9.23 / 10.95 | **+17% ± 0%** | +31% ± 1% | +4% ± 2% |
+| gpt2-medium | 8 / 384 | 0.52 / 10.24 / 10.93 | **+7% ± 0%** | +24% ± 1% | +2% ± 1% |
+| gpt2-large | 8 / 720 | 0.45 / 10.50 / 10.50 | **+0% ± 0%** | +5% ± 0% | +1% ± 0% |
+| gemma-2-2b | 8 / 208 | 5.22 / 17.78 / 19.76 | **+14% ± 0%** | +7% ± 0% | +2% ± 5% |
+| Llama-3.2-1B | 8 / 512 | 0.73 / 14.22 / 15.69 | **+10% ± 0%** | +10% ± 0% | +1% ± 2% |
+| Qwen2.5-1.5B | 8 / 336 | 0.49 / 17.56 / 17.04 | **-4% ± 1%** | +0% ± 0% | -1% ± 2% |
+
+_Coverage is **mean ± σ over 3 probe-resample seeds** — the error bars confirm the scaling/distributedness trend is not a single-seed artifact._
 
 ## How many heads does induction need? (reconstruction curve)
 
@@ -23,12 +25,12 @@ Rank every head by induction-mass, keep the top-K (ablate the rest), and watch c
 
 | model | K=4 | K=8 | K=16 | K=32 | K=64 | K=128 | K=256 |
 |---|---|---|---|---|---|---|---|
-| gpt2 | +4% | +7% | +12% | +20% | +22% | +97% | — |
-| gpt2-medium | +1% | +2% | +5% | +8% | +14% | +22% | +22% |
-| gpt2-large | +0% | +0% | +1% | +1% | +2% | +2% | +0% |
-| gemma-2-2b | +0% | +16% | +18% | +28% | +32% | +12% | — |
-| Llama-3.2-1B | +2% | +3% | +8% | +17% | +24% | +28% | +27% |
-| Qwen2.5-1.5B | +3% | +2% | -4% | -5% | -8% | -13% | -8% |
+| gpt2 | +6% | +8% | +13% | +21% | +23% | +97% | — |
+| gpt2-medium | +2% | +3% | +6% | +9% | +15% | +23% | +23% |
+| gpt2-large | +1% | +1% | +2% | +2% | +3% | +3% | +1% |
+| gemma-2-2b | +1% | +17% | +20% | +30% | +34% | +13% | — |
+| Llama-3.2-1B | +3% | +4% | +9% | +18% | +25% | +29% | +28% |
+| Qwen2.5-1.5B | +3% | +2% | -3% | -5% | -8% | -13% | -8% |
 
 _**No compact head-subset reconstructs induction in any model.** GPT-2-small only reaches near-full coverage at K≈128/144 (it needs nearly every head); gpt2-medium saturates at ~22% even with 256 heads; gpt2-large stays ~0% throughout; and the RoPE curves go **non-monotonic** — Gemma peaks ~32% then drops, Qwen goes **negative** (keeping more induction-mass heads *hurts* induction-NLL — the same interference / compensatory effect the [outlier digs](../operators/outlier_digs.md) traced to a synthetic-probe artifact). Induction is a property of the near-whole network, not an isolable subgraph._
 

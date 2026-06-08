@@ -47,11 +47,14 @@ def run_model(model_id, circuit_heads, args, dev):
     if is_gpt2:
         from collections import Counter
         vocab = [t for t, _ in Counter(t for c in chunks for t in c).most_common(400)]
-        rep = lambda L: [int(vocab[i]) for i in rng.integers(0, len(vocab), L)]  # noqa: E731
     else:
         lo, hi = int(0.02 * V), int(0.4 * V)
-        rep = lambda L: [int(x) for x in rng.integers(lo, hi, L)]                 # noqa: E731
-    seqs = [(lambda s: s + s)(rep(args.rep_len)) for _ in range(args.probes)]
+
+    def gen_seqs(seed):                                                          # repeated-random probes for one seed
+        r = np.random.default_rng(seed)
+        rp = (lambda L: [int(vocab[i]) for i in r.integers(0, len(vocab), L)]) if is_gpt2 else (lambda L: [int(x) for x in r.integers(lo, hi, L)])
+        return [(lambda s: s + s)(rp(args.rep_len)) for _ in range(args.probes)]
+    seqs = gen_seqs(args.seed)
 
     cap = {L: [] for L in range(nL)}
     hks = [oproj[L].register_forward_pre_hook((lambda L: lambda mod, inp: cap[L].append(inp[0].detach().reshape(-1, inp[0].shape[-1])))(L)) for L in range(nL)]
@@ -94,9 +97,6 @@ def run_model(model_id, circuit_heads, args, dev):
     all_heads = [(L, h) for L in range(nL) for h in range(H)]
     keep = set(circuit_heads)
     non_circuit = [hh for hh in all_heads if hh not in keep]
-    base = ind_nll()                                                             # full model
-    allabl = ind_nll(all_heads)                                                  # ablate ALL attention (MLPs intact)
-    circ = ind_nll(non_circuit)                                                  # keep only the circuit heads
 
     # robustness: RESAMPLE ablation (on-distribution) — replace ablated heads with a different seq's activations
     def resample_nll(keepset):
@@ -129,8 +129,16 @@ def run_model(model_id, circuit_heads, args, dev):
             for x in hs:
                 x.remove()
         return tot / max(k, 1)
-    rs_allabl = resample_nll(set()); rs_circ = resample_nll(keep)
-    rs_cov = (rs_allabl - rs_circ) / (rs_allabl - base + 1e-9)
+    # multi-seed: recompute coverage over N probe-resample seeds (the closures use the reassigned `seqs`)
+    cov_runs = []; rscov_runs = []; base = allabl = circ = rs_allabl = rs_circ = 0.0
+    for sd in args.seeds:
+        seqs = gen_seqs(sd)
+        base = ind_nll(); allabl = ind_nll(all_heads); circ = ind_nll(non_circuit)
+        rs_allabl = resample_nll(set()); rs_circ = resample_nll(keep)
+        cov_runs.append((allabl - circ) / (allabl - base + 1e-9))
+        rscov_runs.append((rs_allabl - rs_circ) / (rs_allabl - base + 1e-9))
+    seqs = gen_seqs(args.seeds[0])                                               # the curve + controls use the first seed
+    rs_cov = float(np.mean(rscov_runs))
 
     def coverage(nll):
         return (allabl - nll) / (allabl - base + 1e-9)
@@ -156,10 +164,11 @@ def run_model(model_id, circuit_heads, args, dev):
         rk = {tuple(int(x) for x in divmod(int(i), H)) for i in rng.choice(nL * H, len(keep), replace=False)}
         rnd.append(coverage(ind_nll([hh for hh in all_heads if hh not in rk])))
     return {"model": model_id.split("/")[-1], "rope": not is_gpt2, "n_heads_total": nL * H, "circuit_size": len(keep),
-            "base_ind_nll": base, "all_attn_ablated_nll": allabl, "circuit_only_nll": circ,
-            "circuit_coverage": coverage(circ), "random_coverage_mean": float(np.mean(rnd)),
-            "random_coverage_std": float(np.std(rnd)), "curve": curve,
-            "resample_circuit_coverage": rs_cov, "resample_all_ablated_nll": rs_allabl, "resample_circuit_nll": rs_circ}
+            "base_ind_nll": base, "all_attn_ablated_nll": allabl, "circuit_only_nll": circ, "n_seeds": len(args.seeds),
+            "circuit_coverage": float(np.mean(cov_runs)), "circuit_coverage_std": float(np.std(cov_runs)),
+            "random_coverage_mean": float(np.mean(rnd)), "random_coverage_std": float(np.std(rnd)), "curve": curve,
+            "resample_circuit_coverage": rs_cov, "resample_circuit_coverage_std": float(np.std(rscov_runs)),
+            "resample_all_ablated_nll": rs_allabl, "resample_circuit_nll": rs_circ}
 
 
 def write_doc(out, docs):
@@ -170,15 +179,20 @@ def write_doc(out, docs):
          "**coverage = (NLL_all-attn-ablated − NLL_circuit-only) / (NLL_all-attn-ablated − NLL_full)** — 1 = the "
          "circuit alone fully reconstructs induction, 0 = no better than ablating all attention. A random same-size "
          "head-set is the control.", "",
-         "| model | circuit size / total heads | induction-NLL (full / circuit-only / all-ablated) | **circuit coverage** (mean-abl) | coverage (resample-abl) | random control |",
+         "| model | circuit size / total heads | induction-NLL (full / circuit-only / all-ablated) | **circuit coverage** (mean-abl, ±σ) | coverage (resample-abl, ±σ) | random control |",
          "|---|---|---|---|---|---|"]
+    nseed = next((r.get("n_seeds") for r in out["results"] if r.get("n_seeds")), None)
     for r in out["results"]:
         if "circuit_coverage" not in r:
             continue
-        rs = f"{r['resample_circuit_coverage']:+.0%}" if "resample_circuit_coverage" in r else "—"
+        cstd = f" ± {r['circuit_coverage_std']:.0%}" if "circuit_coverage_std" in r else ""
+        rstd = f" ± {r['resample_circuit_coverage_std']:.0%}" if "resample_circuit_coverage_std" in r else ""
+        rs = f"{r['resample_circuit_coverage']:+.0%}{rstd}" if "resample_circuit_coverage" in r else "—"
         L.append(f"| {r['model']} | {r['circuit_size']} / {r['n_heads_total']} | "
                  f"{r['base_ind_nll']:.2f} / {r['circuit_only_nll']:.2f} / {r['all_attn_ablated_nll']:.2f} | "
-                 f"**{r['circuit_coverage']:+.0%}** | {rs} | {r['random_coverage_mean']:+.0%} ± {r['random_coverage_std']:.0%} |")
+                 f"**{r['circuit_coverage']:+.0%}{cstd}** | {rs} | {r['random_coverage_mean']:+.0%} ± {r['random_coverage_std']:.0%} |")
+    if nseed:
+        L += ["", f"_Coverage is **mean ± σ over {nseed} probe-resample seeds** — the error bars confirm the scaling/distributedness trend is not a single-seed artifact._"]
     ks = sorted({c["k"] for r in out["results"] if r.get("curve") for c in r["curve"]})
     if ks:
         L += ["", "## How many heads does induction need? (reconstruction curve)", "",
@@ -248,6 +262,7 @@ def main(argv=None):
     p.add_argument("--rep-len", type=int, default=22)
     p.add_argument("--n-random", type=int, default=4)
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2], help="probe-resample seeds for coverage mean±σ")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly/circuits"))
     p.add_argument("--docs", type=Path, default=Path("docs/circuits"))
