@@ -303,6 +303,20 @@ real FLOP savings) is the natural follow-up. But the qualitative claim is settle
 is tractable with learning — "irreducible" is falsified; only the frozen-linear route was blocked.**
 (`runs/disassembly/core_distill_summary.json`.)
 
+#### …but compression is legibility-NEUTRAL — small ≠ legible for free (`compress_legibility.py`)
+
+The feature-native endgame (train an N× smaller model → extract clean features / knowledge / circuits → the small
+Python program → runtime explainability) hinges on whether compression *aligns* with interpretability. It does not, for
+NLL-only compression: logit-lens-scoring the rank-32 directions the *trained* bottleneck writes into vs the untrained
+PCA directions, both interpretability proxies are **unchanged** — peak-z 5.00 → 4.96, closed-class fraction 0.10 →
+0.09 (marginally *lower*, within noise). So distillation buys the **size** win (#142) but **not** a feature-cleanliness
+win: compression and per-feature monosemanticity are **decoupled** under an NLL objective. **Consequence for the
+pipeline:** to get *both* small *and* legible you must train with an explicit **legibility / sparsity term** (the
+sae-forge feature-native objective) — pure NLL-distillation packs the same entanglement into fewer dimensions. The
+enabling facts are all in hand (smaller = more decompilable; compression is tractable; feature/knowledge/circuit
+extractors + pylm + runtime idiom-traces exist), but the missing ingredient is the legibility objective, not more
+compression. (`runs/disassembly/compress_legibility_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
