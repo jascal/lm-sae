@@ -1,0 +1,161 @@
+{
+  "experiment": "Mamba (SSM) across the themes \u2014 induction-distribution / knowledge READ + WRITE, the non-attention contrast",
+  "results": [
+    {
+      "model": "mamba-130m-hf",
+      "n_layers": 24,
+      "induction": {
+        "base_nll": 0.8618444960416777,
+        "all_ablated_delta": 14.365004408533942,
+        "top_layers": [
+          {
+            "layer": 0,
+            "delta": 3.1769922008752474
+          },
+          {
+            "layer": 17,
+            "delta": 2.8343961496364156
+          },
+          {
+            "layer": 22,
+            "delta": 0.9139507214138879
+          },
+          {
+            "layer": 20,
+            "delta": 0.8097279655329267
+          },
+          {
+            "layer": 18,
+            "delta": 0.7507578613395233
+          }
+        ],
+        "effective_n_layers": 6.57293871587335,
+        "top_layer_share": 0.2676398900995139
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 1.0,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.8623188405797103
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 1.0,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.7874396135265701
+        }
+      },
+      "write": {
+        "n_pairs": 12,
+        "transplant_rate": 1.0,
+        "entity_leakage_rate": 0.9090909090909091,
+        "band_layers": 4
+      }
+    },
+    {
+      "model": "mamba-370m-hf",
+      "n_layers": 48,
+      "induction": {
+        "base_nll": 0.5876757489050284,
+        "all_ablated_delta": 14.454122222536604,
+        "top_layers": [
+          {
+            "layer": 34,
+            "delta": 1.6324595031806635
+          },
+          {
+            "layer": 31,
+            "delta": 1.6219489480614098
+          },
+          {
+            "layer": 0,
+            "delta": 1.459978462542668
+          },
+          {
+            "layer": 25,
+            "delta": 0.2981421830925337
+          },
+          {
+            "layer": 35,
+            "delta": 0.2372130807939573
+          }
+        ],
+        "effective_n_layers": 6.570938905622426,
+        "top_layer_share": 0.22823234088859745
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 1.0,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.8120567375886525
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 0.7777777777777778,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.7565011820330969
+        }
+      },
+      "write": {
+        "n_pairs": 12,
+        "transplant_rate": 1.0,
+        "entity_leakage_rate": 1.0,
+        "band_layers": 9
+      }
+    },
+    {
+      "model": "mamba-790m-hf",
+      "n_layers": 48,
+      "induction": {
+        "base_nll": 0.5251786619898796,
+        "all_ablated_delta": 20.22569498031849,
+        "top_layers": [
+          {
+            "layer": 23,
+            "delta": 1.965171958343403
+          },
+          {
+            "layer": 34,
+            "delta": 0.5765030463129127
+          },
+          {
+            "layer": 1,
+            "delta": 0.5413558350812223
+          },
+          {
+            "layer": 0,
+            "delta": 0.4166502330626827
+          },
+          {
+            "layer": 19,
+            "delta": 0.3850608860001168
+          }
+        ],
+        "effective_n_layers": 7.231831244584298,
+        "top_layer_share": 0.3208258101240661
+      },
+      "read": {
+        "capital": {
+          "n": 12,
+          "accuracy": 1.0,
+          "chance": 0.08333333333333333,
+          "mean_readout_depth": 0.5159574468085107
+        },
+        "language": {
+          "n": 9,
+          "accuracy": 1.0,
+          "chance": 0.1111111111111111,
+          "mean_readout_depth": 0.4018912529550827
+        }
+      },
+      "write": {
+        "n_pairs": 12,
+        "transplant_rate": 1.0,
+        "entity_leakage_rate": 1.0,
+        "band_layers": 9
+      }
+    }
+  ]
+}
