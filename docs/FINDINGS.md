@@ -82,6 +82,18 @@ model IS the database").
   **depth-invariant** — a single fact is not an independently editable row at any single-MLP site via activation
   patching. Surgical single-fact editing would need weight surgery (ROME's rank-1) or a cleaner basis, not a better
   *location* — a hard limit for the "model IS the database" framing, measured cross-model.
+- **Method *or* representation? Both — and the irreducible part shrinks with scale** (`fact_rome_xmodel.py`). Is the
+  entity-leakage because the activation patch is *blunt* (it swaps the whole MLP output), or because capital and
+  language are genuinely *entangled*? We optimised a **targeted** ROME-style edit-value `v` (flip the capital while a
+  KL term preserves the subject's essence) and traced the efficacy-vs-leakage frontier vs the blunt entity-patch
+  baseline (GPT-2 ladder; the 2-B RoPE models don't fit the backprop graph on a 7.5 GB GPU — a real limit, unlike the
+  activation-patch runs). A targeted edit **roughly halves** the leakage — GPT-2 62%→**38%**, GPT-2-medium 62%→**12%**,
+  GPT-2-large 50%→**12%** — so *part* of the leakage is the **method** (the blunt swap drags the whole entity). But the
+  leakage **floors** (12–38%) and won't go to zero however hard we preserve essence — so *part* is the
+  **representation** (capital and language share the subject's write direction irreducibly). The decisive scaling
+  signal: that **irreducible floor falls with size** (38% → 12%), i.e. bigger models carry **more separable** entity/
+  fact representations — surgical single-fact editing is partly a method problem (a better edit helps) and gets
+  *easier* with scale.
 
 ## The outliers — where the next questions are
 
