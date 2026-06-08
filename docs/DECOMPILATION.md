@@ -601,6 +601,21 @@ microbial bacteria` (register **0.71**, persistence **0.44** — a held science 
 into ~20–30 channels: **dominantly induction/copy (early→late), plus a handful of genuine register/topic broadcasts** —
 still a correlational lens (the causal caveat above stands). (`runs/disassembly/circuit_channels_summary.json`, `--resolved`.)
 
+### Where the incompressible core lives — diffuse content, not the circuits (`core_residual.py`)
+
+If the ~⅔d size floor is caused by a few preservable circuits, exempting them would crack it. To check, data-aware-compress
+every composition matrix and split the compression ΔNLL by next-token category. pythia-160m (baseline punct 2.57 / dup 2.03 /
+other 5.63), ΔNLL at rank 64 / 128 / 256: **punct +0.33 / +0.26 / +0.05** (boundary prediction compresses away easily —
+low-rank-friendly), **dup +0.92 / +0.50 / +0.10** (the induction/copy family largely *recovers* by rank 256 — compressible),
+**other (generic content) +1.66 / +1.02 / +0.48** (the residual that *stays*). The dup/other concentration falls 0.56 → 0.21
+as rank rises: by the floor, the incompressible mass is **overwhelmingly diffuse content composition**, not the structural
+circuits. So **preserving the copy circuits would not crack the floor** — the irreducible part isn't a handful of localizable
+circuits; it's distributed content prediction. This is coherent with the rest of the survey (the channels were correlationally
+circuit-like but causally distributed) and locates the forge tax precisely: **the entangled core is content composition — the
+"computed, not retrieved" remainder** — which is why no low-rank or circuit-preserving *weight* trick shrinks it, and why the
+only route shown to break the frozen floor is *learning* (the #142 trained rank-8 update; the feature-native reconstruction).
+(`runs/disassembly/core_residual_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A

@@ -1,0 +1,41 @@
+{
+  "experiment": "where the data-aware low-rank residual concentrates (punct/dup/other)",
+  "results": [
+    {
+      "model": "pythia-160m",
+      "baseline": {
+        "punct": 2.5733003987602983,
+        "dup": 2.031235477529331,
+        "other": 5.63344794936816
+      },
+      "counts": {
+        "punct": 736,
+        "dup": 979,
+        "other": 3325
+      },
+      "curve": [
+        {
+          "rank": 64,
+          "dNLL_punct": 0.32659961368493784,
+          "dNLL_dup": 0.9240406725215835,
+          "dNLL_other": 1.6570283610911343,
+          "concentration_dup_over_other": 0.5576492796752519
+        },
+        {
+          "rank": 128,
+          "dNLL_punct": 0.2604137976677916,
+          "dNLL_dup": 0.5033931376116447,
+          "dNLL_other": 1.0158990900840124,
+          "concentration_dup_over_other": 0.49551490106610924
+        },
+        {
+          "rank": 256,
+          "dNLL_punct": 0.05334580238369435,
+          "dNLL_dup": 0.10313258281525384,
+          "dNLL_other": 0.4834093002431423,
+          "concentration_dup_over_other": 0.21334422517323642
+        }
+      ]
+    }
+  ]
+}
