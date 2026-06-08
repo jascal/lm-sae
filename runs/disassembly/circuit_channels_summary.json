@@ -99,7 +99,12 @@
               "token": "The",
               "dup": 0.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 2.866,
+            "dup": 3.542,
+            "other": 5.204
+          }
         },
         {
           "channel": 1,
@@ -191,7 +196,12 @@
               "token": "\\n",
               "dup": 0.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 0.097,
+            "dup": -0.035,
+            "other": 0.745
+          }
         },
         {
           "channel": 2,
@@ -283,7 +293,12 @@
               "token": "\\n",
               "dup": 1.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 0.255,
+            "dup": 0.176,
+            "other": 0.93
+          }
         },
         {
           "channel": 3,
@@ -375,7 +390,12 @@
               "token": "s",
               "dup": 0.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 0.211,
+            "dup": 0.411,
+            "other": 1.374
+          }
         },
         {
           "channel": 4,
@@ -467,7 +487,12 @@
               "token": "IR",
               "dup": 0.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 0.061,
+            "dup": 0.038,
+            "other": 0.042
+          }
         },
         {
           "channel": 5,
@@ -559,7 +584,12 @@
               "token": "US",
               "dup": 1.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 0.085,
+            "dup": 0.045,
+            "other": 0.037
+          }
         },
         {
           "channel": 6,
@@ -651,7 +681,12 @@
               "token": ":",
               "dup": 1.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 0.019,
+            "dup": 0.192,
+            "other": 0.101
+          }
         },
         {
           "channel": 7,
@@ -743,7 +778,12 @@
               "token": "agues",
               "dup": 0.0
             }
-          ]
+          ],
+          "causal_dNLL": {
+            "punct": 0.117,
+            "dup": -0.009,
+            "other": 0.042
+          }
         },
         {
           "channel": 8,
@@ -1109,374 +1149,6 @@
             },
             {
               "token": " my",
-              "dup": 0.0
-            }
-          ]
-        },
-        {
-          "channel": 12,
-          "sigma": 0.0010845066561748849,
-          "sigma_frac": 0.0013419512170362578,
-          "writer_layers": [
-            6,
-            10,
-            1
-          ],
-          "reader_layers": [
-            7,
-            8,
-            1
-          ],
-          "writer_profile": [
-            0.078,
-            0.089,
-            0.079,
-            0.047,
-            0.084,
-            0.075,
-            0.125,
-            0.088,
-            0.068,
-            0.084,
-            0.104,
-            0.078
-          ],
-          "reader_profile": [
-            0.085,
-            0.115,
-            0.08,
-            0.048,
-            0.09,
-            0.075,
-            0.112,
-            0.132,
-            0.116,
-            0.063,
-            0.069,
-            0.015
-          ],
-          "lens_write": [
-            "\ufffd\ufffd",
-            "\ufffd",
-            "\ufffd",
-            "\ufffd",
-            "\ufffd\ufffd",
-            "\ufffd",
-            "\ufffd",
-            "\ufffd"
-          ],
-          "lens_read": [
-            " and",
-            " Fern",
-            " Jr",
-            " etc",
-            "raph",
-            " Lightning",
-            " Ole",
-            " Skin"
-          ],
-          "dup_lift": 2.28,
-          "pos_corr": 0.08,
-          "label": "induction/duplicate",
-          "top_tokens_when_firing": [
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            }
-          ]
-        },
-        {
-          "channel": 13,
-          "sigma": 0.000906883498637903,
-          "sigma_frac": 0.0011221631584997704,
-          "writer_layers": [
-            7,
-            6,
-            5
-          ],
-          "reader_layers": [
-            9,
-            7,
-            6
-          ],
-          "writer_profile": [
-            0.087,
-            0.066,
-            0.083,
-            0.063,
-            0.09,
-            0.1,
-            0.121,
-            0.17,
-            0.079,
-            0.061,
-            0.049,
-            0.032
-          ],
-          "reader_profile": [
-            0.053,
-            0.065,
-            0.051,
-            0.046,
-            0.092,
-            0.096,
-            0.101,
-            0.141,
-            0.097,
-            0.156,
-            0.069,
-            0.031
-          ],
-          "lens_write": [
-            " flow",
-            "STM",
-            " flowing",
-            "NOS",
-            " downhill",
-            " manually",
-            " suited",
-            "onies"
-          ],
-          "lens_read": [
-            "~~~",
-            "[",
-            "[_",
-            "Bigg",
-            ".\"[",
-            ")))**",
-            "\f",
-            "\"`"
-          ],
-          "dup_lift": 2.01,
-          "pos_corr": 0.09,
-          "label": "induction/duplicate",
-          "top_tokens_when_firing": [
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            },
-            {
-              "token": "\\n",
-              "dup": 1.0
-            }
-          ]
-        },
-        {
-          "channel": 14,
-          "sigma": 0.0008671772786310895,
-          "sigma_frac": 0.0010730313159622725,
-          "writer_layers": [
-            9,
-            6,
-            5
-          ],
-          "reader_layers": [
-            9,
-            6,
-            5
-          ],
-          "writer_profile": [
-            0.062,
-            0.062,
-            0.08,
-            0.068,
-            0.071,
-            0.097,
-            0.125,
-            0.051,
-            0.078,
-            0.129,
-            0.088,
-            0.089
-          ],
-          "reader_profile": [
-            0.061,
-            0.051,
-            0.08,
-            0.073,
-            0.082,
-            0.113,
-            0.13,
-            0.086,
-            0.08,
-            0.159,
-            0.063,
-            0.022
-          ],
-          "lens_write": [
-            " guys",
-            " readers",
-            " reader",
-            " organizers",
-            " structured",
-            " understanding",
-            " clarification",
-            "ability"
-          ],
-          "lens_read": [
-            " if",
-            " although",
-            " however",
-            " though",
-            " since",
-            " doctor",
-            " gentlemen",
-            " aunt"
-          ],
-          "dup_lift": 1.78,
-          "pos_corr": 0.1,
-          "label": "induction/duplicate",
-          "top_tokens_when_firing": [
-            {
-              "token": ",",
-              "dup": 0.0
-            },
-            {
-              "token": ",",
-              "dup": 1.0
-            },
-            {
-              "token": ",",
-              "dup": 0.0
-            },
-            {
-              "token": ",",
-              "dup": 0.0
-            },
-            {
-              "token": ",",
-              "dup": 0.0
-            },
-            {
-              "token": ",",
-              "dup": 0.0
-            }
-          ]
-        },
-        {
-          "channel": 15,
-          "sigma": 0.0008215293704494863,
-          "sigma_frac": 0.0010165473233646435,
-          "writer_layers": [
-            11,
-            6,
-            7
-          ],
-          "reader_layers": [
-            8,
-            10,
-            2
-          ],
-          "writer_profile": [
-            0.08,
-            0.064,
-            0.071,
-            0.047,
-            0.079,
-            0.082,
-            0.119,
-            0.111,
-            0.079,
-            0.064,
-            0.065,
-            0.139
-          ],
-          "reader_profile": [
-            0.075,
-            0.073,
-            0.097,
-            0.041,
-            0.096,
-            0.094,
-            0.096,
-            0.081,
-            0.13,
-            0.075,
-            0.128,
-            0.013
-          ],
-          "lens_write": [
-            " happened",
-            "wise",
-            " exists",
-            " happens",
-            " distinguishes",
-            " occurred",
-            "uelle",
-            " occurs"
-          ],
-          "lens_read": [
-            " is",
-            " was",
-            "ates",
-            "illi",
-            " occurs",
-            " hath",
-            " appears",
-            " tends"
-          ],
-          "dup_lift": 0.63,
-          "pos_corr": 0.06,
-          "label": "content/other",
-          "top_tokens_when_firing": [
-            {
-              "token": " will",
-              "dup": 0.0
-            },
-            {
-              "token": " shall",
-              "dup": 0.0
-            },
-            {
-              "token": "What",
-              "dup": 0.0
-            },
-            {
-              "token": "What",
-              "dup": 0.0
-            },
-            {
-              "token": "'ll",
-              "dup": 0.0
-            },
-            {
-              "token": " shall",
               "dup": 0.0
             }
           ]
