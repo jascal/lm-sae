@@ -15,6 +15,13 @@ not to trust."
 - **Induction is universal and causally load-bearing in every model** — the universal idioms (prev-token,
   duplicate, induction) are recovered from the weights/behaviour everywhere, and mean-ablating the induction heads
   raises induction-NLL in all six ([operator catalog](operators/README.md); cross-model dossier on each op page).
+- **The IOI circuit is architecture-invariant, not GPT-2-only** — found behaviourally on the ResidualVM in all six
+  models, every one has **name-movers** (heads attending the end→indirect-object and copying it), **negative/copy-
+  suppression movers**, and a **duplicate-token initiator**; ablating the name-movers collapses the IO−S logit-diff
+  (+13% to +26%) everywhere, and the behaviour *strengthens* with GPT-2 scale (+2.88 → +3.11 → +4.09)
+  ([IOI dossier](circuits/ioi_q_chain.md)). The **backup-name-mover self-repair generalises too** — in every model the
+  *most ablation-load-bearing* heads are the S-inhibition type (name-movers are backed up), so the ablation and
+  copy-attention rankings disagree (the Hydra effect, cross-model).
 - **The early MLP is largely an "extended embedding" in 5/6 models** — MLP0's output is mostly fixed by the current
   token identity (token-determinism η²: GPT-2 0.63, Gemma 0.91, Qwen 0.65), the classic detokenizer reading
   ([MLP extended-embedding test](operators/mlp_detokenizer.md)).
