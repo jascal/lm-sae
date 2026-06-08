@@ -1,0 +1,290 @@
+{
+  "experiment": "recursive syntax \u2014 subject-verb agreement across attractor depth: model vs flat pylm vs composition",
+  "results": [
+    {
+      "model": "Llama-3.2-1B",
+      "n_layers": 16,
+      "depths": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "by_depth": {
+        "0": {
+          "full": {
+            "mean_logit_diff": 5.408854104578495,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": 2.0403646056850753,
+            "accuracy": 0.9479166666666666,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": 0.0,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "1": {
+          "full": {
+            "mean_logit_diff": 3.177734343955914,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -1.996744841337204,
+            "accuracy": 0.041666666666666664,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.016927083333333332,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "2": {
+          "full": {
+            "mean_logit_diff": 2.494140639901161,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -2.112630248069763,
+            "accuracy": 0.03125,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.0078125,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "3": {
+          "full": {
+            "mean_logit_diff": 1.7714843948682149,
+            "accuracy": 0.9375,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -2.0716146330038705,
+            "accuracy": 0.03125,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.016276041666666668,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        }
+      },
+      "pylm": null
+    },
+    {
+      "model": "gpt2-large",
+      "n_layers": 36,
+      "depths": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "by_depth": {
+        "0": {
+          "full": {
+            "mean_logit_diff": 4.918396567304929,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": 0.4905742680033048,
+            "accuracy": 0.5625,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": 0.07244362433751424,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "1": {
+          "full": {
+            "mean_logit_diff": 3.148003468910853,
+            "accuracy": 0.96875,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -0.28001251568396884,
+            "accuracy": 0.46875,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.034122928977012634,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "2": {
+          "full": {
+            "mean_logit_diff": 2.4126052682598433,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -0.462816687921683,
+            "accuracy": 0.4583333333333333,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.06310978035132091,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "3": {
+          "full": {
+            "mean_logit_diff": 1.6899535569051902,
+            "accuracy": 0.90625,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -0.16110733151435852,
+            "accuracy": 0.4895833333333333,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.06980757415294647,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        }
+      },
+      "pylm": {
+        "0": {
+          "head_agreement": 0.5333333333333333,
+          "attractor_agreement": 0.4666666666666667,
+          "found": 45
+        },
+        "1": {
+          "head_agreement": 0.0,
+          "attractor_agreement": 1.0,
+          "found": 6
+        },
+        "2": {
+          "head_agreement": 0.0,
+          "attractor_agreement": 1.0,
+          "found": 6
+        },
+        "3": {
+          "head_agreement": 0.0,
+          "attractor_agreement": 1.0,
+          "found": 12
+        }
+      }
+    },
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "depths": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "by_depth": {
+        "0": {
+          "full": {
+            "mean_logit_diff": 5.035983959833781,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": 2.1440064882238707,
+            "accuracy": 0.9791666666666666,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": 0.08693734308083852,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "1": {
+          "full": {
+            "mean_logit_diff": 2.742848383883635,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -2.231711521744728,
+            "accuracy": 0.0,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.04099938770135244,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "2": {
+          "full": {
+            "mean_logit_diff": 2.3542779137690864,
+            "accuracy": 0.96875,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -2.2181310430169106,
+            "accuracy": 0.010416666666666666,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.07999492188294728,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        },
+        "3": {
+          "full": {
+            "mean_logit_diff": 1.9594734758138657,
+            "accuracy": 1.0,
+            "n": 96
+          },
+          "attn_ablated": {
+            "mean_logit_diff": -2.319483724733194,
+            "accuracy": 0.0,
+            "n": 96
+          },
+          "mlp_ablated": {
+            "mean_logit_diff": -0.0820291390021642,
+            "accuracy": 0.5,
+            "n": 96
+          }
+        }
+      },
+      "pylm": {
+        "0": {
+          "head_agreement": 0.5333333333333333,
+          "attractor_agreement": 0.4666666666666667,
+          "found": 45
+        },
+        "1": {
+          "head_agreement": 0.0,
+          "attractor_agreement": 1.0,
+          "found": 6
+        },
+        "2": {
+          "head_agreement": 0.0,
+          "attractor_agreement": 1.0,
+          "found": 6
+        },
+        "3": {
+          "head_agreement": 0.0,
+          "attractor_agreement": 1.0,
+          "found": 12
+        }
+      }
+    }
+  ]
+}

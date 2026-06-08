@@ -289,6 +289,42 @@ grammar is partly masked by rare-/byte-token directions. So the **typed graph**:
 entangled content composition in the core — the ontology of "what the core is made of," per layer.
 (`runs/disassembly/core_mps_summary.json`.)
 
+### Where the *recursive* syntax lives — in the composition, not the basis (`recursive_syntax.py`)
+
+The static basis holds only the **categorial** grammar (POS-class directions). The open question: is the genuinely
+Chomskyan part — hierarchy, long-range dependency, recursion — in that basis, or in the **composition**? The cleanest
+test is subject–verb agreement across intervening attractors (Linzen et al.): *"The key near the cabinets **is/are**"*
+— the verb must agree with the head (`key`, singular), **not** the nearest noun (`cabinets`, plural). A flat local
+program follows the nearest noun; true hierarchical syntax tracks the head across depth. Three read-only measurements:
+
+| attractor depth | MODEL (full) | MODEL, attention-ablated | FLAT pylm (head / attractor) |
+|---|---|---|---|
+| 0 (local) | **100%** (Δ+5.0) | 98% (Δ+2.1) — number is on the last token | 53% / 47% (no attractor yet) |
+| 1 | **100%** (Δ+2.7) | **0%** (Δ−2.2) — follows the attractor | **0% / 100%** |
+| 2 | **97%** (Δ+2.4) | 1% (Δ−2.2) | 0% / 100% |
+| 3 | **100%** (Δ+2.0) | 0% (Δ−2.3) | 0% / 100% |
+
+*(GPT-2 small; logit-diff Δ = lp(correct) − lp(wrong).)* Three findings, all confirming the hypothesis:
+- **The model does true hierarchical agreement** — ~100% across depth, resisting the attractor; and the logit-diff
+  **degrades with distance** (+5.0 → +2.0), the bounded-depth signature of a single forward pass (TC⁰: recursion isn't
+  free — it weakens with depth, and would need the decode loop / scratchpad to go deeper).
+- **The flat decompilation cannot** — pylm (n-gram + induction + categorial grammar) is **0% head / 100% attractor**
+  at depth ≥ 1: it always follows the nearest noun. The hierarchical dependency is **not** in the flat program (nor in
+  the categorial grammar head it decompiles). *(Caveat: pylm surfaces a verb token in only n≈6–12 of the depth ≥ 1
+  stimuli — out-of-distribution sentences — but of those it is 100% attractor-driven.)*
+- **Ablating attention collapses it to the attractor** — depth-0 agreement survives (the head's number is on the last
+  token itself), but at depth ≥ 1 the model flips to following the nearest noun (0%, logit-diff negative). So
+  **attention carries the head's number across the attractors** — the dependency lives in the attention **composition**,
+  not the static grammar head. **Cross-architecture:** Llama-3.2-1B (RoPE) replicates it crisply (full 100/100/100/94%
+  across depth; attention-ablated 95% at depth 0 → **3–4%** at depth ≥ 1); gpt2-large likewise (full ~91–100%,
+  attention-ablated → chance). MLP-ablation destroys the verb readout entirely (chance) in all three — the clean
+  dissociation is attention.
+
+This closes the grammar loop and ties it to the forge tax: **the categorial grammar is in the static write-basis
+(decompilable, #133); the recursive/hierarchical syntax is in the composition (the entangled core the forge tax
+measures).** "Simpler-than-Chomsky" in the basis, Chomskyan in the composition — demonstrated, not assumed.
+(`runs/disassembly/recursive_syntax_summary.json`.)
+
 ## Execution model: an interpreter over the op-graph ("ResidualVM")
 
 The recompile-KL harness is most useful not as a one-shot metric but as a **steppable interpreter** over the
