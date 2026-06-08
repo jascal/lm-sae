@@ -92,6 +92,21 @@ data, six sizes; `ladder.py`) shows the **decompilable fraction falls monotonica
   tax](DECOMPILATION.md), (b) [read-out depth / fact-separability](scaling.md), and now (c) the pure-Python
   decompilable fraction. Three routes, one core.
 
+**Modern models are *less* decompilable than older models of the same size — it falls with *capability/era*, not just
+parameter count.** Taking pylm off the GPT-2/Pythia era to recent models (`runs/pylm/modern_decompile_summary.json`):
+
+| model (era) | size | model corpus top-1 | **decompilable fraction** | pylm reproduces (of acc) |
+|---|---|---|---|---|
+| Pythia-1.4b (2023) | 1.4 B | 49.4% | 44.9% | 69% |
+| **Qwen2.5-1.5B** (2024) | 1.5 B | 40.2% | **34.6%** | 58% |
+| **Llama-3.2-3B** (2024) | 3 B | 51.0% | **31.3%** | 45% |
+
+A modern 1.5 B (Qwen2.5, 34.6%) is **~10 points less** flat-reproducible than an *older* 1.4 B (Pythia, 44.9%), and
+Llama-3.2-3B is the lowest measured (31.3%). Modern training (far more data, better methods) pushes *more* of the
+model's behaviour into the entangled composition — so the same "core grows with capability" trend holds across **era**,
+not only size. (Measured on tiny-Shakespeare like the rest; the relative modern-vs-old gap at matched size is the
+signal.)
+
 ## The ceiling — why it stops short of 100% (the forge tax, made runnable)
 
 pylm reproduces ~half the model and no more, and it *can't* reach 100%: the un-reproduced fraction is the entangled

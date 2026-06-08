@@ -42,7 +42,7 @@ def main(argv=None):
     from transformers import AutoModelForCausalLM, AutoTokenizer
     dev = args.device if torch.cuda.is_available() else "cpu"
     tok = AutoTokenizer.from_pretrained(args.model)
-    big = any(s in args.model for s in ("1b", "1.4b", "2.8b", "-xl", "-large"))
+    big = any(s in args.model for s in ("1b", "1.4b", "1.5b", "2b", "2.8b", "3b", "7b", "8b", "-xl", "-large"))
     m = AutoModelForCausalLM.from_pretrained(args.model, **({"dtype": torch.bfloat16} if big else {})).eval().to(dev)
     text = urllib.request.urlopen(urllib.request.Request(CORPUS, headers={"User-Agent": "Mozilla/5.0"}),
                                   timeout=20).read().decode("utf-8", "ignore")
