@@ -171,11 +171,25 @@ one forward pass, induction *attention mass* per head, no ablation):
   signal is the **vocabulary** axis: it is the breadth of the *input type-space*, not the amount of input, that
   pulls in more heads. (`runs/disassembly/circuits/input_scaling_summary.json`.)
 
-**Synthesis across the three tests.** A distributing induction circuit is (1) **not** a weighted ensemble of
+**But the recruited heads do *not* cleanly tile the input by an interpretable property (a null result).** The natural
+follow-up — if more inputs recruit more heads, does each head *own a slice* of the input? — we tested directly
+(`circuit_domain_tiling.py`): for every induction position take the head that dominates its induction attention, then
+ask whether the dominant head is predicted by the matched token's **frequency** (η² vs a label-permutation null) or
+whether heads own **disjoint token sets** (Jaccard). At a 256-type vocabulary, **frequency-specialization is *not*
+significant in any of 5 models** (η² ≈ its permutation null, z ≈ 0–1 — the weak gpt2 signal at a smaller vocabulary
+did not replicate). The low token-set Jaccard (0.04–0.06) *looks* like a partition but **lacks a null** and is
+confounded by the very distributedness above: with the top head holding only 1–8% of the induction attention, "which
+head owns this position" is a **noisy** label, so no clean specialist→input-slice map exists to find. So "same
+function over more inputs" **recruits** heads but they are a *redundant distributed population*, not crisp domain
+specialists carving the input along token frequency — consistent with the low functional-overlap / no-duplicates
+picture above. (`runs/disassembly/circuits/domain_tiling_summary.json`.)
+
+**Synthesis across the four tests.** A distributing induction circuit is (1) **not** a weighted ensemble of
 duplicates (OV-cosine ≈0), (2) made of **structurally heterogeneous heads** — separable parallel sub-circuits in the
-absolute-position family, one shared-front-end decomposition in the RoPE family — and (3) its head-count is driven by
-**input-domain breadth** as a first-class axis alongside model size (the same function tiled over more token-types),
-GPU-cheaply confirmable on a single model. Gemma is the exception to (2)'s and (3)'s regularities, as it is to most.
+absolute-position family, one shared-front-end decomposition in the RoPE family — (3) its head-count is driven by
+**input-domain breadth** as a first-class axis alongside model size, but (4) the recruited heads do **not** crisply
+specialize by an interpretable input property (token frequency): the recruitment grows a *redundant distributed*
+population, not a clean input→head tiling. Gemma is the exception to (2)'s and (3)'s regularities, as it is to most.
 
 ### Does RoPE's shared early-writer front-end make induction fragile to post-training?
 
