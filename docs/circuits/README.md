@@ -63,6 +63,23 @@ redundancy, operator-parity), generated on the [unified `ResidualVM`](../DECOMPI
 monotonically across the GPT-2 ladder** (small → XL) — the named circuit is most localized in the smallest model
 and dissolves into the network with scale, the same distributedness theme measured as a clean ablation battery.
 
+## MLP nodes in the circuit DAG — the COMPUTE class, cross-model
+
+The cross-model edges above are attention-only (head→head). But circuits also route through **MLPs**: [`mlp_circuit_xmodel.py`](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/mlp_circuit_xmodel.py) (on the ResidualVM) makes them first-class circuit **nodes** — per-layer COMPUTE importance for induction (ablate each MLP → Δinduction-NLL) + the head↔MLP composition edges that wire them in.
+
+| model | induction head | all-MLP-ablated Δind-NLL | dominant induction-MLP(s) | detokenizer = MLP0? |
+|---|---|---|---|---|
+| gpt2 | `5.1` | +8.7 | L0 (+8.2), L1 (+6.3) | ✓ |
+| gpt2-medium | `11.1` | +8.9 | L0 (+15.4) | ✓ |
+| gpt2-large | `16.0` | +13.0 | L0 (+10.3) | ✓ |
+| gemma-2-2b | `6.3` | +17.5 | L0 (+3.7), L17 (+1.6), L5 (+1.4) | ✓ |
+| Llama-3.2-1B | `10.23` | +15.1 | L1 (+12.8), L0 (+12.5), L15 (+1.9) | ✗ (L1) |
+| Qwen2.5-1.5B | `14.3` | +15.9 | L2 (+14.0), L1 (+13.4), L0 (+7.3) | ✗ (L2) |
+
+- **The COMPUTE class is load-bearing for induction in *every* model** — ablating all MLPs (attention intact) costs **+8.7 to +17.5** induction-NLL, so a faithful induction circuit is **not** attention-only; the MLP nodes belong in the DAG.
+- **The load-bearing MLPs are *early* everywhere** — the detokenizer / extended-embedding substrate ([MLP test](operators/mlp_detokenizer.md)) — but their **concentration tracks the family**: GPT-2 (and Gemma) pin it to a single **MLP0**, while the RoPE models **Llama (L1+L0)** and **Qwen (L2+L1+L0)** spread the substrate across the first two–three MLPs (so `detokenizer = MLP0` is GPT-2/Gemma-only; the embedding is assembled across early layers in RoPE). Same localized-in-GPT-2 / distributed-in-RoPE split the attention side shows. _(Data: [mlp_circuit_xmodel_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/mlp_circuit_xmodel_summary.json).)_
+
+
 ## Taxonomy & gaps
 
 - **Levels:** circuit (a DAG of operator nodes) → edge (writer-op → reader-op via a K/Q/V port) → the operator

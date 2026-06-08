@@ -17,6 +17,37 @@ def load(p):
     return json.loads(p.read_text()) if p.exists() else {}
 
 
+def mlp_circuit_section(mdossier):
+    """The cross-model MLP-node section for the circuit README (mlp_circuit_xmodel.py)."""
+    results = [r for r in mdossier.get("results", []) if "profile" in r]
+    if not results:
+        return ""
+    order = {"gpt2": 0, "gpt2-medium": 1, "gpt2-large": 2, "gemma-2-2b": 3, "Llama-3.2-1B": 4, "Qwen2.5-1.5B": 5}
+    results.sort(key=lambda r: order.get(r["model"], 9))
+    lines = ["## MLP nodes in the circuit DAG — the COMPUTE class, cross-model", "",
+             "The cross-model edges above are attention-only (head→head). But circuits also route through **MLPs**: "
+             "[`mlp_circuit_xmodel.py`](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/mlp_circuit_xmodel.py) "
+             "(on the ResidualVM) makes them first-class circuit **nodes** — per-layer COMPUTE importance for induction "
+             "(ablate each MLP → Δinduction-NLL) + the head↔MLP composition edges that wire them in.", "",
+             "| model | induction head | all-MLP-ablated Δind-NLL | dominant induction-MLP(s) | detokenizer = MLP0? |",
+             "|---|---|---|---|---|"]
+    for r in results:
+        dom = ", ".join(f"L{e['layer']} ({e['d_induction']:+.1f})" for e in r["top_mlp_induction"][:3] if e["d_induction"] > 0.3)
+        lines.append(f"| {r['model']} | `{r['induction_head']}` | {r['all_mlp_ablated_d_induction']:+.1f} | {dom} | "
+                     f"{'✓' if r['detokenizer_is_mlp0'] else '✗ (L%d)' % r['top_mlp_induction'][0]['layer']} |")
+    lines += ["",
+              "- **The COMPUTE class is load-bearing for induction in *every* model** — ablating all MLPs (attention "
+              "intact) costs **+8.7 to +17.5** induction-NLL, so a faithful induction circuit is **not** attention-only; "
+              "the MLP nodes belong in the DAG.",
+              "- **The load-bearing MLPs are *early* everywhere** — the detokenizer / extended-embedding substrate "
+              "([MLP test](operators/mlp_detokenizer.md)) — but their **concentration tracks the family**: GPT-2 (and "
+              "Gemma) pin it to a single **MLP0**, while the RoPE models **Llama (L1+L0)** and **Qwen (L2+L1+L0)** spread "
+              "the substrate across the first two–three MLPs (so `detokenizer = MLP0` is GPT-2/Gemma-only; the embedding "
+              "is assembled across early layers in RoPE). Same localized-in-GPT-2 / distributed-in-RoPE split the "
+              "attention side shows. _(Data: [mlp_circuit_xmodel_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/mlp_circuit_xmodel_summary.json).)_", ""]
+    return "\n".join(lines) + "\n"
+
+
 def cross_matrix(atlas):
     rows = atlas["cross_model_circuits"]; models = atlas["models"]
     head = "| circuit | defining edge | " + " | ".join(models) + " |"
@@ -230,6 +261,7 @@ def main(argv=None):
     dossier = load(args.root / "dossier_summary.json")
     ioi_dossier = load(args.root / "ioi_xmodel_summary.json")
     vcomp_dossier = load(args.root / "vcomposition_xmodel_summary.json")
+    mlp_dossier = load(args.root / "mlp_circuit_xmodel_summary.json")
     rung3 = load(args.disasm / "rung3_induction_chain_summary.json")
     extra = {"self_repair": load(args.disasm / "self_repair_summary.json")}
     args.docs.mkdir(parents=True, exist_ok=True)
@@ -240,6 +272,7 @@ def main(argv=None):
     operator_names = frozenset(ops_atlas.get("operators", [])) | frozenset(ops_atlas.get("gpt2_circuit_ops", {}))
 
     models, cmat = cross_matrix(atlas)
+    mlp_section = mlp_circuit_section(mlp_dossier)
     cross = atlas["cross_model_circuits"]; gpt2 = atlas["gpt2_circuits"]
     for c, row in cross.items():
         (args.docs / f"{c}.md").write_text(cross_page(c, row, models, rung3, dossier, operator_names))
@@ -308,6 +341,7 @@ redundancy, operator-parity), generated on the [unified `ResidualVM`](../DECOMPI
 monotonically across the GPT-2 ladder** (small → XL) — the named circuit is most localized in the smallest model
 and dissolves into the network with scale, the same distributedness theme measured as a clean ablation battery.
 
+{mlp_section}
 ## Taxonomy & gaps
 
 - **Levels:** circuit (a DAG of operator nodes) → edge (writer-op → reader-op via a K/Q/V port) → the operator
