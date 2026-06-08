@@ -21,17 +21,26 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "gemma"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mlp_atlas import mlp_blocks  # noqa: E402
 
-# all "The capital of <subject> is <object>" so prompts share structure + subject position
-FACTS = [
-    ("France", " Paris"), ("Japan", " Tokyo"), ("Italy", " Rome"), ("Russia", " Moscow"),
-    ("China", " Beijing"), ("Egypt", " Cairo"), ("Spain", " Madrid"), ("Germany", " Berlin"),
-    ("Canada", " Ottawa"), ("Greece", " Athens"), ("Cuba", " Havana"), ("Peru", " Lima"),
-    ("Iran", " Tehran"), ("Austria", " Vienna"), ("Poland", " Warsaw"), ("Norway", " Oslo"),
-]
-TEMPLATE = "The capital of {} is"
+# each relation: (template, [(subject, object)]) — prompts share structure so the subject position is unambiguous
+RELATIONS = {
+    "capital": ("The capital of {} is", [
+        ("France", " Paris"), ("Japan", " Tokyo"), ("Italy", " Rome"), ("Russia", " Moscow"),
+        ("China", " Beijing"), ("Egypt", " Cairo"), ("Spain", " Madrid"), ("Germany", " Berlin"),
+        ("Canada", " Ottawa"), ("Greece", " Athens"), ("Cuba", " Havana"), ("Peru", " Lima"),
+        ("Iran", " Tehran"), ("Austria", " Vienna"), ("Poland", " Warsaw"), ("Norway", " Oslo"),
+    ]),
+    "language": ("In {}, people speak the language of", [
+        ("France", " French"), ("Japan", " Japanese"), ("Italy", " Italian"), ("Russia", " Russian"),
+        ("China", " Chinese"), ("Spain", " Spanish"), ("Germany", " German"), ("Greece", " Greek"),
+        ("Poland", " Polish"), ("Norway", " Norwegian"), ("Sweden", " Swedish"), ("Turkey", " Turkish"),
+        ("Portugal", " Portuguese"), ("Finland", " Finnish"), ("Thailand", " Thai"), ("Korea", " Korean"),
+    ]),
+}
+FACTS = RELATIONS["capital"][1]
+TEMPLATE = RELATIONS["capital"][0]
 
 
-def run_model(model_id, args, dev):
+def run_model(model_id, args, dev, relation="capital"):
     import torch
     import torch.nn.functional as F
     is_gpt2 = "gpt2" in model_id.lower()
@@ -45,11 +54,12 @@ def run_model(model_id, args, dev):
     nL = m.config.num_hidden_layers; mlps = mlp_blocks(m)
     tok = AutoTokenizer.from_pretrained(model_id)
 
+    template, rel_facts = RELATIONS[relation]
     # keep facts whose subject is single-token (so the subject position is unambiguous) + single-token object
     facts = []
-    for subj, obj in FACTS:
+    for subj, obj in rel_facts:
         st = tok(" " + subj, add_special_tokens=False)["input_ids"]
-        ids = tok(TEMPLATE.format(subj), add_special_tokens=not is_gpt2)["input_ids"]
+        ids = tok(template.format(subj), add_special_tokens=not is_gpt2)["input_ids"]
         ot = tok(obj, add_special_tokens=False)["input_ids"]
         if len(st) == 1 and len(ot) == 1:
             # subject position = index of the subject token (last matching)
@@ -100,8 +110,8 @@ def run_model(model_id, args, dev):
             if lp[fb["obj"]] > lp[fa["obj"]]:                                    # the fact flipped to the donor's capital
                 flips += 1
     flip_rate = flips / max(pairs, 1); mean_shift = shift / max(pairs, 1)
-    print(f"  {len(facts)} facts, band L{band[0]}-{band[-1]} | flip-rate {flip_rate:.0%} ({flips}/{pairs}) | mean logit-diff shift {mean_shift:+.2f}")
-    return {"model": model_id.split("/")[-1], "rope": not is_gpt2, "n_layers": nL, "n_facts": len(facts),
+    print(f"  [{relation}] {len(facts)} facts, band L{band[0]}-{band[-1]} | flip-rate {flip_rate:.0%} ({flips}/{pairs}) | mean logit-diff shift {mean_shift:+.2f}")
+    return {"model": model_id.split("/")[-1], "relation": relation, "rope": not is_gpt2, "n_layers": nL, "n_facts": len(facts),
             "patch_band": [band[0], band[-1]], "pairs": pairs, "flip_rate": flip_rate, "mean_logitdiff_shift": mean_shift}
 
 
@@ -114,19 +124,21 @@ def write_doc(out, docs):
          "subject-enrichment into France's run. If the store carries the fact, the model now predicts **Rome**, not "
          "Paris. Over ordered fact pairs: the **flip rate** (the donor's capital out-scores the original's) and the "
          "mean logit-difference shift.", "",
-         "| model | facts | patched band | pairs | **flip rate** | mean logit-diff shift |",
-         "|---|---|---|---|---|---|"]
+         "| model | relation | facts | patched band | pairs | **flip rate** | mean logit-diff shift |",
+         "|---|---|---|---|---|---|---|"]
     for r in out["results"]:
         if "flip_rate" not in r:
             continue
-        L.append(f"| {r['model']} | {r['n_facts']} | L{r['patch_band'][0]}–{r['patch_band'][1]} | {r['pairs']} | "
+        L.append(f"| {r['model']} | {r.get('relation', 'capital')} | {r['n_facts']} | L{r['patch_band'][0]}–{r['patch_band'][1]} | {r['pairs']} | "
                  f"**{r['flip_rate']:.0%}** | {r['mean_logitdiff_shift']:+.2f} |")
     L += ["", "_**Finding.** Patching the early-MLP store at the subject **causally transplants the fact — a 100% flip "
-          "rate in GPT-2 (all three sizes), Llama, and Qwen**: France's run now answers Rome, every pair. The store at "
-          "the subject *is* where the capital lives — an activation-patch edit (no weight surgery), the sufficiency "
-          "complement of the causal trace's necessity, and the decompile→recompile loop made concrete. **Gemma is the "
-          "recurring outlier** (3% flip, *negative* shift): patching its early-subject MLPs does NOT transplant the "
-          "fact — consistent with Gemma's clean standalone MLP0 (token-determinism η² 0.91). A band-scan "
+          "rate in GPT-2 (all three sizes), Llama, and Qwen, for *both* relations tested** (capital and language): "
+          "France's run now answers Rome / Italian, every pair. So the store carries facts **generally**, not "
+          "capital-specifically — an activation-patch edit (no weight surgery), the sufficiency complement of the "
+          "causal trace's necessity, and the decompile→recompile loop made concrete. **Gemma is the "
+          "recurring outlier** (3% capital / 11% language flip, *negative* shift on both): patching its early-subject MLPs "
+          "does NOT transplant the fact for either relation — consistent with Gemma's clean standalone MLP0 "
+          "(token-determinism η² 0.91). A band-scan "
           "confirms it: **no single 25% MLP band (early, mid, or late) transplants Gemma's facts** — every band gives "
           "~0% flip with a *negative* shift (patching only damages). So Gemma's factual storage is **distributed**, not "
           "band-localizable / editable the way the other five models' early store is. Same Gemma exceptionalism as the "
@@ -144,6 +156,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--model-ids", default="gpt2,gpt2-medium,gpt2-large,unsloth/Llama-3.2-1B,Qwen/Qwen2.5-1.5B")
     p.add_argument("--donors", type=int, default=4, help="donor facts patched into each original")
+    p.add_argument("--relations", nargs="+", default=["capital", "language"], help="relations to test (generalization)")
     p.add_argument("--band-lo", type=float, default=0.0, help="patch-band start as a fraction of depth")
     p.add_argument("--band-hi", type=float, default=0.25, help="patch-band end as a fraction of depth")
     p.add_argument("--seed", type=int, default=0)
@@ -156,10 +169,11 @@ def main(argv=None):
     results = []
     for mid in [m.strip() for m in args.model_ids.split(",") if m.strip()]:
         print(f"\n=== {mid} ===")
-        try:
-            results.append(run_model(mid, args, dev))
-        except Exception as e:  # pragma: no cover
-            print(f"  [skip] {e}"); results.append({"model": mid.split("/")[-1], "error": str(e)})
+        for rel in args.relations:
+            try:
+                results.append(run_model(mid, args, dev, relation=rel))
+            except Exception as e:  # pragma: no cover
+                print(f"  [{rel}] [skip] {e}"); results.append({"model": mid.split("/")[-1], "relation": rel, "error": str(e)})
         if dev == "cuda":
             torch.cuda.empty_cache()
     out = {"experiment": "fact transplant via MLP-store activation patching", "results": results}
