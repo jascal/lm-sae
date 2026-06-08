@@ -616,6 +616,21 @@ circuit-like but causally distributed) and locates the forge tax precisely: **th
 only route shown to break the frozen floor is *learning* (the #142 trained rank-8 update; the feature-native reconstruction).
 (`runs/disassembly/core_residual_summary.json`.)
 
+### What the content core COMPUTES — MLP-stored, context-bound, not attention-retrieval (`content_mechanism.py`)
+
+Having located the forge tax on *content* prediction, the mechanism question (the "explain how we think" half): is that
+content **in-context retrieval** (attention-carried) or **stored computation** (MLP-carried)? Mean-ablate all attention vs
+all MLP, ΔNLL by category (pythia-160m, baseline punct 2.54 / dup 2.15 / other 5.71): **attention** +1.34 / +1.46 / +1.15
+(≈uniform — structural routing), **MLP** +2.08 / +2.14 / **+4.03** — MLP ablation hits **content 2× harder** than punct/dup.
+So content composition is **MLP-carried, not attention-retrieval** — the forge tax lives in the MLPs (computed/stored
+parametric), *not* retrieval-in-disguise. And it is genuinely **context-bound**: NLL on content drops monotonically
+7.42 → 5.71 as the visible window grows k=1 → 64 (still falling at 64) — it needs the long context, not a local n-gram.
+Reconciliation: **attention gathers the context, the MLPs compute the content prediction over it** — the irreducible core is
+*context-conditioned MLP computation*. The open twist (next probe): MLPs read as key-value *memories*, so "MLP-stored" could
+still be **flat-decompilable** (a big KV lookup = the Θ(size) flat-knowledge term) rather than irreducible nonlinear
+composition — which is exactly the crux of whether the core unsquirrels into flat storage or stays computed.
+(`runs/disassembly/content_mechanism_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A

@@ -1,0 +1,61 @@
+{
+  "experiment": "is content composition attention-retrieval or MLP-stored, and how context-bound",
+  "results": [
+    {
+      "model": "pythia-160m",
+      "baseline": {
+        "punct": 2.538100770830679,
+        "dup": 2.154247743925711,
+        "other": 5.7070891386001525
+      },
+      "ablate_attention": {
+        "punct": 1.3431531352707777,
+        "dup": 1.4552661938979745,
+        "other": 1.1518907286771292
+      },
+      "ablate_mlp": {
+        "punct": 2.0774070496831816,
+        "dup": 2.1379628547805227,
+        "other": 4.034841107172903
+      },
+      "context_truncation": [
+        {
+          "window": 1,
+          "nll_punct": 4.221860816029354,
+          "nll_dup": 4.101451016027435,
+          "nll_other": 7.424560742955791
+        },
+        {
+          "window": 2,
+          "nll_punct": 4.042494086460917,
+          "nll_dup": 3.964008578525381,
+          "nll_other": 6.986860734591863
+        },
+        {
+          "window": 4,
+          "nll_punct": 3.5707847653493205,
+          "nll_dup": 3.6091181329538222,
+          "nll_other": 6.541865694044847
+        },
+        {
+          "window": 8,
+          "nll_punct": 3.156240471448574,
+          "nll_dup": 3.2982959590761767,
+          "nll_other": 6.229731513230626
+        },
+        {
+          "window": 16,
+          "nll_punct": 2.800256032379666,
+          "nll_dup": 2.904359585368018,
+          "nll_other": 5.872619264717981
+        },
+        {
+          "window": 64,
+          "nll_punct": 2.538081469906601,
+          "nll_dup": 2.1542618410538803,
+          "nll_other": 5.707089110186033
+        }
+      ]
+    }
+  ]
+}
