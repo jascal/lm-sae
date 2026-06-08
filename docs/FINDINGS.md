@@ -90,6 +90,38 @@ carried by the near-whole network — a clean decompilation into a tiny sufficie
 (The reconstruction-coverage numbers are **seed-stable**, ±0–1% over three probe-resample seeds, so the
 scaling/distributedness trend is not a single-seed artifact.)
 
+### When a circuit "distributes," what is it becoming — a weighted ensemble, or heterogeneous circuits woven in?
+
+The [cross-model dossier](circuits/induction.md) shows the induction circuit's necessity *and* sufficiency decay with
+GPT-2 scale. "Distributed" could mean three different things, so we measured the full induction-head population (not
+just the top heads) on two axes (`circuit_ensemble.py`, on the ResidualVM): a **functional** axis (do the heads help
+the *same* token-predictions?) and a **structural** axis that is **free of the ablation-gentleness confound** — the
+pairwise cosine of the heads' **OV operation-matrices** (do they do the *same thing*, weight-wise?) and the
+population's **spread across depth**.
+
+- **It is NOT a weighted ensemble of duplicates.** If the distributing circuit were many copies of one head being
+  averaged, the heads' OV matrices would be aligned. They are not, in **any** model: the mean pairwise OV cosine is
+  **≈0 everywhere (0.01–0.07)** and does **not** rise with scale. The induction heads are doing structurally
+  *distinct* operations, not replicating one.
+- **The population is spread across depth, not a replicated band** — the induction heads span **43–93% of the
+  model's layers** in every model (Qwen 93%, Llama 87%, Gemma 80%), and the **functional** overlap is low too
+  (cosine 0.03–0.12 — heads help largely *different* predictions). Both point to the second picture: **structurally
+  heterogeneous heads at different depths with overlapping function**, the closest match to "new circuits woven in,"
+  rather than one circuit cloned or one circuit cleanly decomposed.
+- **Honest confound (why we don't headline a "members grow with scale" number).** The contribution-concentration
+  metrics — effective-N (Hill number) and the top head's share — come out **non-monotonic** across the GPT-2 ladder
+  (effective-N 2.2 → 11.3 → 2.1 → 7.4; top-share 66% → 15% → 67% → 29%), because single-head **mean-ablation removes
+  less in wider models** (each head is a smaller fraction of the residual), so the per-head contribution vector gets
+  noise-dominated. We therefore lead with the two **confound-free structural** facts (OV-cosine ≈0; wide layer span),
+  which are weight/attention measurements, not ablation deltas.
+
+**Verdict.** Of the user's two framings — "weighted ensemble?" vs "heterogeneous circuits with overlapping function
+woven in?" — the data favors the **second** and rejects the first: as a circuit distributes it recruits
+*structurally different* heads spread across depth, not duplicates of itself. *Open (the clean next test):* whether
+those heterogeneous heads form ≥2 *separable* sub-circuits (cluster the population by its upstream writer-dependency
+via the key-patch) or one decomposed circuit — the structural axis says "not duplicates," but "several complete
+parallel circuits" vs "one decomposition" needs the writer-clustering follow-up.
+
 ## Methodological cautions — banked from the digs
 
 - **Synthetic repeated-random probes can manufacture apparent suppression.** A head that looks like it suppresses
