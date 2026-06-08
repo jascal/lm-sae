@@ -119,7 +119,11 @@ MLP/COMPUTE family + its extended-embedding mechanism test, cross-model circuit 
 discovered candidates, the cross-model deep dossier (identity/causal/channel/redundancy) across all six models,
 the outlier digs, and **per-operator SAE-feature operands on GPT-2 + Gemma** — the catalog-depth gap, now filled.)*
 
-## Sister track
+## Sister tracks
 
-The **oracle & cov95 forge tax** investigation — what an SAE *feature basis* destroys, and what you must preserve —
-is at **[Forge-tax track](FORGE_TAX_TRACK.md)**.
+- The **oracle & cov95 forge tax** investigation — what an SAE *feature basis* destroys, and what you must preserve —
+  is at **[Forge-tax track](FORGE_TAX_TRACK.md)**.
+- **[pylm track](PYLM_TRACK.md)** — the decompilation taken literally: reimplement a whole small LLM as a **small
+  pure-Python program + flat-file knowledge store** (no neural-net code), validated against the corpus and the model.
+  Turns "the decompilable fraction" into a *running artifact*: ~50% of GPT-2 (49 LOC + flat data) → 56% of Pythia-14m,
+  the fraction **shrinking with scale** as the entangled core (the forge tax) grows.

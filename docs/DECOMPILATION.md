@@ -10,6 +10,12 @@ This is a design doc (a target + a metric + milestones), not a results writeup. 
 ideas (i) cross-model breadth and (ii) multilingual invariance de-risk: you want the disassembler proven on
 ≥3 architectures before you trust a single decompilation-coverage number.
 
+> **The decompilation taken literally — see the [pylm track](PYLM_TRACK.md):** a whole small LLM reimplemented as a
+> *small pure-Python program + flat-file knowledge store* (no neural-net code or concepts), validated against the
+> corpus and the model. It makes the decompilable fraction a **running artifact** (~50% of GPT-2 in 49 lines; 56% of
+> Pythia-14m; shrinking with scale) — the disassembly→decompilation arc reaching its endpoint, and the forge-tax
+> ceiling visible as the half it can't reach.
+
 ## The gap: disassembly ≠ decompilation
 
 | | disassembly (have) | decompilation (want) |
