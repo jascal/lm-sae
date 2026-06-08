@@ -209,17 +209,25 @@ and the prev-token writer head, base vs instruct).
   writer head 0.2 **persists** — performance drops, structure holds). **Gemma reorganizes adaptively**: its writer
   *moves* (layer 21.7 → 0.0) and induction gets **better** (NLL 4.87→3.35). In none of the three did the shared
   front-end catastrophically break the population.
-- **"Suffers more" is post-training-*intensity*-dependent, not architectural.** These "instruct" models differ ~13×
-  in how far they moved (Qwen ~1% vs Llama ~13% relative attn drift), and induction damage tracks *that*, not RoPE
-  per se. **Caveats:** no GPT-2 base/instruct pair exists, so the comparison is RoPE-internal (the "more than GPT-2"
-  half is structural inference — GPT-2's distributed induction has no single early node to break); and induction-NLL
-  on repeated-random is mildly out-of-distribution for a chat-tuned model, so part of Llama's degradation may be
-  distribution shift, not circuit damage. (`runs/disassembly/posttrain_drift_summary.json`.)
+- **The GPT-2 comparison refutes "RoPE suffers more."** Adding two GPT-2 fine-tune pairs (gpt2 → DialoGPT-small,
+  gpt2-medium → DialoGPT-medium — a real, *heavy* dialogue-domain fine-tune) lets us compare GPT-2's **distributed**
+  induction (no single early node) against RoPE's **shared front-end** directly. The predecessor-writer head **survives
+  in every model of both families** (gpt2-medium 5.11→5.11, like Llama 0.2→0.2 and Qwen 13.4→13.4; only Gemma
+  reorganizes). GPT-2's induction actually degraded **more** in absolute terms (DialoGPT Δ **+2.57 / +0.75** vs the
+  RoPE pairs' +0.96 / −0.00 / −1.52) — but it also **drifted 3–30× more** (DialoGPT attn-drift 0.34–0.38 vs RoPE
+  0.01–0.14), so per-unit-drift the damage is comparable. The degradation tracks **how hard the model was fine-tuned**,
+  not whether induction hangs off one shared early node — and the concentrated RoPE front-end is, if anything, *no more*
+  fragile than GPT-2's distributed one. **Caveats:** DialoGPT is a *domain* fine-tune (dialogue), heavier and different
+  from the RoPE *instruction*-tunes, so the two families aren't intensity-matched; n is small (2 GPT-2, 3 RoPE); and
+  induction-NLL on repeated-random is mildly out-of-distribution for any post-trained model, so part of every
+  degradation may be distribution shift, not circuit damage. (`runs/disassembly/posttrain_drift_summary.json`.)
 
 **Verdict.** RoPE's shared early-writer front-end is **exposed** (not depth-protected) but **robust** — under realistic
 post-training the predecessor-writer head persists (or, in Gemma, reorganizes to an even-earlier one while induction
-*improves*). The single-point-of-failure worry isn't borne out here; the failure mode that does appear is graded
-*performance* degradation under heavy tuning, not structural breakage.
+*improves*), and the **direct GPT-2 comparison shows no extra fragility** from the concentration (GPT-2's distributed
+induction degrades at least as much under a heavier fine-tune, writer head surviving in both). The single-point-of-
+failure worry isn't borne out; the failure mode that appears is graded *performance* degradation proportional to
+fine-tuning intensity, not structural breakage of the shared early node.
 
 ## Methodological cautions — banked from the digs
 
