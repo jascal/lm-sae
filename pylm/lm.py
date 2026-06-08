@@ -1,0 +1,75 @@
+"""pylm — a decompiled language model in pure Python. NO neural-net code or concepts.
+
+This is the program's literal end-goal: reimplement a real small LLM's *behaviour* as a small symbolic Python
+program backed by flat-file stores — the "model IS the database" thesis made runnable. There is no matrix, no
+attention, no layer; only the catalogued idioms expressed as plain Python over flat-file knowledge:
+
+  INDUCTION (in-context copy) — the keystone reused instruction (an inline-cache macro): if the current local
+    context has occurred before *in this sequence*, predict what followed it. Pure list scan, no weights.
+  N-GRAM backoff — the statistical knowledge store (a flat file of trigram→bigram→unigram successor tables built
+    from a corpus): the "memorised" continuations the model also carries. Pure dict lookup.
+  (KNOWLEDGE relations + structural rules are added in later steps.)
+
+The PROGRAM (this file's `PyLM.predict`) is kept deliberately tiny — the bias is toward small *code*; the *data*
+(the n-gram store) lives in a flat file (`store.json`). Validation (`validate.py`) measures what fraction of a real
+model's next-token predictions this pure-Python decompilation reproduces — the decompilable fraction, made literal.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+
+class PyLM:
+    """The decompiled LM. Operates on token-id sequences; tokenization is a flat-file preprocessing step."""
+
+    def __init__(self, store_path):
+        s = json.loads(Path(store_path).read_text())
+        self.tri = s["tri"]          # "a,b" -> [next_id, ...] (ranked corpus successors)
+        self.bi = s["bi"]            # "b"   -> [next_id, ...]
+        self.uni = s["uni"]          # [next_id, ...] (most frequent tokens)
+        self.min_induction = s.get("min_induction_match", 2)
+
+    def predict(self, ctx, k=1):
+        """Next-token prediction for a token-id context. Returns the top-1 id (or a ranked list if k>1)."""
+        ranked, fired = self._candidates(ctx)
+        return (ranked[0] if ranked else self.uni[0]) if k == 1 else ranked[:k]
+
+    def predict_explain(self, ctx):
+        """(top-1 id, which instruction fired) — for the per-instruction validation breakdown."""
+        ranked, fired = self._candidates(ctx)
+        return (ranked[0] if ranked else self.uni[0]), fired
+
+    def _candidates(self, ctx):
+        # 1. INDUCTION — the longest local context (up to min_induction tokens) that recurs earlier in ctx;
+        #    predict the token that followed its last earlier occurrence (in-context copy).
+        for span in range(self.min_induction, 0, -1):
+            if len(ctx) <= span:
+                continue
+            tail = ctx[-span:]
+            for i in range(len(ctx) - span - 1, -1, -1):
+                if ctx[i:i + span] == tail:
+                    return [ctx[i + span]], f"induction-{span}"
+        # 2. N-GRAM backoff — corpus statistics (flat-file store), trigram → bigram → unigram.
+        if len(ctx) >= 2:
+            t = self.tri.get(f"{ctx[-2]},{ctx[-1]}")
+            if t:
+                return t, "trigram"
+        b = self.bi.get(str(ctx[-1]))
+        if b:
+            return b, "bigram"
+        return self.uni, "unigram"
+
+
+def program_loc():
+    """Lines of actual program code in this file (the 'small code' the decompilation compresses to)."""
+    src = Path(__file__).read_text().splitlines()
+    code = [ln for ln in src if ln.strip() and not ln.strip().startswith("#")]
+    in_doc = False; out = []
+    for ln in code:
+        if ln.lstrip().startswith(('"""', "'''")):
+            in_doc = not in_doc if ln.strip().count('"""') == 1 else in_doc
+            continue
+        if not in_doc:
+            out.append(ln)
+    return len(out)
