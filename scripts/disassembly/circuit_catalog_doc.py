@@ -109,7 +109,43 @@ def cross_page(c, row, models, rung3, dossier=None, operator_names=frozenset()):
     return "\n".join(lines)
 
 
-def gpt2_page(name, c, extra, operator_names=frozenset()):
+def ioi_xmodel_section(dossier):
+    """The cross-model IOI dossier (name-movers / negative-movers / necessity / duplicate) for the ioi_q_chain page."""
+    results = [r for r in dossier.get("results", []) if "name_movers" in r]
+    if not results:
+        return []
+    order = {"gpt2": 0, "gpt2-medium": 1, "gpt2-large": 2, "gemma-2-2b": 3, "Llama-3.2-1B": 4, "Qwen2.5-1.5B": 5}
+    results.sort(key=lambda r: order.get(r["model"], 9))
+    lines = ["", "## Cross-model IOI dossier (the circuit's operators, found behaviourally — via the ResidualVM)", "",
+             "The Q-composition *edge wiring* below is GPT-2-validated, but the IOI **behaviour** and its **operators** "
+             "are not GPT-2-only: the unified [`ResidualVM`](../DECOMPILATION.md) locates them in every model "
+             "(name-movers by END→indirect-object copy-attention; negative-movers + the most load-bearing heads by an "
+             "ablation sweep of the logit-diff; the duplicate-token initiator behaviourally). Logit-diff = "
+             "logit(IO) − logit(S) at the end of a templated *\"When X and Y went…, Y gave a drink to →\"* prompt.", "",
+             "| model | IOI logit-diff | name-movers (copy→IO) | negative-movers | most load-bearing | ablate name-movers | duplicate init |",
+             "|---|---|---|---|---|---|---|"]
+    for r in results:
+        nm = ", ".join(f"`{m['head']}`" for m in r["name_movers"][:3])
+        neg = ", ".join(f"`{m['head']}`" for m in r["negative_movers"][:2]) or "—"
+        lb = ", ".join(f"`{m['head']}`" for m in r.get("load_bearing_heads", [])[:2])
+        nec = r["necessity_ablate_namemovers"]; dup = r["duplicate_head"]["head"] if r["duplicate_head"] else "—"
+        lines.append(f"| {r['model']} | {r['baseline_logit_diff']:+.2f} | {nm} | {neg} | {lb} | "
+                     f"{nec['frac_collapse']:+.0%} | `{dup}` |")
+    lines += ["",
+              "- **The IOI circuit is architecture-invariant** — name-movers, negative/copy-suppression movers, and a "
+              "duplicate-token initiator are present in all six models, and ablating the name-movers collapses the "
+              "logit-diff (+13% to +26%) everywhere. The behaviour *strengthens* with GPT-2 scale (logit-diff +2.88 → "
+              "+3.11 → +4.09) and is largest in the RoPE models (Llama +5.85, Qwen +6.00).",
+              "- **The backup-name-mover self-repair is cross-model.** The heads that are *most load-bearing* under "
+              "ablation are **not** the name-movers (which are backed up) but the **S-inhibition**-type heads — in every "
+              "model the ablation ranking and the copy-attention ranking disagree, the signature of name-mover "
+              "redundancy (the Hydra effect) generalised beyond GPT-2.",
+              "", "_Data: [runs/disassembly/circuits/ioi_xmodel_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/ioi_xmodel_summary.json) "
+              "([ioi_xmodel.py](https://github.com/jascal/lm-sae/blob/main/scripts/disassembly/ioi_xmodel.py), built on the ResidualVM)._"]
+    return lines
+
+
+def gpt2_page(name, c, extra, ioi_dossier=None, operator_names=frozenset()):
     lines = [f"# Circuit `{name}` (GPT-2)", ""]
     lines += disambig(name, operator_names)
     lines += [f"**{c.get('kind','')}** — scope: {c.get('scope','gpt2')}", ""]
@@ -126,6 +162,8 @@ def gpt2_page(name, c, extra, operator_names=frozenset()):
             sr = extra["self_repair"]
             lines += [f"- **self-repair** (`self_repair.py`): −primaries ΔLD {sr.get('drop_primaries')}, −both {sr.get('drop_both')} "
                       f"→ backups are hot spares (idle with primaries present, carry the circuit once they're gone)."]
+        if ioi_dossier:
+            lines += ioi_xmodel_section(ioi_dossier)
     elif name == "v_virtual_heads":
         lines += ["Composed-OV **virtual heads**: an induction head's OV output is re-read as the *value* of a later head "
                   "(the third Elhage edge type — changes what is moved, not where attention points).", "",
@@ -155,6 +193,7 @@ def main(argv=None):
     args = p.parse_args(argv)
     atlas = load(args.root / "atlas_summary.json")
     dossier = load(args.root / "dossier_summary.json")
+    ioi_dossier = load(args.root / "ioi_xmodel_summary.json")
     rung3 = load(args.disasm / "rung3_induction_chain_summary.json")
     extra = {"self_repair": load(args.disasm / "self_repair_summary.json")}
     args.docs.mkdir(parents=True, exist_ok=True)
@@ -169,7 +208,7 @@ def main(argv=None):
     for c, row in cross.items():
         (args.docs / f"{c}.md").write_text(cross_page(c, row, models, rung3, dossier, operator_names))
     for name, c in gpt2.items():
-        (args.docs / f"{name}.md").write_text(gpt2_page(name, c, extra, operator_names))
+        (args.docs / f"{name}.md").write_text(gpt2_page(name, c, extra, ioi_dossier if name == "ioi_q_chain" else None, operator_names))
 
     all_circuits = list(cross) + list(gpt2)
 
@@ -238,9 +277,13 @@ and dissolves into the network with scale, the same distributedness theme measur
   classes at each node ([`../operators/`](../operators/README.md)). Edges are the primitive the discovery gate scores.
 - **succession / greater-than** — MLP-dominated; no clean attention-composition circuit (carried by the copy ops).
 - **SSM (Mamba)** — no heads, so no composition edges; induction is present only behaviourally (`ssm_induction.py`).
-- **Not yet run:** the IOI Q-chain / V-composition cross-model (no published head-sets off GPT-2); full per-edge
-  path-patch of all {gpt2.get('discovered_write_hub_edges', {}).get('n_novel_live', '?')} discovered edges on the
-  RoPE models. The cross-model catalog covers the universal-reader edges.
+- **IOI is now cross-model** (the [`ioi_q_chain`](ioi_q_chain.md) page): the circuit's *operators* (name-movers,
+  negative/copy-suppression movers, duplicate-token initiator) and its load-bearing necessity are found
+  behaviourally in all 6 models via the ResidualVM — closing the old "no head-set off GPT-2" gap. The precise
+  *Q-composition edge wiring* stays GPT-2-validated.
+- **Still GPT-2-only:** V-composition cross-model; full per-edge path-patch of all
+  {gpt2.get('discovered_write_hub_edges', {}).get('n_novel_live', '?')} discovered write-hub edges on the RoPE
+  models. The cross-model catalog covers the universal-reader edges + the IOI operators.
 
 ## How this was made
 

@@ -69,9 +69,13 @@ and dissolves into the network with scale, the same distributedness theme measur
   classes at each node ([`../operators/`](../operators/README.md)). Edges are the primitive the discovery gate scores.
 - **succession / greater-than** — MLP-dominated; no clean attention-composition circuit (carried by the copy ops).
 - **SSM (Mamba)** — no heads, so no composition edges; induction is present only behaviourally (`ssm_induction.py`).
-- **Not yet run:** the IOI Q-chain / V-composition cross-model (no published head-sets off GPT-2); full per-edge
-  path-patch of all 22 discovered edges on the
-  RoPE models. The cross-model catalog covers the universal-reader edges.
+- **IOI is now cross-model** (the [`ioi_q_chain`](ioi_q_chain.md) page): the circuit's *operators* (name-movers,
+  negative/copy-suppression movers, duplicate-token initiator) and its load-bearing necessity are found
+  behaviourally in all 6 models via the ResidualVM — closing the old "no head-set off GPT-2" gap. The precise
+  *Q-composition edge wiring* stays GPT-2-validated.
+- **Still GPT-2-only:** V-composition cross-model; full per-edge path-patch of all
+  22 discovered write-hub edges on the RoPE
+  models. The cross-model catalog covers the universal-reader edges + the IOI operators.
 
 ## How this was made
 
