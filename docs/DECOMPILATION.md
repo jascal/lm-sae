@@ -387,13 +387,17 @@ recovers most of it:
 | **distilled ΔNLL** | +0.54 | +0.36 | **+0.26** | +0.28 |
 
 So with light distillation the composition weights factor to **~6–11% of their size** for a model still *capable* on
-the corpus (ΔNLL +0.26 at rank 64 ≈ 9× weight compression). Two honest caveats: (1) this measures a *capable* model,
-not a *faithful copy* of GPT-2 — top-1 agreement with the original stays ~24–35% at 400 steps; matching the original
-needs proper teacher-distillation + far more training; (2) it compresses the stored *weights*, and with the embeddings
-left intact the full model size is dominated by the vocab. Placed against the flat end — pylm reproduces ~half the
-model at ~1.6 MB of flat tables and *zero* matmul — this is the first point on the size-vs-fidelity curve: pure-flat
-retrieval (cheap, ~half) → distilled-low-rank composition (capable, ~⅒ the weights) → the full model. Mapping the curve
-faithfully across model sizes is ongoing. (`runs/disassembly/min_to_run_summary.json`.)
+the corpus (ΔNLL +0.26 at rank 64 ≈ 9× weight compression). Two notes on scope: (1) this is a *capable* model, not a
+*faithful copy* of GPT-2 — **faithfulness** (top-1 agreement with the original) is a separate, harder axis: distilling
+the factors *to the teacher* (hard-label CE and soft-KL, 1500 steps, ranks 32–256) **plateaus at ~34% agreement, flat
+across rank** (6% → 44% of weights) and recipe. That flatness is evidence these *light-distillation recipes* cap at
+~⅓ faithful reproduction — it is **not** a proof that a faithful low-rank copy is impossible; whether the cap is
+architectural (a low-rank-factored model can't hold the composition) or merely a training-budget limit (200 chunks /
+1500 steps / all matrices factored at once) is **open**, and only a properly-engineered, larger-scale distillation
+would settle it. (2) It compresses the stored *weights*, with the embeddings/vocab left intact. Placed against the
+flat end — pylm reproduces ~half the model at ~1.6 MB of flat tables and *zero* matmul — this is the first point on
+the size-vs-fidelity curve: pure-flat retrieval (cheap, ~half) → distilled-low-rank composition (capable at ~⅒ the
+weights; ~⅓-faithful so far) → the full model. (`runs/disassembly/min_to_run_summary.json`.)
 
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)

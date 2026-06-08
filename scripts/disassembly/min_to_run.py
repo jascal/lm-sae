@@ -81,11 +81,6 @@ def run_model(mid, args):
         """factor every weight W≈A·B at rank r (SVD init), TRAIN the factors to match the full model (others frozen)."""
         for p in vm.model.parameters():
             p.requires_grad_(False)
-        teacher = []
-        if args.match_teacher:                                        # match the FULL model (faithful copy) vs corpus NLL
-            with t.no_grad():
-                for c in train:
-                    teacher.append(vm.logits(c)[:-1].argmax(-1).detach())
         A = []; B = []
         for (W, (U, S, Vh)) in zip(mats, svds):
             s = S[:r].sqrt()
@@ -95,21 +90,29 @@ def run_model(mid, args):
         for L in range(nL):
             blk = vm.model.transformer.h[L]
             mods += [blk.attn.c_attn, blk.attn.c_proj, blk.mlp.c_fc, blk.mlp.c_proj]
-        hs = []
+        factor_on = [True]; hs = []
 
         def mk(j):
             def hook(m, i, o):
-                return i[0] @ (A[j] @ B[j]).to(i[0].dtype) + m.bias
+                return i[0] @ (A[j] @ B[j]).to(i[0].dtype) + m.bias if factor_on[0] else None   # off → teacher
             return hook
         for j, mod in enumerate(mods):
             hs.append(mod.register_forward_hook(mk(j)))
-        opt = torch.optim.Adam(A + B, lr=args.lr); rng = np.random.default_rng(0)
+        opt = torch.optim.Adam(A + B, lr=args.lr); rng = np.random.default_rng(0); T = 2.0
         for s in range(steps):
             j = int(rng.integers(0, len(train))); tid = t.tensor([train[j]], device=vm.dev)
-            logits = vm.model(input_ids=tid).logits[0]
-            tgt = teacher[j] if args.match_teacher else tid[0, 1:]    # match teacher top-1 (faithful) or corpus (capable)
-            loss = t.nn.functional.cross_entropy(logits[:-1].float(), tgt)
+            if args.match_teacher:                                    # soft-KL distillation to the full model
+                factor_on[0] = False
+                with t.no_grad():
+                    teach = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
+                factor_on[0] = True
+                student = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
+                loss = t.nn.functional.kl_div(student, teach, log_target=True, reduction="batchmean") * (T * T)
+            else:                                                     # corpus NLL (capable, not faithful)
+                logits = vm.model(input_ids=tid).logits[0]
+                loss = t.nn.functional.cross_entropy(logits[:-1].float(), tid[0, 1:])
             opt.zero_grad(); loss.backward(); opt.step()
+        factor_on[0] = True
         nll, _, agree = gen(metric_top1=full_top1)
         for h in hs:
             h.remove()

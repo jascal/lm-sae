@@ -6,34 +6,14 @@
       "n_layers": 12,
       "full_nll": 5.227525975875766,
       "transformer_weight_params_M": 84.934656,
-      "distill_steps": 400,
+      "distill_steps": 1500,
       "curve": [
-        {
-          "rank": 8,
-          "svd_nll_increase": 3.2029677028050383,
-          "svd_agreement": 0.0958994708994709,
-          "distilled_nll_increase": 0.5393356646299834,
-          "distilled_agreement": 0.24272486772486773,
-          "stored_params": 1179648,
-          "compression_ratio": 0.013888888888888888,
-          "params_saved_frac": 0.9861111111111112
-        },
-        {
-          "rank": 16,
-          "svd_nll_increase": 3.4590274484371886,
-          "svd_agreement": 0.017195767195767195,
-          "distilled_nll_increase": 0.5355987139631546,
-          "distilled_agreement": 0.26256613756613756,
-          "stored_params": 2359296,
-          "compression_ratio": 0.027777777777777776,
-          "params_saved_frac": 0.9722222222222222
-        },
         {
           "rank": 32,
           "svd_nll_increase": 2.5417408225069478,
           "svd_agreement": 0.20238095238095238,
-          "distilled_nll_increase": 0.36337264874895325,
-          "distilled_agreement": 0.23346560846560846,
+          "distilled_nll_increase": 0.9150853416480622,
+          "distilled_agreement": 0.32341269841269843,
           "stored_params": 4718592,
           "compression_ratio": 0.05555555555555555,
           "params_saved_frac": 0.9444444444444444
@@ -42,8 +22,8 @@
           "rank": 64,
           "svd_nll_increase": 2.5128357873379112,
           "svd_agreement": 0.10714285714285714,
-          "distilled_nll_increase": 0.26015462679793355,
-          "distilled_agreement": 0.24404761904761904,
+          "distilled_nll_increase": 0.8205335261694611,
+          "distilled_agreement": 0.33796296296296297,
           "stored_params": 9437184,
           "compression_ratio": 0.1111111111111111,
           "params_saved_frac": 0.8888888888888888
@@ -52,11 +32,21 @@
           "rank": 128,
           "svd_nll_increase": 2.3961774857573914,
           "svd_agreement": 0.0787037037037037,
-          "distilled_nll_increase": 0.2772084966812889,
-          "distilled_agreement": 0.27843915343915343,
+          "distilled_nll_increase": 0.8924576199700747,
+          "distilled_agreement": 0.3544973544973545,
           "stored_params": 18874368,
           "compression_ratio": 0.2222222222222222,
           "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 256,
+          "svd_nll_increase": 2.176838533996893,
+          "svd_agreement": 0.10383597883597884,
+          "distilled_nll_increase": 0.8588819381488424,
+          "distilled_agreement": 0.3419312169312169,
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
         }
       ]
     }
