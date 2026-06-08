@@ -125,5 +125,7 @@ the outlier digs, and **per-operator SAE-feature operands on GPT-2 + Gemma** —
   is at **[Forge-tax track](FORGE_TAX_TRACK.md)**.
 - **[pylm track](PYLM_TRACK.md)** — the decompilation taken literally: reimplement a whole small LLM as a **small
   pure-Python program + flat-file knowledge store** (no neural-net code), validated against the corpus and the model.
-  Turns "the decompilable fraction" into a *running artifact*: ~50% of GPT-2 (49 LOC + flat data) → 56% of Pythia-14m,
-  the fraction **shrinking with scale** as the entangled core (the forge tax) grows.
+  Turns "the decompilable fraction" into a *running artifact*, on two metrics: a 49-LOC pure-Python program + flat data
+  **picks the model's exact next token ~50% of the time** (GPT-2; 56% of Pythia-14m) — the strict *decompilable fraction* —
+  while reaching **~83% of GPT-2's next-token *accuracy* (up to 95% on the tiniest models, 75% at Pythia-410m)**. Both
+  **shrink with scale** as the entangled core (the forge tax) grows.
