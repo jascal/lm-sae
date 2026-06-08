@@ -59,7 +59,8 @@ def run_model(model_id, args, dev):
     if len(facts) < 6:
         raise RuntimeError(f"only {len(facts)} usable facts for {model_id}")
 
-    band = list(range(0, max(1, round(0.25 * nL))))                              # the early store band to patch
+    lo = int(args.band_lo * nL); hi = max(lo + 1, int(args.band_hi * nL))
+    band = list(range(lo, min(hi, nL)))                                          # the MLP band to patch (default: early store)
 
     def capture_mlp(ids):
         cap = {}
@@ -99,7 +100,7 @@ def run_model(model_id, args, dev):
             if lp[fb["obj"]] > lp[fa["obj"]]:                                    # the fact flipped to the donor's capital
                 flips += 1
     flip_rate = flips / max(pairs, 1); mean_shift = shift / max(pairs, 1)
-    print(f"  {len(facts)} facts, band L0-{band[-1]} | flip-rate {flip_rate:.0%} ({flips}/{pairs}) | mean logit-diff shift {mean_shift:+.2f}")
+    print(f"  {len(facts)} facts, band L{band[0]}-{band[-1]} | flip-rate {flip_rate:.0%} ({flips}/{pairs}) | mean logit-diff shift {mean_shift:+.2f}")
     return {"model": model_id.split("/")[-1], "rope": not is_gpt2, "n_layers": nL, "n_facts": len(facts),
             "patch_band": [band[0], band[-1]], "pairs": pairs, "flip_rate": flip_rate, "mean_logitdiff_shift": mean_shift}
 
@@ -125,9 +126,11 @@ def write_doc(out, docs):
           "the subject *is* where the capital lives — an activation-patch edit (no weight surgery), the sufficiency "
           "complement of the causal trace's necessity, and the decompile→recompile loop made concrete. **Gemma is the "
           "recurring outlier** (3% flip, *negative* shift): patching its early-subject MLPs does NOT transplant the "
-          "fact — consistent with Gemma's clean standalone MLP0 (token-determinism η² 0.91) and the **late** fact site "
-          "its [trace](causal_tracing.md) showed; Gemma stores capitals later / differently, not in the early-subject "
-          "MLP store the other five use. Same Gemma exceptionalism as the sink, the induction key, and redundancy._", "",
+          "fact — consistent with Gemma's clean standalone MLP0 (token-determinism η² 0.91). A band-scan "
+          "confirms it: **no single 25% MLP band (early, mid, or late) transplants Gemma's facts** — every band gives "
+          "~0% flip with a *negative* shift (patching only damages). So Gemma's factual storage is **distributed**, not "
+          "band-localizable / editable the way the other five models' early store is. Same Gemma exceptionalism as the "
+          "sink, the induction key, and redundancy._", "",
           "_A high flip rate = the early store causally carries the fact. Provisional, ~16 capital facts, single-token subjects + "
           "objects, early band = first ~25% of MLPs. Data: "
           "[fact_patching_summary.json](https://github.com/jascal/lm-sae/blob/main/runs/disassembly/circuits/fact_patching_summary.json). "
@@ -141,6 +144,8 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--model-ids", default="gpt2,gpt2-medium,gpt2-large,unsloth/Llama-3.2-1B,Qwen/Qwen2.5-1.5B")
     p.add_argument("--donors", type=int, default=4, help="donor facts patched into each original")
+    p.add_argument("--band-lo", type=float, default=0.0, help="patch-band start as a fraction of depth")
+    p.add_argument("--band-hi", type=float, default=0.25, help="patch-band end as a fraction of depth")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly/circuits"))
