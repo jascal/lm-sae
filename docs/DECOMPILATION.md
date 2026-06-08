@@ -488,6 +488,17 @@ wants **~⅓–½ rank** for lossless — is the genuinely-*composed* core, and 
 a nonlinear bottleneck, or a sparse-overcomplete basis) beat that floor is the next test, rather than whether linear
 low-rank per se is too weak. (`runs/disassembly/min_to_run_summary.json`, keys `*@svd` vs `*@svd+daware`.)
 
+**Retraining the data-aware factors does *not* move the lossless floor to low rank — it shifts the *capable*-compression
+curve left ~3×.** The full 2×2 ({plain, data-aware} × {no-retrain, 2500-step self-distill}) on pythia-160m, ΔNLL by
+rank: data-aware init gives retraining a large head start — data-aware+retrain reaches a given fidelity at ~⅓ the rank
+of plain+retrain (rank-64 **+0.60** ≈ plain+retrain at rank-256 **+0.65**) — but the low-rank end **plateaus
+capable-not-faithful**: data-aware+retrain is +0.77 / +0.60 / +0.45 / **+0.37** at rank 32 / 64 / 128 / 256, never
+approaching the **+0.1** that data-aware *no-retrain* reaches only at rank ~512 (⅔d), and flattening by rank 256
+(128→256 gains 0.08). So under this recipe the **near-lossless floor stays ~⅔d** — retraining stops the rank-waste but
+does not shrink the composed core. (Recipe-shaped, not a proven floor: a stronger recipe or a *richer form* — cross-layer
+TT/MPS, a nonlinear bottleneck, or a sparse-overcomplete basis — is the open path to beating ~⅔d.)
+(`runs/disassembly/min_to_run_summary.json`, keys `*@retrain` / `@retrain+daware`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A

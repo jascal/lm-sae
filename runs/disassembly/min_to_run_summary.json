@@ -2,6 +2,138 @@
   "experiment": "minimum-to-run frontier \u2014 fidelity vs stored size under no-retrain low-rank weight factorization",
   "results": [
     {
+      "model": "pythia-160m@retrain+daware",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 32,
+          "svd_nll_increase": 2.2807541420017188,
+          "svd_agreement": 0.27116402116402116,
+          "distilled_nll_increase": 0.7684886980810752,
+          "distilled_agreement": 0.419973544973545,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.419973544973545
+          },
+          "stored_params": 4718592,
+          "compression_ratio": 0.05555555555555555,
+          "params_saved_frac": 0.9444444444444444
+        },
+        {
+          "rank": 64,
+          "svd_nll_increase": 1.3708106024689242,
+          "svd_agreement": 0.3425925925925926,
+          "distilled_nll_increase": 0.5957394166733367,
+          "distilled_agreement": 0.4828042328042328,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.4828042328042328
+          },
+          "stored_params": 9437184,
+          "compression_ratio": 0.1111111111111111,
+          "params_saved_frac": 0.8888888888888888
+        },
+        {
+          "rank": 128,
+          "svd_nll_increase": 0.9305107645008581,
+          "svd_agreement": 0.4193121693121693,
+          "distilled_nll_increase": 0.4445914926252845,
+          "distilled_agreement": 0.5198412698412699,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.5198412698412699
+          },
+          "stored_params": 18874368,
+          "compression_ratio": 0.2222222222222222,
+          "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 256,
+          "svd_nll_increase": 0.4504798520436495,
+          "svd_agreement": 0.5535714285714286,
+          "distilled_nll_increase": 0.36583701751840714,
+          "distilled_agreement": 0.5628306878306878,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.5628306878306878
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m@retrain",
+      "n_layers": 12,
+      "full_nll": 4.436619751542811,
+      "teacher": "",
+      "transformer_weight_params_M": 84.934656,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 32,
+          "svd_nll_increase": 5.347824107054202,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": 1.0869820365409995,
+          "distilled_agreement": 0.3425925925925926,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.3425925925925926
+          },
+          "stored_params": 4718592,
+          "compression_ratio": 0.05555555555555555,
+          "params_saved_frac": 0.9444444444444444
+        },
+        {
+          "rank": 64,
+          "svd_nll_increase": 5.174534045087751,
+          "svd_agreement": 0.007275132275132275,
+          "distilled_nll_increase": 0.9616087465491594,
+          "distilled_agreement": 0.36904761904761907,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.36904761904761907
+          },
+          "stored_params": 9437184,
+          "compression_ratio": 0.1111111111111111,
+          "params_saved_frac": 0.8888888888888888
+        },
+        {
+          "rank": 128,
+          "svd_nll_increase": 5.30550230161112,
+          "svd_agreement": 0.03439153439153439,
+          "distilled_nll_increase": 0.7967598121003467,
+          "distilled_agreement": 0.4027777777777778,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.4027777777777778
+          },
+          "stored_params": 18874368,
+          "compression_ratio": 0.2222222222222222,
+          "params_saved_frac": 0.7777777777777778
+        },
+        {
+          "rank": 256,
+          "svd_nll_increase": 6.402407863435443,
+          "svd_agreement": 0.0013227513227513227,
+          "distilled_nll_increase": 0.6528642378970284,
+          "distilled_agreement": 0.43915343915343913,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.43915343915343913
+          },
+          "stored_params": 37748736,
+          "compression_ratio": 0.4444444444444444,
+          "params_saved_frac": 0.5555555555555556
+        }
+      ]
+    },
+    {
       "model": "gpt2@svd+daware",
       "n_layers": 12,
       "full_nll": 5.227525975875766,
