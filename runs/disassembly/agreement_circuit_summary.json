@@ -2,6 +2,106 @@
   "experiment": "localize the subject-verb agreement circuit \u2014 which attention heads move the head-noun's number",
   "results": [
     {
+      "model": "gpt2-large",
+      "n_layers": 36,
+      "n_heads": 20,
+      "n_stimuli": 96,
+      "base_agreement_diff": 3.148003468910853,
+      "top_movers": [
+        {
+          "head": "24.3",
+          "agreement_drop": 0.5022009809811907,
+          "verb_to_head": 0.4218666711822152,
+          "verb_to_attractor": 0.03335436078486964,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "22.15",
+          "agreement_drop": 0.3118959764639535,
+          "verb_to_head": 0.044129165675258264,
+          "verb_to_attractor": 0.03930701548233628,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "32.5",
+          "agreement_drop": 0.18502173572778702,
+          "verb_to_head": 0.32340445763838943,
+          "verb_to_attractor": 0.10886881101760082,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "16.17",
+          "agreement_drop": 0.18317881474892284,
+          "verb_to_head": 0.04169019914115779,
+          "verb_to_attractor": 0.025125699408818036,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "25.4",
+          "agreement_drop": 0.1503805344303446,
+          "verb_to_head": 0.4013942730962299,
+          "verb_to_attractor": 0.06866316986997845,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "18.0",
+          "agreement_drop": 0.14012093096971512,
+          "verb_to_head": 0.07668931302032433,
+          "verb_to_attractor": 0.0667435874347575,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "15.10",
+          "agreement_drop": 0.13918862243493368,
+          "verb_to_head": 0.20678429637337103,
+          "verb_to_attractor": 0.03297549071430694,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "14.0",
+          "agreement_drop": 0.13433747738599777,
+          "verb_to_head": 0.20665053691482171,
+          "verb_to_attractor": 0.04043206285859924,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "15.7",
+          "agreement_drop": 0.0966238205631571,
+          "verb_to_head": 0.05556063489348162,
+          "verb_to_attractor": 0.05006874748505652,
+          "catalog": [
+            "UNNAMED"
+          ]
+        },
+        {
+          "head": "27.3",
+          "agreement_drop": 0.08481717358032848,
+          "verb_to_head": 0.18864403292536736,
+          "verb_to_attractor": 0.05530470228404738,
+          "catalog": [
+            "UNNAMED"
+          ]
+        }
+      ],
+      "total_positive_drop": 5.008671864867148
+    },
+    {
       "model": "gpt2",
       "n_layers": 12,
       "n_heads": 12,

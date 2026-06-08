@@ -33,6 +33,8 @@ def run_model(mid, args):
     depths = list(range(1, args.max_depth + 1))                       # depth ≥ 1: the attractor is present
     stim = build_stimuli(tok, depths, rng)
     sents = [s for d in depths for s in stim[d]]
+    if args.max_stim and len(sents) > args.max_stim:                  # subsample to keep the per-head sweep tractable
+        sents = [sents[int(i)] for i in rng.choice(len(sents), args.max_stim, replace=False)]
 
     txt = urllib.request.urlopen(urllib.request.Request(
         "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt",
@@ -107,6 +109,7 @@ def main(argv=None):
     p.add_argument("--models", default="gpt2")
     p.add_argument("--max-depth", type=int, default=2)
     p.add_argument("--top", type=int, default=10)
+    p.add_argument("--max-stim", type=int, default=0, help="subsample stimuli for the per-head sweep (0 = all)")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly"))
     args = p.parse_args(argv)

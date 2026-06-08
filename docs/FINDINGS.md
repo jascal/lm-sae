@@ -127,7 +127,19 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   model to the attractor** at depth ≥ 1 (depth-0 survives — the number is local), while MLP-ablation just destroys the
   readout. So **attention composition carries the head's number across the attractors.** Categorial grammar lives in
   the static basis (decompilable); recursive/hierarchical syntax lives in the composition — the entangled core the
-  forge tax measures. "Simpler-than-Chomsky" in the basis, Chomskyan in the composition.
+  forge tax measures. "Simpler-than-Chomsky" in the basis, Chomskyan in the composition. **The number-mover is a
+  small, distinct UNNAMED circuit** (`agreement_circuit.py`): per-head ablation localizes ~4 mid-to-late heads that
+  attend verb→head (gpt2: 7.4/10.9/8.5; gpt2-large: 24.3/32.5/25.4, verb→head 0.3–0.4 vs verb→attractor ~0.05), none
+  of them induction/prev-token/duplicate — a new operator class for the catalog.
+- **The recursion depth limit is set by distribution, not layers** (`recursion_depth.py`). Distance (PP attractors)
+  vs nesting (center-embedding) across depth 0–5, gpt2 12L/24L/36L + Llama 16L: **distance is interference-bounded**
+  (≥75% through depth 5, gradual decay, never flips), **nesting breaks sooner** (center-embedding harder than
+  distance), **but the nesting ceiling SHRINKS with model size** (12L→5, 16L→3, 24L→3, 36L→2) — the opposite of "more
+  layers → deeper recursion." So the TC⁰ layer-bound is real *in principle* but *not* the binding constraint: all
+  models have ≫ enough layers for depth ~2–3, and they fail for distributional/interference reasons (deep
+  center-embedding is rare in training and unparseable for humans; bigger models commit harder to the natural local
+  parse). Layers aren't the active limit; the decode loop / chain-of-thought is how a model goes deeper (TC⁰ per step,
+  Turing-complete across steps).
 
 ## Knowledge — where facts live, and moving them
 
