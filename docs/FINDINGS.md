@@ -55,6 +55,35 @@ vs RoPE) actually track **scale**.
   digged-into mechanism is **not** negative-head self-repair — it is substantially a *synthetic repeated-random
   probe artifact* ([outlier digs](operators/outlier_digs.md)).
 
+## The flagship — composition doesn't factor through SAE features (the forge tax, from the decompilation side)
+
+The program's throughline: *a language model is legible in the right basis even where it is not legible as single SAE
+features* — and the unifying claim that the **decompilation ceiling is the forge tax** (composition doesn't factor
+through the features for the same reason cov95 collapses under forging). We test it directly on real LMs
+(`sae_forge_tax.py`, on the ResidualVM + loaded SAEs): **force the residual through the SAE feature basis**
+(decode∘encode = the forge bottleneck) at a layer, and compare the damage to the **composition** (induction-NLL —
+the in-context copy that needs prev-token → induction *composition*) against the **readout** (generic next-token NLL —
+what the SAE features are trained to carry), each relative to its own clean baseline.
+
+- **The SAE feature basis taxes composition far more than readout.** In **GPT-2** the full forge (all 12 resid SAEs)
+  raises induction-NLL **+1357%** but generic-NLL only **+70%** — composition is taxed ~19× the readout, and it is
+  taxed more **in every one of the 12 layers** individually. The feature basis preserves what the model *reads out*
+  but not what it *composes*: SAE features survive as readouts, the computation over them does not factor through
+  them — the cov95 forge tax, now measured from the disassembly/reconstruction side on the host the catalog reads.
+- **It holds in the RoPE outlier too, weaker.** **Gemma-2-2B**: composition +542% vs readout +399% (net +143%,
+  composition-taxed-more in 5/8 layers). Weaker because Gemma's induction is already weak/distributed (base
+  induction-NLL 4.87 vs GPT-2's 0.73 — the recurring Gemma exception) and its Gemma-Scope SAEs cover only 8 layers
+  and reconstruct more loosely (the *readout* is heavily taxed too, +399%), narrowing the gap — but composition still
+  loses more.
+- **Why this is the unifying result.** The same phenomenon the [forge-tax track](FORGE_TAX_TRACK.md) measures as
+  cov95 collapse (single-latent monosemanticity destroyed while mAUC/readout survives) appears here as a
+  *reconstruction* cost concentrated on *composition* — connecting the two contributions (the SAE forge tax **A** and
+  the disassembly/decompilation **B**) on a real LM. **Honest scope:** SAE reconstruction is lossy everywhere, so the
+  signal is the *relative* tax (composition vs readout), which is robust (12/12 layers in GPT-2); the full-stack forge
+  compounds reconstruction error (hence the large absolute numbers — the per-layer count is the clean comparison);
+  and this is the *reconstruction/NLL* route to the tax, complementary to (and agreeing with) the cov95/mAUC route,
+  not the full sae-forge `NativeModel` weight-projection ceiling test ([DECOMPILATION.md](DECOMPILATION.md) M4).
+
 ## Knowledge — where facts live, and moving them
 
 The catalog is about *mechanisms*; the [knowledge axis](circuits/causal_tracing.md) is the decompiler goal ("the

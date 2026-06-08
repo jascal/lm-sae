@@ -282,6 +282,30 @@ class ResidualVM:
     def ablate_feature(self, layer, feat):
         return self.set_feature(layer, feat, 0.0)
 
+    def _sae_reconstruct(self, sae, x):
+        """decode(encode(x)) — pass the residual through the SAE feature basis (the forge bottleneck)."""
+        t = self.torch
+        pre = (x.float() - sae["bdec"]) @ sae["wenc"] + sae["benc"]                # (..., F)
+        act = t.relu(pre) if sae["thr"] is None else t.where(pre > sae["thr"], pre, t.zeros_like(pre))
+        return (act @ sae["wdec"] + sae["bdec"]).to(x.dtype)
+
+    @contextmanager
+    def sae_bottleneck(self, layers):
+        """Force the residual through the SAE feature basis at each layer (decode∘encode) — the forge bottleneck.
+        Composition that doesn't factor through the features pays here; a readout that does survives. Composable."""
+        saes = {L: self.load_sae(L) for L in layers}
+
+        def mk(L):
+            def pre(m, inp):
+                return (self._sae_reconstruct(saes[L], inp[0]),) + inp[1:]
+            return pre
+        hs = [self.layers[L].register_forward_pre_hook(mk(L)) for L in layers]
+        try:
+            yield self
+        finally:
+            for h in hs:
+                h.remove()
+
     def head_OV(self, L, h):
         """W_V^h W_O^h (d,d), arch-generic (GQA-aware)."""
         a = self.a; H = self.H; hd = self.hd; kvB = h // (H // self.nkv); d = self.d

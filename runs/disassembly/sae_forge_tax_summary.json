@@ -1,0 +1,199 @@
+{
+  "experiment": "SAE-feature-basis forge tax via reconstruction \u2014 does the feature bottleneck tax COMPOSITION more than READOUT? (A\u2194B)",
+  "results": [
+    {
+      "model": "gpt2",
+      "rope": false,
+      "n_layers": 12,
+      "n_sae_layers": 12,
+      "base_induction_nll": 0.725578037469469,
+      "base_generic_nll": 5.232236880215674,
+      "mean_layer_tax": 9.119701936738805,
+      "layers_composition_taxed_more": "12/12",
+      "full_forge": {
+        "rel_induction": 13.567429205895978,
+        "rel_generic": 0.7026407866331362,
+        "tax": 12.864788419262842
+      },
+      "per_layer": [
+        {
+          "layer": 0,
+          "d_induction": 1.1459414486179456,
+          "d_generic": 0.1972406467531176,
+          "rel_induction": 1.5793496879194266,
+          "rel_generic": 0.03769719361545613,
+          "tax": 1.5416524943039704
+        },
+        {
+          "layer": 1,
+          "d_induction": 12.35977899134412,
+          "d_generic": 6.492768266945002,
+          "rel_induction": 17.034389598416983,
+          "rel_generic": 1.2409163450253522,
+          "tax": 15.79347325339163
+        },
+        {
+          "layer": 2,
+          "d_induction": 11.520386008566025,
+          "d_generic": 5.90795198313745,
+          "rel_induction": 15.877528532791695,
+          "rel_generic": 1.1291445928886878,
+          "tax": 14.748383939903007
+        },
+        {
+          "layer": 3,
+          "d_induction": 12.872735673049776,
+          "d_generic": 6.312649513936891,
+          "rel_induction": 17.74135239843183,
+          "rel_generic": 1.2064915364592954,
+          "tax": 16.534860861972533
+        },
+        {
+          "layer": 4,
+          "d_induction": 11.33315556276665,
+          "d_generic": 5.071816742166038,
+          "rel_induction": 15.619485378406377,
+          "rel_generic": 0.9693400465820723,
+          "tax": 14.650145331824305
+        },
+        {
+          "layer": 5,
+          "d_induction": 12.360758766297208,
+          "d_generic": 4.906525857222731,
+          "rel_induction": 17.035739935529108,
+          "rel_generic": 0.937749182350233,
+          "tax": 16.097990753178873
+        },
+        {
+          "layer": 6,
+          "d_induction": 8.638890185568881,
+          "d_generic": 2.6737627557576733,
+          "rel_induction": 11.906217839492106,
+          "rel_generic": 0.5110171455265693,
+          "tax": 11.395200693965537
+        },
+        {
+          "layer": 7,
+          "d_induction": 7.216335530939735,
+          "d_generic": 2.121402888891656,
+          "rel_induction": 9.945636648763294,
+          "rel_generic": 0.40544855614388065,
+          "tax": 9.540188092619413
+        },
+        {
+          "layer": 8,
+          "d_induction": 3.3544258462522,
+          "d_generic": 1.2014089463932622,
+          "rel_induction": 4.623108292152847,
+          "rel_generic": 0.22961669619861003,
+          "tax": 4.393491595954237
+        },
+        {
+          "layer": 9,
+          "d_induction": 1.912784508821157,
+          "d_generic": 0.6583215870884507,
+          "rel_induction": 2.6362216156045406,
+          "rel_generic": 0.12582029484404655,
+          "tax": 2.510401320760494
+        },
+        {
+          "layer": 10,
+          "d_induction": 1.5373379660963589,
+          "d_generic": 0.651727848325586,
+          "rel_induction": 2.1187768711125994,
+          "rel_generic": 0.12456008073055008,
+          "tax": 1.9942167903820494
+        },
+        {
+          "layer": 11,
+          "d_induction": 0.3641205813732128,
+          "d_generic": 1.3887249388614649,
+          "rel_induction": 0.5018351742581502,
+          "rel_generic": 0.2654170616485552,
+          "tax": 0.23641811260959494
+        }
+      ]
+    },
+    {
+      "model": "gemma-2-2b",
+      "rope": true,
+      "n_layers": 26,
+      "n_sae_layers": 8,
+      "base_induction_nll": 4.872465495925315,
+      "base_generic_nll": 7.236785428818881,
+      "mean_layer_tax": 0.25791898536015545,
+      "layers_composition_taxed_more": "5/8",
+      "full_forge": {
+        "rel_induction": 5.421864967205247,
+        "rel_generic": 3.988426853329465,
+        "tax": 1.433438113875782
+      },
+      "per_layer": [
+        {
+          "layer": 0,
+          "d_induction": 3.760907812765904,
+          "d_generic": 4.345287371709081,
+          "rel_induction": 0.7718695627786712,
+          "rel_generic": 0.6004444119352359,
+          "tax": 0.17142515084343535
+        },
+        {
+          "layer": 3,
+          "d_induction": 1.4567394501852196,
+          "d_generic": 2.827652459645246,
+          "rel_induction": 0.29897378464854596,
+          "rel_generic": 0.3907332180934947,
+          "tax": -0.09175943344494875
+        },
+        {
+          "layer": 6,
+          "d_induction": -1.0404563129926658,
+          "d_generic": 0.03985856837982915,
+          "rel_induction": -0.21353795396790962,
+          "rel_generic": 0.005507772583057877,
+          "tax": -0.2190457265509675
+        },
+        {
+          "layer": 9,
+          "d_induction": -0.6194063693874341,
+          "d_generic": 0.5817797040462391,
+          "rel_induction": -0.1271238082195348,
+          "rel_generic": 0.08039200687767244,
+          "tax": -0.20751581509720723
+        },
+        {
+          "layer": 12,
+          "d_induction": 5.7325264244613034,
+          "d_generic": 5.690851024819755,
+          "rel_induction": 1.1765145239260728,
+          "rel_generic": 0.7863783001456467,
+          "tax": 0.3901362237804261
+        },
+        {
+          "layer": 18,
+          "d_induction": 6.12956154537841,
+          "d_generic": 3.3913313978071473,
+          "rel_induction": 1.257999989788817,
+          "rel_generic": 0.4686240086424704,
+          "tax": 0.7893759811463466
+        },
+        {
+          "layer": 21,
+          "d_induction": 4.53497696237017,
+          "d_generic": 0.7721356434414028,
+          "rel_induction": 0.9307355722132642,
+          "rel_generic": 0.1066959426846966,
+          "tax": 0.8240396295285676
+        },
+        {
+          "layer": 24,
+          "d_induction": 4.9533153346646515,
+          "d_generic": 4.413696156311977,
+          "rel_induction": 1.0165932088775909,
+          "rel_generic": 0.6098973362019995,
+          "tax": 0.4066958726755914
+        }
+      ]
+    }
+  ]
+}

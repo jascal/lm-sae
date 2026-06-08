@@ -106,6 +106,19 @@ the forward pass and (b) the forgeable/low-χ fraction — that bounds how inter
 made *without* retraining. If the curve instead reaches ~1.0, the entanglement story is wrong and the model
 is fully decompilable (also a publishable result).
 
+> **Flagship result on real LMs — composition doesn't factor through the SAE features (`sae_forge_tax.py`).** The
+> sharp prediction of the unifying claim, tested directly: force the residual through the SAE feature basis
+> (decode∘encode, the forge bottleneck) and compare the damage to the **composition** (induction-NLL) vs the
+> **readout** (generic next-token NLL). The feature basis taxes **composition far more than readout** — GPT-2: the
+> full forge raises induction-NLL **+1357%** but generic-NLL only **+70%** (composition taxed ~19×, *and* taxed more
+> in **all 12 layers** individually); Gemma-2-2B: +542% vs +399% (net +143%, 5/8 layers — weaker, as its induction is
+> already distributed and its Gemma-Scope SAEs reconstruct loosely). This is the cov95 forge tax measured from the
+> *disassembly/reconstruction* side: SAE features survive as readouts, the computation **over** them does not factor
+> **through** them — the two contributions (forge tax / disassembly) meeting on one host. (Honest scope: SAE
+> reconstruction is lossy everywhere, so the *relative* composition-vs-readout tax is the signal, robust at 12/12
+> layers in GPT-2; this is the reconstruction/NLL route, complementary to the cov95/mAUC route, **not** the full
+> `NativeModel` weight-projection ceiling test of M4. `runs/disassembly/sae_forge_tax_summary.json`.)
+
 ### What form is the core? (not an SAE, not a dense slab — a program)
 "SAE vs dense" is a false dichotomy for the entangled remainder. The forge tax says the core has **no sparse
 feature (SAE) basis** in which composition is monosemantic — that rules out the SAE form. But the χ-ladder
