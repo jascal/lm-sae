@@ -2,7 +2,20 @@
 
 **output** — IOI S-inhibition: suppress the subject so the name-mover writes IO
 
-GPT-2-only circuit op (literature DLA head-set): 7.3, 7.9, 8.6, 8.10. No published head-set in the RoPE models — not in the cross-model catalog.
+GPT-2 literature DLA head-set: 7.3, 7.9, 8.6, 8.10. The RoPE head-set is now found **behaviourally** (below).
+
+## Cross-model (found behaviourally — IOI dossier)
+
+The literature head-set above is GPT-2. The unified [`ResidualVM`](../DECOMPILATION.md) locates this operator by the **ablation sweep** (the most logit-diff-load-bearing heads — the S-inhibition that lets the name-movers write IO) in **every** model ([cross-model IOI dossier](../circuits/ioi_q_chain.md)) — so it is no longer GPT-2-only:
+
+| model | heads (top) |
+|---|---|
+| gpt2 | `8.10`, `8.6`, `7.9`, `5.5` |
+| gpt2-medium | `19.1`, `12.3`, `13.4`, `13.13` |
+| gpt2-large | `20.14`, `18.3`, `24.17`, `17.19` |
+| gemma-2-2b | `23.5`, `20.6`, `16.2`, `14.3` |
+| Llama-3.2-1B | `8.19`, `11.4`, `8.17`, `12.13` |
+| Qwen2.5-1.5B | `24.8`, `0.6`, `11.8`, `13.4` |
 
 ## SAE-feature operands (section G)
 

@@ -2,7 +2,7 @@
 
 **content** — coreference (exploratory): pronoun -> earlier antecedent (no clean task probe here)
 
-GPT-2-only circuit op (literature DLA head-set): 9.0. No published head-set in the RoPE models — not in the cross-model catalog.
+GPT-2 literature DLA head-set: 9.0. No published head-set in the RoPE models — not in the cross-model catalog.
 
 ## SAE-feature operands (section G)
 

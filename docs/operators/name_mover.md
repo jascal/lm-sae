@@ -2,7 +2,20 @@
 
 **output** — IOI name-mover: copy the indirect-object name to the logits (output head)
 
-GPT-2-only circuit op (literature DLA head-set): 9.6, 9.9, 10.0, 10.10. No published head-set in the RoPE models — not in the cross-model catalog.
+GPT-2 literature DLA head-set: 9.6, 9.9, 10.0, 10.10. The RoPE head-set is now found **behaviourally** (below).
+
+## Cross-model (found behaviourally — IOI dossier)
+
+The literature head-set above is GPT-2. The unified [`ResidualVM`](../DECOMPILATION.md) locates this operator by **end→indirect-object copy-attention** (heads that copy the IO name) in **every** model ([cross-model IOI dossier](../circuits/ioi_q_chain.md)) — so it is no longer GPT-2-only:
+
+| model | heads (top) |
+|---|---|
+| gpt2 | `9.9`, `10.0`, `10.6`, `10.10` |
+| gpt2-medium | `15.14`, `18.5`, `20.6`, `20.0` |
+| gpt2-large | `22.0`, `29.0`, `23.13`, `21.8` |
+| gemma-2-2b | `18.6`, `21.5`, `22.5`, `17.3` |
+| Llama-3.2-1B | `12.13`, `12.2`, `11.14`, `10.13` |
+| Qwen2.5-1.5B | `27.4`, `27.8`, `24.10`, `27.1` |
 
 ## SAE-feature operands (section G)
 
