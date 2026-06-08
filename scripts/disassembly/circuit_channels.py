@@ -49,10 +49,22 @@ def run_model(mid, args):
     cut = args.cut if args.cut > 0 else nL // 2
     WU = vm.model.get_output_embeddings().weight.detach().float().cpu().numpy()    # (vocab, d) unembedding, logit lens
 
-    text = _fetch(CORPUS, args.chars)
-    ids_all = tok(text)["input_ids"]
-    chunks = [ids_all[i:i + args.ctx] for i in range(0, len(ids_all), args.ctx)
-              if len(ids_all[i:i + args.ctx]) >= 16][: args.fit]
+    # corpus: single-source (Shakespeare) or DIVERSE (sources tagged → register/topic-broadcast test)
+    def _chunk(txt):
+        idx = tok(txt)["input_ids"]
+        return [idx[i:i + args.ctx] for i in range(0, len(idx), args.ctx) if len(idx[i:i + args.ctx]) >= 16]
+    if args.diverse:
+        from min_to_run import _fetch_wiki, _gutenberg, _local_code
+        per = max(args.chars, 120000); cap = max(1, args.fit // 4)
+        sources = {"shakespeare": _fetch(CORPUS, per), "austen": _gutenberg(1342, per),
+                   "code": _local_code(per), "wiki": _fetch_wiki(per)}
+        chunks = []; csrc = []; src_names = []
+        for si, (nm, txt) in enumerate(s for s in sources.items()):
+            cc = _chunk(txt)[:cap]
+            if cc:
+                src_names.append(nm); chunks += cc; csrc += [si] * len(cc)
+    else:
+        chunks = _chunk(_fetch(CORPUS, args.chars))[: args.fit]; csrc = [0] * len(chunks); src_names = ["shakespeare"]
 
     def capture():
         cap = {}
@@ -62,10 +74,10 @@ def run_model(mid, args):
         return cap, hks
 
     # ---- pass 1: cross-covariance C(early,late) + store per-position early/late/ids/duplicate flag ----
-    C = np.zeros((d, d)); E = []; Lt = []; IDS = []; DUP = []; POS = []
+    C = np.zeros((d, d)); E = []; Lt = []; IDS = []; DUP = []; POS = []; CID = []; SRC = []
     cap, hks = capture()
     with t.no_grad():
-        for c in chunks:
+        for ci, c in enumerate(chunks):
             cap.clear(); vm.model(input_ids=t.tensor([c], device=vm.dev))
             early = sum(cap[L][0] for L in range(cut + 1)).float().cpu().numpy()       # (seq, d)
             late = sum(cap[L][0] for L in range(cut + 1, nL)).float().cpu().numpy()    # (seq, d)
@@ -75,11 +87,13 @@ def run_model(mid, args):
             seen = set()
             for p in range(len(c)):
                 dup = 1.0 if c[p] in seen else 0.0; seen.add(c[p])
-                E.append(early[p]); Lt.append(late[p]); IDS.append(c[p]); DUP.append(dup); POS.append(p)
+                E.append(early[p]); Lt.append(late[p]); IDS.append(c[p]); DUP.append(dup)
+                POS.append(p); CID.append(ci); SRC.append(csrc[ci])
     for h in hks:
         h.remove()
     C /= max(len(E), 1)
     E = np.asarray(E); Lt = np.asarray(Lt); IDS = np.asarray(IDS); DUP = np.asarray(DUP); POS = np.asarray(POS, float)
+    CID = np.asarray(CID); SRC = np.asarray(SRC)
 
     U, S, Vh = np.linalg.svd(C)                                                        # channels: u_i=U[:,i], w_i=Vh[i]
     K = min(args.channels, len(S))
@@ -115,6 +129,21 @@ def run_model(mid, args):
         hi = aa >= np.quantile(aa, 0.9)                                                # top-decile firing mask
         dup_lift = (DUP[hi].mean() / max(dup_base, 1e-6))                              # duplicate enrichment when firing
         pos_corr = float(np.corrcoef(aa, POS)[0, 1])                                   # positional channel?
+        # BROADCAST / TOPIC signatures: persistence (held across positions) + register fraction (encodes the source/topic)
+        acs = []
+        for cid in np.unique(CID):
+            a = act[CID == cid]
+            if len(a) > 3:
+                a0 = a - a.mean(); den = (a0[:-1] ** 2).sum()
+                if den > 1e-9:
+                    acs.append(float((a0[:-1] * a0[1:]).sum() / den))             # lag-1 autocorr within chunk
+        persistence = float(np.mean(acs)) if acs else 0.0
+        if len(np.unique(SRC)) > 1:
+            means = np.array([act[SRC == s].mean() for s in np.unique(SRC)])
+            register_frac = float(np.var(means) / (np.var(act) + 1e-9))           # between-source variance fraction
+        else:
+            register_frac = float("nan")
+        broadcast = bool(persistence > 0.5 and (register_frac > 0.3 or np.isnan(register_frac)))
         wr_prof = wr[:, i] / max(wr[:, i].sum(), 1e-9); rd_prof = rd[:, i] / max(rd[:, i].sum(), 1e-9)
         writer_layers = [int(x) for x in np.argsort(-wr[:, i])[:3]]
         reader_layers = [int(x) for x in np.argsort(-rd[:, i])[:3]]
@@ -130,6 +159,7 @@ def run_model(mid, args):
             "writer_profile": [round(float(x), 3) for x in wr_prof], "reader_profile": [round(float(x), 3) for x in rd_prof],
             "lens_write": lens(ui), "lens_read": lens(wi),
             "dup_lift": round(float(dup_lift), 2), "pos_corr": round(pos_corr, 2), "label": label,
+            "persistence": round(persistence, 2), "register_frac": round(register_frac, 2), "broadcast": broadcast,
             "top_tokens_when_firing": top_ctx})
 
     # ---- CAUSAL: project a channel OUT at the cut (late layers can't read it) → targeted behaviour drop? ----
@@ -185,6 +215,7 @@ def main(argv=None):
     p.add_argument("--cut", type=int, default=0, help="layer cut (0 = nL//2)")
     p.add_argument("--channels", type=int, default=16, help="top coupling channels to characterise")
     p.add_argument("--top-ctx", type=int, default=200)
+    p.add_argument("--diverse", action="store_true", help="diverse corpus (shakespeare+austen+code+wiki) → register/topic-broadcast test")
     p.add_argument("--causal", action="store_true", help="ablate each top channel at the cut, measure targeted ΔNLL (punct/dup/other)")
     p.add_argument("--causal-k", type=int, default=8, help="how many top channels to causally ablate")
     p.add_argument("--device", default="cuda")
@@ -205,8 +236,9 @@ def main(argv=None):
             for ch in r["channels"]:
                 cz = ch.get("causal_dNLL")
                 ctxt = (f" | ablate ΔNLL punct {cz['punct']:+.2f} dup {cz['dup']:+.2f} other {cz['other']:+.2f}" if cz else "")
+                bc = " «BROADCAST»" if ch.get("broadcast") else ""
                 print(f"   ch{ch['channel']:2d} σ {ch['sigma_frac']:.1%} | W{ch['writer_layers']}→R{ch['reader_layers']} "
-                      f"| {ch['label']:20s} dup×{ch['dup_lift']:.2f} pos{ch['pos_corr']:+.2f} "
+                      f"| {ch['label']:20s} dup×{ch['dup_lift']:.2f} persist {ch['persistence']:+.2f} reg {ch['register_frac']}{bc} "
                       f"| read-lens: {' '.join(ch['lens_read'][:4])}{ctxt}")
         except Exception as e:  # pragma: no cover
             import traceback

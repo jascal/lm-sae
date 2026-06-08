@@ -1,0 +1,183 @@
+{
+  "experiment": "head-level causal scan by next-token category (boundary / induction / copy-suppression)",
+  "results": [
+    {
+      "model": "pythia-160m",
+      "n_layers": 12,
+      "heads": 12,
+      "baseline": {
+        "punct": 2.538100770830679,
+        "dup": 2.154247743925711,
+        "other": 5.7070891386001525
+      },
+      "top_punct_heads": [
+        {
+          "L": 4,
+          "h": 4,
+          "d_punct": 0.051,
+          "d_dup": -0.017,
+          "d_other": -0.002,
+          "punct_targeted": 0.053,
+          "dup_targeted": -0.015
+        },
+        {
+          "L": 6,
+          "h": 4,
+          "d_punct": 0.053,
+          "d_dup": 0.01,
+          "d_other": 0.003,
+          "punct_targeted": 0.049,
+          "dup_targeted": 0.006
+        },
+        {
+          "L": 8,
+          "h": 0,
+          "d_punct": 0.04,
+          "d_dup": -0.003,
+          "d_other": -0.004,
+          "punct_targeted": 0.044,
+          "dup_targeted": 0.001
+        },
+        {
+          "L": 0,
+          "h": 4,
+          "d_punct": 0.054,
+          "d_dup": 0.067,
+          "d_other": 0.011,
+          "punct_targeted": 0.043,
+          "dup_targeted": 0.056
+        },
+        {
+          "L": 1,
+          "h": 2,
+          "d_punct": 0.034,
+          "d_dup": -0.02,
+          "d_other": -0.008,
+          "punct_targeted": 0.042,
+          "dup_targeted": -0.012
+        },
+        {
+          "L": 7,
+          "h": 8,
+          "d_punct": 0.011,
+          "d_dup": 0.01,
+          "d_other": -0.024,
+          "punct_targeted": 0.035,
+          "dup_targeted": 0.034
+        }
+      ],
+      "top_dup_heads": [
+        {
+          "L": 1,
+          "h": 3,
+          "d_punct": -0.004,
+          "d_dup": 0.35,
+          "d_other": 0.052,
+          "punct_targeted": -0.055,
+          "dup_targeted": 0.298
+        },
+        {
+          "L": 0,
+          "h": 1,
+          "d_punct": -0.001,
+          "d_dup": 0.12,
+          "d_other": -0.016,
+          "punct_targeted": 0.015,
+          "dup_targeted": 0.136
+        },
+        {
+          "L": 2,
+          "h": 8,
+          "d_punct": 0.01,
+          "d_dup": 0.108,
+          "d_other": 0.002,
+          "punct_targeted": 0.008,
+          "dup_targeted": 0.106
+        },
+        {
+          "L": 10,
+          "h": 5,
+          "d_punct": 0.005,
+          "d_dup": 0.095,
+          "d_other": 0.001,
+          "punct_targeted": 0.003,
+          "dup_targeted": 0.094
+        },
+        {
+          "L": 6,
+          "h": 1,
+          "d_punct": -0.002,
+          "d_dup": 0.05,
+          "d_other": -0.019,
+          "punct_targeted": 0.017,
+          "dup_targeted": 0.069
+        },
+        {
+          "L": 4,
+          "h": 0,
+          "d_punct": -0.019,
+          "d_dup": 0.05,
+          "d_other": -0.01,
+          "punct_targeted": -0.009,
+          "dup_targeted": 0.06
+        }
+      ],
+      "copy_suppression_heads": [
+        {
+          "L": 0,
+          "h": 11,
+          "d_punct": 0.041,
+          "d_dup": -0.087,
+          "d_other": 0.103,
+          "punct_targeted": -0.062,
+          "dup_targeted": -0.191
+        },
+        {
+          "L": 1,
+          "h": 10,
+          "d_punct": -0.002,
+          "d_dup": -0.037,
+          "d_other": -0.001,
+          "punct_targeted": -0.0,
+          "dup_targeted": -0.036
+        },
+        {
+          "L": 1,
+          "h": 7,
+          "d_punct": 0.015,
+          "d_dup": -0.029,
+          "d_other": 0.053,
+          "punct_targeted": -0.038,
+          "dup_targeted": -0.081
+        },
+        {
+          "L": 2,
+          "h": 7,
+          "d_punct": -0.046,
+          "d_dup": -0.027,
+          "d_other": -0.051,
+          "punct_targeted": 0.005,
+          "dup_targeted": 0.024
+        },
+        {
+          "L": 6,
+          "h": 10,
+          "d_punct": 0.003,
+          "d_dup": -0.023,
+          "d_other": -0.005,
+          "punct_targeted": 0.008,
+          "dup_targeted": -0.018
+        },
+        {
+          "L": 1,
+          "h": 11,
+          "d_punct": 0.002,
+          "d_dup": -0.022,
+          "d_other": 0.001,
+          "punct_targeted": 0.001,
+          "dup_targeted": -0.023
+        }
+      ]
+    }
+  ]
+}
