@@ -1,0 +1,43 @@
+{
+  "model": "gpt2",
+  "n_eval": 4000,
+  "pylm_corpus_top1": 0.2905,
+  "instruction_breakdown": {
+    "bigram": {
+      "fired": 1171,
+      "share": 0.29275,
+      "accuracy": 0.19043552519214346
+    },
+    "induction-2": {
+      "fired": 288,
+      "share": 0.072,
+      "accuracy": 0.2916666666666667
+    },
+    "induction-3": {
+      "fired": 423,
+      "share": 0.10575,
+      "accuracy": 0.6832151300236406
+    },
+    "quad": {
+      "fired": 1046,
+      "share": 0.2615,
+      "accuracy": 0.3193116634799235
+    },
+    "trigram": {
+      "fired": 1005,
+      "share": 0.25125,
+      "accuracy": 0.22885572139303484
+    },
+    "unigram": {
+      "fired": 67,
+      "share": 0.01675,
+      "accuracy": 0.029850746268656716
+    }
+  },
+  "program_loc": 62,
+  "store_kb": 1504.703125,
+  "model_corpus_top1": 0.3465,
+  "pylm_model_agreement": 0.48975,
+  "decompilable_fraction": 0.48975,
+  "pylm_over_model_acc": 0.8383838359642601
+}

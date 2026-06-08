@@ -35,6 +35,10 @@ class PyLM:
         if knowledge_path:
             from knowledge import KnowledgeStore
             self.knowledge = KnowledgeStore(knowledge_path)
+        self.grammar = None          # optional flat GRAMMAR table (closed-class skeleton → successor); content-free
+        if s.get("skel"):
+            from grammar import GrammarStore
+            self.grammar = GrammarStore(s.get("closed_ids", []), s["skel"])
 
     def predict(self, ctx, k=1):
         """Next-token prediction for a token-id context. Returns the top-1 id (or a ranked list if k>1)."""
@@ -82,6 +86,10 @@ class PyLM:
         b = self.bi.get(str(ctx[-1]))
         if b:
             return b, "bigram"
+        if self.grammar is not None:                        # GRAMMAR — content-free skeleton fallback before unigram
+            g, tag = self.grammar.lookup(ctx)
+            if g:
+                return g, tag
         return self.uni, "unigram"
 
     def ranked(self, ctx, k=8):

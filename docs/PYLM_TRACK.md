@@ -27,6 +27,7 @@ is the **subject** of decompilation, not a runtime dependency of pylm.
 | file | role | imports |
 |---|---|---|
 | **`pylm/lm.py`** | **the decompiled LM (the artifact that runs)** | **`json`, `pathlib` only — pure stdlib, ZERO ML** |
+| **`pylm/grammar.py`** | **the GRAMMAR idiom (runs)** | **pure stdlib** (the `closed_ids()` builder takes a tokenizer; used only by the decompiler) |
 | `pylm/build.py` | decompiler (corpus route) | `transformers` *tokenizer* (a flat-file BPE, not a net) |
 | `pylm/capture.py` | decompiler (model route, via MI) | `torch` + `transformers` — *reads the model* to extract flat files |
 | `pylm/validate.py` | validator | `torch` only behind `--no-model` — the ground-truth ceiling, **not part of pylm** |
@@ -35,10 +36,14 @@ So pylm itself runs with **no neural network and no ML dependency** — the goal
 
 ## The program (small) and the store (flat data)
 
-**The program** — `PyLM.predict` in `lm.py`, **~49 lines** of plain Python. The reused instructions:
+**The program** — `PyLM.predict` in `lm.py`, **~62 lines** of plain Python (+ a 44-line `grammar.py`). The reused
+instructions:
 - **induction (in-context copy)** — the keystone idiom (an inline-cache macro): the longest local context (≥ 2
   tokens) that has recurred earlier *in this sequence* → predict the token that followed it. Pure list scan.
 - **n-gram backoff** — 4-gram → trigram → bigram → unigram successor lookup. Pure dict lookup.
+- **grammar (closed-class skeleton)** — the model's content-free grammatical scaffold (see below): collapse every
+  content token to a single `OPEN` symbol, keep function-words/punctuation as themselves, look up the grammatical
+  **skeleton → next-token** table. Fires below the lexical n-gram (where it is too sparse), above the unigram floor.
 
 **The store** — a flat JSON of successor tables (~1–1.7 MB). Built two ways:
 - **corpus route** (`build.py`): n-gram counts fit from the corpus — a *surrogate* for the model.
@@ -158,6 +163,42 @@ pylm (temp 0.8):" not the\n\nI am a man,\n\nI am not sure, I will not\nbeautiful
 Rough — it is a 14M-parameter model — but it is a *whole* small LLM running as a tiny symbolic program over flat
 files, every token attributable to a named idiom. (`pylm/store_pythia14m.json`,
 `runs/pylm/validate_pythia14m_summary.json`.)
+
+## The flat-file GRAMMAR idiom — "if there is a grammar, it goes in flat files too"
+
+The core-structure analysis ([`core_grammar.py`](DECOMPILATION.md)) found the entangled core's *most-shared*
+directions form a compact, corpus-invariant, **closed-class scaffold** — a generic grammar (top-16 directions: 22×
+chance cross-corpus overlap, 28× the closed-class base rate). A grammar decompiles to a flat file the same way a fact
+table does: `grammar.py` collapses every content token to one `OPEN` symbol, keeps function-words/punctuation as
+themselves, and stores the grammatical **skeleton → next-token** table (model-captured, 12,272 entries / 487
+closed-class ids for GPT-2). `PyLM` consults it *below* the lexical n-gram, *above* the unigram floor — a content-free
+generalisation that fires where the lexical table is too sparse.
+
+| GPT-2, 4000 held-out positions | decompilable fraction | what fires when the bigram misses |
+|---|---|---|
+| without grammar (skel stripped) | 49.0% | `unigram` 2% @ 3% |
+| **with grammar (flat skeleton table)** | **49.5%** | `grammar-3` 2% @ 2% · `grammar-2` 0% |
+
+**The grammar slots in exactly where the unigram fallback used to fire, and barely beats it — a confirmed plateau
+(+0.5pp).** This is the *right* null result, and it says something precise: **grammar predicts the next *category*
+(slot), but the decompilable fraction is a next-*token* metric.** Which exact token fills a grammatical slot is
+already absorbed into the n-gram modes (the modal successor after `the` is itself grammatical), so the grammar is
+**token-redundant with the n-gram store** — real in the *geometry* (the corpus-invariant closed-class core head),
+nearly invisible in token accuracy. It joins the 5-gram and store-first levers as a confirmed ceiling: you cannot
+tabulate your way past the composition.
+
+### What the decomposition says about "the content is all flat-file-able"
+
+Tease the grammar out and the decompilable content does split into the flat idioms — `induction-3` (11% @ 68%),
+`quad`/`trigram`/`bigram` (n-gram, flat), and the `knowledge` relation table (flat) on factual corpora. **But that
+is the *optimistic limit*, not the whole model.** Summed, every flat idiom + the induction macro reproduces **49.5%**
+of GPT-2; the complementary **~50.5% is irreducible** — and the per-instruction accuracies show why it is *not* just
+content we have yet to tabulate: the bigram fires on 29% of tokens but is right only 19% of the time, the trigram
+23% — positions where the local table **tries and is wrong** because the model's actual token depends on longer-range
+composition. So the full decompilation is **{induction macro} + {grammar, n-gram, knowledge flat files} ≈ half the
+model; the entangled composition ≈ the other half** — the three flat buckets are the complete flat-file-representable
+basis, sufficient for half, and the complement is the forge tax made runnable.
+(`pylm/store_grammar.json`, `runs/pylm/validate_grammar_summary.json` vs `validate_nogrammar_summary.json`.)
 
 ## Next steps
 
