@@ -42,8 +42,13 @@ def main(argv=None):
     from transformers import AutoModelForCausalLM, AutoTokenizer
     dev = args.device if torch.cuda.is_available() else "cpu"
     tok = AutoTokenizer.from_pretrained(args.model)
-    big = any(s in args.model for s in ("1b", "1.4b", "1.5b", "2b", "2.8b", "3b", "7b", "8b", "-xl", "-large"))
-    m = AutoModelForCausalLM.from_pretrained(args.model, **({"dtype": torch.bfloat16} if big else {})).eval().to(dev)
+    if "4bit" in args.model.lower():                                  # unsloth/*-bnb-4bit etc. — torch 4-bit load
+        from transformers import BitsAndBytesConfig
+        cfg = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_quant_type="nf4")
+        m = AutoModelForCausalLM.from_pretrained(args.model, quantization_config=cfg, device_map=dev).eval()
+    else:
+        big = any(s in args.model for s in ("1b", "1.4b", "1.5b", "2b", "2.8b", "3b", "7b", "8b", "-xl", "-large"))
+        m = AutoModelForCausalLM.from_pretrained(args.model, **({"dtype": torch.bfloat16} if big else {})).eval().to(dev)
     text = urllib.request.urlopen(urllib.request.Request(CORPUS, headers={"User-Agent": "Mozilla/5.0"}),
                                   timeout=20).read().decode("utf-8", "ignore")
     ids = tok(text)["input_ids"]

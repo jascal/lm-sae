@@ -430,6 +430,18 @@ GPT-2 is **out-of-distribution** there: its non-English predictions are the *lea
 non-English n-grams) and so the hardest for a low-rank copy to reproduce, while heavily-memorised English stays high
 (stoker 77 · austen 75). The reproducible-vs-not split tracks how *in-distribution / memorised* the content is.
 
+**A *stronger* teacher does not help a capacity-bound core — it hurts it (`--teacher`).** Distilling a small core to a
+*different, more capable* same-tokenizer teacher (gpt2-medium core ← gpt2-XL, soft top-k KL, teacher pre-computed then
+freed so the student trains alone) is *worse* than self-distillation: XL-distill gives ΔNLL **+3.4** (a bad model, ~30%
+agreement with XL) vs self-distill **+0.77** (a good medium model, ~recovered). The medium architecture **cannot
+represent XL's distribution**, so chasing its (unreachable) targets drags the core away from being a good *medium* model
+rather than transferring XL's capability; raising the rank 256→512 nudged XL-agreement only 27→31% — "sizing the SVD for
+the teacher" *within* a smaller architecture can't reach a bigger one. The minimum capacity to reproduce XL is bounded
+by XL's own irreducible complexity (the forge tax): you can't make a small model capable by distilling from a big one
+if it lacks the capacity. (A *capability* benchmark — `benchmark.py`, held-out perplexity + next-token + LAMBADA-style
+last-word accuracy — scores whether a produced core is *good* even when it isn't a *faithful* copy.)
+(`runs/disassembly/teacher_distill_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A

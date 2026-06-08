@@ -127,8 +127,30 @@ def build_chunks(args, tok):
 def run_model(mid, args):
     import torch
     from residual_vm import ResidualVM
-    vm = ResidualVM(mid, device=args.device); t = vm.torch; tok = vm.tok; nL = vm.nL
+    from transformers import AutoTokenizer
+    t = torch
+    dev = args.device if torch.cuda.is_available() else "cpu"
+    tok = AutoTokenizer.from_pretrained(mid)
     train_chunks, chunks, ev_dom = build_chunks(args, tok)
+
+    # SEPARATE teacher (e.g. gpt2-xl → gpt2-large): precompute its targets with ONLY the teacher loaded, then FREE it
+    # BEFORE the student loads — so teacher + student never coexist on the GPU (teacher for precompute, student for training).
+    teacher_top1 = None; teacher_soft = None; TT = 2.0; TK = 40
+    if args.teacher:
+        teacher_model = ResidualVM(args.teacher, device=args.device).model
+        teacher_top1 = []; teacher_soft = []
+        with t.no_grad():
+            for c in chunks:
+                teacher_top1.append(teacher_model(input_ids=t.tensor([c], device=dev)).logits[0, :-1].argmax(-1).cpu())
+            for c in train_chunks:
+                tlp = t.log_softmax(teacher_model(input_ids=t.tensor([c], device=dev)).logits[0][:-1].float() / TT, -1)
+                vals, idx = tlp.topk(TK, -1)
+                teacher_soft.append((idx.cpu(), t.log_softmax(vals, -1).cpu()))   # renorm over top-k; CPU to save GPU
+        del teacher_model
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
+    vm = ResidualVM(mid, device=args.device); nL = vm.nL   # now the student, alone on the GPU (fp32 → stable training)
 
     # the composition weight matrices (GPT-2 Conv1D: weight shape (in, out))
     mats = []
@@ -138,10 +160,10 @@ def run_model(mid, args):
             mats.append(mod.weight)
     full_params = int(sum(W.shape[0] * W.shape[1] for W in mats))
     orig = [W.detach().clone() for W in mats]
-    # precompute SVD of each matrix once
+    # precompute SVD of each matrix once — kept on CPU (~1.5GB) so the GPU fits both student + teacher
     svds = []
     for W in mats:
-        U, S, Vh = torch.linalg.svd(W.detach().float(), full_matrices=False)
+        U, S, Vh = torch.linalg.svd(W.detach().float().cpu(), full_matrices=False)
         svds.append((U, S, Vh))
 
     def gen(metric_top1=None):
@@ -164,7 +186,7 @@ def run_model(mid, args):
     def set_rank(r):
         for (W, (U, S, Vh)) in zip(mats, svds):
             Wr = (U[:, :r] * S[:r]) @ Vh[:r]
-            W.data.copy_(Wr.to(W.dtype))
+            W.data.copy_(Wr.to(device=W.device, dtype=W.dtype))
 
     def restore():
         for W, o in zip(mats, orig):
@@ -179,8 +201,8 @@ def run_model(mid, args):
         A = []; B = []
         for (W, (U, S, Vh)) in zip(mats, svds):
             s = S[:r].sqrt()
-            A.append((U[:, :r] * s).detach().clone().requires_grad_(True))
-            B.append((s[:, None] * Vh[:r]).detach().clone().requires_grad_(True))
+            A.append((U[:, :r] * s).detach().clone().to(vm.dev).requires_grad_(True))   # svds live on CPU
+            B.append((s[:, None] * Vh[:r]).detach().clone().to(vm.dev).requires_grad_(True))
         mods = []
         for L in range(nL):
             blk = vm.model.transformer.h[L]
@@ -189,41 +211,56 @@ def run_model(mid, args):
 
         def mk(j):
             def hook(m, i, o):
-                return i[0] @ (A[j] @ B[j]).to(i[0].dtype) + m.bias if factor_on[0] else None   # off → teacher
+                if not factor_on[0]:                                  # off → teacher (self-distill case)
+                    return None
+                return (i[0] @ A[j].to(i[0].dtype)) @ B[j].to(i[0].dtype) + m.bias   # low-rank product, no d×4d materialization
             return hook
         for j, mod in enumerate(mods):
             hs.append(mod.register_forward_hook(mk(j)))
+        if args.teacher:                                              # gradient checkpointing — fits fp32-large training on a small GPU
+            vm.model.config.use_cache = False
+            vm.model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
         opt = torch.optim.Adam(A + B, lr=args.lr); rng = np.random.default_rng(0); T = 2.0
         for s in range(steps):
             j = int(rng.integers(0, len(train))); tid = t.tensor([train[j]], device=vm.dev)
-            if args.match_teacher:                                    # soft-KL distillation to the full model
-                factor_on[0] = False
+            if args.match_teacher and teacher_soft is not None:       # top-k KL to the precomputed SEPARATE-teacher targets
+                slp = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / TT, -1)
+                idx, t_lp = teacher_soft[j]; idx = idx.to(vm.dev); t_lp = t_lp.to(vm.dev)   # precomputed on CPU
+                s_lp = t.log_softmax(slp.gather(-1, idx), -1)         # student renormalised over the teacher's top-k
+                loss = (t_lp.exp() * (t_lp - s_lp)).sum(-1).mean() * (TT * TT)
+            elif args.match_teacher:                                  # self-teacher: student WITHOUT its factors
                 with t.no_grad():
+                    factor_on[0] = False
                     teach = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
-                factor_on[0] = True
+                    factor_on[0] = True
                 student = t.log_softmax(vm.model(input_ids=tid).logits[0][:-1].float() / T, -1)
                 loss = t.nn.functional.kl_div(student, teach, log_target=True, reduction="batchmean") * (T * T)
             else:                                                     # corpus NLL (capable, not faithful)
                 logits = vm.model(input_ids=tid).logits[0]
                 loss = t.nn.functional.cross_entropy(logits[:-1].float(), tid[0, 1:])
-            opt.zero_grad(); loss.backward(); opt.step()
+            opt.zero_grad(); loss.backward(); t.nn.utils.clip_grad_norm_(A + B, 1.0); opt.step()   # clip → stable
         factor_on[0] = True
-        nll, _, agree, per_dom = gen(metric_top1=full_top1)
+        if args.teacher:
+            vm.model.gradient_checkpointing_disable(); vm.model.config.use_cache = True
+        nll, preds, agree, per_dom = gen(metric_top1=full_top1)
+        agree_teacher = (float(np.mean([float((p == teacher_top1[i].to(p.device)).float().mean())
+                                        for i, p in enumerate(preds)])) if teacher_top1 is not None else None)
         for h in hs:
             h.remove()
-        return nll, agree, per_dom
+        return nll, agree, per_dom, agree_teacher
 
     ranks = sorted({int(x) for x in args.ranks.split(",")})
     curve = []
     for r in ranks:
         set_rank(r); nll0, _, agree0, _ = gen(metric_top1=full_top1); restore()   # no-retrain SVD baseline
-        nll_d, agree_d, per_dom = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None, None))
+        nll_d, agree_d, per_dom, agree_tch = (fit_distill(r, args.distill_steps) if args.distill_steps > 0 else (None, None, None, None))
         stored = int(sum(r * (W.shape[0] + W.shape[1]) for W in mats))
         curve.append({"rank": r, "svd_nll_increase": nll0 - full_nll, "svd_agreement": agree0,
                       "distilled_nll_increase": (nll_d - full_nll) if nll_d is not None else None,
-                      "distilled_agreement": agree_d, "distilled_per_domain": per_dom, "stored_params": stored,
+                      "distilled_agreement": agree_d, "distilled_agreement_teacher": agree_tch,
+                      "distilled_per_domain": per_dom, "stored_params": stored,
                       "compression_ratio": stored / full_params, "params_saved_frac": 1 - stored / full_params})
-    return {"model": mid.split("/")[-1], "n_layers": nL, "full_nll": full_nll,
+    return {"model": mid.split("/")[-1], "n_layers": nL, "full_nll": full_nll, "teacher": args.teacher,
             "transformer_weight_params_M": full_params / 1e6, "distill_steps": args.distill_steps, "curve": curve}
 
 
@@ -239,7 +276,8 @@ def main(argv=None):
     p.add_argument("--diverse", action="store_true", help="distill on a diverse multi-domain corpus (drama+novels+code)")
     p.add_argument("--multilingual", action="store_true", help="add random Wikipedia in 7 non-English languages")
     p.add_argument("--lr", type=float, default=1e-3, help="distillation learning rate")
-    p.add_argument("--match-teacher", action="store_true", help="distill to the full model's top-1 (faithful) vs corpus NLL (capable)")
+    p.add_argument("--match-teacher", action="store_true", help="distill to a teacher (faithful) vs corpus NLL (capable)")
+    p.add_argument("--teacher", default="", help="a SEPARATE teacher model (same tokenizer), e.g. gpt2-xl → gpt2-large core")
     p.add_argument("--device", default="cuda")
     p.add_argument("--outdir", type=Path, default=Path("runs/disassembly"))
     args = p.parse_args(argv)
@@ -259,8 +297,10 @@ def main(argv=None):
             for c in r["curve"]:
                 dd = (f"distilled ΔNLL {c['distilled_nll_increase']:+.3f} agree {c['distilled_agreement']:.0%}"
                       if c['distilled_nll_increase'] is not None else "distilled --")
+                tch = (f"  | agree-w-teacher {c['distilled_agreement_teacher']:.0%}"
+                       if c.get("distilled_agreement_teacher") is not None else "")
                 print(f"    rank {c['rank']:4d}  stored {c['compression_ratio']:.0%} ({c['params_saved_frac']:.0%} saved)  "
-                      f"| SVD ΔNLL {c['svd_nll_increase']:+.2f} agree {c['svd_agreement']:.0%}  | {dd}")
+                      f"| SVD ΔNLL {c['svd_nll_increase']:+.2f} agree {c['svd_agreement']:.0%}  | {dd}{tch}")
                 if c.get("distilled_per_domain"):
                     print("        per-domain faithful agreement: " +
                           " ".join(f"{d} {v:.0%}" for d, v in sorted(c["distilled_per_domain"].items(), key=lambda x: -x[1])))

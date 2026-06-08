@@ -2,6 +2,48 @@
   "experiment": "minimum-to-run frontier \u2014 fidelity vs stored size under no-retrain low-rank weight factorization",
   "results": [
     {
+      "model": "gpt2-medium",
+      "n_layers": 24,
+      "full_nll": 4.942307014378515,
+      "teacher": "",
+      "transformer_weight_params_M": 301.989888,
+      "distill_steps": 2500,
+      "curve": [
+        {
+          "rank": 256,
+          "svd_nll_increase": 3.7663379563210784,
+          "svd_agreement": 0.021825396825396824,
+          "distilled_nll_increase": 0.8544227076465187,
+          "distilled_agreement": 0.3921957671957672,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.3921957671957672
+          },
+          "stored_params": 100663296,
+          "compression_ratio": 0.3333333333333333,
+          "params_saved_frac": 0.6666666666666667
+        },
+        {
+          "rank": 512,
+          "svd_nll_increase": 4.256423679702272,
+          "svd_agreement": 0.062169312169312166,
+          "distilled_nll_increase": 0.7709270886292359,
+          "distilled_agreement": 0.3855820105820106,
+          "distilled_agreement_teacher": null,
+          "distilled_per_domain": {
+            "shakespeare": 0.3855820105820106
+          },
+          "stored_params": 201326592,
+          "compression_ratio": 0.6666666666666666,
+          "params_saved_frac": 0.33333333333333337
+        }
+      ]
+    },
+    {
+      "model": "gpt2-large",
+      "error": "CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 7.53 GiB of which 14.69 MiB is free. Including non-PyTorch memory, this process has 7.50 GiB memory in use. Of the allocated memory 7.30 GiB is allocated by PyTorch, and 93.71 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+    },
+    {
       "model": "gpt2",
       "n_layers": 12,
       "full_nll": 4.324738839017788,

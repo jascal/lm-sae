@@ -1,0 +1,40 @@
+{
+  "experiment": "separate-teacher distillation \u2014 does a STRONGER teacher (gpt2-xl) train a small core better than self-distillation?",
+  "student": "gpt2-medium",
+  "full_nll": 4.942,
+  "xl_teacher": [
+    {
+      "rank": 64,
+      "nll_increase": 3.9,
+      "agree_xl": 0.17
+    },
+    {
+      "rank": 128,
+      "nll_increase": 3.83,
+      "agree_xl": 0.18
+    },
+    {
+      "rank": 256,
+      "nll_increase": 3.69,
+      "agree_xl": 0.27
+    },
+    {
+      "rank": 512,
+      "nll_increase": 3.35,
+      "agree_xl": 0.31
+    }
+  ],
+  "self_teacher": [
+    {
+      "rank": 256,
+      "nll_increase": 0.85,
+      "agree_self": 0.39
+    },
+    {
+      "rank": 512,
+      "nll_increase": 0.77,
+      "agree_self": 0.39
+    }
+  ],
+  "finding": "a stronger teacher HURTS a capacity-bound small core: XL-distill \u0394NLL +3.4 (bad model, ~30% of XL) vs self-distill +0.77 (good medium model). The student is bounded by its architecture; chasing the stronger teacher degrades it. Rank 256->512 nudged XL-agreement only 27->31% \u2014 sizing-for-teacher within the medium arch cannot reach XL."
+}
