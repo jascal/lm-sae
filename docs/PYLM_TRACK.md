@@ -85,6 +85,13 @@ For any context, `explain.py` prints the prediction with **both** of its reading
 
 - **RETRIEVAL** — which symbolic idiom `lm.py` fired (induction-*N* / n-gram backoff / knowledge lookup / grammar
   skeleton), its prediction, its evidence, and whether it **agrees with the model**.
+- **GRAMMAR** (parallel) — the closed-class scaffold is shown on *every* token, not only when it wins arbitration (in
+  the retrieval-first path the lexical n-gram almost always shadows it). The readout is the matched grammatical
+  skeleton (function-words/punctuation verbatim, content collapsed to `O`) and what it predicts. On a passage the
+  aggregate reports scaffold *coverage* (how often a skeleton matches) vs scaffold *agreement* (how often it predicts
+  the model): typically ~90%+ coverage but only ~12% agreement — the scaffold pins the next grammatical **category**,
+  not the content token, so it is structurally near-total but token-redundant with the n-gram. (Stores built without
+  the grammar pass — e.g. the default `store_gpt2.json` — carry no skeleton, so this readout is simply absent there.)
 - **COMPOSITION** — the live circuits read straight off the real forward pass at the predicting position: attention
   heads **named** by their `idiom_library` signature (previous-token / duplicate-token / induction; attention-sink heads
   are collapsed to a NO-OP count), plus the top-activating MLP features, each **named by the vocabulary it promotes**

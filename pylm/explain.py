@@ -83,9 +83,25 @@ def explain(lm_sym, lm_net, tok, ctx, top_heads=6, top_feats=6, head_thr=0.15, s
         "model_predicts": _tokstr(tok, model_id),
         "retrieval": {"idiom": idiom, "predicts": _tokstr(tok, sym_id),
                       "evidence": _evidence(idiom, ctx, tok),
-                      "agrees_with_model": sym_id == model_id},
+                      "agrees_with_model": sym_id == model_id,
+                      "grammar": _grammar_readout(lm_sym, tok, ctx, model_id)},
         "composition": {"head_circuits": heads, "sink_heads": n_sink, "mlp_features": feats},
     }
+
+
+def _grammar_readout(lm_sym, tok, ctx, model_id):
+    """The grammatical-skeleton signal in parallel — what the content-free closed-class scaffold predicts here,
+    shown on every token (not only when it wins arbitration, where the lexical n-gram usually shadows it)."""
+    g = getattr(lm_sym, "grammar", None)
+    if g is None:
+        return None
+    ids, tag = g.lookup(ctx)
+    if not ids:
+        return None
+    n = int(tag.split("-")[1])
+    skel = "/".join((repr(tok.decode([t]).strip()) if t in g.closed else "O") for t in ctx[-n:])
+    return {"tag": tag, "skeleton": skel, "predicts": _tokstr(tok, ids[0]),
+            "agrees_with_model": ids[0] == model_id}
 
 
 def _tokstr(tok, tid):
@@ -129,7 +145,12 @@ def render(ex):
          f"model predicts {ex['model_predicts']}",
          f"  RETRIEVAL  idiom={ex['retrieval']['idiom']}  → {ex['retrieval']['predicts']}"
          f"  ({'agrees' if ex['retrieval']['agrees_with_model'] else 'differs'})",
-         f"             {ex['retrieval']['evidence']}",
+         f"             {ex['retrieval']['evidence']}"]
+    gr = ex["retrieval"].get("grammar")
+    if gr:
+        L.append(f"  GRAMMAR    {gr['tag']}: skeleton {gr['skeleton']} → {gr['predicts']}"
+                 f"  ({'agrees' if gr['agrees_with_model'] else 'differs'})  [parallel closed-class scaffold]")
+    L += [
          f"  COMPOSITION  content head circuits ({ex['composition']['sink_heads']} other heads idle on sink/NO-OP):"]
     for h in ex["composition"]["head_circuits"]:
         L.append(f"    L{h['layer']}.H{h['head']:<2} {h['role']:<15} → {h['attends_tok']} (mass {h['mass']})")
@@ -147,8 +168,10 @@ def _bucket(idiom, agrees):
         return "induction (in-context copy)"
     if idiom.startswith("knowledge"):
         return "knowledge (fact lookup)"
-    if idiom in ("quad", "trigram", "bigram", "unigram") or idiom.startswith(("grammar", "skel")):
-        return "n-gram/grammar (flat store)" if agrees else "composition-carried (MLP)"
+    if idiom.startswith(("grammar", "skel")):
+        return "grammar (closed-class scaffold)" if agrees else "composition-carried (MLP)"
+    if idiom in ("quad", "trigram", "bigram", "unigram"):
+        return "n-gram (flat store)" if agrees else "composition-carried (MLP)"
     return "composition-carried (MLP)"
 
 
@@ -157,12 +180,15 @@ def explain_sequence(lm_sym, lm_net, tok, ids, ctx_window=48):
     (what fraction of tokens the flat store reproduces vs the dense composition carries, and which circuits/features
     do the carrying). This is the API-shaped explanation for a whole text."""
     from collections import Counter
-    prov = Counter(); head_use, feat_use = Counter(), Counter(); n_agree = 0
+    prov = Counter(); head_use, feat_use = Counter(), Counter(); n_agree = 0; n_gram_hit = n_gram_agree = 0
     rows = []
     for i in range(1, len(ids)):
         ctx = ids[max(0, i - ctx_window):i]
         ex = explain(lm_sym, lm_net, tok, ctx, top_heads=3, top_feats=3)
         agrees = ex["retrieval"]["agrees_with_model"]; n_agree += agrees
+        gr = ex["retrieval"].get("grammar")                          # the parallel scaffold signal (even when shadowed)
+        if gr:
+            n_gram_hit += 1; n_gram_agree += gr["agrees_with_model"]
         b = _bucket(ex["retrieval"]["idiom"], agrees); prov[b] += 1
         for h in ex["composition"]["head_circuits"]:
             head_use[f"L{h['layer']}.H{h['head']} {h['role']}"] += 1
@@ -172,6 +198,8 @@ def explain_sequence(lm_sym, lm_net, tok, ids, ctx_window=48):
                      "idiom": ex["retrieval"]["idiom"], "agrees": agrees})
     n = len(rows)
     return {"n_tokens": n, "retrieval_agreement": round(n_agree / max(n, 1), 3),
+            "grammar_scaffold_coverage": round(n_gram_hit / max(n, 1), 3),
+            "grammar_scaffold_agreement": round(n_gram_agree / max(n_gram_hit, 1), 3),
             "provenance": dict(prov.most_common()),
             "top_circuits": dict(head_use.most_common(8)),
             "top_features": dict(feat_use.most_common(8)),
@@ -181,6 +209,8 @@ def explain_sequence(lm_sym, lm_net, tok, ids, ctx_window=48):
 def render_sequence(sq):
     L = [f"=== passage forge-tax breakdown ({sq['n_tokens']} tokens) ===",
          f"retrieval (flat store) reproduces the model on {sq['retrieval_agreement']:.0%} of tokens",
+         f"grammar scaffold: matches a skeleton on {sq['grammar_scaffold_coverage']:.0%} of tokens, "
+         f"predicts the model on {sq['grammar_scaffold_agreement']:.0%} of those (parallel signal)",
          "provenance:"]
     for b, c in sq["provenance"].items():
         L.append(f"    {c:>4} ({c / max(sq['n_tokens'], 1):>4.0%})  {b}")
