@@ -1,0 +1,116 @@
+{
+  "experiment": "eta(d) via SAE dictionary-size \u2014 var-explained vs overcompleteness at fixed L0",
+  "results": [
+    {
+      "model": "pythia-70m",
+      "d": 512,
+      "m": 2048,
+      "layer": 3,
+      "l0": 819,
+      "curve": [
+        {
+          "width_over_m": 0.5,
+          "width": 1024,
+          "var_explained": 0.9617755941215871
+        },
+        {
+          "width_over_m": 1.0,
+          "width": 2048,
+          "var_explained": 0.9791691649486357
+        },
+        {
+          "width_over_m": 2.0,
+          "width": 4096,
+          "var_explained": 0.9911839528186179
+        },
+        {
+          "width_over_m": 4.0,
+          "width": 8192,
+          "var_explained": 0.9897040145913503
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m",
+      "d": 768,
+      "m": 3072,
+      "layer": 6,
+      "l0": 1229,
+      "curve": [
+        {
+          "width_over_m": 0.5,
+          "width": 1536,
+          "var_explained": 0.9409980199593772
+        },
+        {
+          "width_over_m": 1.0,
+          "width": 3072,
+          "var_explained": 0.9737316016728014
+        },
+        {
+          "width_over_m": 2.0,
+          "width": 6144,
+          "var_explained": 0.990347147760951
+        },
+        {
+          "width_over_m": 4.0,
+          "width": 12288,
+          "var_explained": 0.9956441496499735
+        }
+      ]
+    },
+    {
+      "model": "pythia-410m",
+      "d": 1024,
+      "m": 4096,
+      "layer": 12,
+      "l0": 1638,
+      "curve": [
+        {
+          "width_over_m": 0.5,
+          "width": 2048,
+          "var_explained": 0.92008060147824
+        },
+        {
+          "width_over_m": 1.0,
+          "width": 4096,
+          "var_explained": 0.9455113130136202
+        },
+        {
+          "width_over_m": 2.0,
+          "width": 8192,
+          "var_explained": 0.9713142393938148
+        },
+        {
+          "width_over_m": 4.0,
+          "width": 16384,
+          "var_explained": 0.9941833758683949
+        }
+      ]
+    },
+    {
+      "model": "pythia-1b",
+      "d": 2048,
+      "m": 8192,
+      "layer": 8,
+      "l0": 3277,
+      "curve": [
+        {
+          "width_over_m": 0.5,
+          "width": 4096,
+          "var_explained": 0.6909100996508376
+        },
+        {
+          "width_over_m": 1.0,
+          "width": 8192,
+          "var_explained": 0.7328112642764913
+        },
+        {
+          "width_over_m": 2.0,
+          "width": 16384,
+          "var_explained": 0.8056110352611865
+        }
+      ]
+    }
+  ]
+}

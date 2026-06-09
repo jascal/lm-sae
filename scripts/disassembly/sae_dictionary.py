@@ -87,6 +87,7 @@ def main(argv=None):
     p.add_argument("--models", default="EleutherAI/pythia-70m,EleutherAI/pythia-160m,EleutherAI/pythia-410m,EleutherAI/pythia-1b")
     p.add_argument("--widths", default="0.5,1,2,4", help="dictionary widths as multiples of m")
     p.add_argument("--l0", type=int, default=64, help="fixed SAE sparsity (active features per token)")
+    p.add_argument("--l0-frac", type=float, default=0.0, help="if >0, scale L0 = round(l0_frac·m) per model (L0 ∝ d) — the clean η")
     p.add_argument("--ctx", type=int, default=64)
     p.add_argument("--fit", type=int, default=120)
     p.add_argument("--rows", type=int, default=4000)
@@ -106,16 +107,17 @@ def main(argv=None):
         print(f"\n=== {name} ===")
         try:
             X, m, L = capture_acts(mid, args)
+            l0 = round(args.l0_frac * m) if args.l0_frac > 0 else args.l0   # scale sparsity to the model (L0 ∝ m ∝ d)
             curve = []
             for f in facs:
                 width = int(f * m)
                 try:
-                    ve = train_sae(X, width, args.l0, args)
+                    ve = train_sae(X, width, l0, args)
                 except torch.cuda.OutOfMemoryError:
                     print(f"  width {f}×m ({width}): OOM — skipped"); torch.cuda.empty_cache(); continue
                 curve.append({"width_over_m": f, "width": width, "var_explained": ve})
-                print(f"  width {f:>3}×m ({width:6d}) · L0={args.l0} · var-explained {ve:.3f}")
-            results.append({"model": name, "d": LADDER_D.get(name), "m": m, "layer": L, "l0": args.l0, "curve": curve})
+                print(f"  width {f:>3}×m ({width:6d}) · L0={l0} ({l0 / m:.0%} of m) · var-explained {ve:.3f}")
+            results.append({"model": name, "d": LADDER_D.get(name), "m": m, "layer": L, "l0": l0, "curve": curve})
         except Exception as e:  # pragma: no cover
             import traceback
             traceback.print_exc(); print(f"  [skip] {e}"); results.append({"model": name, "error": str(e)})

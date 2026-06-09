@@ -685,12 +685,18 @@ by a growing interference/packing overhead — s ≈ 1.4·k with k ∝ d^1.15. (
 Two follow-ups pin the rest. **Entropy-dependence** (`entropy_dependence.py`): binning tokens by next-token entropy H and
 measuring k, **k is nearly flat in H — k ∝ H^0.03 (160m) / H^0.05 (410m)** (corr 0.18–0.34). So the per-token feature count
 is a structural property of *width*, not per-token difficulty — i.e. the super-linear k growth is **width-driven feature
-economy, not task-complexity**. **Packing efficiency η** (`sae_dictionary.py`): at fixed sparsity L0=64 the variance-explained
-*gain* from 0.5×m→4×m overcompleteness is **flat across the ladder (~0.08–0.10)**, so η is scale-stable (no growing packing
-overhead — consistent with the flat s/k). (Caveat: fixed L0 ≪ k for the large models, so absolute var falls with scale —
-re-confirming k grows; a clean η needs L0 scaled with d.) Net: **both candidate growing-overhead terms (interference s/k,
-packing η) are flat**; the entire super-linear active-dimension growth is k itself (∝ d^1.15), width-structural and
-entropy-independent. (`runs/disassembly/{entropy_dependence,sae_dictionary}_summary.json`.)
+economy, not task-complexity**. **Packing efficiency η** (`sae_dictionary.py`): a first pass at fixed sparsity L0=64 looked
+scale-stable, but that *starved* the big models (L0 ≪ k). The clean run scales **L0 ∝ m (= 0.4m ≈ k per model)** so
+reconstruction matches each model's density; then the variance-explained *gain* from 0.5×m→4×m overcompleteness **grows
+with scale** (70m +0.028 saturating by 2×m · 160m +0.055 · 410m +0.074 · 1b +0.115 still rising at 2×m), i.e. the saturation
+width m′/m rises (2×→≥4×→≫4×) ⇒ **η = m/m′ *shrinks* with scale — bigger models pack more total features per neuron.**
+Crucially this does NOT contradict the flat s/k: the *per-token active support* s ≈ 1.4·k is k-driven (η does not enter,
+β≈0), while η governs the *total dictionary* size m′ (∝ d^{>1}), a separate quantity — the storage/legibility cost of a
+complete feature basis grows faster than the per-token compute. Net: the super-linear active-dimension growth (s ∝ d^1.15)
+is k itself (width-structural, entropy-independent), with a *stable* functional overhead s/k≈1.4; *separately*, the
+overcomplete dictionary needed for a legible basis grows faster than m (η↓). (Caveat: 1b's absolute var (0.81) may be
+SAE-undertrained at d_ff=8192; the η↓ trend is clear already at 70m→410m.)
+(`runs/disassembly/{entropy_dependence,sae_dictionary,sae_dictionary_cleanL0}_summary.json`.)
 
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
