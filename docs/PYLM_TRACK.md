@@ -110,6 +110,14 @@ passage. On a short repeated-then-factual passage, ~28% is flat-store-reproducib
 composition-carried — with the L0 duplicate-token heads and L5 induction heads as the most-used circuits. That is the
 decomposition the API returns for an arbitrary text: every token attributed to a half, and the carrying circuits named.
 
+Explain is **architecture-complete** — `explain.py` auto-detects the kernel from the flat weights (GPT-2 `config` vs
+RoPE `cfg_i`) and runs identically over GPT-2 or the RoPE family, since the head/feature naming is kernel-agnostic
+(attention rows + an MLP write-weight projected to the unembed). On **Qwen2.5-0.5B**, "the cat sat on the mat. …on the"
+→ `mat`: the symbolic idiom is `induction-3` and Qwen's real induction heads (L11.H12, L9.H13, L13.H9, mass ~0.9) all
+attend to `mat`, while the named features come up bilingual and on-topic — L20 n3063 promotes `{坐, sit, 座, sitting,
+sat}` and L19 n1111 `{床, bed, -bed, 床上, beds}` (Qwen's Chinese-English "sit" and "bed/surface" features). The same
+explain surface, the same two-halves decomposition, on the modern laptop-grade models.
+
 ## The program (small) and the store (flat data)
 
 **The program** — `PyLM.predict` in `lm.py`, **~62 lines** of plain Python (+ a 44-line `grammar.py`). The reused

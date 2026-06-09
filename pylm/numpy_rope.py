@@ -53,11 +53,15 @@ class NumpyRoPE:
         rot = np.concatenate([-x[..., half:], x[..., :half]], -1)
         return x * cos + rot * sin
 
-    def logits(self, ids):
+    def logits(self, ids, capture=None):
+        # capture: optional dict — records per-layer last-position attention (H, seq) and MLP activations (ffn) for
+        # explain.py, exactly as numpy_lm.py does for GPT-2 (the head/feature explanation is kernel-agnostic).
         W = self.W; seq = len(ids); H, nkv, hd = self.H, self.nkv, self.hd
         x = W["embed"][np.asarray(ids)]                                # (seq, d)
         pos = np.arange(seq); rep = H // nkv
         cmask = np.triu(np.full((seq, seq), -1e30, np.float32), 1)
+        if capture is not None:
+            capture["att_last"] = []; capture["mlp_h"] = []
         for L in range(self.nL):
             p = f"l{L}."
             a = rmsnorm(x, W[p + "in_ln"], self.eps)
@@ -77,10 +81,19 @@ class NumpyRoPE:
                 kk = max(1, int(self.route_frac * h.shape[-1]))
                 thr = np.partition(np.abs(h), -kk, axis=-1)[:, -kk:-kk + 1]
                 h = np.where(np.abs(h) >= thr, h, 0.0)
+            if capture is not None:
+                capture["att_last"].append(att[:, -1, :].copy()); capture["mlp_h"].append(h[-1].copy())
             x = x + h @ W[p + "mlp.down_proj"]
         x = rmsnorm(x, W["norm"], self.eps)
         head = W["embed"].T if self.tie else W["lm_head"]
         return x @ head
+
+    def write_mat(self, L):                                            # MLP write weight (ffn, d) — the SwiGLU down-proj
+        return self.W[f"l{L}.mlp.down_proj"]
+
+    @property
+    def unembed(self):                                                 # (V, d) token directions (tied embedding / lm_head)
+        return self.W["embed"] if self.tie else self.W["lm_head"].T
 
     def predict(self, ids):
         return int(self.logits(ids)[-1].argmax())

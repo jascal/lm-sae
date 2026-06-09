@@ -75,6 +75,13 @@ class NumpyGPT2:
         x = layernorm(x, W["ln_f.weight"], W["ln_f.bias"])
         return x @ W["wte"].T
 
+    def write_mat(self, L):                                            # MLP write weight (ffn, d) — the c_proj
+        return self.W[f"h{L}.mlp.c_proj.weight"]
+
+    @property
+    def unembed(self):                                                 # (V, d) token directions (tied wte)
+        return self.W["wte"]
+
     def predict(self, ids):
         return int(self.logits(ids)[-1].argmax())
 
