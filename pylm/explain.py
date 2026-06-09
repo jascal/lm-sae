@@ -134,6 +134,58 @@ def render(ex):
     return "\n".join(L)
 
 
+def _bucket(idiom, agrees):
+    """Coarse provenance bucket for a token: which half of the model produced it."""
+    if idiom.startswith("induction"):
+        return "induction (in-context copy)"
+    if idiom.startswith("knowledge"):
+        return "knowledge (fact lookup)"
+    if idiom in ("quad", "trigram", "bigram", "unigram") or idiom.startswith(("grammar", "skel")):
+        return "n-gram/grammar (flat store)" if agrees else "composition-carried (MLP)"
+    return "composition-carried (MLP)"
+
+
+def explain_sequence(lm_sym, lm_net, tok, ids, ctx_window=48):
+    """Walk a passage and decompose every next-token step: per-token provenance + an aggregate forge-tax breakdown
+    (what fraction of tokens the flat store reproduces vs the dense composition carries, and which circuits/features
+    do the carrying). This is the API-shaped explanation for a whole text."""
+    from collections import Counter
+    prov = Counter(); head_use, feat_use = Counter(), Counter(); n_agree = 0
+    rows = []
+    for i in range(1, len(ids)):
+        ctx = ids[max(0, i - ctx_window):i]
+        ex = explain(lm_sym, lm_net, tok, ctx, top_heads=3, top_feats=3)
+        agrees = ex["retrieval"]["agrees_with_model"]; n_agree += agrees
+        b = _bucket(ex["retrieval"]["idiom"], agrees); prov[b] += 1
+        for h in ex["composition"]["head_circuits"]:
+            head_use[f"L{h['layer']}.H{h['head']} {h['role']}"] += 1
+        for f in ex["composition"]["mlp_features"]:
+            feat_use[f"L{f['layer']} n{f['neuron']} {{{','.join(f['promotes'][:3])}}}"] += 1
+        rows.append({"token": _tokstr(tok, ids[i]), "predicts": ex["model_predicts"], "bucket": b,
+                     "idiom": ex["retrieval"]["idiom"], "agrees": agrees})
+    n = len(rows)
+    return {"n_tokens": n, "retrieval_agreement": round(n_agree / max(n, 1), 3),
+            "provenance": dict(prov.most_common()),
+            "top_circuits": dict(head_use.most_common(8)),
+            "top_features": dict(feat_use.most_common(8)),
+            "trace": rows}
+
+
+def render_sequence(sq):
+    L = [f"=== passage forge-tax breakdown ({sq['n_tokens']} tokens) ===",
+         f"retrieval (flat store) reproduces the model on {sq['retrieval_agreement']:.0%} of tokens",
+         "provenance:"]
+    for b, c in sq["provenance"].items():
+        L.append(f"    {c:>4} ({c / max(sq['n_tokens'], 1):>4.0%})  {b}")
+    L.append("most-used live circuits across the passage:")
+    for h, c in list(sq["top_circuits"].items())[:6]:
+        L.append(f"    {c:>4}×  {h}")
+    L.append("most-used MLP features across the passage:")
+    for f, c in list(sq["top_features"].items())[:6]:
+        L.append(f"    {c:>4}×  {f}")
+    return "\n".join(L)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--store", default="pylm/store_gpt2.json")
@@ -141,6 +193,7 @@ def main(argv=None):
     p.add_argument("--knowledge", default=None)
     p.add_argument("--tokenizer", default="gpt2")
     p.add_argument("--text", default="The Eiffel Tower is located in the city of")
+    p.add_argument("--sequence", action="store_true", help="explain a whole passage with a forge-tax aggregate")
     p.add_argument("--out", type=Path, default=Path("runs/pylm/explain.json"))
     args = p.parse_args(argv)
 
@@ -148,12 +201,16 @@ def main(argv=None):
     tok = AutoTokenizer.from_pretrained(args.tokenizer)
     lm_sym = PyLM(args.store, knowledge_path=args.knowledge)
     lm_net = NumpyGPT2(args.weights)
-    ctx = tok(args.text)["input_ids"]
-    ex = explain(lm_sym, lm_net, tok, ctx)
-    print(render(ex))
+    ids = tok(args.text)["input_ids"]
+    if args.sequence:
+        out = explain_sequence(lm_sym, lm_net, tok, ids)
+        print(render_sequence(out))
+    else:
+        out = explain(lm_sym, lm_net, tok, ids)
+        print(render(out))
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(ex, indent=2, default=float))
-    return ex
+    args.out.write_text(json.dumps(out, indent=2, default=float))
+    return out
 
 
 if __name__ == "__main__":
