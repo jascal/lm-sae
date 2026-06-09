@@ -673,6 +673,10 @@ is the load-bearing tension for minimum-to-run: the flat-decompilable part (know
 *computed* part outgrows it — and it is why the unsquirrel route had to be *learned reconstruction* (sae-forge), getting
 *harder*, not easier, at scale. (Caveat: the recovery-fraction is *native-basis* effective density — a learned overcomplete
 basis could shift the absolute numbers; the monotone *trend* is the result.) (`runs/disassembly/mlp_kv_sparsity_summary.json`.)
+Fitting the active dimension *s* (neurons to recover content at content ΔNLL < 0.3) as a power law in *d* across the ladder
+(`scaling_fit.py`): **s ∝ d^1.23** (super-linear), so the active fraction **s/m ∝ d^0.23** (robust: d^0.28 at threshold 0.5),
+and the superposition overhead over the ~d/3 functional rank, **s/r**, grows from 5.7× → 8.1× (∝ d^0.23). So "the core grows
+faster than the model" is a mild power law, not a step. (`runs/disassembly/scaling_fit_summary.json`.)
 
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
