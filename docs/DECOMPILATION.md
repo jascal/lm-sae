@@ -706,6 +706,15 @@ ratio of GELU activations at width d_ff), present in the *random* network. There
 to a **statistics-of-GELU-at-width** question (architectural), not a capability or learned-feature question — a much more
 tractable target. (The *functional* support s = top-k recovery is trained-dependent but tracks this geometric k as
 s ≈ 1.4·k in the trained model.) (`runs/disassembly/checkpoint_k_summary.json`.)
+**The d^0.15 excess is from MARGINAL variance heterogeneity, not input covariance** (`init_statistics.py`). Decomposing the
+architectural k: a pure-iid homogeneous-variance Gaussian → GELU gives **k ∝ d^1.01 (linear, k/m ≈ 0.42** = the GELU
+constant c). Real activations give k ∝ d^1.16; **column-shuffling the input** (preserve per-coordinate marginals, destroy
+all cross-coordinate correlation) gives k ∝ **d^1.23** — *more* super-linear. So the excess **survives removing all input
+correlation** → it lives in the **marginal variance heterogeneity** of the pre-activations (W↑x)ᵢ (the per-neuron variance
+spread, which grows with width), *not* the covariance structure. And cross-coordinate correlation *reduces* the PR
+(k_real < k_shuf), the opposite of a "correlation delocalizes" hypothesis. So the d^0.15 reduces to: the spread of
+per-neuron pre-activation variances grows with width, and GELU's moment ratio (E|·|)²/E[·²] is σ-dependent, inflating the
+participation ratio super-linearly. (`runs/disassembly/init_statistics_summary.json`.)
 
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
