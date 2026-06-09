@@ -715,6 +715,13 @@ spread, which grows with width), *not* the covariance structure. And cross-coord
 (k_real < k_shuf), the opposite of a "correlation delocalizes" hypothesis. So the d^0.15 reduces to: the spread of
 per-neuron pre-activation variances grows with width, and GELU's moment ratio (E|·|)²/E[·²] is σ-dependent, inflating the
 participation ratio super-linearly. (`runs/disassembly/init_statistics_summary.json`.)
+But measuring the variance dispersion directly (`sigma_dispersion.py`) corrects the natural next guess: the per-neuron σ²
+coefficient of variation **decreases** with scale (CV ∝ d^−0.79; the σ² participation-fraction rises 0.45→0.69), so the
+pre-activation variances get *more* homogeneous with width, not less. Yet the heterogeneity gain (k_shuf/k_iid) still
+grows — so the excess is driven by the **σ-regime nonlinearity of c(σ)**, not the dispersion magnitude. And a formula
+check: the proposed closed form m·E[c(σ)] scales **d^1.00** (linear — wrong); the correct vector-PR concentration limit
+(Σ E|hᵢ|)²/(Σ E[hᵢ²]) scales **d^1.23** (overshoots); the actual per-token k is **d^1.15**, between the two — so finite-m
+correlations between |hᵢ| and hᵢ² matter and neither factorised form is exact. (`runs/disassembly/sigma_dispersion_summary.json`.)
 
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
