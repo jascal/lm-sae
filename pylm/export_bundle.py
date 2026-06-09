@@ -41,9 +41,9 @@ def main(argv=None):
     for name, a in raw.items():
         if name in ("config", "cfg_i", "cfg_f"):
             continue
-        if name.endswith("__scale") or name.endswith("__rowscale"):
-            raise SystemExit(f"int8 bundles not supported yet (saw {name}); export an fp32 or fp16 npz")
-        if a.dtype == np.float16:                                     # preserve fp16 (the in-RAM-precision path) ...
+        if a.dtype == np.int8:                                        # int8 weight (its per-column "__scale" is f16) ...
+            a = np.ascontiguousarray(a, dtype=np.int8); dt = "i8"
+        elif a.dtype == np.float16:                                   # ... fp16 (the in-RAM-precision path / scales) ...
             a = np.ascontiguousarray(a, dtype="<f2"); dt = "f16"
         else:                                                         # ... else raw little-endian f32
             a = np.ascontiguousarray(a, dtype="<f4"); dt = "f32"
