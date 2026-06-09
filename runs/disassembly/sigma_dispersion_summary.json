@@ -1,0 +1,51 @@
+{
+  "experiment": "per-neuron pre-activation variance dispersion + heterogeneous-\u03c3 PR formula test",
+  "results": [
+    {
+      "model": "pythia-70m",
+      "d": 512,
+      "m": 2048,
+      "sigma2_CV": 4.5626972417036695,
+      "sigma2_PR_frac": 0.44968320374997955,
+      "k_moment": 568.243278503418,
+      "k_meanc": 1122.346455891927,
+      "k_actual": 761.5313975016276
+    },
+    {
+      "model": "pythia-160m",
+      "d": 768,
+      "m": 3072,
+      "sigma2_CV": 2.132321091989676,
+      "sigma2_PR_frac": 0.4786012320158382,
+      "k_moment": 1030.7222798665364,
+      "k_meanc": 1762.6909790039062,
+      "k_actual": 1260.5172271728516
+    },
+    {
+      "model": "pythia-410m",
+      "d": 1024,
+      "m": 4096,
+      "sigma2_CV": 1.7050312502930562,
+      "sigma2_PR_frac": 0.6087111742817797,
+      "k_moment": 1791.158785502116,
+      "k_meanc": 2582.7430521647134,
+      "k_actual": 2130.419273376465
+    },
+    {
+      "model": "pythia-1b",
+      "d": 2048,
+      "m": 8192,
+      "sigma2_CV": 1.4094318728893995,
+      "sigma2_PR_frac": 0.6862723801168613,
+      "k_moment": 3124.5749320983887,
+      "k_meanc": 4491.350631713867,
+      "k_actual": 3728.714111328125
+    }
+  ],
+  "fit": {
+    "sigma2_CV_exp": -0.7873189691275096,
+    "k_actual_exp": 1.1540397676435616,
+    "k_moment_exp": 1.2298930437986542,
+    "k_meanc_exp": 1.0004972734574376
+  }
+}
