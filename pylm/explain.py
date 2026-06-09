@@ -66,8 +66,9 @@ def explain(lm_sym, lm_net, tok, ctx, top_heads=6, top_feats=6, head_thr=0.15, s
 
     feats = []                                                       # top-activating MLP features (the composition units)
     for L, h in enumerate(cap["mlp_h"]):
-        n = int(np.abs(h).argmax())
-        feats.append({"layer": L, "neuron": n, "act": round(float(h[n]), 2)})
+        n = int(np.abs(h).argmax()); act = float(h[n])
+        feats.append({"layer": L, "neuron": n, "act": round(act, 2),
+                      "promotes": _neuron_label(lm_net, tok, L, n, act)})
     feats.sort(key=lambda r: -abs(r["act"])); feats = feats[:top_feats]
 
     return {
@@ -82,6 +83,22 @@ def explain(lm_sym, lm_net, tok, ctx, top_heads=6, top_feats=6, head_thr=0.15, s
 
 def _tokstr(tok, tid):
     return repr(tok.decode([tid]))
+
+
+def _neuron_label(lm_net, tok, L, n, act, top=5):
+    """Name an MLP neuron by the tokens it promotes — its write weight projected to the vocabulary (direct logit
+    effect), signed by its activation. This is the neuron's 'feature': the vocabulary it pushes when it fires."""
+    w_out = lm_net.W[f"h{L}.mlp.c_proj.weight"][n]                    # (d,) the neuron's write direction
+    eff = np.sign(act) * (w_out @ lm_net.W["wte"].T)                 # (V,) signed direct-logit contribution
+    ids = np.argsort(-eff)[:top * 4]                                  # over-fetch, then dedup decoded strings
+    out = []
+    for i in ids:
+        s = tok.decode([int(i)]).strip() or _tokstr(tok, int(i))
+        if s not in out:
+            out.append(s)
+        if len(out) >= top:
+            break
+    return out
 
 
 def _evidence(idiom, ctx, tok):
@@ -111,9 +128,9 @@ def render(ex):
         L.append(f"    L{h['layer']}.H{h['head']:<2} {h['role']:<15} → {h['attends_tok']} (mass {h['mass']})")
     if not ex["composition"]["head_circuits"]:
         L.append("    (none above threshold — prediction carried by MLP features below)")
-    L.append("  COMPOSITION  top MLP features:")
+    L.append("  COMPOSITION  top MLP features (neuron → tokens it promotes):")
     for f in ex["composition"]["mlp_features"]:
-        L.append(f"    L{f['layer']} neuron {f['neuron']:<5} act {f['act']}")
+        L.append(f"    L{f['layer']} n{f['neuron']:<5} act {f['act']:<6} → {{{', '.join(f['promotes'])}}}")
     return "\n".join(L)
 
 
