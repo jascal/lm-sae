@@ -103,10 +103,13 @@ def run_model(mid, args):
                     x = X[idx]; codes = t.relu((x - bd) @ We + be); rec = codes @ Wd + bd
                     loss = (rec - x).pow(2).mean() + lam * codes.abs().mean()
                     opt.zero_grad(); loss.backward(); opt.step()
-                with t.no_grad():
-                    codes = t.relu((X - bd) @ We + be); rec = codes @ Wd + bd
-                    var_exp.append(float(1 - (rec - X).pow(2).sum() / (tot_var[L] + 1e-9)))
-                    l0acc.append(float((codes > 0).float().sum(-1).mean() / width))
+                with t.no_grad():                                     # batched eval — avoids materializing (N×F) codes at large F
+                    sse = 0.0; l0s = 0.0; nb = 0
+                    for bs in range(0, X.shape[0], 512):
+                        xb = X[bs:bs + 512]; cb = t.relu((xb - bd) @ We + be); rb = cb @ Wd + bd
+                        sse += float((rb - xb).pow(2).sum()); l0s += float((cb > 0).float().sum(-1).mean()) * xb.shape[0]; nb += xb.shape[0]
+                    var_exp.append(float(1 - sse / (tot_var[L] + 1e-9)))
+                    l0acc.append(float(l0s / max(nb, 1) / width))
                 rec_dirs[L] = Wd.detach(); enc[L] = We.detach(); benc[L] = be.detach(); bdec[L] = bd.detach()
 
         # ---- insert the reconstruction and measure NLL (completeness) ----
@@ -149,7 +152,8 @@ def run_model(mid, args):
             for p in range(len(y)):
                 tot += float(-lp[p, y[p]]); k += 1
     full = tot / max(k, 1)
-    configs = [("tight", args.rank, 0.0)] + [("sae", args.features, lam) for lam in [float(x) for x in args.l1.split(",")]]
+    feats = [int(x) for x in str(args.features).split(",")]           # sweep one or more overcomplete widths
+    configs = [("tight", args.rank, 0.0)] + [("sae", F, lam) for F in feats for lam in [float(x) for x in args.l1.split(",")]]
     rows = []
     for kind, width, lam in configs:
         m = fit_config(kind, width, lam); m["nll_increase"] = m["nll"] - full; rows.append(m)
@@ -164,7 +168,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--models", default="gpt2")
     p.add_argument("--rank", type=int, default=32, help="tight bottleneck rank (the small corner)")
-    p.add_argument("--features", type=int, default=1536, help="overcomplete SAE width F (the legible corner; F>d)")
+    p.add_argument("--features", default="1536", help="overcomplete SAE width(s) F, comma-separated (the legible corner; F>d)")
     p.add_argument("--l1", default="0.02", help="L1 sparsity weight for the SAE")
     p.add_argument("--ctx", type=int, default=64)
     p.add_argument("--train", type=int, default=200)
