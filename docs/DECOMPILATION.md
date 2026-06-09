@@ -677,6 +677,11 @@ Fitting the active dimension *s* (neurons to recover content at content ΔNLL < 
 (`scaling_fit.py`): **s ∝ d^1.23** (super-linear), so the active fraction **s/m ∝ d^0.23** (robust: d^0.28 at threshold 0.5),
 and the superposition overhead over the ~d/3 functional rank, **s/r**, grows from 5.7× → 8.1× (∝ d^0.23). So "the core grows
 faster than the model" is a mild power law, not a step. (`runs/disassembly/scaling_fit_summary.json`.)
+Measuring the two inputs to that growth (`feature_economy.py`): the per-token "effective features in play" *k* (participation
+ratio of the MLP hidden) grows **super-linearly, k ∝ d^1.15** (761→3731 across the ladder), while the functional overhead
+**s/k ≈ 1.4 stays flat** and the activation-covariance effective rank stays low (~50→94, ∝ d^0.46 — concentration stays
+low-dim, echoing χ≈16). So the active-dimension growth is driven almost entirely by **more features active per token**, not
+by a growing interference/packing overhead — s ≈ 1.4·k with k ∝ d^1.15. (`runs/disassembly/feature_economy_summary.json`.)
 
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
