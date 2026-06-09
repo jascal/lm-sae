@@ -42,10 +42,13 @@ def main(argv=None):
         if name in ("config", "cfg_i", "cfg_f"):
             continue
         if name.endswith("__scale") or name.endswith("__rowscale"):
-            raise SystemExit(f"quantised bundles not supported in this first cut (saw {name}); export an fp32 npz")
-        a = np.ascontiguousarray(a, dtype="<f4")                      # raw little-endian f32, in manifest order
+            raise SystemExit(f"int8 bundles not supported yet (saw {name}); export an fp32 or fp16 npz")
+        if a.dtype == np.float16:                                     # preserve fp16 (the in-RAM-precision path) ...
+            a = np.ascontiguousarray(a, dtype="<f2"); dt = "f16"
+        else:                                                         # ... else raw little-endian f32
+            a = np.ascontiguousarray(a, dtype="<f4"); dt = "f32"
         b = a.tobytes(); blob += b
-        manifest["arrays"].append({"name": name, "dtype": "f32", "shape": list(a.shape),
+        manifest["arrays"].append({"name": name, "dtype": dt, "shape": list(a.shape),
                                    "offset": offset, "bytes": len(b)})
         offset += len(b)
 
@@ -54,8 +57,10 @@ def main(argv=None):
     Path(stem + ".fieldrun.json").write_text(json.dumps(manifest))
     Path(stem + ".fieldrun.bin").write_bytes(bytes(blob))
     mb = len(blob) / 1e6; has_store = "store" in manifest
+    dts = sorted({a["dtype"] for a in manifest["arrays"]})
     print(f"[fieldrun-bundle v{VERSION}] {args.npz.name} → {stem}.fieldrun.json + .bin "
-          f"({len(manifest['arrays'])} arrays, {mb:.0f} MB f32, arch={args.arch}, store={'embedded' if has_store else 'no'})")
+          f"({len(manifest['arrays'])} arrays, {mb:.0f} MB {'/'.join(dts)}, arch={args.arch}, "
+          f"store={'embedded' if has_store else 'no'})")
 
 
 if __name__ == "__main__":
