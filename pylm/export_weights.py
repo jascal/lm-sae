@@ -37,10 +37,12 @@ def main(argv=None):
     W = {"config": np.array([cfg.n_layer, cfg.n_head, cfg.n_embd, cfg.n_positions, cfg.vocab_size], dtype=np.int64)}
     for name, ten in raw.items():
         a = ten.detach().to(torch.float32).numpy()
-        if args.dtype == "int8" and a.ndim == 2:          # per-output-column symmetric int8 (1 byte) + fp16 scale
+        # int8 the linear/Conv1D weights only; keep the embeddings (wte/wpe) fp16 — the tied wte is the unembed too and
+        # is the quant-sensitive part, and wpe is tiny. (Matches the gemma export's fp16-embed policy.)
+        if args.dtype == "int8" and a.ndim == 2 and name not in ("wte", "wpe"):
             s = (np.abs(a).max(0) / 127.0); s[s == 0] = 1e-8
             W[name] = np.round(a / s).clip(-127, 127).astype(np.int8); W[name + "__scale"] = s.astype(np.float16)
-        else:                                             # 1D (LN/bias) kept fp16 under int8; else the requested dtype
+        else:                                             # embeddings + 1D (LN/bias) fp16 under int8; else requested dtype
             W[name] = a.astype(np.float16 if args.dtype in ("int8", "float16") else args.dtype)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     np.savez(args.out, **W)
