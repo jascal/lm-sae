@@ -697,6 +697,15 @@ is k itself (width-structural, entropy-independent), with a *stable* functional 
 overcomplete dictionary needed for a legible basis grows faster than m (η↓). (Caveat: 1b's absolute var (0.81) may be
 SAE-undertrained at d_ff=8192; the η↓ trend is clear already at 70m→410m.)
 (`runs/disassembly/{entropy_dependence,sae_dictionary,sae_dictionary_cleanL0}_summary.json`.)
+**k is set at initialization, not learned** (`checkpoint_k.py`): measuring k across Pythia-160m training checkpoints
+(`step{N}` revisions), **k/m is flat from random init through training** — step 0 (random) 0.438, step 1 0.438, step 1000
+0.483, step 143000 (final) **0.410** (×0.94 overall, noise around ~0.42; the final value reproduces feature_economy's
+1261). So the per-token feature count is **not accumulated by training dynamics** — it falsifies the implicit-bias /
+"warm features" mechanism and shows k is a **structural / statistical property of the architecture** (the participation
+ratio of GELU activations at width d_ff), present in the *random* network. Therefore the "why k ∝ d^1.15" puzzle reduces
+to a **statistics-of-GELU-at-width** question (architectural), not a capability or learned-feature question — a much more
+tractable target. (The *functional* support s = top-k recovery is trained-dependent but tracks this geometric k as
+s ≈ 1.4·k in the trained model.) (`runs/disassembly/checkpoint_k_summary.json`.)
 
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
