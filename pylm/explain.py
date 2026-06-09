@@ -26,12 +26,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lm import PyLM            # noqa: E402
 from numpy_lm import NumpyGPT2  # noqa: E402
 from numpy_rope import NumpyRoPE  # noqa: E402
+from numpy_gemma import NumpyGemma  # noqa: E402
 
 
 def load_kernel(weights, route_frac=0.0):
-    """Pick the right pure-numpy kernel from the flat weights: GPT-2 ('config') or RoPE family ('cfg_i')."""
+    """Pick the right pure-numpy kernel from the flat weights: GPT-2 ('config'), Gemma-2 (4-norm sandwich) or the
+    plain RoPE family (Llama/Qwen). Gemma shares the RoPE 'cfg_i' layout, so dispatch on its distinct norm key."""
     keys = np.load(weights).files
-    return NumpyRoPE(weights, route_frac) if "cfg_i" in keys else NumpyGPT2(weights, route_frac)
+    if "config" in keys:
+        return NumpyGPT2(weights, route_frac)
+    return NumpyGemma(weights, route_frac) if "l0.input_layernorm" in keys else NumpyRoPE(weights, route_frac)
 
 
 def classify_head(row, ctx):
