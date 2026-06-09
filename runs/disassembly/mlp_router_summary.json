@@ -1,0 +1,113 @@
+{
+  "experiment": "learned router vs static mass-routing \u2014 conditional expert-sparsity of the MLP content",
+  "results": [
+    {
+      "model": "pythia-160m",
+      "d_ff": 3072,
+      "experts": 64,
+      "l1": 0.5,
+      "steps": 400,
+      "baseline": {
+        "punct": 2.7055581597262743,
+        "dup": 1.949022143365855,
+        "other": 5.582243185069216
+      },
+      "curve": [
+        {
+          "E": 2,
+          "frac": 0.03125,
+          "learned_dNLL_other": 16.634566376646813,
+          "learned_dNLL_dup": 10.351536941512467,
+          "mass_dNLL_other": 5.423352227481048,
+          "mass_dNLL_dup": 3.9055352551664444
+        },
+        {
+          "E": 4,
+          "frac": 0.0625,
+          "learned_dNLL_other": 15.660520889783434,
+          "learned_dNLL_dup": 9.607923728497104,
+          "mass_dNLL_other": 4.779380760225618,
+          "mass_dNLL_dup": 3.451277290839464
+        },
+        {
+          "E": 8,
+          "frac": 0.125,
+          "learned_dNLL_other": 14.504834979818575,
+          "learned_dNLL_dup": 9.443373686471517,
+          "mass_dNLL_other": 4.181654209897249,
+          "mass_dNLL_dup": 2.8271297315809316
+        },
+        {
+          "E": 16,
+          "frac": 0.25,
+          "learned_dNLL_other": 9.347848916441773,
+          "learned_dNLL_dup": 4.351865665912825,
+          "mass_dNLL_other": 3.3660847833207663,
+          "mass_dNLL_dup": 1.7110136277260297
+        },
+        {
+          "E": 32,
+          "frac": 0.5,
+          "learned_dNLL_other": 3.2506473700714134,
+          "learned_dNLL_dup": 1.0202318952635574,
+          "mass_dNLL_other": 1.5754743564234746,
+          "mass_dNLL_dup": 0.6084397963208561
+        }
+      ]
+    },
+    {
+      "model": "gpt2",
+      "d_ff": 3072,
+      "experts": 64,
+      "l1": 0.5,
+      "steps": 400,
+      "baseline": {
+        "punct": 2.961596776477918,
+        "dup": 2.526316223663426,
+        "other": 6.380880603636431
+      },
+      "curve": [
+        {
+          "E": 2,
+          "frac": 0.03125,
+          "learned_dNLL_other": 2.3513454637675917,
+          "learned_dNLL_dup": 3.5061457475617344,
+          "mass_dNLL_other": 2.2231687988318054,
+          "mass_dNLL_dup": 2.38209879476503
+        },
+        {
+          "E": 4,
+          "frac": 0.0625,
+          "learned_dNLL_other": 2.4075453009543075,
+          "learned_dNLL_dup": 2.9275960891524617,
+          "mass_dNLL_other": 2.016395101641276,
+          "mass_dNLL_dup": 2.3092260626218204
+        },
+        {
+          "E": 8,
+          "frac": 0.125,
+          "learned_dNLL_other": 2.254188863695628,
+          "learned_dNLL_dup": 2.154957257797107,
+          "mass_dNLL_other": 1.6197800755387188,
+          "mass_dNLL_dup": 2.1926332381627445
+        },
+        {
+          "E": 16,
+          "frac": 0.25,
+          "learned_dNLL_other": 2.1969715569010226,
+          "learned_dNLL_dup": 1.754783692635006,
+          "mass_dNLL_other": 1.1580178687250937,
+          "mass_dNLL_dup": 1.9931746541991044
+        },
+        {
+          "E": 32,
+          "frac": 0.5,
+          "learned_dNLL_other": 2.0633659956636112,
+          "learned_dNLL_dup": 1.3550901867329048,
+          "mass_dNLL_other": 0.5734546916416807,
+          "mass_dNLL_dup": 0.4930470531668183
+        }
+      ]
+    }
+  ]
+}
