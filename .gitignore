@@ -28,3 +28,4 @@ pylm/store_Qwen*.json
 pylm/store_Llama*.json
 pylm/holdout_Qwen*.json
 pylm/holdout_Llama*.json
+pylm/weights_*.npz

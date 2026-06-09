@@ -31,8 +31,36 @@ is the **subject** of decompilation, not a runtime dependency of pylm.
 | `pylm/build.py` | decompiler (corpus route) | `transformers` *tokenizer* (a flat-file BPE, not a net) |
 | `pylm/capture.py` | decompiler (model route, via MI) | `torch` + `transformers` — *reads the model* to extract flat files |
 | `pylm/validate.py` | validator | `torch` only behind `--no-model` — the ground-truth ceiling, **not part of pylm** |
+| **`pylm/numpy_lm.py`** | **the composition kernel (Tier B — runs)** | **`numpy` only — CPU matmul, no torch/GPU** |
+| `pylm/export_weights.py` | one-time weight export (build) | `torch` + `transformers` — *reads the model* to dump flat `.npz` weights |
 
 So pylm itself runs with **no neural network and no ML dependency** — the goal's constraint, satisfied and auditable.
+
+### Runtime tiers — retrieval (stdlib) + composition (numpy), never torch
+
+The decompilation has a hard fidelity ceiling at ~half (the *forge tax*: the composition is **proven dense genuine
+computation**, not a flat lookup, so no bigger table crosses it — see `DECOMPILATION.md`). But the composition is a
+**TC⁰ circuit**, so it runs on a CPU as plain numpy matmuls. That gives three buildable tiers, and the headline is *no
+deep-learning framework at runtime*:
+
+| tier | fidelity | runtime packages | data |
+|---|---|---|---|
+| **A · retrieval** (`lm.py`) | ~50% token / ~83% acc (GPT-2) | **Python stdlib only** | flat JSON store (~1.6 MB) + tokenizer |
+| **B · + composition** (`numpy_lm.py`) | → the full model | **+ `numpy`** (CPU matmul) | + flat weight arrays (`.npz`, Θ model size) |
+| **C · + router** (`numpy_lm.py --route-frac`) | full, cheaper | + `numpy` | + a small router head; computes ~60% of MLP/token |
+
+Building the stores/weights is the only torch step (`capture.py`, `export_weights.py`) — run once to *extract*; *running*
+pylm needs only stdlib (A) or stdlib + numpy (B/C). Scaling sharpens the split: the decompilable (flat) fraction **falls**
+with model size (56%→45%), so bigger models lean more on the numpy compute kernel and the weight arrays — the *computed*
+part is exactly what doesn't keep pace. And the composition's per-token cost is bounded and **pre-computable from the
+architecture** (it touches only ~60% of the MLP, k/m≈0.4, budget B≈1.4·k), so the Tier-C router budget is known a priori
+(`router_kernel.py`).
+
+**Validated.** The Tier-B kernel (`numpy_lm.py`, ~60 lines of numpy) reproduces GPT-2 **exactly — 100% top-1 agreement
+with torch** over a 498 MB flat `.npz` (fp32), with `torch` never imported at runtime; 50.7% next-token top-1 on held-out
+tiny-Shakespeare (= GPT-2's own number). The Tier-C routing (`--route-frac 0.6`, compute only the top-60% active MLP
+neurons/token) costs ~3.5 pp (47.2%) for ~40% less MLP compute. So the whole runtime is **flat dict lookups (stdlib) +
+numpy matmuls (CPU) + flat weight arrays** — the model on a laptop, no framework.
 
 ## The program (small) and the store (flat data)
 
