@@ -79,6 +79,17 @@ quant-sensitive part). The kernel auto-handles q/k/v bias (Qwen) and tied vs. un
 (Llama-3.2-1B) is ~5 GB resident, the practical ceiling before the kernel would need to keep weights int8 *in RAM* and
 dequantise per-matmul.
 
+**Gemma-2 — the hardest architecture, and the in-RAM-precision strategy made literal** (`export_weights_gemma.py` +
+`numpy_gemma.py`). Gemma-2 piles on everything the RoPE family doesn't have: an embedding scale of √d, a four-norm
+'sandwich' per layer (input / post-attention / pre-feedforward / post-feedforward, the post-norms applied to the
+sub-layer output *before* the residual), attention-logit and final-logit soft-capping (tanh), GeGLU instead of SwiGLU, a
+head_dim that is not hidden/heads (8×256 = 2048 ≠ 2304), alternating sliding-window/full attention, and RMSNorm as
+x·(1+w) (the +1 baked into the exported weights). Validated on **Gemma-2-2b: 100% top-1 agreement with torch fp32** over
+the held-out positions (logit max-abs-diff 0.05, from the fp16 weights). Because the 256k vocab makes fp32 ~10 GB, this
+kernel keeps weights **fp16 in RAM and upcasts per matmul** (and chunks the 256k-wide unembed) — the exact int8/fp16
+in-RAM strategy the Rust runtime will use for every model, previewed here in Python. So all four laptop architecture
+families — GPT-2, Llama, Qwen, Gemma-2 — run as the same flat-weights-plus-numpy story, no torch at runtime.
+
 ### Explain this prediction — the two halves fused (`explain.py`)
 
 For any context, `explain.py` prints the prediction with **both** of its readings (numpy-only, no torch):
