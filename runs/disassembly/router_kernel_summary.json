@@ -1,0 +1,29 @@
+{
+  "experiment": "router-kernel prototype: init-computed budget B=1.4k, KL preservation of the full model",
+  "results": [
+    {
+      "model": "gpt2",
+      "d": 768,
+      "m": 3072,
+      "experts_K": 64,
+      "k": 1355.6179903666177,
+      "budget_B": 1897.8651865132647,
+      "expert_budget_E": 40,
+      "active_fraction": 0.625,
+      "kl_learned_router": 0.3831938527524471,
+      "kl_random_router": 1.7657618969678879
+    },
+    {
+      "model": "pythia-160m",
+      "d": 768,
+      "m": 3072,
+      "experts_K": 64,
+      "k": 1260.1003999710083,
+      "budget_B": 1764.1405599594116,
+      "expert_budget_E": 37,
+      "active_fraction": 0.578125,
+      "kl_learned_router": 0.7034972168505191,
+      "kl_random_router": 3.8055423378944395
+    }
+  ]
+}
