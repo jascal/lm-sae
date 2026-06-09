@@ -26,6 +26,12 @@ pylm/holdout_gpt2.json
 # pylm modern per-model stores (regenerable via ladder.py)
 pylm/store_Qwen*.json
 pylm/store_Llama*.json
+pylm/store_gemma*.json
 pylm/holdout_Qwen*.json
 pylm/holdout_Llama*.json
+pylm/holdout_gemma*.json
 pylm/weights_*.npz
+
+# fieldrun bundles — flat-weight exports for the Rust runtime (regenerable via pylm/export_bundle.py)
+pylm/*.fieldrun.json
+pylm/*.fieldrun.bin
