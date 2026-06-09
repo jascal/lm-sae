@@ -90,6 +90,16 @@ kernel keeps weights **fp16 in RAM and upcasts per matmul** (and chunks the 256k
 in-RAM strategy the Rust runtime will use for every model, previewed here in Python. So all four laptop architecture
 families — GPT-2, Llama, Qwen, Gemma-2 — run as the same flat-weights-plus-numpy story, no torch at runtime.
 
+**The fieldrun bundle — exporting the model for the native runtime** (`export_bundle.py`). The numpy kernels read
+`.npz`; the Rust runtime ([`fieldrun`](https://github.com/jascal), a sibling project) wants something it can mmap with
+no zip/.npy parsing. `export_bundle.py` writes the **fieldrun bundle format** (spec in fieldrun's `FORMAT.md`): a flat
+JSON manifest (`<name>.fieldrun.json` — format/version/arch/config and, per weight array, dtype/shape/byte-offset) plus
+one raw little-endian f32 blob (`<name>.fieldrun.bin`), with the Tier-A retrieval `store` optionally embedded so a single
+bundle is the *whole* decompiled model (retrieval + composition). This is the one-time build step (the torch export →
+bundle); the runtime is pure Rust. The Rust Tier-B forward pass over a GPT-2 bundle reproduces `numpy_lm.py` exactly
+(0 per-position mismatches; 50.0% next-token top-1, the model's own), so the decompilation runs identically as a numpy
+kernel *or* a native binary.
+
 ### Explain this prediction — the two halves fused (`explain.py`)
 
 For any context, `explain.py` prints the prediction with **both** of its readings (numpy-only, no torch):
