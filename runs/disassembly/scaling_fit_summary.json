@@ -1,0 +1,47 @@
+{
+  "experiment": "fit of the P3 active-dimension scaling ansatz to the Pythia ladder",
+  "tau": 0.5,
+  "rows": [
+    {
+      "model": "pythia-70m",
+      "d": 512,
+      "m": 2048,
+      "s": 837.4633799887424,
+      "s_over_m": 0.40891766601012813,
+      "r_third_d": 170.66666666666666,
+      "s_over_r": 4.907011992121538
+    },
+    {
+      "model": "pythia-160m",
+      "d": 768,
+      "m": 3072,
+      "s": 1619.7777166867666,
+      "s_over_m": 0.5272713921506401,
+      "r_third_d": 256.0,
+      "s_over_r": 6.327256705807682
+    },
+    {
+      "model": "pythia-410m",
+      "d": 1024,
+      "m": 4096,
+      "s": 2320.7040476667685,
+      "s_over_m": 0.5665781366373946,
+      "r_third_d": 341.3333333333333,
+      "s_over_r": 6.798937639648736
+    },
+    {
+      "model": "pythia-1b",
+      "d": 2048,
+      "m": 8192,
+      "s": 5077.57351019148,
+      "s_over_m": 0.6198209851307959,
+      "r_third_d": 682.6666666666666,
+      "s_over_r": 7.43785182156955
+    }
+  ],
+  "fit": {
+    "s_vs_d_exponent_gamma": 1.2803690338442257,
+    "frac_vs_d_exponent_phi": 0.28036903384422407,
+    "overhead_s_over_r_exponent_psi": 0.2803690338442238
+  }
+}
