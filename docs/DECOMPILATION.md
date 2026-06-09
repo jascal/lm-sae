@@ -682,6 +682,15 @@ ratio of the MLP hidden) grows **super-linearly, k ∝ d^1.15** (761→3731 acro
 **s/k ≈ 1.4 stays flat** and the activation-covariance effective rank stays low (~50→94, ∝ d^0.46 — concentration stays
 low-dim, echoing χ≈16). So the active-dimension growth is driven almost entirely by **more features active per token**, not
 by a growing interference/packing overhead — s ≈ 1.4·k with k ∝ d^1.15. (`runs/disassembly/feature_economy_summary.json`.)
+Two follow-ups pin the rest. **Entropy-dependence** (`entropy_dependence.py`): binning tokens by next-token entropy H and
+measuring k, **k is nearly flat in H — k ∝ H^0.03 (160m) / H^0.05 (410m)** (corr 0.18–0.34). So the per-token feature count
+is a structural property of *width*, not per-token difficulty — i.e. the super-linear k growth is **width-driven feature
+economy, not task-complexity**. **Packing efficiency η** (`sae_dictionary.py`): at fixed sparsity L0=64 the variance-explained
+*gain* from 0.5×m→4×m overcompleteness is **flat across the ladder (~0.08–0.10)**, so η is scale-stable (no growing packing
+overhead — consistent with the flat s/k). (Caveat: fixed L0 ≪ k for the large models, so absolute var falls with scale —
+re-confirming k grows; a clean η needs L0 scaled with d.) Net: **both candidate growing-overhead terms (interference s/k,
+packing η) are flat**; the entire super-linear active-dimension growth is k itself (∝ d^1.15), width-structural and
+entropy-independent. (`runs/disassembly/{entropy_dependence,sae_dictionary}_summary.json`.)
 
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
