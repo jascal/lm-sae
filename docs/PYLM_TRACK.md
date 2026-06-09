@@ -103,6 +103,13 @@ The agree/differ flag makes the **forge tax legible per token**. Three regimes s
 - *attention idle* — most heads sit on the sink (NO-OP), surfaced as a count so the few content-carrying circuits stand
   out. This is the explain surface the eventual API will serve.
 
+`explain.py --sequence` runs this over a whole passage and aggregates it into a **per-text forge-tax breakdown**: what
+fraction of tokens the flat store reproduces vs the dense composition carries, bucketed by provenance (induction /
+n-gram-grammar / knowledge / composition-carried), plus the most-used live circuits and named features across the
+passage. On a short repeated-then-factual passage, ~28% is flat-store-reproducible, ~17% in-context induction, and ~69%
+composition-carried — with the L0 duplicate-token heads and L5 induction heads as the most-used circuits. That is the
+decomposition the API returns for an arbitrary text: every token attributed to a half, and the carrying circuits named.
+
 ## The program (small) and the store (flat data)
 
 **The program** — `PyLM.predict` in `lm.py`, **~62 lines** of plain Python (+ a 44-line `grammar.py`). The reused
