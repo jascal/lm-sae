@@ -1,0 +1,115 @@
+{
+  "experiment": "broadcast/cross-layer-informed router (global ctx + straight-through) vs static mass-routing",
+  "results": [
+    {
+      "model": "pythia-160m",
+      "d_ff": 3072,
+      "experts": 64,
+      "trainE": 8,
+      "ctx_layer": 3,
+      "steps": 500,
+      "baseline": {
+        "punct": 2.7055581597262743,
+        "dup": 1.949022143365855,
+        "other": 5.582243185069216
+      },
+      "curve": [
+        {
+          "E": 2,
+          "frac": 0.03125,
+          "informed_dNLL_other": 3.9772690809519267,
+          "informed_dNLL_dup": 2.1127971189294725,
+          "mass_dNLL_other": 5.423352227481048,
+          "mass_dNLL_dup": 3.9055352551664444
+        },
+        {
+          "E": 4,
+          "frac": 0.0625,
+          "informed_dNLL_other": 3.4216948364398787,
+          "informed_dNLL_dup": 1.6137475244066817,
+          "mass_dNLL_other": 4.779380760225618,
+          "mass_dNLL_dup": 3.451277290839464
+        },
+        {
+          "E": 8,
+          "frac": 0.125,
+          "informed_dNLL_other": 2.7284032707966164,
+          "informed_dNLL_dup": 1.553892563109068,
+          "mass_dNLL_other": 4.181654209897249,
+          "mass_dNLL_dup": 2.8271297315809316
+        },
+        {
+          "E": 16,
+          "frac": 0.25,
+          "informed_dNLL_other": 2.2056856457543024,
+          "informed_dNLL_dup": 1.3910344004155473,
+          "mass_dNLL_other": 3.3660847833207663,
+          "mass_dNLL_dup": 1.7110136277260297
+        },
+        {
+          "E": 32,
+          "frac": 0.5,
+          "informed_dNLL_other": 1.4502981871093734,
+          "informed_dNLL_dup": 1.0337498267755865,
+          "mass_dNLL_other": 1.5754743564234746,
+          "mass_dNLL_dup": 0.6084397963208561
+        }
+      ]
+    },
+    {
+      "model": "gpt2",
+      "d_ff": 3072,
+      "experts": 64,
+      "trainE": 8,
+      "ctx_layer": 3,
+      "steps": 500,
+      "baseline": {
+        "punct": 2.961596776477918,
+        "dup": 2.526316223663426,
+        "other": 6.380880603636431
+      },
+      "curve": [
+        {
+          "E": 2,
+          "frac": 0.03125,
+          "informed_dNLL_other": 2.184380562875182,
+          "informed_dNLL_dup": 2.012513808348049,
+          "mass_dNLL_other": 2.2231687988318054,
+          "mass_dNLL_dup": 2.38209879476503
+        },
+        {
+          "E": 4,
+          "frac": 0.0625,
+          "informed_dNLL_other": 1.5767958830042748,
+          "informed_dNLL_dup": 1.0773752040924114,
+          "mass_dNLL_other": 2.016395101641276,
+          "mass_dNLL_dup": 2.3092260626218204
+        },
+        {
+          "E": 8,
+          "frac": 0.125,
+          "informed_dNLL_other": 0.35745964953196374,
+          "informed_dNLL_dup": 0.1903710916326169,
+          "mass_dNLL_other": 1.6197800755387188,
+          "mass_dNLL_dup": 2.1926332381627445
+        },
+        {
+          "E": 16,
+          "frac": 0.25,
+          "informed_dNLL_other": 0.2602804980212836,
+          "informed_dNLL_dup": 0.32009873299023406,
+          "mass_dNLL_other": 1.1580178687250937,
+          "mass_dNLL_dup": 1.9931746541991044
+        },
+        {
+          "E": 32,
+          "frac": 0.5,
+          "informed_dNLL_other": -0.21629366309203935,
+          "informed_dNLL_dup": -0.07140679744024059,
+          "mass_dNLL_other": 0.5734546916416807,
+          "mass_dNLL_dup": 0.4930470531668183
+        }
+      ]
+    }
+  ]
+}

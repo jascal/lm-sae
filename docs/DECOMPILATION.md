@@ -688,6 +688,23 @@ and router (mass top-E) are naive; a *learned* router / co-activation clustering
 what a trained MoE / the feature-native model would learn). So conditional-compute remains an open lever — a static
 read-off doesn't deliver it, but the learned version is untested. (`runs/disassembly/mlp_experts_summary.json`.)
 
+### A LEARNED router does deliver conditional sparsity — for GPT-2 (`mlp_router.py`, `mlp_router2.py`)
+
+The static read-off (mass-routing) isn't the only router. A *learned* gate, trained on the loss, is the open lever.
+First attempt (`mlp_router.py`: a per-layer linear gate from the *local* MLP input, soft-trained, hard-evaluated)
+**underperformed** static mass-routing — a soft-weight/hard-select mismatch plus a weak memoryless local gate. Fixing both
+along the lines the channel decomposition suggests (`mlp_router2.py`): **(1) global context** — feed every layer's router
+an early-layer residual vector (carrying the register/topic broadcast + induction-detect state — *gather early, route
+late*); **(2) straight-through** hard top-E selection (train what you evaluate). The informed router then **beats both the
+naive gate and static mass-routing at every E, on both models**, and for **GPT-2 reaches genuine conditional sparsity**:
+content recovers at **E≈8/64 (12% of experts, ΔNLL +0.36)** — where static mass-routing needed ~50% and neuron top-k ~67%
+— and at 50% it *denoises* (−0.22). **pythia-160m is harder**: the informed router helps (~1.4 NLL better than mass at low
+E) but content stays dense (+2.7 at 12%), so its content is genuinely less routable. So conditional/learned routing — with
+a router *informed by the broadcast/cross-layer structure* — is a real lever the static decompositions missed (strong for
+GPT-2, partial for pythia-160m). Open next steps the structure suggests: a recurrent gate over the χ≈16 cross-layer bond, a
+hierarchical per-sequence topic gate, and band-shared routing across adjacent layers.
+(`runs/disassembly/mlp_router_summary.json`, `runs/disassembly/mlp_router2_summary.json`.)
+
 **The composition graph** (mean-squared canonical correlation between layer-pair write coords) is densely coupled —
 every pair far above chance (0.34–0.56 vs 0.009) — with **adjacent-layer coupling > distant** (0.49–0.53 vs 0.34–0.37)
 and the strongest edges clustered at the **output-assembly end** (late-layer pairs) plus the embedding edge `0→1`. A
