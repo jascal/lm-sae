@@ -723,6 +723,18 @@ check: the proposed closed form m·E[c(σ)] scales **d^1.00** (linear — wrong)
 (Σ E|hᵢ|)²/(Σ E[hᵢ²]) scales **d^1.23** (overshoots); the actual per-token k is **d^1.15**, between the two — so finite-m
 correlations between |hᵢ| and hᵢ² matter and neither factorised form is exact. (`runs/disassembly/sigma_dispersion_summary.json`.)
 
+**Router-kernel prototype — the conditional-compute payoff with an init-computed budget (`router_kernel.py`).** Putting the
+scaling result to work: the per-token active budget is architectural, B(d) ≈ 1.4·k(d), and k = the GELU participation ratio
+is computable from the model itself (or even random weights). The kernel (1) measures k → B → expert budget E = round(B·K/m);
+(2) trains the informed router (gate from [local input ⊕ early-layer global context], straight-through hard top-E over K
+static clusters) with the **KL(full ‖ routed)** objective at that fixed budget, base frozen; (3) reports KL-preservation at
+active fraction E/K vs a random-router control. Result: **gpt2** E=40/64 (**62% active MLP**), KL(full‖routed) **0.38**
+(learned) vs 1.77 (random) — **4.6× better**; **pythia-160m** E=37/64 (**58% active**), KL **0.70** vs 3.81 — **5.4× better**.
+So the architecturally-determined budget + informed router preserves the full model far better than random routing at ~60%
+active MLP — "store the whole MLP, compute ~60% of it per token." The ~40% saving is real but *bounded by the dense content*
+(k/m ≈ 0.4, so B/m ≈ 0.6); the KL is preserved-but-moderate at that budget (a higher budget or better router lowers it).
+(`runs/disassembly/router_kernel_summary.json`.)
+
 ### Runtime (conditional) sparsity — is the dense content expert-sparse? (`mlp_experts.py`)
 
 Storage-sparsity (low-rank, native top-k, an L1-SAE up to 43×d) doesn't sparsify the MLP content. A different axis is
