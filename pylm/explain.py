@@ -25,6 +25,13 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lm import PyLM            # noqa: E402
 from numpy_lm import NumpyGPT2  # noqa: E402
+from numpy_rope import NumpyRoPE  # noqa: E402
+
+
+def load_kernel(weights, route_frac=0.0):
+    """Pick the right pure-numpy kernel from the flat weights: GPT-2 ('config') or RoPE family ('cfg_i')."""
+    keys = np.load(weights).files
+    return NumpyRoPE(weights, route_frac) if "cfg_i" in keys else NumpyGPT2(weights, route_frac)
 
 
 def classify_head(row, ctx):
@@ -88,8 +95,8 @@ def _tokstr(tok, tid):
 def _neuron_label(lm_net, tok, L, n, act, top=5):
     """Name an MLP neuron by the tokens it promotes — its write weight projected to the vocabulary (direct logit
     effect), signed by its activation. This is the neuron's 'feature': the vocabulary it pushes when it fires."""
-    w_out = lm_net.W[f"h{L}.mlp.c_proj.weight"][n]                    # (d,) the neuron's write direction
-    eff = np.sign(act) * (w_out @ lm_net.W["wte"].T)                 # (V,) signed direct-logit contribution
+    w_out = lm_net.write_mat(L)[n]                                    # (d,) the neuron's write direction (kernel-agnostic)
+    eff = np.sign(act) * (w_out @ lm_net.unembed.T)                 # (V,) signed direct-logit contribution
     ids = np.argsort(-eff)[:top * 4]                                  # over-fetch, then dedup decoded strings
     out = []
     for i in ids:
@@ -200,7 +207,7 @@ def main(argv=None):
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(args.tokenizer)
     lm_sym = PyLM(args.store, knowledge_path=args.knowledge)
-    lm_net = NumpyGPT2(args.weights)
+    lm_net = load_kernel(args.weights)
     ids = tok(args.text)["input_ids"]
     if args.sequence:
         out = explain_sequence(lm_sym, lm_net, tok, ids)
