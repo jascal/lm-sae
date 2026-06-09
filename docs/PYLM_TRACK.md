@@ -62,6 +62,22 @@ tiny-Shakespeare (= GPT-2's own number). The Tier-C routing (`--route-frac 0.6`,
 neurons/token) costs ~3.5 pp (47.2%) for ~40% less MLP compute. So the whole runtime is **flat dict lookups (stdlib) +
 numpy matmuls (CPU) + flat weight arrays** — the model on a laptop, no framework.
 
+**Weight precision (smaller flat files).** `export_weights.py --dtype {float32,float16,int8}` controls the on-disk
+store; `numpy_lm.py` upcasts on load so the kernel is identical. For GPT-2: fp32 497 MB (100% torch-agreement, 51.3%
+acc), fp16 248 MB (100%, 51.3%), int8 124 MB (98.0%, 51.0%) — per-output-column symmetric int8 with an fp16 scale, so
+¼ the bytes at ~2 pp agreement cost. (RAM is always fp32 — the kernel dequantises on load — so precision buys *download
+and disk*, not memory.)
+
+**Beyond GPT-2 — the RoPE family** (`export_weights_rope.py` + `numpy_rope.py`, ~80 lines of numpy). The modern
+laptop-grade architectures (Llama-3.2, Qwen2.5) need RMSNorm + rotary position embedding + grouped-query attention +
+SwiGLU instead of GPT-2's LayerNorm/learned-position/GELU — a different interpreter over the *same* flat-weights-plus-
+numpy story. Validated on **Qwen2.5-0.5B**: fp32 (1976 MB) is **exact — 100% top-1 agreement with torch**, logit
+max-abs-diff 1e-4; int8 (495 MB) holds 92.6% (the large tied-vocab embedding, doing double duty as the unembed, is the
+quant-sensitive part). The kernel auto-handles q/k/v bias (Qwen) and tied vs. untied embeddings. So a capable modern
+0.5B model runs in pure numpy on a CPU — ~2 GB resident (fp32 in RAM), which fits an 8 GB laptop comfortably; a 1B
+(Llama-3.2-1B) is ~5 GB resident, the practical ceiling before the kernel would need to keep weights int8 *in RAM* and
+dequantise per-matmul.
+
 ## The program (small) and the store (flat data)
 
 **The program** — `PyLM.predict` in `lm.py`, **~62 lines** of plain Python (+ a 44-line `grammar.py`). The reused

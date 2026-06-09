@@ -22,21 +22,26 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--model", default="gpt2")
     p.add_argument("--out", type=Path, default=Path("pylm/weights_gpt2.npz"))
-    p.add_argument("--dtype", default="float32", help="float32 (exact) or float16 (half the bytes)")
+    p.add_argument("--dtype", default="float32", help="float32 (exact) · float16 (½ bytes) · int8 (¼ bytes, per-column quant)")
     args = p.parse_args(argv)
 
     m = GPT2LMHeadModel.from_pretrained(args.model).eval()
     sd = m.state_dict(); cfg = m.config
 
-    def npy(name):
-        return sd[name].detach().to(torch.float32).numpy().astype(args.dtype)
-
-    W = {"wte": npy("transformer.wte.weight"), "wpe": npy("transformer.wpe.weight"),
-         "ln_f.weight": npy("transformer.ln_f.weight"), "ln_f.bias": npy("transformer.ln_f.bias"),
-         "config": np.array([cfg.n_layer, cfg.n_head, cfg.n_embd, cfg.n_positions, cfg.vocab_size], dtype=np.int64)}
+    raw = {"wte": sd["transformer.wte.weight"], "wpe": sd["transformer.wpe.weight"],
+           "ln_f.weight": sd["transformer.ln_f.weight"], "ln_f.bias": sd["transformer.ln_f.bias"]}
     for L in range(cfg.n_layer):
         for k in LAYER_KEYS:
-            W[f"h{L}.{k}"] = npy(f"transformer.h.{L}.{k}")
+            raw[f"h{L}.{k}"] = sd[f"transformer.h.{L}.{k}"]
+
+    W = {"config": np.array([cfg.n_layer, cfg.n_head, cfg.n_embd, cfg.n_positions, cfg.vocab_size], dtype=np.int64)}
+    for name, ten in raw.items():
+        a = ten.detach().to(torch.float32).numpy()
+        if args.dtype == "int8" and a.ndim == 2:          # per-output-column symmetric int8 (1 byte) + fp16 scale
+            s = (np.abs(a).max(0) / 127.0); s[s == 0] = 1e-8
+            W[name] = np.round(a / s).clip(-127, 127).astype(np.int8); W[name + "__scale"] = s.astype(np.float16)
+        else:                                             # 1D (LN/bias) kept fp16 under int8; else the requested dtype
+            W[name] = a.astype(np.float16 if args.dtype in ("int8", "float16") else args.dtype)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     np.savez(args.out, **W)
     print(f"[export] {args.model}: {len(W)} flat arrays · {args.dtype} → {args.out} "

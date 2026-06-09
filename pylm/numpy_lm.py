@@ -34,8 +34,14 @@ class NumpyGPT2:
     """A GPT-2 forward pass in pure numpy over flat weight arrays — the composition kernel."""
 
     def __init__(self, npz_path, route_frac=0.0):
-        self.W = {k: v.astype(np.float32) for k, v in np.load(npz_path).items() if k != "config"}
-        self.nL, self.H, self.d, self.ctx, self.V = (int(x) for x in np.load(npz_path)["config"])
+        raw = dict(np.load(npz_path))                                  # weights may be fp32 / fp16 / int8 (+ "__scale")
+        self.nL, self.H, self.d, self.ctx, self.V = (int(x) for x in raw["config"])
+        self.W = {}
+        for k, v in raw.items():
+            if k == "config" or k.endswith("__scale"):
+                continue
+            sc = raw.get(k + "__scale")                               # int8 weights carry a per-column dequant scale
+            self.W[k] = (v.astype(np.float32) * sc.astype(np.float32)) if sc is not None else v.astype(np.float32)
         self.route_frac = route_frac                                   # >0: compute only top (route_frac) of MLP neurons/token (Tier C)
 
     def logits(self, ids):
