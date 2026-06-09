@@ -1,0 +1,10 @@
+{
+  "weights": "pylm/weights_gpt2.npz",
+  "n_layers": 12,
+  "d_model": 768,
+  "vocab": 50257,
+  "route_frac": 0.6,
+  "n_eval": 400,
+  "numpy_next_token_top1": 0.4725,
+  "weights_MB": 497.79887
+}
