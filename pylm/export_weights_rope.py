@@ -45,15 +45,14 @@ def main(argv=None):
         else:
             W[name] = a.astype(np.float16 if args.dtype in ("int8", "float16") else args.dtype)
 
-    emb = sd["model.embed_tokens.weight"].detach().float().numpy()    # (vocab, d) — used as lookup AND (tied) unembed
-    if args.dtype == "int8":                                          # per-row (vocab) quant for the dual-use embedding
-        s = (np.abs(emb).max(1) / 127.0); s[s == 0] = 1e-8
-        W["embed"] = np.round(emb / s[:, None]).clip(-127, 127).astype(np.int8); W["embed__rowscale"] = s.astype(np.float16)
-    else:
-        W["embed"] = emb.astype(np.float16 if args.dtype == "float16" else args.dtype)
+    emb = sd["model.embed_tokens.weight"].detach().float().numpy()    # (vocab, d) — lookup AND (tied) unembed
+    # keep the embedding fp16 even under int8 (it doubles as the unembed and is the quant-sensitive part); only the
+    # linear weights are int8. The kernel reads the embed via the dtype-agnostic row helpers.
+    W["embed"] = emb.astype(np.float16 if args.dtype in ("int8", "float16") else args.dtype)
     put("norm", sd["model.norm.weight"].detach().float().numpy(), False)
-    if not c.tie_word_embeddings:
-        put("lm_head", sd["lm_head.weight"].detach().float().numpy().T, True)
+    if not c.tie_word_embeddings:                                     # untied head also fp16 (the unembed path)
+        W["lm_head"] = sd["lm_head.weight"].detach().float().numpy().T.astype(
+            np.float16 if args.dtype in ("int8", "float16") else args.dtype)
     for L in range(c.num_hidden_layers):
         pre = f"model.layers.{L}."
         put(f"l{L}.in_ln", sd[pre + "input_layernorm.weight"].detach().float().numpy(), False)

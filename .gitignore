@@ -35,3 +35,6 @@ pylm/weights_*.npz
 # fieldrun bundles — flat-weight exports for the Rust runtime (regenerable via pylm/export_bundle.py)
 pylm/*.fieldrun.json
 pylm/*.fieldrun.bin
+
+# explain decoder vocab (regenerable from the tokenizer)
+pylm/vocab_*.json
