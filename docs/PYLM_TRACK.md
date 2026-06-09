@@ -32,6 +32,7 @@ is the **subject** of decompilation, not a runtime dependency of pylm.
 | `pylm/capture.py` | decompiler (model route, via MI) | `torch` + `transformers` — *reads the model* to extract flat files |
 | `pylm/validate.py` | validator | `torch` only behind `--no-model` — the ground-truth ceiling, **not part of pylm** |
 | **`pylm/numpy_lm.py`** | **the composition kernel (Tier B — runs)** | **`numpy` only — CPU matmul, no torch/GPU** |
+| **`pylm/explain.py`** | **unified 'explain this prediction' (runs)** | **`numpy` only** (+ tokenizer for human-readable I/O) |
 | `pylm/export_weights.py` | one-time weight export (build) | `torch` + `transformers` — *reads the model* to dump flat `.npz` weights |
 
 So pylm itself runs with **no neural network and no ML dependency** — the goal's constraint, satisfied and auditable.
@@ -77,6 +78,26 @@ quant-sensitive part). The kernel auto-handles q/k/v bias (Qwen) and tied vs. un
 0.5B model runs in pure numpy on a CPU — ~2 GB resident (fp32 in RAM), which fits an 8 GB laptop comfortably; a 1B
 (Llama-3.2-1B) is ~5 GB resident, the practical ceiling before the kernel would need to keep weights int8 *in RAM* and
 dequantise per-matmul.
+
+### Explain this prediction — the two halves fused (`explain.py`)
+
+For any context, `explain.py` prints the prediction with **both** of its readings (numpy-only, no torch):
+
+- **RETRIEVAL** — which symbolic idiom `lm.py` fired (induction-*N* / n-gram backoff / knowledge lookup / grammar
+  skeleton), its prediction, its evidence, and whether it **agrees with the model**.
+- **COMPOSITION** — the live circuits read straight off the real forward pass at the predicting position: attention
+  heads named by their `idiom_library` signature (previous-token / duplicate-token / induction; attention-sink heads
+  are collapsed to a NO-OP count), plus the top-activating MLP features (the dense composition's units).
+
+The agree/differ flag makes the **forge tax legible per token**. Three regimes show up immediately:
+- *retrieval agrees & a copy circuit is live* — on a repeated phrase the symbolic idiom is `induction-3` **and** GPT-2's
+  real induction heads (L5.H1, L7.H2, L10.H6, …) all attend to the copied token: the flat half and the computed half are
+  doing the same thing.
+- *retrieval differs & the MLP carries it* — "…the city of" → the model says **Paris** while the n-gram store says
+  "the"; no copy/induction head predicts Paris — it comes from the L0/L10/L11 MLP feature stack (GPT-2's factual store).
+  The token is in the computed half, and you can see *which* features pay the tax.
+- *attention idle* — most heads sit on the sink (NO-OP), surfaced as a count so the few content-carrying circuits stand
+  out. This is the explain surface the eventual API will serve.
 
 ## The program (small) and the store (flat data)
 

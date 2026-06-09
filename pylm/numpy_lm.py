@@ -44,10 +44,14 @@ class NumpyGPT2:
             self.W[k] = (v.astype(np.float32) * sc.astype(np.float32)) if sc is not None else v.astype(np.float32)
         self.route_frac = route_frac                                   # >0: compute only top (route_frac) of MLP neurons/token (Tier C)
 
-    def logits(self, ids):
+    def logits(self, ids, capture=None):
+        # capture: optional dict — if given, records per-layer attention from the last query position (H, seq) and the
+        # last-position MLP activations (ffn) for explain.py to read the live circuits/features off the real forward pass.
         W = self.W; seq = len(ids); hd = self.d // self.H
         x = W["wte"][np.asarray(ids)] + W["wpe"][np.arange(seq)]
         cmask = np.triu(np.full((seq, seq), -1e10, np.float32), 1)
+        if capture is not None:
+            capture["att_last"] = []; capture["mlp_h"] = []
         for L in range(self.nL):
             p = f"h{L}."
             a = layernorm(x, W[p + "ln_1.weight"], W[p + "ln_1.bias"])
@@ -65,6 +69,8 @@ class NumpyGPT2:
                 kk = max(1, int(self.route_frac * h.shape[-1]))
                 thr = np.partition(np.abs(h), -kk, axis=-1)[:, -kk:-kk + 1]
                 h = np.where(np.abs(h) >= thr, h, 0.0)
+            if capture is not None:
+                capture["att_last"].append(att[:, -1, :].copy()); capture["mlp_h"].append(h[-1].copy())
             x = x + (h @ W[p + "mlp.c_proj.weight"] + W[p + "mlp.c_proj.bias"])
         x = layernorm(x, W["ln_f.weight"], W["ln_f.bias"])
         return x @ W["wte"].T
