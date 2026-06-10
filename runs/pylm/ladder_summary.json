@@ -1,9 +1,77 @@
 {
-  "experiment": "pylm decompilable fraction vs model scale",
+  "experiment": "pylm decompilable fraction vs model scale (rebuilt from per-model validate_*.json; merge-safe)",
   "results": [
     {
-      "model": "Qwen2.5-7B-bnb-4bit",
-      "error": "CUDA out of memory. Tried to allocate 2.86 GiB. GPU 0 has a total capacity of 7.53 GiB of which 2.22 GiB is free. Including non-PyTorch memory, this process has 5.29 GiB memory in use. Of the allocated memory 3.15 GiB is allocated by PyTorch, and 2.04 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+      "model": "pythia-14m",
+      "params": 14000000.0,
+      "pylm_corpus_top1": 0.28,
+      "model_corpus_top1": 0.29433333333333334,
+      "decompilable_fraction": 0.5633333333333334,
+      "pylm_over_model_acc": 0.9513023750238877,
+      "program_loc": 49
+    },
+    {
+      "model": "pythia-70m",
+      "params": 70000000.0,
+      "pylm_corpus_top1": 0.30633333333333335,
+      "model_corpus_top1": 0.3343333333333333,
+      "decompilable_fraction": 0.523,
+      "pylm_over_model_acc": 0.9162512435206842,
+      "program_loc": 49
+    },
+    {
+      "model": "gpt2",
+      "params": 124000000.0,
+      "pylm_corpus_top1": 0.308,
+      "model_corpus_top1": 0.372,
+      "decompilable_fraction": 0.49733333333333335,
+      "pylm_over_model_acc": 0.8279569870216209,
+      "program_loc": 49
+    },
+    {
+      "model": "pythia-160m",
+      "params": 160000000.0,
+      "pylm_corpus_top1": 0.316,
+      "model_corpus_top1": 0.38766666666666666,
+      "decompilable_fraction": 0.5023333333333333,
+      "pylm_over_model_acc": 0.8151332739076528,
+      "program_loc": 49
+    },
+    {
+      "model": "pythia-410m",
+      "params": 410000000.0,
+      "pylm_corpus_top1": 0.3313333333333333,
+      "model_corpus_top1": 0.443,
+      "decompilable_fraction": 0.4583333333333333,
+      "pylm_over_model_acc": 0.7479307733304797,
+      "program_loc": 49
+    },
+    {
+      "model": "pythia-1b",
+      "params": 1000000000.0,
+      "pylm_corpus_top1": 0.3333333333333333,
+      "model_corpus_top1": 0.4766666666666667,
+      "decompilable_fraction": 0.461,
+      "pylm_over_model_acc": 0.6993006978336348,
+      "program_loc": 49
+    },
+    {
+      "model": "pythia-1.4b",
+      "params": 1400000000.0,
+      "pylm_corpus_top1": 0.341,
+      "model_corpus_top1": 0.494,
+      "decompilable_fraction": 0.44866666666666666,
+      "pylm_over_model_acc": 0.6902833994123818,
+      "program_loc": 49
+    },
+    {
+      "model": "pythia-2.8b",
+      "params": 2800000000.0,
+      "pylm_corpus_top1": 0.3625,
+      "model_corpus_top1": 0.569,
+      "decompilable_fraction": 0.4615,
+      "pylm_over_model_acc": 0.6370825999348285,
+      "program_loc": 62
     }
   ]
 }

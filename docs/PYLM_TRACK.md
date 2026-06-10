@@ -181,7 +181,7 @@ instructions:
 ## The decompilable fraction shrinks with scale (the thesis, made literal)
 
 Running the decompile→validate loop across a controlled ladder (Pythia 14m→1.4b — one GPT-NeoX architecture, same
-data, six sizes; `ladder.py`) shows the **decompilable fraction falls monotonically with model size**:
+data, **seven** sizes; `ladder.py`) shows the **decompilable fraction falls steeply through ~410M, then flattens**:
 
 | pythia | model corpus top-1 | **decompilable fraction (pylm↔model)** | pylm reproduces (of model acc) |
 |---|---|---|---|
@@ -190,14 +190,21 @@ data, six sizes; `ladder.py`) shows the **decompilable fraction falls monotonica
 | 160m | 38.8% | 50.2% | 82% |
 | 410m | 44.3% | 45.8% | 75% |
 | 1b | 47.7% | 46.1% | 70% |
-| 1.4b | 49.4% | **44.9%** | **69%** |
+| 1.4b | 49.4% | 44.9% | 69% |
+| 2.8b | 56.9% | **46.2%** | 64% |
 | *gpt2 (124M, ref)* | 37.2% | 49.7% | 83% |
 
-- **The smallest LLM is 56% reproducible by a 49-line pure-Python program; the largest, 45%.** A *tiny* model
-  (Pythia-14m) is **95%** as accurate as itself when reimplemented in pure Python — it is almost entirely n-gram +
-  induction. As the model grows, the fraction a small symbolic program reproduces **drops** (56 → 45%), and the
-  fraction of its *accuracy* that decompiles drops faster (95 → 69%). GPT-2 (124M) lands at 49.7%, exactly where its
-  size predicts — the curve is architecture-general.
+- **The smallest LLM is 56% reproducible by a 49-line pure-Python program; past ~410M it stabilises at ~45–46%.** A
+  *tiny* model (Pythia-14m) is **95%** as accurate as itself when reimplemented in pure Python — it is almost entirely
+  n-gram + induction. The fraction a small symbolic program reproduces **drops steeply** through 410M
+  (56 → 50 → 46%, ≈ −6 to −11 pp/decade), then **flattens** — 410m / 1b / 1.4b / **2.8b** all sit in a **45–46% band**
+  (slope ≈ 0 over a 7× parameter range; the new 2.8B point, 46.2%, lands *above* 1.4B's 44.9%, confirming the curve is
+  no longer falling there). GPT-2 (124M) lands at 49.7%, exactly where its size predicts — the curve is
+  architecture-general. *(Descriptive only, per the no-asymptote-claim discipline: this says the curve flattens to a
+  ~45–46% band over the sampled 410M→2.8B range — not that there is a floor; 6.9B+ is unsampled here, RAM/VRAM-bound on
+  this box.)* The fraction of the model's *accuracy* that decompiles keeps falling (95 → 64%), because model accuracy
+  keeps rising (29% → 57%) while the pure-Python program's own accuracy rises slower (28% → 36%) — so the *agreement*
+  flattens even as the *ratio* declines.
 - **This is the central thesis as a running artifact:** the part of an LLM that *is* a small program over flat
   knowledge **shrinks as the model scales**, and the irreducible remainder — the entangled core — **grows with
   capability.** It is the *third* independent measurement of that same growth: (a) the [SAE-feature composition
