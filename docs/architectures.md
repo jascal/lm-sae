@@ -502,6 +502,86 @@ flowchart TD
     class y output;
 ```
 
+## DeepSeek-V4 block — mHC hyper-connections + shared-KV-MQA + sink
+
+A **new attention class**, not MLA. The residual is `hc_mult` parallel streams kept through the whole block and mixed by
+two **manifold-constrained hyper-connections (mHC)**: each `attn_hc`/`ffn_hc` collapses the streams into one sequence (a
+`pre`-weighted sum) for the sublayer, and the update re-places the output with a `post` gate plus a **Sinkhorn-projected
+doubly-stochastic** `comb` mix back across the streams. Attention is **shared-KV MQA** (one KV head, read as both K and
+V) with **q-LoRA** queries, **partial interleaved RoPE**, a per-head **attention sink** (an extra softmax logit dropped
+from the output), an **undo-RoPE** conjugate rotation on the output (because K==V), and a **grouped low-rank o_proj**. The
+FFN is a **sqrtsoftplus** MoE (`softplus(logits).sqrt()` scores; a learned bias picks the top-k; un-biased scores renorm ×
+scale weight them) plus an always-on **shared expert**, both with gpt-oss SwiGLU clamps. Dims for the V4-Flash reference
+(d_model 4096, 64 heads, head_dim 512, q_lora 1024, 256 experts, top-6, d_expert 2048, hc_mult 4). Verified by n-orca:
+**VALID, depth 19.** fieldrun's `dsv4` kernel matches `DeepseekV4ForCausalLM` **60/60 top-1** (Stage 1: the sliding-only
+backbone; the CSA/HCA compressors + Lightning Indexer are separate regimes). Spec:
+[`docs/specs/dsv4_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/dsv4_block.n.orca.md).
+
+```mermaid
+%% architecture DeepSeekV4Block
+flowchart TD
+    x(("x<br/>[input]"))
+    attn_hc["attn_hc<br/>HyperConnection(hc_mult, d_model)"]
+    in_ln["in_ln<br/>RMSNorm(d_model)"]
+    q_a["q_a<br/>Linear(d_model, q_lora)"]
+    q_a_ln["q_a_ln<br/>RMSNorm(q_lora)"]
+    q_b["q_b<br/>Linear(q_lora, n_heads*head_dim)"]
+    q_b_norm["q_b_norm<br/>RMSNorm(head_dim)"]
+    rope_q["rope_q<br/>RoPE(rope_dim)"]
+    kv["kv<br/>Linear(d_model, head_dim)"]
+    kv_ln["kv_ln<br/>RMSNorm(head_dim)"]
+    rope_kv["rope_kv<br/>RoPE(rope_dim)"]
+    attn_core["attn_core<br/>SharedKVSinkAttention(n_heads, head_dim)"]
+    undo_rope["undo_rope<br/>RoPE(rope_dim)"]
+    o_a["o_a<br/>GroupedLinear(n_heads*head_dim, o_groups*o_lora)"]
+    o_b["o_b<br/>Linear(o_groups*o_lora, d_model)"]
+    attn_update["attn_update<br/>HyperConnectionUpdate(hc_mult, d_model)"]
+    ffn_hc["ffn_hc<br/>HyperConnection(hc_mult, d_model)"]
+    post_ln["post_ln<br/>RMSNorm(d_model)"]
+    router["router<br/>SqrtSoftplusTopKRouter(d_model, n_experts, top_k)"]
+    experts["experts<br/>ExpertSwiGLU(d_model, d_expert, n_experts)"]
+    moe_sum["moe_sum<br/>WeightedSum()"]
+    shared["shared<br/>FeedForward(d_model, d_expert)"]
+    moe_add["moe_add<br/>Add()"]
+    ffn_update["ffn_update<br/>HyperConnectionUpdate(hc_mult, d_model)"]
+    y(("y<br/>[output]"))
+    x -- "streams : (B,S,d_model)" --> attn_hc
+    attn_hc -- "collapsed" --> in_ln
+    in_ln -- "x_normed" --> q_a
+    q_a -- "q_lat" --> q_a_ln
+    q_a_ln -- "q_lat_n" --> q_b
+    q_b -- "q" --> q_b_norm
+    q_b_norm -- "q_n" --> rope_q
+    rope_q -- "q_rot" --> attn_core
+    in_ln -- "x_normed" --> kv
+    kv -- "kv_raw" --> kv_ln
+    kv_ln -- "kv_n" --> rope_kv
+    rope_kv -- "kv_rot" --> attn_core
+    attn_core -- "attn_mix" --> undo_rope
+    undo_rope -- "attn_unroped" --> o_a
+    o_a -- "grouped" --> o_b
+    o_b -- "attn_out" --> attn_update
+    x -- "streams_skip : (B,S,d_model)" --> attn_update
+    attn_hc -- "attn_ctl" --> attn_update
+    attn_update -- "streams_1" --> ffn_hc
+    ffn_hc -- "collapsed_2" --> post_ln
+    post_ln -- "h_normed" --> router
+    post_ln -- "h_tokens" --> experts
+    post_ln -- "h_shared" --> shared
+    router -- "topk_weights" --> moe_sum
+    experts -- "expert_out" --> moe_sum
+    moe_sum -- "routed" --> moe_add
+    shared -- "shared_out" --> moe_add
+    moe_add -- "moe_out" --> ffn_update
+    attn_update -- "streams_skip2" --> ffn_update
+    ffn_hc -- "ffn_ctl" --> ffn_update
+    ffn_update -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
 ## Sparse autoencoder — the forge-tax tool (sister track)
 
 A top-K SAE (with an attention pre-mixer): encode the residual into sparse `n_features`, keep the top-K, decode
