@@ -27,14 +27,18 @@ from lm import PyLM            # noqa: E402
 from numpy_lm import NumpyGPT2  # noqa: E402
 from numpy_rope import NumpyRoPE  # noqa: E402
 from numpy_gemma import NumpyGemma  # noqa: E402
+from numpy_moe import NumpyMoE  # noqa: E402
 
 
 def load_kernel(weights, route_frac=0.0):
-    """Pick the right pure-numpy kernel from the flat weights: GPT-2 ('config'), Gemma-2 (4-norm sandwich) or the
-    plain RoPE family (Llama/Qwen). Gemma shares the RoPE 'cfg_i' layout, so dispatch on its distinct norm key."""
+    """Pick the right pure-numpy kernel from the flat weights: GPT-2 ('config'), Qwen3-MoE ('moe_flags'), Gemma-2
+    (4-norm sandwich) or the plain RoPE family (Llama/Qwen). MoE and Gemma share the RoPE 'cfg_i' layout, so dispatch
+    on their distinct keys (moe_flags / the gemma input_layernorm name)."""
     keys = np.load(weights).files
     if "config" in keys:
         return NumpyGPT2(weights, route_frac)
+    if "moe_flags" in keys:
+        return NumpyMoE(weights, route_frac)
     return NumpyGemma(weights, route_frac) if "l0.input_layernorm" in keys else NumpyRoPE(weights, route_frac)
 
 
