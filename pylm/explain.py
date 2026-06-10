@@ -71,16 +71,23 @@ def explain(lm_sym, lm_net, tok, ctx, top_heads=6, top_feats=6, head_thr=0.15, s
                 n_sink += 1; continue                                # sinks are NO-OPs — count them, don't list them
             if role in ("induction", "duplicate-token", "previous-token") and mass >= head_thr:
                 heads.append({"layer": L, "head": hh, "role": role, "attends_to": j,
-                              "attends_tok": _tokstr(tok, ctx[j]), "mass": round(mass, 3)})
+                              "attends_tok": _tokstr(tok, ctx[j]), "mass": mass})
     order = {"induction": 0, "duplicate-token": 1, "previous-token": 2}  # content circuits first, keystone on top
+    # sort + truncate on the FULL-precision mass, then round for display: rounding first creates spurious ties that a
+    # stable sort breaks by layer order, which would diverge from a full-precision implementation (e.g. fieldrun) at the
+    # top-k boundary (see scripts/explain_agreement.py).
     heads.sort(key=lambda r: (order[r["role"]], -r["mass"])); heads = heads[:top_heads]
+    for r in heads:
+        r["mass"] = round(r["mass"], 3)
 
     feats = []                                                       # top-activating MLP features (the composition units)
     for L, h in enumerate(cap["mlp_h"]):
         n = int(np.abs(h).argmax()); act = float(h[n])
-        feats.append({"layer": L, "neuron": n, "act": round(act, 2),
+        feats.append({"layer": L, "neuron": n, "act": act,
                       "promotes": _neuron_label(lm_net, tok, L, n, act)})
-    feats.sort(key=lambda r: -abs(r["act"])); feats = feats[:top_feats]
+    feats.sort(key=lambda r: -abs(r["act"])); feats = feats[:top_feats]  # full-precision sort (see note above)
+    for r in feats:
+        r["act"] = round(r["act"], 2)
 
     return {
         "context_tail": [_tokstr(tok, t) for t in ctx[-8:]],

@@ -394,6 +394,18 @@ catalog (induction located + verified), and the live model (ResidualVM attention
 made runnable; it reproduces the decompilable ~half and *says why* for each token, with the irreducible composition
 honestly labelled "distributed." (`runs/disassembly/runtime_explain_summary.json`.)
 
+## `fieldrun explain` is a validated distribution-form of this readout
+
+The runtime explanation has two implementations: `pylm/explain.py` (the numpy research reference) and `fieldrun`'s
+`src/explain.rs` (the Rust distribution form). `scripts/explain_agreement.py` cross-checks them token-by-token on the
+same model + contexts — the firing idiom (head circuits), the attention-sink NO-OP count, and the top MLP features.
+Across **GPT-2, Qwen2.5-0.5B (RoPE), and Gemma-2-2B** the two agree **100%** on every field (predict / heads / sink /
+features; `runs/pylm/explain_agreement_*_summary.json`). The one divergence found in development was a *reference* bug,
+not a Rust one: `explain.py` rounded `mass`/`act` to 2–3 dp **before** the top-k sort, so a near-tie at the truncation
+boundary was broken by layer order instead of magnitude — now it sorts full-precision and rounds only for display. So
+`fieldrun explain` is a checked instrument, not just a UX feature: every arch's circuit/feature readout inherits a
+correctness oracle against the numpy spec.
+
 ## Next steps
 
 - **Optimise the idiom mix on the smallest host** further — the levers above plateau on GPT-2, but the head-room is

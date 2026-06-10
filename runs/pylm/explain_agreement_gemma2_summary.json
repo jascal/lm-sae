@@ -1,0 +1,13 @@
+{
+  "model": "gemma2",
+  "n": 15,
+  "ctx": 48,
+  "agreement_rate": {
+    "predict_agree": 1.0,
+    "heads_agree": 1.0,
+    "sink_agree": 1.0,
+    "feats_agree": 1.0
+  },
+  "all_fields_agree_rate": 1.0,
+  "divergences": []
+}
