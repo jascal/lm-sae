@@ -102,7 +102,21 @@ dense+MoE mix and the sliding-window variant**, no gated download. `load_kernel`
 automatically, so `explain.py` runs on a MoE model. **The research lever:** `logits(..., capture=...)` now exposes the
 per-token expert pick (`capture["router"]`), so the symbolic tier can ask the question the dense kernels can't — **is
 MoE routing retrieval or composition?** (does a flat token→expert table reproduce the router, i.e. is the sparse routing
-a *lookup*, or is it computed?). MLA (DeepSeek/Kimi) is the natural next port (the other frontier attention class).
+a *lookup*, or is it computed?).
+
+**Multi-head Latent Attention — DeepSeek-V3 / R1 / Kimi-K2** (`export_weights_mla.py` + `numpy_mla.py`). The other
+frontier attention class, in pure numpy. MLA compresses attention through low-rank latents instead of GQA sharing: q via
+q_a/q_b (with a latent RMSNorm), kv via `kv_a_proj_with_mqa` → split `kv_lora` ‖ a *single* shared RoPE key broadcast to
+all heads, the `kv_lora` part RMSNorm'd then expanded by kv_b to per-head `[no-RoPE ‖ value]` (with `v_head_dim` ≠
+`qk_head_dim`). The FFN is **DeepSeek MoE** — group-limited sigmoid routing (bias-corrected *choice*, sigmoid *weight*) +
+an always-on shared expert, first-k-dense layers. RoPE follows transformers' **interleaved** path (the DeepSeek default:
+the rope slice is permuted evens‖odds before split-half rotation), and to avoid re-deriving **YaRN** in numpy the exact
+rotary `inv_freq`, the attention factor, and the softmax scale (incl. the mscale² correction) are pulled straight from
+the loaded model and baked into the export. Validated by the same tiny-instance gate (`pylm/test_numpy_mla.py`):
+**60/60 top-1 vs torch on both plain MLA and YaRN** (a wrong rope interleave agrees only ~11/60, so YaRN at 60/60 pins
+the rotary details). `load_kernel` dispatches it, and `capture["router"]` exposes the group-limited pick too. So both
+frontier attention classes — sparse-MoE (Qwen3) and latent (DeepSeek) — now run in the research arm's pure-numpy
+decompilation, no torch at runtime.
 
 **The fieldrun bundle — exporting the model for the native runtime** (`export_bundle.py`). The numpy kernels read
 `.npz`; the Rust runtime ([`fieldrun`](https://github.com/jascal), a sibling project) wants something it can mmap with
