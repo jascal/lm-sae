@@ -212,6 +212,19 @@ model IS the database").
   (vs early elsewhere), and **fact-transplant-resistant** early MLPs (3% flip vs 100%). Gemma stores and routes
   information differently enough that it falls out of nearly every cross-model regularity — the single most
   informative "third architecture" in the set.
+  - **Family trait, not a Gemma-2 quirk — the controlled test** (`gemma3_anomaly_summary.json`; the ungated
+    **Gemma-3-1B** vs Gemma-2-2B on the non-SAE anomalies). A second Gemma disambiguates "Gemma-2-specific" from
+    "Gemma-family": **(1) the near-absent sink reproduces** — Gemma-3-1B sink signal **0.056** ≈ Gemma-2's 0.059
+    (both ~0, vs 0.7–0.9 for the others), so the sink absence is a **Gemma-family** signature; **(2) the strong
+    token-determined MLP0 reproduces** — Gemma-3-1B η² **0.80** (Gemma-2 0.91), both far above GPT-2's 0.63, and
+    Gemma-3's determined block is even **wider** (η² stays ~0.78–0.82 through L2 where Gemma-2 has already fallen to
+    0.56) — again a **family** trait. Two differences are *not* shared: in Gemma-3 the **prev-token** heads are
+    causally load-bearing (ablation ΔNLL **+0.45** vs Gemma-2's −0.01) and **induction ablation bites** (+0.04 vs
+    Gemma-2's −0.28 self-repair) — so Gemma-2's induction self-repair / non-load-bearing prev-token is *more*
+    Gemma-2-specific. Verdict (descriptive): the **addressing/embedding anomalies (sink, MLP0) are Gemma-family**; the
+    **induction-circuit redundancy differs within the family**. *(Scope: Gemma-3-4B is gated and Gemma-Scope SAEs are
+    Gemma-2-only, so the two SAE-dependent anomalies — redundancy-monotonicity and store-routing — are not yet
+    testable on Gemma-3; this resolves the operator/MLP0 anomalies, not all six.)*
 - **Llama-3.2-1B**'s MLP0 is the lone *context*-determined early MLP (η² ≈ 0). [Dug](operators/outlier_digs.md):
   it is not intrinsic — Llama's layer-0 attention is comparable in size to the embedding **and** the most
   context-determined of any model, so MLP0 ingests a context-mixed input. Those same layer-0 heads are
