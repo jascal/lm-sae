@@ -386,6 +386,35 @@ recovers most of it:
 | no-retrain SVD ΔNLL | +3.20 | +2.54 | +2.51 | +2.40 |
 | **distilled ΔNLL** | +0.54 | +0.36 | **+0.26** | +0.28 |
 
+#### …because plain SVD is the wrong *form*, not the wrong *rank* — a data-aware truncation is far better, no retraining (`min_to_run.py --data-aware`)
+
+Plain SVD minimizes **weight**-Frobenius error; what we actually care about is **output** error on the real activation
+distribution. A **data-aware** (activation-weighted / functional) low-rank truncation at the *same* rank — SVD in the
+data norm, `--data-aware` — is dramatically better, and the gap **widens with rank**, across a 6-rung ladder spanning
+both the GPT-2 and GPT-NeoX (Pythia) families (1 M → 302 M transformer-weight params; ΔNLL vs the full model, **lower is
+better**):
+
+| no-retrain ΔNLL | rank 64 | rank 256 | rank 512 |
+|---|---|---|---|
+| gpt2 (85 M) — plain SVD / **data-aware** | +2.51 / **+1.04** | +2.18 / **+0.11** | +1.13 / **−0.04** |
+| pythia-160m (85 M) — plain SVD / **data-aware** | +5.17 / **+1.37** | +6.40 / **+0.45** | +4.43 / **+0.07** |
+| pythia-410m (302 M) — plain SVD / **data-aware** | +5.96 / **+2.17** | +8.86 / **+0.76** | +6.27 / **+0.20** |
+| gpt2-medium (302 M) — plain SVD / **data-aware** | +4.14 / **+1.47** | +3.77 / **+0.46** | +4.26 / **+0.00** |
+
+At rank 512 the data-aware truncation is **30–62× lower ΔNLL** than plain SVD (and ~lossless on gpt2: −0.04 vs +1.13).
+Two consequences. **(1) The apparent "low-rank floor" was a wrong-*form* result, not a wrong-*rank* one:** the same
+rank-r subspace, chosen functionally, recovers far more of the model — so the frozen-SVD plateau understated
+compressibility. **(2) The NeoX-vs-GPT-2 contrast is largely a form artifact.** Under plain SVD, Pythia (GPT-NeoX)
+truncation is *much* more destructive than GPT-2's (e.g. r=64: +5.17 vs +2.51) — but under the data-aware form the two
+families converge (pythia-160m r=256 **+0.45** ≈ gpt2 **+0.11**), so most of NeoX's "extra destruction" was the wrong
+norm on its basis, not an architectural fact. And the static data-aware truncation (no training) is already close to —
+and at matched rank sometimes beats — plain-SVD-*with*-distillation (pythia-160m r=256: data-aware-static +0.45 < the
+plain-SVD self-distill floor +0.65), i.e. a static functional diagnostic captures most of the achievable compression.
+*(Descriptive, per the necessity-vs-method discipline: this says the diagnostic was weak, not that the function is
+small; "irreducible" claims still require a proof we don't have.) Scope cap: the data-aware covariance accumulation
+OOM'd on the 8 GB GPU for pythia-1b and gpt2-large, so those two rungs have plain-SVD but not data-aware here.*
+(`runs/disassembly/min_to_run_summary.json`, `@svd` vs `@svd+daware` tags.)
+
 So with light distillation the composition weights factor to **~6–11% of their size** for a model still *capable* on
 the corpus (ΔNLL +0.26 at rank 64 ≈ 9× weight compression). Two notes on scope: (1) this is a *capable* model, not a
 *faithful copy* of GPT-2 — **faithfulness** (top-1 agreement with the original) is a separate, harder axis: distilling
