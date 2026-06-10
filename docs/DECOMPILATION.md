@@ -303,6 +303,34 @@ real FLOP savings) is the natural follow-up. But the qualitative claim is settle
 is tractable with learning — "irreducible" is falsified; only the frozen-linear route was blocked.**
 (`runs/disassembly/core_distill_summary.json`.)
 
+##### The retrained-rank scaling law across the ladder (matched config: 300 steps, lr 1e-4)
+
+Running the same rank-r retrained bottleneck across a 7-model ladder (Pythia 14m/70m/160m/410m + GPT-2 small/medium/large)
+at one config gives the scale-law of the *lossless retrained rank* — the rank where the trained ΔNLL first reaches base
+(≤ 0 on the distill corpus):
+
+| family | model (d) | lossless rank | r/d | recovery at the no-retrain floor |
+|---|---|---|---|---|
+| GPT-2 | gpt2 (768) | **16** | 2.1% | rank-8 recovers 86%, then overshoots (overfit) |
+| GPT-2 | gpt2-medium (1024) | **32–64** | 3–6% | rank-32 ≈ lossless (+0.00) |
+| GPT-2 | gpt2-large (1280) | **64** | 5.0% | rank-32 +0.10, rank-64 −0.05 |
+| NeoX | pythia-14m (128) | 32 | 25% | reaches lossless (tiny) |
+| NeoX | pythia-70m (512) | **> 128** | — | rank-128 only +0.00 (just reaching it) |
+| NeoX | pythia-160m (768) | **> 128** | — | rank-128 +0.24 (54–67% recovered) |
+| NeoX | pythia-410m (1024) | **> 128** | — | rank-128 +0.93 (recovery non-monotone) |
+
+Three descriptive readings (necessity-vs-method discipline — these are *recipe* statements, not lower bounds): **(1)
+The #142 result generalizes across the GPT-2 ladder** — retraining recovers the no-retrain truncation loss at every
+rung (54–211%), and the lossless rank stays a *small* fraction of d (r/d ≈ 2–6%), growing modestly with size (16 → ~32
+→ 64 over 768 → 1024 → 1280). **(2) But it is NOT basis-robust across architecture at this budget** — the GPT-NeoX
+(Pythia) models ≥ 70m do *not* reach lossless within rank 128 at 300 steps / lr 1e-4, where the GPT-2 models do (and
+recover far more per rank). So the NeoX disadvantage seen in *frozen* truncation (above) **persists under retraining at
+this budget** — it is not purely a frozen-linear artifact; whether more steps / a higher stable lr close the gap is
+**open** (the tiny pythia-14m *does* reach lossless, so the method itself works on NeoX). **(3) "Lossless" here means
+matches base NLL on the distill corpus** — the negative ΔNLL / >100% recovery at high rank is the bottleneck factors
+*overfitting* the small corpus, not free compression; a general-eval version is the natural follow-up.
+(`runs/disassembly/core_distill_summary.json`.)
+
 #### …but compression is legibility-NEUTRAL — small ≠ legible for free (`compress_legibility.py`)
 
 The feature-native endgame (train an N× smaller model → extract clean features / knowledge / circuits → the small
