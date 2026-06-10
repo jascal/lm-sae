@@ -17,6 +17,18 @@ hosts we disassemble, plus the SAE the forge-tax sister track acts on — not re
   scaling ladder (one architecture, same data, six sizes).
 - **Mamba** (130m / 370m / 790m) — state-space mixer, no attention, no separate MLP.
 
+Plus the **frontier families the [fieldrun](https://github.com/jascal/fieldrun) runtime executes** (the
+distribution form of the pylm decompilation; each kernel validated top-1 vs a torch reference):
+
+- **Gemma-3** — Gemma-2's sandwich skeleton + QK-norm (replacing the soft-cap) + dual-base RoPE, 5:1 sliding:full.
+- **Gemma-4** — + value-norm, per-layer-type head_dim, partial-rotary global RoPE, and the Per-Layer-Embedding
+  gated residual (dense and MoE variants).
+- **Qwen3-MoE** — the RoPE backbone + per-head QK-norm + a softmax-routed sparse-expert FFN (optional all-layer
+  sliding window).
+- **MLA** (DeepSeek-V3/R1, Kimi-K2) — multi-head *latent* attention (low-rank q/kv, shared rope key, YaRN) +
+  shared-expert / group-limited sigmoid MoE.
+- **MiniMax-M2** — full-width q/k-norm + an all-MoE sigmoid-routed FFN on every layer.
+
 ## GPT-2 block — the host the catalog disassembles
 
 One pre-norm GPT-2-small block. **Attention is the MOVE class** (a QK addressing-mode × an OV write-op — the heads
@@ -202,6 +214,288 @@ flowchart TD
     out_proj -- "mix_out" --> add
     x -- "x_skip" --> add
     add -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+## Gemma-3 block — QK-norm + dual-base RoPE
+
+The Gemma-2 sandwich-norm skeleton with the two changes that define Gemma 3: **QK-norm** (a per-head RMSNorm on
+q/k *before* RoPE — it replaces Gemma-2's attention-logit soft-cap, so the attention is expanded here to show where
+it sits) and **dual-base RoPE** (sliding/local layers rotate at θ≈10k, full/global at θ≈1M) over a **5:1
+sliding:full** layer pattern. No soft-capping anywhere. Same MOVE (attention) + COMPUTE (GeGLU MLP) split. Dims for
+the Gemma-3 reference config (d_model 2304, 8 heads / 4 kv, head_dim 256 ≠ d_model/n_heads, d_ff 9216). Verified by
+n-orca: **VALID, depth 13.** Spec:
+[`docs/specs/gemma3_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/gemma3_block.n.orca.md).
+
+```mermaid
+%% architecture Gemma3Block
+flowchart TD
+    x(("x<br/>[input]"))
+    pre_attn_norm["pre_attn_norm<br/>RMSNorm(d_model)"]
+    q_proj["q_proj<br/>Linear(d_model, n_heads*head_dim)"]
+    k_proj["k_proj<br/>Linear(d_model, n_kv*head_dim)"]
+    v_proj["v_proj<br/>Linear(d_model, n_kv*head_dim)"]
+    q_norm["q_norm<br/>PerHeadRMSNorm(head_dim)"]
+    k_norm["k_norm<br/>PerHeadRMSNorm(head_dim)"]
+    rope_q["rope_q<br/>RoPE(head_dim)"]
+    rope_k["rope_k<br/>RoPE(head_dim)"]
+    attn_core["attn_core<br/>SlidingCausalAttention(n_heads, n_kv, head_dim, window)"]
+    o_proj["o_proj<br/>Linear(n_heads*head_dim, d_model)"]
+    post_attn_norm["post_attn_norm<br/>RMSNorm(d_model)"]
+    add_1["add_1<br/>Add()"]
+    pre_ff_norm["pre_ff_norm<br/>RMSNorm(d_model)"]
+    mlp["mlp<br/>GeGLU(d_model, d_ff)"]
+    post_ff_norm["post_ff_norm<br/>RMSNorm(d_model)"]
+    add_2["add_2<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x : (B,S,d_model)" --> pre_attn_norm
+    pre_attn_norm -- "x_normed" --> q_proj
+    pre_attn_norm -- "x_normed" --> k_proj
+    pre_attn_norm -- "x_normed" --> v_proj
+    q_proj -- "q" --> q_norm
+    k_proj -- "k" --> k_norm
+    q_norm -- "q_n" --> rope_q
+    k_norm -- "k_n" --> rope_k
+    rope_q -- "q_rot" --> attn_core
+    rope_k -- "k_rot" --> attn_core
+    v_proj -- "v" --> attn_core
+    attn_core -- "attn_mix" --> o_proj
+    o_proj -- "attn_pre" --> post_attn_norm
+    post_attn_norm -- "attn_out" --> add_1
+    x -- "x_skip : (B,S,d_model)" --> add_1
+    add_1 -- "h" --> pre_ff_norm
+    pre_ff_norm -- "h_normed" --> mlp
+    mlp -- "mlp_pre" --> post_ff_norm
+    post_ff_norm -- "mlp_out" --> add_2
+    add_1 -- "h_skip" --> add_2
+    add_2 -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+## Gemma-4 block — value-norm + Per-Layer Embeddings
+
+The Gemma-3 backbone plus Gemma 4's changes: a **value-norm** (per-head RMS on v, no learnable weight) beside the
+q/k norms, attention **scaling = 1.0**, a **different head_dim on global layers** (512 vs 256), **partial-rotary**
+RoPE on global layers (only the first ¼ of frequency pairs rotate), and — the structural novelty — the
+**Per-Layer-Embedding (PLE) gated-residual block**: a per-layer token-identity embedding, gated by the post-FFN
+hidden (GELU of a d→d_ple projection), projected back to the residual through its own norm. The MoE variant
+(26B-A4B) sums a routed top-k expert branch with the dense MLP. Dims for the Gemma-4 reference config (d_model 2304,
+8 heads / 4 kv, head_dim 256/512, d_ple 256). Verified by n-orca: **VALID, depth 14.** Spec:
+[`docs/specs/gemma4_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/gemma4_block.n.orca.md).
+
+```mermaid
+%% architecture Gemma4Block
+flowchart TD
+    x(("x<br/>[input]"))
+    ple_in(("ple_in<br/>[input]"))
+    pre_attn_norm["pre_attn_norm<br/>RMSNorm(d_model)"]
+    attn["attn<br/>Gemma4Attention(n_heads, n_kv, head_dim, window)"]
+    post_attn_norm["post_attn_norm<br/>RMSNorm(d_model)"]
+    add_1["add_1<br/>Add()"]
+    pre_ff_norm["pre_ff_norm<br/>RMSNorm(d_model)"]
+    mlp["mlp<br/>GeGLU(d_model, d_ff)"]
+    post_ff_norm["post_ff_norm<br/>RMSNorm(d_model)"]
+    add_2["add_2<br/>Add()"]
+    ple_gate["ple_gate<br/>Linear(d_model, d_ple)"]
+    gate_mul["gate_mul<br/>ElementwiseMul()"]
+    ple_proj["ple_proj<br/>Linear(d_ple, d_model)"]
+    ple_norm["ple_norm<br/>RMSNorm(d_model)"]
+    add_3["add_3<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x : (B,S,d_model)" --> pre_attn_norm
+    pre_attn_norm -- "x_normed" --> attn
+    attn -- "attn_pre" --> post_attn_norm
+    post_attn_norm -- "attn_out" --> add_1
+    x -- "x_skip : (B,S,d_model)" --> add_1
+    add_1 -- "h" --> pre_ff_norm
+    pre_ff_norm -- "h_normed" --> mlp
+    mlp -- "mlp_pre" --> post_ff_norm
+    post_ff_norm -- "mlp_out" --> add_2
+    add_1 -- "h_skip" --> add_2
+    add_2 -- "h2" --> ple_gate
+    ple_gate -- "g" --> gate_mul
+    ple_in -- "ple_emb : (B,S,d_ple)" --> gate_mul
+    gate_mul -- "g_ple" --> ple_proj
+    ple_proj -- "ple_pre" --> ple_norm
+    ple_norm -- "ple_out" --> add_3
+    add_2 -- "h2_skip" --> add_3
+    add_3 -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x,ple_in input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+## Qwen3-MoE block — softmax-routed sparse experts
+
+The RoPE backbone (pre-RMSNorm, GQA, single-base rotary, no attention bias) + per-head QK-norm, with the FFN
+replaced by a **sparse MoE**: a plain-gate router (softmax over all experts → top-k → renorm) over per-expert SwiGLU
+MLPs — only each token's top-k experts run (in fieldrun they page in from an mmap, so the resident set is the shared
+layers + hot experts, not the whole model). Optional **sliding window** applies one window to *every* layer (no
+per-layer pattern, unlike Gemma). The MOVE class is unchanged; the COMPUTE class becomes *conditional* — which
+expert computes is input-dependent. Dims for the Qwen3-MoE reference config (30B-A3B-class: d_model 2048, 32 heads /
+4 kv, 128 experts, top-8, d_expert 768). Verified by n-orca: **VALID, depth 8.** Spec:
+[`docs/specs/qwen3moe_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/qwen3moe_block.n.orca.md).
+
+```mermaid
+%% architecture Qwen3MoeBlock
+flowchart TD
+    x(("x<br/>[input]"))
+    in_ln["in_ln<br/>RMSNorm(d_model)"]
+    attn["attn<br/>GroupedQueryAttention(d_model, n_heads, n_kv)"]
+    add_1["add_1<br/>Add()"]
+    post_ln["post_ln<br/>RMSNorm(d_model)"]
+    router["router<br/>SoftmaxTopKRouter(d_model, n_experts, top_k)"]
+    experts["experts<br/>ExpertSwiGLU(d_model, d_expert, n_experts)"]
+    moe_sum["moe_sum<br/>WeightedSum()"]
+    add_2["add_2<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x : (B,S,d_model)" --> in_ln
+    in_ln -- "x_normed" --> attn
+    attn -- "attn_out" --> add_1
+    x -- "x_skip : (B,S,d_model)" --> add_1
+    add_1 -- "h" --> post_ln
+    post_ln -- "h_normed" --> router
+    post_ln -- "h_tokens" --> experts
+    router -- "topk_weights" --> moe_sum
+    experts -- "expert_out" --> moe_sum
+    moe_sum -- "moe_out" --> add_2
+    add_1 -- "h_skip" --> add_2
+    add_2 -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+## MLA block — DeepSeek-V3 / Kimi-K2 latent attention
+
+**Multi-head latent attention**, the last new attention class in the supported set: q and kv are compressed
+through low-rank latents (q: d → 1536 → per-head [no-RoPE 128 ‖ RoPE 64]; kv: one projection to [512-dim latent ‖
+64-dim rope slice], the latent expanded per head to [k_nope ‖ v]). The rope slice of the key is a **single shared
+vector** (MQA-style) broadcast to all 128 heads; v_head_dim (128) ≠ qk_head_dim (192). Rotary is **YaRN**-scaled
+(ramp-blended inv_freq, mscale attention factor, mscale² softmax correction) in DeepSeek's **interleaved** layout.
+The MoE adds an always-on **shared expert** to **group-limited sigmoid routing** (bias-corrected scores *choose* the
+experts, un-biased scores *weight* them); the first `first_k_dense_replace` layers are dense. Dims for the
+DeepSeek-V3 reference config (671B-A37B-class: d_model 7168, 128 heads, 256 routed experts top-8 from 4 of 8
+groups). Verified by n-orca: **VALID, depth 14.** Spec:
+[`docs/specs/mla_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/mla_block.n.orca.md).
+
+```mermaid
+%% architecture MlaBlock
+flowchart TD
+    x(("x<br/>[input]"))
+    in_ln["in_ln<br/>RMSNorm(d_model)"]
+    q_a["q_a<br/>Linear(d_model, q_lora)"]
+    q_a_ln["q_a_ln<br/>RMSNorm(q_lora)"]
+    q_b["q_b<br/>Linear(q_lora, n_heads*(qk_nope+qk_rope))"]
+    rope_q["rope_q<br/>YarnRoPE(qk_rope)"]
+    kv_a["kv_a<br/>Linear(d_model, kv_lora+qk_rope)"]
+    kv_a_ln["kv_a_ln<br/>RMSNorm(kv_lora)"]
+    kv_b["kv_b<br/>Linear(kv_lora, n_heads*(qk_nope+v_head))"]
+    rope_k["rope_k<br/>YarnRoPE(qk_rope)"]
+    attn_core["attn_core<br/>MlaAttention(n_heads, qk_nope, qk_rope, v_head)"]
+    o_proj["o_proj<br/>Linear(n_heads*v_head, d_model)"]
+    add_1["add_1<br/>Add()"]
+    post_ln["post_ln<br/>RMSNorm(d_model)"]
+    shared_expert["shared_expert<br/>SwiGLU(d_model, d_expert)"]
+    router["router<br/>GroupSigmoidRouter(d_model, n_experts, top_k)"]
+    experts["experts<br/>ExpertSwiGLU(d_model, d_expert, n_experts)"]
+    moe_sum["moe_sum<br/>WeightedSum()"]
+    moe_add["moe_add<br/>Add()"]
+    add_2["add_2<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x : (B,S,d_model)" --> in_ln
+    in_ln -- "x_normed" --> q_a
+    q_a -- "q_lat" --> q_a_ln
+    q_a_ln -- "q_lat_n" --> q_b
+    q_b -- "q_heads" --> rope_q
+    in_ln -- "x_normed_kv" --> kv_a
+    kv_a -- "kv_lat" --> kv_a_ln
+    kv_a -- "k_rope_shared" --> rope_k
+    kv_a_ln -- "kv_lat_n" --> kv_b
+    kv_b -- "k_nope_v" --> attn_core
+    rope_q -- "q_rot" --> attn_core
+    rope_k -- "k_rot" --> attn_core
+    attn_core -- "attn_mix" --> o_proj
+    o_proj -- "attn_out" --> add_1
+    x -- "x_skip : (B,S,d_model)" --> add_1
+    add_1 -- "h" --> post_ln
+    post_ln -- "h_normed_s" --> shared_expert
+    post_ln -- "h_normed_r" --> router
+    post_ln -- "h_tokens" --> experts
+    router -- "topk_weights" --> moe_sum
+    experts -- "expert_out" --> moe_sum
+    moe_sum -- "routed_out" --> moe_add
+    shared_expert -- "shared_out" --> moe_add
+    moe_add -- "moe_out" --> add_2
+    add_1 -- "h_skip" --> add_2
+    add_2 -- "y_out" --> y
+    classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
+    class x input;
+    classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
+    class y output;
+```
+
+## MiniMax-M2 block — full-width q/k-norm, all-MoE
+
+The RoPE backbone with two distinctive choices: **full-width q/k-norm** — one RMSNorm over the *whole*
+concatenated projection (n_heads·head_dim for q, n_kv·head_dim for k), not per-head like Qwen3/Gemma — and an
+**all-MoE FFN on every layer** with a **sigmoid router** (sigmoid scores + a learned bias choose the top-k; the
+un-biased scores, renormed, weight them). No group limiting, no shared expert, no dense layers — the leanest of the
+frontier-MoE recipes. Dims for the MiniMax-M2 reference config (230B-A10B-class: d_model 3072, 48 heads / 8 kv, 256
+experts, top-8, d_expert 1536). Verified by n-orca: **VALID, depth 12.** Spec:
+[`docs/specs/minimax_block.n.orca.md`](https://github.com/jascal/lm-sae/blob/main/docs/specs/minimax_block.n.orca.md).
+
+```mermaid
+%% architecture MiniMaxM2Block
+flowchart TD
+    x(("x<br/>[input]"))
+    in_ln["in_ln<br/>RMSNorm(d_model)"]
+    q_proj["q_proj<br/>Linear(d_model, n_heads*head_dim)"]
+    k_proj["k_proj<br/>Linear(d_model, n_kv*head_dim)"]
+    v_proj["v_proj<br/>Linear(d_model, n_kv*head_dim)"]
+    q_norm["q_norm<br/>RMSNorm(n_heads*head_dim)"]
+    k_norm["k_norm<br/>RMSNorm(n_kv*head_dim)"]
+    rope_q["rope_q<br/>RoPE(head_dim)"]
+    rope_k["rope_k<br/>RoPE(head_dim)"]
+    attn_core["attn_core<br/>GroupedQueryAttention(n_heads, n_kv, head_dim)"]
+    o_proj["o_proj<br/>Linear(n_heads*head_dim, d_model)"]
+    add_1["add_1<br/>Add()"]
+    post_ln["post_ln<br/>RMSNorm(d_model)"]
+    router["router<br/>SigmoidTopKRouter(d_model, n_experts, top_k)"]
+    experts["experts<br/>ExpertSwiGLU(d_model, d_expert, n_experts)"]
+    moe_sum["moe_sum<br/>WeightedSum()"]
+    add_2["add_2<br/>Add()"]
+    y(("y<br/>[output]"))
+    x -- "x : (B,S,d_model)" --> in_ln
+    in_ln -- "x_normed" --> q_proj
+    in_ln -- "x_normed" --> k_proj
+    in_ln -- "x_normed" --> v_proj
+    q_proj -- "q" --> q_norm
+    k_proj -- "k" --> k_norm
+    q_norm -- "q_n" --> rope_q
+    k_norm -- "k_n" --> rope_k
+    rope_q -- "q_rot" --> attn_core
+    rope_k -- "k_rot" --> attn_core
+    v_proj -- "v" --> attn_core
+    attn_core -- "attn_mix" --> o_proj
+    o_proj -- "attn_out" --> add_1
+    x -- "x_skip : (B,S,d_model)" --> add_1
+    add_1 -- "h" --> post_ln
+    post_ln -- "h_normed" --> router
+    post_ln -- "h_tokens" --> experts
+    router -- "topk_weights" --> moe_sum
+    experts -- "expert_out" --> moe_sum
+    moe_sum -- "moe_out" --> add_2
+    add_1 -- "h_skip" --> add_2
+    add_2 -- "y_out" --> y
     classDef input fill:#dbeafe,stroke:#1e40af,color:#1e3a8a;
     class x input;
     classDef output fill:#dcfce7,stroke:#166534,color:#14532d;
