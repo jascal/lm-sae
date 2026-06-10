@@ -2,39 +2,178 @@
   "experiment": "retrained low-rank surrogate \u2014 does training the per-layer bottleneck factors beat the no-retrain PCA floor?",
   "results": [
     {
-      "model": "gpt2-large",
-      "n_layers": 36,
-      "d_model": 1280,
-      "base_nll": 5.004034998122168,
-      "steps": 250,
+      "model": "pythia-14m",
+      "n_layers": 6,
+      "d_model": 128,
+      "base_nll": 5.705057281740601,
+      "steps": 300,
       "curve": [
         {
           "rank": 8,
-          "rank_frac": 0.00625,
-          "pca_init_nll_increase": 2.736752095760237,
-          "distilled_nll_increase": 0.6647689385288977,
-          "recovered_frac": 0.7570956684170428
+          "rank_frac": 0.0625,
+          "pca_init_nll_increase": 2.2331695175330557,
+          "distilled_nll_increase": 0.5424267212195062,
+          "recovered_frac": 0.7571045471645539
         },
         {
           "rank": 16,
-          "rank_frac": 0.0125,
-          "pca_init_nll_increase": 2.7810445498890557,
-          "distilled_nll_increase": 0.516889641599124,
-          "recovered_frac": 0.8141383094277492
+          "rank_frac": 0.125,
+          "pca_init_nll_increase": 1.2755889305726642,
+          "distilled_nll_increase": 0.25093218980741483,
+          "recovered_frac": 0.8032813049774891
+        },
+        {
+          "rank": 32,
+          "rank_frac": 0.25,
+          "pca_init_nll_increase": 0.9162730658456448,
+          "distilled_nll_increase": -0.03279889806188496,
+          "recovered_frac": 1.0357959862452295
         },
         {
           "rank": 64,
-          "rank_frac": 0.05,
-          "pca_init_nll_increase": 1.3558650855426961,
-          "distilled_nll_increase": 0.1575909638041777,
-          "recovered_frac": 0.8837709109228219
+          "rank_frac": 0.5,
+          "pca_init_nll_increase": 0.5709550457285895,
+          "distilled_nll_increase": -0.3410812286336693,
+          "recovered_frac": 1.5973871869341645
         },
         {
-          "rank": 512,
-          "rank_frac": 0.4,
-          "pca_init_nll_increase": 0.20225817708899463,
-          "distilled_nll_increase": 0.27613028357125824,
-          "recovered_frac": -0.36523668682013044
+          "rank": 128,
+          "rank_frac": 1.0,
+          "pca_init_nll_increase": 0.01706233678592639,
+          "distilled_nll_increase": -0.7851190862689341,
+          "recovered_frac": 47.01474558376597
+        }
+      ]
+    },
+    {
+      "model": "pythia-70m",
+      "n_layers": 6,
+      "d_model": 512,
+      "base_nll": 6.897427185339528,
+      "steps": 300,
+      "curve": [
+        {
+          "rank": 8,
+          "rank_frac": 0.015625,
+          "pca_init_nll_increase": 1.822635477912864,
+          "distilled_nll_increase": 0.9962413752643711,
+          "recovered_frac": 0.453406132308372
+        },
+        {
+          "rank": 16,
+          "rank_frac": 0.03125,
+          "pca_init_nll_increase": 1.7516221907773302,
+          "distilled_nll_increase": 0.552160207952431,
+          "recovered_frac": 0.6847720867778029
+        },
+        {
+          "rank": 32,
+          "rank_frac": 0.0625,
+          "pca_init_nll_increase": 1.316753170439708,
+          "distilled_nll_increase": 0.32563282574214814,
+          "recovered_frac": 0.7527001771839984
+        },
+        {
+          "rank": 64,
+          "rank_frac": 0.125,
+          "pca_init_nll_increase": 0.9053151188107824,
+          "distilled_nll_increase": 0.19805719034028169,
+          "recovered_frac": 0.7812284515910343
+        },
+        {
+          "rank": 128,
+          "rank_frac": 0.25,
+          "pca_init_nll_increase": 0.4350349517820016,
+          "distilled_nll_increase": 0.00014230844428819722,
+          "recovered_frac": 0.9996728804347668
+        }
+      ]
+    },
+    {
+      "model": "pythia-160m",
+      "n_layers": 12,
+      "d_model": 768,
+      "base_nll": 5.3149016773472315,
+      "steps": 300,
+      "curve": [
+        {
+          "rank": 8,
+          "rank_frac": 0.010416666666666666,
+          "pca_init_nll_increase": 2.683876916181134,
+          "distilled_nll_increase": 1.1069446723882317,
+          "recovered_frac": 0.5875575866708173
+        },
+        {
+          "rank": 16,
+          "rank_frac": 0.020833333333333332,
+          "pca_init_nll_increase": 2.61173368249096,
+          "distilled_nll_increase": 0.7433308711595146,
+          "recovered_frac": 0.7153879524000482
+        },
+        {
+          "rank": 32,
+          "rank_frac": 0.041666666666666664,
+          "pca_init_nll_increase": 1.8836674935040287,
+          "distilled_nll_increase": 0.5128732587774554,
+          "recovered_frac": 0.7277262252780079
+        },
+        {
+          "rank": 64,
+          "rank_frac": 0.08333333333333333,
+          "pca_init_nll_increase": 1.2961136614375324,
+          "distilled_nll_increase": 0.4185311154690998,
+          "recovered_frac": 0.6770876444548058
+        },
+        {
+          "rank": 128,
+          "rank_frac": 0.16666666666666666,
+          "pca_init_nll_increase": 0.9422881464788047,
+          "distilled_nll_increase": 0.23879887577538383,
+          "recovered_frac": 0.7465755282312094
+        }
+      ]
+    },
+    {
+      "model": "pythia-410m",
+      "n_layers": 24,
+      "d_model": 1024,
+      "base_nll": 4.377825496255999,
+      "steps": 300,
+      "curve": [
+        {
+          "rank": 8,
+          "rank_frac": 0.0078125,
+          "pca_init_nll_increase": 3.102788772886676,
+          "distilled_nll_increase": 1.423256850998344,
+          "recovered_frac": 0.54129753741689
+        },
+        {
+          "rank": 16,
+          "rank_frac": 0.015625,
+          "pca_init_nll_increase": 2.899531484054843,
+          "distilled_nll_increase": 0.9894217432642423,
+          "recovered_frac": 0.6587649595442269
+        },
+        {
+          "rank": 32,
+          "rank_frac": 0.03125,
+          "pca_init_nll_increase": 2.465706947248841,
+          "distilled_nll_increase": 0.8236941117221868,
+          "recovered_frac": 0.6659399801581292
+        },
+        {
+          "rank": 64,
+          "rank_frac": 0.0625,
+          "pca_init_nll_increase": 2.1045489352207083,
+          "distilled_nll_increase": 0.7446856692386232,
+          "recovered_frac": 0.6461542629035962
+        },
+        {
+          "rank": 128,
+          "rank_frac": 0.125,
+          "pca_init_nll_increase": 1.3695240908859958,
+          "distilled_nll_increase": 0.9258301328325214,
+          "recovered_frac": 0.32397674564923673
         }
       ]
     },
@@ -46,53 +185,127 @@
       "steps": 300,
       "curve": [
         {
-          "rank": 2,
-          "rank_frac": 0.0026041666666666665,
-          "pca_init_nll_increase": 2.463089024906979,
-          "distilled_nll_increase": 0.4544223870596307,
-          "recovered_frac": 0.8155071203417861
-        },
-        {
-          "rank": 4,
-          "rank_frac": 0.005208333333333333,
-          "pca_init_nll_increase": 2.15437118040182,
-          "distilled_nll_increase": 0.329715826971265,
-          "recovered_frac": 0.8469549583791924
-        },
-        {
           "rank": 8,
           "rank_frac": 0.010416666666666666,
           "pca_init_nll_increase": 1.7819352972389817,
-          "distilled_nll_increase": 0.032522294226325243,
-          "recovered_frac": 0.9817488916254609
+          "distilled_nll_increase": 0.25417679479543853,
+          "recovered_frac": 0.8573591335278713
         },
         {
           "rank": 16,
           "rank_frac": 0.020833333333333332,
           "pca_init_nll_increase": 1.2801664254837162,
-          "distilled_nll_increase": -0.10408527312709293,
-          "recovered_frac": 1.0813060482255374
+          "distilled_nll_increase": -0.06466084200395006,
+          "recovered_frac": 1.0505097155469592
         },
         {
           "rank": 32,
           "rank_frac": 0.041666666666666664,
           "pca_init_nll_increase": 0.964887184042337,
-          "distilled_nll_increase": -0.17581850556068446,
-          "recovered_frac": 1.1822166450839395
+          "distilled_nll_increase": -0.316623421005386,
+          "recovered_frac": 1.3281455347752793
         },
         {
           "rank": 64,
           "rank_frac": 0.08333333333333333,
           "pca_init_nll_increase": 0.6569279733766473,
-          "distilled_nll_increase": -0.002660269343929933,
-          "recovered_frac": 1.0040495601523194
+          "distilled_nll_increase": -0.5297837811146033,
+          "recovered_frac": 1.806456419250172
         },
         {
-          "rank": 256,
-          "rank_frac": 0.3333333333333333,
-          "pca_init_nll_increase": 0.23673234446859315,
-          "distilled_nll_increase": -0.0035343381964620946,
-          "recovered_frac": 1.0149296802023222
+          "rank": 128,
+          "rank_frac": 0.16666666666666666,
+          "pca_init_nll_increase": 0.5732541376674947,
+          "distilled_nll_increase": -0.6390257251970546,
+          "recovered_frac": 2.1147337336232352
+        }
+      ]
+    },
+    {
+      "model": "gpt2-medium",
+      "n_layers": 24,
+      "d_model": 1024,
+      "base_nll": 5.0781099180021325,
+      "steps": 300,
+      "curve": [
+        {
+          "rank": 8,
+          "rank_frac": 0.0078125,
+          "pca_init_nll_increase": 2.1291786006168376,
+          "distilled_nll_increase": 0.5356494560043856,
+          "recovered_frac": 0.7484243661620475
+        },
+        {
+          "rank": 16,
+          "rank_frac": 0.015625,
+          "pca_init_nll_increase": 1.832764679829138,
+          "distilled_nll_increase": 0.2942340348979098,
+          "recovered_frac": 0.8394589124636884
+        },
+        {
+          "rank": 32,
+          "rank_frac": 0.03125,
+          "pca_init_nll_increase": 1.4227276217943334,
+          "distilled_nll_increase": 0.0026935355117618798,
+          "recovered_frac": 0.9981067806159799
+        },
+        {
+          "rank": 64,
+          "rank_frac": 0.0625,
+          "pca_init_nll_increase": 1.11983851924054,
+          "distilled_nll_increase": -0.1558002320569729,
+          "recovered_frac": 1.1391274093363342
+        },
+        {
+          "rank": 128,
+          "rank_frac": 0.125,
+          "pca_init_nll_increase": 0.8440616730738029,
+          "distilled_nll_increase": -0.21258291682046337,
+          "recovered_frac": 1.2518570900705683
+        }
+      ]
+    },
+    {
+      "model": "gpt2-large",
+      "n_layers": 36,
+      "d_model": 1280,
+      "base_nll": 5.004034998122168,
+      "steps": 300,
+      "curve": [
+        {
+          "rank": 8,
+          "rank_frac": 0.00625,
+          "pca_init_nll_increase": 2.736752095760237,
+          "distilled_nll_increase": 0.7631686656611283,
+          "recovered_frac": 0.7211407394760287
+        },
+        {
+          "rank": 16,
+          "rank_frac": 0.0125,
+          "pca_init_nll_increase": 2.7810445498890557,
+          "distilled_nll_increase": 0.4485263813328766,
+          "recovered_frac": 0.8387201739178289
+        },
+        {
+          "rank": 32,
+          "rank_frac": 0.025,
+          "pca_init_nll_increase": 1.9567427894197733,
+          "distilled_nll_increase": 0.10317946633072594,
+          "recovered_frac": 0.9472697858458334
+        },
+        {
+          "rank": 64,
+          "rank_frac": 0.05,
+          "pca_init_nll_increase": 1.3558650855426961,
+          "distilled_nll_increase": -0.04872235739335107,
+          "recovered_frac": 1.0359345173150833
+        },
+        {
+          "rank": 128,
+          "rank_frac": 0.1,
+          "pca_init_nll_increase": 1.011327527849379,
+          "distilled_nll_increase": -0.07490744810221539,
+          "recovered_frac": 1.074068435832562
         }
       ]
     }
