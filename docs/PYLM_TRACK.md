@@ -90,6 +90,20 @@ kernel keeps weights **fp16 in RAM and upcasts per matmul** (and chunks the 256k
 in-RAM strategy the Rust runtime will use for every model, previewed here in Python. So all four laptop architecture
 families — GPT-2, Llama, Qwen, Gemma-2 — run as the same flat-weights-plus-numpy story, no torch at runtime.
 
+**Mixture-of-Experts — the first frontier-MoE arch in pylm** (`export_weights_moe.py` + `numpy_moe.py`, the MoE
+counterpart of `numpy_rope.py`). The runtime (`fieldrun`) had raced ahead of the research kernels onto the architectures
+frontier models actually use (MoE, MLA); this back-ports the first of them so the *pure-numpy decompilation* arm can
+study them too. On the RoPE backbone Qwen3-MoE adds **QK-norm** (per-head RMSNorm on q/k before RoPE) and a per-layer
+**MoE-or-dense FFN** — a plain-gate router (softmax over all experts → top-k → optional renorm) over SwiGLU experts
+(transformers stores them packed `(E, 2·mi, d)`; the exporter unpacks to one `(in,out)` gate/up/down per expert), with
+dense layers left as SwiGLU. Validated the same way the runtime is: a **tiny-random-instance faithfulness gate**
+(`pylm/test_numpy_moe.py`, the methodology ported from fieldrun's `gemma3_ref.py`) — **60/60 top-1 vs torch on both the
+dense+MoE mix and the sliding-window variant**, no gated download. `load_kernel` dispatches MoE weights to it
+automatically, so `explain.py` runs on a MoE model. **The research lever:** `logits(..., capture=...)` now exposes the
+per-token expert pick (`capture["router"]`), so the symbolic tier can ask the question the dense kernels can't — **is
+MoE routing retrieval or composition?** (does a flat token→expert table reproduce the router, i.e. is the sparse routing
+a *lookup*, or is it computed?). MLA (DeepSeek/Kimi) is the natural next port (the other frontier attention class).
+
 **The fieldrun bundle — exporting the model for the native runtime** (`export_bundle.py`). The numpy kernels read
 `.npz`; the Rust runtime ([`fieldrun`](https://github.com/jascal), a sibling project) wants something it can mmap with
 no zip/.npy parsing. `export_bundle.py` writes the **fieldrun bundle format** (spec in fieldrun's `FORMAT.md`): a flat
