@@ -187,10 +187,16 @@ model IS the database").
 - **And there is no fact-addressable site *at any depth*** (`fact_site_sweep.py`, efficacy-vs-leakage per layer). We
   looked for a *later* layer where the edit stays efficacious but stops leaking — a layer where the row would be the
   *fact*. None exists: in every editable model the best fact-specificity is at **L0** (the entity store), and no deeper
-  single-MLP edit keeps efficacy while shedding leakage (lowest leakage ~50%, GPT-2-large). So entity-addressability is
-  **depth-invariant** — a single fact is not an independently editable row at any single-MLP site via activation
-  patching. Surgical single-fact editing would need weight surgery (ROME's rank-1) or a cleaner basis, not a better
-  *location* — a hard limit for the "model IS the database" framing, measured cross-model.
+  single-MLP edit keeps efficacy while shedding leakage (lowest leakage ~50%, GPT-2-large). Confirmed across six models —
+  the four *editable* ones (GPT-2 small/medium/large + Llama-3.2-1B) plus two that reject the edit — and no layer in
+  *any* of the editable models clears even a lenient clean-site bar (efficacy ≥50% with leakage ≤20%). **Gemma-2-2B and
+  Qwen2.5-1.5B don't take the activation-patch edit at all** (efficacy 0% at
+  every layer), consistent with their fact-transplant resistance — so for those the question is moot, not clean. So
+  entity-addressability is **depth-invariant** — a single fact is not an independently editable row at any single-MLP
+  site via activation patching. Surgical single-fact editing would need weight surgery (ROME's rank-1) or a cleaner
+  basis, not a better *location* — a hard limit for the "model IS the database" framing, measured cross-model. *(Scope,
+  per the necessity-vs-method discipline: this sweeps the **layer** axis only — the token-position × update-rank ×
+  bystander-fact axes are not yet swept, so a clean fact-local site elsewhere in that space remains open, not excluded.)*
 - **Method *or* representation? Both — and the irreducible part shrinks with scale** (`fact_rome_xmodel.py`). Is the
   entity-leakage because the activation patch is *blunt* (it swaps the whole MLP output), or because capital and
   language are genuinely *entangled*? We optimised a **targeted** ROME-style edit-value `v` (flip the capital while a
