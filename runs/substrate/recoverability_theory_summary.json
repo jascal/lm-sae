@@ -1,0 +1,93 @@
+{
+  "substrate": "lm-sae / gpt2 layer 8 + SAELens blocks.8.hook_resid_pre/sae_weights.safetensors",
+  "n_features_valid": 28,
+  "lambda": 0.01,
+  "partial": {
+    "var_share_vs_sae_given_fisher": -0.3503956084648208,
+    "fisher_vs_sae_given_var_share": 0.5128353593911789,
+    "var_share_vs_probe_given_fisher": 0.5988143069717222,
+    "fisher_vs_probe_given_var_share": 0.6406870241088338
+  },
+  "spearman_raw": {
+    "var_share_vs_sae": -0.3513957307060755,
+    "fisher_vs_sae": 0.5134099616858239,
+    "fisher_vs_probe": 0.5210727969348659,
+    "var_share_vs_probe": 0.45539135194307606
+  },
+  "per_tier": {
+    "lexical": {
+      "n": 9,
+      "prevalence": 0.3137361111111111,
+      "var_share": 0.0185319337483549,
+      "fisher": 139.69454272281803,
+      "probe": 0.9943929779330664,
+      "sae": 0.7909373687961785,
+      "cov95": 0.1111111111111111
+    },
+    "token": {
+      "n": 19,
+      "prevalence": 0.01694736842105263,
+      "var_share": 0.005232566297861226,
+      "fisher": 351.5359146150415,
+      "probe": 0.9998621821014971,
+      "sae": 0.9774607500667857,
+      "cov95": 0.8947368421052632
+    }
+  },
+  "exemplars": [
+    {
+      "feature": "lex:len2",
+      "tier": "lexical",
+      "prevalence": 0.178,
+      "var_share": 0.0061128034310774845,
+      "fisher": 16.681544472401676,
+      "probe": 0.9918458005703409,
+      "sae": 0.6278319751855572
+    },
+    {
+      "feature": "lex:len5p",
+      "tier": "lexical",
+      "prevalence": 0.161125,
+      "var_share": 0.008035638209869553,
+      "fisher": 16.05559872846263,
+      "probe": 0.9902237783595568,
+      "sae": 0.8224997713999421
+    },
+    {
+      "feature": "lex:len3_4",
+      "tier": "lexical",
+      "prevalence": 0.3360625,
+      "var_share": 0.009407572749071991,
+      "fisher": 8.069581537567396,
+      "probe": 0.9676341180812541,
+      "sae": 0.6434047969050911
+    },
+    {
+      "feature": "lex:has_leading_space",
+      "tier": "lexical",
+      "prevalence": 0.491625,
+      "var_share": 0.022451230582842326,
+      "fisher": 62.168009118376396,
+      "probe": 0.9999979994387175,
+      "sae": 0.720951318779375
+    },
+    {
+      "feature": "lex:is_capitalized",
+      "tier": "lexical",
+      "prevalence": 0.2940625,
+      "var_share": 0.026570619076819506,
+      "fisher": 73.30709890018825,
+      "probe": 0.9999863951914623,
+      "sae": 0.717173680999229
+    },
+    {
+      "feature": "lex:len1",
+      "tier": "lexical",
+      "prevalence": 0.3248125,
+      "var_share": 0.02859384291715931,
+      "fisher": 98.14244548665685,
+      "probe": 0.999850827859072,
+      "sae": 0.8054612179061927
+    }
+  ]
+}
