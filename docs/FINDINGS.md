@@ -452,6 +452,33 @@ positional register, name-movers — none of which survive into the SSM (inducti
 shrinks with scale, stored as an editable but entity-leaky residual. "The model IS the database" is a property of the
 residual-stream LM, not of attention; the *circuits* that fill the database are what the mixer choice decides.
 
+## SAE recoverability — detection is cheap, allocation is a competition (not variance-greedy)
+
+A cross-substrate test (econ-sae macro-regime, bio-sae ESM-2, and here on GPT-2) of *when an unsupervised SAE
+recovers a known feature*. For every exact-lexical ground-truth feature on GPT-2 layer-8 residuals we measure two
+cheap SAE-free predictors and two expensive measurements: **Fisher SNR** `Δμᵀ(Σ_w+λI)⁻¹Δμ` (detection theory) and
+**variance-share** `p(1−p)‖Δμ‖²/trΣ` (rate–distortion) against a linear-probe AUC (presence) and the **SAELens
+24 576-feature** dictionary's best-latent recovery AUC (allocation). Reproduce: `scripts/recoverability_theory.py`
+(summary in `runs/substrate/recoverability_theory_summary.json`); synthesis in the workspace `SUPERVISION_DEPENDENCE.md`.
+
+- **Presence ≠ allocation, on a real LM.** 6 / 28 features are *present yet dropped* — a probe reads them at
+  AUC ≥ 0.85 but the SAE recovers them at < 0.85. They are **the entire lexical tier**: `is_capitalized` (probe
+  **1.00**, SAE 0.72), `has_leading_space` (1.00 / 0.72), `len2` (0.99 / 0.63). Diffuse token *properties* are
+  maximally detectable yet poorly recovered; sharp one-token detectors (the `token` tier) recover at cov95 **89.5%**.
+- **Presence is Fisher.** Partial `fisher→probe | var_share` **+0.64** — detection theory predicts readability, the
+  same as on econ-sae and ESM-2.
+- **Allocation is *not* variance-share.** Partial `var_share→SAE | fisher` is **−0.35** (negative); `fisher→SAE`
+  **+0.51**. The diffuse lexical features carry *higher* variance-share than the rare sharp tokens yet recover worse,
+  because an over-complete production SAE **splits / absorbs** a common diffuse property across many latents — so no
+  single latent cleanly encodes it. This is the same sign as ESM-2 (−0.26 to −0.30): the rate-distortion predictor
+  does not survive cross-substrate.
+
+**The through-line.** Rate-distortion governs *reconstruction* (variance captured); SAE interpretability needs
+*monosemantic allocation* (one latent per feature). They diverge for **rare** meaning (no co-firing mass for a latent)
+and **diffuse** meaning (split across latents) — exactly the dropped set. The robust law is two-axis: *detection is
+cheap and near-universal; unsupervised recovery is a competition for latents won by distinctiveness and statistical
+mass, not by variance-share.* "Compression is variance-greedy" holds only where Fisher is held roughly constant.
+
 ---
 
 _This page is a hand-curated narrative; the numbers live in the generated [operator](operators/README.md) /
