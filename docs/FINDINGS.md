@@ -235,6 +235,21 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
     present in small models; recursive COMPUTATION (Lisp eval) is a layer-bounded evaluator, depth-degrading and
     layer-consuming, emergent with scale. Computation needs the value stack that matching doesn't — the forge tax's
     "computed, syntax-heavy" residual is, in part, exactly this bounded recursive evaluator.
+- **A recursion-EXPLAIN mode — show detail only where the model recurses** (`recursion_explain.py`). The probes give a
+  per-position *signature* of recursive computation, which we gate on to build an explainer that is **silent on flat
+  text and lights up exactly the folding steps** — model-internal, no parser, so it generalises past Lisp. The gate:
+  a position is "recursing" iff it is (1) COMPUTED (not a flat in-context copy), (2) DEFERRED (resolves only in the
+  late layers), and (3) BINDING — a *concentrated* (max-over-heads, sink-excluded) back-attention to a *distant*
+  antecedent (reach ≥ 3), the frame it folds. The discriminator that silences flat prose is **binding reach**: flat
+  text binds to the *previous token* (reach 1), recursion binds back across the nested span (reach 3–9). Each lit
+  position prints the **value stack read straight from the residual** (logit-lens trajectory). Qwen2.5-1.5B:
+  **flat prose → 0/15 lit (silent)**; **Lisp `(+ 1 (* 3 (- 5 1)))` → the folding points lit with the value stack
+  legible** — a fold reads `'5'` = `(- 9 4)`, another `'5'` = `(- 8 (+ 1 2))` (intermediate sub-results decodable
+  mid-computation; the model even represents `7` multilingually, `'七个'`); **natural nested syntax** ("the key *that
+  the man that the dog liked lost* was found") → 3/12 lit, all folding back to the embedded `that` (the center-embedding
+  resolutions) — Lisp-free, so the recursion signature is general. A concrete, gated view of *what the computed
+  residual is doing*. (v1: the gate also fires on few-shot example-boundary returns = long-range structural binding in
+  general; the value-stack readout is cleanest on the target expression. Demo: `runs/disassembly/recursion_explain_demo.txt`.)
 
 ## Knowledge — where facts live, and moving them
 
