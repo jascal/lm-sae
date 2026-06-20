@@ -1,0 +1,162 @@
+{
+  "experiment": "anatomy of the forge tax: exact vs soft retrieval vs computation",
+  "results": [
+    {
+      "model": "gpt2",
+      "stream": "text",
+      "n_eval": 1200,
+      "forge_tax_frac": 0.8425,
+      "buckets": {
+        "flat": {
+          "n": 189,
+          "frac_of_all": 0.1575,
+          "frac_of_forge": 0.18694362017804153,
+          "mean_conf": 0.46202762942347264,
+          "function": 0.455026455026455,
+          "content": 0.047619047619047616,
+          "punct": 0.4973544973544973
+        },
+        "exact_copy": {
+          "n": 125,
+          "frac_of_all": 0.10416666666666667,
+          "frac_of_forge": 0.12363996043521266,
+          "mean_conf": 0.4696764279603958,
+          "function": 0.544,
+          "content": 0.16,
+          "punct": 0.296
+        },
+        "soft_assoc": {
+          "n": 9,
+          "frac_of_all": 0.0075,
+          "frac_of_forge": 0.008902077151335312,
+          "mean_conf": 0.5281388892067803,
+          "function": 0.3333333333333333,
+          "content": 0.0,
+          "punct": 0.6666666666666666
+        },
+        "computed": {
+          "n": 877,
+          "frac_of_all": 0.7308333333333333,
+          "frac_of_forge": 0.8674579624134521,
+          "mean_conf": 0.26986524984219296,
+          "function": 0.3956670467502851,
+          "content": 0.3865450399087799,
+          "punct": 0.217787913340935
+        }
+      },
+      "exact_copy_mean_suffix": 3.744,
+      "config": {
+        "ctx": 64,
+        "cap": 64,
+        "soft_window": 8,
+        "db_size": 40000,
+        "common_cut": 120
+      },
+      "corpus": "wikitext"
+    },
+    {
+      "model": "pythia-70m",
+      "stream": "corpus",
+      "n_eval": 1200,
+      "forge_tax_frac": 0.5025,
+      "buckets": {
+        "flat": {
+          "n": 597,
+          "frac_of_all": 0.4975,
+          "frac_of_forge": 0.9900497512437811,
+          "mean_conf": 0.40618400818588746,
+          "function": 0.3249581239530988,
+          "content": 0.1423785594639866,
+          "punct": 0.5326633165829145
+        },
+        "exact_copy": {
+          "n": 34,
+          "frac_of_all": 0.028333333333333332,
+          "frac_of_forge": 0.05638474295190713,
+          "mean_conf": 0.27844128297532306,
+          "function": 0.5294117647058824,
+          "content": 0.17647058823529413,
+          "punct": 0.29411764705882354
+        },
+        "soft_assoc": {
+          "n": 28,
+          "frac_of_all": 0.023333333333333334,
+          "frac_of_forge": 0.04643449419568822,
+          "mean_conf": 0.32154762824731214,
+          "function": 0.32142857142857145,
+          "content": 0.0,
+          "punct": 0.6785714285714286
+        },
+        "computed": {
+          "n": 541,
+          "frac_of_all": 0.4508333333333333,
+          "frac_of_forge": 0.8971807628524047,
+          "mean_conf": 0.19644740137810407,
+          "function": 0.4454713493530499,
+          "content": 0.18114602587800369,
+          "punct": 0.3733826247689464
+        }
+      },
+      "exact_copy_mean_suffix": 3.676470588235294,
+      "config": {
+        "ctx": 64,
+        "cap": 64,
+        "soft_window": 8,
+        "db_size": 40000,
+        "common_cut": 120
+      }
+    },
+    {
+      "model": "gpt2",
+      "stream": "corpus",
+      "n_eval": 1200,
+      "forge_tax_frac": 0.505,
+      "buckets": {
+        "flat": {
+          "n": 594,
+          "frac_of_all": 0.495,
+          "frac_of_forge": 0.9801980198019802,
+          "mean_conf": 0.44599886406338474,
+          "function": 0.3552188552188552,
+          "content": 0.12457912457912458,
+          "punct": 0.5202020202020202
+        },
+        "exact_copy": {
+          "n": 43,
+          "frac_of_all": 0.035833333333333335,
+          "frac_of_forge": 0.07095709570957096,
+          "mean_conf": 0.39508072438454905,
+          "function": 0.4186046511627907,
+          "content": 0.18604651162790697,
+          "punct": 0.3953488372093023
+        },
+        "soft_assoc": {
+          "n": 18,
+          "frac_of_all": 0.015,
+          "frac_of_forge": 0.0297029702970297,
+          "mean_conf": 0.2950097649461693,
+          "function": 0.16666666666666666,
+          "content": 0.0,
+          "punct": 0.8333333333333334
+        },
+        "computed": {
+          "n": 545,
+          "frac_of_all": 0.45416666666666666,
+          "frac_of_forge": 0.8993399339933993,
+          "mean_conf": 0.2555255735395562,
+          "function": 0.46788990825688076,
+          "content": 0.25504587155963304,
+          "punct": 0.27706422018348625
+        }
+      },
+      "exact_copy_mean_suffix": 3.3255813953488373,
+      "config": {
+        "ctx": 64,
+        "cap": 64,
+        "soft_window": 8,
+        "db_size": 40000,
+        "common_cut": 120
+      }
+    }
+  ]
+}
