@@ -162,8 +162,21 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   computed tokens are the genuinely uncertain positions. This *names* the forge tax — **computation, syntax-heavy**,
   the quantified upstream of the recursive-syntax result below. Honest scope: the soft retriever is surface-form (input
   embeddings, ≤40 K-context DB) so "computed" = *not surface-retrievable* (a model-strength retriever would be
-  circular); and these are SMALL models (≤124 M) — whether the split holds at scale is tested separately on **Qwen via
-  fieldrun** (`forge_tax_anatomy_fieldrun.py`).
+  circular). **Not small-model-shaped** (`forge_tax_anatomy_fieldrun.py`): running the identical ladder against
+  **Qwen2.5 served by the fieldrun runtime** (per-position top-1 from `fieldrun --dump`, validated **98%
+  top-1-agreement with HF transformers**, embeddings mmap'd from the bundle) on the *in-distribution* corpus
+  (wikitext; Shakespeare is OOD for Qwen → an inflated, meaningless tax), across three scale points:
+
+  | model (wikitext) | params | forge tax | computed | content / function / punct |
+  |---|---|---|---|---|
+  | GPT-2 | 124 M | 84% | 87% | 39 / 40 / 22 |
+  | Qwen2.5-0.5B | 500 M | 62% | 89% | 39 / 38 / 23 |
+  | Qwen2.5-1.5B | 1.5 B | 64% | 90% | 40 / 41 / 19 |
+
+  The forge tax's *size* **falls then plateaus** with capability (84→62→64% — a better model n-gram-reproduces more
+  of its own output) but its **makeup is scale-invariant**: computed **87→89→90%**, content/function/punct **≈40/40/20**
+  — flat across 12× params and two architectures. So "the forge tax is computation (not fuzzy retrieval), syntax-leaning
+  with substantial content" is a property of the trained transformer, not an artifact of small capacity.
 - **The *recursive* syntax is in the composition, not the basis** (`recursive_syntax.py`). Subject–verb agreement
   across attractors (*"the key near the cabinets **is**"*) is a hierarchical dependency: the model agrees with the
   **head** ~100% across depth (gpt2 small/large, Llama), resisting the nearest noun, with the logit-diff *degrading*
@@ -185,6 +198,22 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   center-embedding is rare in training and unparseable for humans; bigger models commit harder to the natural local
   parse). Layers aren't the active limit; the decode loop / chain-of-thought is how a model goes deeper (TC⁰ per step,
   Turing-complete across steps).
+- **Dyck bracket-matching: the bottleneck is binding-interference, not stack depth — and scale buys *hierarchy*
+  preferentially** (`recursion_depth_probe.py`). A controlled probe of recursive *structure*: predicting a closing
+  bracket's TYPE requires tracking the open-bracket stack. Single-forced-close design (each prompt ends where exactly
+  one closer is forced, avoiding the "closing-momentum" confound of full ramps), with two families at *matched
+  distance* — **DEEP** `( [ { } ] →` (deep nesting) vs **FLAT** `( [] {} () →` (flat distractor pairs). Across scale
+  (HF: pythia-70m/gpt2/pythia-410m/gpt2-large; **Qwen2.5-0.5B via fieldrun**): (1) the deepest reliably-matched nesting
+  **grows with model size** (6L pythia-70m → depth 0; 12L gpt2 → 7; 24–36L → the dmax-9 ceiling) — the *opposite* of
+  the center-embedding result above, and consistent with it: Dyck/code nesting is *in-distribution* so scale helps,
+  natural center-embedding is not so scale hurts → both say the limit is **distributional, not a hard layer bound**.
+  (2) **DEEP is consistently EASIER than FLAT at matched distance, and the gap GROWS with capability** (deep−flat acc:
+  pythia-70m +0.06 → gpt2 +0.20 → pythia-410m +0.24 → gpt2-large +0.45 → **Qwen-0.5B +0.54**). So the failure is not
+  stack-depth overflow — the model is *good* at clean hierarchy and gets disproportionately better at it with scale;
+  what it struggles with is long-range binding across same-level distractors. This refines the "bounded recursive
+  evaluator" reading: it's a **hierarchy tracker whose competence scales**, bottlenecked by binding-interference.
+  (Recursive *computation* — Lisp arithmetic eval — is a separate, much harder probe; base GPT-2 can't do it at all,
+  so it needs Qwen-scale via fieldrun: `lisp_eval_probe.py`.)
 
 ## Knowledge — where facts live, and moving them
 
