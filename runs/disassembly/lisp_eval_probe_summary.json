@@ -1,0 +1,128 @@
+{
+  "experiment": "Lisp s-expression evaluation \u2014 recursive evaluator probe",
+  "results": [
+    {
+      "backend": "hf",
+      "model": "Qwen/Qwen2.5-1.5B/infix",
+      "infix": true,
+      "dmax": 6,
+      "maxv": 9,
+      "n_exprs": 180,
+      "summary": {
+        "1": {
+          "acc": 1.0,
+          "n": 30,
+          "resolve_layer": 23.566666666666666
+        },
+        "2": {
+          "acc": 0.8333333333333334,
+          "n": 30,
+          "resolve_layer": 24.9
+        },
+        "3": {
+          "acc": 0.4666666666666667,
+          "n": 30,
+          "resolve_layer": 25.3
+        },
+        "4": {
+          "acc": 0.4666666666666667,
+          "n": 30,
+          "resolve_layer": 25.533333333333335
+        },
+        "5": {
+          "acc": 0.36666666666666664,
+          "n": 30,
+          "resolve_layer": 26.466666666666665
+        },
+        "6": {
+          "acc": 0.3,
+          "n": 30,
+          "resolve_layer": 26.9
+        },
+        "eval_depth_limit": 2
+      }
+    },
+    {
+      "backend": "hf",
+      "model": "Qwen/Qwen2.5-1.5B",
+      "infix": false,
+      "dmax": 6,
+      "maxv": 9,
+      "n_exprs": 180,
+      "summary": {
+        "1": {
+          "acc": 1.0,
+          "n": 30,
+          "resolve_layer": 23.8
+        },
+        "2": {
+          "acc": 0.6333333333333333,
+          "n": 30,
+          "resolve_layer": 25.766666666666666
+        },
+        "3": {
+          "acc": 0.5333333333333333,
+          "n": 30,
+          "resolve_layer": 25.933333333333334
+        },
+        "4": {
+          "acc": 0.43333333333333335,
+          "n": 30,
+          "resolve_layer": 26.0
+        },
+        "5": {
+          "acc": 0.36666666666666664,
+          "n": 30,
+          "resolve_layer": 26.566666666666666
+        },
+        "6": {
+          "acc": 0.26666666666666666,
+          "n": 30,
+          "resolve_layer": 27.066666666666666
+        },
+        "eval_depth_limit": 3
+      }
+    },
+    {
+      "backend": "hf",
+      "model": "gpt2",
+      "infix": false,
+      "dmax": 6,
+      "maxv": 9,
+      "n_exprs": 240,
+      "summary": {
+        "1": {
+          "acc": 0.275,
+          "n": 40,
+          "resolve_layer": null
+        },
+        "2": {
+          "acc": 0.225,
+          "n": 40,
+          "resolve_layer": null
+        },
+        "3": {
+          "acc": 0.45,
+          "n": 40,
+          "resolve_layer": null
+        },
+        "4": {
+          "acc": 0.3,
+          "n": 40,
+          "resolve_layer": null
+        },
+        "5": {
+          "acc": 0.325,
+          "n": 40,
+          "resolve_layer": null
+        },
+        "6": {
+          "acc": 0.25,
+          "n": 40,
+          "resolve_layer": null
+        },
+        "eval_depth_limit": 0
+      }
+    }
+  ]
+}
