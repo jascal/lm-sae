@@ -123,6 +123,23 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   (the sae-forge feature-native direction). Scope: this compresses the per-layer *update*, not full internal FLOPs;
   gpt2-large needs more rank/steps (rank-8→76%, rank-64→88% in 250 steps) — the lossless rank grows modestly with
   size/budget but stays ≪ the frozen floor.
+- **But "rank-8 is lossless" is metric-specific — behaviourally the forge tax is HIGH-rank** (`compose_core.py`).
+  The rank-8 result above is *true-token NLL* (a retrieval-dominated loss — what `core_distill` optimised). Extracting
+  the bonds and measuring *behavioural reproduction of the model* (KL to the model's own logits + top-1 agreement,
+  on held-out tokens tagged retrieval-vs-composition by the actual **pylm** flat predictor) tells a sharper story.
+  Under no-retrain PCA truncation, top-1 agreement with the model rises with rank for **retrieval** tokens (27%→64%
+  over rank 2→64) but barely moves for **composition** (forge-tax) tokens (5%→20%, plateauing ~15-20% even at rank-64
+  = 8% of d). A *random* rank-r channel scores **0% at every rank** — the update occupies a specific subspace, not any.
+  KL-distilling the rank-8 bonds **to the model** (the correct extraction objective, not true-token CE — which had
+  *raised* KL) halves the divergence (KL retr 2.33→1.37, comp 3.05→1.89) yet still reproduces the model's argmax on
+  only **55% / 17%** of retrieval / composition tokens. A confound check (composition top-1 confidence 0.25 vs
+  retrieval 0.43) is real but too small to explain the ~3× retention gap. **So the "computed not retrieved" forge tax
+  is precisely the HIGH-rank component of the inter-layer update**: a rank-8 channel captures the stereotyped
+  retrieval-like writes, not the composition. The extracted artifact (`pylm/compose_core_gpt2.npz`, 0.55 MB, 147 K
+  params — the first time the rank-r bonds are serialised) is a *real* object, but it is the channel's low-rank bulk,
+  not a sufficient composition program. This refines "the core is a tiny rank-r object" the way the recoverability
+  sweep refined "compression is variance-greedy" — the optimistic form holds for one metric and breaks under the
+  stricter one.
 - **Made runnable (pylm).** A flat-file **grammar** idiom decompiles the scaffold ([pylm track](PYLM_TRACK.md)), but
   adds ~nothing to the *token*-level decompilable fraction (49.0→49.5%) — grammar is categorial; the n-gram modes
   already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled

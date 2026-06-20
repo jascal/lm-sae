@@ -1,0 +1,105 @@
+{
+  "experiment": "extract the rank-r composition core; is it the forge tax?",
+  "results": [
+    {
+      "model": "gpt2",
+      "n_layers": 12,
+      "d_model": 768,
+      "extract_rank": 8,
+      "eval_positions": {
+        "retrieval": 623,
+        "composition": 889,
+        "decompilable_frac": 0.41203703703703703,
+        "conf_retr": 0.43104594704331783,
+        "conf_comp": 0.25408780298963674
+      },
+      "no_retrain_by_rank": [
+        {
+          "rank": 2,
+          "kl_retr": 3.522888157498779,
+          "kl_comp": 4.284723255443895,
+          "top1_retr_pca": 0.2664526484751204,
+          "top1_retr_rand": 0.0,
+          "gap_retr": 0.2664526484751204,
+          "top1_comp_pca": 0.05174353205849269,
+          "top1_comp_rand": 0.0,
+          "gap_comp": 0.05174353205849269
+        },
+        {
+          "rank": 4,
+          "kl_retr": 3.191897955291081,
+          "kl_comp": 3.5774176777115234,
+          "top1_retr_pca": 0.4157303370786517,
+          "top1_retr_rand": 0.0,
+          "gap_retr": 0.4157303370786517,
+          "top1_comp_pca": 0.1203599550056243,
+          "top1_comp_rand": 0.0,
+          "gap_comp": 0.1203599550056243
+        },
+        {
+          "rank": 8,
+          "kl_retr": 2.3322432732458696,
+          "kl_comp": 3.0507596180835588,
+          "top1_retr_pca": 0.42215088282504015,
+          "top1_retr_rand": 0.0,
+          "gap_retr": 0.42215088282504015,
+          "top1_comp_pca": 0.14510686164229472,
+          "top1_comp_rand": 0.0,
+          "gap_comp": 0.14510686164229472
+        },
+        {
+          "rank": 16,
+          "kl_retr": 2.009493560704892,
+          "kl_comp": 2.7593942593810032,
+          "top1_retr_pca": 0.4959871589085072,
+          "top1_retr_rand": 0.0,
+          "gap_retr": 0.4959871589085072,
+          "top1_comp_pca": 0.1608548931383577,
+          "top1_comp_rand": 0.0,
+          "gap_comp": 0.1608548931383577
+        },
+        {
+          "rank": 32,
+          "kl_retr": 1.6878985781480451,
+          "kl_comp": 2.387900482127743,
+          "top1_retr_pca": 0.5810593900481541,
+          "top1_retr_rand": 0.0,
+          "gap_retr": 0.5810593900481541,
+          "top1_comp_pca": 0.15748031496062992,
+          "top1_comp_rand": 0.0,
+          "gap_comp": 0.15748031496062992
+        },
+        {
+          "rank": 64,
+          "kl_retr": 1.2431643454833552,
+          "kl_comp": 1.8510423920925871,
+          "top1_retr_pca": 0.6436597110754414,
+          "top1_retr_rand": 0.0,
+          "gap_retr": 0.6436597110754414,
+          "top1_comp_pca": 0.20022497187851518,
+          "top1_comp_rand": 0.0,
+          "gap_comp": 0.20022497187851518
+        }
+      ],
+      "trained_rank": {
+        "rank": 8,
+        "objective": "KL-to-model",
+        "kl_retr_pre": 2.3322432732458696,
+        "kl_comp_pre": 3.0507596180835588,
+        "top1_retr_pre": 0.42215088282504015,
+        "top1_comp_pre": 0.14510686164229472,
+        "kl_retr_trained": 1.367130339545546,
+        "kl_comp_trained": 1.8885146670438415,
+        "top1_retr_trained": 0.5473515248796148,
+        "top1_comp_trained": 0.16985376827896512
+      },
+      "artifact": {
+        "file": "compose_core_gpt2.npz",
+        "params": 147456,
+        "mb": 0.554007,
+        "flat_store_mb": 1.540816,
+        "full_model_params_m": 124.439808
+      }
+    }
+  ]
+}
