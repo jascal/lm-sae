@@ -145,6 +145,25 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled
   composition, the forge tax restated. So the flat-file basis {induction, grammar, n-gram, knowledge} is *sufficient
   for half*, and the complement is the core.
+- **Anatomy of the forge tax: it is COMPUTATION (not fuzzy retrieval), and mostly SYNTAX** (`forge_tax_anatomy.py`).
+  `context_ceiling.py` sized the composition residual (what unbounded exact ∞-gram can't reproduce); this asks *what it
+  is*. Every held-out position is assigned to the first rung of a retrieval ladder that reproduces the model's top-1:
+  **flat** (pylm bounded store) → **exact-copy** (unbounded ∞-gram over the train stream) → **soft-assoc** (nearest
+  neighbour by mean-pooled *input*-embedding context — a fair "is it a fuzzy associative lookup?" test, no deep
+  computation) → **computed** (none). Across two models and two corpora (GPT-2 + Pythia-70m; tinyshakespeare + wikitext;
+  1200 positions each): of the forge tax, extended exact-copy cracks only **6-12%**, soft-associative **1-5%**, and
+  **~87-90% is genuinely computed** — robust to model *and* corpus. **The core is not a soft database**: surface
+  retrieval, exact or fuzzy, barely dents it. The computed residual carries a **large syntactic share** —
+  function-word + punctuation is **62-75%** (GPT-2/Shakespeare 47%+28%, Pythia 45%+37%, GPT-2/wikitext 40%+22%) — i.e.
+  much of the "computation" is getting the grammatical *skeleton* right (which function word, which punctuation) under
+  long-range context. But that share is **corpus-shaped**: on prose (wikitext) the *content* fraction nearly doubles
+  (26%→**39%**) as verse's punctuation load drops, so "mostly syntactic" holds on verse, "syntactic-leaning, with
+  substantial content" on prose. Confidence falls monotonically down the ladder (flat 0.45 → computed 0.26), so the
+  computed tokens are the genuinely uncertain positions. This *names* the forge tax — **computation, syntax-heavy**,
+  the quantified upstream of the recursive-syntax result below. Honest scope: the soft retriever is surface-form (input
+  embeddings, ≤40 K-context DB) so "computed" = *not surface-retrievable* (a model-strength retriever would be
+  circular); and these are SMALL models (≤124 M) — whether the split holds at scale is tested separately on **Qwen via
+  fieldrun** (`forge_tax_anatomy_fieldrun.py`).
 - **The *recursive* syntax is in the composition, not the basis** (`recursive_syntax.py`). Subject–verb agreement
   across attractors (*"the key near the cabinets **is**"*) is a hierarchical dependency: the model agrees with the
   **head** ~100% across depth (gpt2 small/large, Llama), resisting the nearest noun, with the logit-diff *degrading*
