@@ -214,6 +214,27 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   evaluator" reading: it's a **hierarchy tracker whose competence scales**, bottlenecked by binding-interference.
   (Recursive *computation* — Lisp arithmetic eval — is a separate, much harder probe; base GPT-2 can't do it at all,
   so it needs Qwen-scale via fieldrun: `lisp_eval_probe.py`.)
+- **Lisp evaluation: the model runs a layer-consuming recursive EVALUATOR (computation, unlike Dyck *structure*)**
+  (`lisp_eval_probe.py`). Evaluating `(+ 1 (* 3 (- 5 1)))` forces bottom-up recursive descent — compute `(- 5 1)=4`,
+  then `(* 3 4)=12`, then `13` — so it tests recursion that carries a *value* stack, not just bracket pointers. Lisp
+  is the cleanest probe: full parenthesization ⇒ surface = parse tree (no precedence shortcuts), prefix ⇒ operator
+  known before operands. Few-shot `(expr) = digit` prompt, single-digit answers (exact read), controlled nesting depth.
+  - **Computation emerges with scale.** Base **GPT-2 (124 M) ≈ chance** — it cannot evaluate even `(+ 1 2)`.
+    **Qwen2.5-1.5B nails depth-1 (100%)** and degrades monotonically: depth 1→6 acc **1.00 / 0.63 / 0.53 / 0.43 /
+    0.37 / 0.27** (reliable to nesting depth ~3). Recursive *evaluation* is a capability that appears between 124 M and
+    1.5 B — where recursive *structure* (Dyck) was already present in tiny models.
+  - **Each recursive level consumes layers** (the mechanism, HF logit-lens). The layer at which the correct answer
+    first becomes the logit-lens argmax rises monotonically with nesting depth: **23.8 → 25.8 → 25.9 → 26.0 → 26.6 →
+    27.1** (of 28), ≈**+0.6 layers per nesting level**. Direct evidence the model evaluates bottom-up, spending depth
+    of *network* per depth of *expression* — and why accuracy collapses as nesting approaches the layer budget.
+  - **Notation-general (Lisp-specificity).** Prefix vs (parenthesized) infix `(a + b)` are nearly identical (depth-6
+    acc 0.27 vs 0.30; same rising resolve-layer) — the recursion is about *nesting structure*, not operator position;
+    Lisp just makes it maximally explicit. (Caveat: parenthesized infix doesn't test precedence-shortcutting — true
+    unparenthesized-precedence infix is the open follow-up.)
+  - **The through-line:** recursive STRUCTURE (Dyck matching) is a hierarchy tracker, binding-interference-limited,
+    present in small models; recursive COMPUTATION (Lisp eval) is a layer-bounded evaluator, depth-degrading and
+    layer-consuming, emergent with scale. Computation needs the value stack that matching doesn't — the forge tax's
+    "computed, syntax-heavy" residual is, in part, exactly this bounded recursive evaluator.
 
 ## Knowledge — where facts live, and moving them
 
