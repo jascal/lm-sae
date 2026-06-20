@@ -198,6 +198,22 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   center-embedding is rare in training and unparseable for humans; bigger models commit harder to the natural local
   parse). Layers aren't the active limit; the decode loop / chain-of-thought is how a model goes deeper (TC⁰ per step,
   Turing-complete across steps).
+- **Dyck bracket-matching: the bottleneck is binding-interference, not stack depth — and scale buys *hierarchy*
+  preferentially** (`recursion_depth_probe.py`). A controlled probe of recursive *structure*: predicting a closing
+  bracket's TYPE requires tracking the open-bracket stack. Single-forced-close design (each prompt ends where exactly
+  one closer is forced, avoiding the "closing-momentum" confound of full ramps), with two families at *matched
+  distance* — **DEEP** `( [ { } ] →` (deep nesting) vs **FLAT** `( [] {} () →` (flat distractor pairs). Across scale
+  (HF: pythia-70m/gpt2/pythia-410m/gpt2-large; **Qwen2.5-0.5B via fieldrun**): (1) the deepest reliably-matched nesting
+  **grows with model size** (6L pythia-70m → depth 0; 12L gpt2 → 7; 24–36L → the dmax-9 ceiling) — the *opposite* of
+  the center-embedding result above, and consistent with it: Dyck/code nesting is *in-distribution* so scale helps,
+  natural center-embedding is not so scale hurts → both say the limit is **distributional, not a hard layer bound**.
+  (2) **DEEP is consistently EASIER than FLAT at matched distance, and the gap GROWS with capability** (deep−flat acc:
+  pythia-70m +0.06 → gpt2 +0.20 → pythia-410m +0.24 → gpt2-large +0.45 → **Qwen-0.5B +0.54**). So the failure is not
+  stack-depth overflow — the model is *good* at clean hierarchy and gets disproportionately better at it with scale;
+  what it struggles with is long-range binding across same-level distractors. This refines the "bounded recursive
+  evaluator" reading: it's a **hierarchy tracker whose competence scales**, bottlenecked by binding-interference.
+  (Recursive *computation* — Lisp arithmetic eval — is a separate, much harder probe; base GPT-2 can't do it at all,
+  so it needs Qwen-scale via fieldrun: `lisp_eval_probe.py`.)
 
 ## Knowledge — where facts live, and moving them
 
