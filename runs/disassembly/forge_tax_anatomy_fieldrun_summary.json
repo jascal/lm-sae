@@ -1,0 +1,93 @@
+{
+  "experiment": "forge-tax anatomy at scale (fieldrun backend)",
+  "results": [
+    {
+      "model": "Qwen2.5-1.5B",
+      "backend": "fieldrun",
+      "bundle": "Qwen2.5-1.5B",
+      "corpus": "wikitext",
+      "n_eval": 1000,
+      "fieldrun_top1_acc": 0.446,
+      "forge_tax_frac": 0.642,
+      "buckets": {
+        "flat": {
+          "n": 358,
+          "frac_of_all": 0.358,
+          "frac_of_forge": 0.557632398753894,
+          "function": 0.5614525139664804,
+          "content": 0.19553072625698323,
+          "punct": 0.2430167597765363
+        },
+        "exact_copy": {
+          "n": 53,
+          "frac_of_all": 0.053,
+          "frac_of_forge": 0.08255451713395638,
+          "function": 0.5094339622641509,
+          "content": 0.22641509433962265,
+          "punct": 0.2641509433962264
+        },
+        "soft_assoc": {
+          "n": 10,
+          "frac_of_all": 0.01,
+          "frac_of_forge": 0.01557632398753894,
+          "function": 0.3,
+          "content": 0.1,
+          "punct": 0.6
+        },
+        "computed": {
+          "n": 579,
+          "frac_of_all": 0.579,
+          "frac_of_forge": 0.9018691588785047,
+          "function": 0.40932642487046633,
+          "content": 0.4006908462867012,
+          "punct": 0.18998272884283246
+        }
+      },
+      "exact_copy_mean_suffix": 3.490566037735849
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "backend": "fieldrun",
+      "bundle": "qwen05b",
+      "corpus": "wikitext",
+      "n_eval": 1000,
+      "fieldrun_top1_acc": 0.439,
+      "forge_tax_frac": 0.622,
+      "buckets": {
+        "flat": {
+          "n": 378,
+          "frac_of_all": 0.378,
+          "frac_of_forge": 0.6077170418006431,
+          "function": 0.5582010582010583,
+          "content": 0.19576719576719576,
+          "punct": 0.24603174603174602
+        },
+        "exact_copy": {
+          "n": 51,
+          "frac_of_all": 0.051,
+          "frac_of_forge": 0.0819935691318328,
+          "function": 0.5294117647058824,
+          "content": 0.23529411764705882,
+          "punct": 0.23529411764705882
+        },
+        "soft_assoc": {
+          "n": 15,
+          "frac_of_all": 0.015,
+          "frac_of_forge": 0.024115755627009645,
+          "function": 0.5333333333333333,
+          "content": 0.13333333333333333,
+          "punct": 0.3333333333333333
+        },
+        "computed": {
+          "n": 556,
+          "frac_of_all": 0.556,
+          "frac_of_forge": 0.8938906752411575,
+          "function": 0.3830935251798561,
+          "content": 0.3902877697841727,
+          "punct": 0.22661870503597123
+        }
+      },
+      "exact_copy_mean_suffix": 3.196078431372549
+    }
+  ]
+}

@@ -162,8 +162,21 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   computed tokens are the genuinely uncertain positions. This *names* the forge tax — **computation, syntax-heavy**,
   the quantified upstream of the recursive-syntax result below. Honest scope: the soft retriever is surface-form (input
   embeddings, ≤40 K-context DB) so "computed" = *not surface-retrievable* (a model-strength retriever would be
-  circular); and these are SMALL models (≤124 M) — whether the split holds at scale is tested separately on **Qwen via
-  fieldrun** (`forge_tax_anatomy_fieldrun.py`).
+  circular). **Not small-model-shaped** (`forge_tax_anatomy_fieldrun.py`): running the identical ladder against
+  **Qwen2.5 served by the fieldrun runtime** (per-position top-1 from `fieldrun --dump`, validated **98%
+  top-1-agreement with HF transformers**, embeddings mmap'd from the bundle) on the *in-distribution* corpus
+  (wikitext; Shakespeare is OOD for Qwen → an inflated, meaningless tax), across three scale points:
+
+  | model (wikitext) | params | forge tax | computed | content / function / punct |
+  |---|---|---|---|---|
+  | GPT-2 | 124 M | 84% | 87% | 39 / 40 / 22 |
+  | Qwen2.5-0.5B | 500 M | 62% | 89% | 39 / 38 / 23 |
+  | Qwen2.5-1.5B | 1.5 B | 64% | 90% | 40 / 41 / 19 |
+
+  The forge tax's *size* **falls then plateaus** with capability (84→62→64% — a better model n-gram-reproduces more
+  of its own output) but its **makeup is scale-invariant**: computed **87→89→90%**, content/function/punct **≈40/40/20**
+  — flat across 12× params and two architectures. So "the forge tax is computation (not fuzzy retrieval), syntax-leaning
+  with substantial content" is a property of the trained transformer, not an artifact of small capacity.
 - **The *recursive* syntax is in the composition, not the basis** (`recursive_syntax.py`). Subject–verb agreement
   across attractors (*"the key near the cabinets **is**"*) is a hierarchical dependency: the model agrees with the
   **head** ~100% across depth (gpt2 small/large, Llama), resisting the nearest noun, with the logit-diff *degrading*
