@@ -8,6 +8,10 @@
 (be new (in (day every)) (SUBJ it))                                          # and it is new every day.
 (ask (OBJ it) (SUBJ (child every)))                                          # Every child asks it.
 (ask (OBJ it) too (SUBJ (agent every)))                                      # Every agent asks it too.
+(say (OBJ (thought (of people many))) (in talem) (SUBJ (book this)))        # This book says the thoughts of many people in Talema.
+(be (word our) (SUBJ (word the)))                                            # The words are our words;
+(be (thought their) (SUBJ (thought the)))                                    # the thoughts are theirs.
+(read (OBJ (book own their)) (for (word own their)))                         # For their own words, read their own books.
 
 ## (rule old the)
 (say (OBJ (rule one/NUM)) (SUBJ (tradition many)))                           # Many traditions say one rule.
@@ -104,6 +108,16 @@
 (have (OBJ (case hard)) (SUBJ morality))                                     # Morality has hard cases.
 (think (OBJ (case hard the)) slowly (SUBJ (person wise the)))                # The wise person thinks slowly about the hard cases,
 (be humble (SUBJ she))                                                       # and she is humble.
+@verse
+(hide (in (house your)) (SUBJ (friend your)))                                # Your friend hides in your house.
+(stand (at (door the)) (SUBJ (man (that (want (OBJ (kill (OBJ (friend your)))))))))   # A man who wants to kill your friend stands at the door.
+(ask (OBJ (be where (SUBJ (friend your)))) (SUBJ he))                        # He asks: where is your friend?
+(whether (lie/VERB (SUBJ you)))                                              # Do you lie?
+@prose
+(say (OBJ (lie/VERB never)) (SUBJ "Kant"))                                   # Kant said: never lie.
+(say (OBJ (save (OBJ (friend your)))) (SUBJ (school other the)))             # The other schools say: save your friend.
+(meet here (SUBJ (rule good two)))                                           # Here two good rules meet.
+(open/ADJ (be right (SUBJ (rule which))))                                    # Open: which rule is right?
 
 ## (and responsibility agent)
 (know (OBJ (thing many)) (SUBJ agent))                                       # An agent knows many things.

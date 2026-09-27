@@ -76,7 +76,12 @@
 (say (OBJ zero) (when/SCONJ (end/VERB well (SUBJ it))) (SUBJ (command a)))   # A command says zero when it ends well.
 @verse
 (ask (before (run (OBJ (command (that (destroy)))))))                        # Ask before you run a command that destroys.
-(run (OBJ "rm_-rf_/") never)                                                 # Never run rm -rf /.
+(run (OBJ "rm_-rf_/") never)                                                 # Never run rm -rf /:
+(delete/VERB (OBJ (file every)) (SUBJ it))                                   # it deletes every file.
+(ask (before (delete/VERB (OBJ (thing a)) (SUBJ you))))                      # Ask before you delete a thing,
+(ask (before (pay (SUBJ you))))                                              # before you pay,
+(ask (before (send (OBJ (message a)) (SUBJ you))))                           # before you send a message,
+(ask (before (publish (OBJ (thing a)) (SUBJ you))))                          # before you publish a thing.
 @prose
 
 ## (and cloud service)
