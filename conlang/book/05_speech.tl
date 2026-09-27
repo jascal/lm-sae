@@ -21,7 +21,7 @@
 @prose
 
 (be (mark second the) (SUBJ (word "ser")))                                     # The second mark is the word "see".
-(say (OBJ (and (measure (OBJ it) (SUBJ we)) (see (OBJ it) (SUBJ we)))) (SUBJ it))   # It says: we measured it, we saw it.
+(say (OBJ (and (measure/VERB (OBJ it) (SUBJ we)) (see (OBJ it) (SUBJ we)))) (SUBJ it))   # It says: we measured it, we saw it.
 (can (OBJ (show (OBJ (thing other a)))) (SUBJ (test other/DET)))            # Another test can show another thing.
 @verse
 (see (pass (OBJ (test 3000 (of 3000))) (SUBJ (code the))))                   # Seen: the code passed 3000 of 3000 tests.
@@ -32,7 +32,7 @@
 (say (OBJ (know (OBJ it) will ever (SUBJ nobody))) not (SUBJ it))           # It does not say: nobody will ever know it.
 (say (OBJ (be question (SUBJ it))) (SUBJ it))                                # It says: it is a question.
 @verse
-(open/ADJ (whether (dream (SUBJ (mind the)))))                               # Open: do the minds dream?
+(open/ADJ (whether (dream/VERB (SUBJ (mind the)))))                               # Open: do the minds dream?
 @prose
 
 ## (law (of (mark the)))

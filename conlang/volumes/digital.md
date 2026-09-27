@@ -66,7 +66,7 @@ runi te rm_-rf_/-a nera .
 
 ## si konuda sesa
 
-neveri te rekesa pe sesa . sadi te rekese ka pe kelete la . sadi te repose ka pe serere la . bi time tene si rekese la repose la pe latesa . bi time kase bore pe sese la pe dibida . maki te repike vana hene bi biga pe ladena . vaki te sese keda pe monira . seki hene seri te kigi faga ka pe pesa pe leruta .
+neveri te rekesa pe sesa . sadi te rekese ka pe kelete la . sadi te repose ka pe serere la . bi time tene si rekese la repose la pe latesa . bi time kase voke pe sese la pe dibida . maki te repike vana hene bi biga pe ladena . vaki te sese keda pe monira . seki hene seri te kigi faga ka pe pesa pe leruta .
 
 ## si kulava sereta
 
@@ -104,7 +104,7 @@ Lut-a .
 sere govi sine lemita pe kulake la .  
 mako te kopite ka mite lemite fore kulake la pe ma .  
 Mira-a .  
-revevo te pesa vira pe ma .  
+revivo te pesa vira pe ma .  
 sere page pe tebe keda .  
 neseno te pesa nova pe ma .  
 Lut-a .  

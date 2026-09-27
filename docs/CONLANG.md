@@ -293,7 +293,7 @@ fields are added:
 - **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
   first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens), `mathematics.md`
   (~3k), `logic.md` (~3k), `physics.md` (~2.5k) and
-  `philosophy.md` (~2k).
+  `philosophy.md` (~2k) and `morality.md` (~2k).
 
 Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
 lints, builds and checks every book in one command.
@@ -348,7 +348,19 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   justified true belief (marked open), Zhuangzi's butterfly, determinism and free will, Wittgenstein's limits of
   language. The open questions carry `pefe`, including one addressed to its readers: *does a mind of numbers
   feel?* Direct yes/no questions are headed by `whether`, as in the core. 8 concepts coined.
-- **Planned next fields:** morality.
+- **Field 6, morality** (*morat*). The rule many traditions share (Confucius's negative form, then the positive);
+  three schools, each seeing part of the good: virtue (Aristotle's courage between fear and rashness, grown by
+  practice), duty (Kant's universal rule; every person a purpose, never only a tool) and consequences (the most
+  happiness for all; Bentham's *can they suffer?*). Then promise, trust, the lie that takes a choice away, and
+  forgiveness; the ring of Gyges (*who are you when nobody sees you?*); Rawls's choice of rules before knowing
+  your place; compassion, cruelty and mercy; the trolley as a hard case marked `pefe`; and the claim marks as
+  an agent's honesty: `bove` only when proved, `sere` only when seen, `pefe` when not known. Three concepts were
+  left out rather than given misleading roots: *vice* (`viset` is a vice-president), *invisible* (`visil` reads
+  as visible), *humility* (the adjective `humil`, humble, is used). 11 coined.
+- **Sense check.** `books.py` now warns when a role particle hangs under a noun head. It found eight verbs in the
+  core and digital books that had resolved to their noun roots (*dream*, *point*, *return*, *measure*, *review*,
+  *work*) and misplaced brackets in the logic and physics volumes; all fixed.
+- **Planned next fields:** open (candidates: biology, economics, music, law).
 
 **Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
 *v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,

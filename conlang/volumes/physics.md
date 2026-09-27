@@ -57,7 +57,7 @@ falo mite sidede sima ne vakusa pe si satone hesava felere liha . sovo te pesa n
 
 ## neba
 
-be kigi kase kene te dare te bora pe neba . sere mako te neba nera pe vora . sere desiro te pesa nera pe vora . kago te fome susa nura pe pesa . bi name de pesa pe korane de neba .
+bi kige kase kene te dare te bora pe neba . sere mako te neba nera pe vora . sere desiro te pesa nera pe vora . kago te fome susa nura pe pesa . bi name de pesa pe korane de neba .
 
 ```
 bi

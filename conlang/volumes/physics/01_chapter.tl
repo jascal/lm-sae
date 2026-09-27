@@ -65,7 +65,7 @@
 (be orbit (SUBJ this))                                                       # This is an orbit.
 
 ## energy
-(be (thing (that (can (OBJ (do (OBJ work/NOUN))))) (SUBJ energy)))            # Energy is the thing that can do work.
+(be (thing (that (can (OBJ (do (OBJ work/NOUN)))))) (SUBJ energy))            # Energy is the thing that can do work.
 (see (make/VERB (OBJ energy) never (SUBJ we)))                               # Seen: we never make energy,
 (see (destroy (OBJ it) never (SUBJ we)))                                     # and we never destroy it.
 (change/VERB (OBJ (form/NOUN its)) only (SUBJ it))                           # It only changes its form.

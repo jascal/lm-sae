@@ -84,7 +84,7 @@
 (send (OBJ (request a)) (SUBJ (client the)))                                 # The client sends a request.
 (send (OBJ (response a)) (SUBJ (server the)))                                # The server sends a response.
 (be (time (between (and (request the) (response the)))) (SUBJ latency))     # Latency is the time between the request and the response.
-(be (time (that (work (SUBJ (service the))))) (SUBJ uptime))                 # Uptime is the time that the service works.
+(be (time (that (work/VERB (SUBJ (service the))))) (SUBJ uptime))                 # Uptime is the time that the service works.
 (make/VERB (OBJ (replica many)) (when/SCONJ (be big (SUBJ load))))           # When the load is big, make many replicas.
 (watch (OBJ (service every)) (SUBJ monitor))                                 # A monitor watches every service.
 (speak (when/SCONJ (see (OBJ (thing wrong a)) (SUBJ it))) (SUBJ alert))      # An alert speaks when it sees a wrong thing.
@@ -139,7 +139,7 @@
 (see (grow (without limit/NOUN) (SUBJ (cache the))))                              # Seen: the cache grows without a limit.
 (make/VERB (OBJ (commit/NOUN a)) (with (limit/NOUN (for (cache the)))) (SUBJ I))       # I make a commit/NOUN with a limit/NOUN for the cache.
 ("Mira")
-(review (OBJ it) will (SUBJ I))                                              # I will review it.
+(review/VERB (OBJ it) will (SUBJ I))                                              # I will review it.
 (see (pass (SUBJ (test every))))                                             # Seen: every test passes.
 (deploy (OBJ it) now (SUBJ I))                                               # I deploy it now.
 ("Lut")

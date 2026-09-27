@@ -62,7 +62,7 @@
 @verse
 (prove (be four (SUBJ (and two two))))                                       # Proved: two and two are four. We have a proof.
 (see (pass (SUBJ (test the))))                                               # Seen: the test passes. We saw it.
-(open/ADJ (whether (dream (SUBJ (mind the)))))                               # Open: do the minds dream? We do not know it yet.
+(open/ADJ (whether (dream/VERB (SUBJ (mind the)))))                               # Open: do the minds dream? We do not know it yet.
 @prose
 (give (OBJ (mark high (more (than (truth its))))) (DAT (assertion a)) never)   # Never give an assertion a mark higher than its truth.
 
