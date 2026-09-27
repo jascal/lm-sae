@@ -47,6 +47,17 @@ rul-u nomuna rule-a Regel-a regla-a .
 p-u patika subject-a Subjekt-a sujeto-a .  
 t-u patika object-a Objekt-a objeto-a .
 
+## fino te lore ka ne buki de rarisa la hova
+
+mofi te vokele nake sonati lata la ruse lore la . bi rarise la pe kige kase keba . fini te pesa ne buki de rarisa la .
+
+bi mog-a pe rarise de moge-a .  
+bi kin-a pe rarise de kina-a .  
+bi has-a pe rarise de hase-a .  
+bi m-a pe rarise de ma-a .
+
+mofi te si ginona dinale susa ruse lore mite ginona .
+
 kepi te leti pina tira pe so nama mera lore de tonage tera . komi nake tara pe bini mela ka . komi dana pe dinale tira .
 
 Ana-a .  
@@ -68,7 +79,12 @@ bi tova pe vokele i-a .
 bi tura pe vokele o-a .  
 bi fura pe vokele u-a .
 
-saheni te kide de lore la pe dinale la . haneni ruse lore la pe kide la .
+saheni te kide de lore la pe dinale la . haneni ruse lore la pe kide la . telo te su tima mera pena kite de lora nera pe dinale la . saheno te kide la nura pe pesa .
+
+mate pe doge la .  
+mati te bapana pe doge la .
+
+bi sima pe si lore mate-a lore mati-a . saheno te kide masa nura pe lore mati-a .
 
 Ana-a .  
 lafe pe Ana-a .  
