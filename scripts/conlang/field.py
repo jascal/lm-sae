@@ -1,4 +1,7 @@
-"""Field chapters: the specialised vocabularies of the founding book (digital world, then mathematics, logic …).
+"""Field chapters: the specialised vocabularies of the founding text (digital world, mathematics, then logic …).
+
+Each field is a companion volume, conlang/volumes/<field>/ (00_title.tl, 01_chapter.tl, 02_words.tl), built by
+scripts/conlang/books.py into conlang/volumes/<field>.md.
 
 A field is a concept list, conlang/fields/<field>.tsv (en, de, es, class, group): the concepts in the sense
 the field uses them. This tool
@@ -14,8 +17,8 @@ the field uses them. This tool
 
   .venv/bin/python scripts/conlang/field.py check conlang/fields/digital.tsv
   .venv/bin/python scripts/conlang/field.py coin conlang/fields/digital.tsv
-  .venv/bin/python scripts/conlang/field.py glossary conlang/fields/digital.tsv --out conlang/book/07f1z_digital_words.tl
-  .venv/bin/python scripts/conlang/field.py lint conlang/fields/digital.tsv conlang/book/07f1_digital.tl
+  .venv/bin/python scripts/conlang/field.py glossary conlang/fields/digital.tsv --out conlang/volumes/digital/02_words.tl
+  .venv/bin/python scripts/conlang/field.py lint conlang/fields/digital.tsv conlang/volumes/digital/01_chapter.tl
 """
 from __future__ import annotations
 

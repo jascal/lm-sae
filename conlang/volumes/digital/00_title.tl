@@ -1,0 +1,7 @@
+# Volume title page · The book of the digital world. A companion to Buke de lore fira.
+## (book (of (world digital/ADJ the)))
+
+(be (book (of (world digital/ADJ the))) (SUBJ this))                         # This is the book of the digital world.
+(read (OBJ (book (of (word first/ADJ)) the)) first/ADV)                      # Read the Book of the First Word first:
+(have (OBJ (and (grammar the) (word first/ADJ the))) (SUBJ it))              # it has the grammar and the first words.
+(have (OBJ (word (of (world this)))) (SUBJ (book this)))                     # This book has the words of this world.

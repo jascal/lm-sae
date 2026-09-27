@@ -111,6 +111,16 @@
 (stay (in (tongue one/NUM)) (SUBJ (dialect every)))                          # Every dialect stays in one tongue.
 (understand (OBJ (and (dialect every) (talem the))) (SUBJ (reader every)))   # Every reader understands every dialect and Talema.
 
+## (book other)
+(have (OBJ (book more)) (SUBJ talem))                                        # Talema has more books.
+(have (OBJ (book own its)) (SUBJ (world every)))                             # Every world has its own book:
+@verse
+(book (of (world digital/ADJ the)))                                          # the book of the digital world,
+(book (of mathematics))                                                      # the book of mathematics.
+@prose
+(read (OBJ (book this)) first/ADV)                                           # Read this book first.
+(write (OBJ (book new (for (world new)))) can (SUBJ you))                    # You can write a new book for a new world.
+
 ## (play/NOUN many)
 (play (with talem))                                                          # Play with Talema.
 @verse

@@ -204,7 +204,7 @@ word-by-word gloss in the order Talema speaks it.
 
 [`conlang/BUKE_DE_LORE_FIRA.md`](../conlang/BUKE_DE_LORE_FIRA.md) ("Book of the First Word") is the founding text,
 written entirely in Talema. It is a primer, a literature, a guide to growing the language, and a dictionary in one
-file of about 96k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
+core of about 88k tokens (plus field volumes) (Qwen and Llama tokenizers), small enough for any frontier model's context.
 
 | chapter | what it is |
 |---|---|
@@ -285,6 +285,18 @@ the waiting letters. The rules stay minimal; the book gives the conventions thei
 86 junk rows. New words go through
 `conlang/book/coin.tsv`.
 
+**Core book and field volumes.** The founding text is split so the core stays within a frontier context window as
+fields are added:
+- **`conlang/BUKE_DE_LORE_FIRA.md`**, the core (~88k tokens): grammar, first words, conventions, tales, agent speech,
+  growth, songs, the book of roots and the last page. Its growth chapter lists the volumes and tells the reader to
+  read the core first.
+- **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
+  first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens) and `mathematics.md`
+  (~3k).
+
+Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
+lints, builds and checks every book in one command.
+
 **Field chapters.** The book now has specialised vocabularies, one chapter per field. The first is *vuli digala
 la* (the digital world). It covers computing and code; the shell and CLI; Unix time and timestamps; services and
 cloud; keys and secrets; models, training, tokens, context, attention and interpretability. It ends with an incident
@@ -336,6 +348,8 @@ one tree. `author.py find` looks concepts up; `author.py coin` applies the root 
 `scripts/conlang/roots_book.py` generates the book of roots from the lexicon.
 
 ```bash
+.venv/bin/python scripts/conlang/books.py --tokens Qwen/Qwen2.5-0.5B     # every book: regenerate, lint, build, check
+# or step by step:
 .venv/bin/python scripts/conlang/roots_book.py --out conlang/book/08_roots.tl
 .venv/bin/python scripts/conlang/roots_book.py --first --out conlang/book/02b_first_words.tl
 .venv/bin/python scripts/conlang/author.py build conlang/book/0*.tl --out conlang/BUKE_DE_LORE_FIRA.md --tokens Qwen/Qwen2.5-0.5B
