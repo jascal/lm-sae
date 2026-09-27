@@ -338,6 +338,7 @@ sarin-u nomuna saying-a Spruch-a refrán-a
 silab-u nomuna syllable-a Silbe-a sílaba-a
 sivan-u nomuna swan-a Schwan-a cisne-a
 sonat-u nomuna consonant-a Konsonant-a consonante-a
+feler-u nomuna feather-a Feder-a pluma-a
 verab-u nomuna verb-a Verb-a verbo-a
 vokel-u nomuna vowel-a Vokal-a vocal-a
 ## desi te masa hova
@@ -879,7 +880,8 @@ vi te buke masa pe talema . vi te buki pina susa pe vule keda .
 
 buke de vuli digala la .  
 buke de mamaka .  
-buke de gogika .
+buke de gogika .  
+buke de fisisa .
 
 ledi te buke tisa fisa . ribo te buki neva fore vule neva kena pe tada .
 
@@ -1000,7 +1002,7 @@ bi kide susa pe si kite la lori mura la . saheni te tara pe dinale susa . tehi n
 
 sou p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a a-a e-a i-a o-a u-a .
 
-bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5936-a pe buke tisa .
+bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5937-a pe buke tisa .
 
 ## p-a
 
@@ -6153,6 +6155,7 @@ fenol-u detiva friendly-a freundlich-a amistoso-a
 fel-u veraba feel-a fühlen-a sentir-a
 felas-u nomuna flash-a blitz-a flash-a
 felen-u veraba fly-a fliegen-a volar-a
+feler-u nomuna feather-a Feder-a pluma-a
 felip-o veraba flip-a umdrehen-a
 felik-o detiva peaceful-a friedlich-a
 felig-u nomuna flight-a flug-a vuelo-a

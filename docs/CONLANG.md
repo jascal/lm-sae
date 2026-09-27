@@ -292,7 +292,7 @@ fields are added:
   read the core first.
 - **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
   first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens), `mathematics.md`
-  (~3k) and `logic.md` (~2.5k).
+  (~3k), `logic.md` (~3k) and `physics.md` (~2.5k).
 
 Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
 lints, builds and checks every book in one command.
@@ -333,7 +333,15 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   coined, because its root would have read as "complete", so it is said as a phrase.
   Writing it exposed a silent bug: `author.py` let a tree with one `)` too many swallow the lines after it, and
   one such tree had cut the last sentences of the knight tale from the core. `author.py` now refuses unbalanced trees.
-- **Planned next fields:** physics, philosophy, morality.
+- **Field 4, physics** (*fisis*). Laws of physics carry the mark `sere`, never `bove`: one experiment can end a
+  theory, many never prove one. Units are always said (`metar`, `loram`, the second). Formulas are trees as in
+  mathematics (F = m a, ½ m v², E = m c²). The chapter covers matter (atom, nucleus, charge; water as solid, liquid,
+  gas), Newton's three laws, Galileo's falling stone and feather, the orbit as endless falling, conservation of
+  energy, heat flow and entropy, light as wave and photon (Maxwell), relativity (the speed of light, spacetime and
+  its curve as gravity), and the quantum (superposition, Heisenberg, entanglement with no message). It ends on three
+  `pefe` questions: quantum gravity, dark matter, why the universe began. Quantum *state* uses `did` (Zustand), not
+  `tat` (the political state). 24 concepts coined; `feler` (feather) coined for the core.
+- **Planned next fields:** philosophy, morality.
 
 **Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
 *v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,

@@ -156,5 +156,6 @@
 @raw silab-u nomuna syllable-a Silbe-a sílaba-a
 @raw sivan-u nomuna swan-a Schwan-a cisne-a
 @raw sonat-u nomuna consonant-a Konsonant-a consonante-a
+@raw feler-u nomuna feather-a Feder-a pluma-a
 @raw verab-u nomuna verb-a Verb-a verbo-a
 @raw vokel-u nomuna vowel-a Vokal-a vocal-a

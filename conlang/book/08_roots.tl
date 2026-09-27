@@ -22,7 +22,7 @@
 @prose
 (be (and old often) (SUBJ (root short the)))                                 # The short roots are old and often said.
 (be (and young rare) (SUBJ (root long the)))                                 # The long roots are young or rare.
-(have (OBJ (root 5936)) (SUBJ (book this)))                                 # This book has 5936 roots.
+(have (OBJ (root 5937)) (SUBJ (book this)))                                 # This book has 5937 roots.
 
 
 ## ("p")
@@ -5187,6 +5187,7 @@
 @raw fel-u veraba feel-a fühlen-a sentir-a
 @raw felas-u nomuna flash-a blitz-a flash-a
 @raw felen-u veraba fly-a fliegen-a volar-a
+@raw feler-u nomuna feather-a Feder-a pluma-a
 @raw felip-o veraba flip-a umdrehen-a
 @raw felik-o detiva peaceful-a friedlich-a
 @raw felig-u nomuna flight-a flug-a vuelo-a
