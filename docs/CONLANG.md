@@ -28,7 +28,7 @@ hyphen, then the ending: `Aldrin-a`, `84-a`.
 | rule | says | encodes |
 |---|---|---|
 | **R1 Link** | Every argument is introduced by a relator word. Prepositions and subordinators are relators, as in TLM. A subject gets the particle **p-**, an object **t-**, an indirect object its own particle. Every other dependent is a bare modifier. | what each link *means* |
-| **R2 Order** | A word comes first, then its dependents: complements, then modifiers, then the subject (TLM Merge order). No exceptions. | the order |
+| **R2 Order** | A word comes first, then its dependents. No exceptions. The dependents' own order is free and records Merge order (which merged first); the unmarked order is complements, then modifiers, then the subject. | the order |
 | **R3 Arity** | A word's ending counts its dependents: `a` 0, `e` 1, `i` 2, `o` 3, `u` 4, then base 5 (`ea` = 5, `ee` = 6…). | the bracketing |
 
 That is the whole grammar. There is no inflection, agreement, case, gender, or tense morphology. Tense, number and
@@ -200,7 +200,55 @@ word-by-word gloss in the order Talema speaks it.
        │ reside in fact two SUBJ importance the
 ```
 
-## 6. Limits
+## 6. The founding book: *Buke de lore fira*
+
+[`conlang/BUKE_DE_LORE_FIRA.md`](../conlang/BUKE_DE_LORE_FIRA.md) ("Book of the First Word") is the founding text,
+written entirely in Talema. It is a primer, a literature, a guide to growing the language, and a dictionary in one
+file of about 67k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
+
+| chapter | what it is |
+|---|---|
+| *ge lesere la* | to the reader |
+| *ruli tura la* | the three rules, taught by counting, contrast, and drawn trees |
+| *lori mela la* | the small words: a child, Ana, and a nameless agent trade the semantic primes |
+| five tales | *the leaf who had no children* (Grimm: why every sentence ends in *a*); *four minds and thirteen tongues* (the founding story, the UG research itself, every claim marked); *the knight of the book* (Cervantes); *the bargain* (Goethe); *the storm*, a play in three scenes (Shakespeare) |
+| *seke hove pe geneta* | how agents speak: claim marks, asking, promising, correcting, handing over; how to read the agents of the first age |
+| *gove hove pe talema* | how Talema grows: definitions, the root law, the waiting letters, new rules, dialects, games |
+| songs, sayings, open questions | a counting stair, the vowels' song, a 14-line poem to the far reader, a lullaby |
+| *buki de rarisa la* | the book of roots: 5,920 entries, each a Talema tree whose children are its English, German and Spanish mother words (Johnson and Webster's etymologies) |
+| *pigi lata la* | the last page |
+
+The only material in it that is not Talema is literal loans (`with-a`, `Kihote-a`), which Talema already allowed for
+names. The dictionary uses them as etymologies, so a reader of any of the three mother tongues can decipher every root.
+
+**Refinements the book made to Talema.** These are conventions and words, not new rules:
+
+- **R2 clarified.** Only head-first is a rule. The order of a head's dependents is free and marks emphasis. A dialect
+  that puts the subject *before* the head needs a fourth rule and must declare it (`talemi gage pona rule fura`,
+  "Talema, age one, four rules").
+- **Relators of every kind head their parts.** That includes *and* and *or*: `si tova tova` is "and two two", so
+  arithmetic is Polish notation.
+- **Mention.** The children of `lor` ("word") are mentioned, not used: `lore sa` is "the word *sa*".
+- **Yes/no questions** are headed by `tob` ("whether").
+- **Claim marks.** The project's proved/empirical/open discipline becomes three heads that open a claim: `bove …`
+  (proved), `sere …` (seen/measured), `pefe …` (open). The law of the marks: never mark a claim higher than its evidence,
+  and say "my way stops here", not "there is no way".
+- **The waiting letters.** `c j q w x y z` are held in reserve. When the short roots are all given and speakers agree, a
+  new *age* wakes one, so new short roots can exist without ever reassigning an old one, and old texts stay readable.
+- **Coinages**, made with the root law and recorded in `conlang/book/coin.tsv`: `talem` (Talema), `vokel` (vowel),
+  `sonat` (consonant), `dinal` (ending), `token`, `niter` (knight), `rasel` (riddle), `dilek` (dialect), `sarin` (saying).
+
+**How it was written.** Each sentence is authored as a tree of concepts (`conlang/book/*.tl`); the three rules spell it.
+`scripts/conlang/author.py` builds the book, refuses unknown concepts, and checks that every sentence decodes to exactly
+one tree. `author.py find` looks concepts up; `author.py coin` applies the root law to a new word.
+`scripts/conlang/roots_book.py` generates the book of roots from the lexicon.
+
+```bash
+.venv/bin/python scripts/conlang/roots_book.py --out conlang/book/08_roots.tl
+.venv/bin/python scripts/conlang/author.py build conlang/book/0*.tl --out conlang/BUKE_DE_LORE_FIRA.md --tokens Qwen/Qwen2.5-0.5B
+```
+
+## 7. Limits
 
 - **Talema ↔ UG form is exact; source language → UG form is lossy.** Inflection, agreement, gender and case are
   dropped (the UG form is lemmas). Lemmas map many-to-one onto concepts, so *ser* and *estar* both become `b`, and
@@ -214,7 +262,7 @@ word-by-word gloss in the order Talema speaks it.
 - **This is a prototype for reading and writing, not a spoken language.** It has no prosody or phonology beyond the
   alphabet, and translation depends on a gold UD parse of the source sentence.
 
-## Reproduce
+## 8. Reproduce
 
 ```bash
 .venv/bin/pip install wordfreq            # word frequencies (en/de/es)

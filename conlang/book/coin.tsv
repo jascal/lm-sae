@@ -1,0 +1,10 @@
+key	root	class	en_extra	de	es	note
+talem	talem	NOUN		Talema	Talema	the name of this language, from its three rules Type–Link–Merge
+vowel	vokel	NOUN		Vokal	vocal	
+consonant	sonat	NOUN		Konsonant	consonante	
+knight	niter	NOUN		Ritter	caballero	
+ending	dinal	NOUN		Endung	final	the vowels after a root, which count its dependents
+token	token	NOUN		Token	token	
+riddle	rasel	NOUN		Rätsel	acertijo	
+dialect	dilek	NOUN		Dialekt	dialecto	
+saying	sarin	NOUN		Spruch	refrán	
