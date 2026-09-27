@@ -61,6 +61,12 @@
 (sound/VERB (like "pero") short (SUBJ "r"))                              # r is short, as in pero.
 @prose
 (carry (OBJ (weight/NOUN no)) (SUBJ (word (with (consonant one/NUM)))))  # Words with one consonant (pe, te, la, ne) carry no weight.
+(lean (on (word next the)) (SUBJ they))                                  # They lean on the next word;
+(lean (on (word (before it))) (at (end/NOUN (of sentence))) (SUBJ it))    # at the end of a sentence, on the word before it.
+(be (syllable own its) (SUBJ (vowel every)))                             # Every vowel is its own syllable:
+(say (OBJ (vowel two)) (as (syllable two)) (when/SCONJ (stand together (SUBJ they))))   # when two vowels stand together, say them as two syllables.
+(say (OBJ (ending the)) small never)                                     # Never say the ending small:
+(carry (OBJ (number the)) (SUBJ it))                                     # it carries the number.
 (be silent (SUBJ hyphen))                                                # The ginon is silent:
 (say (OBJ (ending its)) alone (SUBJ (word (with hyphen))))               # a word with a ginon says its ending alone: Ana a.
 (be (pause a) (SUBJ point))                                              # The point is a pause.

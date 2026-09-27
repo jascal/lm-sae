@@ -76,7 +76,7 @@ sobadi like si house-a Haus-a pe h-a .
 sobadi like voice-a pe v-a .  
 sobado like pero-a kora pe r-a .
 
-levi te gehe kina pe lore mite sonate pona . bi lenisa pe ginona . deso te dinale susa liba pe lore mite ginona . bi pabuse ka pe puna . gini mite sonata pe rarisi keda de talema . ginu fa mite sonata lera pe si nama mera . ludi mite vokela pe lore keda . vi te si rarise ka dinale ka pe lore keda .
+levi te gehe kina pe lore mite sonate pona . leheni sofe lori neka la pe tara . leheno sofe lore nore pesa pane fide de ferasa pe pesa . bi silabi pina susa pe vokele keda . deso te vokele tova kose silabe tova hene tehi suma pe tara . deso te dinale la mela nera . levi te mere la pe pesa . bi lenisa pe ginona . deso te dinale susa liba pe lore mite ginona . bi pabuse ka pe puna . gini mite sonata pe rarisi keda de talema . ginu fa mite sonata lera pe si nama mera . ludi mite vokela pe lore keda . vi te si rarise ka dinale ka pe lore keda .
 
 ## rule de dinale la
 
@@ -335,6 +335,7 @@ lator-u nomuna relator-a Relator-a relator-a
 rasel-u nomuna riddle-a Rätsel-a acertijo-a
 ronon-u nomuna pronoun-a Pronomen-a pronombre-a
 sarin-u nomuna saying-a Spruch-a refrán-a
+silab-u nomuna syllable-a Silbe-a sílaba-a
 sonat-u nomuna consonant-a Konsonant-a consonante-a
 verab-u nomuna verb-a Verb-a verbo-a
 vokel-u nomuna vowel-a Vokal-a vocal-a
@@ -996,7 +997,7 @@ bi kide susa pe si kite la lori mura la . saheni te tara pe dinale susa . tehi n
 
 sou p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a a-a e-a i-a o-a u-a .
 
-bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5934-a pe buke tisa .
+bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5935-a pe buke tisa .
 
 ## p-a
 
@@ -5783,6 +5784,7 @@ sinil-u nomuna single-a single-a sencillo-a
 sinov-u nomuna snow-a schnee-a nieve-a
 sinun-u nomuna designation-a bezeichnung-a denominación-a
 sil-u detiva special-a besondere-a especial-a
+silab-u nomuna syllable-a Silbe-a sílaba-a
 silan-u veraba shine-a strahlen-a brillar-a
 silen-i detiva zielen-a
 siler-o detiva silver-a plateado-a
