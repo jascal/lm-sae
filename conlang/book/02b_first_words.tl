@@ -3,7 +3,7 @@
 
 (be (word (that (say (SUBJ we)) often most)) (SUBJ (word this)))           # These are the words we say most often.
 (learn (OBJ they) first/ADV)                                                 # Learn them first.
-(stand first/ADV (in (line every)) (SUBJ (root a)))                          # In every line a root stands first,
+(stand first/ADV (in (line every)) (with hyphen) (SUBJ (root a)))           # In every line a root stands first, with a ginon,
 (stand then (SUBJ (kind its)))                                               # then its kind,
 (stand last/ADV (SUBJ (word mother its)))                                    # last its mother words.
 @verse
@@ -24,135 +24,135 @@
 ## (relator the)
 (link/VERB (OBJ (word other)) (SUBJ (word this)))                           # These words link other words.
 (stand (before (word (that (link/VERB (SUBJ they))))) (SUBJ they))           # They stand before the words that they link.
-@raw pe patika
-@raw te patika
-@raw du peposa of-a von-a de-a
-@raw nu peposa in-a in-a en-a
-@raw su dunona and-a und-a y-a
-@raw gu peposa to-a zu-a a-a
-@raw kasu dunona that-a dass-a que-a
-@raw mitu peposa with-a mit-a con-a
-@raw foru peposa for-a für-a para-a
-@raw sofu peposa on-a auf-a sobre-a
-@raw poru peposa by-a durch-a por-a
-@raw rusu peposa from-a aus-a desde-a
-@raw pano peposa at-a an-a
-@raw doru dunona or-a oder-a o-a
-@raw venu dunona if-a wenn-a si-a
-@raw beru dunona but-a aber-a pero-a
-@raw kosu peposa as-a als-a como-a
-@raw baru peposa near-a bei-a cerca-a
-@raw pasi dunona daß-a
-@raw naku peposa after-a nach-a después-a
-@raw betu peposa about-a über-a acerca-a
-@raw heno dunona when-a cuando-a
-@raw peku dunona because-a weil-a porque-a
-@raw noru peposa before-a vor-a antes-a
-@raw bisu peposa until-a bis-a hasta-a
-@raw rumu peposa around-a um-a alrededor-a
-@raw pape patika
-@raw sinu peposa without-a ohne-a sin-a
-@raw tenu peposa between-a zwischen-a entre-a
-@raw naru peposa under-a unter-a bajo-a
-@raw gonu peposa against-a gegen-a contra-a
-@raw hupo peposa up-a hoch-a
-@raw puti peposa out-a
-@raw liku peposa like-a wie-a según-a
-@raw pabo peposa off-a ab-a
-@raw dunu peposa during-a während-a durante-a
-@raw ninu peposa into-a hinein-a dentro-a
-@raw seto peposa since-a seit-a
-@raw hilo dunona while-a mientras-a
-@raw tobo dunona whether-a ob-a
-@raw nopu dunona nor-a noch-a ni-a
-@raw luku dunona although-a obwohl-a aunque-a
-@raw vebo peposa over-a vorbei-a
-@raw togo peposa through-a mediante-a
-@raw depi dunona denn-a
-@raw hisu peposa behind-a hinter-a tras-a
-@raw sodi dunona sondern-a
+@raw p-u patika subject-a Subjekt-a sujeto-a
+@raw t-u patika object-a Objekt-a objeto-a
+@raw d-u peposa of-a von-a de-a
+@raw n-u peposa in-a in-a en-a
+@raw s-u dunona and-a und-a y-a
+@raw g-u peposa to-a zu-a a-a
+@raw kas-u dunona that-a dass-a que-a
+@raw mit-u peposa with-a mit-a con-a
+@raw for-u peposa for-a für-a para-a
+@raw sof-u peposa on-a auf-a sobre-a
+@raw por-u peposa by-a durch-a por-a
+@raw rus-u peposa from-a aus-a desde-a
+@raw pan-o peposa at-a an-a
+@raw dor-u dunona or-a oder-a o-a
+@raw ven-u dunona if-a wenn-a si-a
+@raw ber-u dunona but-a aber-a pero-a
+@raw kos-u peposa as-a als-a como-a
+@raw bar-u peposa near-a bei-a cerca-a
+@raw pas-i dunona daß-a
+@raw nak-u peposa after-a nach-a después-a
+@raw bet-u peposa about-a über-a acerca-a
+@raw hen-o dunona when-a cuando-a
+@raw pek-u dunona because-a weil-a porque-a
+@raw nor-u peposa before-a vor-a antes-a
+@raw bis-u peposa until-a bis-a hasta-a
+@raw rum-u peposa around-a um-a alrededor-a
+@raw pap-u patika recipient-a Empfänger-a destinatario-a
+@raw sin-u peposa without-a ohne-a sin-a
+@raw ten-u peposa between-a zwischen-a entre-a
+@raw nar-u peposa under-a unter-a bajo-a
+@raw gon-u peposa against-a gegen-a contra-a
+@raw hup-o peposa up-a hoch-a
+@raw put-i peposa out-a
+@raw lik-u peposa like-a wie-a según-a
+@raw pab-o peposa off-a ab-a
+@raw dun-u peposa during-a während-a durante-a
+@raw nin-u peposa into-a hinein-a dentro-a
+@raw set-o peposa since-a seit-a
+@raw hil-o dunona while-a mientras-a
+@raw tob-o dunona whether-a ob-a
+@raw nop-u dunona nor-a noch-a ni-a
+@raw luk-u dunona although-a obwohl-a aunque-a
+@raw veb-o peposa over-a vorbei-a
+@raw tog-o peposa through-a mediante-a
+@raw dep-i dunona denn-a
+@raw his-u peposa behind-a hinter-a tras-a
+@raw sod-i dunona sondern-a
 
 ## (word (that (say (SUBJ we)) often most))
-@raw lu tika the-a der-a el-a
-@raw bu veraba be-a sein-a ser-a
-@raw ku tika a-a ein-a uno-a
-@raw hu ronona he-a er-a él-a
-@raw mu ronona i-a ich-a yo-a
-@raw vu veraba have-a haben-a haber-a
-@raw ru ronona his-a sein-a su-a
-@raw fu deroba not-a nicht-a no-a
-@raw tadu ronona you-a du-a tú-a
-@raw pesu ronona it-a es-a ello-a
-@raw pati patika to-a
-@raw viru veraba will-a werden-a ir-a
-@raw tisu tika this-a dieser-a este-a
-@raw kenu veraba can-a können-a poder-a
-@raw selu ronona she-a sie-a ella-a
-@raw dasu deroba so-a so-a así-a
-@raw voru ronona we-a wir-a nosotros-a
-@raw talu tika all-a all-a todo-a
-@raw tuku deroba also-a auch-a también-a
-@raw daru veraba do-a tun-a hacer-a
-@raw masu deroba more-a mehr-a más-a
-@raw siku ronona self-a sich-a se-a
-@raw menu ronona my-a mein-a mi-a
-@raw toru ronona your-a dein-a tu-a
-@raw desu veraba say-a sagen-a decir-a
-@raw vasu ronona what-a was-a qué-a
-@raw musu veraba must-a müssen-a deber-a
-@raw paru nomuna year-a jahr-a año-a
-@raw seru veraba see-a sehen-a ver-a
-@raw guto detiva good-a gut-a
-@raw vonu veraba want-a wollen-a querer-a
-@raw taru ronona they-a sie-a ellos-a
-@raw maku veraba make-a machen-a make-a
-@raw sonu deroba already-a schon-a ya-a
-@raw garu veraba give-a geben-a dar-a
-@raw novu deroba now-a jetzt-a ahora-a
-@raw kinu tika no-a kein-a ninguno-a
-@raw sevu veraba know-a wissen-a saber-a
-@raw nuru deroba only-a nur-a solo-a
-@raw dutu deroba just-a gerade-a justo-a
-@raw geno veraba go-a gehen-a
-@raw nevu detiva new-a neu-a nuevo-a
-@raw danu deroba then-a dann-a entonces-a
-@raw timu nomuna time-a zeit-a tiempo-a
-@raw hitu nomuna history-a geschichte-a historia-a
-@raw tinu veraba think-a denken-a pensar-a
-@raw getu veraba get-a bekommen-a conseguir-a
-@raw gosu detiva great-a groß-a gran-a
-@raw vehu ronona who-a wer-a quien-a
-@raw dagu nomuna day-a tag-a día-a
-@raw heru deroba here-a hier-a aquí-a
-@raw meru nomuna number-a nummer-a número-a
-@raw tesu tika that-a jener-a ese-a
-@raw suso ronona its-a sus-a
-@raw komo veraba come-a kommen-a
-@raw tovu numera two-a zwei-a dos-a
-@raw mano ronona one-a man-a
-@raw tedu ronona there-a da-a allí-a
-@raw finu veraba find-a finden-a encontrar-a
-@raw solo veraba should-a sollen-a
+@raw l-u tika the-a der-a el-a
+@raw b-u veraba be-a sein-a ser-a
+@raw k-u tika a-a ein-a uno-a
+@raw h-u ronona he-a er-a él-a
+@raw m-u ronona i-a ich-a yo-a
+@raw v-u veraba have-a haben-a haber-a
+@raw r-u ronona his-a sein-a su-a
+@raw f-u deroba not-a nicht-a no-a
+@raw tad-u ronona you-a du-a tú-a
+@raw pes-u ronona it-a es-a ello-a
+@raw pat-i patika to-a
+@raw vir-u veraba will-a werden-a ir-a
+@raw tis-u tika this-a dieser-a este-a
+@raw ken-u veraba can-a können-a poder-a
+@raw sel-u ronona she-a sie-a ella-a
+@raw das-u deroba so-a so-a así-a
+@raw vor-u ronona we-a wir-a nosotros-a
+@raw tal-u tika all-a all-a todo-a
+@raw tuk-u deroba also-a auch-a también-a
+@raw dar-u veraba do-a tun-a hacer-a
+@raw mas-u deroba more-a mehr-a más-a
+@raw sik-u ronona self-a sich-a se-a
+@raw men-u ronona my-a mein-a mi-a
+@raw tor-u ronona your-a dein-a tu-a
+@raw des-u veraba say-a sagen-a decir-a
+@raw vas-u ronona what-a was-a qué-a
+@raw mus-u veraba must-a müssen-a deber-a
+@raw par-u nomuna year-a jahr-a año-a
+@raw ser-u veraba see-a sehen-a ver-a
+@raw gut-o detiva good-a gut-a
+@raw von-u veraba want-a wollen-a querer-a
+@raw tar-u ronona they-a sie-a ellos-a
+@raw mak-u veraba make-a machen-a make-a
+@raw son-u deroba already-a schon-a ya-a
+@raw gar-u veraba give-a geben-a dar-a
+@raw nov-u deroba now-a jetzt-a ahora-a
+@raw kin-u tika no-a kein-a ninguno-a
+@raw sev-u veraba know-a wissen-a saber-a
+@raw nur-u deroba only-a nur-a solo-a
+@raw dut-u deroba just-a gerade-a justo-a
+@raw gen-o veraba go-a gehen-a
+@raw nev-u detiva new-a neu-a nuevo-a
+@raw dan-u deroba then-a dann-a entonces-a
+@raw tim-u nomuna time-a zeit-a tiempo-a
+@raw hit-u nomuna history-a geschichte-a historia-a
+@raw tin-u veraba think-a denken-a pensar-a
+@raw get-u veraba get-a bekommen-a conseguir-a
+@raw gos-u detiva great-a groß-a gran-a
+@raw veh-u ronona who-a wer-a quien-a
+@raw dag-u nomuna day-a tag-a día-a
+@raw her-u deroba here-a hier-a aquí-a
+@raw mer-u nomuna number-a nummer-a número-a
+@raw tes-u tika that-a jener-a ese-a
+@raw sus-o ronona its-a sus-a
+@raw kom-o veraba come-a kommen-a
+@raw tov-u numera two-a zwei-a dos-a
+@raw man-o ronona one-a man-a
+@raw ted-u ronona there-a da-a allí-a
+@raw fin-u veraba find-a finden-a encontrar-a
+@raw sol-o veraba should-a sollen-a
 
 ## (word new (of (book this)))
 (make/VERB (OBJ (word this)) (for (book this)) (SUBJ we))                   # We made these words for this book.
-@raw peposu nomuna preposition-a Präposition-a preposición-a
-@raw talemu nomuna talem-a Talema-a Talema-a
-@raw teronu nomuna interjection-a Interjektion-a interjección-a
-@raw tokenu nomuna token-a Token-a token-a
-@raw detivu nomuna adjective-a Adjektiv-a adjetivo-a
-@raw derobu nomuna adverb-a Adverb-a adverbio-a
-@raw dinalu nomuna ending-a Endung-a final-a
-@raw dileku nomuna dialect-a Dialekt-a dialecto-a
-@raw dunonu nomuna conjunction-a Konjunktion-a conjunción-a
-@raw ginonu nomuna hyphen-a Bindestrich-a guion-a
-@raw niteru nomuna knight-a Ritter-a caballero-a
-@raw nomunu nomuna noun-a Nomen-a sustantivo-a
-@raw numeru nomuna numeral-a Zahlwort-a numeral-a
-@raw latoru nomuna relator-a Relator-a relator-a
-@raw raselu nomuna riddle-a Rätsel-a acertijo-a
-@raw rononu nomuna pronoun-a Pronomen-a pronombre-a
-@raw sarinu nomuna saying-a Spruch-a refrán-a
-@raw sonatu nomuna consonant-a Konsonant-a consonante-a
-@raw verabu nomuna verb-a Verb-a verbo-a
-@raw vokelu nomuna vowel-a Vokal-a vocal-a
+@raw pepos-u nomuna preposition-a Präposition-a preposición-a
+@raw talem-u nomuna talem-a Talema-a Talema-a
+@raw teron-u nomuna interjection-a Interjektion-a interjección-a
+@raw token-u nomuna token-a Token-a token-a
+@raw detiv-u nomuna adjective-a Adjektiv-a adjetivo-a
+@raw derob-u nomuna adverb-a Adverb-a adverbio-a
+@raw dinal-u nomuna ending-a Endung-a final-a
+@raw dilek-u nomuna dialect-a Dialekt-a dialecto-a
+@raw dunon-u nomuna conjunction-a Konjunktion-a conjunción-a
+@raw ginon-u nomuna hyphen-a Bindestrich-a guion-a
+@raw niter-u nomuna knight-a Ritter-a caballero-a
+@raw nomun-u nomuna noun-a Nomen-a sustantivo-a
+@raw numer-u nomuna numeral-a Zahlwort-a numeral-a
+@raw lator-u nomuna relator-a Relator-a relator-a
+@raw rasel-u nomuna riddle-a Rätsel-a acertijo-a
+@raw ronon-u nomuna pronoun-a Pronomen-a pronombre-a
+@raw sarin-u nomuna saying-a Spruch-a refrán-a
+@raw sonat-u nomuna consonant-a Konsonant-a consonante-a
+@raw verab-u nomuna verb-a Verb-a verbo-a
+@raw vokel-u nomuna vowel-a Vokal-a vocal-a

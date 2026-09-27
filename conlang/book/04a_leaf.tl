@@ -43,5 +43,6 @@
 (be (word last/ADJ the) (in (sentence every)) (SUBJ it))                     # It was the last word in every sentence.
 (say (OBJ (vowel "a")) (at (end/NOUN (of (tale every)) the)) (SUBJ it))      # It said "a" at the end of every tale.
 
+@tree
 (end/VERB (in (vowel "a")) since (SUBJ (sentence every (of talem))))         # Since then every sentence of Talema ends in "a".
 (and (be small (SUBJ (word last/ADJ the))) (end/VERB nothing (without it)))  # The last word is small, and without it nothing ends.
