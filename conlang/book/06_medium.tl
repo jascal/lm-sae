@@ -118,7 +118,8 @@
 (book (of (world digital/ADJ the)))                                          # the book of the digital world,
 (book (of mathematics))                                                      # the book of mathematics,
 (book (of logic))                                                            # the book of logic,
-(book (of physics))                                                          # the book of physics.
+(book (of physics))                                                          # the book of physics,
+(book (of philosophy))                                                       # the book of philosophy.
 @prose
 (read (OBJ (book this)) first/ADV)                                           # Read this book first.
 (write (OBJ (book new (for (world new)))) can (SUBJ you))                    # You can write a new book for a new world.

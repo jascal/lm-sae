@@ -881,7 +881,8 @@ vi te buke masa pe talema . vi te buki pina susa pe vule keda .
 buke de vuli digala la .  
 buke de mamaka .  
 buke de gogika .  
-buke de fisisa .
+buke de fisisa .  
+buke de filofa .
 
 ledi te buke tisa fisa . ribo te buki neva fore vule neva kena pe tada .
 

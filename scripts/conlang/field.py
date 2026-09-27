@@ -45,7 +45,10 @@ GROUP_HEAD = {"computing": "(and computer code)", "unix": "(shell the)", "securi
               # physics
               "measure": "(and measurement theory)", "matter": "matter", "motion": "(and motion force)",
               "energy": "energy", "field": "(and light wave)", "cosmos": "(and space universe)",
-              "quantum": "quantum"}
+              "quantum": "quantum",
+              # philosophy
+              "wonder": "wonder/NOUN", "being": "(and being change)", "knowing": "(and knowledge doubt)",
+              "mind": "(and mind self)", "language": "language"}
 
 
 def concepts(path: Path) -> list[dict]:

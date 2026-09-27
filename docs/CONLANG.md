@@ -292,7 +292,8 @@ fields are added:
   read the core first.
 - **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
   first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens), `mathematics.md`
-  (~3k), `logic.md` (~3k) and `physics.md` (~2.5k).
+  (~3k), `logic.md` (~3k), `physics.md` (~2.5k) and
+  `philosophy.md` (~2k).
 
 Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
 lints, builds and checks every book in one command.
@@ -341,7 +342,13 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   its curve as gravity), and the quantum (superposition, Heisenberg, entanglement with no message). It ends on three
   `pefe` questions: quantum gravity, dark matter, why the universe began. Quantum *state* uses `did` (Zustand), not
   `tat` (the political state). 24 concepts coined; `feler` (feather) coined for the core.
-- **Planned next fields:** philosophy, morality.
+- **Field 5, philosophy** (*filof*). Mostly tales and questions, each school through its tale: Socrates who
+  knows nothing, Heraclitus's river, the ship of Theseus, Leibniz's "why something", Plato's cave, Kant's forms,
+  Descartes's doubt ending in *I think, therefore I am*, Hume's unseen cause and tomorrow's sun, knowledge as
+  justified true belief (marked open), Zhuangzi's butterfly, determinism and free will, Wittgenstein's limits of
+  language. The open questions carry `pefe`, including one addressed to its readers: *does a mind of numbers
+  feel?* Direct yes/no questions are headed by `whether`, as in the core. 8 concepts coined.
+- **Planned next fields:** morality.
 
 **Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
 *v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,
