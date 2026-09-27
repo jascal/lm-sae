@@ -171,4 +171,4 @@
 (write (OBJ (rule this)) before (SUBJ "Tarski"))                             # Tarski wrote this rule.
 (be (world (that (make/VERB (OBJ (statement the)) true (SUBJ it)))) (SUBJ model))   # A model is a world that makes the statements true.
 
-(reason (in (sentence every)) (SUBJ talem))                                  # Talema reasons in every sentence.
+(think (with reason) (in (sentence every)) (SUBJ talem))                      # Talema thinks with reason in every sentence.

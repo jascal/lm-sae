@@ -27,7 +27,7 @@
 
 (ask (OBJ (fight (OBJ (mill the)) why (SUBJ you))) (SUBJ "Sanko"))           # Sanko asked: why did you fight the mill?
 (say (OBJ (because (say (OBJ (have (OBJ (arm long)) (SUBJ (giant the)))) (SUBJ (book the))))) (SUBJ "Kihote"))   # Because the book said: giants have long arms.
-(say (OBJ (point (at (thing the)) (SUBJ (word the)))) (SUBJ "Sanko"))        # Sanko said: the word points at the thing.
+(say (OBJ (point/VERB (at (thing the)) (SUBJ (word the)))) (SUBJ "Sanko"))        # Sanko said: the word points at the thing.
 (say (OBJ (be (thing the) not (SUBJ (word the)))) (SUBJ "Sanko"))            # The word is not the thing.
 (say (OBJ (have (OBJ (arm long)) (SUBJ (thing many)))) (SUBJ "Sanko"))       # Many things have long arms.
 (say (OBJ (be giant not (SUBJ (thing every (with (arm long)))))) (SUBJ "Sanko"))   # Not every thing with long arms is a giant.
@@ -54,7 +54,7 @@
 (be (like (fish (without water))) (without sentence) (SUBJ (word a)))        # Without a sentence a word is like a fish without water.
 
 ## (book (of "Kihote") the)
-(return (to (house (of book) his)) (at (end/NOUN the)) (SUBJ "Kihote"))    # At the end Kihote returned to his house of books.
+(return/VERB (to (house (of book) his)) (at (end/NOUN the)) (SUBJ "Kihote"))    # At the end Kihote returned to his house of books.
 (write (OBJ (book own)) (SUBJ it))                                           # It wrote its own book.
 (be small (in (book this)) (SUBJ (sentence every)))                          # In this book every sentence was small.
 (say (OBJ (know how (SUBJ it))) (SUBJ (sentence every)))                   # Every sentence said how it knew.

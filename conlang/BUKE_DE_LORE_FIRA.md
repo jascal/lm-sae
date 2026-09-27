@@ -402,7 +402,7 @@ sere bi veta pe fakile la .
 
 bove bi fura pe si tova tova .  
 sere page pe tebe la .  
-pefe tobe dureme pe mide la .
+pefe tobe doname pe mide la .
 
 garo te maraki hoka mase gahe rade susa pape behane ka nera .
 
@@ -592,7 +592,7 @@ vi te ride ka pe Kihote-a . bi si pogi mela ka veta pe pesa . bi Sanko-a pe name
 
 sero te muhile ka sofe herile ka pe tara . movi ne vinade la pe dumo de muhile la laga la . desi te bi gigeta pe tesa pe Kihote-a . desi te vo te dume laga ne buke la pe gigete la pe Kihote-a . desi te bi muhila pe tesa pe Sanko-a . desi te vo te dume laga tuka pe muhile la pe Sanko-a . bere haro te ride ra fa pe Kihote-a . runi gone muhile la pe pesa . robo te Kihote-a ge gude la pe vinade la .
 
-raki te fiho te muhile la vaha pe tada pe Sanko-a . desi te peke desi te vi te dume laga pe gigete la pe buke la pe Kihote-a . desi te puni pane kige la pe lore la pe Sanko-a . desi te bo kige la fa pe lore la pe Sanko-a . desi te vi te dume laga pe kige vana pe Sanko-a . desi te bo gigeta fa pe kigi keda mite dume laga pe Sanko-a .
+raki te fiho te muhile la vaha pe tada pe Sanko-a . desi te peke desi te vi te dume laga pe gigete la pe buke la pe Kihote-a . desi te pineti pane kige la pe lore la pe Sanko-a . desi te bo kige la fa pe lore la pe Sanko-a . desi te vi te dume laga pe kige vana pe Sanko-a . desi te bo gigeta fa pe kigi keda mite dume laga pe Sanko-a .
 
 ## lori mite benege tova la
 
@@ -600,7 +600,7 @@ metu te lori serana ka sofe rave la dana pe tara . vi te benege tova pe lore la 
 
 ## buki de Kihote-a la
 
-vuho ge hasi de buka ra pane fide la pe Kihote-a . ribi te buke pina pe pesa . bo mela ne buke tisa pe ferase keda . desi te sevi hova pe pesa pe ferase keda . deso te kige kase sevi fa pe pesa tuka pe pesa . ledi te buke la pe Sanko-a . labihe pe pesa . desi te bi buko honesa fira la pe tisa pe pesa . raki te tobe ledo te pesa nova pe dena pe Kihote-a . desi te mika pe Sanko-a .
+rufo ge hasi de buka ra pane fide la pe Kihote-a . ribi te buke pina pe pesa . bo mela ne buke tisa pe ferase keda . desi te sevi hova pe pesa pe ferase keda . deso te kige kase sevi fa pe pesa tuka pe pesa . ledi te buke la pe Sanko-a . labihe pe pesa . desi te bi buko honesa fira la pe tisa pe pesa . raki te tobe ledo te pesa nova pe dena pe Kihote-a . desi te mika pe Sanko-a .
 
 lede te buke keda .  
 keri te ferase kina sine rake sevi hova pe pesa .
@@ -733,13 +733,13 @@ bi maraki fira la pe lore bov-a . desi te vi te bevese ka pe vora pe pesa . finu
 
 bove bi fura pe si tova tova .
 
-bi maraki seda la pe lore ser-a . desi te si mafi te pesa pe vora seri te pesa pe vora pe pesa . keni te sove te kigi tera ka pe tebe tera .
+bi maraki seda la pe lore ser-a . desi te si meseri te pesa pe vora seri te pesa pe vora pe pesa . keni te sove te kigi tera ka pe tebe tera .
 
 sere pagi te tebi 3000-a de 3000-a pe voge la .
 
 bi maraki tita la pe lore pef-a . desi te sevu te pesa fa doka pe vora pe pesa . deso te sevu te pesa vira vema pe nida fa pe pesa . desi te bi raga pe pesa pe pesa .
 
-pefe tobe dureme pe mide la .
+pefe tobe doname pe mide la .
 
 ## lave de marake la
 
@@ -882,7 +882,8 @@ buke de vuli digala la .
 buke de mamaka .  
 buke de gogika .  
 buke de fisisa .  
-buke de filofa .
+buke de filofa .  
+buke de morata .
 
 ledi te buke tisa fisa . ribo te buki neva fore vule neva kena pe tada .
 
@@ -979,7 +980,7 @@ bi pona pe gamare la .
 
 bi pefa pe rage tisa . nevere te tara .
 
-pefe tobe dureme pe mide la .  
+pefe tobe doname pe mide la .  
 pefe bo pona vaha pe gamare la .  
 pefe tobe keno te be rira sine lesera pe lore ka .  
 pefe bi vasa pe gepo mela mosa la .  

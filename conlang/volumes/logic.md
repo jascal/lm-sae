@@ -161,7 +161,7 @@ bo rira pe ferase snow_is_white-a vene bi visa pe sinova .
 
 ribo te rule tisa nora pe Tarski-a . bi vule kase mako te lame la rira pe pesa pe moda .
 
-rani ne ferase keda pe talema .
+tino mite rana ne ferase keda pe talema .
 
 ## lore de vule gogika
 

@@ -19,7 +19,7 @@
 (be open/ADJ (SUBJ (question this)))                                        # These questions are open.
 (answer/VERB (OBJ they))                                                     # Answer them.
 @verse
-(open/ADJ (whether (dream (SUBJ (mind the)))))                               # Do the minds dream?
+(open/ADJ (whether (dream/VERB (SUBJ (mind the)))))                               # Do the minds dream?
 (open/ADJ (be one/NUM why (SUBJ (grammar the))))                             # Why is the grammar one?
 (open/ADJ (whether (can (OBJ (be true)) (without reader) (SUBJ (word a)))))  # Can a word be true without a reader?
 (open/ADJ (be what (SUBJ (thought small most the))))                         # What is the smallest thought?
