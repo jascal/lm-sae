@@ -197,7 +197,15 @@ n = 34 pooled): Qwen-0.5B 0.47, Llama-1B 0.55, Qwen-1.5B 0.43, Gemma-2B 0.26. Pr
 All four models move a visibly-passive subject partway toward "patient". The relation code is partly semantic in
 every model, most in Llama and least in Gemma. Small n; suggestive.
 
-## 5. Scope and open questions
+## 5. A runnable prototype: `dl/tlm/tlm.dl`
+
+The three rules are implemented as a Soufflé Datalog program ([dl/tlm/README.md](../dl/tlm/README.md)).
+`scripts/grammar/tlm.py run` parses PUD sentences with it, checks well-formedness invariants (all empty), prints
+parallel sentences as Merge trees, and *derives* each language's word-order parameter. Greenberg's VO↔preposition /
+OV↔postposition correlation falls out of the counts. `tlm.py gate` proves the program's Link heads and Merge
+distances identical to the Python trees these measurements used, on all 13 × 1000 sentences.
+
+## 6. Scope and open questions
 
 - Four decoder LLMs, 0.5–2.6 B parameters, one mid layer each (plus depth checks); linear probes. Larger models,
   encoders and non-transformers (Mamba) are open.
