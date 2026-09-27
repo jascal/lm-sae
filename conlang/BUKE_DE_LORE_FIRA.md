@@ -69,7 +69,14 @@ vi te si sonate 14-a vokele fiva pe talema .
 bi sonate siu p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a pe tara .  
 bi vokele sea a-a e-a i-a o-a u-a pe tara .
 
-sobadi like lete de Español-a pe lete la . levi te gehe la pe vokeli fira de rarise la . sinagi mite vosi sofata ka pe dinale la . gini mite sonata pe rarisi keda de talema . ginu fa mite sonata lera pe si nama mera . ludi mite vokela pe lore keda . vi te si rarise ka dinale ka pe lore keda .
+sobadi like lete de Español-a pe lete la . levi te gehe la pe vokeli fira de rarise la . sinagi mite vosi sofata ka pe dinale la .
+
+sobado like si go-a gato-a lera pe g-a .  
+sobadi like si house-a Haus-a pe h-a .  
+sobadi like voice-a pe v-a .  
+sobado like pero-a kora pe r-a .
+
+levi te gehe kina pe lore mite sonate pona . bi lenisa pe ginona . deso te dinale susa liba pe lore mite ginona . bi pabuse ka pe puna . gini mite sonata pe rarisi keda de talema . ginu fa mite sonata lera pe si nama mera . ludi mite vokela pe lore keda . vi te si rarise ka dinale ka pe lore keda .
 
 ## rule de dinale la
 
@@ -365,7 +372,15 @@ bi 10-a pe deha .
 bi 100-a pe hudeda .  
 bi 1000-a pe mula .
 
-tehi nake lore kase sahene pe pesa pe lore de mera . seri te doge tova pe ma .
+tehi nake lore kase sahene pe pesa pe lore de mera . seri te doge tova pe ma . desi te mere de pesa pe mere nare meri biga ka . fadi te pete susa pe lore sa .
+
+bi si deha fura pe 14-a .  
+bi dehe tova pe 20-a .  
+bi si dehe tova fura pe 24-a .  
+bi hudede tura pe 300-a .  
+bi su mula hudede fura dehe nevina tova pe 1492-a .
+
+ribu te mera mite lete de mera kena pe tada . bere desi te pesa mite lore de mera .
 
 ## maraki tura la
 
