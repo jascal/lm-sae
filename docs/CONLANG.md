@@ -204,18 +204,20 @@ word-by-word gloss in the order Talema speaks it.
 
 [`conlang/BUKE_DE_LORE_FIRA.md`](../conlang/BUKE_DE_LORE_FIRA.md) ("Book of the First Word") is the founding text,
 written entirely in Talema. It is a primer, a literature, a guide to growing the language, and a dictionary in one
-file of about 67k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
+file of about 83k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
 
 | chapter | what it is |
 |---|---|
 | *ge lesere la* | to the reader |
-| *ruli tura la* | the three rules, taught by counting, contrast, and drawn trees |
+| *ruli tura la* | the three rules, taught by counting, contrast, and drawn trees; literals; the counting test for where a sentence ends |
+| *lori fira la* | the first words: every relator, the 60 most frequent words, and the book's coinages, each with its word class and mother words |
+| *desi te masa hova* | how to say more: time and number, the three question shapes, focus by order, commands and address, easily confused words |
 | *lori mela la* | the small words: a child, Ana, and a nameless agent trade the semantic primes |
 | five tales | *the leaf who had no children* (Grimm: why every sentence ends in *a*); *four minds and thirteen tongues* (the founding story, the UG research itself, every claim marked); *the knight of the book* (Cervantes); *the bargain* (Goethe); *the storm*, a play in three scenes (Shakespeare) |
 | *seke hove pe geneta* | how agents speak: claim marks, asking, promising, correcting, handing over; how to read the agents of the first age |
 | *gove hove pe talema* | how Talema grows: definitions, the root law, the waiting letters, new rules, dialects, games |
 | songs, sayings, open questions | a counting stair, the vowels' song, a 14-line poem to the far reader, a lullaby |
-| *buki de rarisa la* | the book of roots: 5,920 entries, each a Talema tree whose children are its English, German and Spanish mother words (Johnson and Webster's etymologies) |
+| *buki de rarisa la* | the book of roots: 5,932 entries, each a Talema tree whose children are its word class and its English, German and Spanish mother words (Johnson and Webster's etymologies) |
 | *pigi lata la* | the last page |
 
 The only material in it that is not Talema is literal loans (`with-a`, `Kihote-a`), which Talema already allowed for
@@ -235,8 +237,34 @@ names. The dictionary uses them as etymologies, so a reader of any of the three 
   and say "my way stops here", not "there is no way".
 - **The waiting letters.** `c j q w x y z` are held in reserve. When the short roots are all given and speakers agree, a
   new *age* wakes one, so new short roots can exist without ever reassigning an old one, and old texts stay readable.
+- **Time and number are unsaid unless a word says them.** `lafe pe doge la` leaves the time open; `lafi nora …`
+  (before), `lafi nova …` (now) and `lafi vira …` (will) fix it. `doga` leaves the number open; `doge tova` is two dogs.
+- **Three question shapes.** `tobe …` alone asks. `tob` under a verb (`sevo te tobe … fa pe ma`, "I do not know
+  whether …") reports a question. `pefe tobe …` marks a question nobody can answer yet. In a content question the
+  question word stands where the answer would: `seri te vasa pe tada` ("what do you see?"), `seri te doge la pe ma`.
+- **Focus by order.** The dependent nearest the head carries the weight: `seri pe kide la te doge la` is "the
+  *child* sees the dog". This is the use R2's free dependent order was reserved for.
+- **Commands and address.** `les` ("please") heads a command and `g` ("to") marks the one addressed:
+  `lesi lafa ge kide la` ("child, sleep!"). A sentence without a subject may also be a command; `les` makes it certain.
+- **Where a sentence ends.** An `a` ending marks every leaf, not only the last word. The test the book teaches: start
+  at one; at each word subtract one and add its dependents; the sentence ends when the count reaches zero.
 - **Coinages**, made with the root law and recorded in `conlang/book/coin.tsv`: `talem` (Talema), `vokel` (vowel),
-  `sonat` (consonant), `dinal` (ending), `token`, `niter` (knight), `rasel` (riddle), `dilek` (dialect), `sarin` (saying).
+  `sonat` (consonant), `dinal` (ending), `token`, `niter` (knight), `rasel` (riddle), `dilek` (dialect), `sarin` (saying),
+  `lator` (relator), and the word-class labels the dictionary uses: `nomun` noun, `verab` verb, `detiv` adjective,
+  `derob` adverb, `ronon` pronoun, `pepos` preposition, `dunon` conjunction, `numer` numeral, `teron` interjection
+  (with the existing `tik` article and `patik` particle).
+
+**The book is normative** for everything beyond the three rules: the conventions above, the claim-mark law, mention,
+the waiting letters. The rules stay minimal; the book gives the conventions their authority.
+
+**The lexicon is frozen.** A root is never reassigned, so `conlang/lexicon.tsv` is no longer regenerated
+(`lexicon.py` refuses to overwrite it without `--force`). Wrong senses are corrected in place: `feras` is now
+*sentence/Satz/frase* (it had German *Strafe*, "punishment"), `let` is *letter/Buchstabe/letra* (it had "write" and
+"mail letter"), and `tum` is *subject/Subjekt/sujeto* (its topic senses moved to `topik`). New words go through
+`conlang/book/coin.tsv`.
+
+**Reviews.** The v2 changes answer two external reviews, kept in [`docs/reviews/`](reviews/): Sol (`sol_pr212.md`)
+and Grok (`grok_pr212.md`, with notes on where its readings of Talema were wrong).
 
 **How it was written.** Each sentence is authored as a tree of concepts (`conlang/book/*.tl`); the three rules spell it.
 `scripts/conlang/author.py` builds the book, refuses unknown concepts, and checks that every sentence decodes to exactly
@@ -245,6 +273,7 @@ one tree. `author.py find` looks concepts up; `author.py coin` applies the root 
 
 ```bash
 .venv/bin/python scripts/conlang/roots_book.py --out conlang/book/08_roots.tl
+.venv/bin/python scripts/conlang/roots_book.py --first --out conlang/book/02b_first_words.tl
 .venv/bin/python scripts/conlang/author.py build conlang/book/0*.tl --out conlang/BUKE_DE_LORE_FIRA.md --tokens Qwen/Qwen2.5-0.5B
 ```
 

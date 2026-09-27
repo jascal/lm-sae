@@ -3,11 +3,12 @@
 
 (be (book (of root) the) (SUBJ this))                                        # This is the book of roots.
 (stand first/ADV (in (line every)) (SUBJ (root a)))                          # In every line a root stands first.
-(stand (after it) (SUBJ (word mother its)))                                  # After it stand its mother words:
+(stand (after it) (SUBJ (kind its)))                                         # After it stands its kind,
+(stand then (SUBJ (word mother its)))                                        # then its mother words:
 @verse
 (and "English" "Deutsch" "Español")
 @prose
-(be (child its) (SUBJ (word mother the)))                                    # The mother words are its children.
+(be (child its) (SUBJ (and (kind the) (word mother the))))                   # The kind and the mother words are its children.
 (count/VERB (OBJ they) (SUBJ (ending its)))                                  # Its ending counts them.
 (stand (in (order (of (letter the)))) (SUBJ (root the)))                     # The roots stand in the order of the letters:
 @verse
@@ -15,5970 +16,5976 @@
 @prose
 (be (and old often) (SUBJ (root short the)))                                 # The short roots are old and often said.
 (be (and young rare) (SUBJ (root long the)))                                 # The long roots are young or rare.
-(be (word (for (subject the))) (SUBJ (word SUBJ)))                           # The word pa is the word for the subject.
-(be (word (for (object the))) (SUBJ (word OBJ)))                             # The word ta is the word for the object.
-(be (word (for (person (that (get (OBJ (thing the))))))) (SUBJ (word DAT)))  # The word papa is for the person who gets the thing.
-(have (OBJ (root 5920)) (SUBJ (book this)))                                 # This book has 5920 roots.
+(have (OBJ (root 5929)) (SUBJ (book this)))                                 # This book has 5929 roots.
 
 
 ## ("p")
 
-@raw papati pope-a papst-a
-@raw paparo apart-a auseinander-a aparte-a
-@raw papini app-a applikation-a
-@raw pate to-a
-@raw patako patch-a patch-a parche-a
-@raw patare später-a
-@raw pateto patent-a patent-a patente-a
-@raw pateno patient-a patient-a paciente-a
-@raw patero pattern-a muster-a patrón-a
-@raw pateso patience-a geduld-a paciencia-a
-@raw patiti patient-a paciente-a
-@raw patiko particle-a teilchen-a partícula-a
-@raw patino pin-a stift-a pin-a
-@raw patiro depart-a abweichen-a partir-a
-@raw patopi top-a top-a
-@raw patoro pastor-a pastor-a pastor-a
-@raw pake parecer-a
-@raw pakago packaging-a verpackung-a envase-a
-@raw pakare particular-a
-@raw paketo package-a paket-a paquete-a
-@raw pakeni pack-a packen-a
-@raw pakino parking-a parkplatz-a estacionamiento-a
-@raw pakuto impact-a auswirkung-a impacto-a
-@raw pakugo pack-a packung-a pack-a
-@raw pabi off-a ab-a
-@raw pabape ap-a
-@raw pabage pa-a
-@raw pabari pro-a pro-a
-@raw pabase ps-a
-@raw pabafe pa-a
-@raw pabeno pan-a pan-a sartén-a
-@raw pabelo grandfather-a opa-a abuelo-a
-@raw pabere parecer-a
-@raw pabese pese-a
-@raw pabire partir-a
-@raw pabope pop-a
-@raw pabupe up-a
-@raw pabuso pause-a pause-a pausa-a
-@raw pado party-a partei-a partido-a
-@raw padere per-a
-@raw padiri pair-a par-a
-@raw padope op-a
-@raw paduse preuße-a
-@raw pago pass-a übergeben-a pasar-a
-@raw pagado propaganda-a propaganda-a propaganda-a
-@raw pageno payment-a zahlung-a pago-a
-@raw pame am-a
-@raw pamero parameter-a parameter-a parámetro-a
-@raw pani at-a an-a
-@raw panamo panorama-a panorama-a panorama-a
-@raw paneti apparent-a aparente-a
-@raw panene spannen-a
-@raw panelo panel-a panel-a panel-a
-@raw panero companion-a begleiter-a compañera-a
-@raw paneso japanese-a japanisch-a japonés-a
-@raw paniko panic-a panik-a pánico-a
-@raw panino expansion-a erweiterung-a expansión-a
-@raw paniro painting-a gemälde-a cuadro-a
-@raw panolo pole-a pol-a polo-a
-@raw panoso pants-a hose-a pantalón-a
-@raw palo once-a mal-a once-a
-@raw palato palace-a palast-a palacio-a
-@raw palase place-a
-@raw palemo palm-a palm-a palma-a
-@raw paleni packed-a lleno-a
-@raw paliso pizza-a pizza-a pizza-a
-@raw paloto plot-a handlung-a trama-a
-@raw palole español-a
-@raw paluse plus-a
-@raw paro year-a jahr-a año-a
-@raw parati appliance-a aparato-a
-@raw parake park-a
-@raw paraso paradise-a paradies-a paraíso-a
-@raw parafo paragraph-a ziffer-a párrafo-a
-@raw pareto transparent-a transparent-a transparente-a
-@raw pareno apparently-a scheinbar-a aparentemente-a
-@raw parelo unemployment-a arbeitslosigkeit-a paro-a
-@raw pareri partnership-a partnerschaft-a
-@raw pareso press-a presse-a prensa-a
-@raw parevi prior-a previo-a
-@raw pariti pie-a tarta-a
-@raw pariko parish-a kirchengemeinde-a parroquia-a
-@raw parido departure-a abgang-a partida-a
-@raw parime prime-a
-@raw parilo partial-a teilweise-a parcial-a
-@raw pariro pair-a paaren-a par-a
-@raw pariso prize-a preisgeld-a premiado-a
-@raw pase daß-a
-@raw pasape shape-a
-@raw pasato past-a vergangenheit-a pasado-a
-@raw pasago passage-a durchgang-a pasaje-a
-@raw pasaro pass-a vergehen-a pase-a
-@raw paseti pet-a mascota-a
-@raw paseno adjust-a anpassen-a ajustar-a
-@raw pasero passenger-a passagier-a pasajero-a
-@raw pasese spätestens-a
-@raw pasite past-a
-@raw pasimi pity-a lástima-a
-@raw pasino passion-a leidenschaft-a pasión-a
-@raw pasili pill-a pastilla-a
-@raw pasisi precise-a preciso-a
-@raw pasivo passive-a passiv-a pasivo-a
-@raw pasoti pasta-a pasta-a
-@raw pasoro passport-a paß-a pasaporte-a
-@raw pasugo parade-a umzug-a desfile-a
-@raw pafo plan-a plan-a plan-a
-@raw pafiki pacific-a pacífico-a
-@raw pafulo painful-a schmerzhaft-a doloroso-a
-@raw pavo fun-a spaß-a diversión-a
-@raw pavoto paw-a pfote-a pata-a
-@raw pavori password-a passwort-a
-@raw paho pay-a zahlen-a pagar-a
-@raw pahavo straw-a stroh-a paja-a
-@raw pepo people-a leute-a gente-a
-@raw pepape ja-a
-@raw pepado appropriate-a geeignet-a adecuado-a
-@raw pepari prepared-a preparado-a
-@raw pepero pepper-a pfeffer-a pimienta-a
-@raw pepoke época-a
-@raw pepupe ay-a
-@raw peto part-a teil-a parte-a
-@raw petato representative-a repräsentativ-a representativo-a
-@raw petaro pray-a beten-a rezar-a
-@raw peteso expertise-a kompetenz-a pericia-a
-@raw petino petition-a petition-a petición-a
-@raw petivi respectively-a respectivamente-a
-@raw peko because-a weil-a porque-a
-@raw pekati aspect-a aspekt-a
-@raw pekako spectacular-a spektakulär-a espectacular-a
-@raw pekano applicant-a bewerber-a demandante-a
-@raw pekaro seize-a ergreifen-a aprovechar-a
-@raw peketo chest-a brust-a pecho-a
-@raw pekeni conform-a entsprechen-a
-@raw pekero speaker-a sprecher-a orador-a
-@raw pekino prediction-a prognose-a predicción-a
-@raw pekivo perspective-a perspektive-a perspectiva-a
-@raw pekono inspection-a inspektion-a inspección-a
-@raw pekoso suspicious-a verdächtig-a sospechoso-a
-@raw pekupe preocupar-a
-@raw pekumo spectrum-a spektrum-a espectro-a
-@raw pebo town-a ortschaft-a pueblo-a
-@raw pebede speed-a
-@raw pebere september-a
-@raw pebore peor-a
-@raw pedo appear-a erscheinen-a aparecer-a
-@raw pedago pledge-a zusage-a prenda-a
-@raw pedasi chunk-a pedazo-a
-@raw pedeno pen-a feder-a pluma-a
-@raw pedere sorprender-a
-@raw pedese presidencia-a
-@raw pediti predict-a predecir-a
-@raw pediko newspaper-a tageszeitung-a periódico-a
-@raw pedido lost-a verloren-a perdido-a
-@raw pedini outstanding-a pendiente-a
-@raw pedoni pardon-a perdón-a
-@raw pego per-a pro-a per-a
-@raw pegani pregnant-a schwanger-a
-@raw pegaro paste-a einfügen-a pegar-a
-@raw pegasi pregnancy-a embarazo-a
-@raw pegene prägen-a
-@raw pegere peer-a
-@raw pemo open-a öffnen-a abrir-a
-@raw pemano supplement-a ergänzung-a complemento-a
-@raw pemeni allegedly-a supuestamente-a
-@raw pemere premier-a
-@raw pemimo premium-a premium-a prima-a
-@raw pemiso permission-a erlaubnis-a permiso-a
-@raw peno person-a person-a persona-a
-@raw penati plenty-a abundancia-a
-@raw penagi percentage-a prozentsatz-a
-@raw penano presentation-a präsentation-a presentación-a
-@raw penalo penalty-a sanktion-a pena-a
-@raw peneno pronounce-a aussprechen-a pronunciar-a
-@raw penero prisoner-a gefangene-a preso-a
-@raw penini representation-a representación-a
-@raw penono prevention-a prävention-a prevención-a
-@raw penuno opening-a eröffnung-a apertura-a
-@raw pelo play-a spielen-a jugar-a
-@raw pelato silver-a silber-a plata-a
-@raw pelako badge-a abzeichen-a placa-a
-@raw pelano plant-a pflanze-a vegetal-a
-@raw pelali appeal-a apelar-a
-@raw pelare pelear-a
-@raw pelasi square-a plaza-a
-@raw peleno play-a spielen-a play-a
-@raw peliko awkward-a peinlich-a incómodo-a
-@raw pelido surname-a nachname-a apellido-a
-@raw peliro danger-a gefährdung-a peligro-a
-@raw peliso specialist-a spezialist-a especialista-a
-@raw peluki fight-a lucha-a
-@raw peluso plus-a plus-a plus-a
-@raw pere unser-a
-@raw perato operate-a betreiben-a operar-a
-@raw peradi upgrade-a aktualisierung-a
-@raw perane peruano-a
-@raw peralo appeal-a berufung-a apelación-a
-@raw peraro overcome-a überwinden-a superar-a
-@raw peraso perhaps-a möglicherweise-a quizá-a
-@raw peravi operational-a operativo-a
-@raw pereto port-a hafen-a puerto-a
-@raw pereno perception-a wahrnehmung-a percepción-a
-@raw perelo pearl-a perle-a perla-a
-@raw perere preorder-a
-@raw pereso preference-a vorzug-a preferencia-a
-@raw pereho perceive-a wahrnehmen-a percibir-a
-@raw perito cooperate-a zusammenarbeiten-a cooperar-a
-@raw perigo pig-a schwein-a cerdo-a
-@raw perimo journalism-a journalismus-a periodismo-a
-@raw perino operating-a betriebssystem-a funcionamiento-a
-@raw periro superior-a überlegen-a superior-a
-@raw periso journalist-a journalist-a periodista-a
-@raw peroni personnel-a personal-a
-@raw perolo personality-a persönlichkeit-a personalidad-a
-@raw peroro operator-a betreiber-a operador-a
-@raw perofo professional-a profi-a profesional-a
-@raw perovo approve-a genehmigen-a aprobar-a
-@raw peruto prey-a beute-a presa-a
-@raw peruke spruch-a
-@raw perudo persuade-a überreden-a persuadir-a
-@raw peruno supervision-a betreuung-a supervisión-a
-@raw peso it-a es-a ello-a
-@raw pesape shape-a
-@raw pesate puesto-a
-@raw pesadi specialized-a especializado-a
-@raw pesago pay-a bezahlung-a paga-a
-@raw pesali personally-a personalmente-a
-@raw pesaro regret-a bedauern-a pesar-a
-@raw peseto present-a anwesend-a presente-a
-@raw peseni present-a präsentieren-a
-@raw pesele speziell-a
-@raw pesero priest-a pfarrer-a cura-a
-@raw peseso species-a gattung-a especie-a
-@raw pesiti appreciate-a apreciar-a
-@raw pesino possession-a besitz-a posesión-a
-@raw pesilo specialty-a spezialität-a especialidad-a
-@raw pesiro punish-a bestrafen-a castigar-a
-@raw pesisi precisely-a precisamente-a
-@raw pesifo specific-a spezifisch-a específico-a
-@raw pesone pensión-a
-@raw pesosi precious-a kostbar-a
-@raw pefo open-a offen-a abierto-a
-@raw pefato path-a pfad-a sendero-a
-@raw pefeki perfectly-a perfectamente-a
-@raw pefero prefer-a bevorzugen-a preferir-a
-@raw pefiki specifically-a específicamente-a
-@raw pefilo profile-a profil-a perfil-a
-@raw pevo paper-a zeitung-a papel-a
-@raw pevaro preserve-a bewahren-a conservar-a
-@raw pevito planned-a geplant-a previsto-a
-@raw pehe hoy-a
-@raw pehane superhuman-a
-@raw pito political-a politisch-a político-a
-@raw pitamo pace-a tempo-a ritmo-a
-@raw pitari landlord-a propietario-a
-@raw piteki pitch-a spielfeld-a
-@raw pitoso pit-a grube-a pozo-a
-@raw piko public-a öffentlich-a público-a
-@raw pikalo typically-a üblicherweise-a normalmente-a
-@raw pibo private-a privat-a privado-a
-@raw pibepe yep-a
-@raw pido idea-a idee-a idea-a
-@raw pideno spider-a spinne-a araña-a
-@raw pigi page-a página-a
-@raw pigelo mirror-a spiegel-a espejo-a
-@raw pimaro primary-a primär-a primario-a
-@raw pino own-a eigen-a propio-a
-@raw pinato paint-a malen-a pintar-a
-@raw pinare opinar-a
-@raw pinete point-a
-@raw pinero pioneer-a pionier-a pionero-a
-@raw pinuro paint-a malen-a pintura-a
-@raw pilo title-a titel-a título-a
-@raw pilato plate-a platte-a plato-a
-@raw pilaro pillar-a stütze-a pilar-a
-@raw pilene pleno-a
-@raw pileso mushroom-a pilz-a hongo-a
-@raw piloto pilot-a pilot-a piloto-a
-@raw piro player-a spieler-a jugador-a
-@raw pirati pirate-a pirat-a
-@raw pirani inspiration-a inspiración-a
-@raw pirali spiritual-a espiritual-a
-@raw pirese press-a
-@raw piriti spirit-a espíritu-a
-@raw piroso pink-a rosa-a rosa-a
-@raw piso price-a preis-a precio-a
-@raw piseti clue-a pista-a
-@raw pisesi process-a procesar-a
-@raw pisono pillow-a kissen-a almohada-a
-@raw pifo perfect-a perfekt-a perfecto-a
-@raw pifako peak-a gipfel-a pico-a
-@raw pive etwa-a
-@raw pihe pedir-a
-@raw popo little-a wenig-a poco-a
-@raw popari opt-a optar-a
-@raw popero opera-a oper-a ópera-a
-@raw popiko pop-a pop-a pop-a
-@raw poposi oppose-a widersetzen-a
-@raw poto put-a setzen-a poner-a
-@raw potato potato-a kartoffel-a patata-a
-@raw potano importance-a wichtigkeit-a importancia-a
-@raw potali potentially-a potencialmente-a
-@raw potare aportar-a
-@raw potero goalkeeper-a torwart-a portero-a
-@raw potino pollution-a verschmutzung-a contaminación-a
-@raw poturo posture-a haltung-a postura-a
-@raw poko project-a projekt-a proyecto-a
-@raw poketo poet-a dichter-a poeta-a
-@raw pokeli pocket-a bolsillo-a
-@raw pokeso poetry-a dichtung-a poesía-a
-@raw pobo problem-a problem-a problema-a
-@raw pobado pound-a pfund-a libra-a
-@raw pobare apoyar-a
-@raw pobili possibility-a posibilidad-a
-@raw pobori poor-a pobre-a
-@raw podemo poem-a gedicht-a poema-a
-@raw podero powder-a pulver-a pólvora-a
-@raw pogo program-a programm-a programa-a
-@raw pomo sport-a sport-a deporte-a
-@raw poni one-a eins-a
-@raw ponati opposite-a contrario-a
-@raw ponabe responsable-a
-@raw ponane spontan-a
-@raw ponali potential-a potencial-a
-@raw poneti opponent-a adversario-a
-@raw poneno component-a bestandteil-a componente-a
-@raw ponilo potential-a potenzial-a potencial-a
-@raw ponore sponsor-a
-@raw polo possible-a möglich-a posible-a
-@raw polati populate-a poblar-a
-@raw poladi poll-a sondeo-a
-@raw polaro popularity-a beliebtheit-a popularidad-a
-@raw polene polen-a
-@raw polito politician-a politikerin-a político-a
-@raw poliko athletic-a sportlich-a atlético-a
-@raw poliso polish-a polnisch-a polaco-a
-@raw poro by-a durch-a por-a
-@raw porati corporate-a empresarial-a
-@raw porake porqué-a
-@raw porabi pre-a vorab-a
-@raw poralo portal-a portal-a portal-a
-@raw poraro import-a importieren-a importar-a
-@raw poreto poverty-a armut-a pobreza-a
-@raw porero reporter-a reporter-a reportero-a
-@raw porito priority-a priorität-a prioridad-a
-@raw porino portion-a portion-a porción-a
-@raw poroto import-a import-a importación-a
-@raw porulo pride-a stolz-a orgullo-a
-@raw poruri pour-a verter-a
-@raw poso police-a polizei-a policía-a
-@raw posati post-a post-a
-@raw posako approach-a konzept-a enfoque-a
-@raw posete post-a
-@raw poseri subsequent-a posterior-a
-@raw posese prozeß-a
-@raw posibo impossible-a unmöglich-a imposible-a
-@raw posino opposition-a widerstand-a oposición-a
-@raw posilo possibly-a evtl-a posiblemente-a
-@raw posono exposure-a exposition-a exposición-a
-@raw posolo pool-a schwimmbad-a piscina-a
-@raw pofo percent-a prozent-a porcentaje-a
-@raw povo power-a kraft-a potencia-a
-@raw povero powerful-a mächtig-a poderoso-a
-@raw pohi oh-a ach-a
-@raw pohipo pipe-a rohr-a pipa-a
-@raw pupo produce-a produzieren-a producir-a
-@raw pupero super-a super-a súper-a
-@raw puposo purpose-a zweck-a propósito-a
-@raw pute out-a
-@raw putipo tip-a tip-a punta-a
-@raw putiri pull-a tira-a
-@raw puke mucho-a
-@raw pukasi purchase-a adquirir-a
-@raw pubo post-a posten-a publicar-a
-@raw pubani republican-a republicano-a
-@raw pubese pues-a
-@raw pubipo pub-a kneipe-a pub-a
-@raw pubiko republic-a republik-a república-a
-@raw pubili publicly-a públicamente-a
-@raw pugo eye-a auge-a ojo-a
-@raw pume pues-a
-@raw pumepi pump-a pumpen-a
-@raw puno point-a punkt-a punto-a
-@raw punaki punk-a punk-a
-@raw pule cual-a
-@raw pulano plane-a flugzeug-a avión-a
-@raw puliko public-a öffentlichkeit-a públicas-a
-@raw pulido posted-a geschrieben-a publicado-a
-@raw puri our-a nuestro-a
-@raw puresi pursue-a perseguir-a
-@raw purilo purple-a lila-a morado-a
-@raw purope europa-a
-@raw puruti pursuit-a verfolgung-a
-@raw puso music-a musik-a música-a
-@raw puseno push-a drücken-a empujar-a
-@raw pufo euro-a euro-a euro-a
-@raw puhi pm-a uhr-a
+@raw papato nomuna pope-a papst-a
+@raw paparu deroba apart-a auseinander-a aparte-a
+@raw papino nomuna app-a applikation-a
+@raw pati patika to-a
+@raw pataku nomuna patch-a patch-a parche-a
+@raw patari detiva später-a
+@raw patetu nomuna patent-a patent-a patente-a
+@raw patenu nomuna patient-a patient-a paciente-a
+@raw pateru nomuna pattern-a muster-a patrón-a
+@raw patesu nomuna patience-a geduld-a paciencia-a
+@raw patito detiva patient-a paciente-a
+@raw patiku nomuna particle-a teilchen-a partícula-a
+@raw patinu nomuna pin-a stift-a pin-a
+@raw patiru veraba depart-a abweichen-a partir-a
+@raw patopo detiva top-a top-a
+@raw patoru nomuna pastor-a pastor-a pastor-a
+@raw paki veraba parecer-a
+@raw pakagu nomuna packaging-a verpackung-a envase-a
+@raw pakari nomuna particular-a
+@raw paketu nomuna package-a paket-a paquete-a
+@raw pakeno veraba pack-a packen-a
+@raw pakinu nomuna parking-a parkplatz-a estacionamiento-a
+@raw pakutu nomuna impact-a auswirkung-a impacto-a
+@raw pakugu nomuna pack-a packung-a pack-a
+@raw pabo peposa off-a ab-a
+@raw pabapi nomuna ap-a
+@raw pabagi nomuna pa-a
+@raw pabaro nomuna pro-a pro-a
+@raw pabasi nomuna ps-a
+@raw pabafi peposa pa-a
+@raw pabenu nomuna pan-a pan-a sartén-a
+@raw pabelu nomuna grandfather-a opa-a abuelo-a
+@raw paberi nomuna parecer-a
+@raw pabesi nomuna pese-a
+@raw pabiri nomuna partir-a
+@raw pabopi veraba pop-a
+@raw pabupi detiva up-a
+@raw pabusu nomuna pause-a pause-a pausa-a
+@raw padu nomuna party-a partei-a partido-a
+@raw paderi nomuna per-a
+@raw padiro veraba pair-a par-a
+@raw padopi nomuna op-a
+@raw padusi nomuna preuße-a
+@raw pagu veraba pass-a übergeben-a pasar-a
+@raw pagadu nomuna propaganda-a propaganda-a propaganda-a
+@raw pagenu nomuna payment-a zahlung-a pago-a
+@raw pami deroba am-a
+@raw pameru nomuna parameter-a parameter-a parámetro-a
+@raw pano peposa at-a an-a
+@raw panamu nomuna panorama-a panorama-a panorama-a
+@raw paneto detiva apparent-a aparente-a
+@raw paneni detiva spannen-a
+@raw panelu nomuna panel-a panel-a panel-a
+@raw paneru nomuna companion-a begleiter-a compañera-a
+@raw panesu detiva japanese-a japanisch-a japonés-a
+@raw paniku nomuna panic-a panik-a pánico-a
+@raw paninu nomuna expansion-a erweiterung-a expansión-a
+@raw paniru nomuna painting-a gemälde-a cuadro-a
+@raw panolu nomuna pole-a pol-a polo-a
+@raw panosu nomuna pants-a hose-a pantalón-a
+@raw palu nomuna once-a mal-a once-a
+@raw palatu nomuna palace-a palast-a palacio-a
+@raw palasi veraba place-a
+@raw palemu nomuna palm-a palm-a palma-a
+@raw paleno detiva packed-a lleno-a
+@raw palisu nomuna pizza-a pizza-a pizza-a
+@raw palotu nomuna plot-a handlung-a trama-a
+@raw paloli nomuna español-a
+@raw palusi dunona plus-a
+@raw paru nomuna year-a jahr-a año-a
+@raw parato nomuna appliance-a aparato-a
+@raw paraki veraba park-a
+@raw parasu nomuna paradise-a paradies-a paraíso-a
+@raw parafu nomuna paragraph-a ziffer-a párrafo-a
+@raw paretu detiva transparent-a transparent-a transparente-a
+@raw parenu deroba apparently-a scheinbar-a aparentemente-a
+@raw parelu nomuna unemployment-a arbeitslosigkeit-a paro-a
+@raw parero nomuna partnership-a partnerschaft-a
+@raw paresu nomuna press-a presse-a prensa-a
+@raw parevo detiva prior-a previo-a
+@raw parito nomuna pie-a tarta-a
+@raw pariku nomuna parish-a kirchengemeinde-a parroquia-a
+@raw paridu nomuna departure-a abgang-a partida-a
+@raw parimi detiva prime-a
+@raw parilu detiva partial-a teilweise-a parcial-a
+@raw pariru nomuna pair-a paaren-a par-a
+@raw parisu nomuna prize-a preisgeld-a premiado-a
+@raw pasi dunona daß-a
+@raw pasapi nomuna shape-a
+@raw pasatu nomuna past-a vergangenheit-a pasado-a
+@raw pasagu nomuna passage-a durchgang-a pasaje-a
+@raw pasaru nomuna pass-a vergehen-a pase-a
+@raw paseto nomuna pet-a mascota-a
+@raw pasenu veraba adjust-a anpassen-a ajustar-a
+@raw paseru nomuna passenger-a passagier-a pasajero-a
+@raw pasesi deroba spätestens-a
+@raw pasiti peposa past-a
+@raw pasimo nomuna pity-a lástima-a
+@raw pasinu nomuna passion-a leidenschaft-a pasión-a
+@raw pasilo nomuna pill-a pastilla-a
+@raw pasiso detiva precise-a preciso-a
+@raw pasivu detiva passive-a passiv-a pasivo-a
+@raw pasoto nomuna pasta-a pasta-a
+@raw pasoru nomuna passport-a paß-a pasaporte-a
+@raw pasugu nomuna parade-a umzug-a desfile-a
+@raw pafu nomuna plan-a plan-a plan-a
+@raw pafiko detiva pacific-a pacífico-a
+@raw pafulu detiva painful-a schmerzhaft-a doloroso-a
+@raw pavu nomuna fun-a spaß-a diversión-a
+@raw pavotu nomuna paw-a pfote-a pata-a
+@raw pavoro nomuna password-a passwort-a
+@raw pahu veraba pay-a zahlen-a pagar-a
+@raw pahavu nomuna straw-a stroh-a paja-a
+@raw pepu nomuna people-a leute-a gente-a
+@raw pepapi patika ja-a
+@raw pepadu detiva appropriate-a geeignet-a adecuado-a
+@raw peparo detiva prepared-a preparado-a
+@raw peperu nomuna pepper-a pfeffer-a pimienta-a
+@raw pepoki nomuna época-a
+@raw peposu nomuna preposition-a Präposition-a preposición-a
+@raw pepupi terona ay-a
+@raw petu nomuna part-a teil-a parte-a
+@raw petatu detiva representative-a repräsentativ-a representativo-a
+@raw petaru veraba pray-a beten-a rezar-a
+@raw petesu nomuna expertise-a kompetenz-a pericia-a
+@raw petinu nomuna petition-a petition-a petición-a
+@raw petivo deroba respectively-a respectivamente-a
+@raw peku dunona because-a weil-a porque-a
+@raw pekato nomuna aspect-a aspekt-a
+@raw pekaku detiva spectacular-a spektakulär-a espectacular-a
+@raw pekanu nomuna applicant-a bewerber-a demandante-a
+@raw pekaru veraba seize-a ergreifen-a aprovechar-a
+@raw peketu nomuna chest-a brust-a pecho-a
+@raw pekeno veraba conform-a entsprechen-a
+@raw pekeru nomuna speaker-a sprecher-a orador-a
+@raw pekinu nomuna prediction-a prognose-a predicción-a
+@raw pekivu nomuna perspective-a perspektive-a perspectiva-a
+@raw pekonu nomuna inspection-a inspektion-a inspección-a
+@raw pekosu detiva suspicious-a verdächtig-a sospechoso-a
+@raw pekupi veraba preocupar-a
+@raw pekumu nomuna spectrum-a spektrum-a espectro-a
+@raw pebu nomuna town-a ortschaft-a pueblo-a
+@raw pebedi veraba speed-a
+@raw peberi nomuna september-a
+@raw pebori detiva peor-a
+@raw pedu veraba appear-a erscheinen-a aparecer-a
+@raw pedagu nomuna pledge-a zusage-a prenda-a
+@raw pedaso nomuna chunk-a pedazo-a
+@raw pedenu nomuna pen-a feder-a pluma-a
+@raw pederi veraba sorprender-a
+@raw pedesi nomuna presidencia-a
+@raw pedito veraba predict-a predecir-a
+@raw pediku nomuna newspaper-a tageszeitung-a periódico-a
+@raw pedidu detiva lost-a verloren-a perdido-a
+@raw pedino detiva outstanding-a pendiente-a
+@raw pedono nomuna pardon-a perdón-a
+@raw pegu peposa per-a pro-a per-a
+@raw pegano detiva pregnant-a schwanger-a
+@raw pegaru veraba paste-a einfügen-a pegar-a
+@raw pegaso nomuna pregnancy-a embarazo-a
+@raw pegeni veraba prägen-a
+@raw pegeri nomuna peer-a
+@raw pemu veraba open-a öffnen-a abrir-a
+@raw pemanu nomuna supplement-a ergänzung-a complemento-a
+@raw pemeno deroba allegedly-a supuestamente-a
+@raw pemeri detiva premier-a
+@raw pemimu nomuna premium-a premium-a prima-a
+@raw pemisu nomuna permission-a erlaubnis-a permiso-a
+@raw penu nomuna person-a person-a persona-a
+@raw penato nomuna plenty-a abundancia-a
+@raw penago nomuna percentage-a prozentsatz-a
+@raw penanu nomuna presentation-a präsentation-a presentación-a
+@raw penalu nomuna penalty-a sanktion-a pena-a
+@raw penenu veraba pronounce-a aussprechen-a pronunciar-a
+@raw peneru nomuna prisoner-a gefangene-a preso-a
+@raw penino nomuna representation-a representación-a
+@raw penonu nomuna prevention-a prävention-a prevención-a
+@raw penunu nomuna opening-a eröffnung-a apertura-a
+@raw pelu veraba play-a spielen-a jugar-a
+@raw pelatu nomuna silver-a silber-a plata-a
+@raw pelaku nomuna badge-a abzeichen-a placa-a
+@raw pelanu nomuna plant-a pflanze-a vegetal-a
+@raw pelalo veraba appeal-a apelar-a
+@raw pelari veraba pelear-a
+@raw pelaso nomuna square-a plaza-a
+@raw pelenu nomuna play-a spielen-a play-a
+@raw peliku detiva awkward-a peinlich-a incómodo-a
+@raw pelidu nomuna surname-a nachname-a apellido-a
+@raw peliru nomuna danger-a gefährdung-a peligro-a
+@raw pelisu nomuna specialist-a spezialist-a especialista-a
+@raw peluko nomuna fight-a lucha-a
+@raw pelusu nomuna plus-a plus-a plus-a
+@raw peri tika unser-a
+@raw peratu veraba operate-a betreiben-a operar-a
+@raw perado nomuna upgrade-a aktualisierung-a
+@raw perani detiva peruano-a
+@raw peralu nomuna appeal-a berufung-a apelación-a
+@raw peraru veraba overcome-a überwinden-a superar-a
+@raw perasu deroba perhaps-a möglicherweise-a quizá-a
+@raw peravo detiva operational-a operativo-a
+@raw peretu nomuna port-a hafen-a puerto-a
+@raw perenu nomuna perception-a wahrnehmung-a percepción-a
+@raw perelu nomuna pearl-a perle-a perla-a
+@raw pereri nomuna preorder-a
+@raw peresu nomuna preference-a vorzug-a preferencia-a
+@raw perehu veraba perceive-a wahrnehmen-a percibir-a
+@raw peritu veraba cooperate-a zusammenarbeiten-a cooperar-a
+@raw perigu nomuna pig-a schwein-a cerdo-a
+@raw perimu nomuna journalism-a journalismus-a periodismo-a
+@raw perinu nomuna operating-a betriebssystem-a funcionamiento-a
+@raw periru detiva superior-a überlegen-a superior-a
+@raw perisu nomuna journalist-a journalist-a periodista-a
+@raw perono nomuna personnel-a personal-a
+@raw perolu nomuna personality-a persönlichkeit-a personalidad-a
+@raw peroru nomuna operator-a betreiber-a operador-a
+@raw perofu nomuna professional-a profi-a profesional-a
+@raw perovu veraba approve-a genehmigen-a aprobar-a
+@raw perutu nomuna prey-a beute-a presa-a
+@raw peruki nomuna spruch-a
+@raw perudu veraba persuade-a überreden-a persuadir-a
+@raw perunu nomuna supervision-a betreuung-a supervisión-a
+@raw pesu ronona it-a es-a ello-a
+@raw pesapi veraba shape-a
+@raw pesati nomuna puesto-a
+@raw pesado detiva specialized-a especializado-a
+@raw pesagu nomuna pay-a bezahlung-a paga-a
+@raw pesalo deroba personally-a personalmente-a
+@raw pesaru veraba regret-a bedauern-a pesar-a
+@raw pesetu nomuna present-a anwesend-a presente-a
+@raw peseno veraba present-a präsentieren-a
+@raw peseli detiva speziell-a
+@raw peseru nomuna priest-a pfarrer-a cura-a
+@raw pesesu nomuna species-a gattung-a especie-a
+@raw pesito veraba appreciate-a apreciar-a
+@raw pesinu nomuna possession-a besitz-a posesión-a
+@raw pesilu nomuna specialty-a spezialität-a especialidad-a
+@raw pesiru veraba punish-a bestrafen-a castigar-a
+@raw pesiso deroba precisely-a precisamente-a
+@raw pesifu detiva specific-a spezifisch-a específico-a
+@raw pesoni nomuna pensión-a
+@raw pesoso detiva precious-a kostbar-a
+@raw pefu detiva open-a offen-a abierto-a
+@raw pefatu nomuna path-a pfad-a sendero-a
+@raw pefeko deroba perfectly-a perfectamente-a
+@raw peferu veraba prefer-a bevorzugen-a preferir-a
+@raw pefiko deroba specifically-a específicamente-a
+@raw pefilu nomuna profile-a profil-a perfil-a
+@raw pevu nomuna paper-a zeitung-a papel-a
+@raw pevaru veraba preserve-a bewahren-a conservar-a
+@raw pevitu detiva planned-a geplant-a previsto-a
+@raw pehi deroba hoy-a
+@raw pehani detiva superhuman-a
+@raw pitu detiva political-a politisch-a político-a
+@raw pitamu nomuna pace-a tempo-a ritmo-a
+@raw pitaro nomuna landlord-a propietario-a
+@raw piteko nomuna pitch-a spielfeld-a
+@raw pitosu nomuna pit-a grube-a pozo-a
+@raw piku detiva public-a öffentlich-a público-a
+@raw pikalu deroba typically-a üblicherweise-a normalmente-a
+@raw pibu detiva private-a privat-a privado-a
+@raw pibepi terona yep-a
+@raw pidu nomuna idea-a idee-a idea-a
+@raw pidenu nomuna spider-a spinne-a araña-a
+@raw pigo nomuna page-a página-a
+@raw pigelu nomuna mirror-a spiegel-a espejo-a
+@raw pimaru detiva primary-a primär-a primario-a
+@raw pinu tika own-a eigen-a propio-a
+@raw pinatu veraba paint-a malen-a pintar-a
+@raw pinari veraba opinar-a
+@raw pineti veraba point-a
+@raw pineru nomuna pioneer-a pionier-a pionero-a
+@raw pinuru nomuna paint-a malen-a pintura-a
+@raw pilu nomuna title-a titel-a título-a
+@raw pilatu nomuna plate-a platte-a plato-a
+@raw pilaru nomuna pillar-a stütze-a pilar-a
+@raw pileni detiva pleno-a
+@raw pilesu nomuna mushroom-a pilz-a hongo-a
+@raw pilotu nomuna pilot-a pilot-a piloto-a
+@raw piru nomuna player-a spieler-a jugador-a
+@raw pirato nomuna pirate-a pirat-a
+@raw pirano nomuna inspiration-a inspiración-a
+@raw piralo detiva spiritual-a espiritual-a
+@raw piresi veraba press-a
+@raw pirito nomuna spirit-a espíritu-a
+@raw pirosu detiva pink-a rosa-a rosa-a
+@raw pisu nomuna price-a preis-a precio-a
+@raw piseto nomuna clue-a pista-a
+@raw piseso veraba process-a procesar-a
+@raw pisonu nomuna pillow-a kissen-a almohada-a
+@raw pifu detiva perfect-a perfekt-a perfecto-a
+@raw pifaku nomuna peak-a gipfel-a pico-a
+@raw pivi deroba etwa-a
+@raw pihi veraba pedir-a
+@raw popu deroba little-a wenig-a poco-a
+@raw poparo veraba opt-a optar-a
+@raw poperu nomuna opera-a oper-a ópera-a
+@raw popiku nomuna pop-a pop-a pop-a
+@raw poposo veraba oppose-a widersetzen-a
+@raw potu veraba put-a setzen-a poner-a
+@raw potatu nomuna potato-a kartoffel-a patata-a
+@raw potanu nomuna importance-a wichtigkeit-a importancia-a
+@raw potalo deroba potentially-a potencialmente-a
+@raw potari veraba aportar-a
+@raw poteru nomuna goalkeeper-a torwart-a portero-a
+@raw potinu nomuna pollution-a verschmutzung-a contaminación-a
+@raw poturu nomuna posture-a haltung-a postura-a
+@raw poku nomuna project-a projekt-a proyecto-a
+@raw poketu nomuna poet-a dichter-a poeta-a
+@raw pokelo nomuna pocket-a bolsillo-a
+@raw pokesu nomuna poetry-a dichtung-a poesía-a
+@raw pobu nomuna problem-a problem-a problema-a
+@raw pobadu nomuna pound-a pfund-a libra-a
+@raw pobari veraba apoyar-a
+@raw pobilo nomuna possibility-a posibilidad-a
+@raw poboro nomuna poor-a pobre-a
+@raw podemu nomuna poem-a gedicht-a poema-a
+@raw poderu nomuna powder-a pulver-a pólvora-a
+@raw pogu nomuna program-a programm-a programa-a
+@raw pomu nomuna sport-a sport-a deporte-a
+@raw pono numera one-a eins-a
+@raw ponato detiva opposite-a contrario-a
+@raw ponabi nomuna responsable-a
+@raw ponani detiva spontan-a
+@raw ponalo detiva potential-a potencial-a
+@raw poneto nomuna opponent-a adversario-a
+@raw ponenu nomuna component-a bestandteil-a componente-a
+@raw ponilu nomuna potential-a potenzial-a potencial-a
+@raw ponori veraba sponsor-a
+@raw polu detiva possible-a möglich-a posible-a
+@raw polato veraba populate-a poblar-a
+@raw polado nomuna poll-a sondeo-a
+@raw polaru nomuna popularity-a beliebtheit-a popularidad-a
+@raw poleni nomuna polen-a
+@raw politu nomuna politician-a politikerin-a político-a
+@raw poliku detiva athletic-a sportlich-a atlético-a
+@raw polisu detiva polish-a polnisch-a polaco-a
+@raw poru peposa by-a durch-a por-a
+@raw porato detiva corporate-a empresarial-a
+@raw poraki nomuna porqué-a
+@raw porabo deroba pre-a vorab-a
+@raw poralu nomuna portal-a portal-a portal-a
+@raw poraru veraba import-a importieren-a importar-a
+@raw poretu nomuna poverty-a armut-a pobreza-a
+@raw poreru nomuna reporter-a reporter-a reportero-a
+@raw poritu nomuna priority-a priorität-a prioridad-a
+@raw porinu nomuna portion-a portion-a porción-a
+@raw porotu nomuna import-a import-a importación-a
+@raw porulu nomuna pride-a stolz-a orgullo-a
+@raw poruro veraba pour-a verter-a
+@raw posu nomuna police-a polizei-a policía-a
+@raw posato detiva post-a post-a
+@raw posaku nomuna approach-a konzept-a enfoque-a
+@raw poseti patika post-a
+@raw posero detiva subsequent-a posterior-a
+@raw posesi nomuna prozeß-a
+@raw posibu detiva impossible-a unmöglich-a imposible-a
+@raw posinu nomuna opposition-a widerstand-a oposición-a
+@raw posilu deroba possibly-a evtl-a posiblemente-a
+@raw posonu nomuna exposure-a exposition-a exposición-a
+@raw posolu nomuna pool-a schwimmbad-a piscina-a
+@raw pofu nomuna percent-a prozent-a porcentaje-a
+@raw povu nomuna power-a kraft-a potencia-a
+@raw poveru detiva powerful-a mächtig-a poderoso-a
+@raw poho terona oh-a ach-a
+@raw pohipu nomuna pipe-a rohr-a pipa-a
+@raw pupu veraba produce-a produzieren-a producir-a
+@raw puperu deroba super-a super-a súper-a
+@raw puposu nomuna purpose-a zweck-a propósito-a
+@raw puti peposa out-a
+@raw putipu nomuna tip-a tip-a punta-a
+@raw putiro nomuna pull-a tira-a
+@raw puki tika mucho-a
+@raw pukaso veraba purchase-a adquirir-a
+@raw pubu veraba post-a posten-a publicar-a
+@raw pubano detiva republican-a republicano-a
+@raw pubesi dunona pues-a
+@raw pubipu nomuna pub-a kneipe-a pub-a
+@raw pubiku nomuna republic-a republik-a república-a
+@raw pubilo deroba publicly-a públicamente-a
+@raw pugu nomuna eye-a auge-a ojo-a
+@raw pumi dunona pues-a
+@raw pumepo veraba pump-a pumpen-a
+@raw punu nomuna point-a punkt-a punto-a
+@raw punako nomuna punk-a punk-a
+@raw puli ronona cual-a
+@raw pulanu nomuna plane-a flugzeug-a avión-a
+@raw puliku nomuna public-a öffentlichkeit-a públicas-a
+@raw pulidu detiva posted-a geschrieben-a publicado-a
+@raw puro ronona our-a nuestro-a
+@raw pureso veraba pursue-a perseguir-a
+@raw purilu detiva purple-a lila-a morado-a
+@raw puropi nomuna europa-a
+@raw puruto nomuna pursuit-a verfolgung-a
+@raw pusu nomuna music-a musik-a música-a
+@raw pusenu veraba push-a drücken-a empujar-a
+@raw pufu nomuna euro-a euro-a euro-a
+@raw puho nomuna pm-a uhr-a
 
 ## ("t")
 
-@raw tape contar-a
-@raw tato state-a staat-a estado-a
-@raw tatato estate-a anwesen-a patrimonio-a
-@raw tataki attach-a befestigen-a
-@raw tatadi treaty-a tratado-a
-@raw tatano instant-a augenblicklich-a instantáneo-a
-@raw tatali actual-a tatsächlich-a
-@raw tatahi tattoo-a tatuaje-a
-@raw tatero theatre-a theater-a teatro-a
-@raw tatiki statistical-a estadístico-a
-@raw tatige tätig-a
-@raw tatino expectation-a erwartung-a expectativa-a
-@raw tatuso status-a status-a estatus-a
-@raw tako take-a nehmen-a tomar-a
-@raw takali tackle-a abordar-a
-@raw takaso taxi-a taxi-a taxi-a
-@raw takegi tag-a markierung-a
-@raw takeni dive-a tauchen-a
-@raw takero taxpayer-a steuerzahler-a contribuyente-a
-@raw takiko tactic-a taktik-a táctica-a
-@raw takomi take-a toma-a
-@raw takolo tail-a heck-a cola-a
-@raw takulo obstacle-a hürde-a obstáculo-a
-@raw tabo star-a stern-a estrella-a
-@raw tabati tablet-a tablet-a
-@raw tabage tuyo-a
-@raw tabafo tea-a tee-a té-a
-@raw tabave tv-a
-@raw tabete et-a
-@raw tabeli spreadsheet-a tabelle-a
-@raw tabeve tv-a
-@raw tabito stability-a stabilität-a estabilidad-a
-@raw tabilo stable-a stabil-a estable-a
-@raw tabisi establish-a establecer-a
-@raw tabute auto-a
-@raw tado you-a du-a tú-a
-@raw tadato update-a update-a actualización-a
-@raw tadari standard-a estándar-a
-@raw tadete et-a
-@raw tadiko thick-a dick-a grueso-a
-@raw tadigo continuous-a ständig-a continuo-a
-@raw tadimo stadium-a stadion-a estadio-a
-@raw tadini standing-a stehen-a
-@raw tago something-a etwas-a algo-a
-@raw tagate target-a
-@raw tageto target-a zielgruppe-a blanco-a
-@raw tagedo agenda-a agenda-a agenda-a
-@raw tamo team-a team-a equipo-a
-@raw tamepi stamp-a stempel-a
-@raw tamete ayuntamiento-a
-@raw tameni originate-a stammen-a
-@raw tamoki neither-a tampoco-a
-@raw tane tanto-a
-@raw tanate tanto-a
-@raw tanaki thank-a danke-a
-@raw tanano attachment-a anhang-a apego-a
-@raw tanaro standard-a standard-a norma-a
-@raw taneko tank-a panzer-a tanque-a
-@raw tanino train-a trainieren-a entrenar-a
-@raw tanomo autonomy-a selbständigkeit-a autonomía-a
-@raw talo all-a all-a todo-a
-@raw talako talk-a vortrag-a habla-a
-@raw talago installation-a anlage-a instalación-a
-@raw taleto talented-a talentiert-a talentoso-a
-@raw talemo talem-a Talema-a Talema-a
-@raw taleno talent-a talent-a talento-a
-@raw talero workshop-a werkstatt-a taller-a
-@raw talike staatlich-a
-@raw talino italian-a italienisch-a italiano-a
-@raw taro they-a ihr-a ellos-a
-@raw tarapo trap-a falle-a trampa-a
-@raw tarato throat-a kehle-a garganta-a
-@raw taraki task-a tarea-a
-@raw tarade trade-a
-@raw tarari starter-a arranque-a
-@raw tarasi trace-a traza-a
-@raw tareti launch-a start-a
-@raw tareno strengthen-a stärken-a reforzar-a
-@raw tarero stair-a treppe-a escalera-a
-@raw tariko trick-a trick-a truco-a
-@raw taribo tribe-a stamm-a tribu-a
-@raw taridi tide-a marea-a
-@raw tarife tarifa-a
-@raw tarupi troop-a truppe-a
-@raw taruko truck-a lkw-a camión-a
-@raw taruli truly-a verdaderamente-a
-@raw taso street-a straße-a calle-a
-@raw taseno disappointed-a enttäuschen-a decepcionado-a
-@raw tasiko statistic-a statistik-a estadística-a
-@raw tasise statistisch-a
-@raw tafo interesting-a interessant-a interesante-a
-@raw tafete et-a
-@raw tafelo squadron-a staffel-a escuadrón-a
-@raw tavo attack-a angriff-a ataque-a
-@raw tavati await-a abwarten-a
-@raw tavisi twice-a zweimal-a
-@raw taho station-a bahnhof-a estación-a
-@raw tepi further-a weiter-a
-@raw tepiko carpet-a teppich-a alfombra-a
-@raw teto center-a mitte-a centro-a
-@raw tetagi steady-a stetig-a
-@raw tetene vertreten-a
-@raw tetiko authentic-a verbindlich-a auténtico-a
-@raw tetiso aesthetic-a ästhetisch-a estético-a
-@raw teko internet-a internet-a internet-a
-@raw tekene streichen-a
-@raw tekiko tech-a technologie-a técnico-a
-@raw tekini teaching-a enseñanza-a
-@raw tekiso technical-a technisch-a técnico-a
-@raw tebo test-a test-a prueba-a
-@raw tebeni drift-a treiben-a
-@raw tebile teil-a
-@raw teboro theory-a theorie-a teoría-a
-@raw tedo there-a da-a allí-a
-@raw tedani attendance-a anwesenheit-a
-@raw tedalo cathedral-a dom-a catedral-a
-@raw tedeni tendency-a tendenz-a
-@raw tederi cater-a atender-a
-@raw tediti edit-a bearbeitung-a
-@raw tego term-a begriff-a término-a
-@raw tegene entgegen-a
-@raw temo system-a system-a sistema-a
-@raw temate attempt-a
-@raw temaki theme-a temática-a
-@raw temalo terminal-a terminal-a terminal-a
-@raw temeto testament-a testament-a testamento-a
-@raw temeno item-a posten-a elemento-a
-@raw temelo temple-a tempel-a templo-a
-@raw temere temer-a
-@raw temito admit-a zugeben-a admitir-a
-@raw temino appointment-a termin-a nombramiento-a
-@raw temilo temporarily-a zeitweise-a temporalmente-a
-@raw temono testimony-a zeugnis-a testimonio-a
-@raw temoro temporary-a vorübergehend-a temporal-a
-@raw teno between-a zwischen-a entre-a
-@raw tenato attentive-a aufmerksam-a atento-a
-@raw tenako teach-a lehren-a enseñar-a
-@raw tenadi tend-a neigen-a
-@raw tenano lieutenant-a leutnant-a teniente-a
-@raw tenedo trend-a trend-a tendencia-a
-@raw teneri teenager-a jugendlicher-a
-@raw tenito tenure-a amtszeit-a tenencia-a
-@raw teniki technique-a técnica-a
-@raw tenino workout-a training-a entrenamiento-a
-@raw teniso testing-a testen-a ensayo-a
-@raw tenono tension-a spannung-a tensión-a
-@raw tele tell-a
-@raw telato tent-a zelt-a carpa-a
-@raw telado keyboard-a tastatur-a teclado-a
-@raw telene aufstellen-a
-@raw teleso partly-a teilweise-a parcialmente-a
-@raw telite elite-a
-@raw teliki fabric-a tela-a
-@raw telogo theology-a theologie-a teología-a
-@raw tero other-a ander-a otro-a
-@raw terapo therapy-a therapie-a terapia-a
-@raw terake track-a
-@raw terado trade-a handel-a comercio-a
-@raw terami stretch-a tramo-a
-@raw terano veteran-a veteran-a veterano-a
-@raw teralo literal-a wörtlich-a literal-a
-@raw teraro tear-a träne-a lágrima-a
-@raw teravi track-a vía-a
-@raw tereti performer-a intérprete-a
-@raw teremo earthquake-a erdbeben-a terremoto-a
-@raw tereno tender-a zärtlich-a tierno-a
-@raw terero interfere-a beeinträchtigen-a interferir-a
-@raw teriko theoretical-a theoretisch-a teórico-a
-@raw teribo terrible-a furchtbar-a terrible-a
-@raw terigo eternal-a ewig-a eterno-a
-@raw terini interim-a provisional-a
-@raw terilo butterfly-a schmetterling-a mariposa-a
-@raw teriro territory-a territorium-a territorio-a
-@raw terisi otherwise-a ansonsten-a
-@raw teropi troops-a tropa-a
-@raw teroti despite-a trotz-a
-@raw terobo theft-a diebstahl-a robo-a
-@raw teroro terror-a terror-a terror-a
-@raw terudo background-a hintergrund-a trasfondo-a
-@raw terusi trust-a trauen-a
-@raw teso that-a jener-a ese-a
-@raw tesato test-a testen-a probar-a
-@raw teseni teen-a adolescente-a
-@raw tesino intention-a absicht-a intención-a
-@raw tesiso thesis-a these-a tesis-a
-@raw tesoro treasure-a schatz-a tesoro-a
-@raw tefo text-a text-a texto-a
-@raw tevo interview-a gespräch-a entrevista-a
-@raw tevino twin-a zwilling-a gemelo-a
-@raw tehi stand-a stehen-a
-@raw tehine weiterhin-a
-@raw tehiso tissue-a gewebe-a tejido-a
-@raw tipo type-a typ-a tipo-a
-@raw tipano participation-a teilnahme-a participación-a
-@raw tipiso typical-a typisch-a típico-a
-@raw tito third-a dritte-a tercero-a
-@raw titare titular-a
-@raw titeri either-a entweder-a
-@raw titigo timely-a rechtzeitig-a oportuno-a
-@raw titino institution-a institution-a institución-a
-@raw titilo institutional-a institutionell-a institucional-a
-@raw titori investigator-a ermittler-a
-@raw titudo attitude-a einstellung-a actitud-a
-@raw tiko article-a artikel-a artículo-a
-@raw tiketo ticket-a ticket-a billete-a
-@raw tibi within-a innerhalb-a
-@raw tidi too-a demasiado-a
-@raw tidato update-a aktualisieren-a actualizar-a
-@raw tideni tie-a binden-a
-@raw tiduno thin-a dünn-a delgado-a
-@raw tigo important-a wichtig-a importante-a
-@raw timo time-a zeit-a tiempo-a
-@raw timate ultimate-a
-@raw timalo optimal-a optimal-a óptimo-a
-@raw timiso optimistic-a optimistisch-a optimista-a
-@raw timudo tired-a müde-a cansado-a
-@raw timuno consent-a zustimmung-a consentimiento-a
-@raw timulo stimulate-a anregen-a estimular-a
-@raw tino think-a denken-a pensar-a
-@raw tinati tape-a cinta-a
-@raw tineho participant-a teilnehmer-a participante-a
-@raw tinigi tiny-a winzig-a
-@raw tinino distinction-a unterscheidung-a distinción-a
-@raw tili still-a todavía-a
-@raw tilado thread-a faden-a hilo-a
-@raw tilaro holder-a inhaber-a titular-a
-@raw tilasi partially-a teils-a
-@raw tilito utility-a nutzen-a utilidad-a
-@raw tire their-a
-@raw tirade third-a
-@raw tiraro withdraw-a zurückziehen-a retirar-a
-@raw tiredo third-a drittel-a tercero-a
-@raw tireno thief-a dieb-a ladrón-a
-@raw tireli entirely-a enteramente-a
-@raw tirito thirty-a dreißig-a treinta-a
-@raw tiso this-a dieser-a este-a
-@raw tisipi anticipate-a anticipar-a
-@raw tisiko artistic-a künstlerisch-a artístico-a
-@raw tifo meeting-a treffen-a reunión-a
-@raw tifero tire-a reifen-a neumático-a
-@raw tifiko certification-a zertifikat-a certificación-a
-@raw tivo activity-a tätigkeit-a actividad-a
-@raw tiveli actively-a activamente-a
-@raw tivito activist-a aktivist-a militante-a
-@raw tiho attention-a aufmerksamkeit-a atención-a
-@raw topo stop-a aufhören-a detener-a
-@raw topeni halt-a stoppen-a
-@raw topiki topic-a tópico-a
-@raw topoto pot-a topf-a olla-a
-@raw toto lot-a partie-a lote-a
-@raw totalo total-a gesamtzahl-a total-a
-@raw toko sex-a sex-a sexo-a
-@raw tokare tocar-a
-@raw tokeno token-a Token-a token-a
-@raw tokiko toxic-a giftig-a tóxico-a
-@raw tobi whether-a ob-a
-@raw tobahe though-a
-@raw tobere oktober-a
-@raw tobuso bus-a bus-a autobús-a
-@raw todi story-a meldung-a
-@raw togi through-a mediante-a
-@raw togare otorgar-a
-@raw toguro tour-a tour-a gira-a
-@raw tomi former-a antiguo-a
-@raw tomato automatic-a automatisch-a automático-a
-@raw tomako stomach-a bauch-a estómago-a
-@raw tomiki automatically-a automáticamente-a
-@raw tono international-a international-a internacional-a
-@raw tonado ton-a tonne-a tonelada-a
-@raw tonagi tongue-a zunge-a
-@raw toneto fool-a narr-a tonto-a
-@raw tonige tonight-a
-@raw tonomo autonomous-a autonom-a autónomo-a
-@raw tolo pose-a stellen-a posar-a
-@raw toleto toilet-a toilette-a inodoro-a
-@raw toro your-a dein-a tu-a
-@raw torago storage-a speicher-a almacén-a
-@raw torane torno-a
-@raw toremo storm-a sturm-a tormenta-a
-@raw toreno tournament-a turnier-a torneo-a
-@raw torino novelist-a autorin-a novelista-a
-@raw torisi authorize-a autorizar-a
-@raw toroni authorization-a autorización-a
-@raw torolo tool-a werkzeug-a herramienta-a
-@raw torofo trophy-a pokal-a trofeo-a
-@raw toruki touch-a berühren-a
-@raw torugo thorough-a sorgfältig-a minucioso-a
-@raw toruno interference-a störung-a interferencia-a
-@raw toruri torture-a tortura-a
-@raw tosi else-a sonst-a
-@raw tosene stoßen-a
-@raw tofo author-a autor-a autor-a
-@raw tofuti out-a fuera-a
-@raw tovo two-a zwei-a dos-a
-@raw tovade towards-a
-@raw tovelo towel-a handtuch-a toalla-a
-@raw tovero tower-a turm-a torre-a
-@raw tohi today-a hoy-a
-@raw tohoto tooth-a zahn-a diente-a
-@raw tohuko touch-a berührung-a toque-a
-@raw tohubo tube-a röhre-a tubo-a
-@raw tupo culture-a kultur-a cultura-a
-@raw tupito stupidity-a dummheit-a estupidez-a
-@raw tupido stupid-a dumm-a estúpido-a
-@raw tuto art-a kunst-a arte-a
-@raw tuteni prop-a stützen-a
-@raw tuko also-a auch-a también-a
-@raw tukiso turkish-a türkisch-a turco-a
-@raw tudo study-a studium-a estudio-a
-@raw tudene studieren-a
-@raw tugo style-a stil-a estilo-a
-@raw tugedo youth-a jugend-a juventud-a
-@raw tumo subject-a gegenstand-a tema-a
-@raw tumebo thumb-a daumen-a pulgar-a
-@raw tumoro tumor-a tumor-a tumor-a
-@raw tuno turn-a drehen-a girar-a
-@raw tunelo uncle-a onkel-a tío-a
-@raw tuli actually-a eigentlich-a
-@raw turo three-a drei-a tres-a
-@raw turaki turkey-a pavo-a
-@raw tureno turn-a wende-a turno-a
-@raw turike turístico-a
-@raw turimo trim-a kürzen-a recortar-a
-@raw turilo trial-a verhandlung-a juicio-a
-@raw turiso tourist-a tourismus-a turismo-a
-@raw tuso piece-a stück-a pieza-a
-@raw tuseni plunge-a stürzen-a
-@raw tufo future-a zukunft-a futuro-a
-@raw tufito outfit-a outfit-a atuendo-a
-@raw tuvo tax-a steuer-a impuesto-a
-@raw tuho introduce-a vorstellen-a introducir-a
+@raw tapi veraba contar-a
+@raw tatu nomuna state-a staat-a estado-a
+@raw tatatu nomuna estate-a anwesen-a patrimonio-a
+@raw tatako veraba attach-a befestigen-a
+@raw tatado nomuna treaty-a tratado-a
+@raw tatanu detiva instant-a augenblicklich-a instantáneo-a
+@raw tatalo detiva actual-a tatsächlich-a
+@raw tataho nomuna tattoo-a tatuaje-a
+@raw tateru nomuna theatre-a theater-a teatro-a
+@raw tatiko detiva statistical-a estadístico-a
+@raw tatigi detiva tätig-a
+@raw tatinu nomuna expectation-a erwartung-a expectativa-a
+@raw tatusu nomuna status-a status-a estatus-a
+@raw taku veraba take-a nehmen-a tomar-a
+@raw takalo veraba tackle-a abordar-a
+@raw takasu nomuna taxi-a taxi-a taxi-a
+@raw takego nomuna tag-a markierung-a
+@raw takeno veraba dive-a tauchen-a
+@raw takeru nomuna taxpayer-a steuerzahler-a contribuyente-a
+@raw takiku nomuna tactic-a taktik-a táctica-a
+@raw takomo nomuna take-a toma-a
+@raw takolu nomuna tail-a heck-a cola-a
+@raw takulu nomuna obstacle-a hürde-a obstáculo-a
+@raw tabu nomuna star-a stern-a estrella-a
+@raw tabato nomuna tablet-a tablet-a
+@raw tabagi ronona tuyo-a
+@raw tabafu nomuna tea-a tee-a té-a
+@raw tabavi nomuna tv-a
+@raw tabeti dunona et-a
+@raw tabelo nomuna spreadsheet-a tabelle-a
+@raw tabevi nomuna tv-a
+@raw tabitu nomuna stability-a stabilität-a estabilidad-a
+@raw tabilu detiva stable-a stabil-a estable-a
+@raw tabiso veraba establish-a establecer-a
+@raw tabuti nomuna auto-a
+@raw tadu ronona you-a du-a tú-a
+@raw tadatu nomuna update-a update-a actualización-a
+@raw tadaro detiva standard-a estándar-a
+@raw tadeti nomuna et-a
+@raw tadiku detiva thick-a dick-a grueso-a
+@raw tadigu detiva continuous-a ständig-a continuo-a
+@raw tadimu nomuna stadium-a stadion-a estadio-a
+@raw tadino nomuna standing-a stehen-a
+@raw tagu ronona something-a etwas-a algo-a
+@raw tagati veraba target-a
+@raw tagetu nomuna target-a zielgruppe-a blanco-a
+@raw tagedu nomuna agenda-a agenda-a agenda-a
+@raw tamu nomuna team-a team-a equipo-a
+@raw tamepo nomuna stamp-a stempel-a
+@raw tameti nomuna ayuntamiento-a
+@raw tameno veraba originate-a stammen-a
+@raw tamoko deroba neither-a tampoco-a
+@raw tani deroba tanto-a
+@raw tanati nomuna tanto-a
+@raw tanako nomuna thank-a danke-a
+@raw tananu nomuna attachment-a anhang-a apego-a
+@raw tanaru nomuna standard-a standard-a norma-a
+@raw taneku nomuna tank-a panzer-a tanque-a
+@raw taninu veraba train-a trainieren-a entrenar-a
+@raw tanomu nomuna autonomy-a selbständigkeit-a autonomía-a
+@raw talu tika all-a all-a todo-a
+@raw talaku nomuna talk-a vortrag-a habla-a
+@raw talagu nomuna installation-a anlage-a instalación-a
+@raw taletu detiva talented-a talentiert-a talentoso-a
+@raw talemu nomuna talem-a Talema-a Talema-a
+@raw talenu nomuna talent-a talent-a talento-a
+@raw taleru nomuna workshop-a werkstatt-a taller-a
+@raw taliki detiva staatlich-a
+@raw talinu detiva italian-a italienisch-a italiano-a
+@raw taru ronona they-a ihr-a ellos-a
+@raw tarapu nomuna trap-a falle-a trampa-a
+@raw taratu nomuna throat-a kehle-a garganta-a
+@raw tarako nomuna task-a tarea-a
+@raw taradi veraba trade-a
+@raw tararo nomuna starter-a arranque-a
+@raw taraso nomuna trace-a traza-a
+@raw tareto nomuna launch-a start-a
+@raw tarenu veraba strengthen-a stärken-a reforzar-a
+@raw tareru nomuna stair-a treppe-a escalera-a
+@raw tariku nomuna trick-a trick-a truco-a
+@raw taribu nomuna tribe-a stamm-a tribu-a
+@raw tarido nomuna tide-a marea-a
+@raw tarifi nomuna tarifa-a
+@raw tarupo nomuna troop-a truppe-a
+@raw taruku nomuna truck-a lkw-a camión-a
+@raw tarulo deroba truly-a verdaderamente-a
+@raw tasu nomuna street-a straße-a calle-a
+@raw tasenu detiva disappointed-a enttäuschen-a decepcionado-a
+@raw tasiku nomuna statistic-a statistik-a estadística-a
+@raw tasisi detiva statistisch-a
+@raw tafu detiva interesting-a interessant-a interesante-a
+@raw tafeti dunona et-a
+@raw tafelu nomuna squadron-a staffel-a escuadrón-a
+@raw tavu nomuna attack-a angriff-a ataque-a
+@raw tavato veraba await-a abwarten-a
+@raw taviso deroba twice-a zweimal-a
+@raw tahu nomuna station-a bahnhof-a estación-a
+@raw tepo deroba further-a weiter-a
+@raw tepiku nomuna carpet-a teppich-a alfombra-a
+@raw tetu nomuna center-a mitte-a centro-a
+@raw tetago detiva steady-a stetig-a
+@raw teteni veraba vertreten-a
+@raw tetiku detiva authentic-a verbindlich-a auténtico-a
+@raw tetisu detiva aesthetic-a ästhetisch-a estético-a
+@raw teku nomuna internet-a internet-a internet-a
+@raw tekeni veraba streichen-a
+@raw tekiku nomuna tech-a technologie-a técnico-a
+@raw tekino nomuna teaching-a enseñanza-a
+@raw tekisu detiva technical-a technisch-a técnico-a
+@raw tebu nomuna test-a test-a prueba-a
+@raw tebeno veraba drift-a treiben-a
+@raw tebili deroba teil-a
+@raw teboru nomuna theory-a theorie-a teoría-a
+@raw tedu ronona there-a da-a allí-a
+@raw tedano nomuna attendance-a anwesenheit-a
+@raw tedalu nomuna cathedral-a dom-a catedral-a
+@raw tedeno nomuna tendency-a tendenz-a
+@raw tedero veraba cater-a atender-a
+@raw tedito nomuna edit-a bearbeitung-a
+@raw tegu nomuna term-a begriff-a término-a
+@raw tegeni peposa entgegen-a
+@raw temu nomuna system-a system-a sistema-a
+@raw temati veraba attempt-a
+@raw temako nomuna theme-a temática-a
+@raw temalu nomuna terminal-a terminal-a terminal-a
+@raw temetu nomuna testament-a testament-a testamento-a
+@raw temenu nomuna item-a posten-a elemento-a
+@raw temelu nomuna temple-a tempel-a templo-a
+@raw temeri veraba temer-a
+@raw temitu veraba admit-a zugeben-a admitir-a
+@raw teminu nomuna appointment-a termin-a nombramiento-a
+@raw temilu deroba temporarily-a zeitweise-a temporalmente-a
+@raw temonu nomuna testimony-a zeugnis-a testimonio-a
+@raw temoru detiva temporary-a vorübergehend-a temporal-a
+@raw tenu peposa between-a zwischen-a entre-a
+@raw tenatu detiva attentive-a aufmerksam-a atento-a
+@raw tenaku veraba teach-a lehren-a enseñar-a
+@raw tenado veraba tend-a neigen-a
+@raw tenanu nomuna lieutenant-a leutnant-a teniente-a
+@raw tenedu nomuna trend-a trend-a tendencia-a
+@raw tenero nomuna teenager-a jugendlicher-a
+@raw tenitu nomuna tenure-a amtszeit-a tenencia-a
+@raw teniko nomuna technique-a técnica-a
+@raw teninu nomuna workout-a training-a entrenamiento-a
+@raw tenisu nomuna testing-a testen-a ensayo-a
+@raw tenonu nomuna tension-a spannung-a tensión-a
+@raw teli veraba tell-a
+@raw telatu nomuna tent-a zelt-a carpa-a
+@raw teladu nomuna keyboard-a tastatur-a teclado-a
+@raw teleni veraba aufstellen-a
+@raw telesu deroba partly-a teilweise-a parcialmente-a
+@raw teliti detiva elite-a
+@raw teliko nomuna fabric-a tela-a
+@raw telogu nomuna theology-a theologie-a teología-a
+@raw teru tika other-a ander-a otro-a
+@raw terapu nomuna therapy-a therapie-a terapia-a
+@raw teraki veraba track-a
+@raw teradu nomuna trade-a handel-a comercio-a
+@raw teramo nomuna stretch-a tramo-a
+@raw teranu nomuna veteran-a veteran-a veterano-a
+@raw teralu detiva literal-a wörtlich-a literal-a
+@raw teraru nomuna tear-a träne-a lágrima-a
+@raw teravo nomuna track-a vía-a
+@raw tereto nomuna performer-a intérprete-a
+@raw teremu nomuna earthquake-a erdbeben-a terremoto-a
+@raw terenu detiva tender-a zärtlich-a tierno-a
+@raw tereru veraba interfere-a beeinträchtigen-a interferir-a
+@raw teriku detiva theoretical-a theoretisch-a teórico-a
+@raw teribu detiva terrible-a furchtbar-a terrible-a
+@raw terigu detiva eternal-a ewig-a eterno-a
+@raw terino detiva interim-a provisional-a
+@raw terilu nomuna butterfly-a schmetterling-a mariposa-a
+@raw teriru nomuna territory-a territorium-a territorio-a
+@raw teriso deroba otherwise-a ansonsten-a
+@raw teropo nomuna troops-a tropa-a
+@raw teroto peposa despite-a trotz-a
+@raw terobu nomuna theft-a diebstahl-a robo-a
+@raw teronu nomuna interjection-a Interjektion-a interjección-a
+@raw teroru nomuna terror-a terror-a terror-a
+@raw terudu nomuna background-a hintergrund-a trasfondo-a
+@raw teruso veraba trust-a trauen-a
+@raw tesu tika that-a jener-a ese-a
+@raw tesatu veraba test-a testen-a probar-a
+@raw teseno nomuna teen-a adolescente-a
+@raw tesinu nomuna intention-a absicht-a intención-a
+@raw tesisu nomuna thesis-a these-a tesis-a
+@raw tesoru nomuna treasure-a schatz-a tesoro-a
+@raw tefu nomuna text-a text-a texto-a
+@raw tevu nomuna interview-a gespräch-a entrevista-a
+@raw tevinu nomuna twin-a zwilling-a gemelo-a
+@raw teho veraba stand-a stehen-a
+@raw tehini deroba weiterhin-a
+@raw tehisu nomuna tissue-a gewebe-a tejido-a
+@raw tipu nomuna type-a typ-a tipo-a
+@raw tipanu nomuna participation-a teilnahme-a participación-a
+@raw tipisu detiva typical-a typisch-a típico-a
+@raw titu detiva third-a dritte-a tercero-a
+@raw titari veraba titular-a
+@raw titero deroba either-a entweder-a
+@raw titigu detiva timely-a rechtzeitig-a oportuno-a
+@raw titinu nomuna institution-a institution-a institución-a
+@raw titilu detiva institutional-a institutionell-a institucional-a
+@raw titoro nomuna investigator-a ermittler-a
+@raw titudu nomuna attitude-a einstellung-a actitud-a
+@raw tiku nomuna article-a artikel-a artículo-a
+@raw tiketu nomuna ticket-a ticket-a billete-a
+@raw tibo peposa within-a innerhalb-a
+@raw tido deroba too-a demasiado-a
+@raw tidatu veraba update-a aktualisieren-a actualizar-a
+@raw tideno veraba tie-a binden-a
+@raw tidunu detiva thin-a dünn-a delgado-a
+@raw tigu detiva important-a wichtig-a importante-a
+@raw timu nomuna time-a zeit-a tiempo-a
+@raw timati detiva ultimate-a
+@raw timalu detiva optimal-a optimal-a óptimo-a
+@raw timisu detiva optimistic-a optimistisch-a optimista-a
+@raw timudu detiva tired-a müde-a cansado-a
+@raw timunu nomuna consent-a zustimmung-a consentimiento-a
+@raw timulu veraba stimulate-a anregen-a estimular-a
+@raw tinu veraba think-a denken-a pensar-a
+@raw tinato nomuna tape-a cinta-a
+@raw tinehu nomuna participant-a teilnehmer-a participante-a
+@raw tinigo detiva tiny-a winzig-a
+@raw tininu nomuna distinction-a unterscheidung-a distinción-a
+@raw tilo deroba still-a todavía-a
+@raw tiladu nomuna thread-a faden-a hilo-a
+@raw tilaru nomuna holder-a inhaber-a titular-a
+@raw tilaso deroba partially-a teils-a
+@raw tilitu nomuna utility-a nutzen-a utilidad-a
+@raw tiri ronona their-a
+@raw tiradi deroba third-a
+@raw tiraru veraba withdraw-a zurückziehen-a retirar-a
+@raw tiredu nomuna third-a drittel-a tercero-a
+@raw tirenu nomuna thief-a dieb-a ladrón-a
+@raw tirelo deroba entirely-a enteramente-a
+@raw tiritu numera thirty-a dreißig-a treinta-a
+@raw tisu tika this-a dieser-a este-a
+@raw tisipo veraba anticipate-a anticipar-a
+@raw tisiku detiva artistic-a künstlerisch-a artístico-a
+@raw tifu nomuna meeting-a treffen-a reunión-a
+@raw tiferu nomuna tire-a reifen-a neumático-a
+@raw tifiku nomuna certification-a zertifikat-a certificación-a
+@raw tivu nomuna activity-a tätigkeit-a actividad-a
+@raw tivelo deroba actively-a activamente-a
+@raw tivitu nomuna activist-a aktivist-a militante-a
+@raw tihu nomuna attention-a aufmerksamkeit-a atención-a
+@raw topu veraba stop-a aufhören-a detener-a
+@raw topeno veraba halt-a stoppen-a
+@raw topiku nomuna topic-a gegenstand-a tópico-a
+@raw topotu nomuna pot-a topf-a olla-a
+@raw totu nomuna lot-a partie-a lote-a
+@raw totalu nomuna total-a gesamtzahl-a total-a
+@raw toku nomuna sex-a sex-a sexo-a
+@raw tokari veraba tocar-a
+@raw tokenu nomuna token-a Token-a token-a
+@raw tokiku detiva toxic-a giftig-a tóxico-a
+@raw tobo dunona whether-a ob-a
+@raw tobahi dunona though-a
+@raw toberi nomuna oktober-a
+@raw tobusu nomuna bus-a bus-a autobús-a
+@raw todo nomuna story-a meldung-a
+@raw togo peposa through-a mediante-a
+@raw togari veraba otorgar-a
+@raw toguru nomuna tour-a tour-a gira-a
+@raw tomo detiva former-a antiguo-a
+@raw tomatu detiva automatic-a automatisch-a automático-a
+@raw tomaku nomuna stomach-a bauch-a estómago-a
+@raw tomiko deroba automatically-a automáticamente-a
+@raw tonu detiva international-a international-a internacional-a
+@raw tonadu nomuna ton-a tonne-a tonelada-a
+@raw tonago nomuna tongue-a zunge-a
+@raw tonetu nomuna fool-a narr-a tonto-a
+@raw tonigi nomuna tonight-a
+@raw tonomu detiva autonomous-a autonom-a autónomo-a
+@raw tolu veraba pose-a stellen-a posar-a
+@raw toletu nomuna toilet-a toilette-a inodoro-a
+@raw toru ronona your-a dein-a tu-a
+@raw toragu nomuna storage-a speicher-a almacén-a
+@raw torani nomuna torno-a
+@raw toremu nomuna storm-a sturm-a tormenta-a
+@raw torenu nomuna tournament-a turnier-a torneo-a
+@raw torinu nomuna novelist-a autorin-a novelista-a
+@raw toriso veraba authorize-a autorizar-a
+@raw torono nomuna authorization-a autorización-a
+@raw torolu nomuna tool-a werkzeug-a herramienta-a
+@raw torofu nomuna trophy-a pokal-a trofeo-a
+@raw toruko veraba touch-a berühren-a
+@raw torugu detiva thorough-a sorgfältig-a minucioso-a
+@raw torunu nomuna interference-a störung-a interferencia-a
+@raw toruro nomuna torture-a tortura-a
+@raw toso deroba else-a sonst-a
+@raw toseni veraba stoßen-a
+@raw tofu nomuna author-a autor-a autor-a
+@raw tofuto nomuna out-a fuera-a
+@raw tovu numera two-a zwei-a dos-a
+@raw tovadi peposa towards-a
+@raw tovelu nomuna towel-a handtuch-a toalla-a
+@raw toveru nomuna tower-a turm-a torre-a
+@raw toho nomuna today-a hoy-a
+@raw tohotu nomuna tooth-a zahn-a diente-a
+@raw tohuku nomuna touch-a berührung-a toque-a
+@raw tohubu nomuna tube-a röhre-a tubo-a
+@raw tupu nomuna culture-a kultur-a cultura-a
+@raw tupitu nomuna stupidity-a dummheit-a estupidez-a
+@raw tupidu detiva stupid-a dumm-a estúpido-a
+@raw tutu nomuna art-a kunst-a arte-a
+@raw tuteno veraba prop-a stützen-a
+@raw tuku deroba also-a auch-a también-a
+@raw tukisu detiva turkish-a türkisch-a turco-a
+@raw tudu nomuna study-a studium-a estudio-a
+@raw tudeni veraba studieren-a
+@raw tugu nomuna style-a stil-a estilo-a
+@raw tugedu nomuna youth-a jugend-a juventud-a
+@raw tumu nomuna subject-a subjekt-a sujeto-a
+@raw tumebu nomuna thumb-a daumen-a pulgar-a
+@raw tumoru nomuna tumor-a tumor-a tumor-a
+@raw tunu veraba turn-a drehen-a girar-a
+@raw tunelu nomuna uncle-a onkel-a tío-a
+@raw tulo deroba actually-a eigentlich-a
+@raw turu numera three-a drei-a tres-a
+@raw turako nomuna turkey-a pavo-a
+@raw turenu nomuna turn-a wende-a turno-a
+@raw turiki detiva turístico-a
+@raw turimu veraba trim-a kürzen-a recortar-a
+@raw turilu nomuna trial-a verhandlung-a juicio-a
+@raw turisu nomuna tourist-a tourismus-a turismo-a
+@raw tusu nomuna piece-a stück-a pieza-a
+@raw tuseno veraba plunge-a stürzen-a
+@raw tufu nomuna future-a zukunft-a futuro-a
+@raw tufitu nomuna outfit-a outfit-a atuendo-a
+@raw tuvu nomuna tax-a steuer-a impuesto-a
+@raw tuhu veraba introduce-a vorstellen-a introducir-a
 
 ## ("k")
 
-@raw ko a-a ein-a uno-a
-@raw kapo care-a pflege-a cuidado-a
-@raw kapake pc-a
-@raw kapabe capable-a
-@raw kapano captain-a kapitän-a capitán-a
-@raw kapasi capacity-a kapazität-a
-@raw kapeke pc-a
-@raw kapelo chapter-a kapitel-a capítulo-a
-@raw kapike pic-a
-@raw kapilo chapel-a kapelle-a capilla-a
-@raw kapoke poco-a
-@raw kapuke pc-a
-@raw kapuro capture-a erfassen-a capturar-a
-@raw kato character-a zeichen-a personaje-a
-@raw katako attack-a angreifen-a atacar-a
-@raw katare encantar-a
-@raw kateko catch-a fangen-a atrapar-a
-@raw kategi charter-a satzung-a
-@raw katene achten-a
-@raw katelo poster-a plakat-a cartel-a
-@raw katero highway-a autobahn-a carretera-a
-@raw kateso cat-a katze-a gato-a
-@raw katiko kick-a tritt-a patada-a
-@raw katigo punishment-a bestrafung-a castigo-a
-@raw katini vacation-a ferien-a
-@raw katoni equation-a ecuación-a
-@raw katolo catholic-a katholisch-a católico-a
-@raw katoro actor-a schauspieler-a actor-a
-@raw katuki catch-a captura-a
-@raw katuro creature-a kreatur-a criatura-a
-@raw kako market-a markt-a mercado-a
-@raw kakate aktie-a
-@raw kakase acaso-a
-@raw kakete exakt-a
-@raw kakeno cake-a kuchen-a pastel-a
-@raw kakero maker-a macher-a creador-a
-@raw kakeso characterize-a charakterisieren-a caracterizar-a
-@raw kakiri acquire-a erwerben-a
-@raw kakiso cash-a bargeld-a efectivo-a
-@raw kakivo archive-a archiv-a archivos-a
-@raw kakone account-a
-@raw kakose across-a
-@raw kakuno calculation-a berechnung-a cálculo-a
-@raw kakulo calculate-a berechnen-a calcular-a
-@raw kakusi checkout-a kasse-a
-@raw kabo buy-a kaufen-a comprar-a
-@raw kabapo cape-a kap-a cabo-a
-@raw kabade cuyo-a
-@raw kabame km-a
-@raw kabale ca-a
-@raw kabare care-a
-@raw kabahe co-a
-@raw kabebe caber-a
-@raw kabelo cable-a kabel-a cable-a
-@raw kabere caer-a
-@raw kabipo chip-a chip-a chip-a
-@raw kabite quite-a
-@raw kabike quick-a
-@raw kabime km-a
-@raw kabino cabin-a hütte-a cabina-a
-@raw kabile kilo-a
-@raw kaboki okay-a ok-a
-@raw kabono carbon-a kohlenstoff-a carbón-a
-@raw kabose quasi-a
-@raw kabute cute-a
-@raw kabuse cause-a
-@raw kado head-a kopf-a cabeza-a
-@raw kadame akademie-a
-@raw kadalo scandal-a skandal-a escándalo-a
-@raw kadare actuar-a
-@raw kadeko academic-a akademiker-a académico-a
-@raw kademi academia-a academia-a
-@raw kadeno chain-a kette-a cadena-a
-@raw kadelo candle-a kerze-a vela-a
-@raw kadini canadian-a canadiense-a
-@raw kadisi kiss-a kiss-a
-@raw kadoki ok-a okay-a
-@raw kadore ecuador-a
-@raw kadoso chaos-a durcheinander-a caos-a
-@raw kago change-a ändern-a cambiar-a
-@raw kagare encargar-a
-@raw kageni exchange-a tauschen-a
-@raw kagine chino-a
-@raw kagopi cope-a bewältigen-a
-@raw kagoke ok-a
-@raw kagoro category-a kategorie-a categoría-a
-@raw kamo change-a änderung-a cambio-a
-@raw kamaki mac-a mac-a
-@raw kamepo camp-a lager-a campamento-a
-@raw kamene kommen-a
-@raw kameri chamber-a kammer-a
-@raw kamiki comic-a cómico-a
-@raw kamino charming-a charmant-a encantador-a
-@raw kamono champion-a weltmeister-a campeón-a
-@raw kamoso championship-a meisterschaft-a campeonato-a
-@raw kamuso campus-a campus-a campus-a
-@raw kano any-a irgendein-a cualquiera-a
-@raw kanato candidate-a kandidat-a candidato-a
-@raw kanabo indication-a angabe-a indicación-a
-@raw kanadi candy-a dulce-a
-@raw kanami occasionally-a ocasionalmente-a
-@raw kanalo occasional-a gelegentlich-a ocasional-a
-@raw kanare alcanzar-a
-@raw kanahi quantity-a anzahl-a
-@raw kanete cuanto-a
-@raw kanelo cancel-a abbrechen-a cancelar-a
-@raw kanero cancer-a krebs-a cáncer-a
-@raw kaniti quite-a ganz-a
-@raw kaniko mechanical-a mechanisch-a mecánico-a
-@raw kanimo mechanism-a mechanismus-a mecanismo-a
-@raw kanote cuanto-a
-@raw kanoke anoche-a
-@raw kanoso acquaintance-a bekanntschaft-a conocido-a
-@raw kanute cuánto-a
-@raw kalo case-a fall-a caso-a
-@raw kalato chat-a chatten-a charlar-a
-@raw kalaki aka-a aka-a
-@raw kalado equality-a gleichberechtigung-a igualdad-a
-@raw kalame calm-a
-@raw kalane catalán-a
-@raw kalare klar-a
-@raw kalavi key-a clave-a
-@raw kaledo calendar-a kalender-a calendario-a
-@raw kalego challenge-a herausforderung-a reto-a
-@raw kalene challenge-a
-@raw kalero killer-a mörder-a asesino-a
-@raw kalipo clip-a clip-a clip-a
-@raw kaliti capability-a leistungsfähigkeit-a
-@raw kaliki click-a klicken-a
-@raw kalidi locality-a localidad-a
-@raw kalimo lime-a kalk-a lima-a
-@raw kaliro corridor-a flur-a pasillo-a
-@raw kaliso capitalism-a kapitalismus-a capitalismo-a
-@raw kalifi qualify-a qualifizieren-a
-@raw kaloke lock-a
-@raw kalogo catalogue-a katalog-a catálogo-a
-@raw kalosi close-a nahe-a
-@raw kalufo calling-a aufruf-a vocación-a
-@raw karo call-a nennen-a llamar-a
-@raw karato chat-a chat-a charla-a
-@raw karaki crack-a knacken-a
-@raw karage charge-a
-@raw karamo charm-a charme-a encanto-a
-@raw karano chairman-a vorsitzende-a presidenta-a
-@raw karali clearly-a claramente-a
-@raw kararo discard-a entsorgen-a descartar-a
-@raw karasi crash-a absturz-a
-@raw kareti chart-a gráfico-a
-@raw kareko arc-a bogen-a arco-a
-@raw karedi scared-a asustado-a
-@raw karemo cream-a sahne-a crema-a
-@raw kareli carefully-a cuidadosamente-a
-@raw karero quarter-a viertel-a trimestre-a
-@raw karefo careful-a vorsichtig-a cuidado-a
-@raw karito charity-a nächstenliebe-a caridad-a
-@raw karilo clay-a lehm-a barro-a
-@raw kariso corn-a mais-a maíz-a
-@raw karoni cartoon-a caricatura-a
-@raw karugo cargo-a ladung-a cargamento-a
-@raw karusi cause-a verursachen-a
-@raw kaso that-a dass-a que-a
-@raw kasato cast-a besetzung-a reparto-a
-@raw kasake sake-a
-@raw kasali casual-a informal-a
-@raw kasare causar-a
-@raw kasete cast-a
-@raw kaseke acerca-a
-@raw kasero emperor-a kaiser-a emperador-a
-@raw kasiti exit-a abfahrt-a
-@raw kasiko sick-a krank-a enfermo-a
-@raw kasigo casting-a casting-a casting-a
-@raw kasino occasion-a gelegenheit-a ocasión-a
-@raw kasilo chair-a stuhl-a silla-a
-@raw kasire castro-a
-@raw kasoko sock-a socke-a calcetín-a
-@raw kasoni chase-a persecución-a
-@raw kasolo castle-a burg-a castillo-a
-@raw kasuso clause-a klausel-a cláusula-a
-@raw kafo card-a karte-a tarjeta-a
-@raw kafaro cold-a kälte-a frío-a
-@raw kafero cafe-a café-a cafetería-a
-@raw kafidi qualified-a cualificado-a
-@raw kafino qualification-a qualifikation-a calificación-a
-@raw kafoke okay-a
-@raw kafofo coffee-a kaffee-a café-a
-@raw kafugo cage-a käfig-a jaula-a
-@raw kavo career-a karriere-a carrera-a
-@raw kaho class-a klasse-a clase-a
-@raw kahono drawer-a schublade-a cajón-a
-@raw kepo keep-a halten-a mantener-a
-@raw kepano expand-a erweitern-a ampliar-a
-@raw keparo export-a exportieren-a exportar-a
-@raw kepeto expert-a experte-a experto-a
-@raw kepiki epic-a épico-a
-@raw kepoto export-a export-a exportación-a
-@raw kepoke poco-a
-@raw keporo explode-a explodieren-a explotar-a
-@raw keto event-a veranstaltung-a evento-a
-@raw ketani extent-a umfang-a
-@raw ketaro secretary-a generalsekretär-a secretario-a
-@raw keteme extremo-a
-@raw keteno extend-a verlängern-a extender-a
-@raw keteri external-a externo-a
-@raw ketiko ethics-a ethik-a ética-a
-@raw ketivo creative-a kreativ-a creativo-a
-@raw ketube octubre-a
-@raw keturo architecture-a architektur-a arquitectura-a
-@raw keki expect-a erwarten-a
-@raw kekapo escape-a fliehen-a escapar-a
-@raw kekago exchange-a börse-a intercambio-a
-@raw kekare echar-a
-@raw kekase ex-a
-@raw kekipo equip-a ausstatten-a equipar-a
-@raw kekito equity-a eigenkapital-a equidad-a
-@raw kekuto execute-a ausführen-a ejecutar-a
-@raw kebo stay-a bleiben-a quedar-a
-@raw kebeso cheese-a käse-a queso-a
-@raw kebito quit-a aufgeben-a renunciar-a
-@raw keboko eco-a öko-a eco-a
-@raw kedo every-a jeder-a cada-a
-@raw kederi access-a acceder-a
-@raw kedito credit-a kredit-a crédito-a
-@raw kedibe incredible-a
-@raw kedino expedition-a expedition-a expedición-a
-@raw kedile incredibly-a
-@raw kegi guy-a kerl-a
-@raw kegano cheat-a betrügen-a engañar-a
-@raw kegebe kriegen-a
-@raw kegeno queen-a königin-a reina-a
-@raw kemo memory-a erinnerung-a recuerdo-a
-@raw kemare incrementar-a
-@raw kemeto experiment-a experimentieren-a experimentar-a
-@raw kemeno experiment-a experiment-a experimento-a
-@raw kemelo experimental-a experimentell-a experimental-a
-@raw kemeri cm-a zentimeter-a
-@raw kemiko chemical-a chemisch-a químico-a
-@raw kemilo chemical-a chemikalie-a químico-a
-@raw kemiro chemistry-a chemie-a química-a
-@raw kemono common-a allgemein-a común-a
-@raw keno can-a können-a poder-a
-@raw kenapo tight-a knapp-a ajustado-a
-@raw kenato cheap-a günstig-a barato-a
-@raw kenali exceptional-a excepcional-a
-@raw kenele keinerlei-a
-@raw kenero expensive-a teuer-a caro-a
-@raw keniko ethnic-a ethnisch-a étnico-a
-@raw kenisi insight-a erkenntnis-a
-@raw kelo sell-a verkaufen-a vender-a
-@raw kelamo claim-a behaupten-a reclamar-a
-@raw kelano clan-a clan-a clan-a
-@raw kelaro sure-a sicher-a claro-a
-@raw keleti client-a auftraggeber-a
-@raw keleke elect-a
-@raw keledo gown-a kleid-a bata-a
-@raw keleno excellent-a hervorragend-a excelente-a
-@raw kelero basement-a keller-a sótano-a
-@raw kelesi excellence-a excelencia-a
-@raw keliti exploit-a ausnutzen-a
-@raw kelike unlike-a
-@raw kelini china-a porzellan-a
-@raw keliro clergy-a geistliche-a clero-a
-@raw kelifo cliff-a felsen-a barranco-a
-@raw keloro explore-a erforschen-a explorar-a
-@raw kero believe-a glauben-a creer-a
-@raw kerano expire-a verfallen-a expirar-a
-@raw kerali characteristic-a merkmal-a
-@raw kerasi crash-a abstürzen-a
-@raw keremo extreme-a extrem-a extremo-a
-@raw kerite christ-a
-@raw keriso actress-a schauspielerin-a actriz-a
-@raw kerolo col-a oberst-a col-a
-@raw keroro core-a kern-a núcleo-a
-@raw kerosi cross-a überqueren-a
-@raw keruso cross-a kreuz-a cruz-a
-@raw keso issue-a thema-a cuestión-a
-@raw kesati quest-a streben-a
-@raw kesake research-a
-@raw kesaro extra-a extra-a extra-a
-@raw keseto orchestra-a orchester-a orquesta-a
-@raw keseri extra-a extra-a
-@raw kesiti excite-a erregen-a
-@raw kesige increasingly-a
-@raw kesimo claim-a anspruch-a reclamo-a
-@raw kesino expression-a ausdruck-a expresión-a
-@raw kesiro knife-a messer-a cuchillo-a
-@raw kesise exercise-a
-@raw kesivo excessive-a übermäßig-a excesivo-a
-@raw kesone question-a
-@raw kesoro extra-a extra-a extra-a
-@raw kesugo crossing-a kreuzung-a cruce-a
-@raw kefo check-a prüfen-a comprobar-a
-@raw kefoko chef-a koch-a chef-a
-@raw kefolo successful-a erfolgreich-a exitoso-a
-@raw kefule successfully-a
-@raw kevo speech-a rede-a discurso-a
-@raw keho teacher-a lehrer-a profesor-a
-@raw kehano complaint-a klage-a denuncia-a
-@raw keheko cheek-a wange-a mejilla-a
-@raw kehene kehren-a
-@raw kipe wirklich-a
-@raw kipano clean-a aufräumen-a limpiar-a
-@raw kito kind-a art-a amable-a
-@raw kiteko architect-a architekt-a arquitecto-a
-@raw kiko church-a kirche-a iglesia-a
-@raw kikali quickly-a rápidamente-a
-@raw kikare equivocar-a
-@raw kikasi quick-a rasch-a
-@raw kikeno chicken-a huhn-a pollo-a
-@raw kikere siquiera-a
-@raw kikini kitchen-a cocina-a
-@raw kikuso excuse-a entschuldigung-a excusa-a
-@raw kibo describe-a beschreiben-a describir-a
-@raw kibele kiel-a
-@raw kibesi kiss-a beso-a
-@raw kibefe chief-a
-@raw kido child-a kind-a niño-a
-@raw kidare cuidar-a
-@raw kidaso childhood-a kindheit-a infancia-a
-@raw kigo thing-a sache-a cosa-a
-@raw kimo action-a aktion-a acción-a
-@raw kimano clean-a sauber-a limpio-a
-@raw kimeno equipment-a ausstattung-a equipamiento-a
-@raw kino no-a kein-a ninguno-a
-@raw kinadi kind-a amable-a
-@raw kinaro kidnap-a entführen-a secuestrar-a
-@raw kinahi intake-a einnahme-a
-@raw kineko corner-a ecke-a esquina-a
-@raw kineri theater-a kino-a
-@raw kineso fifteen-a fünfzehn-a quince-a
-@raw kinomo income-a einkommen-a ingreso-a
-@raw kinuki breaking-a einbruch-a
-@raw kilo kill-a töten-a matar-a
-@raw kilene chileno-a
-@raw kileri kilometer-a kilometer-a
-@raw kiliko click-a klick-a clic-a
-@raw kilino killing-a tötung-a matanza-a
-@raw kiro finish-a fertigstellen-a terminar-a
-@raw kiruso cruise-a kreuzfahrt-a crucero-a
-@raw kiso exist-a existieren-a existir-a
-@raw kisino acquisition-a übernahme-a adquisición-a
-@raw kisiso crisis-a krise-a crisis-a
-@raw kifo quality-a qualität-a calidad-a
-@raw kivo kid-a junge-a chico-a
-@raw kivati activate-a aktivieren-a
-@raw kiveto equivalent-a gleichwertig-a equivalente-a
-@raw kiho choice-a auswahl-a opción-a
-@raw kihefo chief-a chief-a jefa-a
-@raw kopo company-a unternehmen-a empresa-a
-@raw kopato cooperative-a genossenschaft-a cooperativa-a
-@raw kopano corporation-a konzern-a corporación-a
-@raw koparo copy-a kopie-a copia-a
-@raw kopeti complete-a completar-a
-@raw kopeno cooperation-a kooperation-a cooperación-a
-@raw kopero compete-a konkurrieren-a competir-a
-@raw kopino corruption-a korruption-a corrupción-a
-@raw kopiro copy-a kopieren-a copiar-a
-@raw kopono constituent-a komponente-a constituyente-a
-@raw kopori incorporate-a incorporar-a
-@raw kopulo cop-a bulle-a poli-a
-@raw koto court-a gericht-a corte-a
-@raw kotapo cap-a sockel-a tapa-a
-@raw kotago cottage-a landhaus-a cabaña-a
-@raw kotano container-a container-a contenedor-a
-@raw kotaro counter-a schalter-a contador-a
-@raw koteto competent-a kompetent-a competente-a
-@raw kotemo contemporary-a zeitgemäß-a contemporáneo-a
-@raw koteno accommodation-a unterkunft-a alojamiento-a
-@raw kotero opposite-a gegenteil-a contrario-a
-@raw koteso courtesy-a höflichkeit-a cortesía-a
-@raw kotidi committed-a comprometido-a
-@raw kotigo accounting-a buchhaltung-a contabilidad-a
-@raw kotino curtain-a vorhang-a cortina-a
-@raw kotiri quote-a cotizar-a
-@raw kotise scottish-a
-@raw kotono cotton-a baumwolle-a algodón-a
-@raw kotumo custom-a brauch-a costumbre-a
-@raw kotuno continuation-a fortführung-a continuación-a
-@raw koturo costume-a kostüm-a vestuario-a
-@raw koko economic-a wirtschaftlich-a económico-a
-@raw kokati chocolate-a chocolate-a
-@raw kokano communication-a kommunikation-a comunicación-a
-@raw kokare colocar-a
-@raw koketo concrete-a konkret-a concreto-a
-@raw kokeno consequence-a konsequenz-a consecuencia-a
-@raw kokero conquer-a erobern-a conquistar-a
-@raw kokese konkurrenz-a
-@raw kokino cooking-a kochen-a cocinar-a
-@raw kokiso conquest-a eroberung-a conquista-a
-@raw kokivo collective-a kollektiv-a colectivo-a
-@raw kokoko cook-a kochen-a cocinar-a
-@raw kokono complication-a komplikation-a complicación-a
-@raw kokuti consecutive-a consecutivo-a
-@raw kokudi conclude-a concluir-a
-@raw kokuri occur-a auftreten-a
-@raw kobo cost-a kosten-a costo-a
-@raw kobato tie-a unentschieden-a empate-a
-@raw kobako oak-a eiche-a roble-a
-@raw kobane colombiano-a
-@raw kobare cobrar-a
-@raw kobero copper-a kupfer-a cobre-a
-@raw kobiti scope-a ámbito-a
-@raw kobino combine-a kombinieren-a combinar-a
-@raw kobiro choir-a chor-a coro-a
-@raw koboro collaborate-a kooperieren-a colaborar-a
-@raw kode could-a
-@raw kodani recommendation-a recomendación-a
-@raw kodaro accommodate-a unterbringen-a acomodar-a
-@raw kodemi condemnation-a condena-a
-@raw kodeno condemn-a verurteilen-a condenar-a
-@raw kodere corresponder-a
-@raw kodino knee-a knie-a rodilla-a
-@raw kodiro coordinate-a koordinieren-a coordinar-a
-@raw koduti conduct-a verhalten-a
-@raw koduki behaviour-a conducta-a
-@raw kogo king-a könig-a rey-a
-@raw kogale congratulation-a
-@raw kogare escoger-a
-@raw kogase kongreß-a
-@raw kogere coger-a
-@raw kogesi congress-a congreso-a
-@raw komi come-a kommen-a
-@raw komato combat-a bekämpfung-a combate-a
-@raw komako compact-a kompakt-a compacto-a
-@raw komabo compatible-a kompatibel-a compatible-a
-@raw komado commander-a kommandant-a comandante-a
-@raw komano accompany-a begleiten-a acompañar-a
-@raw komaro compare-a vergleichen-a comparar-a
-@raw komafo combat-a bekämpfen-a combatir-a
-@raw kometi completely-a totalmente-a
-@raw komeko complex-a komplex-a complejo-a
-@raw komedi recommend-a recomendar-a
-@raw komeno comment-a kommentieren-a comentar-a
-@raw komelo commercial-a kommerziell-a comercial-a
-@raw komero purchase-a kauf-a compra-a
-@raw komesi commerce-a commerce-a
-@raw komevi competitive-a competitivo-a
-@raw komito commit-a verpflichten-a cometer-a
-@raw komiko comic-a comic-a cómic-a
-@raw komido comedy-a komödie-a comedia-a
-@raw komini commission-a kommission-a
-@raw komiso commitment-a engagement-a compromiso-a
-@raw komodo comfortable-a angenehm-a cómodo-a
-@raw komomi compromise-a kompromiß-a
-@raw komono compose-a verfassen-a componer-a
-@raw komoli commonly-a comúnmente-a
-@raw komoro comfort-a komfort-a comodidad-a
-@raw komoso composition-a zusammensetzung-a composición-a
-@raw komuto communist-a kommunist-a comunista-a
-@raw komuno communicate-a kommunizieren-a comunicar-a
-@raw komuro computer-a computer-a computadora-a
-@raw komusi communist-a comunista-a
-@raw kono consider-a betrachten-a considerar-a
-@raw konati contact-a contactar-a
-@raw konako contact-a kontakt-a contacto-a
-@raw konabe constar-a
-@raw konado count-a graf-a conde-a
-@raw konagi counting-a contar-a
-@raw konani contain-a contener-a
-@raw konali constitutional-a constitucional-a
-@raw konaro coach-a trainer-a entrenador-a
-@raw konaso contrast-a gegensatz-a contraste-a
-@raw konafi con-a estafa-a
-@raw konepo concept-a konzeption-a concepto-a
-@raw koneto concert-a konzert-a concierto-a
-@raw koneko connect-a verbinden-a conectar-a
-@raw konedo convinced-a überzeugt-a convencido-a
-@raw konemi contemplate-a contemplar-a
-@raw koneno concern-a sorge-a preocupación-a
-@raw konelo conventional-a konventionell-a convencional-a
-@raw konero convert-a umwandeln-a convertir-a
-@raw koneso context-a zusammenhang-a contexto-a
-@raw konevo conservative-a konservativ-a conservador-a
-@raw konito continent-a kontinent-a continente-a
-@raw koniko iconic-a symbolisch-a emblemático-a
-@raw konide reconocido-a
-@raw konino convention-a konvention-a convenio-a
-@raw konili continental-a continental-a
-@raw konire constituir-a
-@raw konisi consist-a consistir-a
-@raw konoto economist-a ökonom-a economista-a
-@raw konoki knock-a klopfen-a
-@raw konomo economy-a volkswirtschaft-a economía-a
-@raw kononi concentration-a konzentration-a
-@raw konolo control-a steuern-a controlar-a
-@raw konore convocar-a
-@raw konosi economics-a ökonomie-a
-@raw konuti consult-a consultar-a
-@raw konuki construct-a konstruieren-a
-@raw konudo cloud-a wolke-a nube-a
-@raw konumo consume-a verbrauchen-a consumir-a
-@raw konuno confusion-a verwirrung-a confusión-a
-@raw konulo consultation-a anhörung-a consulta-a
-@raw konuso contest-a wettkampf-a concurso-a
-@raw kolo control-a kontrolle-a control-a
-@raw kolapo collapse-a zusammenbruch-a colapso-a
-@raw kolate completo-a
-@raw kolabe escolar-a
-@raw kolado cold-a kalt-a frío-a
-@raw kolani complain-a beschweren-a
-@raw kolali colonial-a colonial-a
-@raw kolare kölner-a
-@raw koleti complete-a komplett-a
-@raw koleko collect-a sammeln-a recoger-a
-@raw kolego colleague-a kollege-a colega-a
-@raw koleno collection-a sammlung-a colección-a
-@raw kolere kontrollieren-a
-@raw koleso complex-a komplex-a complejo-a
-@raw koleve colectivo-a
-@raw kolido complicated-a kompliziert-a complicado-a
-@raw kolino coalition-a koalition-a coalición-a
-@raw kolisi accomplish-a vollbringen-a
-@raw koloko cookie-a plätzchen-a galleta-a
-@raw kologo psychology-a psychologie-a psicología-a
-@raw kolono colony-a kolonie-a colonia-a
-@raw kololi cool-a kühlen-a
-@raw kolore colour-a
-@raw kolupo cup-a cup-a copa-a
-@raw kolumo column-a säule-a columna-a
-@raw koro short-a kurz-a corto-a
-@raw korapi strap-a correa-a
-@raw korati concentrate-a concentrar-a
-@raw korako crazy-a verrückt-a loco-a
-@raw korado accustomed-a gewohnt-a acostumbrado-a
-@raw korago encourage-a ermutigen-a animar-a
-@raw korano conservation-a erhaltung-a conservación-a
-@raw koraro cry-a heulen-a llorar-a
-@raw koraso conspiracy-a verschwörung-a conspiración-a
-@raw koreto correction-a korrektur-a corrección-a
-@raw koreki correct-a korrekt-a
-@raw koredo concerned-a besorgt-a preocupado-a
-@raw koregi correct-a corregir-a
-@raw koreno korean-a koreanisch-a coreano-a
-@raw korele coronel-a
-@raw korero controversial-a umstritten-a polémico-a
-@raw koreso controversy-a auseinandersetzung-a polémica-a
-@raw koriti contribution-a aporte-a
-@raw koribo contribute-a beitragen-a contribuir-a
-@raw korini current-a actualidad-a
-@raw korisi corps-a corps-a
-@raw koroto concrete-a beton-a concreto-a
-@raw koroki approach-a vorgehen-a
-@raw korono crown-a krone-a corona-a
-@raw korori contributor-a colaborador-a
-@raw koruto corrupt-a beschädigt-a corrupto-a
-@raw koso as-a als-a como-a
-@raw kosati constantly-a constantemente-a
-@raw kosako coat-a jacke-a saco-a
-@raw kosano constant-a konstant-a constante-a
-@raw kosare costar-a
-@raw koseto consistent-a konsequent-a consistente-a
-@raw koseko check-a scheck-a cheque-a
-@raw kosede conceder-a
-@raw koseni comprise-a umfassen-a
-@raw koseli closely-a estrechamente-a
-@raw koseri concern-a bedenken-a
-@raw koseso consensus-a konsens-a consenso-a
-@raw kosido consolidate-a festigen-a consolidar-a
-@raw kosimo cousin-a cousin-a primo-a
-@raw kosino awareness-a bewusstsein-a conciencia-a
-@raw kosoko shock-a schock-a choque-a
-@raw kosono conversion-a umbau-a conversión-a
-@raw kosolo console-a konsole-a consola-a
-@raw kosuto coast-a küste-a costa-a
-@raw kosumo consumption-a konsum-a consumo-a
-@raw kosuno constitution-a verfassung-a constitución-a
-@raw kosuro consumer-a verbraucher-a consumidor-a
-@raw kofo county-a kreis-a condado-a
-@raw kofare confiar-a
-@raw kofero luggage-a koffer-a equipaje-a
-@raw kofeso confess-a gestehen-a confesar-a
-@raw kofiko conflict-a konflikt-a conflicto-a
-@raw kofido confident-a zuversichtlich-a confiado-a
-@raw kofimo confirm-a bestätigen-a confirmar-a
-@raw kofino confidence-a zuversicht-a confianza-a
-@raw kofome conformar-a
-@raw kofuno confuse-a verwechseln-a confundir-a
-@raw kofuso confused-a verwirren-a confuso-a
-@raw kove down-a
-@raw kovako cow-a kuh-a vaca-a
-@raw kovego coverage-a berichterstattung-a cobertura-a
-@raw koveno convince-a überzeugen-a convencer-a
-@raw kovero cover-a cover-a portada-a
-@raw kovino conviction-a überzeugung-a convicción-a
-@raw kohi choose-a wählen-a
-@raw kohali coal-a kohle-a
-@raw kohavo cave-a höhle-a cueva-a
-@raw koholo alcohol-a alkohol-a alcohol-a
-@raw kupo couple-a paar-a pareja-a
-@raw kupani occupancy-a ocupación-a
-@raw kuparo occupy-a besetzen-a ocupar-a
-@raw kuposo expose-a aussetzen-a exponer-a
-@raw kuto car-a auto-a auto-a
-@raw kuteki artwork-a kunstwerk-a
-@raw kutino auction-a auktion-a remate-a
-@raw kutivi executive-a ejecutivo-a
-@raw kuki much-a mucho-a
-@raw kukomi outcome-a desenlace-a
-@raw kubo club-a verein-a club-a
-@raw kubate cuanto-a
-@raw kubani cuban-a cubano-a
-@raw kubale cual-a
-@raw kubiri covered-a cubierto-a
-@raw kudo agreement-a abkommen-a acuerdo-a
-@raw kudini terminate-a kündigen-a
-@raw kudire acudir-a
-@raw kugo college-a hochschule-a colegio-a
-@raw kumo common-a häufig-a común-a
-@raw kumene kümmern-a
-@raw kumuli accumulate-a acumular-a
-@raw kuno account-a rechnung-a cuenta-a
-@raw kuniti cut-a schnitt-a
-@raw kunige zukünftig-a
-@raw kulo current-a aktuell-a actual-a
-@raw kulato cult-a kult-a secta-a
-@raw kulago circulation-a auflage-a circulación-a
-@raw kulano speculation-a spekulation-a especulación-a
-@raw kulari particular-a particular-a
-@raw kulaso ass-a hintern-a culo-a
-@raw kulavo key-a schlüssel-a clave-a
-@raw kulepi guilt-a culpa-a
-@raw kulino compliance-a erfüllung-a cumplimiento-a
-@raw kuliri comply-a cumplir-a
-@raw kululo cultural-a kulturell-a cultural-a
-@raw kuluro sculpture-a skulptur-a escultura-a
-@raw kuro sure-a klar-a claro-a
-@raw kurato courage-a mut-a coraje-a
-@raw kurako fridge-a kühlschrank-a frigorífico-a
-@raw kuraro cure-a heilen-a curar-a
-@raw kuraso accuracy-a richtigkeit-a precisión-a
-@raw kuravo curve-a kurve-a curva-a
-@raw kureto fourth-a vierte-a cuarto-a
-@raw kureno occurrence-a auftreten-a ocurrencia-a
-@raw kureso currency-a währung-a divisa-a
-@raw kurire ocurrir-a
-@raw kuriso curious-a merkwürdig-a curioso-a
-@raw kurivo crop-a ernte-a cultivo-a
-@raw kuroso curiosity-a neugier-a curiosidad-a
-@raw kuso source-a quelle-a fuente-a
-@raw kusato accurate-a präzise-a exacto-a
-@raw kusano circumstance-a umstand-a circunstancia-a
-@raw kusari accuse-a acusar-a
-@raw kusaso prosecution-a anklage-a acusación-a
-@raw kusino execution-a ausführung-a ejecución-a
-@raw kusodo custody-a untersuchungshaft-a custodia-a
-@raw kufi cost-a kosten-a
-@raw kufige künftig-a
-@raw kufise kurzfristig-a
-@raw kuvo customer-a kunde-a cliente-a
-@raw kuho cause-a ursache-a causa-a
+@raw ku tika a-a ein-a uno-a
+@raw kapu nomuna care-a pflege-a cuidado-a
+@raw kapaki nomuna pc-a
+@raw kapabi detiva capable-a
+@raw kapanu nomuna captain-a kapitän-a capitán-a
+@raw kapaso nomuna capacity-a kapazität-a
+@raw kapeki nomuna pc-a
+@raw kapelu nomuna chapter-a kapitel-a capítulo-a
+@raw kapiki nomuna pic-a
+@raw kapilu nomuna chapel-a kapelle-a capilla-a
+@raw kapoki ronona poco-a
+@raw kapuki nomuna pc-a
+@raw kapuru veraba capture-a erfassen-a capturar-a
+@raw katu nomuna character-a zeichen-a personaje-a
+@raw kataku veraba attack-a angreifen-a atacar-a
+@raw katari veraba encantar-a
+@raw kateku veraba catch-a fangen-a atrapar-a
+@raw katego nomuna charter-a satzung-a
+@raw kateni veraba achten-a
+@raw katelu nomuna poster-a plakat-a cartel-a
+@raw kateru nomuna highway-a autobahn-a carretera-a
+@raw katesu nomuna cat-a katze-a gato-a
+@raw katiku nomuna kick-a tritt-a patada-a
+@raw katigu nomuna punishment-a bestrafung-a castigo-a
+@raw katino nomuna vacation-a ferien-a
+@raw katono nomuna equation-a ecuación-a
+@raw katolu detiva catholic-a katholisch-a católico-a
+@raw katoru nomuna actor-a schauspieler-a actor-a
+@raw katuko nomuna catch-a captura-a
+@raw katuru nomuna creature-a kreatur-a criatura-a
+@raw kaku nomuna market-a markt-a mercado-a
+@raw kakati nomuna aktie-a
+@raw kakasi deroba acaso-a
+@raw kaketi detiva exakt-a
+@raw kakenu nomuna cake-a kuchen-a pastel-a
+@raw kakeru nomuna maker-a macher-a creador-a
+@raw kakesu veraba characterize-a charakterisieren-a caracterizar-a
+@raw kakiro veraba acquire-a erwerben-a
+@raw kakisu nomuna cash-a bargeld-a efectivo-a
+@raw kakivu nomuna archive-a archiv-a archivos-a
+@raw kakoni veraba account-a
+@raw kakosi peposa across-a
+@raw kakunu nomuna calculation-a berechnung-a cálculo-a
+@raw kakulu veraba calculate-a berechnen-a calcular-a
+@raw kakuso nomuna checkout-a kasse-a
+@raw kabu veraba buy-a kaufen-a comprar-a
+@raw kabapu nomuna cape-a kap-a cabo-a
+@raw kabadi tika cuyo-a
+@raw kabami nomuna km-a
+@raw kabali detiva ca-a
+@raw kabari veraba care-a
+@raw kabahi nomuna co-a
+@raw kabebi veraba caber-a
+@raw kabelu nomuna cable-a kabel-a cable-a
+@raw kaberi veraba caer-a
+@raw kabipu nomuna chip-a chip-a chip-a
+@raw kabiti tika quite-a
+@raw kabiki deroba quick-a
+@raw kabimi nomuna km-a
+@raw kabinu nomuna cabin-a hütte-a cabina-a
+@raw kabili nomuna kilo-a
+@raw kaboko detiva okay-a ok-a
+@raw kabonu nomuna carbon-a kohlenstoff-a carbón-a
+@raw kabosi deroba quasi-a
+@raw kabuti detiva cute-a
+@raw kabusi dunona cause-a
+@raw kadu nomuna head-a kopf-a cabeza-a
+@raw kadami nomuna akademie-a
+@raw kadalu nomuna scandal-a skandal-a escándalo-a
+@raw kadari veraba actuar-a
+@raw kadeku nomuna academic-a akademiker-a académico-a
+@raw kademo nomuna academia-a academia-a
+@raw kadenu nomuna chain-a kette-a cadena-a
+@raw kadelu nomuna candle-a kerze-a vela-a
+@raw kadino detiva canadian-a canadiense-a
+@raw kadiso veraba kiss-a kiss-a
+@raw kadoko detiva ok-a okay-a
+@raw kadori nomuna ecuador-a
+@raw kadosu nomuna chaos-a durcheinander-a caos-a
+@raw kagu veraba change-a ändern-a cambiar-a
+@raw kagari veraba encargar-a
+@raw kageno veraba exchange-a tauschen-a
+@raw kagini nomuna chino-a
+@raw kagopo veraba cope-a bewältigen-a
+@raw kagoki terona ok-a
+@raw kagoru nomuna category-a kategorie-a categoría-a
+@raw kamu nomuna change-a änderung-a cambio-a
+@raw kamako nomuna mac-a mac-a
+@raw kamepu nomuna camp-a lager-a campamento-a
+@raw kameni detiva kommen-a
+@raw kamero nomuna chamber-a kammer-a
+@raw kamiko detiva comic-a cómico-a
+@raw kaminu detiva charming-a charmant-a encantador-a
+@raw kamonu nomuna champion-a weltmeister-a campeón-a
+@raw kamosu nomuna championship-a meisterschaft-a campeonato-a
+@raw kamusu nomuna campus-a campus-a campus-a
+@raw kanu tika any-a irgendein-a cualquiera-a
+@raw kanatu nomuna candidate-a kandidat-a candidato-a
+@raw kanabu nomuna indication-a angabe-a indicación-a
+@raw kanado nomuna candy-a dulce-a
+@raw kanamo deroba occasionally-a ocasionalmente-a
+@raw kanalu detiva occasional-a gelegentlich-a ocasional-a
+@raw kanari veraba alcanzar-a
+@raw kanaho nomuna quantity-a anzahl-a
+@raw kaneti ronona cuanto-a
+@raw kanelu veraba cancel-a abbrechen-a cancelar-a
+@raw kaneru nomuna cancer-a krebs-a cáncer-a
+@raw kanito deroba quite-a ganz-a
+@raw kaniku detiva mechanical-a mechanisch-a mecánico-a
+@raw kanimu nomuna mechanism-a mechanismus-a mecanismo-a
+@raw kanoti deroba cuanto-a
+@raw kanoki deroba anoche-a
+@raw kanosu nomuna acquaintance-a bekanntschaft-a conocido-a
+@raw kanuti ronona cuánto-a
+@raw kalu nomuna case-a fall-a caso-a
+@raw kalatu veraba chat-a chatten-a charlar-a
+@raw kalako deroba aka-a aka-a
+@raw kaladu nomuna equality-a gleichberechtigung-a igualdad-a
+@raw kalami detiva calm-a
+@raw kalani detiva catalán-a
+@raw kalari peposa klar-a
+@raw kalavo detiva key-a clave-a
+@raw kaledu nomuna calendar-a kalender-a calendario-a
+@raw kalegu nomuna challenge-a herausforderung-a reto-a
+@raw kaleni veraba challenge-a
+@raw kaleru nomuna killer-a mörder-a asesino-a
+@raw kalipu nomuna clip-a clip-a clip-a
+@raw kalito nomuna capability-a leistungsfähigkeit-a
+@raw kaliko veraba click-a klicken-a
+@raw kalido nomuna locality-a localidad-a
+@raw kalimu nomuna lime-a kalk-a lima-a
+@raw kaliru nomuna corridor-a flur-a pasillo-a
+@raw kalisu nomuna capitalism-a kapitalismus-a capitalismo-a
+@raw kalifo veraba qualify-a qualifizieren-a
+@raw kaloki veraba lock-a
+@raw kalogu nomuna catalogue-a katalog-a catálogo-a
+@raw kaloso deroba close-a nahe-a
+@raw kalufu nomuna calling-a aufruf-a vocación-a
+@raw karu veraba call-a nennen-a llamar-a
+@raw karatu nomuna chat-a chat-a charla-a
+@raw karako veraba crack-a knacken-a
+@raw karagi veraba charge-a
+@raw karamu nomuna charm-a charme-a encanto-a
+@raw karanu nomuna chairman-a vorsitzende-a presidenta-a
+@raw karalo deroba clearly-a claramente-a
+@raw kararu veraba discard-a entsorgen-a descartar-a
+@raw karaso nomuna crash-a absturz-a
+@raw kareto nomuna chart-a gráfico-a
+@raw kareku nomuna arc-a bogen-a arco-a
+@raw karedo detiva scared-a asustado-a
+@raw karemu nomuna cream-a sahne-a crema-a
+@raw karelo deroba carefully-a cuidadosamente-a
+@raw kareru nomuna quarter-a viertel-a trimestre-a
+@raw karefu detiva careful-a vorsichtig-a cuidado-a
+@raw karitu nomuna charity-a nächstenliebe-a caridad-a
+@raw karilu nomuna clay-a lehm-a barro-a
+@raw karisu nomuna corn-a mais-a maíz-a
+@raw karono nomuna cartoon-a caricatura-a
+@raw karugu nomuna cargo-a ladung-a cargamento-a
+@raw karuso veraba cause-a verursachen-a
+@raw kasu dunona that-a dass-a que-a
+@raw kasatu nomuna cast-a besetzung-a reparto-a
+@raw kasaki nomuna sake-a
+@raw kasalo detiva casual-a informal-a
+@raw kasari veraba causar-a
+@raw kaseti veraba cast-a
+@raw kaseki deroba acerca-a
+@raw kaseru nomuna emperor-a kaiser-a emperador-a
+@raw kasito nomuna exit-a abfahrt-a
+@raw kasiku detiva sick-a krank-a enfermo-a
+@raw kasigu nomuna casting-a casting-a casting-a
+@raw kasinu nomuna occasion-a gelegenheit-a ocasión-a
+@raw kasilu nomuna chair-a stuhl-a silla-a
+@raw kasiri nomuna castro-a
+@raw kasoku nomuna sock-a socke-a calcetín-a
+@raw kasono nomuna chase-a persecución-a
+@raw kasolu nomuna castle-a burg-a castillo-a
+@raw kasusu nomuna clause-a klausel-a cláusula-a
+@raw kafu nomuna card-a karte-a tarjeta-a
+@raw kafaru nomuna cold-a kälte-a frío-a
+@raw kaferu nomuna cafe-a café-a cafetería-a
+@raw kafido detiva qualified-a cualificado-a
+@raw kafinu nomuna qualification-a qualifikation-a calificación-a
+@raw kafoki terona okay-a
+@raw kafofu nomuna coffee-a kaffee-a café-a
+@raw kafugu nomuna cage-a käfig-a jaula-a
+@raw kavu nomuna career-a karriere-a carrera-a
+@raw kahu nomuna class-a klasse-a clase-a
+@raw kahonu nomuna drawer-a schublade-a cajón-a
+@raw kepu veraba keep-a halten-a mantener-a
+@raw kepanu veraba expand-a erweitern-a ampliar-a
+@raw keparu veraba export-a exportieren-a exportar-a
+@raw kepetu nomuna expert-a experte-a experto-a
+@raw kepiko detiva epic-a épico-a
+@raw kepotu nomuna export-a export-a exportación-a
+@raw kepoki tika poco-a
+@raw keporu veraba explode-a explodieren-a explotar-a
+@raw ketu nomuna event-a veranstaltung-a evento-a
+@raw ketano nomuna extent-a umfang-a
+@raw ketaru nomuna secretary-a generalsekretär-a secretario-a
+@raw ketemi nomuna extremo-a
+@raw ketenu veraba extend-a verlängern-a extender-a
+@raw ketero detiva external-a externo-a
+@raw ketiku nomuna ethics-a ethik-a ética-a
+@raw ketivu detiva creative-a kreativ-a creativo-a
+@raw ketubi nomuna octubre-a
+@raw keturu nomuna architecture-a architektur-a arquitectura-a
+@raw keko veraba expect-a erwarten-a
+@raw kekapu veraba escape-a fliehen-a escapar-a
+@raw kekagu nomuna exchange-a börse-a intercambio-a
+@raw kekari veraba echar-a
+@raw kekasi nomuna ex-a
+@raw kekipu veraba equip-a ausstatten-a equipar-a
+@raw kekitu nomuna equity-a eigenkapital-a equidad-a
+@raw kekutu veraba execute-a ausführen-a ejecutar-a
+@raw kebu veraba stay-a bleiben-a quedar-a
+@raw kebesu nomuna cheese-a käse-a queso-a
+@raw kebitu veraba quit-a aufgeben-a renunciar-a
+@raw keboku nomuna eco-a öko-a eco-a
+@raw kedu tika every-a jeder-a cada-a
+@raw kedero veraba access-a acceder-a
+@raw keditu nomuna credit-a kredit-a crédito-a
+@raw kedibi detiva incredible-a
+@raw kedinu nomuna expedition-a expedition-a expedición-a
+@raw kedili deroba incredibly-a
+@raw kego nomuna guy-a kerl-a
+@raw keganu veraba cheat-a betrügen-a engañar-a
+@raw kegebi veraba kriegen-a
+@raw kegenu nomuna queen-a königin-a reina-a
+@raw kemu nomuna memory-a erinnerung-a recuerdo-a
+@raw kemari veraba incrementar-a
+@raw kemetu veraba experiment-a experimentieren-a experimentar-a
+@raw kemenu nomuna experiment-a experiment-a experimento-a
+@raw kemelu detiva experimental-a experimentell-a experimental-a
+@raw kemero nomuna cm-a zentimeter-a
+@raw kemiku detiva chemical-a chemisch-a químico-a
+@raw kemilu nomuna chemical-a chemikalie-a químico-a
+@raw kemiru nomuna chemistry-a chemie-a química-a
+@raw kemonu nomuna common-a allgemein-a común-a
+@raw kenu veraba can-a können-a poder-a
+@raw kenapu detiva tight-a knapp-a ajustado-a
+@raw kenatu detiva cheap-a günstig-a barato-a
+@raw kenalo detiva exceptional-a excepcional-a
+@raw keneli tika keinerlei-a
+@raw keneru detiva expensive-a teuer-a caro-a
+@raw keniku detiva ethnic-a ethnisch-a étnico-a
+@raw keniso nomuna insight-a erkenntnis-a
+@raw kelu veraba sell-a verkaufen-a vender-a
+@raw kelamu veraba claim-a behaupten-a reclamar-a
+@raw kelanu nomuna clan-a clan-a clan-a
+@raw kelaru deroba sure-a sicher-a claro-a
+@raw keleto nomuna client-a auftraggeber-a
+@raw keleki veraba elect-a
+@raw keledu nomuna gown-a kleid-a bata-a
+@raw kelenu detiva excellent-a hervorragend-a excelente-a
+@raw keleru nomuna basement-a keller-a sótano-a
+@raw keleso nomuna excellence-a excelencia-a
+@raw kelito veraba exploit-a ausnutzen-a
+@raw keliki peposa unlike-a
+@raw kelino nomuna china-a porzellan-a
+@raw keliru nomuna clergy-a geistliche-a clero-a
+@raw kelifu nomuna cliff-a felsen-a barranco-a
+@raw keloru veraba explore-a erforschen-a explorar-a
+@raw keru veraba believe-a glauben-a creer-a
+@raw keranu veraba expire-a verfallen-a expirar-a
+@raw keralo nomuna characteristic-a merkmal-a
+@raw keraso veraba crash-a abstürzen-a
+@raw keremu detiva extreme-a extrem-a extremo-a
+@raw keriti terona christ-a
+@raw kerisu nomuna actress-a schauspielerin-a actriz-a
+@raw kerolu nomuna col-a oberst-a col-a
+@raw keroru nomuna core-a kern-a núcleo-a
+@raw keroso veraba cross-a überqueren-a
+@raw kerusu nomuna cross-a kreuz-a cruz-a
+@raw kesu nomuna issue-a thema-a cuestión-a
+@raw kesato nomuna quest-a streben-a
+@raw kesaki veraba research-a
+@raw kesaru detiva extra-a extra-a extra-a
+@raw kesetu nomuna orchestra-a orchester-a orquesta-a
+@raw kesero deroba extra-a extra-a
+@raw kesito veraba excite-a erregen-a
+@raw kesigi deroba increasingly-a
+@raw kesimu nomuna claim-a anspruch-a reclamo-a
+@raw kesinu nomuna expression-a ausdruck-a expresión-a
+@raw kesiru nomuna knife-a messer-a cuchillo-a
+@raw kesisi veraba exercise-a
+@raw kesivu detiva excessive-a übermäßig-a excesivo-a
+@raw kesoni veraba question-a
+@raw kesoru nomuna extra-a extra-a extra-a
+@raw kesugu nomuna crossing-a kreuzung-a cruce-a
+@raw kefu veraba check-a prüfen-a comprobar-a
+@raw kefoku nomuna chef-a koch-a chef-a
+@raw kefolu detiva successful-a erfolgreich-a exitoso-a
+@raw kefuli deroba successfully-a
+@raw kevu nomuna speech-a rede-a discurso-a
+@raw kehu nomuna teacher-a lehrer-a profesor-a
+@raw kehanu nomuna complaint-a klage-a denuncia-a
+@raw keheku nomuna cheek-a wange-a mejilla-a
+@raw keheni veraba kehren-a
+@raw kipi detiva wirklich-a
+@raw kipanu veraba clean-a aufräumen-a limpiar-a
+@raw kitu nomuna kind-a art-a amable-a
+@raw kiteku nomuna architect-a architekt-a arquitecto-a
+@raw kiku nomuna church-a kirche-a iglesia-a
+@raw kikalo deroba quickly-a rápidamente-a
+@raw kikari veraba equivocar-a
+@raw kikaso detiva quick-a rasch-a
+@raw kikenu nomuna chicken-a huhn-a pollo-a
+@raw kikeri deroba siquiera-a
+@raw kikino nomuna kitchen-a cocina-a
+@raw kikusu nomuna excuse-a entschuldigung-a excusa-a
+@raw kibu veraba describe-a beschreiben-a describir-a
+@raw kibeli nomuna kiel-a
+@raw kibeso nomuna kiss-a beso-a
+@raw kibefi detiva chief-a
+@raw kidu nomuna child-a kind-a niño-a
+@raw kidari veraba cuidar-a
+@raw kidasu nomuna childhood-a kindheit-a infancia-a
+@raw kigu nomuna thing-a sache-a cosa-a
+@raw kimu nomuna action-a aktion-a acción-a
+@raw kimanu detiva clean-a sauber-a limpio-a
+@raw kimenu nomuna equipment-a ausstattung-a equipamiento-a
+@raw kinu tika no-a kein-a ninguno-a
+@raw kinado detiva kind-a amable-a
+@raw kinaru veraba kidnap-a entführen-a secuestrar-a
+@raw kinaho nomuna intake-a einnahme-a
+@raw kineku nomuna corner-a ecke-a esquina-a
+@raw kinero nomuna theater-a kino-a
+@raw kinesu numera fifteen-a fünfzehn-a quince-a
+@raw kinomu nomuna income-a einkommen-a ingreso-a
+@raw kinuko nomuna breaking-a einbruch-a
+@raw kilu veraba kill-a töten-a matar-a
+@raw kileni detiva chileno-a
+@raw kilero nomuna kilometer-a kilometer-a
+@raw kiliku nomuna click-a klick-a clic-a
+@raw kilinu nomuna killing-a tötung-a matanza-a
+@raw kiru veraba finish-a fertigstellen-a terminar-a
+@raw kirusu nomuna cruise-a kreuzfahrt-a crucero-a
+@raw kisu veraba exist-a existieren-a existir-a
+@raw kisinu nomuna acquisition-a übernahme-a adquisición-a
+@raw kisisu nomuna crisis-a krise-a crisis-a
+@raw kifu nomuna quality-a qualität-a calidad-a
+@raw kivu nomuna kid-a junge-a chico-a
+@raw kivato veraba activate-a aktivieren-a
+@raw kivetu detiva equivalent-a gleichwertig-a equivalente-a
+@raw kihu nomuna choice-a auswahl-a opción-a
+@raw kihefu nomuna chief-a chief-a jefa-a
+@raw kopu nomuna company-a unternehmen-a empresa-a
+@raw kopatu nomuna cooperative-a genossenschaft-a cooperativa-a
+@raw kopanu nomuna corporation-a konzern-a corporación-a
+@raw koparu nomuna copy-a kopie-a copia-a
+@raw kopeto veraba complete-a completar-a
+@raw kopenu nomuna cooperation-a kooperation-a cooperación-a
+@raw koperu veraba compete-a konkurrieren-a competir-a
+@raw kopinu nomuna corruption-a korruption-a corrupción-a
+@raw kopiru veraba copy-a kopieren-a copiar-a
+@raw koponu nomuna constituent-a komponente-a constituyente-a
+@raw koporo veraba incorporate-a incorporar-a
+@raw kopulu nomuna cop-a bulle-a poli-a
+@raw kotu nomuna court-a gericht-a corte-a
+@raw kotapu nomuna cap-a sockel-a tapa-a
+@raw kotagu nomuna cottage-a landhaus-a cabaña-a
+@raw kotanu nomuna container-a container-a contenedor-a
+@raw kotaru nomuna counter-a schalter-a contador-a
+@raw kotetu detiva competent-a kompetent-a competente-a
+@raw kotemu detiva contemporary-a zeitgemäß-a contemporáneo-a
+@raw kotenu nomuna accommodation-a unterkunft-a alojamiento-a
+@raw koteru nomuna opposite-a gegenteil-a contrario-a
+@raw kotesu nomuna courtesy-a höflichkeit-a cortesía-a
+@raw kotido detiva committed-a comprometido-a
+@raw kotigu nomuna accounting-a buchhaltung-a contabilidad-a
+@raw kotinu nomuna curtain-a vorhang-a cortina-a
+@raw kotiro veraba quote-a cotizar-a
+@raw kotisi detiva scottish-a
+@raw kotonu nomuna cotton-a baumwolle-a algodón-a
+@raw kotumu nomuna custom-a brauch-a costumbre-a
+@raw kotunu nomuna continuation-a fortführung-a continuación-a
+@raw koturu nomuna costume-a kostüm-a vestuario-a
+@raw koku detiva economic-a wirtschaftlich-a económico-a
+@raw kokato nomuna chocolate-a chocolate-a
+@raw kokanu nomuna communication-a kommunikation-a comunicación-a
+@raw kokari veraba colocar-a
+@raw koketu detiva concrete-a konkret-a concreto-a
+@raw kokenu nomuna consequence-a konsequenz-a consecuencia-a
+@raw kokeru veraba conquer-a erobern-a conquistar-a
+@raw kokesi nomuna konkurrenz-a
+@raw kokinu nomuna cooking-a kochen-a cocinar-a
+@raw kokisu nomuna conquest-a eroberung-a conquista-a
+@raw kokivu detiva collective-a kollektiv-a colectivo-a
+@raw kokoku veraba cook-a kochen-a cocinar-a
+@raw kokonu nomuna complication-a komplikation-a complicación-a
+@raw kokuto detiva consecutive-a consecutivo-a
+@raw kokudo veraba conclude-a concluir-a
+@raw kokuro veraba occur-a auftreten-a
+@raw kobu nomuna cost-a kosten-a costo-a
+@raw kobatu nomuna tie-a unentschieden-a empate-a
+@raw kobaku nomuna oak-a eiche-a roble-a
+@raw kobani detiva colombiano-a
+@raw kobari veraba cobrar-a
+@raw koberu nomuna copper-a kupfer-a cobre-a
+@raw kobito nomuna scope-a ámbito-a
+@raw kobinu veraba combine-a kombinieren-a combinar-a
+@raw kobiru nomuna choir-a chor-a coro-a
+@raw koboru veraba collaborate-a kooperieren-a colaborar-a
+@raw kodi veraba could-a
+@raw kodano nomuna recommendation-a recomendación-a
+@raw kodaru veraba accommodate-a unterbringen-a acomodar-a
+@raw kodemo nomuna condemnation-a condena-a
+@raw kodenu veraba condemn-a verurteilen-a condenar-a
+@raw koderi veraba corresponder-a
+@raw kodinu nomuna knee-a knie-a rodilla-a
+@raw kodiru veraba coordinate-a koordinieren-a coordinar-a
+@raw koduto veraba conduct-a verhalten-a
+@raw koduko nomuna behaviour-a conducta-a
+@raw kogu nomuna king-a könig-a rey-a
+@raw kogali nomuna congratulation-a
+@raw kogari veraba escoger-a
+@raw kogasi nomuna kongreß-a
+@raw kogeri veraba coger-a
+@raw kogeso nomuna congress-a congreso-a
+@raw komo veraba come-a kommen-a
+@raw komatu nomuna combat-a bekämpfung-a combate-a
+@raw komaku detiva compact-a kompakt-a compacto-a
+@raw komabu detiva compatible-a kompatibel-a compatible-a
+@raw komadu nomuna commander-a kommandant-a comandante-a
+@raw komanu veraba accompany-a begleiten-a acompañar-a
+@raw komaru veraba compare-a vergleichen-a comparar-a
+@raw komafu veraba combat-a bekämpfen-a combatir-a
+@raw kometo deroba completely-a totalmente-a
+@raw komeku nomuna complex-a komplex-a complejo-a
+@raw komedo veraba recommend-a recomendar-a
+@raw komenu veraba comment-a kommentieren-a comentar-a
+@raw komelu detiva commercial-a kommerziell-a comercial-a
+@raw komeru nomuna purchase-a kauf-a compra-a
+@raw komeso nomuna commerce-a commerce-a
+@raw komevo detiva competitive-a competitivo-a
+@raw komitu veraba commit-a verpflichten-a cometer-a
+@raw komiku nomuna comic-a comic-a cómic-a
+@raw komidu nomuna comedy-a komödie-a comedia-a
+@raw komino nomuna commission-a kommission-a
+@raw komisu nomuna commitment-a engagement-a compromiso-a
+@raw komodu detiva comfortable-a angenehm-a cómodo-a
+@raw komomo nomuna compromise-a kompromiß-a
+@raw komonu veraba compose-a verfassen-a componer-a
+@raw komolo deroba commonly-a comúnmente-a
+@raw komoru nomuna comfort-a komfort-a comodidad-a
+@raw komosu nomuna composition-a zusammensetzung-a composición-a
+@raw komutu nomuna communist-a kommunist-a comunista-a
+@raw komunu veraba communicate-a kommunizieren-a comunicar-a
+@raw komuru nomuna computer-a computer-a computadora-a
+@raw komuso detiva communist-a comunista-a
+@raw konu veraba consider-a betrachten-a considerar-a
+@raw konato veraba contact-a contactar-a
+@raw konaku nomuna contact-a kontakt-a contacto-a
+@raw konabi veraba constar-a
+@raw konadu nomuna count-a graf-a conde-a
+@raw konago nomuna counting-a contar-a
+@raw konano veraba contain-a contener-a
+@raw konalo detiva constitutional-a constitucional-a
+@raw konaru nomuna coach-a trainer-a entrenador-a
+@raw konasu nomuna contrast-a gegensatz-a contraste-a
+@raw konafo nomuna con-a estafa-a
+@raw konepu nomuna concept-a konzeption-a concepto-a
+@raw konetu nomuna concert-a konzert-a concierto-a
+@raw koneku veraba connect-a verbinden-a conectar-a
+@raw konedu detiva convinced-a überzeugt-a convencido-a
+@raw konemo veraba contemplate-a contemplar-a
+@raw konenu nomuna concern-a sorge-a preocupación-a
+@raw konelu detiva conventional-a konventionell-a convencional-a
+@raw koneru veraba convert-a umwandeln-a convertir-a
+@raw konesu nomuna context-a zusammenhang-a contexto-a
+@raw konevu detiva conservative-a konservativ-a conservador-a
+@raw konitu nomuna continent-a kontinent-a continente-a
+@raw koniku detiva iconic-a symbolisch-a emblemático-a
+@raw konidi detiva reconocido-a
+@raw koninu nomuna convention-a konvention-a convenio-a
+@raw konilo detiva continental-a continental-a
+@raw koniri veraba constituir-a
+@raw koniso veraba consist-a consistir-a
+@raw konotu nomuna economist-a ökonom-a economista-a
+@raw konoko veraba knock-a klopfen-a
+@raw konomu nomuna economy-a volkswirtschaft-a economía-a
+@raw konono nomuna concentration-a konzentration-a
+@raw konolu veraba control-a steuern-a controlar-a
+@raw konori veraba convocar-a
+@raw konoso nomuna economics-a ökonomie-a
+@raw konuto veraba consult-a consultar-a
+@raw konuko veraba construct-a konstruieren-a
+@raw konudu nomuna cloud-a wolke-a nube-a
+@raw konumu veraba consume-a verbrauchen-a consumir-a
+@raw konunu nomuna confusion-a verwirrung-a confusión-a
+@raw konulu nomuna consultation-a anhörung-a consulta-a
+@raw konusu nomuna contest-a wettkampf-a concurso-a
+@raw kolu nomuna control-a kontrolle-a control-a
+@raw kolapu nomuna collapse-a zusammenbruch-a colapso-a
+@raw kolati nomuna completo-a
+@raw kolabi detiva escolar-a
+@raw koladu detiva cold-a kalt-a frío-a
+@raw kolano veraba complain-a beschweren-a
+@raw kolalo detiva colonial-a colonial-a
+@raw kolari detiva kölner-a
+@raw koleto detiva complete-a komplett-a
+@raw koleku veraba collect-a sammeln-a recoger-a
+@raw kolegu nomuna colleague-a kollege-a colega-a
+@raw kolenu nomuna collection-a sammlung-a colección-a
+@raw koleri veraba kontrollieren-a
+@raw kolesu detiva complex-a komplex-a complejo-a
+@raw kolevi nomuna colectivo-a
+@raw kolidu detiva complicated-a kompliziert-a complicado-a
+@raw kolinu nomuna coalition-a koalition-a coalición-a
+@raw koliso veraba accomplish-a vollbringen-a
+@raw koloku nomuna cookie-a plätzchen-a galleta-a
+@raw kologu nomuna psychology-a psychologie-a psicología-a
+@raw kolonu nomuna colony-a kolonie-a colonia-a
+@raw kololo veraba cool-a kühlen-a
+@raw kolori nomuna colour-a
+@raw kolupu nomuna cup-a cup-a copa-a
+@raw kolumu nomuna column-a säule-a columna-a
+@raw koru detiva short-a kurz-a corto-a
+@raw korapo nomuna strap-a correa-a
+@raw korato veraba concentrate-a concentrar-a
+@raw koraku detiva crazy-a verrückt-a loco-a
+@raw koradu detiva accustomed-a gewohnt-a acostumbrado-a
+@raw koragu veraba encourage-a ermutigen-a animar-a
+@raw koranu nomuna conservation-a erhaltung-a conservación-a
+@raw koraru veraba cry-a heulen-a llorar-a
+@raw korasu nomuna conspiracy-a verschwörung-a conspiración-a
+@raw koretu nomuna correction-a korrektur-a corrección-a
+@raw koreko detiva correct-a korrekt-a
+@raw koredu detiva concerned-a besorgt-a preocupado-a
+@raw korego veraba correct-a corregir-a
+@raw korenu detiva korean-a koreanisch-a coreano-a
+@raw koreli nomuna coronel-a
+@raw koreru detiva controversial-a umstritten-a polémico-a
+@raw koresu nomuna controversy-a auseinandersetzung-a polémica-a
+@raw korito nomuna contribution-a aporte-a
+@raw koribu veraba contribute-a beitragen-a contribuir-a
+@raw korino nomuna current-a actualidad-a
+@raw koriso nomuna corps-a corps-a
+@raw korotu nomuna concrete-a beton-a concreto-a
+@raw koroko veraba approach-a vorgehen-a
+@raw koronu nomuna crown-a krone-a corona-a
+@raw kororo nomuna contributor-a colaborador-a
+@raw korutu detiva corrupt-a beschädigt-a corrupto-a
+@raw kosu peposa as-a als-a como-a
+@raw kosato deroba constantly-a constantemente-a
+@raw kosaku nomuna coat-a jacke-a saco-a
+@raw kosanu detiva constant-a konstant-a constante-a
+@raw kosari veraba costar-a
+@raw kosetu detiva consistent-a konsequent-a consistente-a
+@raw koseku nomuna check-a scheck-a cheque-a
+@raw kosedi veraba conceder-a
+@raw koseno veraba comprise-a umfassen-a
+@raw koselo deroba closely-a estrechamente-a
+@raw kosero veraba concern-a bedenken-a
+@raw kosesu nomuna consensus-a konsens-a consenso-a
+@raw kosidu veraba consolidate-a festigen-a consolidar-a
+@raw kosimu nomuna cousin-a cousin-a primo-a
+@raw kosinu nomuna awareness-a bewusstsein-a conciencia-a
+@raw kosoku nomuna shock-a schock-a choque-a
+@raw kosonu nomuna conversion-a umbau-a conversión-a
+@raw kosolu nomuna console-a konsole-a consola-a
+@raw kosutu nomuna coast-a küste-a costa-a
+@raw kosumu nomuna consumption-a konsum-a consumo-a
+@raw kosunu nomuna constitution-a verfassung-a constitución-a
+@raw kosuru nomuna consumer-a verbraucher-a consumidor-a
+@raw kofu nomuna county-a kreis-a condado-a
+@raw kofari veraba confiar-a
+@raw koferu nomuna luggage-a koffer-a equipaje-a
+@raw kofesu veraba confess-a gestehen-a confesar-a
+@raw kofiku nomuna conflict-a konflikt-a conflicto-a
+@raw kofidu detiva confident-a zuversichtlich-a confiado-a
+@raw kofimu veraba confirm-a bestätigen-a confirmar-a
+@raw kofinu nomuna confidence-a zuversicht-a confianza-a
+@raw kofomi veraba conformar-a
+@raw kofunu veraba confuse-a verwechseln-a confundir-a
+@raw kofusu detiva confused-a verwirren-a confuso-a
+@raw kovi peposa down-a
+@raw kovaku nomuna cow-a kuh-a vaca-a
+@raw kovegu nomuna coverage-a berichterstattung-a cobertura-a
+@raw kovenu veraba convince-a überzeugen-a convencer-a
+@raw koveru nomuna cover-a cover-a portada-a
+@raw kovinu nomuna conviction-a überzeugung-a convicción-a
+@raw koho veraba choose-a wählen-a
+@raw kohalo nomuna coal-a kohle-a
+@raw kohavu nomuna cave-a höhle-a cueva-a
+@raw koholu nomuna alcohol-a alkohol-a alcohol-a
+@raw kupu nomuna couple-a paar-a pareja-a
+@raw kupano nomuna occupancy-a ocupación-a
+@raw kuparu veraba occupy-a besetzen-a ocupar-a
+@raw kuposu veraba expose-a aussetzen-a exponer-a
+@raw kutu nomuna car-a auto-a auto-a
+@raw kuteko nomuna artwork-a kunstwerk-a
+@raw kutinu nomuna auction-a auktion-a remate-a
+@raw kutivo detiva executive-a ejecutivo-a
+@raw kuko detiva much-a mucho-a
+@raw kukomo nomuna outcome-a desenlace-a
+@raw kubu nomuna club-a verein-a club-a
+@raw kubati tika cuanto-a
+@raw kubano detiva cuban-a cubano-a
+@raw kubali nomuna cual-a
+@raw kubiro detiva covered-a cubierto-a
+@raw kudu nomuna agreement-a abkommen-a acuerdo-a
+@raw kudino veraba terminate-a kündigen-a
+@raw kudiri veraba acudir-a
+@raw kugu nomuna college-a hochschule-a colegio-a
+@raw kumu detiva common-a häufig-a común-a
+@raw kumeni veraba kümmern-a
+@raw kumulo veraba accumulate-a acumular-a
+@raw kunu nomuna account-a rechnung-a cuenta-a
+@raw kunito nomuna cut-a schnitt-a
+@raw kunigi detiva zukünftig-a
+@raw kulu detiva current-a aktuell-a actual-a
+@raw kulatu nomuna cult-a kult-a secta-a
+@raw kulagu nomuna circulation-a auflage-a circulación-a
+@raw kulanu nomuna speculation-a spekulation-a especulación-a
+@raw kularo detiva particular-a particular-a
+@raw kulasu nomuna ass-a hintern-a culo-a
+@raw kulavu nomuna key-a schlüssel-a clave-a
+@raw kulepo nomuna guilt-a culpa-a
+@raw kulinu nomuna compliance-a erfüllung-a cumplimiento-a
+@raw kuliro veraba comply-a cumplir-a
+@raw kululu detiva cultural-a kulturell-a cultural-a
+@raw kuluru nomuna sculpture-a skulptur-a escultura-a
+@raw kuru detiva sure-a klar-a claro-a
+@raw kuratu nomuna courage-a mut-a coraje-a
+@raw kuraku nomuna fridge-a kühlschrank-a frigorífico-a
+@raw kuraru veraba cure-a heilen-a curar-a
+@raw kurasu nomuna accuracy-a richtigkeit-a precisión-a
+@raw kuravu nomuna curve-a kurve-a curva-a
+@raw kuretu detiva fourth-a vierte-a cuarto-a
+@raw kurenu nomuna occurrence-a auftreten-a ocurrencia-a
+@raw kuresu nomuna currency-a währung-a divisa-a
+@raw kuriri veraba ocurrir-a
+@raw kurisu detiva curious-a merkwürdig-a curioso-a
+@raw kurivu nomuna crop-a ernte-a cultivo-a
+@raw kurosu nomuna curiosity-a neugier-a curiosidad-a
+@raw kusu nomuna source-a quelle-a fuente-a
+@raw kusatu detiva accurate-a präzise-a exacto-a
+@raw kusanu nomuna circumstance-a umstand-a circunstancia-a
+@raw kusaro veraba accuse-a acusar-a
+@raw kusasu nomuna prosecution-a anklage-a acusación-a
+@raw kusinu nomuna execution-a ausführung-a ejecución-a
+@raw kusodu nomuna custody-a untersuchungshaft-a custodia-a
+@raw kufo veraba cost-a kosten-a
+@raw kufigi detiva künftig-a
+@raw kufisi detiva kurzfristig-a
+@raw kuvu nomuna customer-a kunde-a cliente-a
+@raw kuhu nomuna cause-a ursache-a causa-a
 
 ## ("b")
 
-@raw bo be-a sein-a ser-a
-@raw bapo bank-a bank-a banco-a
-@raw bapano bread-a brot-a pan-a
-@raw bato data-a datenschutz-a dato-a
-@raw batare bastar-a
-@raw batene bitten-a
-@raw batero battery-a akku-a batería-a
-@raw bateso bath-a badezimmer-a bañera-a
-@raw baki back-a zurück-a
-@raw bakali basically-a básicamente-a
-@raw baketo basket-a einkaufswagen-a canasta-a
-@raw bakeni bake-a backen-a
-@raw bakero bachelor-a bachelor-a soltero-a
-@raw bakigi banking-a banking-a
-@raw bakino baking-a backen-a cocción-a
-@raw bakono balcony-a balkon-a balcón-a
-@raw bakupo backup-a sicherung-a respaldo-a
-@raw babo band-a band-a banda-a
-@raw babake bc-a
-@raw babade sábado-a
-@raw babani urban-a urbano-a
-@raw babale boy-a
-@raw babaro bar-a bar-a bar-a
-@raw babase abs-a
-@raw babave above-a
-@raw babeto beta-a beta-a beta-a
-@raw babeke bach-a
-@raw babede abend-a
-@raw babene ausbauen-a
-@raw babele bello-a
-@raw babere bayer-a
-@raw babevi above-a oben-a
-@raw babite bitte-a
-@raw babike back-a
-@raw babide bd-a
-@raw babile abril-a
-@raw babire bar-a
-@raw babode bad-a
-@raw babore bro-a
-@raw babose bös-a
-@raw babofi off-a ab-a
-@raw babovi above-a oberhalb-a
-@raw babuke buck-a
-@raw babulo blue-a blau-a azul-a
-@raw baburo bureau-a büro-a buró-a
-@raw babuso abuse-a mißbrauch-a abuso-a
-@raw bado bad-a schlecht-a mal-a
-@raw badade broad-a
-@raw badale badly-a
-@raw badene baden-a
-@raw baderi baker-a bäcker-a
-@raw badite bitte-a
-@raw badisi bye-a adiós-a
-@raw badono bathroom-a bad-a baño-a
-@raw badoro ambassador-a botschafter-a embajador-a
-@raw bagi bear-a tragen-a
-@raw bagebe geb-a
-@raw bamo lady-a dame-a señora-a
-@raw bameli barely-a escasamente-a
-@raw bane mean-a
-@raw baneno dismantle-a abbauen-a desmantelar-a
-@raw banero banner-a fahne-a pancarta-a
-@raw banilo bail-a kaution-a fianza-a
-@raw banoni abandon-a abandonar-a
-@raw banoro bankruptcy-a insolvenz-a quiebra-a
-@raw bale salir-a
-@raw balano balance-a bilanz-a equilibrio-a
-@raw baleti bullet-a bala-a
-@raw baleri gentleman-a caballero-a
-@raw balesi bless-a segnen-a
-@raw balevo brave-a tapfer-a valiente-a
-@raw baloko block-a blockieren-a bloquear-a
-@raw balogi blog-a blog-a
-@raw balose bloß-a
-@raw balovo blow-a sprengen-a soplar-a
-@raw baluse abschluß-a
-@raw baro near-a bei-a cerca-a
-@raw barabo arab-a arabisch-a árabe-a
-@raw barade board-a
-@raw barano barn-a stall-a granero-a
-@raw barari peasant-a bauer-a
-@raw bareto breath-a atem-a aliento-a
-@raw baredi beard-a barba-a
-@raw bareno ban-a sperren-a prohibir-a
-@raw barelo barrel-a zylinder-a cañón-a
-@raw barero barrier-a hindernis-a barrera-a
-@raw barevi brief-a breve-a
-@raw bariki brick-a ladrillo-a
-@raw barise bayerisch-a
-@raw barusi bush-a arbusto-a
-@raw baso toward-a gegenüber-a hacia-a
-@raw basate bastante-a
-@raw basane bastante-a
-@raw basare basar-a
-@raw baseto basketball-a basketball-a baloncesto-a
-@raw basene basieren-a
-@raw basere basieren-a
-@raw basiki basic-a básico-a
-@raw basisi basis-a basis-a
-@raw basubi sub-a sub-a
-@raw basulo blue-a blau-a azul-a
-@raw basuro trash-a müll-a basura-a
-@raw bafe base-a
-@raw bafeno abolish-a abschaffen-a abolir-a
-@raw bafite bitte-a
-@raw bavo battle-a kampf-a batalla-a
-@raw baveto bet-a wette-a apuesta-a
-@raw bavebi web-a web-a
-@raw bavobe wobei-a
-@raw bahe tanto-a
-@raw baharo download-a herunterladen-a bajar-a
-@raw baheno railway-a bahn-a ferrocarril-a
-@raw bahiko bike-a fahrrad-a moto-a
-@raw bahovi low-a baja-a
-@raw bepo respect-a respekt-a respeto-a
-@raw beto about-a über-a acerca-a
-@raw betato beat-a takt-a beat-a
-@raw betane obstante-a
-@raw betaro bet-a wetten-a apostar-a
-@raw beteno retain-a behalten-a retener-a
-@raw betivo objective-a objektiv-a objetivo-a
-@raw betono emphasize-a betonen-a enfatizar-a
-@raw beke become-a
-@raw bekate bekannt-a
-@raw bekako break-a bruch-a descanso-a
-@raw bekamo beam-a balken-a viga-a
-@raw bekano known-a bekannt-a conocido-a
-@raw bekemo convenient-a bequem-a conveniente-a
-@raw bekene bekennen-a
-@raw bekipo scholarship-a stipendium-a beca-a
-@raw bekige berücksichtigen-a
-@raw bekilo bill-a schein-a factura-a
-@raw bekivi objective-a objektiv-a
-@raw bebo pretty-a ziemlich-a bastante-a
-@raw bebati debate-a debatir-a
-@raw bebani bean-a bohne-a
-@raw bebali baseball-a béisbol-a
-@raw bebene abgeben-a
-@raw bebefo beef-a rind-a ternera-a
-@raw bebigo arbitrary-a beliebig-a arbitrario-a
-@raw bedo body-a stelle-a cuerpo-a
-@raw bedede bedeutend-a
-@raw bedeno imply-a bedeuten-a insinuar-a
-@raw bedero particularly-a insbesondere-a particularmente-a
-@raw bedeso bye-a wiedersehen-a adiós-a
-@raw bedike selbstverständlich-a
-@raw bedigi vivid-a lebendig-a
-@raw bedini constraint-a bedingung-a
-@raw bege wegen-a
-@raw begane bergen-a
-@raw begene betragen-a
-@raw begeso enthusiastic-a begeistern-a entusiasta-a
-@raw begike bezüglich-a
-@raw begino beginning-a beginn-a comienzo-a
-@raw begise beziehungsweise-a
-@raw begono blessing-a segen-a bendición-a
-@raw bemi besides-a außerdem-a
-@raw bemato problematic-a problematisch-a problemático-a
-@raw bemeke bemerken-a
-@raw bemene bestimmen-a
-@raw bemuno endeavor-a bemühung-a empeño-a
-@raw bemuhi strive-a bemühen-a
-@raw bene buen-a
-@raw benaki bench-a banca-a
-@raw benase abends-a
-@raw beneto congressman-a abgeordnete-a congresista-a
-@raw benego meaning-a bedeutung-a significado-a
-@raw beneno denote-a bezeichnen-a denotar-a
-@raw beneri obtain-a obtener-a
-@raw benefi benefit-a beneficio-a
-@raw benino objection-a einwand-a objeción-a
-@raw benili belly-a vientre-a
-@raw benisi necessity-a bedürfnis-a
-@raw benone beantworten-a
-@raw belo apply-a gelten-a aplicar-a
-@raw belato bat-a fledermaus-a murciélago-a
-@raw belako beach-a strand-a playa-a
-@raw belano strain-a belastung-a cepa-a
-@raw belase überlassen-a
-@raw beleto beauty-a schönheit-a belleza-a
-@raw belebe belieben-a
-@raw belege belegen-a
-@raw belene abschließen-a
-@raw belere berliner-a
-@raw belese beispielsweise-a
-@raw beliki overview-a überblick-a
-@raw belino rebellion-a aufstand-a rebelión-a
-@raw beloto belt-a gürtel-a cinturón-a
-@raw beloko bell-a glocke-a campana-a
-@raw belovo below-a darunter-a debajo-a
-@raw beluti blossom-a blüte-a
-@raw bero but-a aber-a pero-a
-@raw berato abstract-a abstrakt-a abstracto-a
-@raw berako observe-a beobachten-a observar-a
-@raw beradi brand-a marke-a
-@raw berano surprising-a überraschen-a sorprendente-a
-@raw berali anywhere-a überall-a
-@raw beraro liberate-a befreien-a liberar-a
-@raw berete bereit-a
-@raw beregi convincing-a überzeugen-a
-@raw bereno burn-a brennen-a quemar-a
-@raw berero beer-a bier-a cerveza-a
-@raw berefe betreffen-a
-@raw berehi overlook-a übersehen-a
-@raw berike berichten-a
-@raw berigo bridge-a brücke-a puente-a
-@raw berino brain-a gehirn-a cerebro-a
-@raw berifo epistle-a brief-a epístola-a
-@raw berobi rob-a berauben-a
-@raw berono brown-a braun-a marrón-a
-@raw beroso bronze-a bronze-a bronce-a
-@raw berune berufen-a
-@raw beruro bury-a begraben-a enterrar-a
-@raw berufo occupation-a beruf-a profesión-a
-@raw beruho witch-a hexe-a bruja-a
-@raw beso yes-a ja-a sí-a
-@raw besate beste-a
-@raw besaro bear-a tragen-a oso-a
-@raw beseto beast-a ungeheuer-a bestia-a
-@raw besede bescheid-a
-@raw besegi being-a wesen-a
-@raw beseno possess-a besitzen-a poseer-a
-@raw besele bestellen-a
-@raw besere besser-a
-@raw besehe bestehen-a
-@raw besiki borough-a bezirk-a
-@raw besido established-a gegründet-a establecido-a
-@raw besino liberation-a befreiung-a liberación-a
-@raw besode besonder-a
-@raw besudo absurd-a absurd-a absurdo-a
-@raw befi besides-a neben-a
-@raw befane befassen-a
-@raw befasi likewise-a ebenfalls-a
-@raw befeno employ-a beschäftigen-a emplear-a
-@raw befefi briefly-a brevemente-a
-@raw befite benefit-a
-@raw befike beruflich-a
-@raw befide befinden-a
-@raw befuke befürchten-a
-@raw befuno verification-a überprüfung-a verificación-a
-@raw bevo previously-a bisher-a anteriormente-a
-@raw bevano observation-a beobachtung-a observación-a
-@raw bevaro observer-a beobachter-a observador-a
-@raw bevebi advertise-a bewerben-a
-@raw bevero assess-a bewerten-a evaluar-a
-@raw bevesi proof-a beweis-a
-@raw bevore bevor-a
-@raw bevuto aware-a bewußt-a consciente-a
-@raw bevusi conscious-a bewusst-a
-@raw beho insist-a bestehen-a insistir-a
-@raw behano assertion-a behauptung-a afirmación-a
-@raw behafe behalf-a
-@raw beheto object-a objekt-a objeto-a
-@raw behene beziehen-a
-@raw behere bewohner-a
-@raw behigi calm-a beruhigen-a
-@raw behoro best-a best-a mejor-a
-@raw behovi below-a unterhalb-a
-@raw bipe bisschen-a
-@raw bito both-a beide-a ambos-a
-@raw bitato habitat-a lebensraum-a hábitat-a
-@raw bitano inhabitant-a einwohner-a habitante-a
-@raw biteno beg-a bitten-a rogar-a
-@raw bitero bitter-a bitter-a amargo-a
-@raw bitino ambition-a ehrgeiz-a ambición-a
-@raw bike dich-a
-@raw bikare ubicar-a
-@raw bibo baby-a baby-a bebé-a
-@raw bibeno bee-a biene-a abeja-a
-@raw bido video-a video-a vídeo-a
-@raw bidene bilden-a
-@raw biduni formation-a bildung-a
-@raw bigi big-a grande-a
-@raw bigadi bound-a obligado-a
-@raw bigari bind-a obligar-a
-@raw bigafo bio-a bio-a biografía-a
-@raw bigeni btw-a übrigens-a
-@raw bimo determine-a bestimmen-a determinar-a
-@raw bino line-a linie-a línea-a
-@raw binano combination-a kombination-a combinación-a
-@raw binasi beyond-a hinaus-a
-@raw bineto cabinet-a schrank-a gabinete-a
-@raw binene bedienen-a
-@raw bilo final-a finale-a final-a
-@raw bilado blade-a klinge-a filo-a
-@raw bilage bislang-a
-@raw bilito ability-a fähigkeit-a capacidad-a
-@raw biligi inexpensive-a billig-a
-@raw biline billion-a
-@raw bilogo biological-a biologisch-a biológico-a
-@raw biro air-a luft-a aire-a
-@raw birado birthday-a geburtstag-a cumpleaños-a
-@raw bireto birth-a geburt-a nacimiento-a
-@raw biredo bird-a vogel-a ave-a
-@raw birene ausprobieren-a
-@raw birige bisherig-a
-@raw biso until-a bis-a hasta-a
-@raw bisape obispo-a
-@raw biseto bite-a beißen-a morder-a
-@raw bisiko bicycle-a radtour-a bicicleta-a
-@raw bisofe bischof-a
-@raw bifo chinese-a chinesisch-a chino-a
-@raw bivo cover-a decken-a cubrir-a
-@raw biho wide-a breit-a amplio-a
-@raw bopo prepare-a vorbereiten-a preparar-a
-@raw boputo boost-a steigerung-a impulso-a
-@raw boto post-a beitrag-a publicación-a
-@raw botalo bottle-a flasche-a botella-a
-@raw boteri bother-a belästigen-a
-@raw botomi bottom-a unterseite-a
-@raw bokato boat-a boot-a bote-a
-@raw bokeno bone-a knochen-a hueso-a
-@raw bokini construction-a bau-a
-@raw bokoki book-a buchen-a
-@raw bobo worker-a arbeiter-a trabajador-a
-@raw bobadi bombing-a atentado-a
-@raw bobere ober-a
-@raw bode de-a
-@raw bodare boundary-a
-@raw bogo episode-a folge-a episodio-a
-@raw bogomo boom-a boom-a auge-a
-@raw bomo comment-a kommentar-a comentario-a
-@raw bomabo bomb-a bombe-a bomba-a
-@raw bomebo bomb-a bombardieren-a bombardear-a
-@raw bomero bomber-a attentäter-a bombardero-a
-@raw bono soon-a bald-a pronto-a
-@raw bonudo bond-a bindung-a vínculo-a
-@raw bonuso bonus-a bonus-a bono-a
-@raw bolo population-a bevölkerung-a población-a
-@raw bolaso bag-a tasche-a bolsa-a
-@raw boledo bold-a frech-a audaz-a
-@raw bologo biology-a biologie-a biología-a
-@raw boro work-a arbeit-a trabajo-a
-@raw borade bord-a
-@raw borale laboral-a
-@raw borare elaborar-a
-@raw boreno brake-a bremse-a freno-a
-@raw borigo boring-a langweilig-a aburrido-a
-@raw boso size-a größe-a tamaño-a
-@raw bosafo embassy-a botschaft-a embajada-a
-@raw bofo sun-a sonne-a sol-a
-@raw bofoto boot-a kofferraum-a bota-a
-@raw bovo prove-a beweisen-a demostrar-a
-@raw bovali bowl-a schale-a
-@raw boho blood-a blut-a sangre-a
-@raw bupo up-a oben-a arriba-a
-@raw bupaso busy-a fleißig-a ocupado-a
-@raw buti bitch-a puta-a
-@raw buteni burst-a platzen-a
-@raw butero butter-a butter-a mantequilla-a
-@raw butodo bloody-a blutig-a sangriento-a
-@raw butono button-a knopf-a botón-a
-@raw butoro bull-a stier-a toro-a
-@raw buko book-a buch-a libro-a
-@raw bukaho bay-a bucht-a bahía-a
-@raw bubo audience-a zuschauer-a público-a
-@raw bubike bundesrepublik-a
-@raw budo build-a bauen-a construir-a
-@raw budage bundestag-a
-@raw budeto budget-a haushalt-a presupuesto-a
-@raw budege bundesliga-a
-@raw budene bundesregierung-a
-@raw budehe bundeswehr-a
-@raw bugo citizen-a bürger-a ciudadano-a
-@raw bugeko bug-a bug-a insecto-a
-@raw bugere hamburger-a
-@raw bumo assume-a übernehmen-a asumir-a
-@raw buno building-a gebäude-a construcción-a
-@raw buneti colorful-a bunt-a
-@raw buneki bunch-a haufen-a
-@raw bunedo covenant-a bund-a pacto-a
-@raw buneni good-a bueno-a
-@raw bulo cool-a cool-a genial-a
-@raw bulamo blame-a beschuldigen-a culpar-a
-@raw buleli grandmother-a abuela-a
-@raw buloko block-a block-a bloque-a
-@raw buro search-a durchsuchen-a buscar-a
-@raw bureno burn-a verbrennung-a quema-a
-@raw bureri burger-a hamburguesa-a
-@raw burefo brief-a kurz-a breve-a
-@raw buso base-a grundlage-a base-a
-@raw busake busca-a
-@raw busadi abroad-a auswärts-a
-@raw buseno absence-a abwesenheit-a ausencia-a
-@raw busiti bullshit-a quatsch-a
-@raw bufero buyer-a käufer-a comprador-a
-@raw buvo via-a per-a vía-a
-@raw buho tree-a baum-a árbol-a
+@raw bu veraba be-a sein-a ser-a
+@raw bapu nomuna bank-a bank-a banco-a
+@raw bapanu nomuna bread-a brot-a pan-a
+@raw batu nomuna data-a datenschutz-a dato-a
+@raw batari veraba bastar-a
+@raw bateni deroba bitten-a
+@raw bateru nomuna battery-a akku-a batería-a
+@raw batesu nomuna bath-a badezimmer-a bañera-a
+@raw bako deroba back-a zurück-a
+@raw bakalo deroba basically-a básicamente-a
+@raw baketu nomuna basket-a einkaufswagen-a canasta-a
+@raw bakeno veraba bake-a backen-a
+@raw bakeru nomuna bachelor-a bachelor-a soltero-a
+@raw bakigo nomuna banking-a banking-a
+@raw bakinu nomuna baking-a backen-a cocción-a
+@raw bakonu nomuna balcony-a balkon-a balcón-a
+@raw bakupu nomuna backup-a sicherung-a respaldo-a
+@raw babu nomuna band-a band-a banda-a
+@raw babaki nomuna bc-a
+@raw babadi nomuna sábado-a
+@raw babano detiva urban-a urbano-a
+@raw babali terona boy-a
+@raw babaru nomuna bar-a bar-a bar-a
+@raw babasi nomuna abs-a
+@raw babavi deroba above-a
+@raw babetu nomuna beta-a beta-a beta-a
+@raw babeki nomuna bach-a
+@raw babedi deroba abend-a
+@raw babeni veraba ausbauen-a
+@raw babeli detiva bello-a
+@raw baberi nomuna bayer-a
+@raw babevo detiva above-a oben-a
+@raw babiti nomuna bitte-a
+@raw babiki detiva back-a
+@raw babidi nomuna bd-a
+@raw babili nomuna abril-a
+@raw babiri detiva bar-a
+@raw babodi deroba bad-a
+@raw babori nomuna bro-a
+@raw babosi detiva bös-a
+@raw babofo deroba off-a ab-a
+@raw babovo peposa above-a oberhalb-a
+@raw babuki nomuna buck-a
+@raw babulu nomuna blue-a blau-a azul-a
+@raw baburu nomuna bureau-a büro-a buró-a
+@raw babusu nomuna abuse-a mißbrauch-a abuso-a
+@raw badu detiva bad-a schlecht-a mal-a
+@raw badadi detiva broad-a
+@raw badali deroba badly-a
+@raw badeni detiva baden-a
+@raw badero nomuna baker-a bäcker-a
+@raw baditi detiva bitte-a
+@raw badiso terona bye-a adiós-a
+@raw badonu nomuna bathroom-a bad-a baño-a
+@raw badoru nomuna ambassador-a botschafter-a embajador-a
+@raw bago veraba bear-a tragen-a
+@raw bagebi veraba geb-a
+@raw bamu nomuna lady-a dame-a señora-a
+@raw bamelo deroba barely-a escasamente-a
+@raw bani veraba mean-a
+@raw banenu veraba dismantle-a abbauen-a desmantelar-a
+@raw baneru nomuna banner-a fahne-a pancarta-a
+@raw banilu nomuna bail-a kaution-a fianza-a
+@raw banono veraba abandon-a abandonar-a
+@raw banoru nomuna bankruptcy-a insolvenz-a quiebra-a
+@raw bali veraba salir-a
+@raw balanu nomuna balance-a bilanz-a equilibrio-a
+@raw baleto nomuna bullet-a bala-a
+@raw balero nomuna gentleman-a caballero-a
+@raw baleso veraba bless-a segnen-a
+@raw balevu detiva brave-a tapfer-a valiente-a
+@raw baloku veraba block-a blockieren-a bloquear-a
+@raw balogo nomuna blog-a blog-a
+@raw balosi deroba bloß-a
+@raw balovu veraba blow-a sprengen-a soplar-a
+@raw balusi nomuna abschluß-a
+@raw baru peposa near-a bei-a cerca-a
+@raw barabu detiva arab-a arabisch-a árabe-a
+@raw baradi veraba board-a
+@raw baranu nomuna barn-a stall-a granero-a
+@raw bararo nomuna peasant-a bauer-a
+@raw baretu nomuna breath-a atem-a aliento-a
+@raw baredo nomuna beard-a barba-a
+@raw barenu veraba ban-a sperren-a prohibir-a
+@raw barelu nomuna barrel-a zylinder-a cañón-a
+@raw bareru nomuna barrier-a hindernis-a barrera-a
+@raw barevo detiva brief-a breve-a
+@raw bariko nomuna brick-a ladrillo-a
+@raw barisi detiva bayerisch-a
+@raw baruso nomuna bush-a arbusto-a
+@raw basu peposa toward-a gegenüber-a hacia-a
+@raw basati tika bastante-a
+@raw basani ronona bastante-a
+@raw basari veraba basar-a
+@raw basetu nomuna basketball-a basketball-a baloncesto-a
+@raw baseni detiva basieren-a
+@raw baseri veraba basieren-a
+@raw basiko detiva basic-a básico-a
+@raw basiso nomuna basis-a basis-a
+@raw basubo nomuna sub-a sub-a
+@raw basulu detiva blue-a blau-a azul-a
+@raw basuru nomuna trash-a müll-a basura-a
+@raw bafi veraba base-a
+@raw bafenu veraba abolish-a abschaffen-a abolir-a
+@raw bafiti patika bitte-a
+@raw bavu nomuna battle-a kampf-a batalla-a
+@raw bavetu nomuna bet-a wette-a apuesta-a
+@raw bavebo nomuna web-a web-a
+@raw bavobi deroba wobei-a
+@raw bahi ronona tanto-a
+@raw baharu veraba download-a herunterladen-a bajar-a
+@raw bahenu nomuna railway-a bahn-a ferrocarril-a
+@raw bahiku nomuna bike-a fahrrad-a moto-a
+@raw bahovo nomuna low-a baja-a
+@raw bepu nomuna respect-a respekt-a respeto-a
+@raw betu peposa about-a über-a acerca-a
+@raw betatu nomuna beat-a takt-a beat-a
+@raw betani nomuna obstante-a
+@raw betaru veraba bet-a wetten-a apostar-a
+@raw betenu veraba retain-a behalten-a retener-a
+@raw betivu detiva objective-a objektiv-a objetivo-a
+@raw betonu veraba emphasize-a betonen-a enfatizar-a
+@raw beki veraba become-a
+@raw bekati peposa bekannt-a
+@raw bekaku nomuna break-a bruch-a descanso-a
+@raw bekamu nomuna beam-a balken-a viga-a
+@raw bekanu detiva known-a bekannt-a conocido-a
+@raw bekemu detiva convenient-a bequem-a conveniente-a
+@raw bekeni detiva bekennen-a
+@raw bekipu nomuna scholarship-a stipendium-a beca-a
+@raw bekigi veraba berücksichtigen-a
+@raw bekilu nomuna bill-a schein-a factura-a
+@raw bekivo nomuna objective-a objektiv-a
+@raw bebu deroba pretty-a ziemlich-a bastante-a
+@raw bebato veraba debate-a debatir-a
+@raw bebano nomuna bean-a bohne-a
+@raw bebalo nomuna baseball-a béisbol-a
+@raw bebeni veraba abgeben-a
+@raw bebefu nomuna beef-a rind-a ternera-a
+@raw bebigu detiva arbitrary-a beliebig-a arbitrario-a
+@raw bedu nomuna body-a stelle-a cuerpo-a
+@raw bededi detiva bedeutend-a
+@raw bedenu veraba imply-a bedeuten-a insinuar-a
+@raw bederu deroba particularly-a insbesondere-a particularmente-a
+@raw bedesu nomuna bye-a wiedersehen-a adiós-a
+@raw bediki detiva selbstverständlich-a
+@raw bedigo detiva vivid-a lebendig-a
+@raw bedino nomuna constraint-a bedingung-a
+@raw begi peposa wegen-a
+@raw begani veraba bergen-a
+@raw begeni veraba betragen-a
+@raw begesu detiva enthusiastic-a begeistern-a entusiasta-a
+@raw begiki peposa bezüglich-a
+@raw beginu nomuna beginning-a beginn-a comienzo-a
+@raw begisi dunona beziehungsweise-a
+@raw begonu nomuna blessing-a segen-a bendición-a
+@raw bemo deroba besides-a außerdem-a
+@raw bematu detiva problematic-a problematisch-a problemático-a
+@raw bemeki veraba bemerken-a
+@raw bemeni detiva bestimmen-a
+@raw bemunu nomuna endeavor-a bemühung-a empeño-a
+@raw bemuho veraba strive-a bemühen-a
+@raw beni detiva buen-a
+@raw benako nomuna bench-a banca-a
+@raw benasi deroba abends-a
+@raw benetu nomuna congressman-a abgeordnete-a congresista-a
+@raw benegu nomuna meaning-a bedeutung-a significado-a
+@raw benenu veraba denote-a bezeichnen-a denotar-a
+@raw benero veraba obtain-a obtener-a
+@raw benefo nomuna benefit-a beneficio-a
+@raw beninu nomuna objection-a einwand-a objeción-a
+@raw benilo nomuna belly-a vientre-a
+@raw beniso nomuna necessity-a bedürfnis-a
+@raw benoni veraba beantworten-a
+@raw belu veraba apply-a gelten-a aplicar-a
+@raw belatu nomuna bat-a fledermaus-a murciélago-a
+@raw belaku nomuna beach-a strand-a playa-a
+@raw belanu nomuna strain-a belastung-a cepa-a
+@raw belasi veraba überlassen-a
+@raw beletu nomuna beauty-a schönheit-a belleza-a
+@raw belebi detiva belieben-a
+@raw belegi veraba belegen-a
+@raw beleni veraba abschließen-a
+@raw beleri detiva berliner-a
+@raw belesi deroba beispielsweise-a
+@raw beliko nomuna overview-a überblick-a
+@raw belinu nomuna rebellion-a aufstand-a rebelión-a
+@raw belotu nomuna belt-a gürtel-a cinturón-a
+@raw beloku nomuna bell-a glocke-a campana-a
+@raw belovu deroba below-a darunter-a debajo-a
+@raw beluto nomuna blossom-a blüte-a
+@raw beru dunona but-a aber-a pero-a
+@raw beratu detiva abstract-a abstrakt-a abstracto-a
+@raw beraku veraba observe-a beobachten-a observar-a
+@raw berado nomuna brand-a marke-a
+@raw beranu detiva surprising-a überraschen-a sorprendente-a
+@raw beralo deroba anywhere-a überall-a
+@raw beraru veraba liberate-a befreien-a liberar-a
+@raw bereti peposa bereit-a
+@raw berego detiva convincing-a überzeugen-a
+@raw berenu veraba burn-a brennen-a quemar-a
+@raw bereru nomuna beer-a bier-a cerveza-a
+@raw berefi detiva betreffen-a
+@raw bereho veraba overlook-a übersehen-a
+@raw beriki veraba berichten-a
+@raw berigu nomuna bridge-a brücke-a puente-a
+@raw berinu nomuna brain-a gehirn-a cerebro-a
+@raw berifu nomuna epistle-a brief-a epístola-a
+@raw berobo veraba rob-a berauben-a
+@raw beronu detiva brown-a braun-a marrón-a
+@raw berosu nomuna bronze-a bronze-a bronce-a
+@raw beruni veraba berufen-a
+@raw beruru veraba bury-a begraben-a enterrar-a
+@raw berufu nomuna occupation-a beruf-a profesión-a
+@raw beruhu nomuna witch-a hexe-a bruja-a
+@raw besu terona yes-a ja-a sí-a
+@raw besati detiva beste-a
+@raw besaru nomuna bear-a tragen-a oso-a
+@raw besetu nomuna beast-a ungeheuer-a bestia-a
+@raw besedi nomuna bescheid-a
+@raw besego nomuna being-a wesen-a
+@raw besenu veraba possess-a besitzen-a poseer-a
+@raw beseli veraba bestellen-a
+@raw beseri detiva besser-a
+@raw besehi detiva bestehen-a
+@raw besiko nomuna borough-a bezirk-a
+@raw besidu detiva established-a gegründet-a establecido-a
+@raw besinu nomuna liberation-a befreiung-a liberación-a
+@raw besodi detiva besonder-a
+@raw besudu detiva absurd-a absurd-a absurdo-a
+@raw befo peposa besides-a neben-a
+@raw befani veraba befassen-a
+@raw befaso deroba likewise-a ebenfalls-a
+@raw befenu veraba employ-a beschäftigen-a emplear-a
+@raw befefo deroba briefly-a brevemente-a
+@raw befiti veraba benefit-a
+@raw befiki detiva beruflich-a
+@raw befidi veraba befinden-a
+@raw befuki veraba befürchten-a
+@raw befunu nomuna verification-a überprüfung-a verificación-a
+@raw bevu deroba previously-a bisher-a anteriormente-a
+@raw bevanu nomuna observation-a beobachtung-a observación-a
+@raw bevaru nomuna observer-a beobachter-a observador-a
+@raw bevebo veraba advertise-a bewerben-a
+@raw beveru veraba assess-a bewerten-a evaluar-a
+@raw beveso nomuna proof-a beweis-a
+@raw bevori dunona bevor-a
+@raw bevutu detiva aware-a bewußt-a consciente-a
+@raw bevuso detiva conscious-a bewusst-a
+@raw behu veraba insist-a bestehen-a insistir-a
+@raw behanu nomuna assertion-a behauptung-a afirmación-a
+@raw behafi nomuna behalf-a
+@raw behetu nomuna object-a objekt-a objeto-a
+@raw beheni veraba beziehen-a
+@raw beheri nomuna bewohner-a
+@raw behigo veraba calm-a beruhigen-a
+@raw behoru nomuna best-a best-a mejor-a
+@raw behovo peposa below-a unterhalb-a
+@raw bipi deroba bisschen-a
+@raw bitu tika both-a beide-a ambos-a
+@raw bitatu nomuna habitat-a lebensraum-a hábitat-a
+@raw bitanu nomuna inhabitant-a einwohner-a habitante-a
+@raw bitenu veraba beg-a bitten-a rogar-a
+@raw biteru detiva bitter-a bitter-a amargo-a
+@raw bitinu nomuna ambition-a ehrgeiz-a ambición-a
+@raw biki nomuna dich-a
+@raw bikari veraba ubicar-a
+@raw bibu nomuna baby-a baby-a bebé-a
+@raw bibenu nomuna bee-a biene-a abeja-a
+@raw bidu nomuna video-a video-a vídeo-a
+@raw bideni veraba bilden-a
+@raw biduno nomuna formation-a bildung-a
+@raw bigo detiva big-a grande-a
+@raw bigado detiva bound-a obligado-a
+@raw bigaro veraba bind-a obligar-a
+@raw bigafu nomuna bio-a bio-a biografía-a
+@raw bigeno deroba btw-a übrigens-a
+@raw bimu veraba determine-a bestimmen-a determinar-a
+@raw binu nomuna line-a linie-a línea-a
+@raw binanu nomuna combination-a kombination-a combinación-a
+@raw binaso deroba beyond-a hinaus-a
+@raw binetu nomuna cabinet-a schrank-a gabinete-a
+@raw bineni veraba bedienen-a
+@raw bilu nomuna final-a finale-a final-a
+@raw biladu nomuna blade-a klinge-a filo-a
+@raw bilagi deroba bislang-a
+@raw bilitu nomuna ability-a fähigkeit-a capacidad-a
+@raw biligo detiva inexpensive-a billig-a
+@raw bilini numera billion-a
+@raw bilogu detiva biological-a biologisch-a biológico-a
+@raw biru nomuna air-a luft-a aire-a
+@raw biradu nomuna birthday-a geburtstag-a cumpleaños-a
+@raw biretu nomuna birth-a geburt-a nacimiento-a
+@raw biredu nomuna bird-a vogel-a ave-a
+@raw bireni veraba ausprobieren-a
+@raw birigi detiva bisherig-a
+@raw bisu peposa until-a bis-a hasta-a
+@raw bisapi nomuna obispo-a
+@raw bisetu veraba bite-a beißen-a morder-a
+@raw bisiku nomuna bicycle-a radtour-a bicicleta-a
+@raw bisofi nomuna bischof-a
+@raw bifu detiva chinese-a chinesisch-a chino-a
+@raw bivu veraba cover-a decken-a cubrir-a
+@raw bihu detiva wide-a breit-a amplio-a
+@raw bopu veraba prepare-a vorbereiten-a preparar-a
+@raw boputu nomuna boost-a steigerung-a impulso-a
+@raw botu nomuna post-a beitrag-a publicación-a
+@raw botalu nomuna bottle-a flasche-a botella-a
+@raw botero veraba bother-a belästigen-a
+@raw botomo nomuna bottom-a unterseite-a
+@raw bokatu nomuna boat-a boot-a bote-a
+@raw bokenu nomuna bone-a knochen-a hueso-a
+@raw bokino nomuna construction-a bau-a
+@raw bokoko veraba book-a buchen-a
+@raw bobu nomuna worker-a arbeiter-a trabajador-a
+@raw bobado nomuna bombing-a atentado-a
+@raw boberi detiva ober-a
+@raw bodi peposa de-a
+@raw bodari nomuna boundary-a
+@raw bogu nomuna episode-a folge-a episodio-a
+@raw bogomu nomuna boom-a boom-a auge-a
+@raw bomu nomuna comment-a kommentar-a comentario-a
+@raw bomabu nomuna bomb-a bombe-a bomba-a
+@raw bomebu veraba bomb-a bombardieren-a bombardear-a
+@raw bomeru nomuna bomber-a attentäter-a bombardero-a
+@raw bonu deroba soon-a bald-a pronto-a
+@raw bonudu nomuna bond-a bindung-a vínculo-a
+@raw bonusu nomuna bonus-a bonus-a bono-a
+@raw bolu nomuna population-a bevölkerung-a población-a
+@raw bolasu nomuna bag-a tasche-a bolsa-a
+@raw boledu detiva bold-a frech-a audaz-a
+@raw bologu nomuna biology-a biologie-a biología-a
+@raw boru nomuna work-a arbeit-a trabajo-a
+@raw boradi nomuna bord-a
+@raw borali detiva laboral-a
+@raw borari veraba elaborar-a
+@raw borenu nomuna brake-a bremse-a freno-a
+@raw borigu detiva boring-a langweilig-a aburrido-a
+@raw bosu nomuna size-a größe-a tamaño-a
+@raw bosafu nomuna embassy-a botschaft-a embajada-a
+@raw bofu nomuna sun-a sonne-a sol-a
+@raw bofotu nomuna boot-a kofferraum-a bota-a
+@raw bovu veraba prove-a beweisen-a demostrar-a
+@raw bovalo nomuna bowl-a schale-a
+@raw bohu nomuna blood-a blut-a sangre-a
+@raw bupu deroba up-a oben-a arriba-a
+@raw bupasu detiva busy-a fleißig-a ocupado-a
+@raw buto nomuna bitch-a puta-a
+@raw buteno veraba burst-a platzen-a
+@raw buteru nomuna butter-a butter-a mantequilla-a
+@raw butodu detiva bloody-a blutig-a sangriento-a
+@raw butonu nomuna button-a knopf-a botón-a
+@raw butoru nomuna bull-a stier-a toro-a
+@raw buku nomuna book-a buch-a libro-a
+@raw bukahu nomuna bay-a bucht-a bahía-a
+@raw bubu nomuna audience-a zuschauer-a público-a
+@raw bubiki nomuna bundesrepublik-a
+@raw budu veraba build-a bauen-a construir-a
+@raw budagi nomuna bundestag-a
+@raw budetu nomuna budget-a haushalt-a presupuesto-a
+@raw budegi nomuna bundesliga-a
+@raw budeni nomuna bundesregierung-a
+@raw budehi nomuna bundeswehr-a
+@raw bugu nomuna citizen-a bürger-a ciudadano-a
+@raw bugeku nomuna bug-a bug-a insecto-a
+@raw bugeri detiva hamburger-a
+@raw bumu veraba assume-a übernehmen-a asumir-a
+@raw bunu nomuna building-a gebäude-a construcción-a
+@raw buneto detiva colorful-a bunt-a
+@raw buneko nomuna bunch-a haufen-a
+@raw bunedu nomuna covenant-a bund-a pacto-a
+@raw buneno terona good-a bueno-a
+@raw bulu detiva cool-a cool-a genial-a
+@raw bulamu veraba blame-a beschuldigen-a culpar-a
+@raw bulelo nomuna grandmother-a abuela-a
+@raw buloku nomuna block-a block-a bloque-a
+@raw buru veraba search-a durchsuchen-a buscar-a
+@raw burenu nomuna burn-a verbrennung-a quema-a
+@raw burero nomuna burger-a hamburguesa-a
+@raw burefu nomuna brief-a kurz-a breve-a
+@raw busu nomuna base-a grundlage-a base-a
+@raw busaki nomuna busca-a
+@raw busado deroba abroad-a auswärts-a
+@raw busenu nomuna absence-a abwesenheit-a ausencia-a
+@raw busito nomuna bullshit-a quatsch-a
+@raw buferu nomuna buyer-a käufer-a comprador-a
+@raw buvu peposa via-a per-a vía-a
+@raw buhu nomuna tree-a baum-a árbol-a
 
 ## ("d")
 
-@raw do of-a von-a de-a
-@raw dape dazu-a
-@raw dapapi daddy-a papá-a
-@raw dapati adapt-a adaptar-a
-@raw dapani adaptation-a adaptación-a
-@raw dato date-a datum-a fecha-a
-@raw dateni intend-a beabsichtigen-a
-@raw datige dating-a
-@raw datino foundation-a stiftung-a fundación-a
-@raw datuki duck-a pato-a
-@raw dako thanks-a dank-a gracias-a
-@raw dakade cdu-a
-@raw daketi jacket-a chaqueta-a
-@raw dakeko dark-a dunkel-a oscuro-a
-@raw dakero grateful-a dankbar-a agradecido-a
-@raw dakeso darkness-a dunkelheit-a oscuridad-a
-@raw dakode accord-a
-@raw dakofo roof-a dach-a techo-a
-@raw dabe dabei-a
-@raw dabate date-a
-@raw dabake jack-a
-@raw dabade dio-a
-@raw dabari dr-a dra-a
-@raw dabasi database-a datenbank-a
-@raw dabahe da-a
-@raw dabede ed-a
-@raw dabene denn-a
-@raw dabere dauern-a
-@raw dabese daß-a
-@raw dabike dicho-a
-@raw dabigi dig-a graben-a
-@raw dabime jimmy-a
-@raw dabire dar-a
-@raw daboke doc-a
-@raw dabode odd-a
-@raw dabone doña-a
-@raw dabore dar-a
-@raw dabudo audio-a audio-a audio-a
-@raw dabure dare-a
-@raw dabufe drauf-a
-@raw dadi past-a pasado-a
-@raw dadapi dad-a papa-a
-@raw dadani damage-a schaden-a
-@raw dadare andar-a
-@raw dademe indem-a
-@raw dadene enden-a
-@raw daderi order-a ordenar-a
-@raw dadese address-a
-@raw dadino dna-a dna-a adn-a
-@raw dadiro admire-a bewundern-a admirar-a
-@raw dadisi advise-a beraten-a
-@raw dadone don-a
-@raw daduto adult-a erwachsen-a adulto-a
-@raw daduki thereby-a dadurch-a
-@raw daduni ad-a anuncio-a
-@raw dadulo adult-a erwachsen-a adulto-a
-@raw dadure injure-a
-@raw dadufe drauf-a
-@raw dago day-a tag-a día-a
-@raw dagede aged-a
-@raw dagege dagegen-a
-@raw dagide guide-a
-@raw dagilo daily-a täglich-a diario-a
-@raw damo department-a abteilung-a departamento-a
-@raw damano damage-a beschädigung-a daño-a
-@raw damase demás-a
-@raw damedi media-a media-a
-@raw damene damn-a
-@raw damini damn-a maldición-a
-@raw damono demon-a dämon-a demonio-a
-@raw dano then-a dann-a entonces-a
-@raw danaki afterwards-a danach-a
-@raw danaro dance-a tanzen-a bailar-a
-@raw danaso jeans-a jeans-a jeans-a
-@raw daneke dank-a
-@raw danebe daneben-a
-@raw danero dancer-a tänzerin-a bailarín-a
-@raw daneso danish-a dänisch-a danés-a
-@raw daniki dick-a schwanz-a
-@raw danino dancing-a tanzen-a danza-a
-@raw daniso dance-a tanz-a baile-a
-@raw dalo health-a gesundheit-a salud-a
-@raw dalaso deadline-a frist-a plazo-a
-@raw daleto old-a alt-a viejo-a
-@raw dalegi joy-a alegría-a
-@raw daleni deter-a abhalten-a
-@raw dalero dealer-a händler-a comerciante-a
-@raw dalige damalig-a
-@raw dalogo dialogue-a dialog-a diálogo-a
-@raw daro do-a tun-a hacer-a
-@raw darado yard-a werft-a patio-a
-@raw darago drag-a schleppen-a arrastrar-a
-@raw daramo drama-a drama-a drama-a
-@raw darane daran-a
-@raw darase daraus-a
-@raw dareto appreciation-a dankbarkeit-a agradecimiento-a
-@raw darede ard-a
-@raw darero duration-a dauer-a duración-a
-@raw darite dritt-a
-@raw daride rid-a
-@raw darini herein-a darin-a
-@raw darili daily-a diariamente-a
-@raw darivi drive-a antrieb-a
-@raw daropo drop-a tropfen-a gota-a
-@raw daromo drum-a trommel-a tambor-a
-@raw darugo drug-a droge-a droga-a
-@raw daso so-a so-a así-a
-@raw dasade schade-a
-@raw daseno dozen-a dutzend-a docena-a
-@raw daseli constitute-a darstellen-a
-@raw daside inside-a
-@raw dasini editorial-a redacción-a
-@raw dasilo jail-a knast-a prisión-a
-@raw dasire decir-a
-@raw dafe darauf-a
-@raw dafadi fdi-a di-a
-@raw dafide afraid-a
-@raw dafine daraufhin-a
-@raw dave davon-a
-@raw davani dawn-a amanecer-a
-@raw davare award-a
-@raw davide wide-a
-@raw davore davor-a
-@raw dahi thank-a danken-a
-@raw dahade anhand-a
-@raw dahidi aid-a beihilfe-a
-@raw dahine dahin-a
-@raw depe denn-a
-@raw depaki dispatch-a despacho-a
-@raw depeto depth-a tiefe-a profundidad-a
-@raw depeno depend-a abhängen-a depender-a
-@raw depeso depression-a depression-a depresión-a
-@raw depito deposit-a einlage-a depósito-a
-@raw depive deportivo-a
-@raw deto death-a tod-a muerte-a
-@raw detati deed-a tat-a
-@raw detalo detail-a detail-a detalle-a
-@raw detaro highlight-a hervorheben-a destacar-a
-@raw detase detrás-a
-@raw deteto advancement-a weiterentwicklung-a adelanto-a
-@raw detedo delighted-a begeistert-a encantado-a
-@raw deteno determination-a feststellung-a determinación-a
-@raw detido determined-a bestimmt-a determinado-a
-@raw detilo detailed-a ausführlich-a detallado-a
-@raw detoro presenter-a moderator-a presentador-a
-@raw deko director-a leitung-a director-a
-@raw dekato democratic-a demokratisch-a democrático-a
-@raw dekado decade-a jahrzehnt-a década-a
-@raw dekano dean-a dean-a decano-a
-@raw dekari declare-a declarar-a
-@raw dekete decreto-a
-@raw dekedi indeed-a efectivamente-a
-@raw dekeni thinking-a denken-a
-@raw dekero delicious-a lecker-a delicioso-a
-@raw dekino decline-a rückgang-a descenso-a
-@raw dekiso index-a index-a índice-a
-@raw dekivo detective-a detektiv-a detective-a
-@raw dekoro decorate-a schmücken-a decorar-a
-@raw debo website-a webseite-a web-a
-@raw debati debate-a debatte-a
-@raw debale deal-a
-@raw debaro dear-a lieber-a querido-a
-@raw debase deutsch-a
-@raw debere dezember-a
-@raw debuto debut-a debüt-a debut-a
-@raw dedo decide-a entscheiden-a decidir-a
-@raw dedadi demand-a bedarf-a
-@raw dedani defendant-a acusado-a
-@raw dedalo ideal-a ideal-a ideal-a
-@raw dedase demás-a
-@raw dedeni dependency-a dependencia-a
-@raw dedito edit-a bearbeiten-a editar-a
-@raw dediko dedicate-a widmen-a dedicar-a
-@raw dedido dedicated-a engagiert-a dedicado-a
-@raw dedise niederländisch-a
-@raw deduso induce-a hervorrufen-a inducir-a
-@raw dego order-a ordnung-a orden-a
-@raw degano delegation-a delegation-a delegación-a
-@raw degene deswegen-a
-@raw degeli delay-a verzögern-a
-@raw degiko ideological-a ideologisch-a ideológico-a
-@raw degiri desire-a begehren-a
-@raw demi plus-a además-a
-@raw demato democrat-a demokrat-a demócrata-a
-@raw demake demnach-a
-@raw demado armed-a bewaffnet-a armado-a
-@raw demano demand-a forderung-a demanda-a
-@raw demare denominar-a
-@raw demase demás-a
-@raw demelo deeply-a zutiefst-a profundamente-a
-@raw demiki academic-a académico-a
-@raw demino demo-a demo-a demostración-a
-@raw demoko democracy-a demokratie-a democracia-a
-@raw demoni demonstrate-a nachweisen-a
-@raw deno someone-a jemand-a alguien-a
-@raw denado donation-a spende-a donación-a
-@raw denano designate-a benennen-a designar-a
-@raw denali presidential-a presidencial-a
-@raw denare destinar-a
-@raw deneno ponder-a nachdenken-a reflexionar-a
-@raw denero designer-a designer-a diseñador-a
-@raw denito identity-a identität-a identidad-a
-@raw deniko identical-a identisch-a idéntico-a
-@raw denido id-a identifikation-a identificación-a
-@raw denige derjenige-a
-@raw denini identification-a kennzeichnung-a
-@raw denili residential-a residencial-a
-@raw deniso dentist-a zahnarzt-a dentista-a
-@raw denifo identify-a ermitteln-a identificar-a
-@raw denoki nonetheless-a dennoch-a
-@raw delo development-a entwicklung-a desarrollo-a
-@raw delato forward-a vorwärts-a adelante-a
-@raw deladi developed-a desarrollado-a
-@raw delane delante-a
-@raw delari delete-a eliminar-a
-@raw delaso displace-a verdrängen-a desplazar-a
-@raw delego delegate-a delegierte-a delegado-a
-@raw delere devolver-a
-@raw deliki neat-a ordentlich-a
-@raw delini decline-a declinar-a
-@raw delogo ideology-a ideologie-a ideología-a
-@raw deloso jealous-a neidisch-a celoso-a
-@raw dere anderer-a
-@raw derato defeat-a niederlage-a derrota-a
-@raw derabo considerable-a beträchtlich-a considerable-a
-@raw derage derartig-a
-@raw derano consideration-a überlegung-a consideración-a
-@raw derali federal-a federal-a
-@raw derase anders-a
-@raw derafo draft-a entwurf-a borrador-a
-@raw dereko copyright-a copyright-a derechos-a
-@raw derebe derselbe-a
-@raw derere andererseits-a
-@raw dereso dress-a kleidung-a vestido-a
-@raw deriko drink-a trinken-a bebida-a
-@raw derino description-a beschreibung-a descripción-a
-@raw deriro decrease-a verringern-a disminuir-a
-@raw deriso jersey-a trikot-a jersey-a
-@raw derivo derive-a ableiten-a derivar-a
-@raw deropi drop-a ablegen-a
-@raw derono destruction-a zerstörung-a destrucción-a
-@raw deruko drunk-a betrunken-a borracho-a
-@raw derugo leadership-a führung-a liderazgo-a
-@raw derume wiederum-a
-@raw deruni modification-a veränderung-a
-@raw derulo delay-a verspätung-a retraso-a
-@raw deruso decrease-a reduzierung-a disminución-a
-@raw deso say-a sagen-a decir-a
-@raw desato desperate-a verzweifelt-a desesperado-a
-@raw desabo desirable-a erwünscht-a deseable-a
-@raw desade destacado-a
-@raw desano decent-a anständig-a decente-a
-@raw desare desear-a
-@raw desafo defiance-a mißachtung-a desafío-a
-@raw deseto desert-a wüste-a desierto-a
-@raw deseko contradict-a widersprechen-a contradecir-a
-@raw desedo descend-a absteigen-a descender-a
-@raw desego descent-a abstieg-a ascendencia-a
-@raw desene mindestens-a
-@raw desero disappear-a verschwinden-a desaparecer-a
-@raw desito density-a dichte-a densidad-a
-@raw desiko desk-a schreibtisch-a escritorio-a
-@raw desidi destined-a destinado-a
-@raw desige design-a
-@raw desini destination-a destino-a
-@raw desiro destroy-a zerstören-a destruir-a
-@raw desiso dismiss-a verwerfen-a despedir-a
-@raw desifo despair-a verzweiflung-a desesperación-a
-@raw desivo decisive-a entscheidenden-a decisivo-a
-@raw desote desto-a
-@raw desudo debt-a schuld-a deuda-a
-@raw defi therefore-a deshalb-a
-@raw defato default-a vorgabe-a defecto-a
-@raw defalo ideal-a ideal-a ideal-a
-@raw defasi anyways-a jedenfalls-a
-@raw defeti defeat-a besiegen-a
-@raw defedo defend-a verteidigen-a defender-a
-@raw defeno defense-a verteidigung-a defensa-a
-@raw defelo devil-a teufel-a diablo-a
-@raw defero defender-a verteidiger-a defensor-a
-@raw defesi defence-a abwehr-a
-@raw defevo defensive-a defensiv-a defensivo-a
-@raw defiti definite-a definitiv-a
-@raw defino definitely-a unbedingt-a definitivamente-a
-@raw defiro define-a definieren-a definir-a
-@raw defiso deficit-a defizit-a déficit-a
-@raw defivi definitive-a definitivo-a
-@raw defono definition-a definition-a definición-a
-@raw devo serve-a dienen-a servir-a
-@raw devito device-a gerät-a dispositivo-a
-@raw deho ten-a zehn-a diez-a
-@raw deheni threatening-a bedrohen-a
-@raw dipo due-a fällig-a debido-a
-@raw dipari shooting-a disparo-a
-@raw diponi dispose-a disponer-a
-@raw diputo deputy-a stellvertreter-a diputado-a
-@raw dito direct-a direkt-a directo-a
-@raw ditato dictate-a vorschreiben-a dictar-a
-@raw ditano editing-a bearbeiten-a montaje-a
-@raw ditaro dictatorship-a diktatur-a dictadura-a
-@raw ditino addition-a zusatz-a adición-a
-@raw ditoko joke-a witz-a broma-a
-@raw ditoro editor-a redaktion-a editor-a
-@raw diko doctor-a doktor-a médico-a
-@raw dikato dense-a dicht-a denso-a
-@raw dikano medication-a medikament-a medicamento-a
-@raw dikalo radical-a radikal-a radical-a
-@raw dikaro indicate-a angeben-a indicar-a
-@raw diketo jet-a jet-a chorro-a
-@raw dikeko indirect-a indirekt-a indirecto-a
-@raw dikero discovery-a entdeckung-a descubrimiento-a
-@raw dikiti addiction-a abhängigkeit-a
-@raw dikimo discrimination-a diskriminierung-a discriminación-a
-@raw dikino dedication-a einweihung-a dedicación-a
-@raw dikiro dictionary-a wörterbuch-a diccionario-a
-@raw dikoro indicator-a indikator-a indicador-a
-@raw dikupi apology-a disculpa-a
-@raw dikuto discount-a rabatt-a descuento-a
-@raw dikulo ridiculous-a lächerlich-a ridículo-a
-@raw dikuso discuss-a diskutieren-a discutir-a
-@raw dibe lieb-a
-@raw dibari diary-a tagebuch-a
-@raw dibilo credibility-a glaubwürdigkeit-a credibilidad-a
-@raw dibote idiot-a
-@raw dibose dios-a
-@raw dibude jude-a
-@raw dibuho drawing-a zeichnen-a dibujo-a
-@raw dido condition-a zustand-a condición-a
-@raw didoro dictator-a diktator-a dictador-a
-@raw didulo individual-a individuell-a individual-a
-@raw digi though-a allerdings-a
-@raw digato disgusting-a ekelhaft-a desagradable-a
-@raw digalo digital-a digital-a digital-a
-@raw digasi disgrace-a desgracia-a
-@raw digeni indigenous-a indígena-a
-@raw digido dignity-a würde-a dignidad-a
-@raw digire dirigir-a
-@raw digodi god-a dios-a
-@raw dimo join-a mitmachen-a unir-a
-@raw dimale diesmal-a
-@raw dimero diameter-a durchmesser-a diámetro-a
-@raw dimiko dynamic-a dynamik-a dinámica-a
-@raw dino different-a verschieden-a diferente-a
-@raw dinate dienst-a
-@raw dinado invade-a einfallen-a invadir-a
-@raw dinage dienstag-a
-@raw dinamo dynamic-a dynamisch-a dinámico-a
-@raw dinani indian-a indio-a
-@raw dinalo ending-a Endung-a final-a
-@raw dinari ordinary-a ordinario-a
-@raw dinede indio-a
-@raw dinero dinner-a abendessen-a cena-a
-@raw dinido inside-a innen-a adentro-a
-@raw dinini coordination-a coordinación-a
-@raw dinoro coordinator-a koordination-a coordinador-a
-@raw dilo design-a design-a diseño-a
-@raw dilato diplomatic-a diplomatisch-a diplomático-a
-@raw dileko dialect-a Dialekt-a dialecto-a
-@raw dilino discipline-a disziplin-a disciplina-a
-@raw diloso disclose-a enthüllen-a divulgar-a
-@raw diro die-a sterben-a morir-a
-@raw dirako distract-a ablenken-a distraer-a
-@raw dirane dran-a
-@raw diraro journal-a zeitschrift-a diario-a
-@raw direte direct-a
-@raw direki directly-a directamente-a
-@raw direno disrupt-a stören-a perturbar-a
-@raw direre diverso-a
-@raw direse divers-a
-@raw diriti diversity-a diversidad-a
-@raw diribo distribute-a vertreiben-a distribuir-a
-@raw diride dirigido-a
-@raw dirine drin-a
-@raw diruto dirty-a dreckig-a sucio-a
-@raw disi so-a damit-a
-@raw disato disable-a abschalten-a desactivar-a
-@raw disaki disc-a disc-a
-@raw disabo disability-a behinderung-a discapacidad-a
-@raw disano distance-a abstand-a distancia-a
-@raw disali judicial-a judicial-a
-@raw disare diseñar-a
-@raw disebe diciembre-a
-@raw disedo disabled-a behindert-a discapacitado-a
-@raw diseno disappointment-a enttäuschung-a decepción-a
-@raw diselo display-a darstellung-a mostrar-a
-@raw diseso disease-a krankheit-a enfermedad-a
-@raw disite distinto-a
-@raw disigi distinguish-a distinguir-a
-@raw disino medicine-a medizin-a medicina-a
-@raw disile display-a
-@raw disiso layout-a anordnung-a disposición-a
-@raw disono division-a division-a división-a
-@raw disuto dispute-a streitigkeit-a disputa-a
-@raw disuki disgust-a asco-a
-@raw difo difference-a unterschied-a diferencia-a
-@raw difavo jaw-a kiefer-a mandíbula-a
-@raw difene diferente-a
-@raw difito difficulty-a schwierigkeit-a dificultad-a
-@raw difiki difficult-a schwierig-a
-@raw divo discover-a entdecken-a descubrir-a
-@raw diveni divorce-a scheiden-a
-@raw divero driver-a fahrer-a conductor-a
-@raw diveso diverse-a vielfältig-a diverso-a
-@raw divido individual-a individuum-a individuo-a
-@raw divino divine-a göttlich-a divino-a
-@raw diviro divide-a aufteilen-a dividir-a
-@raw divoro divorce-a scheidung-a divorcio-a
-@raw diho pure-a rein-a puro-a
-@raw dihaso jazz-a jazz-a jazz-a
-@raw diheto diet-a ernährung-a dieta-a
-@raw dope don-a
-@raw dopato adopt-a adoptieren-a adoptar-a
-@raw dopelo double-a doppel-a doble-a
-@raw dopino adoption-a verabschiedung-a adopción-a
-@raw doti dort-a ahí-a
-@raw doko yet-a doch-a aún-a
-@raw dokano documentation-a dokumentation-a documentación-a
-@raw dokale documental-a
-@raw dokaro dry-a trocknen-a secar-a
-@raw doketo document-a dokument-a documento-a
-@raw dokeno document-a dokumentieren-a documentar-a
-@raw dobo job-a job-a empleo-a
-@raw dobelo double-a doppelt-a doble-a
-@raw dodo modern-a modern-a moderno-a
-@raw dodeli double-a verdoppeln-a
-@raw dogo dog-a hund-a perro-a
-@raw domo dollar-a dollar-a dólar-a
-@raw domano dominant-a dominieren-a dominante-a
-@raw domeki domestic-a doméstico-a
-@raw domige domingo-a
-@raw domino domain-a domain-a dominio-a
-@raw domiro dominate-a beherrschen-a dominar-a
-@raw dono decision-a entscheidung-a decisión-a
-@raw donato donate-a spenden-a donar-a
-@raw donage donnerstag-a
-@raw donamo dream-a träumen-a soñar-a
-@raw donoro donor-a spender-a donante-a
-@raw dolo role-a rolle-a rol-a
-@raw dolado download-a download-a descarga-a
-@raw dolere doler-a
-@raw dolino joint-a gelenk-a articulación-a
-@raw doluvo dust-a staub-a polvo-a
-@raw doro or-a oder-a o-a
-@raw doravo draw-a ziehen-a sorteo-a
-@raw doreso address-a adresse-a domicilio-a
-@raw dose varios-a
-@raw doseko dry-a trocken-a seco-a
-@raw doseni outdoors-a draußen-a
-@raw dosino tin-a dose-a estaño-a
-@raw dosiso dose-a dosis-a dosis-a
-@raw dofo immediately-a sofort-a inmediatamente-a
-@raw dovi however-a jedoch-a
-@raw dovano down-a down-a abajo-a
-@raw doveni journey-a trayecto-a
-@raw dovini down-a down-a
-@raw doho eight-a acht-a ocho-a
-@raw doharo ear-a ohr-a oído-a
-@raw dupo industry-a industrie-a industria-a
-@raw duto just-a gerade-a justo-a
-@raw dutene deuten-a
-@raw dutino justify-a begründen-a justificar-a
-@raw dutivo productivity-a produktivität-a productividad-a
-@raw dutoto dead-a tote-a muerto-a
-@raw dutori outdoor-a exteriores-a
-@raw duko education-a ausbildung-a educación-a
-@raw dukati educational-a educativo-a
-@raw dukado educated-a ausgebildet-a educado-a
-@raw dukaro educate-a erziehen-a educar-a
-@raw dukase durchaus-a
-@raw dukivo productive-a produktiv-a productivo-a
-@raw dube darüber-a
-@raw dubeko deck-a deck-a cubierta-a
-@raw dubelo duel-a duell-a duelo-a
-@raw dubere drüber-a
-@raw dudo cut-a schneiden-a cortar-a
-@raw dudage judge-a
-@raw dudaro doubt-a zweifeln-a dudar-a
-@raw dudeli dude-a kumpel-a
-@raw dudiso jewish-a jüdisch-a judío-a
-@raw duge einzig-a
-@raw dumo arm-a arm-a brazo-a
-@raw dumapo jump-a springen-a saltar-a
-@raw dumobo dumb-a blöd-a tonto-a
-@raw duno during-a während-a durante-a
-@raw dunero owner-a besitzer-a dueño-a
-@raw duneso desire-a wunsch-a deseo-a
-@raw duniri junior-a junior-a
-@raw dulo currently-a derzeit-a actualmente-a
-@raw duliti duty-a pflicht-a
-@raw dure dafür-a
-@raw durado jury-a jury-a jurado-a
-@raw durare durar-a
-@raw dureko dirt-a dreck-a suciedad-a
-@raw duremo dream-a traum-a sueño-a
-@raw durilo industrial-a industriell-a industrial-a
-@raw duso english-a deutsch-a inglés-a
-@raw dusedi used-a usado-a
-@raw duseni outside-a außen-a
-@raw dusero shower-a dusche-a ducha-a
-@raw dusidi outside-a außerhalb-a
-@raw dusiro outside-a außen-a exterior-a
-@raw dusiso judiciary-a justiz-a judicatura-a
-@raw dufo reduce-a reduzieren-a reducir-a
-@raw dufali dual-a zweifach-a
-@raw dufiso juice-a saft-a jugo-a
-@raw duvo discussion-a diskussion-a debate-a
-@raw duhi thus-a daher-a
+@raw du peposa of-a von-a de-a
+@raw dapi deroba dazu-a
+@raw dapapo nomuna daddy-a papá-a
+@raw dapato veraba adapt-a adaptar-a
+@raw dapano nomuna adaptation-a adaptación-a
+@raw datu nomuna date-a datum-a fecha-a
+@raw dateno veraba intend-a beabsichtigen-a
+@raw datigi nomuna dating-a
+@raw datinu nomuna foundation-a stiftung-a fundación-a
+@raw datuko nomuna duck-a pato-a
+@raw daku nomuna thanks-a dank-a gracias-a
+@raw dakadi nomuna cdu-a
+@raw daketo nomuna jacket-a chaqueta-a
+@raw dakeku detiva dark-a dunkel-a oscuro-a
+@raw dakeru detiva grateful-a dankbar-a agradecido-a
+@raw dakesu nomuna darkness-a dunkelheit-a oscuridad-a
+@raw dakodi veraba accord-a
+@raw dakofu nomuna roof-a dach-a techo-a
+@raw dabi deroba dabei-a
+@raw dabati veraba date-a
+@raw dabaki nomuna jack-a
+@raw dabadi nomuna dio-a
+@raw dabaro nomuna dr-a dra-a
+@raw dabaso nomuna database-a datenbank-a
+@raw dabahi nomuna da-a
+@raw dabedi nomuna ed-a
+@raw dabeni deroba denn-a
+@raw daberi veraba dauern-a
+@raw dabesi dunona daß-a
+@raw dabiki tika dicho-a
+@raw dabigo veraba dig-a graben-a
+@raw dabimi nomuna jimmy-a
+@raw dabiri peposa dar-a
+@raw daboki nomuna doc-a
+@raw dabodi detiva odd-a
+@raw daboni nomuna doña-a
+@raw dabori peposa dar-a
+@raw dabudu nomuna audio-a audio-a audio-a
+@raw daburi veraba dare-a
+@raw dabufi deroba drauf-a
+@raw dado detiva past-a pasado-a
+@raw dadapo nomuna dad-a papa-a
+@raw dadano veraba damage-a schaden-a
+@raw dadari veraba andar-a
+@raw dademi dunona indem-a
+@raw dadeni veraba enden-a
+@raw dadero veraba order-a ordenar-a
+@raw dadesi veraba address-a
+@raw dadinu nomuna dna-a dna-a adn-a
+@raw dadiru veraba admire-a bewundern-a admirar-a
+@raw dadiso veraba advise-a beraten-a
+@raw dadoni veraba don-a
+@raw dadutu detiva adult-a erwachsen-a adulto-a
+@raw daduko deroba thereby-a dadurch-a
+@raw daduno nomuna ad-a anuncio-a
+@raw dadulu nomuna adult-a erwachsen-a adulto-a
+@raw daduri veraba injure-a
+@raw dadufi peposa drauf-a
+@raw dagu nomuna day-a tag-a día-a
+@raw dagedi detiva aged-a
+@raw dagegi deroba dagegen-a
+@raw dagidi veraba guide-a
+@raw dagilu detiva daily-a täglich-a diario-a
+@raw damu nomuna department-a abteilung-a departamento-a
+@raw damanu nomuna damage-a beschädigung-a daño-a
+@raw damasi detiva demás-a
+@raw damedo nomuna media-a media-a
+@raw dameni deroba damn-a
+@raw damino nomuna damn-a maldición-a
+@raw damonu nomuna demon-a dämon-a demonio-a
+@raw danu deroba then-a dann-a entonces-a
+@raw danako deroba afterwards-a danach-a
+@raw danaru veraba dance-a tanzen-a bailar-a
+@raw danasu nomuna jeans-a jeans-a jeans-a
+@raw daneki peposa dank-a
+@raw danebi deroba daneben-a
+@raw daneru nomuna dancer-a tänzerin-a bailarín-a
+@raw danesu detiva danish-a dänisch-a danés-a
+@raw daniko nomuna dick-a schwanz-a
+@raw daninu nomuna dancing-a tanzen-a danza-a
+@raw danisu nomuna dance-a tanz-a baile-a
+@raw dalu nomuna health-a gesundheit-a salud-a
+@raw dalasu nomuna deadline-a frist-a plazo-a
+@raw daletu nomuna old-a alt-a viejo-a
+@raw dalego nomuna joy-a alegría-a
+@raw daleno veraba deter-a abhalten-a
+@raw daleru nomuna dealer-a händler-a comerciante-a
+@raw daligi detiva damalig-a
+@raw dalogu nomuna dialogue-a dialog-a diálogo-a
+@raw daru veraba do-a tun-a hacer-a
+@raw daradu nomuna yard-a werft-a patio-a
+@raw daragu veraba drag-a schleppen-a arrastrar-a
+@raw daramu nomuna drama-a drama-a drama-a
+@raw darani deroba daran-a
+@raw darasi deroba daraus-a
+@raw daretu nomuna appreciation-a dankbarkeit-a agradecimiento-a
+@raw daredi nomuna ard-a
+@raw dareru nomuna duration-a dauer-a duración-a
+@raw dariti detiva dritt-a
+@raw daridi detiva rid-a
+@raw darino deroba herein-a darin-a
+@raw darilo deroba daily-a diariamente-a
+@raw darivo nomuna drive-a antrieb-a
+@raw daropu nomuna drop-a tropfen-a gota-a
+@raw daromu nomuna drum-a trommel-a tambor-a
+@raw darugu nomuna drug-a droge-a droga-a
+@raw dasu deroba so-a so-a así-a
+@raw dasadi detiva schade-a
+@raw dasenu nomuna dozen-a dutzend-a docena-a
+@raw daselo veraba constitute-a darstellen-a
+@raw dasidi peposa inside-a
+@raw dasino nomuna editorial-a redacción-a
+@raw dasilu nomuna jail-a knast-a prisión-a
+@raw dasiri nomuna decir-a
+@raw dafi deroba darauf-a
+@raw dafado nomuna fdi-a di-a
+@raw dafidi detiva afraid-a
+@raw dafini deroba daraufhin-a
+@raw davi deroba davon-a
+@raw davano nomuna dawn-a amanecer-a
+@raw davari veraba award-a
+@raw davidi deroba wide-a
+@raw davori deroba davor-a
+@raw daho veraba thank-a danken-a
+@raw dahadi peposa anhand-a
+@raw dahido nomuna aid-a beihilfe-a
+@raw dahini deroba dahin-a
+@raw depi dunona denn-a
+@raw depako nomuna dispatch-a despacho-a
+@raw depetu nomuna depth-a tiefe-a profundidad-a
+@raw depenu veraba depend-a abhängen-a depender-a
+@raw depesu nomuna depression-a depression-a depresión-a
+@raw depitu nomuna deposit-a einlage-a depósito-a
+@raw depivi detiva deportivo-a
+@raw detu nomuna death-a tod-a muerte-a
+@raw detato nomuna deed-a tat-a
+@raw detalu nomuna detail-a detail-a detalle-a
+@raw detaru veraba highlight-a hervorheben-a destacar-a
+@raw detasi deroba detrás-a
+@raw detetu nomuna advancement-a weiterentwicklung-a adelanto-a
+@raw detedu detiva delighted-a begeistert-a encantado-a
+@raw detenu nomuna determination-a feststellung-a determinación-a
+@raw detidu detiva determined-a bestimmt-a determinado-a
+@raw detilu detiva detailed-a ausführlich-a detallado-a
+@raw detivu nomuna adjective-a Adjektiv-a adjetivo-a
+@raw detoru nomuna presenter-a moderator-a presentador-a
+@raw deku nomuna director-a leitung-a director-a
+@raw dekatu detiva democratic-a demokratisch-a democrático-a
+@raw dekadu nomuna decade-a jahrzehnt-a década-a
+@raw dekanu nomuna dean-a dean-a decano-a
+@raw dekaro veraba declare-a declarar-a
+@raw deketi nomuna decreto-a
+@raw dekedo deroba indeed-a efectivamente-a
+@raw dekeno nomuna thinking-a denken-a
+@raw dekeru detiva delicious-a lecker-a delicioso-a
+@raw dekinu nomuna decline-a rückgang-a descenso-a
+@raw dekisu nomuna index-a index-a índice-a
+@raw dekivu nomuna detective-a detektiv-a detective-a
+@raw dekoru veraba decorate-a schmücken-a decorar-a
+@raw debu nomuna website-a webseite-a web-a
+@raw debato nomuna debate-a debatte-a
+@raw debali veraba deal-a
+@raw debaru detiva dear-a lieber-a querido-a
+@raw debasi nomuna deutsch-a
+@raw deberi nomuna dezember-a
+@raw debutu nomuna debut-a debüt-a debut-a
+@raw dedu veraba decide-a entscheiden-a decidir-a
+@raw dedado veraba demand-a bedarf-a
+@raw dedano nomuna defendant-a acusado-a
+@raw dedalu detiva ideal-a ideal-a ideal-a
+@raw dedasi tika demás-a
+@raw dedeno nomuna dependency-a dependencia-a
+@raw deditu veraba edit-a bearbeiten-a editar-a
+@raw dediku veraba dedicate-a widmen-a dedicar-a
+@raw dedidu detiva dedicated-a engagiert-a dedicado-a
+@raw dedisi detiva niederländisch-a
+@raw dedusu veraba induce-a hervorrufen-a inducir-a
+@raw degu nomuna order-a ordnung-a orden-a
+@raw deganu nomuna delegation-a delegation-a delegación-a
+@raw degeni deroba deswegen-a
+@raw degelo veraba delay-a verzögern-a
+@raw degiku detiva ideological-a ideologisch-a ideológico-a
+@raw degiro veraba desire-a begehren-a
+@raw demo deroba plus-a además-a
+@raw dematu nomuna democrat-a demokrat-a demócrata-a
+@raw demaki deroba demnach-a
+@raw demadu detiva armed-a bewaffnet-a armado-a
+@raw demanu nomuna demand-a forderung-a demanda-a
+@raw demari veraba denominar-a
+@raw demasi ronona demás-a
+@raw demelu deroba deeply-a zutiefst-a profundamente-a
+@raw demiko detiva academic-a académico-a
+@raw deminu nomuna demo-a demo-a demostración-a
+@raw demoku nomuna democracy-a demokratie-a democracia-a
+@raw demono veraba demonstrate-a nachweisen-a
+@raw denu ronona someone-a jemand-a alguien-a
+@raw denadu nomuna donation-a spende-a donación-a
+@raw denanu veraba designate-a benennen-a designar-a
+@raw denalo detiva presidential-a presidencial-a
+@raw denari veraba destinar-a
+@raw denenu veraba ponder-a nachdenken-a reflexionar-a
+@raw deneru nomuna designer-a designer-a diseñador-a
+@raw denitu nomuna identity-a identität-a identidad-a
+@raw deniku detiva identical-a identisch-a idéntico-a
+@raw denidu nomuna id-a identifikation-a identificación-a
+@raw denigi tika derjenige-a
+@raw denino nomuna identification-a kennzeichnung-a
+@raw denilo detiva residential-a residencial-a
+@raw denisu nomuna dentist-a zahnarzt-a dentista-a
+@raw denifu veraba identify-a ermitteln-a identificar-a
+@raw denoko deroba nonetheless-a dennoch-a
+@raw delu nomuna development-a entwicklung-a desarrollo-a
+@raw delatu deroba forward-a vorwärts-a adelante-a
+@raw delado detiva developed-a desarrollado-a
+@raw delani deroba delante-a
+@raw delaro veraba delete-a eliminar-a
+@raw delasu veraba displace-a verdrängen-a desplazar-a
+@raw delegu nomuna delegate-a delegierte-a delegado-a
+@raw deleri veraba devolver-a
+@raw deliko detiva neat-a ordentlich-a
+@raw delino veraba decline-a declinar-a
+@raw delogu nomuna ideology-a ideologie-a ideología-a
+@raw delosu detiva jealous-a neidisch-a celoso-a
+@raw deri tika anderer-a
+@raw deratu nomuna defeat-a niederlage-a derrota-a
+@raw derabu detiva considerable-a beträchtlich-a considerable-a
+@raw deragi detiva derartig-a
+@raw deranu nomuna consideration-a überlegung-a consideración-a
+@raw deralo detiva federal-a federal-a
+@raw derasi deroba anders-a
+@raw derafu nomuna draft-a entwurf-a borrador-a
+@raw dereku nomuna copyright-a copyright-a derechos-a
+@raw derebi tika derselbe-a
+@raw dereri deroba andererseits-a
+@raw deresu nomuna dress-a kleidung-a vestido-a
+@raw deriku nomuna drink-a trinken-a bebida-a
+@raw derinu nomuna description-a beschreibung-a descripción-a
+@raw deriru veraba decrease-a verringern-a disminuir-a
+@raw derisu nomuna jersey-a trikot-a jersey-a
+@raw derivu veraba derive-a ableiten-a derivar-a
+@raw deropo veraba drop-a ablegen-a
+@raw derobu nomuna adverb-a Adverb-a adverbio-a
+@raw deronu nomuna destruction-a zerstörung-a destrucción-a
+@raw deruku detiva drunk-a betrunken-a borracho-a
+@raw derugu nomuna leadership-a führung-a liderazgo-a
+@raw derumi deroba wiederum-a
+@raw deruno nomuna modification-a veränderung-a
+@raw derulu nomuna delay-a verspätung-a retraso-a
+@raw derusu nomuna decrease-a reduzierung-a disminución-a
+@raw desu veraba say-a sagen-a decir-a
+@raw desatu detiva desperate-a verzweifelt-a desesperado-a
+@raw desabu detiva desirable-a erwünscht-a deseable-a
+@raw desadi detiva destacado-a
+@raw desanu detiva decent-a anständig-a decente-a
+@raw desari veraba desear-a
+@raw desafu nomuna defiance-a mißachtung-a desafío-a
+@raw desetu nomuna desert-a wüste-a desierto-a
+@raw deseku veraba contradict-a widersprechen-a contradecir-a
+@raw desedu veraba descend-a absteigen-a descender-a
+@raw desegu nomuna descent-a abstieg-a ascendencia-a
+@raw deseni deroba mindestens-a
+@raw deseru veraba disappear-a verschwinden-a desaparecer-a
+@raw desitu nomuna density-a dichte-a densidad-a
+@raw desiku nomuna desk-a schreibtisch-a escritorio-a
+@raw desido detiva destined-a destinado-a
+@raw desigi veraba design-a
+@raw desino nomuna destination-a destino-a
+@raw desiru veraba destroy-a zerstören-a destruir-a
+@raw desisu veraba dismiss-a verwerfen-a despedir-a
+@raw desifu nomuna despair-a verzweiflung-a desesperación-a
+@raw desivu detiva decisive-a entscheidenden-a decisivo-a
+@raw desoti deroba desto-a
+@raw desudu nomuna debt-a schuld-a deuda-a
+@raw defo deroba therefore-a deshalb-a
+@raw defatu nomuna default-a vorgabe-a defecto-a
+@raw defalu nomuna ideal-a ideal-a ideal-a
+@raw defaso deroba anyways-a jedenfalls-a
+@raw defeto veraba defeat-a besiegen-a
+@raw defedu veraba defend-a verteidigen-a defender-a
+@raw defenu nomuna defense-a verteidigung-a defensa-a
+@raw defelu nomuna devil-a teufel-a diablo-a
+@raw deferu nomuna defender-a verteidiger-a defensor-a
+@raw defeso nomuna defence-a abwehr-a
+@raw defevu detiva defensive-a defensiv-a defensivo-a
+@raw defito detiva definite-a definitiv-a
+@raw definu deroba definitely-a unbedingt-a definitivamente-a
+@raw defiru veraba define-a definieren-a definir-a
+@raw defisu nomuna deficit-a defizit-a déficit-a
+@raw defivo detiva definitive-a definitivo-a
+@raw defonu nomuna definition-a definition-a definición-a
+@raw devu veraba serve-a dienen-a servir-a
+@raw devitu nomuna device-a gerät-a dispositivo-a
+@raw dehu numera ten-a zehn-a diez-a
+@raw deheno detiva threatening-a bedrohen-a
+@raw dipu detiva due-a fällig-a debido-a
+@raw diparo nomuna shooting-a disparo-a
+@raw dipono veraba dispose-a disponer-a
+@raw diputu nomuna deputy-a stellvertreter-a diputado-a
+@raw ditu detiva direct-a direkt-a directo-a
+@raw ditatu veraba dictate-a vorschreiben-a dictar-a
+@raw ditanu nomuna editing-a bearbeiten-a montaje-a
+@raw ditaru nomuna dictatorship-a diktatur-a dictadura-a
+@raw ditinu nomuna addition-a zusatz-a adición-a
+@raw ditoku nomuna joke-a witz-a broma-a
+@raw ditoru nomuna editor-a redaktion-a editor-a
+@raw diku nomuna doctor-a doktor-a médico-a
+@raw dikatu detiva dense-a dicht-a denso-a
+@raw dikanu nomuna medication-a medikament-a medicamento-a
+@raw dikalu detiva radical-a radikal-a radical-a
+@raw dikaru veraba indicate-a angeben-a indicar-a
+@raw diketu nomuna jet-a jet-a chorro-a
+@raw dikeku detiva indirect-a indirekt-a indirecto-a
+@raw dikeru nomuna discovery-a entdeckung-a descubrimiento-a
+@raw dikito nomuna addiction-a abhängigkeit-a
+@raw dikimu nomuna discrimination-a diskriminierung-a discriminación-a
+@raw dikinu nomuna dedication-a einweihung-a dedicación-a
+@raw dikiru nomuna dictionary-a wörterbuch-a diccionario-a
+@raw dikoru nomuna indicator-a indikator-a indicador-a
+@raw dikupo nomuna apology-a disculpa-a
+@raw dikutu nomuna discount-a rabatt-a descuento-a
+@raw dikulu detiva ridiculous-a lächerlich-a ridículo-a
+@raw dikusu veraba discuss-a diskutieren-a discutir-a
+@raw dibi detiva lieb-a
+@raw dibaro nomuna diary-a tagebuch-a
+@raw dibilu nomuna credibility-a glaubwürdigkeit-a credibilidad-a
+@raw diboti nomuna idiot-a
+@raw dibosi tika dios-a
+@raw dibudi nomuna jude-a
+@raw dibuhu nomuna drawing-a zeichnen-a dibujo-a
+@raw didu nomuna condition-a zustand-a condición-a
+@raw didoru nomuna dictator-a diktator-a dictador-a
+@raw didulu detiva individual-a individuell-a individual-a
+@raw digo deroba though-a allerdings-a
+@raw digatu detiva disgusting-a ekelhaft-a desagradable-a
+@raw digalu detiva digital-a digital-a digital-a
+@raw digaso nomuna disgrace-a desgracia-a
+@raw digeno detiva indigenous-a indígena-a
+@raw digidu nomuna dignity-a würde-a dignidad-a
+@raw digiri veraba dirigir-a
+@raw digodo terona god-a dios-a
+@raw dimu veraba join-a mitmachen-a unir-a
+@raw dimali deroba diesmal-a
+@raw dimeru nomuna diameter-a durchmesser-a diámetro-a
+@raw dimiku nomuna dynamic-a dynamik-a dinámica-a
+@raw dinu detiva different-a verschieden-a diferente-a
+@raw dinati nomuna dienst-a
+@raw dinadu veraba invade-a einfallen-a invadir-a
+@raw dinagi nomuna dienstag-a
+@raw dinamu detiva dynamic-a dynamisch-a dinámico-a
+@raw dinano detiva indian-a indio-a
+@raw dinalu nomuna ending-a Endung-a final-a
+@raw dinaro detiva ordinary-a ordinario-a
+@raw dinedi nomuna indio-a
+@raw dineru nomuna dinner-a abendessen-a cena-a
+@raw dinidu deroba inside-a innen-a adentro-a
+@raw dinino nomuna coordination-a coordinación-a
+@raw dinoru nomuna coordinator-a koordination-a coordinador-a
+@raw dilu nomuna design-a design-a diseño-a
+@raw dilatu detiva diplomatic-a diplomatisch-a diplomático-a
+@raw dileku nomuna dialect-a Dialekt-a dialecto-a
+@raw dilinu nomuna discipline-a disziplin-a disciplina-a
+@raw dilosu veraba disclose-a enthüllen-a divulgar-a
+@raw diru veraba die-a sterben-a morir-a
+@raw diraku veraba distract-a ablenken-a distraer-a
+@raw dirani deroba dran-a
+@raw diraru nomuna journal-a zeitschrift-a diario-a
+@raw direti veraba direct-a
+@raw direko deroba directly-a directamente-a
+@raw direnu veraba disrupt-a stören-a perturbar-a
+@raw direri tika diverso-a
+@raw diresi detiva divers-a
+@raw dirito nomuna diversity-a diversidad-a
+@raw diribu veraba distribute-a vertreiben-a distribuir-a
+@raw diridi detiva dirigido-a
+@raw dirini deroba drin-a
+@raw dirutu detiva dirty-a dreckig-a sucio-a
+@raw diso dunona so-a damit-a
+@raw disatu veraba disable-a abschalten-a desactivar-a
+@raw disako nomuna disc-a disc-a
+@raw disabu nomuna disability-a behinderung-a discapacidad-a
+@raw disanu nomuna distance-a abstand-a distancia-a
+@raw disalo detiva judicial-a judicial-a
+@raw disari veraba diseñar-a
+@raw disebi nomuna diciembre-a
+@raw disedu detiva disabled-a behindert-a discapacitado-a
+@raw disenu nomuna disappointment-a enttäuschung-a decepción-a
+@raw diselu nomuna display-a darstellung-a mostrar-a
+@raw disesu nomuna disease-a krankheit-a enfermedad-a
+@raw disiti tika distinto-a
+@raw disigo veraba distinguish-a distinguir-a
+@raw disinu nomuna medicine-a medizin-a medicina-a
+@raw disili veraba display-a
+@raw disisu nomuna layout-a anordnung-a disposición-a
+@raw disonu nomuna division-a division-a división-a
+@raw disutu nomuna dispute-a streitigkeit-a disputa-a
+@raw disuko nomuna disgust-a asco-a
+@raw difu nomuna difference-a unterschied-a diferencia-a
+@raw difavu nomuna jaw-a kiefer-a mandíbula-a
+@raw difeni tika diferente-a
+@raw difitu nomuna difficulty-a schwierigkeit-a dificultad-a
+@raw difiko detiva difficult-a schwierig-a
+@raw divu veraba discover-a entdecken-a descubrir-a
+@raw diveno veraba divorce-a scheiden-a
+@raw diveru nomuna driver-a fahrer-a conductor-a
+@raw divesu detiva diverse-a vielfältig-a diverso-a
+@raw dividu nomuna individual-a individuum-a individuo-a
+@raw divinu detiva divine-a göttlich-a divino-a
+@raw diviru veraba divide-a aufteilen-a dividir-a
+@raw divoru nomuna divorce-a scheidung-a divorcio-a
+@raw dihu detiva pure-a rein-a puro-a
+@raw dihasu nomuna jazz-a jazz-a jazz-a
+@raw dihetu nomuna diet-a ernährung-a dieta-a
+@raw dopi nomuna don-a
+@raw dopatu veraba adopt-a adoptieren-a adoptar-a
+@raw dopelu nomuna double-a doppel-a doble-a
+@raw dopinu nomuna adoption-a verabschiedung-a adopción-a
+@raw doto deroba dort-a ahí-a
+@raw doku deroba yet-a doch-a aún-a
+@raw dokanu nomuna documentation-a dokumentation-a documentación-a
+@raw dokali nomuna documental-a
+@raw dokaru veraba dry-a trocknen-a secar-a
+@raw doketu nomuna document-a dokument-a documento-a
+@raw dokenu veraba document-a dokumentieren-a documentar-a
+@raw dobu nomuna job-a job-a empleo-a
+@raw dobelu detiva double-a doppelt-a doble-a
+@raw dodu detiva modern-a modern-a moderno-a
+@raw dodelo veraba double-a verdoppeln-a
+@raw dogu nomuna dog-a hund-a perro-a
+@raw domu nomuna dollar-a dollar-a dólar-a
+@raw domanu detiva dominant-a dominieren-a dominante-a
+@raw domeko detiva domestic-a doméstico-a
+@raw domigi nomuna domingo-a
+@raw dominu nomuna domain-a domain-a dominio-a
+@raw domiru veraba dominate-a beherrschen-a dominar-a
+@raw donu nomuna decision-a entscheidung-a decisión-a
+@raw donatu veraba donate-a spenden-a donar-a
+@raw donagi nomuna donnerstag-a
+@raw donamu veraba dream-a träumen-a soñar-a
+@raw donoru nomuna donor-a spender-a donante-a
+@raw dolu nomuna role-a rolle-a rol-a
+@raw doladu nomuna download-a download-a descarga-a
+@raw doleri veraba doler-a
+@raw dolinu nomuna joint-a gelenk-a articulación-a
+@raw doluvu nomuna dust-a staub-a polvo-a
+@raw doru dunona or-a oder-a o-a
+@raw doravu nomuna draw-a ziehen-a sorteo-a
+@raw doresu nomuna address-a adresse-a domicilio-a
+@raw dosi tika varios-a
+@raw doseku detiva dry-a trocken-a seco-a
+@raw doseno deroba outdoors-a draußen-a
+@raw dosinu nomuna tin-a dose-a estaño-a
+@raw dosisu nomuna dose-a dosis-a dosis-a
+@raw dofu deroba immediately-a sofort-a inmediatamente-a
+@raw dovo deroba however-a jedoch-a
+@raw dovanu detiva down-a down-a abajo-a
+@raw doveno nomuna journey-a trayecto-a
+@raw dovino nomuna down-a down-a
+@raw dohu numera eight-a acht-a ocho-a
+@raw doharu nomuna ear-a ohr-a oído-a
+@raw dupu nomuna industry-a industrie-a industria-a
+@raw dutu deroba just-a gerade-a justo-a
+@raw duteni veraba deuten-a
+@raw dutinu veraba justify-a begründen-a justificar-a
+@raw dutivu nomuna productivity-a produktivität-a productividad-a
+@raw dutotu nomuna dead-a tote-a muerto-a
+@raw dutoro detiva outdoor-a exteriores-a
+@raw duku nomuna education-a ausbildung-a educación-a
+@raw dukato detiva educational-a educativo-a
+@raw dukadu detiva educated-a ausgebildet-a educado-a
+@raw dukaru veraba educate-a erziehen-a educar-a
+@raw dukasi deroba durchaus-a
+@raw dukivu detiva productive-a produktiv-a productivo-a
+@raw dubi deroba darüber-a
+@raw dubeku nomuna deck-a deck-a cubierta-a
+@raw dubelu nomuna duel-a duell-a duelo-a
+@raw duberi deroba drüber-a
+@raw dudu veraba cut-a schneiden-a cortar-a
+@raw dudagi veraba judge-a
+@raw dudaru veraba doubt-a zweifeln-a dudar-a
+@raw dudelo nomuna dude-a kumpel-a
+@raw dudisu detiva jewish-a jüdisch-a judío-a
+@raw dugi detiva einzig-a
+@raw dumu nomuna arm-a arm-a brazo-a
+@raw dumapu veraba jump-a springen-a saltar-a
+@raw dumobu detiva dumb-a blöd-a tonto-a
+@raw dunu peposa during-a während-a durante-a
+@raw duneru nomuna owner-a besitzer-a dueño-a
+@raw dunesu nomuna desire-a wunsch-a deseo-a
+@raw duniro detiva junior-a junior-a
+@raw dunonu nomuna conjunction-a Konjunktion-a conjunción-a
+@raw dulu deroba currently-a derzeit-a actualmente-a
+@raw dulito nomuna duty-a pflicht-a
+@raw duri deroba dafür-a
+@raw duradu nomuna jury-a jury-a jurado-a
+@raw durari veraba durar-a
+@raw dureku nomuna dirt-a dreck-a suciedad-a
+@raw duremu nomuna dream-a traum-a sueño-a
+@raw durilu detiva industrial-a industriell-a industrial-a
+@raw dusu detiva english-a deutsch-a inglés-a
+@raw dusedo detiva used-a usado-a
+@raw duseno deroba outside-a außen-a
+@raw duseru nomuna shower-a dusche-a ducha-a
+@raw dusido peposa outside-a außerhalb-a
+@raw dusiru detiva outside-a außen-a exterior-a
+@raw dusisu nomuna judiciary-a justiz-a judicatura-a
+@raw dufu veraba reduce-a reduzieren-a reducir-a
+@raw dufalo detiva dual-a zweifach-a
+@raw dufisu nomuna juice-a saft-a jugo-a
+@raw duvu nomuna discussion-a diskussion-a debate-a
+@raw duho deroba thus-a daher-a
 
 ## ("g")
 
-@raw go to-a zu-a a-a
-@raw gape gar-a
-@raw gapuko gap-a lücke-a brecha-a
-@raw gato act-a gesetz-a acto-a
-@raw gateso guess-a raten-a adivinar-a
-@raw gativo negative-a negativ-a negativo-a
-@raw gatori gate-a tor-a
-@raw gaki each-a jedes-a
-@raw gakage kg-a
-@raw gakege kg-a
-@raw gabo degree-a grad-a grado-a
-@raw gabage ago-a
-@raw gabane gana-a
-@raw gabeko greek-a griechisch-a griego-a
-@raw gabege ag-a
-@raw gabeno gene-a gen-a gen-a
-@raw gabefi grief-a trauer-a
-@raw gabike gleich-a
-@raw gabine gain-a
-@raw gabone gone-a
-@raw gado grace-a gnade-a gracia-a
-@raw gadine gain-a
-@raw gago age-a alter-a edad-a
-@raw gagage engage-a
-@raw gagano organ-a orgel-a órgano-a
-@raw gagene wagen-a
-@raw gagelo angel-a engel-a ángel-a
-@raw gagere engagieren-a
-@raw gagose agosto-a
-@raw gamo game-a spiel-a juego-a
-@raw gamaro grammar-a grammatik-a gramática-a
-@raw gamige amigo-a
-@raw gamoge among-a
-@raw gane ganz-a
-@raw ganado cattle-a vieh-a ganado-a
-@raw ganane organisation-a
-@raw ganare garantizar-a
-@raw ganase ganz-a
-@raw ganeni supplement-a ergänzen-a
-@raw ganero predecessor-a vorgänger-a predecesor-a
-@raw ganeso whole-a ganze-a entero-a
-@raw ganiko organic-a ökologisch-a orgánico-a
-@raw ganido organized-a organisiert-a organizado-a
-@raw ganigo gang-a gang-a pandilla-a
-@raw ganimo organism-a organismus-a organismo-a
-@raw ganine garantieren-a
-@raw ganiso organize-a organisieren-a organizar-a
-@raw ganoro ignore-a ignorieren-a ignorar-a
-@raw ganuse genuß-a
-@raw galo global-a weltweit-a mundial-a
-@raw galaki galaxy-a galaxia-a
-@raw galegi allege-a alegar-a
-@raw galero gallery-a galerie-a galería-a
-@raw galino gasoline-a benzin-a gasolina-a
-@raw garo give-a geben-a dar-a
-@raw garade grade-a
-@raw garago garage-a garage-a garaje-a
-@raw garamo gram-a gramm-a gramo-a
-@raw garano guarantee-a garantie-a garantía-a
-@raw garedi guard-a wachen-a
-@raw garego argue-a streiten-a argumentar-a
-@raw gareno garden-a garten-a jardín-a
-@raw garini earning-a verdienst-a
-@raw garilo glasses-a brille-a gafas-a
-@raw gariso gray-a grau-a gris-a
-@raw garifi grip-a griff-a
-@raw garosi gross-a bruto-a
-@raw garuto gut-a darm-a intestino-a
-@raw gaso face-a gesicht-a cara-a
-@raw gasago saga-a sage-a saga-a
-@raw gasaro organizer-a veranstalter-a organizador-a
-@raw gaseti expense-a gasto-a
-@raw gasito guest-a gast-a invitado-a
-@raw gasino magazine-a magazin-a revista-a
-@raw gafe statt-a
-@raw gavo achieve-a erzielen-a lograr-a
-@raw gavise gewiß-a
-@raw gavulo gay-a schwul-a gay-a
-@raw gahe than-a
-@raw gahige jährige-a
-@raw gahuge ahnung-a
-@raw gepo thought-a gedanke-a pensamiento-a
-@raw geto get-a bekommen-a conseguir-a
-@raw getaro gear-a ausrüstung-a artes-a
-@raw getise gratis-a
-@raw getuso guess-a vermutung-a conjetura-a
-@raw geki exact-a genau-a
-@raw gekade griechenland-a
-@raw gekego parallel-a gleichzeitig-a paralelo-a
-@raw gebo exactly-a genau-a exactamente-a
-@raw gebake gebrauchen-a
-@raw gebane gebären-a
-@raw gebaro neighborhood-a gegend-a barrio-a
-@raw gebehi llc-a gmbh-a
-@raw gebiti zone-a gebiet-a
-@raw gebiko alleged-a angeblich-a presunto-a
-@raw geboto bid-a gebot-a puja-a
-@raw gedi gladly-a gerne-a
-@raw gedaro legendary-a legendär-a legendario-a
-@raw gedeke irgendwelcher-a
-@raw gedeno ingredient-a zutaten-a ingrediente-a
-@raw gedero gender-a geschlecht-a género-a
-@raw gedike jugendlich-a
-@raw gegi everything-a alles-a
-@raw gegale egal-a
-@raw gegafo geography-a geographie-a geografía-a
-@raw gegege gegenseitig-a
-@raw gegene hingegen-a
-@raw gegimi regime-a regime-a
-@raw gemo management-a verwaltung-a dirección-a
-@raw gemani german-a alemán-a
-@raw gemase gemäß-a
-@raw gemuki cozy-a gemütlich-a
-@raw gemuso vegetable-a gemüse-a verdura-a
-@raw geni go-a gehen-a
-@raw genate sogenannte-a
-@raw genano generation-a generation-a generación-a
-@raw genale generally-a
-@raw genari genre-a genre-a
-@raw genaso equally-a ebenso-a igualmente-a
-@raw geneto agent-a vertreter-a agente-a
-@raw geneko genetic-a genetisch-a genético-a
-@raw geneni encounter-a begegnen-a
-@raw genelo general-a allgemeine-a general-a
-@raw genero generate-a erzeugen-a generar-a
-@raw genevi kinda-a irgendwie-a
-@raw genine argentino-a
-@raw genilo gentle-a sanft-a gentil-a
-@raw genisi genius-a genio-a
-@raw genoso generous-a großzügig-a generoso-a
-@raw genuso agency-a agentur-a agencia-a
-@raw gelo general-a allgemein-a general-a
-@raw gelabo belief-a glaube-a creencia-a
-@raw gelage gelangen-a
-@raw gelani terrain-a gelände-a
-@raw gelebo yellow-a gelb-a amarillo-a
-@raw gelene gestalten-a
-@raw gelero clerk-a angestellter-a escribano-a
-@raw gelike eigentlich-a
-@raw gelise englisch-a
-@raw gelobo globe-a kugel-a globo-a
-@raw gero government-a regierung-a gobierno-a
-@raw gerati grant-a gewähren-a
-@raw geraki beverage-a getränk-a
-@raw geradi grand-a grand-a
-@raw gerano grab-a greifen-a agarrar-a
-@raw geraso grass-a gras-a hierba-a
-@raw geravo severe-a schwerwiegend-a grave-a
-@raw gereto equitable-a gerecht-a equitativo-a
-@raw gerene geraten-a
-@raw gerele generell-a
-@raw gerero warrior-a krieger-a guerrero-a
-@raw gerito cry-a schrei-a grito-a
-@raw gerigo slight-a gering-a leve-a
-@raw gerote grösste-a
-@raw geroso dangerous-a gefährlich-a peligroso-a
-@raw geruno green-a grün-a verde-a
-@raw geso forget-a vergessen-a olvidar-a
-@raw gesago vocal-a gesang-a vocal-a
-@raw gesamo overall-a insgesamt-a globalmente-a
-@raw gesafo ceo-a geschäftsführer-a ceo-a
-@raw geseti statutory-a gesetzlich-a
-@raw gesene gestern-a
-@raw gesere agradecer-a
-@raw gesike angesichts-a
-@raw gesige jetzig-a
-@raw gesivo aggressive-a aggressiv-a agresivo-a
-@raw gesuto gesture-a geste-a gesto-a
-@raw gefo deep-a tief-a profundo-a
-@raw gefato gift-a geschenk-a regalo-a
-@raw gefeni comprehend-a begreifen-a
-@raw gefero attacker-a angreifer-a agresor-a
-@raw gefiki graphic-a gráfico-a
-@raw gevo seven-a sieben-a siete-a
-@raw gevalo formidable-a gewaltig-a formidable-a
-@raw gevene gewöhnen-a
-@raw gevino profit-a gewinn-a ganancia-a
-@raw gevise gewiss-a
-@raw geho weight-a gewicht-a peso-a
-@raw gehane eingehen-a
-@raw gehebe angehen-a
-@raw gehede weitgehend-a
-@raw gehene ausgehen-a
-@raw gehosi ghost-a fantasma-a
-@raw gipo organization-a organisation-a organización-a
-@raw gipasi egyptian-a egipcio-a
-@raw giti shit-a mierda-a
-@raw gitaro guitar-a gitarre-a guitarra-a
-@raw gitavo eighth-a achte-a octavo-a
-@raw giko pick-a auswählen-a elegir-a
-@raw gikeni gaze-a blicken-a
-@raw gibo quote-a angebot-a cita-a
-@raw gibase gibts-a
-@raw gido enjoy-a genießen-a disfrutar-a
-@raw gidano guidance-a anleitung-a orientación-a
-@raw gidero guide-a führer-a guía-a
-@raw gidori follower-a seguidor-a
-@raw gigo amazing-a unglaublich-a increíble-a
-@raw gigani giant-a gigante-a
-@raw gigale igual-a
-@raw gigeto giant-a riese-a gigante-a
-@raw gigene eignen-a
-@raw gimi joint-a gemeinsam-a
-@raw gimame gymnasium-a
-@raw gimaso gym-a sporthalle-a gimnasio-a
-@raw gino begin-a anfangen-a comenzar-a
-@raw ginano imagination-a phantasie-a imaginación-a
-@raw ginalo regional-a regional-a regional-a
-@raw ginene eignen-a
-@raw ginero engineering-a ingenieur-a ingeniería-a
-@raw ginige einigen-a
-@raw gilo girl-a mädchen-a chica-a
-@raw gilati legislative-a legislativo-a
-@raw gilaso glass-a glas-a vaso-a
-@raw gilito guilty-a schuldig-a culpable-a
-@raw gilino guideline-a richtlinie-a directriz-a
-@raw gilogi log-a einloggen-a
-@raw giro follow-a folgen-a seguir-a
-@raw girare registrar-a
-@raw giridi grid-a gitter-a
-@raw giruto twist-a wendung-a giro-a
-@raw giso office-a amt-a oficina-a
-@raw gisano legislation-a gesetzgebung-a legislación-a
-@raw gisaro legislature-a gesetzgeber-a legislador-a
-@raw gisiko linguistic-a sprachlich-a lingüístico-a
-@raw gifo ship-a schiff-a barco-a
-@raw givo active-a aktiv-a activo-a
-@raw giho practice-a praxis-a práctica-a
-@raw gihige langjährig-a
-@raw gopo gold-a gold-a oro-a
-@raw goto total-a gesamt-a total-a
-@raw goko region-a region-a región-a
-@raw gobo poor-a arm-a pobre-a
-@raw gobale google-a
-@raw gobeno govern-a regieren-a gobernar-a
-@raw godo god-a gott-a dios-a
-@raw godeno golden-a golden-a dorado-a
-@raw goduto goodness-a güte-a bondad-a
-@raw gogo agree-a zustimmen-a acordar-a
-@raw gogiko logic-a logik-a lógica-a
-@raw gomo committee-a ausschuß-a comisión-a
-@raw gono against-a gegen-a contra-a
-@raw gonesi goods-a bienes-a
-@raw gonise protagonista-a
-@raw gonoro governor-a gouverneur-a gobernador-a
-@raw golo goal-a ziel-a objetivo-a
-@raw golado glad-a froh-a contento-a
-@raw golafo golf-a golf-a golf-a
-@raw golepo stroke-a schlaganfall-a golpe-a
-@raw golede gold-a
-@raw goro color-a farbe-a color-a
-@raw gorago rage-a zorn-a rabia-a
-@raw gorano grain-a korn-a grano-a
-@raw goso great-a groß-a gran-a
-@raw gosedo goodbye-a abschied-a despedida-a
-@raw gofo edition-a ausgabe-a edición-a
-@raw govo grow-a wachsen-a crecer-a
-@raw goho deal-a deal-a trato-a
-@raw gupo group-a gruppe-a grupo-a
-@raw gupapi handsome-a guapo-a
-@raw guti good-a gut-a
-@raw guteno coupon-a gutschein-a cupón-a
-@raw gutodo good-a gut-a bueno-a
-@raw guke mucho-a
-@raw gubi equal-a igual-a
-@raw gudo ground-a boden-a terreno-a
-@raw gudano guardian-a hüter-a tutor-a
-@raw gugo train-a zug-a tren-a
-@raw gugute august-a
-@raw guguse august-a
-@raw gumo gun-a waffe-a arma-a
-@raw gumeto argument-a streit-a argumento-a
-@raw guno green-a grün-a verde-a
-@raw gunase jungs-a
-@raw gunere grüner-a
-@raw gulo regular-a regelmäßig-a regular-a
-@raw gulabi guilty-a culpable-a
-@raw gulari regularly-a regularmente-a
-@raw guloro glory-a ruhm-a gloria-a
-@raw gulovo glove-a handschuh-a guante-a
-@raw gulufo gulf-a kluft-a golfo-a
-@raw gure gustar-a
-@raw gurapo grape-a traube-a uva-a
-@raw gurabo grave-a grab-a tumba-a
-@raw gurane guarantee-a
-@raw gurari insure-a asegurar-a
-@raw guso except-a außer-a salvo-a
-@raw guseto taste-a geschmack-a gusto-a
-@raw guseno greet-a begrüßen-a saludar-a
-@raw gufo pressure-a druck-a presión-a
-@raw guve ante-a
-@raw guvado guard-a wache-a guardia-a
-@raw guhi natural-a natural-a
+@raw gu peposa to-a zu-a a-a
+@raw gapi deroba gar-a
+@raw gapuku nomuna gap-a lücke-a brecha-a
+@raw gatu nomuna act-a gesetz-a acto-a
+@raw gatesu veraba guess-a raten-a adivinar-a
+@raw gativu detiva negative-a negativ-a negativo-a
+@raw gatoro nomuna gate-a tor-a
+@raw gako tika each-a jedes-a
+@raw gakagi nomuna kg-a
+@raw gakegi nomuna kg-a
+@raw gabu nomuna degree-a grad-a grado-a
+@raw gabagi deroba ago-a
+@raw gabani nomuna gana-a
+@raw gabeku detiva greek-a griechisch-a griego-a
+@raw gabegi nomuna ag-a
+@raw gabenu nomuna gene-a gen-a gen-a
+@raw gabefo nomuna grief-a trauer-a
+@raw gabiki deroba gleich-a
+@raw gabini veraba gain-a
+@raw gaboni detiva gone-a
+@raw gadu nomuna grace-a gnade-a gracia-a
+@raw gadini nomuna gain-a
+@raw gagu nomuna age-a alter-a edad-a
+@raw gagagi veraba engage-a
+@raw gaganu nomuna organ-a orgel-a órgano-a
+@raw gageni veraba wagen-a
+@raw gagelu nomuna angel-a engel-a ángel-a
+@raw gageri veraba engagieren-a
+@raw gagosi nomuna agosto-a
+@raw gamu nomuna game-a spiel-a juego-a
+@raw gamaru nomuna grammar-a grammatik-a gramática-a
+@raw gamigi detiva amigo-a
+@raw gamogi peposa among-a
+@raw gani detiva ganz-a
+@raw ganadu nomuna cattle-a vieh-a ganado-a
+@raw ganani nomuna organisation-a
+@raw ganari veraba garantizar-a
+@raw ganasi nomuna ganz-a
+@raw ganeno veraba supplement-a ergänzen-a
+@raw ganeru nomuna predecessor-a vorgänger-a predecesor-a
+@raw ganesu nomuna whole-a ganze-a entero-a
+@raw ganiku detiva organic-a ökologisch-a orgánico-a
+@raw ganidu detiva organized-a organisiert-a organizado-a
+@raw ganigu nomuna gang-a gang-a pandilla-a
+@raw ganimu nomuna organism-a organismus-a organismo-a
+@raw ganini veraba garantieren-a
+@raw ganisu veraba organize-a organisieren-a organizar-a
+@raw ganoru veraba ignore-a ignorieren-a ignorar-a
+@raw ganusi nomuna genuß-a
+@raw galu detiva global-a weltweit-a mundial-a
+@raw galako nomuna galaxy-a galaxia-a
+@raw galego veraba allege-a alegar-a
+@raw galeru nomuna gallery-a galerie-a galería-a
+@raw galinu nomuna gasoline-a benzin-a gasolina-a
+@raw garu veraba give-a geben-a dar-a
+@raw garadi nomuna grade-a
+@raw garagu nomuna garage-a garage-a garaje-a
+@raw garamu nomuna gram-a gramm-a gramo-a
+@raw garanu nomuna guarantee-a garantie-a garantía-a
+@raw garedo veraba guard-a wachen-a
+@raw garegu veraba argue-a streiten-a argumentar-a
+@raw garenu nomuna garden-a garten-a jardín-a
+@raw garino nomuna earning-a verdienst-a
+@raw garilu nomuna glasses-a brille-a gafas-a
+@raw garisu detiva gray-a grau-a gris-a
+@raw garifo nomuna grip-a griff-a
+@raw garoso detiva gross-a bruto-a
+@raw garutu nomuna gut-a darm-a intestino-a
+@raw gasu nomuna face-a gesicht-a cara-a
+@raw gasagu nomuna saga-a sage-a saga-a
+@raw gasaru nomuna organizer-a veranstalter-a organizador-a
+@raw gaseto nomuna expense-a gasto-a
+@raw gasitu nomuna guest-a gast-a invitado-a
+@raw gasinu nomuna magazine-a magazin-a revista-a
+@raw gafi peposa statt-a
+@raw gavu veraba achieve-a erzielen-a lograr-a
+@raw gavisi detiva gewiß-a
+@raw gavulu detiva gay-a schwul-a gay-a
+@raw gahi dunona than-a
+@raw gahigi nomuna jährige-a
+@raw gahugi nomuna ahnung-a
+@raw gepu nomuna thought-a gedanke-a pensamiento-a
+@raw getu veraba get-a bekommen-a conseguir-a
+@raw getaru nomuna gear-a ausrüstung-a artes-a
+@raw getisi deroba gratis-a
+@raw getusu nomuna guess-a vermutung-a conjetura-a
+@raw geko detiva exact-a genau-a
+@raw gekadi nomuna griechenland-a
+@raw gekegu detiva parallel-a gleichzeitig-a paralelo-a
+@raw gebu deroba exactly-a genau-a exactamente-a
+@raw gebaki veraba gebrauchen-a
+@raw gebani veraba gebären-a
+@raw gebaru nomuna neighborhood-a gegend-a barrio-a
+@raw gebeho nomuna llc-a gmbh-a
+@raw gebito nomuna zone-a gebiet-a
+@raw gebiku detiva alleged-a angeblich-a presunto-a
+@raw gebotu nomuna bid-a gebot-a puja-a
+@raw gedo deroba gladly-a gerne-a
+@raw gedaru detiva legendary-a legendär-a legendario-a
+@raw gedeki tika irgendwelcher-a
+@raw gedenu nomuna ingredient-a zutaten-a ingrediente-a
+@raw gederu nomuna gender-a geschlecht-a género-a
+@raw gediki nomuna jugendlich-a
+@raw gego ronona everything-a alles-a
+@raw gegali detiva egal-a
+@raw gegafu nomuna geography-a geographie-a geografía-a
+@raw gegegi detiva gegenseitig-a
+@raw gegeni deroba hingegen-a
+@raw gegimo nomuna regime-a regime-a
+@raw gemu nomuna management-a verwaltung-a dirección-a
+@raw gemano detiva german-a alemán-a
+@raw gemasi peposa gemäß-a
+@raw gemuko detiva cozy-a gemütlich-a
+@raw gemusu nomuna vegetable-a gemüse-a verdura-a
+@raw geno veraba go-a gehen-a
+@raw genati detiva sogenannte-a
+@raw genanu nomuna generation-a generation-a generación-a
+@raw genali deroba generally-a
+@raw genaro nomuna genre-a genre-a
+@raw genasu deroba equally-a ebenso-a igualmente-a
+@raw genetu nomuna agent-a vertreter-a agente-a
+@raw geneku detiva genetic-a genetisch-a genético-a
+@raw geneno veraba encounter-a begegnen-a
+@raw genelu nomuna general-a allgemeine-a general-a
+@raw generu veraba generate-a erzeugen-a generar-a
+@raw genevo deroba kinda-a irgendwie-a
+@raw genini nomuna argentino-a
+@raw genilu detiva gentle-a sanft-a gentil-a
+@raw geniso nomuna genius-a genio-a
+@raw genosu detiva generous-a großzügig-a generoso-a
+@raw genusu nomuna agency-a agentur-a agencia-a
+@raw gelu detiva general-a allgemein-a general-a
+@raw gelabu nomuna belief-a glaube-a creencia-a
+@raw gelagi veraba gelangen-a
+@raw gelano nomuna terrain-a gelände-a
+@raw gelebu detiva yellow-a gelb-a amarillo-a
+@raw geleni veraba gestalten-a
+@raw geleru nomuna clerk-a angestellter-a escribano-a
+@raw geliki detiva eigentlich-a
+@raw gelisi nomuna englisch-a
+@raw gelobu nomuna globe-a kugel-a globo-a
+@raw geru nomuna government-a regierung-a gobierno-a
+@raw gerato veraba grant-a gewähren-a
+@raw gerako nomuna beverage-a getränk-a
+@raw gerado detiva grand-a grand-a
+@raw geranu veraba grab-a greifen-a agarrar-a
+@raw gerasu nomuna grass-a gras-a hierba-a
+@raw geravu detiva severe-a schwerwiegend-a grave-a
+@raw geretu detiva equitable-a gerecht-a equitativo-a
+@raw gereni veraba geraten-a
+@raw gereli detiva generell-a
+@raw gereru nomuna warrior-a krieger-a guerrero-a
+@raw geritu nomuna cry-a schrei-a grito-a
+@raw gerigu detiva slight-a gering-a leve-a
+@raw geroti detiva grösste-a
+@raw gerosu detiva dangerous-a gefährlich-a peligroso-a
+@raw gerunu nomuna green-a grün-a verde-a
+@raw gesu veraba forget-a vergessen-a olvidar-a
+@raw gesagu nomuna vocal-a gesang-a vocal-a
+@raw gesamu deroba overall-a insgesamt-a globalmente-a
+@raw gesafu nomuna ceo-a geschäftsführer-a ceo-a
+@raw geseto detiva statutory-a gesetzlich-a
+@raw geseni deroba gestern-a
+@raw geseri veraba agradecer-a
+@raw gesiki peposa angesichts-a
+@raw gesigi detiva jetzig-a
+@raw gesivu detiva aggressive-a aggressiv-a agresivo-a
+@raw gesutu nomuna gesture-a geste-a gesto-a
+@raw gefu detiva deep-a tief-a profundo-a
+@raw gefatu nomuna gift-a geschenk-a regalo-a
+@raw gefeno veraba comprehend-a begreifen-a
+@raw geferu nomuna attacker-a angreifer-a agresor-a
+@raw gefiko detiva graphic-a gráfico-a
+@raw gevu numera seven-a sieben-a siete-a
+@raw gevalu detiva formidable-a gewaltig-a formidable-a
+@raw geveni veraba gewöhnen-a
+@raw gevinu nomuna profit-a gewinn-a ganancia-a
+@raw gevisi detiva gewiss-a
+@raw gehu nomuna weight-a gewicht-a peso-a
+@raw gehani veraba eingehen-a
+@raw gehebi veraba angehen-a
+@raw gehedi detiva weitgehend-a
+@raw geheni veraba ausgehen-a
+@raw gehoso nomuna ghost-a fantasma-a
+@raw gipu nomuna organization-a organisation-a organización-a
+@raw gipaso detiva egyptian-a egipcio-a
+@raw gito nomuna shit-a mierda-a
+@raw gitaru nomuna guitar-a gitarre-a guitarra-a
+@raw gitavu detiva eighth-a achte-a octavo-a
+@raw giku veraba pick-a auswählen-a elegir-a
+@raw gikeno veraba gaze-a blicken-a
+@raw gibu nomuna quote-a angebot-a cita-a
+@raw gibasi veraba gibts-a
+@raw gidu veraba enjoy-a genießen-a disfrutar-a
+@raw gidanu nomuna guidance-a anleitung-a orientación-a
+@raw gideru nomuna guide-a führer-a guía-a
+@raw gidoro nomuna follower-a seguidor-a
+@raw gigu detiva amazing-a unglaublich-a increíble-a
+@raw gigano detiva giant-a gigante-a
+@raw gigali deroba igual-a
+@raw gigetu nomuna giant-a riese-a gigante-a
+@raw gigeni detiva eignen-a
+@raw gimo detiva joint-a gemeinsam-a
+@raw gimami nomuna gymnasium-a
+@raw gimasu nomuna gym-a sporthalle-a gimnasio-a
+@raw ginu veraba begin-a anfangen-a comenzar-a
+@raw ginanu nomuna imagination-a phantasie-a imaginación-a
+@raw ginalu detiva regional-a regional-a regional-a
+@raw gineni veraba eignen-a
+@raw gineru nomuna engineering-a ingenieur-a ingeniería-a
+@raw ginigi veraba einigen-a
+@raw gilu nomuna girl-a mädchen-a chica-a
+@raw gilato detiva legislative-a legislativo-a
+@raw gilasu nomuna glass-a glas-a vaso-a
+@raw gilitu detiva guilty-a schuldig-a culpable-a
+@raw gilinu nomuna guideline-a richtlinie-a directriz-a
+@raw gilogo veraba log-a einloggen-a
+@raw giru veraba follow-a folgen-a seguir-a
+@raw girari veraba registrar-a
+@raw girido nomuna grid-a gitter-a
+@raw girutu nomuna twist-a wendung-a giro-a
+@raw gisu nomuna office-a amt-a oficina-a
+@raw gisanu nomuna legislation-a gesetzgebung-a legislación-a
+@raw gisaru nomuna legislature-a gesetzgeber-a legislador-a
+@raw gisiku detiva linguistic-a sprachlich-a lingüístico-a
+@raw gifu nomuna ship-a schiff-a barco-a
+@raw givu detiva active-a aktiv-a activo-a
+@raw gihu nomuna practice-a praxis-a práctica-a
+@raw gihigi detiva langjährig-a
+@raw gopu nomuna gold-a gold-a oro-a
+@raw gotu detiva total-a gesamt-a total-a
+@raw goku nomuna region-a region-a región-a
+@raw gobu detiva poor-a arm-a pobre-a
+@raw gobali veraba google-a
+@raw gobenu veraba govern-a regieren-a gobernar-a
+@raw godu nomuna god-a gott-a dios-a
+@raw godenu detiva golden-a golden-a dorado-a
+@raw godutu nomuna goodness-a güte-a bondad-a
+@raw gogu veraba agree-a zustimmen-a acordar-a
+@raw gogiku nomuna logic-a logik-a lógica-a
+@raw gomu nomuna committee-a ausschuß-a comisión-a
+@raw gonu peposa against-a gegen-a contra-a
+@raw goneso nomuna goods-a bienes-a
+@raw gonisi nomuna protagonista-a
+@raw gonoru nomuna governor-a gouverneur-a gobernador-a
+@raw golu nomuna goal-a ziel-a objetivo-a
+@raw goladu detiva glad-a froh-a contento-a
+@raw golafu nomuna golf-a golf-a golf-a
+@raw golepu nomuna stroke-a schlaganfall-a golpe-a
+@raw goledi detiva gold-a
+@raw goru nomuna color-a farbe-a color-a
+@raw goragu nomuna rage-a zorn-a rabia-a
+@raw goranu nomuna grain-a korn-a grano-a
+@raw gosu detiva great-a groß-a gran-a
+@raw gosedu nomuna goodbye-a abschied-a despedida-a
+@raw gofu nomuna edition-a ausgabe-a edición-a
+@raw govu veraba grow-a wachsen-a crecer-a
+@raw gohu nomuna deal-a deal-a trato-a
+@raw gupu nomuna group-a gruppe-a grupo-a
+@raw gupapo detiva handsome-a guapo-a
+@raw guto detiva good-a gut-a
+@raw gutenu nomuna coupon-a gutschein-a cupón-a
+@raw gutodu nomuna good-a gut-a bueno-a
+@raw guki ronona mucho-a
+@raw gubo detiva equal-a igual-a
+@raw gudu nomuna ground-a boden-a terreno-a
+@raw gudanu nomuna guardian-a hüter-a tutor-a
+@raw gugu nomuna train-a zug-a tren-a
+@raw guguti detiva august-a
+@raw gugusi nomuna august-a
+@raw gumu nomuna gun-a waffe-a arma-a
+@raw gumetu nomuna argument-a streit-a argumento-a
+@raw gunu detiva green-a grün-a verde-a
+@raw gunasi nomuna jungs-a
+@raw guneri nomuna grüner-a
+@raw gulu detiva regular-a regelmäßig-a regular-a
+@raw gulabo nomuna guilty-a culpable-a
+@raw gularo deroba regularly-a regularmente-a
+@raw guloru nomuna glory-a ruhm-a gloria-a
+@raw gulovu nomuna glove-a handschuh-a guante-a
+@raw gulufu nomuna gulf-a kluft-a golfo-a
+@raw guri veraba gustar-a
+@raw gurapu nomuna grape-a traube-a uva-a
+@raw gurabu nomuna grave-a grab-a tumba-a
+@raw gurani veraba guarantee-a
+@raw guraro veraba insure-a asegurar-a
+@raw gusu peposa except-a außer-a salvo-a
+@raw gusetu nomuna taste-a geschmack-a gusto-a
+@raw gusenu veraba greet-a begrüßen-a saludar-a
+@raw gufu nomuna pressure-a druck-a presión-a
+@raw guvi peposa ante-a
+@raw guvadu nomuna guard-a wache-a guardia-a
+@raw guho detiva natural-a natural-a
 
 ## ("m")
 
-@raw mo i-a ich-a yo-a
-@raw mapo march-a märz-a marzo-a
-@raw mapali mainly-a hauptsächlich-a
-@raw maparo map-a landkarte-a mapa-a
-@raw mapino aim-a zielen-a apuntar-a
-@raw mato eat-a essen-a comer-a
-@raw matato mathematical-a mathematisch-a matemático-a
-@raw mateko match-a treffer-a coincidencia-a
-@raw matedi mad-a wütend-a
-@raw mateno maintenance-a unterhalt-a mantenimiento-a
-@raw matelo homeland-a heimatland-a patria-a
-@raw matere meter-a
-@raw matiki match-a coincidir-a
-@raw matimi aim-a puntería-a
-@raw matino marketing-a marketing-a marketing-a
-@raw matome tom-a
-@raw matore motor-a
-@raw maturo amateur-a amateur-a aficionado-a
-@raw matuso mouse-a maus-a ratón-a
-@raw mako make-a machen-a make-a
-@raw makado mayor-a bürgermeister-a alcalde-a
-@raw makare marchar-a
-@raw makepi makeup-a maquillaje-a
-@raw makedo marked-a markiert-a marcado-a
-@raw makene ausmachen-a
-@raw makere mancher-a
-@raw makige making-a
-@raw makimo maximum-a maximal-a máximo-a
-@raw makino machine-a maschine-a máquina-a
-@raw makilo email-a email-a correo-a
-@raw makiro machinery-a maschinenbau-a maquinaria-a
-@raw makisi max-a máximo-a
-@raw makolo male-a männchen-a macho-a
-@raw mabo marry-a heiraten-a casar-a
-@raw mabake ma-a
-@raw mabade mai-a
-@raw mabame mío-a
-@raw mabane mío-a
-@raw mabale mio-a
-@raw mabare mary-a
-@raw mabase mas-a
-@raw mabafe mayo-a
-@raw mabave ma-a
-@raw mabebe ma-a
-@raw mabede mío-a
-@raw mabeme em-a
-@raw mabere matter-a
-@raw mabese mass-a
-@raw mabefe mo-a
-@raw mabike maßgeblich-a
-@raw mabino mine-a mine-a mina-a
-@raw mabiso mass-a masse-a masa-a
-@raw mabumi mum-a mama-a
-@raw mado half-a hälfte-a medio-a
-@raw madato mandate-a mandat-a mandato-a
-@raw madeli gal-a mädel-a
-@raw maderi mere-a mero-a
-@raw madini min-a min-a
-@raw madoro major-a major-a mayor-a
-@raw maduro mature-a reif-a maduro-a
-@raw mago message-a nachricht-a mensaje-a
-@raw magero manager-a manager-a administrador-a
-@raw magiko magic-a magie-a magia-a
-@raw magini imagine-a imaginar-a
-@raw magiso magical-a magisch-a mágico-a
-@raw magifi magnificent-a magnífico-a
-@raw mami sometimes-a manchmal-a
-@raw mamato math-a mathematik-a matemáticas-a
-@raw mamaki mathematics-a matemático-a
-@raw mamene räumen-a
-@raw mamimi maritime-a marítimo-a
-@raw mani one-a man-a
-@raw manago manage-a verwalten-a administrar-a
-@raw maname name-a
-@raw manane mañana-a
-@raw manalo manual-a manuell-a manual-a
-@raw manase means-a
-@raw maneto permanent-a dauerhaft-a permanente-a
-@raw maneko stain-a fleck-a mancha-a
-@raw manedo command-a befehl-a mando-a
-@raw manego sleeve-a ärmel-a manga-a
-@raw manere manner-a
-@raw maneho handling-a umgang-a manejo-a
-@raw manito humanity-a menschheit-a humanidad-a
-@raw maniko mechanic-a mechaniker-a mecánico-a
-@raw manido magnitude-a ausmaß-a magnitud-a
-@raw manimo anime-a anime-a anime-a
-@raw manini maintain-a pflegen-a
-@raw manilo manipulate-a manipulieren-a manipular-a
-@raw manose manos-a
-@raw manulo manual-a handbuch-a manual-a
-@raw mali once-a mal-a
-@raw malagi wrong-a mal-a
-@raw malano manipulation-a manipulation-a manipulación-a
-@raw malero painter-a maler-a pintor-a
-@raw maliko male-a männlich-a masculino-a
-@raw malilo evil-a übel-a mal-a
-@raw maro area-a bereich-a zona-a
-@raw marako mark-a mark-a marca-a
-@raw marado married-a verheiratet-a casado-a
-@raw mararo mark-a markieren-a marcar-a
-@raw mareti mate-a paaren-a
-@raw mareno margin-a spielraum-a margen-a
-@raw marese martes-a
-@raw marito manuscript-a manuskript-a manuscrito-a
-@raw marigo marriage-a ehe-a matrimonio-a
-@raw marimo mistress-a herrin-a ama-a
-@raw marino meat-a fleisch-a carne-a
-@raw marile primarily-a
-@raw mariso array-a matrix-a matriz-a
-@raw maromi rom-a rom-a
-@raw marume rum-a
-@raw maso more-a mehr-a más-a
-@raw masato crew-a mannschaft-a tripulación-a
-@raw masako mask-a maske-a máscara-a
-@raw masago massage-a massage-a masaje-a
-@raw masaro massacre-a massaker-a masacre-a
-@raw masime encima-a
-@raw masilo mail-a post-a correspondencia-a
-@raw masivo massive-a massiv-a masivo-a
-@raw masumo sum-a summe-a suma-a
-@raw mafo measure-a maß-a medida-a
-@raw mafini marine-a marino-a
-@raw mafobo mob-a mafia-a mafia-a
-@raw mavo camera-a kamera-a cámara-a
-@raw mavame wm-a
-@raw mavilo mansion-a villa-a mansión-a
-@raw maho majority-a mehrheit-a mayoría-a
-@raw mahini mini-a mini-a
-@raw mepe meinen-a
-@raw mepulo momentum-a impuls-a ímpetu-a
-@raw meto meet-a treffen-a conocer-a
-@raw metalo mental-a geistig-a mental-a
-@raw metedo cemetery-a friedhof-a cementerio-a
-@raw meteno competition-a wettbewerb-a competencia-a
-@raw metero meter-a meter-a medidor-a
-@raw metodo method-a methode-a método-a
-@raw metomi tome-a tomo-a
-@raw metuno implementation-a umsetzung-a implementación-a
-@raw meko american-a amerikanisch-a americano-a
-@raw mekano mexican-a mexikanisch-a mexicano-a
-@raw mekare amerikaner-a
-@raw mekeni taste-a schmecken-a
-@raw mebo member-a mitglied-a miembro-a
-@raw mebere meyer-a
-@raw mebeso membership-a mitgliedschaft-a pertenencia-a
-@raw medo money-a geld-a dinero-a
-@raw medato immediate-a unmittelbar-a inmediato-a
-@raw medado moisture-a feuchtigkeit-a humedad-a
-@raw medalo medal-a medaille-a medalla-a
-@raw medeni amendment-a modificación-a
-@raw medibo imperative-a unbedingt-a imprescindible-a
-@raw medidi midday-a mediodía-a
-@raw medimi medium-a medio-a
-@raw medumo medium-a medium-a mediano-a
-@raw mego fear-a angst-a miedo-a
-@raw memo summer-a sommer-a verano-a
-@raw memani mean-a gemein-a
-@raw memalo memorial-a denkmal-a monumento-a
-@raw meno my-a mein-a mi-a
-@raw menane momentan-a
-@raw menali environmental-a ambiental-a
-@raw menaro menu-a menü-a menú-a
-@raw menaso immense-a immens-a inmenso-a
-@raw menemo enemy-a gegner-a enemigo-a
-@raw menimi meantime-a zwischenzeit-a
-@raw menori minor-a menor-a
-@raw menude menudo-a
-@raw meli small-a kleiner-a
-@raw melese themselves-a
-@raw melito melt-a schmelzen-a fundir-a
-@raw meliki humane-a menschlich-a
-@raw melodo tune-a melodie-a melodía-a
-@raw meloso mess-a chaos-a desorden-a
-@raw mero number-a nummer-a número-a
-@raw merato mate-a kamerad-a mate-a
-@raw merano merchant-a kaufmann-a mercader-a
-@raw meraro temperature-a temperatur-a temperatura-a
-@raw merasi embrace-a abrazo-a
-@raw merebo impress-a beeindrucken-a impresionar-a
-@raw mereno emergency-a notfall-a emergencia-a
-@raw merero employer-a arbeitgeber-a empresario-a
-@raw meresi memorize-a merken-a
-@raw meriti merit-a mérito-a
-@raw merike norteamericano-a
-@raw merido mercy-a mitleid-a piedad-a
-@raw merilo imperial-a kaiserlich-a imperial-a
-@raw meroro improvement-a verbesserung-a mejora-a
-@raw merume rum-a
-@raw meso less-a weniger-a menos-a
-@raw meseno implement-a umsetzen-a implementar-a
-@raw mesero measure-a messen-a medir-a
-@raw mesidi impressed-a beeindrucken-a
-@raw mesino dimension-a dimension-a dimensión-a
-@raw mesuno measurement-a messung-a medición-a
-@raw mefo master-a meister-a maestro-a
-@raw mevo mention-a erwähnen-a mencionar-a
-@raw mevilo meanwhile-a mittlerweile-a entretanto-a
-@raw meho matter-a angelegenheit-a materia-a
-@raw mehati somewhat-a einigermaßen-a
-@raw mehali meal-a mahlzeit-a
-@raw mehase mehrmals-a
-@raw meheni bypass-a umgehen-a
-@raw mehine immerhin-a
-@raw mehore mejor-a
-@raw mehove somehow-a
-@raw mipi main-a principal-a
-@raw mito with-a mit-a con-a
-@raw miteni convey-a vermitteln-a
-@raw mitelo appropriation-a mittel-a apropiación-a
-@raw mitese mittels-a
-@raw mitire emitir-a
-@raw mitoke mittwoch-a
-@raw miko maybe-a vielleicht-a quizás-a
-@raw mikaso mix-a mischen-a mezclar-a
-@raw miketo mixed-a gemischt-a mixto-a
-@raw mikese miércoles-a
-@raw mibo mission-a aufgabe-a misión-a
-@raw mibene mitten-a
-@raw mido mind-a geist-a mente-a
-@raw midato mindset-a mentalität-a mentalidad-a
-@raw midale middle-a
-@raw midene ministerpräsident-a
-@raw mideli middle-a mittlere-a
-@raw midere miteinander-a
-@raw midese zumindest-a
-@raw mige might-a
-@raw migato migrant-a migranten-a migrante-a
-@raw migano immigrant-a einwanderer-a inmigrante-a
-@raw migero misery-a unglück-a miseria-a
-@raw migino migration-a migration-a migración-a
-@raw mime mismo-a
-@raw mimali minimal-a minimal-a
-@raw mimore anymore-a
-@raw mino man-a mensch-a hombre-a
-@raw minati administrative-a administrativo-a
-@raw minade mind-a
-@raw minani administration-a administración-a
-@raw minalo criminal-a kriminell-a penal-a
-@raw minare seminar-a
-@raw mineno prominent-a prominent-a prominente-a
-@raw mineli mineral-a mineral-a
-@raw minito midnight-a mitternacht-a medianoche-a
-@raw minigo mining-a bergbau-a minería-a
-@raw minimi minimum-a mínimo-a
-@raw miniro ministry-a ministerium-a ministerio-a
-@raw minoro minority-a minderheit-a minoría-a
-@raw minumo minimum-a minimum-a mínimo-a
-@raw milo family-a familie-a familia-a
-@raw milagi miracle-a milagro-a
-@raw milale mittelalter-a
-@raw mileko milk-a milch-a leche-a
-@raw milene mitteilen-a
-@raw milero mile-a meile-a kilómetro-a
-@raw milido billion-a milliarde-a billón-a
-@raw miri major-a mayor-a
-@raw mirabi miserable-a miserable-a
-@raw mirano immigration-a zuwanderung-a inmigración-a
-@raw miralo admiral-a admiral-a almirante-a
-@raw mireko watch-a ansehen-a mira-a
-@raw mirisi mysterious-a misterioso-a
-@raw miruto myth-a gerücht-a mito-a
-@raw misi miss-a vermissen-a
-@raw misame mismo-a
-@raw misaro inspector-a kommissar-a comisario-a
-@raw miseme mismo-a
-@raw misero mystery-a rätsel-a misterio-a
-@raw misefe myself-a
-@raw misino missing-a fehlen-a desaparecido-a
-@raw misilo missile-a rakete-a misil-a
-@raw misono emission-a emission-a emisión-a
-@raw misuno admission-a zulassung-a admisión-a
-@raw misuso mix-a mischung-a mezcla-a
-@raw mifo material-a material-a material-a
-@raw mivo minister-a minister-a ministro-a
-@raw miho environment-a umgebung-a ambiente-a
-@raw mihene mitnehmen-a
-@raw mopo property-a eigenschaft-a propiedad-a
-@raw moto month-a monat-a mes-a
-@raw motagi mortgage-a hipoteca-a
-@raw motano motivation-a motivation-a motivación-a
-@raw motalo deadly-a tödlich-a mortal-a
-@raw motino emotion-a emotion-a emoción-a
-@raw motilo emotional-a emotional-a emotivo-a
-@raw motiro motivate-a motivieren-a motivar-a
-@raw motivo motive-a motiv-a motivo-a
-@raw motono pile-a stapel-a montón-a
-@raw motoro engine-a motor-a motor-a
-@raw moko million-a million-a millón-a
-@raw mokako monarchy-a monarchie-a monarquía-a
-@raw mokigi smoking-a tabaco-a
-@raw mokuto mouth-a mund-a boca-a
-@raw mobo table-a tisch-a mesa-a
-@raw mobilo mobile-a mobil-a celular-a
-@raw modo model-a modell-a modelo-a
-@raw modavi move-a mudanza-a
-@raw modero moderate-a mäßig-a moderado-a
-@raw modulo module-a modul-a módulo-a
-@raw moduso mode-a modus-a modo-a
-@raw mogo morning-a morgen-a mañana-a
-@raw mogene morgen-a
-@raw mogese morgens-a
-@raw momo moment-a moment-a momento-a
-@raw momato tomato-a tomate-a tomate-a
-@raw momani man-a hombre-a
-@raw momise römisch-a
-@raw moni may-a dürfen-a
-@raw monato mount-a einbinden-a montar-a
-@raw monako monk-a mönch-a monje-a
-@raw monage montag-a
-@raw monano mountain-a gebirge-a montaña-a
-@raw monalo monthly-a monatlich-a mensual-a
-@raw monari monetary-a monetario-a
-@raw monete monte-a
-@raw moneko monkey-a affe-a mono-a
-@raw monedo coin-a münze-a moneda-a
-@raw monero impose-a verhängen-a imponer-a
-@raw monino demonstration-a demonstration-a manifestación-a
-@raw moniro monitor-a überwachen-a supervisar-a
-@raw moli opportunity-a möglichkeit-a
-@raw moleti discomfort-a molestia-a
-@raw molero annoy-a ärgern-a molestar-a
-@raw molisi preferably-a möglichst-a
-@raw moloto smooth-a glatt-a liso-a
-@raw molono moon-a mond-a luna-a
-@raw moloro smell-a geruch-a olor-a
-@raw more mejor-a
-@raw morato morality-a moral-a moral-a
-@raw moralo moral-a moralisch-a moral-a
-@raw moreni brown-a moreno-a
-@raw morove tomorrow-a
-@raw mosi most-a meist-a
-@raw moseti upset-a molesto-a
-@raw moselo mostly-a meistens-a principalmente-a
-@raw mosero monster-a monster-a monstruo-a
-@raw mosino motion-a motion-a moción-a
-@raw mofo remove-a entfernen-a quitar-a
-@raw mofero atmosphere-a atmosphäre-a atmósfera-a
-@raw movo move-a bewegen-a mover-a
-@raw movilo mobile-a mobilfunk-a móvil-a
-@raw moho improve-a verbessern-a mejorar-a
-@raw mupo sea-a meer-a mar-a
-@raw muto minute-a minute-a minuto-a
-@raw mutali mutual-a mutuo-a
-@raw mutene vermuten-a
-@raw muko much-a viel-a mucho-a
-@raw mukalo musical-a musikalisch-a musical-a
-@raw mukere münchner-a
-@raw mubi boy-a muchacho-a
-@raw mubelo furniture-a möbel-a mueble-a
-@raw mudo dead-a tot-a muerto-a
-@raw mudere murder-a
-@raw mugo image-a abbildung-a imagen-a
-@raw mumo volume-a menge-a volumen-a
-@raw muno community-a gemeinde-a comunidad-a
-@raw munalo municipal-a kommunal-a municipal-a
-@raw muneko doll-a puppe-a muñeca-a
-@raw munipo municipality-a kommune-a municipio-a
-@raw munino ammunition-a munition-a munición-a
-@raw mulo thousand-a tausend-a mil-a
-@raw mulate multa-a
-@raw mulere müller-a
-@raw muliki probable-a vermutlich-a
-@raw mulilo multiple-a mehrfach-a múltiple-a
-@raw muro mother-a mutter-a madre-a
-@raw murero murder-a mord-a asesinato-a
-@raw muso must-a müssen-a deber-a
-@raw musalo musical-a musical-a musical-a
-@raw musemo museum-a museum-a museo-a
-@raw museno merger-a zusammenschluß-a fusión-a
-@raw musiko musician-a musiker-a músico-a
-@raw musimo muslim-a muslimischen-a musulmán-a
-@raw musulo muscle-a muskel-a músculo-a
-@raw mufo mom-a mama-a mamá-a
-@raw muvo remain-a verbleiben-a permanecer-a
-@raw muho military-a militärisch-a militar-a
-@raw muhilo mill-a mühle-a molino-a
+@raw mu ronona i-a ich-a yo-a
+@raw mapu nomuna march-a märz-a marzo-a
+@raw mapalo deroba mainly-a hauptsächlich-a
+@raw maparu nomuna map-a landkarte-a mapa-a
+@raw mapinu veraba aim-a zielen-a apuntar-a
+@raw matu veraba eat-a essen-a comer-a
+@raw matatu detiva mathematical-a mathematisch-a matemático-a
+@raw mateku nomuna match-a treffer-a coincidencia-a
+@raw matedo detiva mad-a wütend-a
+@raw matenu nomuna maintenance-a unterhalt-a mantenimiento-a
+@raw matelu nomuna homeland-a heimatland-a patria-a
+@raw materi veraba meter-a
+@raw matiko veraba match-a coincidir-a
+@raw matimo nomuna aim-a puntería-a
+@raw matinu nomuna marketing-a marketing-a marketing-a
+@raw matomi nomuna tom-a
+@raw matori nomuna motor-a
+@raw maturu nomuna amateur-a amateur-a aficionado-a
+@raw matusu nomuna mouse-a maus-a ratón-a
+@raw maku veraba make-a machen-a make-a
+@raw makadu nomuna mayor-a bürgermeister-a alcalde-a
+@raw makari veraba marchar-a
+@raw makepo nomuna makeup-a maquillaje-a
+@raw makedu detiva marked-a markiert-a marcado-a
+@raw makeni veraba ausmachen-a
+@raw makeri tika mancher-a
+@raw makigi nomuna making-a
+@raw makimu detiva maximum-a maximal-a máximo-a
+@raw makinu nomuna machine-a maschine-a máquina-a
+@raw makilu nomuna email-a email-a correo-a
+@raw makiru nomuna machinery-a maschinenbau-a maquinaria-a
+@raw makiso nomuna max-a máximo-a
+@raw makolu nomuna male-a männchen-a macho-a
+@raw mabu veraba marry-a heiraten-a casar-a
+@raw mabaki nomuna ma-a
+@raw mabadi nomuna mai-a
+@raw mabami detiva mío-a
+@raw mabani tika mío-a
+@raw mabali nomuna mio-a
+@raw mabari nomuna mary-a
+@raw mabasi dunona mas-a
+@raw mabafi nomuna mayo-a
+@raw mabavi peposa ma-a
+@raw mabebi nomuna ma-a
+@raw mabedi ronona mío-a
+@raw mabemi nomuna em-a
+@raw maberi veraba matter-a
+@raw mabesi detiva mass-a
+@raw mabefi nomuna mo-a
+@raw mabiki detiva maßgeblich-a
+@raw mabinu nomuna mine-a mine-a mina-a
+@raw mabisu nomuna mass-a masse-a masa-a
+@raw mabumo nomuna mum-a mama-a
+@raw madu nomuna half-a hälfte-a medio-a
+@raw madatu nomuna mandate-a mandat-a mandato-a
+@raw madelo nomuna gal-a mädel-a
+@raw madero detiva mere-a mero-a
+@raw madino nomuna min-a min-a
+@raw madoru nomuna major-a major-a mayor-a
+@raw maduru detiva mature-a reif-a maduro-a
+@raw magu nomuna message-a nachricht-a mensaje-a
+@raw mageru nomuna manager-a manager-a administrador-a
+@raw magiku nomuna magic-a magie-a magia-a
+@raw magino veraba imagine-a imaginar-a
+@raw magisu detiva magical-a magisch-a mágico-a
+@raw magifo detiva magnificent-a magnífico-a
+@raw mamo deroba sometimes-a manchmal-a
+@raw mamatu nomuna math-a mathematik-a matemáticas-a
+@raw mamako nomuna mathematics-a matemático-a
+@raw mameni veraba räumen-a
+@raw mamimo detiva maritime-a marítimo-a
+@raw mano ronona one-a man-a
+@raw managu veraba manage-a verwalten-a administrar-a
+@raw manami veraba name-a
+@raw manani deroba mañana-a
+@raw manalu detiva manual-a manuell-a manual-a
+@raw manasi nomuna means-a
+@raw manetu detiva permanent-a dauerhaft-a permanente-a
+@raw maneku nomuna stain-a fleck-a mancha-a
+@raw manedu nomuna command-a befehl-a mando-a
+@raw manegu nomuna sleeve-a ärmel-a manga-a
+@raw maneri nomuna manner-a
+@raw manehu nomuna handling-a umgang-a manejo-a
+@raw manitu nomuna humanity-a menschheit-a humanidad-a
+@raw maniku nomuna mechanic-a mechaniker-a mecánico-a
+@raw manidu nomuna magnitude-a ausmaß-a magnitud-a
+@raw manimu nomuna anime-a anime-a anime-a
+@raw manino veraba maintain-a pflegen-a
+@raw manilu veraba manipulate-a manipulieren-a manipular-a
+@raw manosi nomuna manos-a
+@raw manulu nomuna manual-a handbuch-a manual-a
+@raw malo deroba once-a mal-a
+@raw malago deroba wrong-a mal-a
+@raw malanu nomuna manipulation-a manipulation-a manipulación-a
+@raw maleru nomuna painter-a maler-a pintor-a
+@raw maliku detiva male-a männlich-a masculino-a
+@raw malilu nomuna evil-a übel-a mal-a
+@raw maru nomuna area-a bereich-a zona-a
+@raw maraku nomuna mark-a mark-a marca-a
+@raw maradu detiva married-a verheiratet-a casado-a
+@raw mararu veraba mark-a markieren-a marcar-a
+@raw mareto veraba mate-a paaren-a
+@raw marenu nomuna margin-a spielraum-a margen-a
+@raw maresi nomuna martes-a
+@raw maritu nomuna manuscript-a manuskript-a manuscrito-a
+@raw marigu nomuna marriage-a ehe-a matrimonio-a
+@raw marimu nomuna mistress-a herrin-a ama-a
+@raw marinu nomuna meat-a fleisch-a carne-a
+@raw marili deroba primarily-a
+@raw marisu nomuna array-a matrix-a matriz-a
+@raw maromo nomuna rom-a rom-a
+@raw marumi deroba rum-a
+@raw masu deroba more-a mehr-a más-a
+@raw masatu nomuna crew-a mannschaft-a tripulación-a
+@raw masaku nomuna mask-a maske-a máscara-a
+@raw masagu nomuna massage-a massage-a masaje-a
+@raw masaru nomuna massacre-a massaker-a masacre-a
+@raw masimi deroba encima-a
+@raw masilu nomuna mail-a post-a correspondencia-a
+@raw masivu detiva massive-a massiv-a masivo-a
+@raw masumu nomuna sum-a summe-a suma-a
+@raw mafu nomuna measure-a maß-a medida-a
+@raw mafino detiva marine-a marino-a
+@raw mafobu nomuna mob-a mafia-a mafia-a
+@raw mavu nomuna camera-a kamera-a cámara-a
+@raw mavami nomuna wm-a
+@raw mavilu nomuna mansion-a villa-a mansión-a
+@raw mahu nomuna majority-a mehrheit-a mayoría-a
+@raw mahino detiva mini-a mini-a
+@raw mepi veraba meinen-a
+@raw mepulu nomuna momentum-a impuls-a ímpetu-a
+@raw metu veraba meet-a treffen-a conocer-a
+@raw metalu detiva mental-a geistig-a mental-a
+@raw metedu nomuna cemetery-a friedhof-a cementerio-a
+@raw metenu nomuna competition-a wettbewerb-a competencia-a
+@raw meteru nomuna meter-a meter-a medidor-a
+@raw metodu nomuna method-a methode-a método-a
+@raw metomo nomuna tome-a tomo-a
+@raw metunu nomuna implementation-a umsetzung-a implementación-a
+@raw meku detiva american-a amerikanisch-a americano-a
+@raw mekanu detiva mexican-a mexikanisch-a mexicano-a
+@raw mekari nomuna amerikaner-a
+@raw mekeno veraba taste-a schmecken-a
+@raw mebu nomuna member-a mitglied-a miembro-a
+@raw meberi nomuna meyer-a
+@raw mebesu nomuna membership-a mitgliedschaft-a pertenencia-a
+@raw medu nomuna money-a geld-a dinero-a
+@raw medatu detiva immediate-a unmittelbar-a inmediato-a
+@raw medadu nomuna moisture-a feuchtigkeit-a humedad-a
+@raw medalu nomuna medal-a medaille-a medalla-a
+@raw medeno nomuna amendment-a modificación-a
+@raw medibu detiva imperative-a unbedingt-a imprescindible-a
+@raw medido nomuna midday-a mediodía-a
+@raw medimo detiva medium-a medio-a
+@raw medumu nomuna medium-a medium-a mediano-a
+@raw megu nomuna fear-a angst-a miedo-a
+@raw memu nomuna summer-a sommer-a verano-a
+@raw memano detiva mean-a gemein-a
+@raw memalu nomuna memorial-a denkmal-a monumento-a
+@raw menu ronona my-a mein-a mi-a
+@raw menani detiva momentan-a
+@raw menalo detiva environmental-a ambiental-a
+@raw menaru nomuna menu-a menü-a menú-a
+@raw menasu detiva immense-a immens-a inmenso-a
+@raw menemu nomuna enemy-a gegner-a enemigo-a
+@raw menimo nomuna meantime-a zwischenzeit-a
+@raw menoro detiva minor-a menor-a
+@raw menudi detiva menudo-a
+@raw melo detiva small-a kleiner-a
+@raw melesi ronona themselves-a
+@raw melitu veraba melt-a schmelzen-a fundir-a
+@raw meliko detiva humane-a menschlich-a
+@raw melodu nomuna tune-a melodie-a melodía-a
+@raw melosu nomuna mess-a chaos-a desorden-a
+@raw meru nomuna number-a nummer-a número-a
+@raw meratu nomuna mate-a kamerad-a mate-a
+@raw meranu nomuna merchant-a kaufmann-a mercader-a
+@raw meraru nomuna temperature-a temperatur-a temperatura-a
+@raw meraso nomuna embrace-a abrazo-a
+@raw merebu veraba impress-a beeindrucken-a impresionar-a
+@raw merenu nomuna emergency-a notfall-a emergencia-a
+@raw mereru nomuna employer-a arbeitgeber-a empresario-a
+@raw mereso veraba memorize-a merken-a
+@raw merito nomuna merit-a mérito-a
+@raw meriki detiva norteamericano-a
+@raw meridu nomuna mercy-a mitleid-a piedad-a
+@raw merilu detiva imperial-a kaiserlich-a imperial-a
+@raw meroru nomuna improvement-a verbesserung-a mejora-a
+@raw merumi peposa rum-a
+@raw mesu deroba less-a weniger-a menos-a
+@raw mesenu veraba implement-a umsetzen-a implementar-a
+@raw meseru veraba measure-a messen-a medir-a
+@raw mesido detiva impressed-a beeindrucken-a
+@raw mesinu nomuna dimension-a dimension-a dimensión-a
+@raw mesunu nomuna measurement-a messung-a medición-a
+@raw mefu nomuna master-a meister-a maestro-a
+@raw mevu veraba mention-a erwähnen-a mencionar-a
+@raw mevilu deroba meanwhile-a mittlerweile-a entretanto-a
+@raw mehu nomuna matter-a angelegenheit-a materia-a
+@raw mehato deroba somewhat-a einigermaßen-a
+@raw mehalo nomuna meal-a mahlzeit-a
+@raw mehasi deroba mehrmals-a
+@raw meheno veraba bypass-a umgehen-a
+@raw mehini deroba immerhin-a
+@raw mehori deroba mejor-a
+@raw mehovi deroba somehow-a
+@raw mipo detiva main-a principal-a
+@raw mitu peposa with-a mit-a con-a
+@raw miteno veraba convey-a vermitteln-a
+@raw mitelu nomuna appropriation-a mittel-a apropiación-a
+@raw mitesi peposa mittels-a
+@raw mitiri veraba emitir-a
+@raw mitoki nomuna mittwoch-a
+@raw miku deroba maybe-a vielleicht-a quizás-a
+@raw mikasu veraba mix-a mischen-a mezclar-a
+@raw miketu detiva mixed-a gemischt-a mixto-a
+@raw mikesi nomuna miércoles-a
+@raw mibu nomuna mission-a aufgabe-a misión-a
+@raw mibeni deroba mitten-a
+@raw midu nomuna mind-a geist-a mente-a
+@raw midatu nomuna mindset-a mentalität-a mentalidad-a
+@raw midali nomuna middle-a
+@raw mideni nomuna ministerpräsident-a
+@raw midelo detiva middle-a mittlere-a
+@raw mideri deroba miteinander-a
+@raw midesi deroba zumindest-a
+@raw migi veraba might-a
+@raw migatu nomuna migrant-a migranten-a migrante-a
+@raw miganu nomuna immigrant-a einwanderer-a inmigrante-a
+@raw migeru nomuna misery-a unglück-a miseria-a
+@raw miginu nomuna migration-a migration-a migración-a
+@raw mimi tika mismo-a
+@raw mimalo detiva minimal-a minimal-a
+@raw mimori deroba anymore-a
+@raw minu nomuna man-a mensch-a hombre-a
+@raw minato detiva administrative-a administrativo-a
+@raw minadi veraba mind-a
+@raw minano nomuna administration-a administración-a
+@raw minalu detiva criminal-a kriminell-a penal-a
+@raw minari nomuna seminar-a
+@raw minenu detiva prominent-a prominent-a prominente-a
+@raw minelo nomuna mineral-a mineral-a
+@raw minitu nomuna midnight-a mitternacht-a medianoche-a
+@raw minigu nomuna mining-a bergbau-a minería-a
+@raw minimo detiva minimum-a mínimo-a
+@raw miniru nomuna ministry-a ministerium-a ministerio-a
+@raw minoru nomuna minority-a minderheit-a minoría-a
+@raw minumu nomuna minimum-a minimum-a mínimo-a
+@raw milu nomuna family-a familie-a familia-a
+@raw milago nomuna miracle-a milagro-a
+@raw milali nomuna mittelalter-a
+@raw mileku nomuna milk-a milch-a leche-a
+@raw mileni veraba mitteilen-a
+@raw mileru nomuna mile-a meile-a kilómetro-a
+@raw milidu nomuna billion-a milliarde-a billón-a
+@raw miro detiva major-a mayor-a
+@raw mirabo detiva miserable-a miserable-a
+@raw miranu nomuna immigration-a zuwanderung-a inmigración-a
+@raw miralu nomuna admiral-a admiral-a almirante-a
+@raw mireku nomuna watch-a ansehen-a mira-a
+@raw miriso detiva mysterious-a misterioso-a
+@raw mirutu nomuna myth-a gerücht-a mito-a
+@raw miso veraba miss-a vermissen-a
+@raw misami nomuna mismo-a
+@raw misaru nomuna inspector-a kommissar-a comisario-a
+@raw misemi ronona mismo-a
+@raw miseru nomuna mystery-a rätsel-a misterio-a
+@raw misefi ronona myself-a
+@raw misinu detiva missing-a fehlen-a desaparecido-a
+@raw misilu nomuna missile-a rakete-a misil-a
+@raw misonu nomuna emission-a emission-a emisión-a
+@raw misunu nomuna admission-a zulassung-a admisión-a
+@raw misusu nomuna mix-a mischung-a mezcla-a
+@raw mifu nomuna material-a material-a material-a
+@raw mivu nomuna minister-a minister-a ministro-a
+@raw mihu nomuna environment-a umgebung-a ambiente-a
+@raw miheni veraba mitnehmen-a
+@raw mopu nomuna property-a eigenschaft-a propiedad-a
+@raw motu nomuna month-a monat-a mes-a
+@raw motago nomuna mortgage-a hipoteca-a
+@raw motanu nomuna motivation-a motivation-a motivación-a
+@raw motalu detiva deadly-a tödlich-a mortal-a
+@raw motinu nomuna emotion-a emotion-a emoción-a
+@raw motilu detiva emotional-a emotional-a emotivo-a
+@raw motiru veraba motivate-a motivieren-a motivar-a
+@raw motivu nomuna motive-a motiv-a motivo-a
+@raw motonu nomuna pile-a stapel-a montón-a
+@raw motoru nomuna engine-a motor-a motor-a
+@raw moku numera million-a million-a millón-a
+@raw mokaku nomuna monarchy-a monarchie-a monarquía-a
+@raw mokigo nomuna smoking-a tabaco-a
+@raw mokutu nomuna mouth-a mund-a boca-a
+@raw mobu nomuna table-a tisch-a mesa-a
+@raw mobilu detiva mobile-a mobil-a celular-a
+@raw modu nomuna model-a modell-a modelo-a
+@raw modavo nomuna move-a mudanza-a
+@raw moderu detiva moderate-a mäßig-a moderado-a
+@raw modulu nomuna module-a modul-a módulo-a
+@raw modusu nomuna mode-a modus-a modo-a
+@raw mogu nomuna morning-a morgen-a mañana-a
+@raw mogeni deroba morgen-a
+@raw mogesi deroba morgens-a
+@raw momu nomuna moment-a moment-a momento-a
+@raw momatu nomuna tomato-a tomate-a tomate-a
+@raw momano terona man-a hombre-a
+@raw momisi detiva römisch-a
+@raw mono veraba may-a dürfen-a
+@raw monatu veraba mount-a einbinden-a montar-a
+@raw monaku nomuna monk-a mönch-a monje-a
+@raw monagi nomuna montag-a
+@raw monanu nomuna mountain-a gebirge-a montaña-a
+@raw monalu detiva monthly-a monatlich-a mensual-a
+@raw monaro detiva monetary-a monetario-a
+@raw moneti nomuna monte-a
+@raw moneku nomuna monkey-a affe-a mono-a
+@raw monedu nomuna coin-a münze-a moneda-a
+@raw moneru veraba impose-a verhängen-a imponer-a
+@raw moninu nomuna demonstration-a demonstration-a manifestación-a
+@raw moniru veraba monitor-a überwachen-a supervisar-a
+@raw molo nomuna opportunity-a möglichkeit-a
+@raw moleto nomuna discomfort-a molestia-a
+@raw moleru veraba annoy-a ärgern-a molestar-a
+@raw moliso deroba preferably-a möglichst-a
+@raw molotu detiva smooth-a glatt-a liso-a
+@raw molonu nomuna moon-a mond-a luna-a
+@raw moloru nomuna smell-a geruch-a olor-a
+@raw mori detiva mejor-a
+@raw moratu nomuna morality-a moral-a moral-a
+@raw moralu detiva moral-a moralisch-a moral-a
+@raw moreno nomuna brown-a moreno-a
+@raw morovi nomuna tomorrow-a
+@raw moso deroba most-a meist-a
+@raw moseto detiva upset-a molesto-a
+@raw moselu deroba mostly-a meistens-a principalmente-a
+@raw moseru nomuna monster-a monster-a monstruo-a
+@raw mosinu nomuna motion-a motion-a moción-a
+@raw mofu veraba remove-a entfernen-a quitar-a
+@raw moferu nomuna atmosphere-a atmosphäre-a atmósfera-a
+@raw movu veraba move-a bewegen-a mover-a
+@raw movilu nomuna mobile-a mobilfunk-a móvil-a
+@raw mohu veraba improve-a verbessern-a mejorar-a
+@raw mupu nomuna sea-a meer-a mar-a
+@raw mutu nomuna minute-a minute-a minuto-a
+@raw mutalo detiva mutual-a mutuo-a
+@raw muteni veraba vermuten-a
+@raw muku deroba much-a viel-a mucho-a
+@raw mukalu detiva musical-a musikalisch-a musical-a
+@raw mukeri detiva münchner-a
+@raw mubo nomuna boy-a muchacho-a
+@raw mubelu nomuna furniture-a möbel-a mueble-a
+@raw mudu detiva dead-a tot-a muerto-a
+@raw muderi veraba murder-a
+@raw mugu nomuna image-a abbildung-a imagen-a
+@raw mumu nomuna volume-a menge-a volumen-a
+@raw munu nomuna community-a gemeinde-a comunidad-a
+@raw munalu detiva municipal-a kommunal-a municipal-a
+@raw muneku nomuna doll-a puppe-a muñeca-a
+@raw munipu nomuna municipality-a kommune-a municipio-a
+@raw muninu nomuna ammunition-a munition-a munición-a
+@raw mulu numera thousand-a tausend-a mil-a
+@raw mulati nomuna multa-a
+@raw muleri nomuna müller-a
+@raw muliko detiva probable-a vermutlich-a
+@raw mulilu detiva multiple-a mehrfach-a múltiple-a
+@raw muru nomuna mother-a mutter-a madre-a
+@raw mureru nomuna murder-a mord-a asesinato-a
+@raw musu veraba must-a müssen-a deber-a
+@raw musalu nomuna musical-a musical-a musical-a
+@raw musemu nomuna museum-a museum-a museo-a
+@raw musenu nomuna merger-a zusammenschluß-a fusión-a
+@raw musiku nomuna musician-a musiker-a músico-a
+@raw musimu detiva muslim-a muslimischen-a musulmán-a
+@raw musulu nomuna muscle-a muskel-a músculo-a
+@raw mufu nomuna mom-a mama-a mamá-a
+@raw muvu veraba remain-a verbleiben-a permanecer-a
+@raw muhu detiva military-a militärisch-a militar-a
+@raw muhilu nomuna mill-a mühle-a molino-a
 
 ## ("n")
 
-@raw no in-a in-a en-a
-@raw napo start-a anfang-a inicio-a
-@raw napene peña-a
-@raw napini appoint-a ernennen-a
-@raw nato enter-a betreten-a entrar-a
-@raw natane tan-a
-@raw nateno attend-a teilnehmen-a asistir-a
-@raw natelo disadvantage-a nachteil-a desventaja-a
-@raw natini option-a option-a
-@raw natire entire-a
-@raw natiso native-a muttersprache-a nativo-a
-@raw nativo initiative-a initiative-a iniciativa-a
-@raw natoni tone-a tono-a
-@raw natuno nomination-a nominierung-a candidatura-a
-@raw natulo naturally-a natürlich-a naturalmente-a
-@raw nako after-a nach-a después-a
-@raw nakase nachts-a
-@raw naketo intact-a intakt-a intacto-a
-@raw nakedo naked-a nackt-a desnudo-a
-@raw nakero successor-a nachfolger-a sucesor-a
-@raw nakomo descendant-a nachkomme-a descendiente-a
-@raw nakuto nude-a akt-a desnudo-a
-@raw nabo final-a endgültig-a final-a
-@raw nabate nato-a
-@raw nabade na-a
-@raw nabali unable-a incapaz-a
-@raw nabase nazi-a
-@raw nabete nett-a
-@raw nabene ancient-a
-@raw nabesi nazi-a nazi-a
-@raw nabito inability-a unfähigkeit-a incapacidad-a
-@raw nabote note-a
-@raw nabone non-a
-@raw nabolo enable-a ermöglichen-a activar-a
-@raw nabune un-a
-@raw nado nothing-a nichts-a nada-a
-@raw nadade navidad-a
-@raw nadete net-a
-@raw nademe nachdem-a
-@raw nadene en-a
-@raw nadone none-a
-@raw naduni uni-a uni-a
-@raw nago language-a sprache-a lengua-a
-@raw nagano navigation-a navigation-a navegación-a
-@raw nageni unpleasant-a unangenehm-a
-@raw nagilo nail-a nagel-a uña-a
-@raw nagivo naive-a naiv-a ingenuo-a
-@raw namo name-a name-a nombre-a
-@raw namene namens-a
-@raw namiki namely-a nämlich-a
-@raw namivo native-a heimisch-a nativo-a
-@raw nano national-a national-a nacional-a
-@raw nanate anti-a
-@raw nanalo nationality-a nationalität-a nacionalidad-a
-@raw nanare januar-a
-@raw nanaso nationalist-a nationalismus-a nacionalista-a
-@raw nanete erneut-a
-@raw nanene nennen-a
-@raw nanesi illness-a enfermedades-a
-@raw nanive anyway-a
-@raw nanoro angry-a böse-a enfadado-a
-@raw nalo normal-a normal-a normal-a
-@raw nalare señalar-a
-@raw naleko neck-a hals-a cuello-a
-@raw nalito analyst-a analyst-a analista-a
-@raw naliko questionable-a fraglich-a discutible-a
-@raw naliro analyze-a analysieren-a analizar-a
-@raw naliso analysis-a analyse-a análisis-a
-@raw nalogi along-a entlang-a
-@raw naro under-a unter-a bajo-a
-@raw narabe nearby-a
-@raw narare enterar-a
-@raw nareni arena-a arena-a
-@raw nareli nearly-a nahezu-a
-@raw narero nursery-a kindergarten-a guardería-a
-@raw narino inauguration-a inbetriebnahme-a inauguración-a
-@raw narivo navy-a marine-a marina-a
-@raw naroso nose-a nase-a nariz-a
-@raw naruno nutrition-a nahrung-a nutrición-a
-@raw naso chance-a chance-a oportunidad-a
-@raw nasani insane-a wahnsinnig-a
-@raw nasere nacer-a
-@raw nafo staff-a mitarbeiter-a personal-a
-@raw nafeti net-a neto-a
-@raw nafini ongoing-a laufenden-a
-@raw navo central-a zentral-a central-a
-@raw navali naval-a naval-a
-@raw navito invite-a einladen-a invitar-a
-@raw navuso offspring-a nachwuchs-a descendencia-a
-@raw nahi close-a nah-a
-@raw nahemo assumption-a annahme-a asunción-a
-@raw nahene ajeno-a
-@raw naheri afterward-a nachher-a
-@raw nepo accept-a annehmen-a aceptar-a
-@raw nepano interpretation-a interpretation-a interpretación-a
-@raw nepeto interpret-a interpretieren-a interpretar-a
-@raw nepeke nonrespect-a
-@raw nepiro inspire-a begeistern-a inspirar-a
-@raw nepise enterprise-a
-@raw nete nuestro-a
-@raw netato instant-a augenblick-a instante-a
-@raw netadi instead-a stattdessen-a
-@raw netano instance-a instanz-a instancia-a
-@raw netalo install-a installieren-a instalar-a
-@raw netare sentar-a
-@raw neteki networking-a netzwerk-a
-@raw netedo unexpected-a unerwartet-a inesperado-a
-@raw netene antreten-a
-@raw netito uncertainty-a unsicherheit-a incertidumbre-a
-@raw netili childish-a infantil-a
-@raw netulo unfortunate-a unglücklich-a lamentable-a
-@raw neko next-a nächste-a siguiente-a
-@raw nekate next-a
-@raw nekane ansprechen-a
-@raw nekalo inequality-a ungleichheit-a desigualdad-a
-@raw neketo injustice-a unrecht-a injusticia-a
-@raw nekede entsprechend-a
-@raw nekene entsprechen-a
-@raw nekero uncertain-a unsicher-a incierto-a
-@raw nekiti insect-a insekt-a
-@raw nekino interaction-a interaktion-a interacción-a
-@raw nekivo interactive-a interaktiv-a interactivo-a
-@raw nekono unknown-a unbekannt-a desconocido-a
-@raw nebo energy-a energie-a energía-a
-@raw nebaro neighbourhood-a nachbarschaft-a vecindario-a
-@raw nebene erneuen-a
-@raw nebelo fog-a nebel-a niebla-a
-@raw nebine nein-a
-@raw nebube neubau-a
-@raw nedo need-a brauchen-a necesitar-a
-@raw nedane entscheiden-a
-@raw nedene antecedente-a
-@raw nedere tender-a
-@raw nediti anytime-a jederzeit-a
-@raw nedine nein-a
-@raw nego necessary-a notwendig-a necesario-a
-@raw negato negotiate-a verhandeln-a negociar-a
-@raw negani negotiation-a negociación-a
-@raw negali integral-a integral-a
-@raw negaro deny-a bestreiten-a negar-a
-@raw negavi negative-a negativa-a
-@raw negeno intelligence-a intelligenz-a inteligencia-a
-@raw negero beginner-a anfänger-a iniciación-a
-@raw negito integrity-a integrität-a integridad-a
-@raw negiko energetic-a energisch-a energético-a
-@raw nemo partner-a partner-a compañero-a
-@raw nemeti entertainment-a entretenimiento-a
-@raw nemeno increase-a erhöhung-a aumento-a
-@raw neno understand-a verstehen-a entender-a
-@raw nenati intent-a vorsatz-a
-@raw nenadi downtown-a innenstadt-a
-@raw nenali governmental-a gubernamental-a
-@raw nenare intentar-a
-@raw nenedo surroundings-a umfeld-a entorno-a
-@raw neneno independence-a unabhängigkeit-a independencia-a
-@raw nenere enero-a
-@raw nenito intensity-a intensität-a intensidad-a
-@raw nenino intervention-a intervention-a intervención-a
-@raw neniri senior-a senior-a
-@raw neniso intense-a intensiv-a intenso-a
-@raw nenivo incentive-a anregung-a incentivo-a
-@raw nenogo narrow-a eng-a estrecho-a
-@raw nenoni invention-a invento-a
-@raw nenoro inventory-a inventar-a inventario-a
-@raw nenuro encounter-a begegnung-a encuentro-a
-@raw nelo fast-a schnell-a rápido-a
-@raw nelade england-a
-@raw nelani venezuelan-a venezolano-a
-@raw nelalo neutral-a neutral-a neutral-a
-@raw nelari unclear-a unklar-a
-@raw nelege unterliegen-a
-@raw nelese inglés-a
-@raw nelike endlich-a
-@raw nelino inclusion-a einbeziehung-a inclusión-a
-@raw neliso endless-a unendlich-a interminable-a
-@raw neluno influence-a beeinflussen-a influir-a
-@raw neluso connection-a anschluß-a conexión-a
-@raw nero never-a nie-a nunca-a
-@raw nerato councillor-a stadtrat-a concejal-a
-@raw nerano internal-a intern-a interno-a
-@raw neralo wonderful-a wunderbar-a maravilloso-a
-@raw neraro integrate-a integrieren-a integrar-a
-@raw nereto insert-a fügen-a insertar-a
-@raw neredi interested-a interesado-a
-@raw nerege unterwegs-a
-@raw nerene interessieren-a
-@raw nerelo variable-a unterschiedlich-a variable-a
-@raw nerere interesar-a
-@raw nerese interessieren-a
-@raw nerevo nerve-a nerv-a nervio-a
-@raw nereho contractor-a unternehmer-a contratista-a
-@raw neripo ownership-a eigentum-a titularidad-a
-@raw neriti entrance-a eintritt-a
-@raw neriko instruction-a unterricht-a instrucción-a
-@raw nerige anbringen-a
-@raw nerino conversation-a unterhaltung-a conversación-a
-@raw neriri previous-a anterior-a
-@raw nerise einerseits-a
-@raw nerono integration-a integration-a integración-a
-@raw neroro interior-a innenraum-a interior-a
-@raw neroso nervous-a nervös-a nervioso-a
-@raw neruko impression-a eindruck-a impresión-a
-@raw neruno underground-a unterirdisch-a subterráneo-a
-@raw neruro interrupt-a unterbrechen-a interrumpir-a
-@raw neso business-a wirtschaft-a negocio-a
-@raw nesano understanding-a verständnis-a comprensión-a
-@raw nesaro unnecessary-a unnötig-a innecesario-a
-@raw neseto anxiety-a unruhe-a ansiedad-a
-@raw neseno deploy-a einsetzen-a desplegar-a
-@raw neseli newly-a recién-a
-@raw nesero necessarily-a notwendigerweise-a necesariamente-a
-@raw neseso essence-a wesentliche-a esencia-a
-@raw nesito nest-a nest-a nido-a
-@raw nesigo investigate-a untersuchen-a investigar-a
-@raw nesino investment-a investition-a inversión-a
-@raw nesiro invest-a investieren-a invertir-a
-@raw nesono concession-a zugeständnis-a concesión-a
-@raw nesoro investor-a investor-a inversor-a
-@raw nesugi investigation-a untersuchung-a
-@raw nesuli insult-a insulto-a
-@raw nefo need-a bedarf-a necesidad-a
-@raw nefako interface-a oberfläche-a interfaz-a
-@raw nefaro approximate-a ungefähr-a aproximado-a
-@raw nefevo nephew-a neffe-a sobrino-a
-@raw nevo new-a neu-a nuevo-a
-@raw neveno intervene-a eingreifen-a intervenir-a
-@raw neveli nevertheless-a gleichwohl-a
-@raw nevero answer-a antworten-a contestar-a
-@raw neviti nationwide-a bundesweit-a
-@raw nevino nine-a neun-a nueve-a
-@raw nevilo inevitable-a unvermeidlich-a inevitable-a
-@raw neho council-a rat-a consejo-a
-@raw nehane einnehmen-a
-@raw neheni arise-a entstehen-a
-@raw nipe venir-a
-@raw nite zweit-a
-@raw nitali initial-a inicial-a
-@raw niteto grandson-a enkel-a nieto-a
-@raw nitero knight-a Ritter-a caballero-a
-@raw nituto institute-a institut-a instituto-a
-@raw nitugo monitoring-a begleitung-a monitoreo-a
-@raw nike natürlich-a
-@raw nikase nix-a
-@raw nikelo unlikely-a unwahrscheinlich-a improbable-a
-@raw nibi united-a unido-a
-@raw nibode anybody-a
-@raw nibune juni-a
-@raw nido nobody-a niemand-a nadie-a
-@raw nidadi entity-a entidad-a
-@raw nidere nieder-a
-@raw nidido antiquity-a antike-a antigüedad-a
-@raw nigo unique-a einzigartig-a único-a
-@raw nigari nightmare-a pesadilla-a
-@raw nigene wenigstens-a
-@raw nimo similar-a ähnlich-a similar-a
-@raw nimano animation-a animation-a animación-a
-@raw nimoni anyone-a irgendjemand-a
-@raw nimoro mood-a stimmung-a humor-a
-@raw nino into-a hinein-a dentro-a
-@raw ninede anscheinend-a
-@raw ninero engineer-a techniker-a ingeniero-a
-@raw ninidi inside-a innen-a
-@raw ninoko inch-a zoll-a centímetro-a
-@raw ninuto input-a eingabe-a aportación-a
-@raw ninulo peninsula-a halbinsel-a península-a
-@raw nilo animal-a tier-a animal-a
-@raw niro university-a universität-a universidad-a
-@raw nirado entry-a eingang-a entrada-a
-@raw niragi inquiry-a anfrage-a
-@raw nirare universitario-a
-@raw nirono irony-a ironie-a ironía-a
-@raw niruni renovation-a sanierung-a
-@raw niso interest-a interesse-a interés-a
-@raw nisano inn-a gasthaus-a posada-a
-@raw nisaro anniversary-a jubiläum-a aniversario-a
-@raw nisiro initiate-a einleiten-a iniciar-a
-@raw nifo online-a online-a online-a
-@raw nifano initially-a anfangs-a inicialmente-a
-@raw nifiko significant-a erheblich-a significativo-a
-@raw nifimo uniform-a einheitlich-a uniforme-a
-@raw nifomo uniform-a uniform-a uniforme-a
-@raw nivi anything-a irgendwas-a
-@raw nivelo universal-a universell-a universal-a
-@raw nivero universe-a universum-a universo-a
-@raw niho union-a union-a unión-a
-@raw nopo nor-a noch-a ni-a
-@raw note another-a
-@raw notalo remarkable-a bemerkenswert-a notable-a
-@raw notare notar-a
-@raw notigi notice-a mitteilung-a
-@raw notini notion-a noción-a
-@raw notise notice-a
-@raw notoni autumn-a otoño-a
-@raw noko night-a nacht-a noche-a
-@raw nokale nochmals-a
-@raw nokino notification-a benachrichtigung-a notificación-a
-@raw nobo nation-a nation-a nación-a
-@raw nobare nombrar-a
-@raw nobelo noble-a edel-a noble-a
-@raw nobere november-a
-@raw nodo north-a norden-a norte-a
-@raw nodeno node-a knoten-a nodo-a
-@raw nodike nördlich-a
-@raw nodine nordrhein-a
-@raw nogo technology-a technik-a tecnología-a
-@raw nogiki technological-a tecnológico-a
-@raw nogigi annoying-a ärgerlich-a
-@raw nomo information-a information-a información-a
-@raw nomale normally-a
-@raw nomisi economical-a ökonomisch-a
-@raw nono nice-a schön-a lindo-a
-@raw nonate onto-a
-@raw noneni announcement-a ankündigung-a
-@raw nonimo anonymous-a anonym-a anónimo-a
-@raw nolo spanish-a spanisch-a español-a
-@raw nolavo involve-a einbeziehen-a implicar-a
-@raw noledi acknowledge-a anerkennen-a
-@raw noro before-a vor-a antes-a
-@raw norate north-a
-@raw norago orange-a orange-a naranja-a
-@raw norami norm-a norm-a
-@raw norani orange-a naranja-a
-@raw noraso ignorance-a ignoranz-a ignorancia-a
-@raw noreti north-a nord-a
-@raw norego norwegian-a norwegisch-a noruego-a
-@raw noreni northern-a norte-a
-@raw noreso northeast-a nordosten-a noreste-a
-@raw noriso noise-a geräusch-a ruido-a
-@raw noromi enormous-a enorm-a
-@raw nosi news-a noticia-a
-@raw nosani ocean-a océano-a
-@raw noseno innocent-a unschuldig-a inocente-a
-@raw nosino nonsense-a unsinn-a tonterías-a
-@raw nofi single-a sencillo-a
-@raw novo now-a jetzt-a ahora-a
-@raw novato innovative-a innovativ-a innovador-a
-@raw novano innovation-a innovation-a innovación-a
-@raw noveto novelty-a neuerung-a novedad-a
-@raw novebe noviembre-a
-@raw novedi boyfriend-a novio-a
-@raw novelo novel-a roman-a novela-a
-@raw noho british-a britisch-a británico-a
-@raw noheri nowhere-a nirgendwo-a
-@raw nupi suppose-a suponer-a
-@raw nupone upon-a
-@raw nuto note-a hinweis-a nota-a
-@raw nutesi nut-a nuez-a
-@raw nuko luck-a glück-a suerte-a
-@raw nukaro nuclear-a nuklear-a nuclear-a
-@raw nubo represent-a repräsentieren-a representar-a
-@raw nudo include-a enthalten-a incluir-a
-@raw nugi enough-a genug-a
-@raw nugeno enjoyment-a vergnügen-a disfrute-a
-@raw numo nature-a natur-a naturaleza-a
-@raw nuno opinion-a meinung-a opinión-a
-@raw nunati aunt-a tía-a
-@raw nunene außenßen-a
-@raw nuniti unite-a vereinen-a
-@raw nuniso announce-a ankündigen-a anunciar-a
-@raw nulo island-a insel-a isla-a
-@raw nulero zero-a null-a cero-a
-@raw nuro only-a nur-a solo-a
-@raw nureso nurse-a krankenschwester-a enfermera-a
-@raw nuso use-a verwenden-a usar-a
-@raw nusalo unusual-a ungewöhnlich-a inusual-a
-@raw nusene nutzen-a
-@raw nusere äußern-a
-@raw nusiro unfair-a unfair-a injusto-a
-@raw nusuno exploitation-a nutzung-a explotación-a
-@raw nufo structure-a struktur-a estructura-a
-@raw nufeni run-a laufen-a
-@raw nuvo answer-a antwort-a respuesta-a
-@raw nuvani wann-a cuándo-a
-@raw nuho enough-a genügend-a suficiente-a
+@raw nu peposa in-a in-a en-a
+@raw napu nomuna start-a anfang-a inicio-a
+@raw napeni nomuna peña-a
+@raw napino veraba appoint-a ernennen-a
+@raw natu veraba enter-a betreten-a entrar-a
+@raw natani nomuna tan-a
+@raw natenu veraba attend-a teilnehmen-a asistir-a
+@raw natelu nomuna disadvantage-a nachteil-a desventaja-a
+@raw natino nomuna option-a option-a
+@raw natiri detiva entire-a
+@raw natisu nomuna native-a muttersprache-a nativo-a
+@raw nativu nomuna initiative-a initiative-a iniciativa-a
+@raw natono nomuna tone-a tono-a
+@raw natunu nomuna nomination-a nominierung-a candidatura-a
+@raw natulu deroba naturally-a natürlich-a naturalmente-a
+@raw naku peposa after-a nach-a después-a
+@raw nakasi deroba nachts-a
+@raw naketu detiva intact-a intakt-a intacto-a
+@raw nakedu detiva naked-a nackt-a desnudo-a
+@raw nakeru nomuna successor-a nachfolger-a sucesor-a
+@raw nakomu nomuna descendant-a nachkomme-a descendiente-a
+@raw nakutu nomuna nude-a akt-a desnudo-a
+@raw nabu detiva final-a endgültig-a final-a
+@raw nabati nomuna nato-a
+@raw nabadi patika na-a
+@raw nabalo detiva unable-a incapaz-a
+@raw nabasi nomuna nazi-a
+@raw nabeti detiva nett-a
+@raw nabeni detiva ancient-a
+@raw nabeso detiva nazi-a nazi-a
+@raw nabitu nomuna inability-a unfähigkeit-a incapacidad-a
+@raw naboti veraba note-a
+@raw naboni deroba non-a
+@raw nabolu veraba enable-a ermöglichen-a activar-a
+@raw nabuni dunona un-a
+@raw nadu ronona nothing-a nichts-a nada-a
+@raw nadadi nomuna navidad-a
+@raw nadeti nomuna net-a
+@raw nademi dunona nachdem-a
+@raw nadeni peposa en-a
+@raw nadoni ronona none-a
+@raw naduno nomuna uni-a uni-a
+@raw nagu nomuna language-a sprache-a lengua-a
+@raw naganu nomuna navigation-a navigation-a navegación-a
+@raw nageno detiva unpleasant-a unangenehm-a
+@raw nagilu nomuna nail-a nagel-a uña-a
+@raw nagivu detiva naive-a naiv-a ingenuo-a
+@raw namu nomuna name-a name-a nombre-a
+@raw nameni peposa namens-a
+@raw namiko deroba namely-a nämlich-a
+@raw namivu detiva native-a heimisch-a nativo-a
+@raw nanu detiva national-a national-a nacional-a
+@raw nanati nomuna anti-a
+@raw nanalu nomuna nationality-a nationalität-a nacionalidad-a
+@raw nanari nomuna januar-a
+@raw nanasu nomuna nationalist-a nationalismus-a nacionalista-a
+@raw naneti detiva erneut-a
+@raw naneni detiva nennen-a
+@raw naneso nomuna illness-a enfermedades-a
+@raw nanivi terona anyway-a
+@raw nanoru detiva angry-a böse-a enfadado-a
+@raw nalu detiva normal-a normal-a normal-a
+@raw nalari veraba señalar-a
+@raw naleku nomuna neck-a hals-a cuello-a
+@raw nalitu nomuna analyst-a analyst-a analista-a
+@raw naliku detiva questionable-a fraglich-a discutible-a
+@raw naliru veraba analyze-a analysieren-a analizar-a
+@raw nalisu nomuna analysis-a analyse-a análisis-a
+@raw nalogo peposa along-a entlang-a
+@raw naru peposa under-a unter-a bajo-a
+@raw narabi deroba nearby-a
+@raw narari veraba enterar-a
+@raw nareno nomuna arena-a arena-a
+@raw narelo deroba nearly-a nahezu-a
+@raw nareru nomuna nursery-a kindergarten-a guardería-a
+@raw narinu nomuna inauguration-a inbetriebnahme-a inauguración-a
+@raw narivu nomuna navy-a marine-a marina-a
+@raw narosu nomuna nose-a nase-a nariz-a
+@raw narunu nomuna nutrition-a nahrung-a nutrición-a
+@raw nasu nomuna chance-a chance-a oportunidad-a
+@raw nasano detiva insane-a wahnsinnig-a
+@raw naseri veraba nacer-a
+@raw nafu nomuna staff-a mitarbeiter-a personal-a
+@raw nafeto detiva net-a neto-a
+@raw nafino detiva ongoing-a laufenden-a
+@raw navu detiva central-a zentral-a central-a
+@raw navalo detiva naval-a naval-a
+@raw navitu veraba invite-a einladen-a invitar-a
+@raw navusu nomuna offspring-a nachwuchs-a descendencia-a
+@raw naho detiva close-a nah-a
+@raw nahemu nomuna assumption-a annahme-a asunción-a
+@raw naheni detiva ajeno-a
+@raw nahero deroba afterward-a nachher-a
+@raw nepu veraba accept-a annehmen-a aceptar-a
+@raw nepanu nomuna interpretation-a interpretation-a interpretación-a
+@raw nepetu veraba interpret-a interpretieren-a interpretar-a
+@raw nepeki nomuna nonrespect-a
+@raw nepiru veraba inspire-a begeistern-a inspirar-a
+@raw nepisi nomuna enterprise-a
+@raw neti tika nuestro-a
+@raw netatu nomuna instant-a augenblick-a instante-a
+@raw netado deroba instead-a stattdessen-a
+@raw netanu nomuna instance-a instanz-a instancia-a
+@raw netalu veraba install-a installieren-a instalar-a
+@raw netari veraba sentar-a
+@raw neteko nomuna networking-a netzwerk-a
+@raw netedu detiva unexpected-a unerwartet-a inesperado-a
+@raw neteni veraba antreten-a
+@raw netitu nomuna uncertainty-a unsicherheit-a incertidumbre-a
+@raw netilo detiva childish-a infantil-a
+@raw netulu detiva unfortunate-a unglücklich-a lamentable-a
+@raw neku detiva next-a nächste-a siguiente-a
+@raw nekati deroba next-a
+@raw nekani veraba ansprechen-a
+@raw nekalu nomuna inequality-a ungleichheit-a desigualdad-a
+@raw neketu nomuna injustice-a unrecht-a injusticia-a
+@raw nekedi detiva entsprechend-a
+@raw nekeni detiva entsprechen-a
+@raw nekeru detiva uncertain-a unsicher-a incierto-a
+@raw nekito nomuna insect-a insekt-a
+@raw nekinu nomuna interaction-a interaktion-a interacción-a
+@raw nekivu detiva interactive-a interaktiv-a interactivo-a
+@raw nekonu detiva unknown-a unbekannt-a desconocido-a
+@raw nebu nomuna energy-a energie-a energía-a
+@raw nebaru nomuna neighbourhood-a nachbarschaft-a vecindario-a
+@raw nebeni detiva erneuen-a
+@raw nebelu nomuna fog-a nebel-a niebla-a
+@raw nebini nomuna nein-a
+@raw nebubi nomuna neubau-a
+@raw nedu veraba need-a brauchen-a necesitar-a
+@raw nedani detiva entscheiden-a
+@raw nedeni nomuna antecedente-a
+@raw nederi veraba tender-a
+@raw nedito deroba anytime-a jederzeit-a
+@raw nedini patika nein-a
+@raw negu detiva necessary-a notwendig-a necesario-a
+@raw negatu veraba negotiate-a verhandeln-a negociar-a
+@raw negano nomuna negotiation-a negociación-a
+@raw negalo detiva integral-a integral-a
+@raw negaru veraba deny-a bestreiten-a negar-a
+@raw negavo nomuna negative-a negativa-a
+@raw negenu nomuna intelligence-a intelligenz-a inteligencia-a
+@raw negeru nomuna beginner-a anfänger-a iniciación-a
+@raw negitu nomuna integrity-a integrität-a integridad-a
+@raw negiku detiva energetic-a energisch-a energético-a
+@raw nemu nomuna partner-a partner-a compañero-a
+@raw nemeto nomuna entertainment-a entretenimiento-a
+@raw nemenu nomuna increase-a erhöhung-a aumento-a
+@raw nenu veraba understand-a verstehen-a entender-a
+@raw nenato nomuna intent-a vorsatz-a
+@raw nenado nomuna downtown-a innenstadt-a
+@raw nenalo detiva governmental-a gubernamental-a
+@raw nenari veraba intentar-a
+@raw nenedu nomuna surroundings-a umfeld-a entorno-a
+@raw nenenu nomuna independence-a unabhängigkeit-a independencia-a
+@raw neneri nomuna enero-a
+@raw nenitu nomuna intensity-a intensität-a intensidad-a
+@raw neninu nomuna intervention-a intervention-a intervención-a
+@raw neniro nomuna senior-a senior-a
+@raw nenisu detiva intense-a intensiv-a intenso-a
+@raw nenivu nomuna incentive-a anregung-a incentivo-a
+@raw nenogu detiva narrow-a eng-a estrecho-a
+@raw nenono nomuna invention-a invento-a
+@raw nenoru nomuna inventory-a inventar-a inventario-a
+@raw nenuru nomuna encounter-a begegnung-a encuentro-a
+@raw nelu detiva fast-a schnell-a rápido-a
+@raw neladi nomuna england-a
+@raw nelano detiva venezuelan-a venezolano-a
+@raw nelalu detiva neutral-a neutral-a neutral-a
+@raw nelaro detiva unclear-a unklar-a
+@raw nelegi veraba unterliegen-a
+@raw nelesi nomuna inglés-a
+@raw neliki detiva endlich-a
+@raw nelinu nomuna inclusion-a einbeziehung-a inclusión-a
+@raw nelisu detiva endless-a unendlich-a interminable-a
+@raw nelunu veraba influence-a beeinflussen-a influir-a
+@raw nelusu nomuna connection-a anschluß-a conexión-a
+@raw neru deroba never-a nie-a nunca-a
+@raw neratu nomuna councillor-a stadtrat-a concejal-a
+@raw neranu detiva internal-a intern-a interno-a
+@raw neralu detiva wonderful-a wunderbar-a maravilloso-a
+@raw neraru veraba integrate-a integrieren-a integrar-a
+@raw neretu veraba insert-a fügen-a insertar-a
+@raw neredo detiva interested-a interesado-a
+@raw neregi deroba unterwegs-a
+@raw nereni veraba interessieren-a
+@raw nerelu detiva variable-a unterschiedlich-a variable-a
+@raw nereri veraba interesar-a
+@raw neresi detiva interessieren-a
+@raw nerevu nomuna nerve-a nerv-a nervio-a
+@raw nerehu nomuna contractor-a unternehmer-a contratista-a
+@raw neripu nomuna ownership-a eigentum-a titularidad-a
+@raw nerito nomuna entrance-a eintritt-a
+@raw neriku nomuna instruction-a unterricht-a instrucción-a
+@raw nerigi veraba anbringen-a
+@raw nerinu nomuna conversation-a unterhaltung-a conversación-a
+@raw neriro detiva previous-a anterior-a
+@raw nerisi deroba einerseits-a
+@raw neronu nomuna integration-a integration-a integración-a
+@raw neroru nomuna interior-a innenraum-a interior-a
+@raw nerosu detiva nervous-a nervös-a nervioso-a
+@raw neruku nomuna impression-a eindruck-a impresión-a
+@raw nerunu detiva underground-a unterirdisch-a subterráneo-a
+@raw neruru veraba interrupt-a unterbrechen-a interrumpir-a
+@raw nesu nomuna business-a wirtschaft-a negocio-a
+@raw nesanu nomuna understanding-a verständnis-a comprensión-a
+@raw nesaru detiva unnecessary-a unnötig-a innecesario-a
+@raw nesetu nomuna anxiety-a unruhe-a ansiedad-a
+@raw nesenu veraba deploy-a einsetzen-a desplegar-a
+@raw neselo deroba newly-a recién-a
+@raw neseru deroba necessarily-a notwendigerweise-a necesariamente-a
+@raw nesesu nomuna essence-a wesentliche-a esencia-a
+@raw nesitu nomuna nest-a nest-a nido-a
+@raw nesigu veraba investigate-a untersuchen-a investigar-a
+@raw nesinu nomuna investment-a investition-a inversión-a
+@raw nesiru veraba invest-a investieren-a invertir-a
+@raw nesonu nomuna concession-a zugeständnis-a concesión-a
+@raw nesoru nomuna investor-a investor-a inversor-a
+@raw nesugo nomuna investigation-a untersuchung-a
+@raw nesulo nomuna insult-a insulto-a
+@raw nefu nomuna need-a bedarf-a necesidad-a
+@raw nefaku nomuna interface-a oberfläche-a interfaz-a
+@raw nefaru detiva approximate-a ungefähr-a aproximado-a
+@raw nefevu nomuna nephew-a neffe-a sobrino-a
+@raw nevu detiva new-a neu-a nuevo-a
+@raw nevenu veraba intervene-a eingreifen-a intervenir-a
+@raw nevelo deroba nevertheless-a gleichwohl-a
+@raw neveru veraba answer-a antworten-a contestar-a
+@raw nevito detiva nationwide-a bundesweit-a
+@raw nevinu numera nine-a neun-a nueve-a
+@raw nevilu detiva inevitable-a unvermeidlich-a inevitable-a
+@raw nehu nomuna council-a rat-a consejo-a
+@raw nehani veraba einnehmen-a
+@raw neheno veraba arise-a entstehen-a
+@raw nipi veraba venir-a
+@raw niti detiva zweit-a
+@raw nitalo detiva initial-a inicial-a
+@raw nitetu nomuna grandson-a enkel-a nieto-a
+@raw niteru nomuna knight-a Ritter-a caballero-a
+@raw nitutu nomuna institute-a institut-a instituto-a
+@raw nitugu nomuna monitoring-a begleitung-a monitoreo-a
+@raw niki detiva natürlich-a
+@raw nikasi nomuna nix-a
+@raw nikelu detiva unlikely-a unwahrscheinlich-a improbable-a
+@raw nibo detiva united-a unido-a
+@raw nibodi ronona anybody-a
+@raw nibuni nomuna juni-a
+@raw nidu ronona nobody-a niemand-a nadie-a
+@raw nidado nomuna entity-a entidad-a
+@raw nideri deroba nieder-a
+@raw nididu nomuna antiquity-a antike-a antigüedad-a
+@raw nigu detiva unique-a einzigartig-a único-a
+@raw nigaro nomuna nightmare-a pesadilla-a
+@raw nigeni deroba wenigstens-a
+@raw nimu detiva similar-a ähnlich-a similar-a
+@raw nimanu nomuna animation-a animation-a animación-a
+@raw nimono ronona anyone-a irgendjemand-a
+@raw nimoru nomuna mood-a stimmung-a humor-a
+@raw ninu peposa into-a hinein-a dentro-a
+@raw ninedi detiva anscheinend-a
+@raw nineru nomuna engineer-a techniker-a ingeniero-a
+@raw ninido nomuna inside-a innen-a
+@raw ninoku nomuna inch-a zoll-a centímetro-a
+@raw ninutu nomuna input-a eingabe-a aportación-a
+@raw ninulu nomuna peninsula-a halbinsel-a península-a
+@raw nilu nomuna animal-a tier-a animal-a
+@raw niru nomuna university-a universität-a universidad-a
+@raw niradu nomuna entry-a eingang-a entrada-a
+@raw nirago nomuna inquiry-a anfrage-a
+@raw nirari detiva universitario-a
+@raw nironu nomuna irony-a ironie-a ironía-a
+@raw niruno nomuna renovation-a sanierung-a
+@raw nisu nomuna interest-a interesse-a interés-a
+@raw nisanu nomuna inn-a gasthaus-a posada-a
+@raw nisaru nomuna anniversary-a jubiläum-a aniversario-a
+@raw nisiru veraba initiate-a einleiten-a iniciar-a
+@raw nifu detiva online-a online-a online-a
+@raw nifanu deroba initially-a anfangs-a inicialmente-a
+@raw nifiku detiva significant-a erheblich-a significativo-a
+@raw nifimu detiva uniform-a einheitlich-a uniforme-a
+@raw nifomu nomuna uniform-a uniform-a uniforme-a
+@raw nivo ronona anything-a irgendwas-a
+@raw nivelu detiva universal-a universell-a universal-a
+@raw niveru nomuna universe-a universum-a universo-a
+@raw nihu nomuna union-a union-a unión-a
+@raw nopu dunona nor-a noch-a ni-a
+@raw noti tika another-a
+@raw notalu detiva remarkable-a bemerkenswert-a notable-a
+@raw notari veraba notar-a
+@raw notigo nomuna notice-a mitteilung-a
+@raw notino nomuna notion-a noción-a
+@raw notisi veraba notice-a
+@raw notono nomuna autumn-a otoño-a
+@raw noku nomuna night-a nacht-a noche-a
+@raw nokali deroba nochmals-a
+@raw nokinu nomuna notification-a benachrichtigung-a notificación-a
+@raw nobu nomuna nation-a nation-a nación-a
+@raw nobari veraba nombrar-a
+@raw nobelu detiva noble-a edel-a noble-a
+@raw noberi nomuna november-a
+@raw nodu nomuna north-a norden-a norte-a
+@raw nodenu nomuna node-a knoten-a nodo-a
+@raw nodiki detiva nördlich-a
+@raw nodini detiva nordrhein-a
+@raw nogu nomuna technology-a technik-a tecnología-a
+@raw nogiko detiva technological-a tecnológico-a
+@raw nogigo detiva annoying-a ärgerlich-a
+@raw nomu nomuna information-a information-a información-a
+@raw nomali deroba normally-a
+@raw nomiso detiva economical-a ökonomisch-a
+@raw nomunu nomuna noun-a Nomen-a sustantivo-a
+@raw nonu detiva nice-a schön-a lindo-a
+@raw nonati peposa onto-a
+@raw noneno nomuna announcement-a ankündigung-a
+@raw nonimu detiva anonymous-a anonym-a anónimo-a
+@raw nolu detiva spanish-a spanisch-a español-a
+@raw nolavu veraba involve-a einbeziehen-a implicar-a
+@raw noledo veraba acknowledge-a anerkennen-a
+@raw noru peposa before-a vor-a antes-a
+@raw norati deroba north-a
+@raw noragu nomuna orange-a orange-a naranja-a
+@raw noramo nomuna norm-a norm-a
+@raw norano detiva orange-a naranja-a
+@raw norasu nomuna ignorance-a ignoranz-a ignorancia-a
+@raw noreto detiva north-a nord-a
+@raw noregu detiva norwegian-a norwegisch-a noruego-a
+@raw noreno detiva northern-a norte-a
+@raw noresu nomuna northeast-a nordosten-a noreste-a
+@raw norisu nomuna noise-a geräusch-a ruido-a
+@raw noromo detiva enormous-a enorm-a
+@raw noso nomuna news-a noticia-a
+@raw nosano nomuna ocean-a océano-a
+@raw nosenu detiva innocent-a unschuldig-a inocente-a
+@raw nosinu nomuna nonsense-a unsinn-a tonterías-a
+@raw nofo detiva single-a sencillo-a
+@raw novu deroba now-a jetzt-a ahora-a
+@raw novatu detiva innovative-a innovativ-a innovador-a
+@raw novanu nomuna innovation-a innovation-a innovación-a
+@raw novetu nomuna novelty-a neuerung-a novedad-a
+@raw novebi nomuna noviembre-a
+@raw novedo nomuna boyfriend-a novio-a
+@raw novelu nomuna novel-a roman-a novela-a
+@raw nohu detiva british-a britisch-a británico-a
+@raw nohero deroba nowhere-a nirgendwo-a
+@raw nupo veraba suppose-a suponer-a
+@raw nuponi peposa upon-a
+@raw nutu nomuna note-a hinweis-a nota-a
+@raw nuteso nomuna nut-a nuez-a
+@raw nuku nomuna luck-a glück-a suerte-a
+@raw nukaru detiva nuclear-a nuklear-a nuclear-a
+@raw nubu veraba represent-a repräsentieren-a representar-a
+@raw nudu veraba include-a enthalten-a incluir-a
+@raw nugo deroba enough-a genug-a
+@raw nugenu nomuna enjoyment-a vergnügen-a disfrute-a
+@raw numu nomuna nature-a natur-a naturaleza-a
+@raw numeru nomuna numeral-a Zahlwort-a numeral-a
+@raw nunu nomuna opinion-a meinung-a opinión-a
+@raw nunato nomuna aunt-a tía-a
+@raw nuneni deroba außenßen-a
+@raw nunito veraba unite-a vereinen-a
+@raw nunisu veraba announce-a ankündigen-a anunciar-a
+@raw nulu nomuna island-a insel-a isla-a
+@raw nuleru nomuna zero-a null-a cero-a
+@raw nuru deroba only-a nur-a solo-a
+@raw nuresu nomuna nurse-a krankenschwester-a enfermera-a
+@raw nusu veraba use-a verwenden-a usar-a
+@raw nusalu detiva unusual-a ungewöhnlich-a inusual-a
+@raw nuseni veraba nutzen-a
+@raw nuseri veraba äußern-a
+@raw nusiru detiva unfair-a unfair-a injusto-a
+@raw nusunu nomuna exploitation-a nutzung-a explotación-a
+@raw nufu nomuna structure-a struktur-a estructura-a
+@raw nufeno detiva run-a laufen-a
+@raw nuvu nomuna answer-a antwort-a respuesta-a
+@raw nuvano deroba wann-a cuándo-a
+@raw nuhu detiva enough-a genügend-a suficiente-a
 
 ## ("l")
 
-@raw lo the-a der-a el-a
-@raw lapo happy-a glücklich-a feliz-a
-@raw lapene klappen-a
-@raw lapelo apple-a apfel-a manzana-a
-@raw lapero layer-a schicht-a capa-a
-@raw lapile april-a
-@raw lapule pull-a
-@raw lapuro lane-a spur-a carril-a
-@raw lato last-a letzte-a último-a
-@raw latale tall-a
-@raw latare plantear-a
-@raw latene lauten-a
-@raw lateli lately-a últimamente-a
-@raw latere elter-a
-@raw latiko plastic-a plastik-a plástico-a
-@raw latimi last-a último-a
-@raw latino latin-a lateinisch-a latino-a
-@raw latile till-a
-@raw lativo relative-a relativ-a relativo-a
-@raw latopo laptop-a laptop-a portátil-a
-@raw latoni relation-a relation-a
-@raw latuno cloth-a tuch-a paño-a
-@raw lako black-a schwarz-a negro-a
-@raw lakane latinoamericano-a
-@raw lakaso lake-a see-a lago-a
-@raw labe large-a
-@raw labade la-a
-@raw labale allá-a
-@raw labari lab-a laboratorio-a
-@raw labase laß-a
-@raw labahe le-a
-@raw labeto label-a label-a etiqueta-a
-@raw labene planen-a
-@raw labele al-a
-@raw laberi aerial-a aéreo-a
-@raw labipi lip-a labio-a
-@raw labito collaboration-a zusammenarbeit-a colaboración-a
-@raw labivi live-a live-a
-@raw labihi laugh-a reír-a
-@raw labodo elaborate-a aufwendig-a elaborado-a
-@raw labole lol-a
-@raw laboro labor-a labor-a parto-a
-@raw labose los-a
-@raw labove low-a
-@raw labute laut-a
-@raw laburi labour-a arbeitsmarkt-a
-@raw ladi late-a tarde-a
-@raw ladage landtag-a
-@raw ladano load-a laden-a cargar-a
-@raw ladeno load-a laden-a carga-a
-@raw ladigo landing-a landung-a aterrizaje-a
-@raw ladise ausländisch-a
-@raw ladose los-a
-@raw laduto loud-a laut-a ruidoso-a
-@raw lago long-a lang-a largo-a
-@raw lagate längst-a
-@raw lagalo illegal-a illegal-a ilegal-a
-@raw lagene erlangen-a
-@raw lageli largely-a größtenteils-a
-@raw lagere länger-a
-@raw lagoso lazy-a faul-a vago-a
-@raw lamo statement-a aussage-a declaración-a
-@raw lamapo lamp-a lampe-a lámpara-a
-@raw lamade llamado-a
-@raw lamale mal-a
-@raw lamebo lamb-a lamm-a cordero-a
-@raw lameno parliament-a parlament-a parlamento-a
-@raw lameri parliamentary-a parlamentario-a
-@raw lamiki islamic-a islámico-a
-@raw lamino isolation-a isolation-a aislamiento-a
-@raw lamise islamisch-a
-@raw lano country-a land-a país-a
-@raw lanati plant-a pflanzen-a
-@raw lanabe planear-a
-@raw lanade ausland-a
-@raw lanage lang-a
-@raw lanamo slow-a langsam-a lento-a
-@raw lanalo annual-a jährlich-a anual-a
-@raw lanare relacionar-a
-@raw laneto planet-a planet-a planeta-a
-@raw laneko blanket-a decke-a manta-a
-@raw lanede land-a
-@raw lanene landen-a
-@raw lanelo angle-a winkel-a ángulo-a
-@raw lanero foreigner-a ausländer-a extranjero-a
-@raw laniki atlantic-a atlántico-a
-@raw lanini plain-a llano-a
-@raw laniso alliance-a bündnis-a alianza-a
-@raw lanuno planning-a planung-a planificación-a
-@raw lalo election-a wahl-a elección-a
-@raw lalado ally-a verbündete-a aliado-a
-@raw lalamo alarm-a alarm-a alarma-a
-@raw lalaro altar-a altar-a altar-a
-@raw lalase anlaß-a
-@raw lalene italien-a
-@raw lalero alter-a abändern-a alterar-a
-@raw lalese unless-a
-@raw lalito liability-a haftung-a pasivo-a
-@raw lalike anläßlich-a
-@raw lalini online-a online-a
-@raw lalise realise-a
-@raw laloni alone-a allein-a
-@raw laro leave-a verlassen-a dejar-a
-@raw laragi long-a largo-a
-@raw laralo israeli-a israelisch-a israelí-a
-@raw lareno clarify-a klären-a aclarar-a
-@raw larele rely-a
-@raw larito clarity-a klarheit-a claridad-a
-@raw lariso laughter-a gelächter-a risa-a
-@raw larugi enlightenment-a aufklärung-a
-@raw laruno explanation-a erklärung-a explicación-a
-@raw larule rule-a
-@raw laso place-a platz-a lugar-a
-@raw lasate last-a
-@raw lasane entlassen-a
-@raw lasalo assault-a anschlag-a agresión-a
-@raw lasafo landscape-a landschaft-a paisaje-a
-@raw laseti burden-a last-a
-@raw laseni permit-a zulassen-a
-@raw laseri laser-a laser-a
-@raw lasiti blast-a ráfaga-a
-@raw lasiko classic-a klassisch-a clásico-a
-@raw lasino inflation-a inflation-a inflación-a
-@raw lasilo asylum-a asyl-a asilo-a
-@raw lasiro classic-a klassiker-a clásico-a
-@raw lasifo classify-a einordnen-a clasificar-a
-@raw lasoni lesion-a lesión-a
-@raw lasole solo-a
-@raw lasulo classroom-a klassenzimmer-a aula-a
-@raw lafo sleep-a schlafen-a dormir-a
-@raw lafene verlaufen-a
-@raw lafige langfristig-a
-@raw lafomo platform-a plattform-a plataforma-a
-@raw lafose los-a
-@raw lafufi run-a lauf-a
-@raw lavo law-a recht-a ley-a
-@raw lavado laundry-a waschmaschine-a lavado-a
-@raw laveno avenue-a allee-a avenida-a
-@raw lavero slavery-a sklaverei-a esclavitud-a
-@raw lavito lawsuit-a gerichtsverfahren-a pleito-a
-@raw laho launch-a starten-a lanzar-a
-@raw lepo report-a melden-a denunciar-a
-@raw leto letter-a schreiben-a carta-a
-@raw letate letzt-a
-@raw letaki leak-a austreten-a
-@raw letalo metal-a metall-a metal-a
-@raw letene leiten-a
-@raw leteli ultimately-a letztlich-a
-@raw leteri latter-a letztere-a
-@raw letiko ethical-a ethisch-a ético-a
-@raw letimo legitimate-a legitim-a legítimo-a
-@raw letino completion-a fertigstellung-a finalización-a
-@raw letili entitle-a berechtigen-a
-@raw letoro elevator-a aufzug-a ascensor-a
-@raw letulo intellectual-a intellektuelle-a intelectual-a
-@raw leturo lecture-a vorlesung-a cátedra-a
-@raw leko clear-a deutlich-a despejado-a
-@raw lekani equal-a gleichen-a
-@raw lekali electoral-a electoral-a
-@raw lekeni steer-a lenken-a
-@raw lekero left-a linker-a izquierdo-a
-@raw lekiko electric-a elektrisch-a eléctrico-a
-@raw lekino selection-a selektion-a selección-a
-@raw lekile electrical-a
-@raw lekoki electronics-a elektronik-a
-@raw lekono electronic-a elektronisch-a electrónico-a
-@raw lekuli intellectual-a intelectual-a
-@raw lebo leader-a leiter-a líder-a
-@raw lebaro comparable-a vergleichbar-a comparable-a
-@raw lebepe sleep-a
-@raw lebeni experience-a erleben-a
-@raw lebere selber-a
-@raw lebide leid-a
-@raw lebire leir-a
-@raw lebono lion-a löwe-a león-a
-@raw ledo read-a lesen-a leer-a
-@raw ledene leiden-a
-@raw ledige erledigen-a
-@raw ledino suffering-a leid-a sufrimiento-a
-@raw ledilo merely-a lediglich-a meramente-a
-@raw lego arrive-a ankommen-a llegar-a
-@raw legati legit-a legal-a
-@raw legado arrival-a ankunft-a llegada-a
-@raw legami legally-a legalmente-a
-@raw legano elegant-a elegant-a elegante-a
-@raw legali legal-a legal-a
-@raw legare alegrar-a
-@raw legaso legacy-a erbe-a herencia-a
-@raw legedo legend-a legende-a leyenda-a
-@raw legene verlegen-a
-@raw legesi less-a weniger-a
-@raw legino leg-a bein-a pierna-a
-@raw lemo performance-a leistung-a actuación-a
-@raw lemale email-a
-@raw lemeti elementary-a elemental-a
-@raw lemeni element-a element-a
-@raw lemelo employee-a arbeitnehmer-a empleado-a
-@raw lemito limit-a limit-a límite-a
-@raw lemoto motto-a motto-a lema-a
-@raw leno let-a lassen-a let-a
-@raw lenato alternative-a alternative-a alternativa-a
-@raw lenaso lens-a linse-a lente-a
-@raw lenavo alternative-a alternativ-a alternativo-a
-@raw lenele einzeln-a
-@raw lenito length-a länge-a longitud-a
-@raw lenino denial-a ablehnung-a negación-a
-@raw leniro lie-a lügen-a mentira-a
-@raw leniso silent-a leise-a silencioso-a
-@raw lelo level-a ebene-a nivel-a
-@raw lelate relate-a
-@raw lelado lead-a vorsprung-a plomo-a
-@raw lelafo leaf-a blatt-a hoja-a
-@raw lelefo eleven-a elf-a once-a
-@raw lelito elite-a elite-a élite-a
-@raw lelibo yellow-a gelb-a amarillo-a
-@raw lelini online-a online-a
-@raw leloko lock-a schleuse-a bloqueo-a
-@raw lero always-a immer-a siempre-a
-@raw lerato alternate-a abwechselnd-a suplente-a
-@raw lerano tolerance-a toleranz-a tolerancia-a
-@raw lerale overall-a
-@raw lerari literary-a literario-a
-@raw lereno learning-a lernen-a aprendizaje-a
-@raw lerero empty-a leer-a vacío-a
-@raw lerino instructor-a lehrerin-a instructor-a
-@raw leruto alert-a warnung-a alerta-a
-@raw lesi please-a bitte-a
-@raw lesano elder-a älteste-a anciano-a
-@raw lesale shall-a
-@raw leseni afford-a leisten-a
-@raw leseli grocery-a lebensmittel-a
-@raw lesero reader-a leser-a lector-a
-@raw lesini palestinian-a palestino-a
-@raw lesile silly-a
-@raw lesono lesson-a lehre-a lección-a
-@raw lesudo pleasure-a freude-a placer-a
-@raw lesuno reading-a lesen-a lectura-a
-@raw lefo unfortunately-a leider-a lamentablemente-a
-@raw lefano elephant-a elefant-a elefante-a
-@raw lefono telephone-a telefonnummer-a telefonía-a
-@raw levi carry-a llevar-a
-@raw levato lift-a heben-a levantar-a
-@raw levade elevado-a
-@raw levano relevant-a relevant-a relevante-a
-@raw levaso relevance-a relevanz-a relevancia-a
-@raw levele jeweils-a
-@raw levilo evil-a übel-a malvado-a
-@raw leviso television-a fernseher-a televisor-a
-@raw leho parent-a eltern-a progenitor-a
-@raw leheni lean-a lehnen-a
-@raw leheri elsewhere-a woanders-a
-@raw lipo reality-a realität-a realidad-a
-@raw lipiki glimpse-a einblick-a
-@raw lipiso cleaning-a reinigung-a limpieza-a
-@raw lito policy-a politik-a política-a
-@raw litani metropolitan-a metropolitano-a
-@raw litaro military-a militär-a militar-a
-@raw litero liter-a liter-a litro-a
-@raw litiki politics-a politiker-a
-@raw litigo lightning-a gewitter-a relámpago-a
-@raw litime ultimo-a
-@raw litino lighting-a beleuchtung-a iluminación-a
-@raw litile till-a
-@raw litoro mandatory-a obligatorisch-a obligatorio-a
-@raw liko like-a wie-a según-a
-@raw likato delicate-a heikel-a delicado-a
-@raw likabo applicable-a anwendbar-a aplicable-a
-@raw likani publication-a veröffentlichung-a
-@raw likeno align-a ausrichten-a alinear-a
-@raw likeli likely-a wahrscheinlich-a
-@raw likere jeglicher-a
-@raw likito plain-a schlicht-a llano-a
-@raw libi alone-a allein-a
-@raw libalo liberal-a liberal-a liberal-a
-@raw libaro library-a bibliothek-a biblioteca-a
-@raw libene verlieben-a
-@raw libelo liberal-a liberal-a liberal-a
-@raw libere liberty-a
-@raw libule juli-a
-@raw lido land-a grundstück-a tierra-a
-@raw lidaro solidarity-a solidarität-a solidaridad-a
-@raw ligo lie-a liegen-a mentir-a
-@raw ligano obligation-a verpflichtung-a obligación-a
-@raw ligaro allocate-a zuweisen-a asignar-a
-@raw ligeti slightly-a ligeramente-a
-@raw ligene klingen-a
-@raw ligeri liver-a hígado-a
-@raw ligino religion-a religion-a religión-a
-@raw ligiso religious-a religiös-a religioso-a
-@raw liguno involvement-a beteiligung-a implicación-a
-@raw limo crime-a verbrechen-a delito-a
-@raw limati climate-a klima-a
-@raw limano limitation-a beschränkung-a limitación-a
-@raw limare alimentar-a
-@raw limeni feed-a alimento-a
-@raw limito limit-a begrenzen-a limitar-a
-@raw limiki olympic-a olímpico-a
-@raw limido limited-a begrenzt-a limitado-a
-@raw limini eliminate-a beseitigen-a
-@raw limiro preliminary-a vorläufig-a preliminar-a
-@raw limono lemon-a zitrone-a limón-a
-@raw lino little-a klein-a pequeño-a
-@raw linake link-a
-@raw linado left-a links-a izquierda-a
-@raw linalo lonely-a einsam-a solitario-a
-@raw linasi left-a links-a
-@raw lineko link-a verlinken-a enlazar-a
-@raw linedo blind-a blind-a ciego-a
-@raw lineno succeed-a gelingen-a triunfar-a
-@raw liniko clinic-a klinik-a clínica-a
-@raw linilo clinical-a klinische-a clínico-a
-@raw lilo finally-a schließlich-a finalmente-a
-@raw lilene willen-a
-@raw lilino airline-a fluggesellschaft-a aerolínea-a
-@raw liro explain-a erklären-a explicar-a
-@raw lirali literally-a literalmente-a
-@raw liraro literature-a literatur-a literatura-a
-@raw lirero delivery-a lieferung-a entrega-a
-@raw liriki lyric-a lírica-a
-@raw liso close-a schließen-a cerrar-a
-@raw lisate list-a
-@raw lisade realizado-a
-@raw lisane anschließen-a
-@raw lisale policial-a
-@raw lisaso usage-a einsatz-a utilización-a
-@raw lisebe anschließen-a
-@raw lisede anschließend-a
-@raw liseni listen-a anhören-a
-@raw liseso license-a lizenz-a licencia-a
-@raw lisito unlawful-a rechtswidrig-a ilícito-a
-@raw lisino civilization-a kulturgeschichte-a civilización-a
-@raw lifo life-a leben-a vida-a
-@raw lifeti lifetime-a laufzeit-a
-@raw lifesi lifestyle-a lebensweise-a
-@raw livo live-a leben-a vivir-a
-@raw livero deliver-a ausliefern-a entregar-a
-@raw livigi living-a vivir-a
-@raw liho light-a leicht-a ligero-a
-@raw lihevi live-a live-a
-@raw lopi lay-a legen-a
-@raw loto allow-a erlauben-a permitir-a
-@raw lotado loyalty-a treue-a lealtad-a
-@raw lotale totally-a
-@raw lotero lottery-a gewinnspiel-a lotería-a
-@raw lotini clothing-a vestimenta-a
-@raw loki look-a schauen-a
-@raw lokato locate-a lokalisieren-a localizar-a
-@raw lokalo local-a lokal-a local-a
-@raw lokero loose-a locker-a suelto-a
-@raw lokopo loop-a schleife-a bucle-a
-@raw lokuro insanity-a wahnsinn-a locura-a
-@raw lobo love-a liebe-a amor-a
-@raw lobeni praise-a loben-a
-@raw lobiso praise-a lob-a elogio-a
-@raw lodi low-a niedrig-a
-@raw logi long-a lange-a
-@raw logeni apologize-a entschuldigen-a
-@raw logero achievement-a verwirklichung-a logro-a
-@raw logipo logo-a logo-a logotipo-a
-@raw logiko logical-a logisch-a lógico-a
-@raw logide alongside-a
-@raw lomo application-a anwendung-a aplicación-a
-@raw lomeni employment-a beschäftigung-a
-@raw lono down-a unten-a abajo-a
-@raw lonago along-a entlang-a junto-a
-@raw lonaso canvas-a leinwand-a lienzo-a
-@raw lonoro floor-a etage-a planta-a
-@raw lolo local-a lokal-a local-a
-@raw loleto athlete-a sportler-a atleta-a
-@raw loleni clear-a löschen-a
-@raw loliko sudden-a plötzlich-a repentino-a
-@raw lolivo olive-a olivenöl-a oliva-a
-@raw loro word-a wort-a palabra-a
-@raw lorano exploration-a erforschung-a exploración-a
-@raw loralo loyal-a treu-a leal-a
-@raw lorero loser-a verlierer-a perdedor-a
-@raw loresi loose-a verlieren-a
-@raw lorilo oil-a öl-a petróleo-a
-@raw loruki lucky-a afortunado-a
-@raw loso lose-a verlieren-a perder-a
-@raw losano loan-a darlehen-a préstamo-a
-@raw loseto closet-a kleiderschrank-a armario-a
-@raw loseno solve-a lösen-a resolver-a
-@raw losero monastery-a kloster-a monasterio-a
-@raw losino explosion-a explosion-a explosión-a
-@raw losoko look-a schau-a mirada-a
-@raw losugo closing-a schließung-a clausura-a
-@raw lofo pain-a schmerz-a dolor-a
-@raw lovo love-a lieben-a amar-a
-@raw lovado lawyer-a anwalt-a abogado-a
-@raw lovali slowly-a lentamente-a
-@raw loveto lover-a geliebte-a amante-a
-@raw lovelo lovely-a herrlich-a precioso-a
-@raw lovere lower-a
-@raw lovogo loving-a liebevoll-a amoroso-a
-@raw loho ball-a ball-a bola-a
-@raw lohegi lounge-a wohnzimmer-a
-@raw lohene lohnen-a
-@raw lupe leut-a
-@raw luto light-a licht-a luz-a
-@raw lutado willingness-a bereitschaft-a voluntad-a
-@raw luteti outlet-a austritt-a
-@raw luteri leather-a cuero-a
-@raw lutini evaluation-a auswertung-a
-@raw luko although-a obwohl-a aunque-a
-@raw lukemi outline-a esquema-a
-@raw lukuho luxury-a luxus-a lujo-a
-@raw lubi plan-a planen-a
-@raw ludi end-a beenden-a
-@raw lugo solution-a lösung-a solución-a
-@raw lumo album-a album-a disco-a
-@raw lumimo aluminum-a aluminium-a aluminio-a
-@raw lumino pupil-a schülerin-a alumno-a
-@raw luno link-a verbindung-a enlace-a
-@raw lunako lunch-a mittag-a almuerzo-a
-@raw lunaro revolutionary-a revolutionär-a revolucionario-a
-@raw lunelo tunnel-a tunnel-a túnel-a
-@raw lunese lunes-a
-@raw lunogo lung-a lunge-a pulmón-a
-@raw lulo call-a anruf-a llamada-a
-@raw luro course-a kurs-a curso-a
-@raw lurato illustrate-a illustrieren-a ilustrar-a
-@raw lurano illustration-a illustration-a ilustración-a
-@raw luso list-a liste-a lista-a
-@raw lusati lust-a lust-a
-@raw lusave inklusive-a
-@raw lusido fluid-a flüssig-a líquido-a
-@raw lusino conclusion-a fazit-a conclusión-a
-@raw lusire lucir-a
-@raw lusivo exclusive-a exklusiv-a exclusivo-a
-@raw lusono illusion-a illusion-a ilusión-a
-@raw lususo exclusion-a ausschluß-a exclusión-a
-@raw lufi least-a wenigsten-a
-@raw luvo russian-a russisch-a ruso-a
-@raw luho additional-a zusätzlich-a adicional-a
+@raw lu tika the-a der-a el-a
+@raw lapu detiva happy-a glücklich-a feliz-a
+@raw lapeni veraba klappen-a
+@raw lapelu nomuna apple-a apfel-a manzana-a
+@raw laperu nomuna layer-a schicht-a capa-a
+@raw lapili nomuna april-a
+@raw lapuli veraba pull-a
+@raw lapuru nomuna lane-a spur-a carril-a
+@raw latu detiva last-a letzte-a último-a
+@raw latali detiva tall-a
+@raw latari veraba plantear-a
+@raw lateni veraba lauten-a
+@raw latelo deroba lately-a últimamente-a
+@raw lateri nomuna elter-a
+@raw latiku nomuna plastic-a plastik-a plástico-a
+@raw latimo nomuna last-a último-a
+@raw latinu detiva latin-a lateinisch-a latino-a
+@raw latili dunona till-a
+@raw lativu detiva relative-a relativ-a relativo-a
+@raw latopu nomuna laptop-a laptop-a portátil-a
+@raw latono nomuna relation-a relation-a
+@raw latunu nomuna cloth-a tuch-a paño-a
+@raw laku detiva black-a schwarz-a negro-a
+@raw lakani detiva latinoamericano-a
+@raw lakasu nomuna lake-a see-a lago-a
+@raw labi detiva large-a
+@raw labadi terona la-a
+@raw labali deroba allá-a
+@raw labaro nomuna lab-a laboratorio-a
+@raw labasi veraba laß-a
+@raw labahi nomuna le-a
+@raw labetu nomuna label-a label-a etiqueta-a
+@raw labeni detiva planen-a
+@raw labeli peposa al-a
+@raw labero detiva aerial-a aéreo-a
+@raw labipo nomuna lip-a labio-a
+@raw labitu nomuna collaboration-a zusammenarbeit-a colaboración-a
+@raw labivo deroba live-a live-a
+@raw labiho veraba laugh-a reír-a
+@raw labodu detiva elaborate-a aufwendig-a elaborado-a
+@raw laboli terona lol-a
+@raw laboru nomuna labor-a labor-a parto-a
+@raw labosi peposa los-a
+@raw labovi deroba low-a
+@raw labuti peposa laut-a
+@raw laburo nomuna labour-a arbeitsmarkt-a
+@raw lado deroba late-a tarde-a
+@raw ladagi nomuna landtag-a
+@raw ladanu veraba load-a laden-a cargar-a
+@raw ladenu nomuna load-a laden-a carga-a
+@raw ladigu nomuna landing-a landung-a aterrizaje-a
+@raw ladisi detiva ausländisch-a
+@raw ladosi deroba los-a
+@raw ladutu detiva loud-a laut-a ruidoso-a
+@raw lagu detiva long-a lang-a largo-a
+@raw lagati deroba längst-a
+@raw lagalu detiva illegal-a illegal-a ilegal-a
+@raw lageni veraba erlangen-a
+@raw lagelo deroba largely-a größtenteils-a
+@raw lageri detiva länger-a
+@raw lagosu detiva lazy-a faul-a vago-a
+@raw lamu nomuna statement-a aussage-a declaración-a
+@raw lamapu nomuna lamp-a lampe-a lámpara-a
+@raw lamadi detiva llamado-a
+@raw lamali detiva mal-a
+@raw lamebu nomuna lamb-a lamm-a cordero-a
+@raw lamenu nomuna parliament-a parlament-a parlamento-a
+@raw lamero detiva parliamentary-a parlamentario-a
+@raw lamiko detiva islamic-a islámico-a
+@raw laminu nomuna isolation-a isolation-a aislamiento-a
+@raw lamisi detiva islamisch-a
+@raw lanu nomuna country-a land-a país-a
+@raw lanato veraba plant-a pflanzen-a
+@raw lanabi veraba planear-a
+@raw lanadi nomuna ausland-a
+@raw lanagi peposa lang-a
+@raw lanamu detiva slow-a langsam-a lento-a
+@raw lanalu detiva annual-a jährlich-a anual-a
+@raw lanari veraba relacionar-a
+@raw lanetu nomuna planet-a planet-a planeta-a
+@raw laneku nomuna blanket-a decke-a manta-a
+@raw lanedi veraba land-a
+@raw laneni veraba landen-a
+@raw lanelu nomuna angle-a winkel-a ángulo-a
+@raw laneru nomuna foreigner-a ausländer-a extranjero-a
+@raw laniko detiva atlantic-a atlántico-a
+@raw lanino nomuna plain-a llano-a
+@raw lanisu nomuna alliance-a bündnis-a alianza-a
+@raw lanunu nomuna planning-a planung-a planificación-a
+@raw lalu nomuna election-a wahl-a elección-a
+@raw laladu nomuna ally-a verbündete-a aliado-a
+@raw lalamu nomuna alarm-a alarm-a alarma-a
+@raw lalaru nomuna altar-a altar-a altar-a
+@raw lalasi nomuna anlaß-a
+@raw laleni nomuna italien-a
+@raw laleru veraba alter-a abändern-a alterar-a
+@raw lalesi dunona unless-a
+@raw lalitu nomuna liability-a haftung-a pasivo-a
+@raw laliki peposa anläßlich-a
+@raw lalino deroba online-a online-a
+@raw lalisi veraba realise-a
+@raw lalono detiva alone-a allein-a
+@raw laru veraba leave-a verlassen-a dejar-a
+@raw larago nomuna long-a largo-a
+@raw laralu detiva israeli-a israelisch-a israelí-a
+@raw larenu veraba clarify-a klären-a aclarar-a
+@raw lareli veraba rely-a
+@raw laritu nomuna clarity-a klarheit-a claridad-a
+@raw larisu nomuna laughter-a gelächter-a risa-a
+@raw larugo nomuna enlightenment-a aufklärung-a
+@raw larunu nomuna explanation-a erklärung-a explicación-a
+@raw laruli veraba rule-a
+@raw lasu nomuna place-a platz-a lugar-a
+@raw lasati veraba last-a
+@raw lasani veraba entlassen-a
+@raw lasalu nomuna assault-a anschlag-a agresión-a
+@raw lasafu nomuna landscape-a landschaft-a paisaje-a
+@raw laseto nomuna burden-a last-a
+@raw laseno veraba permit-a zulassen-a
+@raw lasero nomuna laser-a laser-a
+@raw lasito nomuna blast-a ráfaga-a
+@raw lasiku detiva classic-a klassisch-a clásico-a
+@raw lasinu nomuna inflation-a inflation-a inflación-a
+@raw lasilu nomuna asylum-a asyl-a asilo-a
+@raw lasiru nomuna classic-a klassiker-a clásico-a
+@raw lasifu veraba classify-a einordnen-a clasificar-a
+@raw lasono nomuna lesion-a lesión-a
+@raw lasoli detiva solo-a
+@raw lasulu nomuna classroom-a klassenzimmer-a aula-a
+@raw lafu veraba sleep-a schlafen-a dormir-a
+@raw lafeni veraba verlaufen-a
+@raw lafigi detiva langfristig-a
+@raw lafomu nomuna platform-a plattform-a plataforma-a
+@raw lafosi nomuna los-a
+@raw lafufo nomuna run-a lauf-a
+@raw lavu nomuna law-a recht-a ley-a
+@raw lavadu nomuna laundry-a waschmaschine-a lavado-a
+@raw lavenu nomuna avenue-a allee-a avenida-a
+@raw laveru nomuna slavery-a sklaverei-a esclavitud-a
+@raw lavitu nomuna lawsuit-a gerichtsverfahren-a pleito-a
+@raw lahu veraba launch-a starten-a lanzar-a
+@raw lepu veraba report-a melden-a denunciar-a
+@raw letu nomuna letter-a buchstabe-a letra-a
+@raw letati detiva letzt-a
+@raw letako veraba leak-a austreten-a
+@raw letalu nomuna metal-a metall-a metal-a
+@raw leteni veraba leiten-a
+@raw letelo deroba ultimately-a letztlich-a
+@raw letero detiva latter-a letztere-a
+@raw letiku detiva ethical-a ethisch-a ético-a
+@raw letimu detiva legitimate-a legitim-a legítimo-a
+@raw letinu nomuna completion-a fertigstellung-a finalización-a
+@raw letilo veraba entitle-a berechtigen-a
+@raw letoru nomuna elevator-a aufzug-a ascensor-a
+@raw letulu nomuna intellectual-a intellektuelle-a intelectual-a
+@raw leturu nomuna lecture-a vorlesung-a cátedra-a
+@raw leku detiva clear-a deutlich-a despejado-a
+@raw lekano veraba equal-a gleichen-a
+@raw lekalo detiva electoral-a electoral-a
+@raw lekeno veraba steer-a lenken-a
+@raw lekeru detiva left-a linker-a izquierdo-a
+@raw lekiku detiva electric-a elektrisch-a eléctrico-a
+@raw lekinu nomuna selection-a selektion-a selección-a
+@raw lekili detiva electrical-a
+@raw lekoko nomuna electronics-a elektronik-a
+@raw lekonu detiva electronic-a elektronisch-a electrónico-a
+@raw lekulo detiva intellectual-a intelectual-a
+@raw lebu nomuna leader-a leiter-a líder-a
+@raw lebaru detiva comparable-a vergleichbar-a comparable-a
+@raw lebepi nomuna sleep-a
+@raw lebeno veraba experience-a erleben-a
+@raw leberi tika selber-a
+@raw lebidi peposa leid-a
+@raw lebiri veraba leir-a
+@raw lebonu nomuna lion-a löwe-a león-a
+@raw ledu veraba read-a lesen-a leer-a
+@raw ledeni veraba leiden-a
+@raw ledigi veraba erledigen-a
+@raw ledinu nomuna suffering-a leid-a sufrimiento-a
+@raw ledilu deroba merely-a lediglich-a meramente-a
+@raw legu veraba arrive-a ankommen-a llegar-a
+@raw legato detiva legit-a legal-a
+@raw legadu nomuna arrival-a ankunft-a llegada-a
+@raw legamo deroba legally-a legalmente-a
+@raw leganu detiva elegant-a elegant-a elegante-a
+@raw legalo detiva legal-a legal-a
+@raw legari veraba alegrar-a
+@raw legasu nomuna legacy-a erbe-a herencia-a
+@raw legedu nomuna legend-a legende-a leyenda-a
+@raw legeni veraba verlegen-a
+@raw legeso detiva less-a weniger-a
+@raw leginu nomuna leg-a bein-a pierna-a
+@raw lemu nomuna performance-a leistung-a actuación-a
+@raw lemali veraba email-a
+@raw lemeto detiva elementary-a elemental-a
+@raw lemeno nomuna element-a element-a
+@raw lemelu nomuna employee-a arbeitnehmer-a empleado-a
+@raw lemitu nomuna limit-a limit-a límite-a
+@raw lemotu nomuna motto-a motto-a lema-a
+@raw lenu veraba let-a lassen-a let-a
+@raw lenatu nomuna alternative-a alternative-a alternativa-a
+@raw lenasu nomuna lens-a linse-a lente-a
+@raw lenavu detiva alternative-a alternativ-a alternativo-a
+@raw leneli detiva einzeln-a
+@raw lenitu nomuna length-a länge-a longitud-a
+@raw leninu nomuna denial-a ablehnung-a negación-a
+@raw leniru nomuna lie-a lügen-a mentira-a
+@raw lenisu detiva silent-a leise-a silencioso-a
+@raw lelu nomuna level-a ebene-a nivel-a
+@raw lelati veraba relate-a
+@raw leladu nomuna lead-a vorsprung-a plomo-a
+@raw lelafu nomuna leaf-a blatt-a hoja-a
+@raw lelefu numera eleven-a elf-a once-a
+@raw lelitu nomuna elite-a elite-a élite-a
+@raw lelibu nomuna yellow-a gelb-a amarillo-a
+@raw lelino nomuna online-a online-a
+@raw leloku nomuna lock-a schleuse-a bloqueo-a
+@raw leru deroba always-a immer-a siempre-a
+@raw leratu detiva alternate-a abwechselnd-a suplente-a
+@raw leranu nomuna tolerance-a toleranz-a tolerancia-a
+@raw lerali detiva overall-a
+@raw leraro detiva literary-a literario-a
+@raw lerenu nomuna learning-a lernen-a aprendizaje-a
+@raw lereru detiva empty-a leer-a vacío-a
+@raw lerinu nomuna instructor-a lehrerin-a instructor-a
+@raw lerutu nomuna alert-a warnung-a alerta-a
+@raw leso terona please-a bitte-a
+@raw lesanu nomuna elder-a älteste-a anciano-a
+@raw lesali veraba shall-a
+@raw leseno veraba afford-a leisten-a
+@raw leselo nomuna grocery-a lebensmittel-a
+@raw leseru nomuna reader-a leser-a lector-a
+@raw lesino detiva palestinian-a palestino-a
+@raw lesili detiva silly-a
+@raw lesonu nomuna lesson-a lehre-a lección-a
+@raw lesudu nomuna pleasure-a freude-a placer-a
+@raw lesunu nomuna reading-a lesen-a lectura-a
+@raw lefu deroba unfortunately-a leider-a lamentablemente-a
+@raw lefanu nomuna elephant-a elefant-a elefante-a
+@raw lefonu nomuna telephone-a telefonnummer-a telefonía-a
+@raw levo veraba carry-a llevar-a
+@raw levatu veraba lift-a heben-a levantar-a
+@raw levadi detiva elevado-a
+@raw levanu detiva relevant-a relevant-a relevante-a
+@raw levasu nomuna relevance-a relevanz-a relevancia-a
+@raw leveli deroba jeweils-a
+@raw levilu detiva evil-a übel-a malvado-a
+@raw levisu nomuna television-a fernseher-a televisor-a
+@raw lehu nomuna parent-a eltern-a progenitor-a
+@raw leheno veraba lean-a lehnen-a
+@raw lehero deroba elsewhere-a woanders-a
+@raw lipu nomuna reality-a realität-a realidad-a
+@raw lipiko nomuna glimpse-a einblick-a
+@raw lipisu nomuna cleaning-a reinigung-a limpieza-a
+@raw litu nomuna policy-a politik-a política-a
+@raw litano detiva metropolitan-a metropolitano-a
+@raw litaru nomuna military-a militär-a militar-a
+@raw literu nomuna liter-a liter-a litro-a
+@raw litiko nomuna politics-a politiker-a
+@raw litigu nomuna lightning-a gewitter-a relámpago-a
+@raw litimi detiva ultimo-a
+@raw litinu nomuna lighting-a beleuchtung-a iluminación-a
+@raw litili peposa till-a
+@raw litoru detiva mandatory-a obligatorisch-a obligatorio-a
+@raw liku peposa like-a wie-a según-a
+@raw likatu detiva delicate-a heikel-a delicado-a
+@raw likabu detiva applicable-a anwendbar-a aplicable-a
+@raw likano nomuna publication-a veröffentlichung-a
+@raw likenu veraba align-a ausrichten-a alinear-a
+@raw likelo deroba likely-a wahrscheinlich-a
+@raw likeri tika jeglicher-a
+@raw likitu detiva plain-a schlicht-a llano-a
+@raw libo deroba alone-a allein-a
+@raw libalu detiva liberal-a liberal-a liberal-a
+@raw libaru nomuna library-a bibliothek-a biblioteca-a
+@raw libeni veraba verlieben-a
+@raw libelu nomuna liberal-a liberal-a liberal-a
+@raw liberi nomuna liberty-a
+@raw libuli nomuna juli-a
+@raw lidu nomuna land-a grundstück-a tierra-a
+@raw lidaru nomuna solidarity-a solidarität-a solidaridad-a
+@raw ligu veraba lie-a liegen-a mentir-a
+@raw liganu nomuna obligation-a verpflichtung-a obligación-a
+@raw ligaru veraba allocate-a zuweisen-a asignar-a
+@raw ligeto deroba slightly-a ligeramente-a
+@raw ligeni veraba klingen-a
+@raw ligero nomuna liver-a hígado-a
+@raw liginu nomuna religion-a religion-a religión-a
+@raw ligisu detiva religious-a religiös-a religioso-a
+@raw ligunu nomuna involvement-a beteiligung-a implicación-a
+@raw limu nomuna crime-a verbrechen-a delito-a
+@raw limato nomuna climate-a klima-a
+@raw limanu nomuna limitation-a beschränkung-a limitación-a
+@raw limari veraba alimentar-a
+@raw limeno nomuna feed-a alimento-a
+@raw limitu veraba limit-a begrenzen-a limitar-a
+@raw limiko detiva olympic-a olímpico-a
+@raw limidu detiva limited-a begrenzt-a limitado-a
+@raw limino veraba eliminate-a beseitigen-a
+@raw limiru detiva preliminary-a vorläufig-a preliminar-a
+@raw limonu nomuna lemon-a zitrone-a limón-a
+@raw linu detiva little-a klein-a pequeño-a
+@raw linaki detiva link-a
+@raw linadu nomuna left-a links-a izquierda-a
+@raw linalu detiva lonely-a einsam-a solitario-a
+@raw linaso deroba left-a links-a
+@raw lineku veraba link-a verlinken-a enlazar-a
+@raw linedu detiva blind-a blind-a ciego-a
+@raw linenu veraba succeed-a gelingen-a triunfar-a
+@raw liniku nomuna clinic-a klinik-a clínica-a
+@raw linilu detiva clinical-a klinische-a clínico-a
+@raw lilu deroba finally-a schließlich-a finalmente-a
+@raw lileni nomuna willen-a
+@raw lilinu nomuna airline-a fluggesellschaft-a aerolínea-a
+@raw liru veraba explain-a erklären-a explicar-a
+@raw liralo deroba literally-a literalmente-a
+@raw liraru nomuna literature-a literatur-a literatura-a
+@raw lireru nomuna delivery-a lieferung-a entrega-a
+@raw liriko nomuna lyric-a lírica-a
+@raw lisu veraba close-a schließen-a cerrar-a
+@raw lisati veraba list-a
+@raw lisadi detiva realizado-a
+@raw lisani veraba anschließen-a
+@raw lisali detiva policial-a
+@raw lisasu nomuna usage-a einsatz-a utilización-a
+@raw lisebi detiva anschließen-a
+@raw lisedi detiva anschließend-a
+@raw liseno veraba listen-a anhören-a
+@raw lisesu nomuna license-a lizenz-a licencia-a
+@raw lisitu detiva unlawful-a rechtswidrig-a ilícito-a
+@raw lisinu nomuna civilization-a kulturgeschichte-a civilización-a
+@raw lifu nomuna life-a leben-a vida-a
+@raw lifeto nomuna lifetime-a laufzeit-a
+@raw lifeso nomuna lifestyle-a lebensweise-a
+@raw livu veraba live-a leben-a vivir-a
+@raw liveru veraba deliver-a ausliefern-a entregar-a
+@raw livigo nomuna living-a vivir-a
+@raw lihu detiva light-a leicht-a ligero-a
+@raw lihevo detiva live-a live-a
+@raw lopo veraba lay-a legen-a
+@raw lotu veraba allow-a erlauben-a permitir-a
+@raw lotadu nomuna loyalty-a treue-a lealtad-a
+@raw lotali deroba totally-a
+@raw loteru nomuna lottery-a gewinnspiel-a lotería-a
+@raw lotino nomuna clothing-a vestimenta-a
+@raw loko veraba look-a schauen-a
+@raw lokatu veraba locate-a lokalisieren-a localizar-a
+@raw lokalu nomuna local-a lokal-a local-a
+@raw lokeru detiva loose-a locker-a suelto-a
+@raw lokopu nomuna loop-a schleife-a bucle-a
+@raw lokuru nomuna insanity-a wahnsinn-a locura-a
+@raw lobu nomuna love-a liebe-a amor-a
+@raw lobeno veraba praise-a loben-a
+@raw lobisu nomuna praise-a lob-a elogio-a
+@raw lodo detiva low-a niedrig-a
+@raw logo deroba long-a lange-a
+@raw logeno veraba apologize-a entschuldigen-a
+@raw logeru nomuna achievement-a verwirklichung-a logro-a
+@raw logipu nomuna logo-a logo-a logotipo-a
+@raw logiku detiva logical-a logisch-a lógico-a
+@raw logidi peposa alongside-a
+@raw lomu nomuna application-a anwendung-a aplicación-a
+@raw lomeno nomuna employment-a beschäftigung-a
+@raw lonu deroba down-a unten-a abajo-a
+@raw lonagu deroba along-a entlang-a junto-a
+@raw lonasu nomuna canvas-a leinwand-a lienzo-a
+@raw lonoru nomuna floor-a etage-a planta-a
+@raw lolu detiva local-a lokal-a local-a
+@raw loletu nomuna athlete-a sportler-a atleta-a
+@raw loleno veraba clear-a löschen-a
+@raw loliku detiva sudden-a plötzlich-a repentino-a
+@raw lolivu nomuna olive-a olivenöl-a oliva-a
+@raw loru nomuna word-a wort-a palabra-a
+@raw loranu nomuna exploration-a erforschung-a exploración-a
+@raw loralu detiva loyal-a treu-a leal-a
+@raw loreru nomuna loser-a verlierer-a perdedor-a
+@raw loreso deroba loose-a verlieren-a
+@raw lorilu nomuna oil-a öl-a petróleo-a
+@raw loruko detiva lucky-a afortunado-a
+@raw losu veraba lose-a verlieren-a perder-a
+@raw losanu nomuna loan-a darlehen-a préstamo-a
+@raw losetu nomuna closet-a kleiderschrank-a armario-a
+@raw losenu veraba solve-a lösen-a resolver-a
+@raw loseru nomuna monastery-a kloster-a monasterio-a
+@raw losinu nomuna explosion-a explosion-a explosión-a
+@raw losoku nomuna look-a schau-a mirada-a
+@raw losugu nomuna closing-a schließung-a clausura-a
+@raw lofu nomuna pain-a schmerz-a dolor-a
+@raw lovu veraba love-a lieben-a amar-a
+@raw lovadu nomuna lawyer-a anwalt-a abogado-a
+@raw lovalo deroba slowly-a lentamente-a
+@raw lovetu nomuna lover-a geliebte-a amante-a
+@raw lovelu detiva lovely-a herrlich-a precioso-a
+@raw loveri veraba lower-a
+@raw lovogu detiva loving-a liebevoll-a amoroso-a
+@raw lohu nomuna ball-a ball-a bola-a
+@raw lohego nomuna lounge-a wohnzimmer-a
+@raw loheni veraba lohnen-a
+@raw lupi nomuna leut-a
+@raw lutu nomuna light-a licht-a luz-a
+@raw lutadu nomuna willingness-a bereitschaft-a voluntad-a
+@raw luteto nomuna outlet-a austritt-a
+@raw lutero nomuna leather-a cuero-a
+@raw lutino nomuna evaluation-a auswertung-a
+@raw luku dunona although-a obwohl-a aunque-a
+@raw lukemo nomuna outline-a esquema-a
+@raw lukuhu nomuna luxury-a luxus-a lujo-a
+@raw lubo veraba plan-a planen-a
+@raw ludo veraba end-a beenden-a
+@raw lugu nomuna solution-a lösung-a solución-a
+@raw lumu nomuna album-a album-a disco-a
+@raw lumimu nomuna aluminum-a aluminium-a aluminio-a
+@raw luminu nomuna pupil-a schülerin-a alumno-a
+@raw lunu nomuna link-a verbindung-a enlace-a
+@raw lunaku nomuna lunch-a mittag-a almuerzo-a
+@raw lunaru detiva revolutionary-a revolutionär-a revolucionario-a
+@raw lunelu nomuna tunnel-a tunnel-a túnel-a
+@raw lunesi nomuna lunes-a
+@raw lunogu nomuna lung-a lunge-a pulmón-a
+@raw lulu nomuna call-a anruf-a llamada-a
+@raw luru nomuna course-a kurs-a curso-a
+@raw luratu veraba illustrate-a illustrieren-a ilustrar-a
+@raw luranu nomuna illustration-a illustration-a ilustración-a
+@raw lusu nomuna list-a liste-a lista-a
+@raw lusato nomuna lust-a lust-a
+@raw lusavi peposa inklusive-a
+@raw lusidu detiva fluid-a flüssig-a líquido-a
+@raw lusinu nomuna conclusion-a fazit-a conclusión-a
+@raw lusiri veraba lucir-a
+@raw lusivu detiva exclusive-a exklusiv-a exclusivo-a
+@raw lusonu nomuna illusion-a illusion-a ilusión-a
+@raw lususu nomuna exclusion-a ausschluß-a exclusión-a
+@raw lufo detiva least-a wenigsten-a
+@raw luvu detiva russian-a russisch-a ruso-a
+@raw luhu detiva additional-a zusätzlich-a adicional-a
 
 ## ("r")
 
-@raw ro his-a sein-a su-a
-@raw rapo rate-a satz-a tasa-a
-@raw rapide rapid-a
-@raw rapino rape-a vergewaltigung-a violación-a
-@raw rate erst-a
-@raw ratase gratis-a
-@raw ratego strategy-a strategie-a estrategia-a
-@raw rateri perpetrator-a täter-a
-@raw ratigo robust-a kräftig-a robusto-a
-@raw ratino rating-a wertung-a clasificación-a
-@raw ratire retire-a
-@raw ratiso ratio-a verhältnis-a proporción-a
-@raw rativo narrative-a erzählung-a narración-a
-@raw ratono attorney-a rechtsanwalt-a abogada-a
-@raw ratoro translator-a übersetzer-a traductor-a
-@raw ratuse rathaus-a
-@raw rako ask-a fragen-a preguntar-a
-@raw rakati react-a reaccionar-a
-@raw rakami virtually-a prácticamente-a
-@raw rakare arrancar-a
-@raw raketo attract-a anziehen-a atraer-a
-@raw rakeke frankreich-a
-@raw rakigo ranking-a reihenfolge-a ranking-a
-@raw rakino practice-a üben-a practicar-a
-@raw rakiso practical-a praktisch-a práctico-a
-@raw rakivo attractive-a attraktiv-a atractivo-a
-@raw rakono attraction-a sehenswürdigkeit-a atracción-a
-@raw rakuro infrastructure-a infrastruktur-a infraestructura-a
-@raw rabo ready-a fertig-a listo-a
-@raw rabate rato-a
-@raw rabade re-a
-@raw rabafe re-a
-@raw rabeti rat-a rata-a
-@raw rabede verabschieden-a
-@raw rabere ayer-a
-@raw rabito rabbit-a hase-a conejo-a
-@raw raboso rose-a rose-a rosa-a
-@raw rabuse russe-a
-@raw rado truth-a wahrheit-a verdad-a
-@raw radato graduate-a diplom-a licenciado-a
-@raw radabi pleasant-a agradable-a
-@raw radano radiation-a strahlung-a radiación-a
-@raw radaro radar-a radar-a radar-a
-@raw radelo wheel-a rad-a rueda-a
-@raw radero modify-a verändern-a modificar-a
-@raw radige trading-a
-@raw radimo random-a zufällig-a aleatorio-a
-@raw radino tradition-a tradition-a tradición-a
-@raw radilo traditional-a traditionell-a tradicional-a
-@raw radose rose-a
-@raw radute graduate-a
-@raw rago question-a frage-a pregunta-a
-@raw ragato straight-a geradeaus-a recto-a
-@raw ragare ranger-a
-@raw rageti straight-a recto-a
-@raw ragedo tragedy-a tragödie-a tragedia-a
-@raw ragego arrangement-a vereinbarung-a arreglo-a
-@raw rageno urge-a drängen-a instar-a
-@raw ragero stranger-a fremde-a extraño-a
-@raw ragiko strategic-a strategisch-a estratégico-a
-@raw ragiso tragic-a tragisch-a trágico-a
-@raw ragono dragon-a dragon-a dragón-a
-@raw ramo room-a raum-a sala-a
-@raw ramato dramatic-a dramatisch-a dramático-a
-@raw rameto fragment-a fragment-a fragmento-a
-@raw rameno frame-a rahmen-a marco-a
-@raw ramito transmit-a übermitteln-a transmitir-a
-@raw ramino transmission-a getriebe-a transmisión-a
-@raw ramiro weird-a komisch-a raro-a
-@raw ramumi trauma-a trauma-a
-@raw ramuso bouquet-a strauß-a ramo-a
-@raw rano reason-a grund-a razón-a
-@raw ranako transaction-a transaktion-a transacción-a
-@raw ranabo reasonable-a vernünftig-a razonable-a
-@raw ranadi grenade-a granada-a
-@raw ranage range-a
-@raw ranano transformation-a transformation-a transformación-a
-@raw ranalo rational-a rational-a racional-a
-@raw ranare extrañar-a
-@raw raneke rank-a
-@raw ranedo edge-a rand-a borde-a
-@raw ranego range-a reichweite-a alcance-a
-@raw raneno transparency-a transparenz-a transparencia-a
-@raw ranero gather-a versammeln-a reunir-a
-@raw raneso race-a rennen-a raza-a
-@raw raniti grant-a subsidio-a
-@raw raniko branch-a zweig-a rama-a
-@raw ranide grande-a
-@raw ranigo rank-a rang-a rango-a
-@raw ranino training-a weiterbildung-a formación-a
-@raw ranilo trail-a wanderweg-a rastro-a
-@raw raniso franchise-a franchise-a franquicia-a
-@raw ranote transport-a
-@raw ranomo transform-a verwandeln-a transformar-a
-@raw ranono transition-a übergang-a transición-a
-@raw ranoro transportation-a transport-a transporte-a
-@raw ranose franzose-a
-@raw ralo really-a wirklich-a realmente-a
-@raw ralani australian-a australiano-a
-@raw ralaro relocate-a verlagern-a trasladar-a
-@raw raleni brazilian-a brasileño-a
-@raw raleri era-a zeitalter-a
-@raw raliko geographic-a räumlich-a geográfico-a
-@raw ralino rain-a regen-a lluvia-a
-@raw ralisi realize-a realisieren-a
-@raw raluno rally-a kundgebung-a mitin-a
-@raw raro try-a versuchen-a tratar-a
-@raw rarati earth-a erde-a
-@raw rarani arrange-a veranlassen-a
-@raw raralo early-a früher-a temprano-a
-@raw rarase atrás-a
-@raw rareli rarely-a raramente-a
-@raw rarero carrier-a träger-a transportista-a
-@raw rariso root-a wurzel-a raíz-a
-@raw rarovo arrow-a pfeil-a flecha-a
-@raw raruvo raw-a roh-a crudo-a
-@raw raso step-a schritt-a paso-a
-@raw rasagi trait-a rasgo-a
-@raw rasali racial-a racial-a
-@raw rasari rear-a trasero-a
-@raw rasedo breed-a rasse-a mestizo-a
-@raw raseno prayer-a gebet-a oración-a
-@raw raselo riddle-a Rätsel-a acertijo-a
-@raw rasero transfer-a übertragung-a transferencia-a
-@raw raseso premise-a voraussetzung-a premisa-a
-@raw rasito transit-a transit-a tránsito-a
-@raw rasige racing-a
-@raw rasimo racism-a rassismus-a racismo-a
-@raw rasino translation-a übersetzung-a traducción-a
-@raw rasili rail-a eisenbahn-a
-@raw rasiro translate-a übersetzen-a traducir-a
-@raw rasisi resist-a resistir-a
-@raw rasoto transport-a verkehrsmittel-a transportes-a
-@raw rasore sorry-a
-@raw rasuri assure-a versichern-a
-@raw rafo peace-a frieden-a paz-a
-@raw rafati rate-a calificar-a
-@raw rafaki graphic-a grafik-a
-@raw rafeto craft-a handwerk-a artesanía-a
-@raw raferi transfer-a übertragen-a
-@raw rafiko traffic-a verkehr-a tráfico-a
-@raw ravo road-a straßenverkehr-a camino-a
-@raw ravare atravesar-a
-@raw raveni travel-a reisen-a
-@raw ravelo travel-a reisen-a viajar-a
-@raw ravese través-a
-@raw raviti gravity-a gravedad-a
-@raw raviro wire-a draht-a alambre-a
-@raw raviso raise-a anheben-a elevar-a
-@raw raho contract-a vertrag-a contrato-a
-@raw rahito ride-a fahrt-a paseo-a
-@raw repo report-a bericht-a informe-a
-@raw repati breathe-a respirar-a
-@raw repani rep-a repräsentant-a
-@raw repale reply-a
-@raw reparo repair-a reparatur-a reparación-a
-@raw repasi workplace-a arbeitsplatz-a
-@raw repeto repeat-a wiederholen-a repetir-a
-@raw repeke respecto-a
-@raw repebe repente-a
-@raw repeno corresponding-a entsprechende-a correspondiente-a
-@raw repeli reply-a antworten-a
-@raw repero respect-a respektieren-a respetar-a
-@raw repino reception-a empfang-a recepción-a
-@raw repiro empire-a reich-a imperio-a
-@raw repono respond-a reagieren-a responder-a
-@raw repolo responsible-a verantwortlich-a responsable-a
-@raw reposi response-a reaktion-a
-@raw reto result-a ergebnis-a resultado-a
-@raw retato portrait-a porträt-a retrato-a
-@raw retano restoration-a wiederherstellung-a restauración-a
-@raw retale erstmal-a
-@raw retari lend-a prestar-a
-@raw reteno pretend-a vorgeben-a pretender-a
-@raw retere either-a
-@raw retito retirement-a rente-a retiro-a
-@raw retino registration-a anmeldung-a inscripción-a
-@raw retili retail-a einzelhandel-a
-@raw retiro withdrawal-a rücktritt-a retirada-a
-@raw retivo creativity-a kreativität-a creatividad-a
-@raw retori creator-a urheber-a
-@raw reko right-a rechte-a derecho-a
-@raw rekane ausreichen-a
-@raw rekale recall-a
-@raw rekaso rejection-a absage-a rechazo-a
-@raw reketo recreation-a freizeit-a ocio-a
-@raw rekene reichen-a
-@raw rekero recover-a erholen-a recuperar-a
-@raw rekeso request-a antrag-a solicitud-a
-@raw rekito requirement-a anforderung-a requisito-a
-@raw rekike rechtlich-a
-@raw rekini reaction-a reacción-a
-@raw rekise österreichisch-a
-@raw rekivi respective-a respectivo-a
-@raw rekode recode-a
-@raw rekono restriction-a einschränkung-a restricción-a
-@raw rekoro recovery-a erholung-a recuperación-a
-@raw rekuto recruit-a rekrutieren-a reclutar-a
-@raw rekuro resource-a ressource-a recurso-a
-@raw rebo remember-a erinnern-a recordar-a
-@raw rebate treat-a
-@raw rebale real-a
-@raw rebari recognizable-a erkennbar-a
-@raw rebeni surrender-a ergeben-a
-@raw rebelo rebel-a rebell-a rebelde-a
-@raw rebere euer-a
-@raw rebidi rebuild-a reconstruir-a
-@raw rebine reino-a
-@raw rebori resort-a resort-a
-@raw redo lead-a führen-a liderar-a
-@raw redale real-a
-@raw redeki reject-a abweisen-a
-@raw redeni rejoice-a freuen-a
-@raw redero referee-a schiedsrichter-a árbitro-a
-@raw redeso residence-a aufenthalt-a residencia-a
-@raw redito yield-a ertrag-a rendimiento-a
-@raw redini breeding-a reproducción-a
-@raw rediso prejudice-a vorurteil-a prejuicio-a
-@raw reduno reduction-a reduktion-a reducción-a
-@raw rego require-a verlangen-a exigir-a
-@raw regade regard-a
-@raw regalo regardless-a egal-a independientemente-a
-@raw regari regulatory-a regulador-a
-@raw regaso gas-a gas-a gas-a
-@raw regeno urgent-a dringend-a urgente-a
-@raw regele regeln-a
-@raw regeri register-a anmelden-a
-@raw regeso comeback-a comeback-a regreso-a
-@raw regimi scheme-a régimen-a
-@raw regini rain-a regen-a
-@raw regudi foreground-a vordergrund-a
-@raw reguno regulation-a regelung-a reglamento-a
-@raw regulo regulate-a regulieren-a regular-a
-@raw remo rest-a rest-a resto-a
-@raw remaki remark-a anmerkung-a
-@raw remale erstmals-a
-@raw remedi tremendous-a tremendo-a
-@raw remeno treatment-a behandlung-a tratamiento-a
-@raw remeli freely-a libremente-a
-@raw remide remind-a
-@raw remigo remaining-a übrig-a restante-a
-@raw remino purely-a rein-a puramente-a
-@raw remoti remote-a remoto-a
-@raw remono removal-a entfernung-a eliminación-a
-@raw reno create-a schaffen-a crear-a
-@raw renato threat-a bedrohung-a amenaza-a
-@raw renano reconcile-a vereinbaren-a conciliar-a
-@raw renalo arsenal-a arsenal-a arsenal-a
-@raw renari scenario-a escenario-a
-@raw renasi race-a rennen-a
-@raw renaho recording-a aufnahme-a grabación-a
-@raw reneto rent-a miete-a renta-a
-@raw reneni earn-a verdienen-a
-@raw renere wiener-a
-@raw renevo renew-a erneuern-a renovar-a
-@raw renito rent-a mieten-a alquilar-a
-@raw renige vereinigen-a
-@raw renino girlfriend-a freundin-a novia-a
-@raw renilo rental-a vermietung-a alquiler-a
-@raw renono recognition-a anerkennung-a reconocimiento-a
-@raw renuno separation-a trennung-a separación-a
-@raw renuso resignation-a kündigung-a renuncia-a
-@raw relo real-a real-a real-a
-@raw relati tale-a relato-a
-@raw relaki relax-a entspannen-a
-@raw relabo reliable-a zuverlässig-a confiable-a
-@raw relado related-a verwandt-a relacionado-a
-@raw relamo release-a release-a lanzamiento-a
-@raw relano realization-a durchführung-a realización-a
-@raw relare resultar-a
-@raw relaso replace-a ersetzen-a reemplazar-a
-@raw relafe yourself-a
-@raw releke örtlich-a
-@raw relebe erteilen-a
-@raw releno overtake-a überholen-a adelantar-a
-@raw releli greatly-a enormemente-a
-@raw relesi release-a freigeben-a
-@raw reliko abundant-a reichlich-a abundante-a
-@raw relino revolution-a revolution-a revolución-a
-@raw reliso realistic-a realistisch-a realista-a
-@raw relifo relief-a erleichterung-a relieve-a
-@raw relivo relatively-a vergleichsweise-a relativamente-a
-@raw relono resolution-a auflösung-a resolución-a
-@raw reloho clock-a uhrzeit-a reloj-a
-@raw reluno introduction-a vorstellung-a introducción-a
-@raw rere her-a
-@raw rerato aircraft-a luftfahrt-a aeronave-a
-@raw rerako restrict-a beschränken-a restringir-a
-@raw rerago average-a durchschnitt-a promedio-a
-@raw reraro repair-a reparieren-a reparar-a
-@raw rereno representative-a vertretung-a representante-a
-@raw rerero reserve-a reservieren-a reservar-a
-@raw reriti rewrite-a umschreiben-a
-@raw rerino preparation-a vorbereitung-a preparación-a
-@raw reriso rice-a reis-a arroz-a
-@raw rerifo maturity-a reife-a madurez-a
-@raw rerori error-a irrtum-a
-@raw reruko reconstruction-a wiederaufbau-a reconstrucción-a
-@raw reruno renewal-a verlängerung-a renovación-a
-@raw reso receive-a erhalten-a recibir-a
-@raw resati arrest-a festnehmen-a
-@raw resako rescue-a rettung-a rescate-a
-@raw resani tear-a reißen-a
-@raw resaro regret-a reue-a pesar-a
-@raw resaso replacement-a ersatz-a sustitución-a
-@raw resepo recipe-a rezept-a receta-a
-@raw reseti recent-a reciente-a
-@raw reseki rescue-a rescatar-a
-@raw resebe erweisen-a
-@raw resego receipt-a beleg-a recibo-a
-@raw reseno present-a anwesend-a presente-a
-@raw reselo recently-a kürzlich-a recientemente-a
-@raw resero deserve-a verdient-a merecer-a
-@raw reseso presence-a gegenwart-a presencia-a
-@raw resevo reserve-a reserve-a reserva-a
-@raw resito resident-a wohnsitz-a residente-a
-@raw resike restlich-a
-@raw residi reside-a residir-a
-@raw resigo resign-a zurücktreten-a dimitir-a
-@raw resino creation-a gründung-a creación-a
-@raw resiri dress-a vestir-a
-@raw resisi resistance-a resistencia-a
-@raw resivi impressive-a eindrucksvoll-a
-@raw resoto arrest-a festnahme-a detención-a
-@raw resono responsibility-a verantwortung-a responsabilidad-a
-@raw resoli resolve-a auflösen-a
-@raw resoro restore-a wiederherstellen-a restaurar-a
-@raw resuto rest-a ausruhen-a descansar-a
-@raw resuno restaurant-a küche-a restaurante-a
-@raw resule result-a
-@raw refo increase-a erhöhen-a aumentar-a
-@raw refato breakfast-a frühstück-a desayuno-a
-@raw refeko reflect-a spiegeln-a reflejar-a
-@raw refeno reflection-a reflexion-a reflexión-a
-@raw refero refer-a verweisen-a referir-a
-@raw refese reference-a
-@raw refomo reform-a reform-a reforma-a
-@raw refugi shelter-a refugio-a
-@raw refuso refuse-a ablehnen-a rechazar-a
-@raw revo network-a netz-a red-a
-@raw revato relative-a verwandte-a pariente-a
-@raw revado reward-a belohnung-a recompensa-a
-@raw revano revenge-a rache-a venganza-a
-@raw revari reward-a belohnen-a
-@raw reveni revenue-a umsatz-a
-@raw revelo reveal-a offenbaren-a revelar-a
-@raw reveri reverse-a revertir-a
-@raw revese ourselves-a
-@raw revevo review-a bewertung-a examen-a
-@raw revino revision-a revision-a revisión-a
-@raw revisi revise-a überarbeiten-a
-@raw revivo review-a überprüfen-a revisar-a
-@raw revuno revival-a aufschwung-a renacimiento-a
-@raw reho recognize-a erkennen-a reconocer-a
-@raw rehati treat-a behandeln-a
-@raw rehedo remedy-a abhilfe-a remedio-a
-@raw rehene vergehen-a
-@raw rehero record-a aufnehmen-a grabar-a
-@raw rehugo upbringing-a erziehung-a crianza-a
-@raw ripo operation-a betrieb-a operación-a
-@raw ripalo triple-a dreifach-a triple-a
-@raw ripeto airport-a flughafen-a aeropuerto-a
-@raw rito right-a richtig-a correcto-a
-@raw ritari scream-a gritar-a
-@raw riteko reviewer-a prüfer-a crítico-a
-@raw ritedi ride-a reiten-a
-@raw ritemo criterion-a kriterium-a criterio-a
-@raw ritene einrichten-a
-@raw riteri either-a entweder-a
-@raw ritiko critical-a kritisch-a crítico-a
-@raw ritigi writing-a escritura-a
-@raw ritimi criticism-a kritik-a
-@raw ritini orientation-a orientierung-a
-@raw ritiro critic-a kritiker-a crítica-a
-@raw ritiso criticize-a kritisieren-a criticar-a
-@raw ritoro writer-a schriftsteller-a escritor-a
-@raw rituno establishment-a einrichtung-a establecimiento-a
-@raw riki reach-a erreichen-a
-@raw rikani african-a africano-a
-@raw rikali strictly-a estrictamente-a
-@raw riketi cricket-a grillo-a
-@raw rikebe errichten-a
-@raw rikene richten-a
-@raw rikere sicher-a
-@raw rikino jurisdiction-a rechtsprechung-a jurisdicción-a
-@raw rikolo agricultural-a landwirtschaftlich-a agrícola-a
-@raw rikuto agriculture-a landwirtschaft-a agricultura-a
-@raw ribo write-a schreiben-a escribir-a
-@raw ribere ritter-a
-@raw ribode everybody-a
-@raw ribuno distribution-a verteilung-a distribución-a
-@raw rido friend-a freund-a amigo-a
-@raw ridare brindar-a
-@raw rideni differ-a unterscheiden-a
-@raw ridero rider-a reiter-a jinete-a
-@raw ridini riding-a reiten-a
-@raw rigo bring-a bringen-a traer-a
-@raw rigate right-a
-@raw rigado brigade-a brigade-a brigada-a
-@raw rigane dringen-a
-@raw rigali originally-a originalmente-a
-@raw rigeno origin-a herkunft-a origen-a
-@raw rigeri trigger-a auslösen-a
-@raw rigesi rise-a steigen-a
-@raw rigido rigid-a starr-a rígido-a
-@raw rigilo original-a original-a original-a
-@raw rimo rich-a reich-a rico-a
-@raw rimaro primary-a grundschule-a primaria-a
-@raw rimero first-a first-a primero-a
-@raw rimino criminal-a verbrecher-a delincuente-a
-@raw rino president-a präsident-a presidente-a
-@raw rinalo courtroom-a saal-a tribunal-a
-@raw rinase prinz-a
-@raw rineto print-a drucken-a imprimir-a
-@raw rineko drink-a trinken-a beber-a
-@raw rinegi ring-a klingeln-a
-@raw rinene großbritannien-a
-@raw rinelo print-a drucken-a huella-a
-@raw rinero inner-a inner-a interior-a
-@raw rineso princess-a prinzessin-a princesa-a
-@raw rinipe príncipe-a
-@raw rinigo ring-a ring-a anillo-a
-@raw rinino printing-a druckerei-a imprenta-a
-@raw rilo original-a ursprünglich-a original-a
-@raw rilato bright-a hell-a brillante-a
-@raw rilani brilliant-a genial-a
-@raw rilego privilege-a privileg-a privilegio-a
-@raw riline trillion-a
-@raw riro true-a wahr-a cierto-a
-@raw riralo territorial-a territorial-a territorial-a
-@raw ririso irish-a irisch-a irlandés-a
-@raw riso experience-a erfahrung-a experiencia-a
-@raw risate cristo-a
-@raw risaki risk-a arriesgar-a
-@raw risado friendship-a freundschaft-a amistad-a
-@raw risano christian-a christ-a cristiano-a
-@raw risalo crystal-a kristall-a cristal-a
-@raw risene erschießen-a
-@raw risere serio-a
-@raw risesi sadness-a tristeza-a
-@raw risiki hazard-a risiko-a
-@raw risino christian-a christlich-a cristiano-a
-@raw risise juristisch-a
-@raw risono prison-a gefängnis-a cárcel-a
-@raw risore sorry-a
-@raw rifo risk-a gefahr-a riesgo-a
-@raw rifafo triumph-a triumph-a triunfo-a
-@raw rifilo rifle-a gewehr-a fusil-a
-@raw rifiro sacrifice-a opfern-a sacrificar-a
-@raw rifisi sacrifice-a sacrificio-a
-@raw rivo drive-a fahren-a conducir-a
-@raw rivali rival-a rival-a
-@raw rivaso privacy-a privatsphäre-a privacidad-a
-@raw rivino driving-a fahren-a conducción-a
-@raw rivuto riot-a aufruhr-a revuelta-a
-@raw rihi right-a rechts-a
-@raw rihere everywhere-a
-@raw ropo european-a europäisch-a europeo-a
-@raw ropedo clothes-a bekleidung-a ropa-a
-@raw ropeli properly-a correctamente-a
-@raw roperi proper-a ordnungsgemäß-a
-@raw ropeso proposal-a vorschlag-a propuesta-a
-@raw ropono propose-a vorschlagen-a proponer-a
-@raw rote erst-a
-@raw rotare otra-a
-@raw roteto protest-a protestieren-a protestar-a
-@raw roteno protein-a protein-a proteína-a
-@raw rotelo bulk-a großteil-a grueso-a
-@raw roteso protest-a protest-a protesta-a
-@raw roteho red-a rot-a rojo-a
-@raw roko break-a brechen-a romper-a
-@raw rokato approximately-a ungefähr-a aproximadamente-a
-@raw rokamo proclaim-a verkünden-a proclamar-a
-@raw rokani proximity-a cercanía-a
-@raw rokali tropical-a tropical-a
-@raw roketo broken-a kaputt-a roto-a
-@raw rokeri broker-a makler-a
-@raw rokino projection-a projektion-a proyección-a
-@raw rokolo protocol-a protokoll-a protocolo-a
-@raw robo throw-a werfen-a tirar-a
-@raw robahi rough-a grob-a
-@raw robeli trouble-a ärger-a
-@raw roberi rubber-a goma-a
-@raw robido forbidden-a unzulässig-a prohibido-a
-@raw robilo probability-a wahrscheinlichkeit-a probabilidad-a
-@raw roboto robot-a roboter-a robot-a
-@raw rodo red-a rot-a rojo-a
-@raw rodase broadcast-a
-@raw rodeki project-a proyectar-a
-@raw rodedo surround-a umgeben-a rodear-a
-@raw rodero producer-a hersteller-a productor-a
-@raw rogo version-a version-a versión-a
-@raw rogamo programming-a programmierung-a programación-a
-@raw rogeso progressive-a schrittweise-a progresista-a
-@raw rogote throughout-a
-@raw romo rock-a rock-a piedra-a
-@raw romato romantic-a romantisch-a romántico-a
-@raw romani roman-a romano-a
-@raw romaso romance-a romantik-a romance-a
-@raw romeno promotion-a förderung-a promoción-a
-@raw romero promote-a fördern-a promover-a
-@raw romeso promise-a versprechen-a promesa-a
-@raw romiso promise-a versprechen-a prometer-a
-@raw rono relationship-a beziehung-a relación-a
-@raw ronati front-a frontal-a
-@raw ronali royal-a königlich-a
-@raw roneli strongly-a firmemente-a
-@raw roniko chronic-a chronisch-a crónico-a
-@raw ronili provincial-a provincial-a
-@raw roniso ironic-a ironisch-a irónico-a
-@raw rolo personal-a persönlich-a personal-a
-@raw rolani roll-a rollen-a
-@raw roleno roll-a brötchen-a rollo-a
-@raw rolero merry-a fröhlich-a alegre-a
-@raw roluso proud-a stolz-a orgulloso-a
-@raw roro brother-a bruder-a hermano-a
-@raw rorame programme-a
-@raw roralo oral-a mündlich-a oral-a
-@raw rorere recorrer-a
-@raw roreso progress-a fortschritt-a progreso-a
-@raw roriti terrorist-a terrorista-a
-@raw rorimi terrorism-a terrorismus-a
-@raw roriso terrorist-a terrorist-a terrorismo-a
-@raw roruto route-a strecke-a ruta-a
-@raw roso process-a verfahren-a proceso-a
-@raw rosado metropolis-a großstadt-a metrópoli-a
-@raw rosare rosario-a
-@raw rosedo procedure-a vorgehensweise-a procedimiento-a
-@raw rosene grössten-a
-@raw roseri proceed-a proceder-a
-@raw roseso processing-a verarbeitung-a procesamiento-a
-@raw rosito prostitute-a prostituierte-a prostituta-a
-@raw rosiki prospect-a aussicht-a
-@raw rosido prosperity-a wohlstand-a prosperidad-a
-@raw rosimo upcoming-a kommenden-a próximo-a
-@raw rosino provision-a bestimmung-a provisión-a
-@raw rosoro processor-a prozessor-a procesador-a
-@raw rofi everyone-a jedermann-a
-@raw rofene eröffnen-a
-@raw rofero professor-a professor-a profesora-a
-@raw rovo provide-a liefern-a proporcionar-a
-@raw rovalo approval-a genehmigung-a aprobación-a
-@raw rovaro browser-a browser-a explorador-a
-@raw roveto growth-a wachstum-a crecimiento-a
-@raw rovero provider-a anbieter-a proveedor-a
-@raw rovido crowd-a publikum-a multitud-a
-@raw rovino province-a bundesland-a provincia-a
-@raw rovilo row-a zeile-a fila-a
-@raw rovoko provoke-a provozieren-a provocar-a
-@raw roho mistake-a fehler-a error-a
-@raw roheti rocket-a cohete-a
-@raw roheno threaten-a drohen-a amenazar-a
-@raw rupo principle-a prinzip-a principio-a
-@raw ruperi upper-a obere-a
-@raw rupino grouping-a gruppierung-a agrupación-a
-@raw ruto product-a produkt-a producto-a
-@raw rutalo brutal-a brutal-a brutal-a
-@raw ruteno recruitment-a anstellung-a contratación-a
-@raw ruteri outer-a äußere-a
-@raw rutino routine-a routine-a rutina-a
-@raw rutote truthout-a
-@raw ruko record-a rekord-a registro-a
-@raw rukeri revert-a zurückkehren-a
-@raw rukeso setback-a rückschlag-a revés-a
-@raw rukulo structural-a strukturell-a estructural-a
-@raw rubo artist-a künstler-a artista-a
-@raw rubado blonde-a blond-a rubio-a
-@raw rubero ruler-a herrscher-a gobernante-a
-@raw rubino ruin-a ruine-a ruina-a
-@raw rudo period-a zeitraum-a período-a
-@raw rudake grundsätzlich-a
-@raw rudene gründen-a
-@raw rudero rude-a unverschämt-a grosero-a
-@raw ruduno justification-a begründung-a justificación-a
-@raw rugo production-a produktion-a producción-a
-@raw rumo around-a um-a alrededor-a
-@raw rumebo heading-a rubrik-a rumbo-a
-@raw rumeno instrument-a instrument-a instrumento-a
-@raw rumori rumor-a rumor-a
-@raw runo run-a laufen-a correr-a
-@raw runadi round-a rund-a
-@raw runedo round-a rund-a redondo-a
-@raw runero runner-a läufer-a corredor-a
-@raw runino ruin-a ruinieren-a arruinar-a
-@raw runodo round-a runde-a ronda-a
-@raw rulo rule-a regel-a regla-a
-@raw ruro perform-a durchführen-a realizar-a
-@raw ruralo rural-a ländlich-a rural-a
-@raw ruso from-a aus-a desde-a
-@raw rusare cruzar-a
-@raw ruseti trust-a fideicomiso-a
-@raw ruseni rush-a hetzen-a
-@raw ruselo cruel-a grausam-a cruel-a
-@raw rusere äußer-a
-@raw rusilo crucial-a entscheidend-a crucial-a
-@raw rufi return-a regresar-a
-@raw rufamo reputation-a ruf-a fama-a
-@raw rufeni shout-a rufen-a
-@raw rufiso rise-a aufstieg-a subida-a
-@raw rufuno exam-a prüfung-a exámen-a
-@raw ruvo river-a fluß-a río-a
-@raw ruho early-a früh-a temprano-a
-@raw ruhene beruhen-a
-@raw ruhigo quiet-a ruhig-a tranquilo-a
+@raw ru ronona his-a sein-a su-a
+@raw rapu nomuna rate-a rate-a tasa-a
+@raw rapidi detiva rapid-a
+@raw rapinu nomuna rape-a vergewaltigung-a violación-a
+@raw rati detiva erst-a
+@raw ratasi deroba gratis-a
+@raw rategu nomuna strategy-a strategie-a estrategia-a
+@raw ratero nomuna perpetrator-a täter-a
+@raw ratigu detiva robust-a kräftig-a robusto-a
+@raw ratinu nomuna rating-a wertung-a clasificación-a
+@raw ratiri veraba retire-a
+@raw ratisu nomuna ratio-a verhältnis-a proporción-a
+@raw rativu nomuna narrative-a erzählung-a narración-a
+@raw ratonu nomuna attorney-a rechtsanwalt-a abogada-a
+@raw ratoru nomuna translator-a übersetzer-a traductor-a
+@raw ratusi nomuna rathaus-a
+@raw raku veraba ask-a fragen-a preguntar-a
+@raw rakato veraba react-a reaccionar-a
+@raw rakamo deroba virtually-a prácticamente-a
+@raw rakari veraba arrancar-a
+@raw raketu veraba attract-a anziehen-a atraer-a
+@raw rakeki nomuna frankreich-a
+@raw rakigu nomuna ranking-a reihenfolge-a ranking-a
+@raw rakinu veraba practice-a üben-a practicar-a
+@raw rakisu detiva practical-a praktisch-a práctico-a
+@raw rakivu detiva attractive-a attraktiv-a atractivo-a
+@raw rakonu nomuna attraction-a sehenswürdigkeit-a atracción-a
+@raw rakuru nomuna infrastructure-a infrastruktur-a infraestructura-a
+@raw rabu detiva ready-a fertig-a listo-a
+@raw rabati nomuna rato-a
+@raw rabadi peposa re-a
+@raw rabafi patika re-a
+@raw rabeto nomuna rat-a rata-a
+@raw rabedi veraba verabschieden-a
+@raw raberi deroba ayer-a
+@raw rabitu nomuna rabbit-a hase-a conejo-a
+@raw rabosu nomuna rose-a rose-a rosa-a
+@raw rabusi nomuna russe-a
+@raw radu nomuna truth-a wahrheit-a verdad-a
+@raw radatu nomuna graduate-a diplom-a licenciado-a
+@raw radabo detiva pleasant-a agradable-a
+@raw radanu nomuna radiation-a strahlung-a radiación-a
+@raw radaru nomuna radar-a radar-a radar-a
+@raw radelu nomuna wheel-a rad-a rueda-a
+@raw raderu veraba modify-a verändern-a modificar-a
+@raw radigi nomuna trading-a
+@raw radimu detiva random-a zufällig-a aleatorio-a
+@raw radinu nomuna tradition-a tradition-a tradición-a
+@raw radilu detiva traditional-a traditionell-a tradicional-a
+@raw radosi detiva rose-a
+@raw raduti veraba graduate-a
+@raw ragu nomuna question-a frage-a pregunta-a
+@raw ragatu detiva straight-a geradeaus-a recto-a
+@raw ragari nomuna ranger-a
+@raw rageto deroba straight-a recto-a
+@raw ragedu nomuna tragedy-a tragödie-a tragedia-a
+@raw ragegu nomuna arrangement-a vereinbarung-a arreglo-a
+@raw ragenu veraba urge-a drängen-a instar-a
+@raw rageru nomuna stranger-a fremde-a extraño-a
+@raw ragiku detiva strategic-a strategisch-a estratégico-a
+@raw ragisu detiva tragic-a tragisch-a trágico-a
+@raw ragonu nomuna dragon-a dragon-a dragón-a
+@raw ramu nomuna room-a raum-a sala-a
+@raw ramatu detiva dramatic-a dramatisch-a dramático-a
+@raw rametu nomuna fragment-a fragment-a fragmento-a
+@raw ramenu nomuna frame-a rahmen-a marco-a
+@raw ramitu veraba transmit-a übermitteln-a transmitir-a
+@raw raminu nomuna transmission-a getriebe-a transmisión-a
+@raw ramiru detiva weird-a komisch-a raro-a
+@raw ramumo nomuna trauma-a trauma-a
+@raw ramusu nomuna bouquet-a strauß-a ramo-a
+@raw ranu nomuna reason-a grund-a razón-a
+@raw ranaku nomuna transaction-a transaktion-a transacción-a
+@raw ranabu detiva reasonable-a vernünftig-a razonable-a
+@raw ranado nomuna grenade-a granada-a
+@raw ranagi veraba range-a
+@raw rananu nomuna transformation-a transformation-a transformación-a
+@raw ranalu detiva rational-a rational-a racional-a
+@raw ranari veraba extrañar-a
+@raw raneki veraba rank-a
+@raw ranedu nomuna edge-a rand-a borde-a
+@raw ranegu nomuna range-a reichweite-a alcance-a
+@raw ranenu nomuna transparency-a transparenz-a transparencia-a
+@raw raneru veraba gather-a versammeln-a reunir-a
+@raw ranesu nomuna race-a rennen-a raza-a
+@raw ranito nomuna grant-a subsidio-a
+@raw raniku nomuna branch-a zweig-a rama-a
+@raw ranidi nomuna grande-a
+@raw ranigu nomuna rank-a rang-a rango-a
+@raw raninu nomuna training-a weiterbildung-a formación-a
+@raw ranilu nomuna trail-a wanderweg-a rastro-a
+@raw ranisu nomuna franchise-a franchise-a franquicia-a
+@raw ranoti veraba transport-a
+@raw ranomu veraba transform-a verwandeln-a transformar-a
+@raw ranonu nomuna transition-a übergang-a transición-a
+@raw ranoru nomuna transportation-a transport-a transporte-a
+@raw ranosi nomuna franzose-a
+@raw ralu deroba really-a wirklich-a realmente-a
+@raw ralano detiva australian-a australiano-a
+@raw ralaru veraba relocate-a verlagern-a trasladar-a
+@raw raleno detiva brazilian-a brasileño-a
+@raw ralero nomuna era-a zeitalter-a
+@raw raliku detiva geographic-a räumlich-a geográfico-a
+@raw ralinu nomuna rain-a regen-a lluvia-a
+@raw raliso veraba realize-a realisieren-a
+@raw ralunu nomuna rally-a kundgebung-a mitin-a
+@raw raru veraba try-a versuchen-a tratar-a
+@raw rarato nomuna earth-a erde-a
+@raw rarano veraba arrange-a veranlassen-a
+@raw raralu deroba early-a früher-a temprano-a
+@raw rarasi deroba atrás-a
+@raw rarelo deroba rarely-a raramente-a
+@raw rareru nomuna carrier-a träger-a transportista-a
+@raw rarisu nomuna root-a wurzel-a raíz-a
+@raw rarovu nomuna arrow-a pfeil-a flecha-a
+@raw raruvu detiva raw-a roh-a crudo-a
+@raw rasu nomuna step-a schritt-a paso-a
+@raw rasago nomuna trait-a rasgo-a
+@raw rasalo detiva racial-a racial-a
+@raw rasaro detiva rear-a trasero-a
+@raw rasedu nomuna breed-a rasse-a mestizo-a
+@raw rasenu nomuna prayer-a gebet-a oración-a
+@raw raselu nomuna riddle-a Rätsel-a acertijo-a
+@raw raseru nomuna transfer-a übertragung-a transferencia-a
+@raw rasesu nomuna premise-a voraussetzung-a premisa-a
+@raw rasitu nomuna transit-a transit-a tránsito-a
+@raw rasigi nomuna racing-a
+@raw rasimu nomuna racism-a rassismus-a racismo-a
+@raw rasinu nomuna translation-a übersetzung-a traducción-a
+@raw rasilo nomuna rail-a eisenbahn-a
+@raw rasiru veraba translate-a übersetzen-a traducir-a
+@raw rasiso veraba resist-a resistir-a
+@raw rasotu nomuna transport-a verkehrsmittel-a transportes-a
+@raw rasori detiva sorry-a
+@raw rasuro veraba assure-a versichern-a
+@raw rafu nomuna peace-a frieden-a paz-a
+@raw rafato veraba rate-a calificar-a
+@raw rafako nomuna graphic-a grafik-a
+@raw rafetu nomuna craft-a handwerk-a artesanía-a
+@raw rafero veraba transfer-a übertragen-a
+@raw rafiku nomuna traffic-a verkehr-a tráfico-a
+@raw ravu nomuna road-a straßenverkehr-a camino-a
+@raw ravari veraba atravesar-a
+@raw raveno nomuna travel-a reisen-a
+@raw ravelu veraba travel-a reisen-a viajar-a
+@raw ravesi nomuna través-a
+@raw ravito nomuna gravity-a gravedad-a
+@raw raviru nomuna wire-a draht-a alambre-a
+@raw ravisu veraba raise-a anheben-a elevar-a
+@raw rahu nomuna contract-a vertrag-a contrato-a
+@raw rahitu nomuna ride-a fahrt-a paseo-a
+@raw repu nomuna report-a bericht-a informe-a
+@raw repato veraba breathe-a respirar-a
+@raw repano nomuna rep-a repräsentant-a
+@raw repali veraba reply-a
+@raw reparu nomuna repair-a reparatur-a reparación-a
+@raw repaso nomuna workplace-a arbeitsplatz-a
+@raw repetu veraba repeat-a wiederholen-a repetir-a
+@raw repeki nomuna respecto-a
+@raw repebi nomuna repente-a
+@raw repenu detiva corresponding-a entsprechende-a correspondiente-a
+@raw repelo nomuna reply-a antworten-a
+@raw reperu veraba respect-a respektieren-a respetar-a
+@raw repinu nomuna reception-a empfang-a recepción-a
+@raw repiru nomuna empire-a reich-a imperio-a
+@raw reponu veraba respond-a reagieren-a responder-a
+@raw repolu detiva responsible-a verantwortlich-a responsable-a
+@raw reposo nomuna response-a reaktion-a
+@raw retu nomuna result-a ergebnis-a resultado-a
+@raw retatu nomuna portrait-a porträt-a retrato-a
+@raw retanu nomuna restoration-a wiederherstellung-a restauración-a
+@raw retali deroba erstmal-a
+@raw retaro veraba lend-a prestar-a
+@raw retenu veraba pretend-a vorgeben-a pretender-a
+@raw reteri tika either-a
+@raw retitu nomuna retirement-a rente-a retiro-a
+@raw retinu nomuna registration-a anmeldung-a inscripción-a
+@raw retilo nomuna retail-a einzelhandel-a
+@raw retiru nomuna withdrawal-a rücktritt-a retirada-a
+@raw retivu nomuna creativity-a kreativität-a creatividad-a
+@raw retoro nomuna creator-a urheber-a
+@raw reku nomuna right-a rechte-a derecho-a
+@raw rekani detiva ausreichen-a
+@raw rekali veraba recall-a
+@raw rekasu nomuna rejection-a absage-a rechazo-a
+@raw reketu nomuna recreation-a freizeit-a ocio-a
+@raw rekeni veraba reichen-a
+@raw rekeru veraba recover-a erholen-a recuperar-a
+@raw rekesu nomuna request-a antrag-a solicitud-a
+@raw rekitu nomuna requirement-a anforderung-a requisito-a
+@raw rekiki detiva rechtlich-a
+@raw rekino nomuna reaction-a reacción-a
+@raw rekisi detiva österreichisch-a
+@raw rekivo detiva respective-a respectivo-a
+@raw rekodi veraba recode-a
+@raw rekonu nomuna restriction-a einschränkung-a restricción-a
+@raw rekoru nomuna recovery-a erholung-a recuperación-a
+@raw rekutu veraba recruit-a rekrutieren-a reclutar-a
+@raw rekuru nomuna resource-a ressource-a recurso-a
+@raw rebu veraba remember-a erinnern-a recordar-a
+@raw rebati nomuna treat-a
+@raw rebali nomuna real-a
+@raw rebaro detiva recognizable-a erkennbar-a
+@raw rebeno veraba surrender-a ergeben-a
+@raw rebelu nomuna rebel-a rebell-a rebelde-a
+@raw reberi tika euer-a
+@raw rebido veraba rebuild-a reconstruir-a
+@raw rebini nomuna reino-a
+@raw reboro nomuna resort-a resort-a
+@raw redu veraba lead-a führen-a liderar-a
+@raw redali deroba real-a
+@raw redeko veraba reject-a abweisen-a
+@raw redeno veraba rejoice-a freuen-a
+@raw rederu nomuna referee-a schiedsrichter-a árbitro-a
+@raw redesu nomuna residence-a aufenthalt-a residencia-a
+@raw reditu nomuna yield-a ertrag-a rendimiento-a
+@raw redino nomuna breeding-a reproducción-a
+@raw redisu nomuna prejudice-a vorurteil-a prejuicio-a
+@raw redunu nomuna reduction-a reduktion-a reducción-a
+@raw regu veraba require-a verlangen-a exigir-a
+@raw regadi veraba regard-a
+@raw regalu deroba regardless-a egal-a independientemente-a
+@raw regaro detiva regulatory-a regulador-a
+@raw regasu nomuna gas-a gas-a gas-a
+@raw regenu detiva urgent-a dringend-a urgente-a
+@raw regeli veraba regeln-a
+@raw regero veraba register-a anmelden-a
+@raw regesu nomuna comeback-a comeback-a regreso-a
+@raw regimo nomuna scheme-a régimen-a
+@raw regino veraba rain-a regen-a
+@raw regudo nomuna foreground-a vordergrund-a
+@raw regunu nomuna regulation-a regelung-a reglamento-a
+@raw regulu veraba regulate-a regulieren-a regular-a
+@raw remu nomuna rest-a rest-a resto-a
+@raw remako nomuna remark-a anmerkung-a
+@raw remali deroba erstmals-a
+@raw remedo detiva tremendous-a tremendo-a
+@raw remenu nomuna treatment-a behandlung-a tratamiento-a
+@raw remelo deroba freely-a libremente-a
+@raw remidi veraba remind-a
+@raw remigu detiva remaining-a übrig-a restante-a
+@raw reminu deroba purely-a rein-a puramente-a
+@raw remoto detiva remote-a remoto-a
+@raw remonu nomuna removal-a entfernung-a eliminación-a
+@raw renu veraba create-a schaffen-a crear-a
+@raw renatu nomuna threat-a bedrohung-a amenaza-a
+@raw renanu veraba reconcile-a vereinbaren-a conciliar-a
+@raw renalu nomuna arsenal-a arsenal-a arsenal-a
+@raw renaro nomuna scenario-a escenario-a
+@raw renaso veraba race-a rennen-a
+@raw renahu nomuna recording-a aufnahme-a grabación-a
+@raw renetu nomuna rent-a miete-a renta-a
+@raw reneno veraba earn-a verdienen-a
+@raw reneri detiva wiener-a
+@raw renevu veraba renew-a erneuern-a renovar-a
+@raw renitu veraba rent-a mieten-a alquilar-a
+@raw renigi detiva vereinigen-a
+@raw reninu nomuna girlfriend-a freundin-a novia-a
+@raw renilu nomuna rental-a vermietung-a alquiler-a
+@raw renonu nomuna recognition-a anerkennung-a reconocimiento-a
+@raw renunu nomuna separation-a trennung-a separación-a
+@raw renusu nomuna resignation-a kündigung-a renuncia-a
+@raw relu detiva real-a real-a real-a
+@raw relato nomuna tale-a relato-a
+@raw relako veraba relax-a entspannen-a
+@raw relabu detiva reliable-a zuverlässig-a confiable-a
+@raw reladu detiva related-a verwandt-a relacionado-a
+@raw relamu nomuna release-a release-a lanzamiento-a
+@raw relanu nomuna realization-a durchführung-a realización-a
+@raw relari veraba resultar-a
+@raw relasu veraba replace-a ersetzen-a reemplazar-a
+@raw relafi ronona yourself-a
+@raw releki detiva örtlich-a
+@raw relebi veraba erteilen-a
+@raw relenu veraba overtake-a überholen-a adelantar-a
+@raw relelo deroba greatly-a enormemente-a
+@raw releso veraba release-a freigeben-a
+@raw reliku detiva abundant-a reichlich-a abundante-a
+@raw relinu nomuna revolution-a revolution-a revolución-a
+@raw relisu detiva realistic-a realistisch-a realista-a
+@raw relifu nomuna relief-a erleichterung-a relieve-a
+@raw relivu deroba relatively-a vergleichsweise-a relativamente-a
+@raw relonu nomuna resolution-a auflösung-a resolución-a
+@raw relohu nomuna clock-a uhrzeit-a reloj-a
+@raw relunu nomuna introduction-a vorstellung-a introducción-a
+@raw reri ronona her-a
+@raw reratu nomuna aircraft-a luftfahrt-a aeronave-a
+@raw reraku veraba restrict-a beschränken-a restringir-a
+@raw reragu nomuna average-a durchschnitt-a promedio-a
+@raw reraru veraba repair-a reparieren-a reparar-a
+@raw rerenu nomuna representative-a vertretung-a representante-a
+@raw rereru veraba reserve-a reservieren-a reservar-a
+@raw rerito veraba rewrite-a umschreiben-a
+@raw rerinu nomuna preparation-a vorbereitung-a preparación-a
+@raw rerisu nomuna rice-a reis-a arroz-a
+@raw rerifu nomuna maturity-a reife-a madurez-a
+@raw reroro nomuna error-a irrtum-a
+@raw reruku nomuna reconstruction-a wiederaufbau-a reconstrucción-a
+@raw rerunu nomuna renewal-a verlängerung-a renovación-a
+@raw resu veraba receive-a erhalten-a recibir-a
+@raw resato veraba arrest-a festnehmen-a
+@raw resaku nomuna rescue-a rettung-a rescate-a
+@raw resano veraba tear-a reißen-a
+@raw resaru nomuna regret-a reue-a pesar-a
+@raw resasu nomuna replacement-a ersatz-a sustitución-a
+@raw resepu nomuna recipe-a rezept-a receta-a
+@raw reseto detiva recent-a reciente-a
+@raw reseko veraba rescue-a rescatar-a
+@raw resebi veraba erweisen-a
+@raw resegu nomuna receipt-a beleg-a recibo-a
+@raw resenu detiva present-a anwesend-a presente-a
+@raw reselu deroba recently-a kürzlich-a recientemente-a
+@raw reseru veraba deserve-a verdient-a merecer-a
+@raw resesu nomuna presence-a gegenwart-a presencia-a
+@raw resevu nomuna reserve-a reserve-a reserva-a
+@raw resitu nomuna resident-a wohnsitz-a residente-a
+@raw resiki detiva restlich-a
+@raw resido veraba reside-a residir-a
+@raw resigu veraba resign-a zurücktreten-a dimitir-a
+@raw resinu nomuna creation-a gründung-a creación-a
+@raw resiro veraba dress-a vestir-a
+@raw resiso nomuna resistance-a resistencia-a
+@raw resivo detiva impressive-a eindrucksvoll-a
+@raw resotu nomuna arrest-a festnahme-a detención-a
+@raw resonu nomuna responsibility-a verantwortung-a responsabilidad-a
+@raw resolo veraba resolve-a auflösen-a
+@raw resoru veraba restore-a wiederherstellen-a restaurar-a
+@raw resutu veraba rest-a ausruhen-a descansar-a
+@raw resunu nomuna restaurant-a küche-a restaurante-a
+@raw resuli veraba result-a
+@raw refu veraba increase-a erhöhen-a aumentar-a
+@raw refatu nomuna breakfast-a frühstück-a desayuno-a
+@raw refeku veraba reflect-a spiegeln-a reflejar-a
+@raw refenu nomuna reflection-a reflexion-a reflexión-a
+@raw referu veraba refer-a verweisen-a referir-a
+@raw refesi veraba reference-a
+@raw refomu nomuna reform-a reform-a reforma-a
+@raw refugo nomuna shelter-a refugio-a
+@raw refusu veraba refuse-a ablehnen-a rechazar-a
+@raw revu nomuna network-a netz-a red-a
+@raw revatu nomuna relative-a verwandte-a pariente-a
+@raw revadu nomuna reward-a belohnung-a recompensa-a
+@raw revanu nomuna revenge-a rache-a venganza-a
+@raw revaro veraba reward-a belohnen-a
+@raw reveno nomuna revenue-a umsatz-a
+@raw revelu veraba reveal-a offenbaren-a revelar-a
+@raw revero veraba reverse-a revertir-a
+@raw revesi ronona ourselves-a
+@raw revevu nomuna review-a bewertung-a examen-a
+@raw revinu nomuna revision-a revision-a revisión-a
+@raw reviso veraba revise-a überarbeiten-a
+@raw revivu veraba review-a überprüfen-a revisar-a
+@raw revunu nomuna revival-a aufschwung-a renacimiento-a
+@raw rehu veraba recognize-a erkennen-a reconocer-a
+@raw rehato veraba treat-a behandeln-a
+@raw rehedu nomuna remedy-a abhilfe-a remedio-a
+@raw reheni detiva vergehen-a
+@raw reheru veraba record-a aufnehmen-a grabar-a
+@raw rehugu nomuna upbringing-a erziehung-a crianza-a
+@raw ripu nomuna operation-a betrieb-a operación-a
+@raw ripalu detiva triple-a dreifach-a triple-a
+@raw ripetu nomuna airport-a flughafen-a aeropuerto-a
+@raw ritu detiva right-a richtig-a correcto-a
+@raw ritaro veraba scream-a gritar-a
+@raw riteku nomuna reviewer-a prüfer-a crítico-a
+@raw ritedo veraba ride-a reiten-a
+@raw ritemu nomuna criterion-a kriterium-a criterio-a
+@raw riteni veraba einrichten-a
+@raw ritero dunona either-a entweder-a
+@raw ritiku detiva critical-a kritisch-a crítico-a
+@raw ritigo nomuna writing-a escritura-a
+@raw ritimo nomuna criticism-a kritik-a
+@raw ritino nomuna orientation-a orientierung-a
+@raw ritiru nomuna critic-a kritiker-a crítica-a
+@raw ritisu veraba criticize-a kritisieren-a criticar-a
+@raw ritoru nomuna writer-a schriftsteller-a escritor-a
+@raw ritunu nomuna establishment-a einrichtung-a establecimiento-a
+@raw riko veraba reach-a erreichen-a
+@raw rikano detiva african-a africano-a
+@raw rikalo deroba strictly-a estrictamente-a
+@raw riketo nomuna cricket-a grillo-a
+@raw rikebi veraba errichten-a
+@raw rikeni veraba richten-a
+@raw rikeri peposa sicher-a
+@raw rikinu nomuna jurisdiction-a rechtsprechung-a jurisdicción-a
+@raw rikolu detiva agricultural-a landwirtschaftlich-a agrícola-a
+@raw rikutu nomuna agriculture-a landwirtschaft-a agricultura-a
+@raw ribu veraba write-a schreiben-a escribir-a
+@raw riberi nomuna ritter-a
+@raw ribodi ronona everybody-a
+@raw ribunu nomuna distribution-a verteilung-a distribución-a
+@raw ridu nomuna friend-a freund-a amigo-a
+@raw ridari veraba brindar-a
+@raw rideno veraba differ-a unterscheiden-a
+@raw rideru nomuna rider-a reiter-a jinete-a
+@raw ridino nomuna riding-a reiten-a
+@raw rigu veraba bring-a bringen-a traer-a
+@raw rigati terona right-a
+@raw rigadu nomuna brigade-a brigade-a brigada-a
+@raw rigani detiva dringen-a
+@raw rigalo deroba originally-a originalmente-a
+@raw rigenu nomuna origin-a herkunft-a origen-a
+@raw rigero veraba trigger-a auslösen-a
+@raw rigeso veraba rise-a steigen-a
+@raw rigidu detiva rigid-a starr-a rígido-a
+@raw rigilu nomuna original-a original-a original-a
+@raw rimu detiva rich-a reich-a rico-a
+@raw rimaru nomuna primary-a grundschule-a primaria-a
+@raw rimeru nomuna first-a first-a primero-a
+@raw riminu nomuna criminal-a verbrecher-a delincuente-a
+@raw rinu nomuna president-a präsident-a presidente-a
+@raw rinalu nomuna courtroom-a saal-a tribunal-a
+@raw rinasi nomuna prinz-a
+@raw rinetu veraba print-a drucken-a imprimir-a
+@raw rineku veraba drink-a trinken-a beber-a
+@raw rinego veraba ring-a klingeln-a
+@raw rineni nomuna großbritannien-a
+@raw rinelu nomuna print-a drucken-a huella-a
+@raw rineru detiva inner-a inner-a interior-a
+@raw rinesu nomuna princess-a prinzessin-a princesa-a
+@raw rinipi nomuna príncipe-a
+@raw rinigu nomuna ring-a ring-a anillo-a
+@raw rininu nomuna printing-a druckerei-a imprenta-a
+@raw rilu detiva original-a ursprünglich-a original-a
+@raw rilatu detiva bright-a hell-a brillante-a
+@raw rilano detiva brilliant-a genial-a
+@raw rilegu nomuna privilege-a privileg-a privilegio-a
+@raw rilini numera trillion-a
+@raw riru detiva true-a wahr-a cierto-a
+@raw riralu detiva territorial-a territorial-a territorial-a
+@raw ririsu detiva irish-a irisch-a irlandés-a
+@raw risu nomuna experience-a erfahrung-a experiencia-a
+@raw risati nomuna cristo-a
+@raw risako veraba risk-a arriesgar-a
+@raw risadu nomuna friendship-a freundschaft-a amistad-a
+@raw risanu nomuna christian-a christ-a cristiano-a
+@raw risalu nomuna crystal-a kristall-a cristal-a
+@raw riseni veraba erschießen-a
+@raw riseri nomuna serio-a
+@raw riseso nomuna sadness-a tristeza-a
+@raw risiko nomuna hazard-a risiko-a
+@raw risinu detiva christian-a christlich-a cristiano-a
+@raw risisi detiva juristisch-a
+@raw risonu nomuna prison-a gefängnis-a cárcel-a
+@raw risori terona sorry-a
+@raw rifu nomuna risk-a gefahr-a riesgo-a
+@raw rifafu nomuna triumph-a triumph-a triunfo-a
+@raw rifilu nomuna rifle-a gewehr-a fusil-a
+@raw rifiru veraba sacrifice-a opfern-a sacrificar-a
+@raw rifiso nomuna sacrifice-a sacrificio-a
+@raw rivu veraba drive-a fahren-a conducir-a
+@raw rivalo nomuna rival-a rival-a
+@raw rivasu nomuna privacy-a privatsphäre-a privacidad-a
+@raw rivinu nomuna driving-a fahren-a conducción-a
+@raw rivutu nomuna riot-a aufruhr-a revuelta-a
+@raw riho deroba right-a rechts-a
+@raw riheri deroba everywhere-a
+@raw ropu detiva european-a europäisch-a europeo-a
+@raw ropedu nomuna clothes-a bekleidung-a ropa-a
+@raw ropelo deroba properly-a correctamente-a
+@raw ropero detiva proper-a ordnungsgemäß-a
+@raw ropesu nomuna proposal-a vorschlag-a propuesta-a
+@raw roponu veraba propose-a vorschlagen-a proponer-a
+@raw roti deroba erst-a
+@raw rotari nomuna otra-a
+@raw rotetu veraba protest-a protestieren-a protestar-a
+@raw rotenu nomuna protein-a protein-a proteína-a
+@raw rotelu nomuna bulk-a großteil-a grueso-a
+@raw rotesu nomuna protest-a protest-a protesta-a
+@raw rotehu nomuna red-a rot-a rojo-a
+@raw roku veraba break-a brechen-a romper-a
+@raw rokatu deroba approximately-a ungefähr-a aproximadamente-a
+@raw rokamu veraba proclaim-a verkünden-a proclamar-a
+@raw rokano nomuna proximity-a cercanía-a
+@raw rokalo detiva tropical-a tropical-a
+@raw roketu detiva broken-a kaputt-a roto-a
+@raw rokero nomuna broker-a makler-a
+@raw rokinu nomuna projection-a projektion-a proyección-a
+@raw rokolu nomuna protocol-a protokoll-a protocolo-a
+@raw robu veraba throw-a werfen-a tirar-a
+@raw robaho detiva rough-a grob-a
+@raw robelo nomuna trouble-a ärger-a
+@raw robero nomuna rubber-a goma-a
+@raw robidu detiva forbidden-a unzulässig-a prohibido-a
+@raw robilu nomuna probability-a wahrscheinlichkeit-a probabilidad-a
+@raw robotu nomuna robot-a roboter-a robot-a
+@raw rodu detiva red-a rot-a rojo-a
+@raw rodasi veraba broadcast-a
+@raw rodeko veraba project-a proyectar-a
+@raw rodedu veraba surround-a umgeben-a rodear-a
+@raw roderu nomuna producer-a hersteller-a productor-a
+@raw rogu nomuna version-a version-a versión-a
+@raw rogamu nomuna programming-a programmierung-a programación-a
+@raw rogesu detiva progressive-a schrittweise-a progresista-a
+@raw rogoti peposa throughout-a
+@raw romu nomuna rock-a rock-a piedra-a
+@raw romatu detiva romantic-a romantisch-a romántico-a
+@raw romano detiva roman-a romano-a
+@raw romasu nomuna romance-a romantik-a romance-a
+@raw romenu nomuna promotion-a förderung-a promoción-a
+@raw romeru veraba promote-a fördern-a promover-a
+@raw romesu nomuna promise-a versprechen-a promesa-a
+@raw romisu veraba promise-a versprechen-a prometer-a
+@raw ronu nomuna relationship-a beziehung-a relación-a
+@raw ronato detiva front-a frontal-a
+@raw ronalo detiva royal-a königlich-a
+@raw ronelo deroba strongly-a firmemente-a
+@raw roniku detiva chronic-a chronisch-a crónico-a
+@raw ronilo detiva provincial-a provincial-a
+@raw ronisu detiva ironic-a ironisch-a irónico-a
+@raw rononu nomuna pronoun-a Pronomen-a pronombre-a
+@raw rolu detiva personal-a persönlich-a personal-a
+@raw rolano veraba roll-a rollen-a
+@raw rolenu nomuna roll-a brötchen-a rollo-a
+@raw roleru detiva merry-a fröhlich-a alegre-a
+@raw rolusu detiva proud-a stolz-a orgulloso-a
+@raw roru nomuna brother-a bruder-a hermano-a
+@raw rorami nomuna programme-a
+@raw roralu detiva oral-a mündlich-a oral-a
+@raw roreri veraba recorrer-a
+@raw roresu nomuna progress-a fortschritt-a progreso-a
+@raw rorito detiva terrorist-a terrorista-a
+@raw rorimo nomuna terrorism-a terrorismus-a
+@raw rorisu nomuna terrorist-a terrorist-a terrorismo-a
+@raw rorutu nomuna route-a strecke-a ruta-a
+@raw rosu nomuna process-a verfahren-a proceso-a
+@raw rosadu nomuna metropolis-a großstadt-a metrópoli-a
+@raw rosari nomuna rosario-a
+@raw rosedu nomuna procedure-a vorgehensweise-a procedimiento-a
+@raw roseni detiva grössten-a
+@raw rosero veraba proceed-a proceder-a
+@raw rosesu nomuna processing-a verarbeitung-a procesamiento-a
+@raw rositu nomuna prostitute-a prostituierte-a prostituta-a
+@raw rosiko nomuna prospect-a aussicht-a
+@raw rosidu nomuna prosperity-a wohlstand-a prosperidad-a
+@raw rosimu detiva upcoming-a kommenden-a próximo-a
+@raw rosinu nomuna provision-a bestimmung-a provisión-a
+@raw rosoru nomuna processor-a prozessor-a procesador-a
+@raw rofo ronona everyone-a jedermann-a
+@raw rofeni veraba eröffnen-a
+@raw roferu nomuna professor-a professor-a profesora-a
+@raw rovu veraba provide-a liefern-a proporcionar-a
+@raw rovalu nomuna approval-a genehmigung-a aprobación-a
+@raw rovaru nomuna browser-a browser-a explorador-a
+@raw rovetu nomuna growth-a wachstum-a crecimiento-a
+@raw roveru nomuna provider-a anbieter-a proveedor-a
+@raw rovidu nomuna crowd-a publikum-a multitud-a
+@raw rovinu nomuna province-a bundesland-a provincia-a
+@raw rovilu nomuna row-a zeile-a fila-a
+@raw rovoku veraba provoke-a provozieren-a provocar-a
+@raw rohu nomuna mistake-a fehler-a error-a
+@raw roheto nomuna rocket-a cohete-a
+@raw rohenu veraba threaten-a drohen-a amenazar-a
+@raw rupu nomuna principle-a prinzip-a principio-a
+@raw rupero detiva upper-a obere-a
+@raw rupinu nomuna grouping-a gruppierung-a agrupación-a
+@raw rutu nomuna product-a produkt-a producto-a
+@raw rutalu detiva brutal-a brutal-a brutal-a
+@raw rutenu nomuna recruitment-a anstellung-a contratación-a
+@raw rutero detiva outer-a äußere-a
+@raw rutinu nomuna routine-a routine-a rutina-a
+@raw rutoti nomuna truthout-a
+@raw ruku nomuna record-a rekord-a registro-a
+@raw rukero veraba revert-a zurückkehren-a
+@raw rukesu nomuna setback-a rückschlag-a revés-a
+@raw rukulu detiva structural-a strukturell-a estructural-a
+@raw rubu nomuna artist-a künstler-a artista-a
+@raw rubadu detiva blonde-a blond-a rubio-a
+@raw ruberu nomuna ruler-a herrscher-a gobernante-a
+@raw rubinu nomuna ruin-a ruine-a ruina-a
+@raw rudu nomuna period-a zeitraum-a período-a
+@raw rudaki detiva grundsätzlich-a
+@raw rudeni veraba gründen-a
+@raw ruderu detiva rude-a unverschämt-a grosero-a
+@raw rudunu nomuna justification-a begründung-a justificación-a
+@raw rugu nomuna production-a produktion-a producción-a
+@raw rumu peposa around-a um-a alrededor-a
+@raw rumebu nomuna heading-a rubrik-a rumbo-a
+@raw rumenu nomuna instrument-a instrument-a instrumento-a
+@raw rumoro nomuna rumor-a rumor-a
+@raw runu veraba run-a laufen-a correr-a
+@raw runado deroba round-a rund-a
+@raw runedu detiva round-a rund-a redondo-a
+@raw runeru nomuna runner-a läufer-a corredor-a
+@raw runinu veraba ruin-a ruinieren-a arruinar-a
+@raw runodu nomuna round-a runde-a ronda-a
+@raw rulu nomuna rule-a regel-a regla-a
+@raw ruru veraba perform-a durchführen-a realizar-a
+@raw ruralu detiva rural-a ländlich-a rural-a
+@raw rusu peposa from-a aus-a desde-a
+@raw rusari veraba cruzar-a
+@raw ruseto nomuna trust-a fideicomiso-a
+@raw ruseno veraba rush-a hetzen-a
+@raw ruselu detiva cruel-a grausam-a cruel-a
+@raw ruseri detiva äußer-a
+@raw rusilu detiva crucial-a entscheidend-a crucial-a
+@raw rufo veraba return-a regresar-a
+@raw rufamu nomuna reputation-a ruf-a fama-a
+@raw rufeno veraba shout-a rufen-a
+@raw rufisu nomuna rise-a aufstieg-a subida-a
+@raw rufunu nomuna exam-a prüfung-a exámen-a
+@raw ruvu nomuna river-a fluß-a río-a
+@raw ruhu detiva early-a früh-a temprano-a
+@raw ruheni veraba beruhen-a
+@raw ruhigu detiva quiet-a ruhig-a tranquilo-a
 
 ## ("s")
 
-@raw so and-a und-a y-a
-@raw sapo support-a unterstützung-a apoyo-a
-@raw sapade spd-a
-@raw sapamo steam-a dampf-a vapor-a
-@raw sapano disappearance-a verschwinden-a desaparición-a
-@raw sapeno disappoint-a enttäuschen-a decepcionar-a
-@raw sapele spell-a
-@raw sapero super-a super-a super-a
-@raw sapino spin-a spin-a spin-a
-@raw sapoti spot-a spot-a
-@raw sapuho shoe-a schuh-a zapato-a
-@raw sati late-a spät-a
-@raw satate state-a
-@raw satale estatal-a
-@raw satepe step-a
-@raw sateni sentiment-a einschätzung-a
-@raw satiko stick-a stock-a palo-a
-@raw satino compensation-a ausgleich-a compensación-a
-@raw satifo satisfy-a befriedigen-a satisfacer-a
-@raw satopo stop-a stopp-a parada-a
-@raw satono stone-a stein-a stone-a
-@raw satuti statute-a estatuto-a
-@raw satuki stuck-a atrapado-a
-@raw satudi study-a estudiar-a
-@raw satuse tus-a
-@raw sako six-a sechs-a seis-a
-@raw sakalo scale-a maßstab-a escala-a
-@raw sakare sacar-a
-@raw sakeni saxon-a sachsen-a
-@raw sakeso chess-a schach-a ajedrez-a
-@raw sakino skin-a haut-a piel-a
-@raw sakilo skill-a geschick-a habilidad-a
-@raw sakiri shake-a sacudir-a
-@raw sakori score-a anotar-a
-@raw sakulo skull-a schädel-a cráneo-a
-@raw sabo share-a teilen-a compartir-a
-@raw sabate saint-a
-@raw sabage suyo-a
-@raw sabafe sea-a
-@raw saberi know-a saber-a
-@raw sabese es-a
-@raw sabite shit-a
-@raw sabise issue-a
-@raw sabori flavor-a sabor-a
-@raw sabute shut-a
-@raw sabudi saudi-a saudí-a
-@raw sabuge salzburg-a
-@raw sabuse us-a
-@raw sado send-a schicken-a enviar-a
-@raw sadeno injury-a schaden-a herida-a
-@raw sadese eso-a
-@raw sadiki said-a dicho-a
-@raw sadiso dish-a speise-a platillo-a
-@raw sadore salvador-a
-@raw saduli schedule-a programar-a
-@raw saduro suburb-a stadtteil-a suburbio-a
-@raw saduso sauce-a sauce-a salsa-a
-@raw sago situation-a lage-a situación-a
-@raw sagemo shame-a schande-a vergüenza-a
-@raw sagero sour-a sauer-a agrio-a
-@raw sagilo sail-a segeln-a navegar-a
-@raw samo submit-a senden-a presentar-a
-@raw samage samstag-a
-@raw samelo assembly-a versammlung-a asamblea-a
-@raw samero shadow-a schatten-a sombra-a
-@raw samike sämtlich-a
-@raw samini examine-a examinar-a
-@raw samolo sample-a probe-a muestra-a
-@raw sano husband-a mann-a marido-a
-@raw sanate sankt-a
-@raw sanako snake-a schlange-a serpiente-a
-@raw sanedo sand-a sand-a arena-a
-@raw sanene spannen-a
-@raw saneri share-a anteil-a
-@raw sanini sanction-a sanción-a
-@raw saniri sanitary-a sanitario-a
-@raw saniso ash-a asche-a ceniza-a
-@raw sanogo slope-a hang-a ladera-a
-@raw sanoro savings-a einsparung-a ahorro-a
-@raw salo social-a sozial-a social-a
-@raw salato salt-a salz-a sal-a
-@raw salado salad-a salat-a ensalada-a
-@raw salane schalten-a
-@raw salavo slave-a sklave-a esclavo-a
-@raw saleti jump-a salto-a
-@raw salene erzählen-a
-@raw salero collector-a sammler-a coleccionista-a
-@raw salesi sales-a vertrieb-a
-@raw salito satellite-a satellit-a satélite-a
-@raw saliko usual-a üblich-a habitual-a
-@raw salido output-a ausgang-a salida-a
-@raw salini solo-a alleine-a
-@raw salivo shallow-a oberflächlich-a superficial-a
-@raw salovo swallow-a schlucken-a tragar-a
-@raw saludo greeting-a gruß-a saludo-a
-@raw salulo soul-a seele-a alma-a
-@raw saluse schluss-a
-@raw saro start-a beginnen-a empezar-a
-@raw saradi sacred-a sagrado-a
-@raw sarino saying-a Spruch-a refrán-a
-@raw sariso sad-a traurig-a triste-a
-@raw sarufo sharp-a scharf-a agudo-a
-@raw saso season-a saison-a temporada-a
-@raw sasate east-a
-@raw saseti asset-a activo-a
-@raw saseno swap-a austauschen-a intercambiar-a
-@raw saselo steel-a stahl-a acero-a
-@raw sasero disaster-a katastrophe-a desastre-a
-@raw sasiti east-a östlich-a
-@raw sasidi aside-a beiseite-a
-@raw sasigo resident-a ansässig-a residente-a
-@raw sasino asian-a asiatisch-a asiático-a
-@raw sasise assist-a
-@raw safo space-a weltraum-a espacio-a
-@raw safete safety-a
-@raw safene verschaffen-a
-@raw saferi sphere-a esfera-a
-@raw safino satisfaction-a befriedigung-a satisfacción-a
-@raw safopi shop-a shop-a
-@raw safuno abolition-a abschaffung-a supresión-a
-@raw safuse schuß-a
-@raw savo save-a retten-a guardar-a
-@raw savete soweit-a
-@raw savede schwede-a
-@raw savimo swim-a schwimmen-a nadar-a
-@raw savoro saviour-a retter-a salvador-a
-@raw saho yeah-a ja-a sí-a
-@raw saheko numerous-a zahlreich-a numeroso-a
-@raw saheni count-a zählen-a
-@raw sepo serious-a ernst-a serio-a
-@raw sepato separate-a trennen-a separado-a
-@raw sepabo acceptable-a akzeptabel-a aceptable-a
-@raw sepano acceptance-a akzeptanz-a aceptación-a
-@raw separo separate-a trennen-a separar-a
-@raw sepeti sheet-a chapa-a
-@raw sepeko suspect-a verdächtig-a sospechoso-a
-@raw sepebe septiembre-a
-@raw sepimo exception-a ausnahme-a excepción-a
-@raw sepuni timing-a zeitpunkt-a
-@raw seti since-a seit-a
-@raw setato statue-a statue-a estatua-a
-@raw setado stand-a stand-a stand-a
-@raw setago stage-a bühne-a etapa-a
-@raw setane certain-a
-@raw setali essentially-a fundamentalmente-a
-@raw setari subway-a metro-a
-@raw setede yesterday-a
-@raw seteno judgment-a urteil-a sentencia-a
-@raw seteli settle-a begleichen-a
-@raw setero eastern-a ost-a oriental-a
-@raw setesi secondly-a zweitens-a
-@raw setike stick-a
-@raw setigo witness-a zeuge-a testigo-a
-@raw setine setting-a
-@raw setiso scientist-a wissenschaftler-a científico-a
-@raw setoko stock-a bestand-a caldo-a
-@raw setoro store-a speichern-a almacenar-a
-@raw setupo setup-a konfiguration-a configuración-a
-@raw setudi studio-a studio-a
-@raw setufi stuff-a zeug-a
-@raw seki speak-a sprechen-a
-@raw sekado certificate-a urkunde-a certificado-a
-@raw sekano nearby-a nahe-a cercano-a
-@raw sekalo sexuality-a sexualität-a sexualidad-a
-@raw sekari square-a cuadrado-a
-@raw sekaso sexy-a sexy-a sexy-a
-@raw seketo secret-a geheim-a secreto-a
-@raw sekeko stretch-a strecken-a estirar-a
-@raw sekebo stab-a stechen-a apuñalar-a
-@raw sekene stecken-a
-@raw sekelo sequel-a fortsetzung-a secuela-a
-@raw sekeso sequence-a ablauf-a secuencia-a
-@raw sekite escrito-a
-@raw sekike strike-a
-@raw sekino section-a abschnitt-a sección-a
-@raw sekiso czech-a tschechisch-a checo-a
-@raw sekode second-a
-@raw sekoro sector-a branche-a sector-a
-@raw sekudo second-a sekunde-a segundo-a
-@raw sekuno subscription-a zeichnung-a suscripción-a
-@raw sekulo sexual-a sexuell-a sexual-a
-@raw sekuro secure-a sichern-a asegurado-a
-@raw sebi set-a einstellen-a
-@raw sebari seeming-a scheinbar-a
-@raw sebeni exhibit-a ausstellen-a
-@raw sebere selber-a
-@raw sebise scheiß-a
-@raw sebolo onion-a zwiebel-a cebolla-a
-@raw sedi second-a segundo-a
-@raw sedato headquarters-a zentrale-a sede-a
-@raw sedari secondary-a secundario-a
-@raw sededo exceed-a überschreiten-a exceder-a
-@raw sedeme seitdem-a
-@raw sedene verscheiden-a
-@raw sedere suceder-a
-@raw sediso swedish-a schwedisch-a sueco-a
-@raw seduno broadcast-a sendung-a difusión-a
-@raw sedulo schedule-a zeitplan-a horario-a
-@raw sego research-a forschung-a investigación-a
-@raw segalo seal-a siegel-a sello-a
-@raw segeto segment-a segment-a segmento-a
-@raw segeno assign-a zuordnen-a ceder-a
-@raw segero boost-a steigern-a impulsar-a
-@raw segide seguido-a
-@raw segino tracking-a verfolgen-a seguimiento-a
-@raw seguro insurance-a versicherung-a seguro-a
-@raw semi seem-a scheinen-a
-@raw semato systematic-a systematisch-a sistemático-a
-@raw semano sue-a verklagen-a demandar-a
-@raw semari specimen-a exemplar-a
-@raw semeti subsequently-a posteriormente-a
-@raw semedi seed-a semilla-a
-@raw semeno settlement-a siedlung-a asentamiento-a
-@raw semelo extremely-a äußerst-a extremadamente-a
-@raw semero semester-a semester-a semestre-a
-@raw seno even-a sogar-a incluso-a
-@raw senato cent-a cent-a centavo-a
-@raw senado senate-a senat-a senado-a
-@raw senano sensation-a empfindung-a sensación-a
-@raw senale central-a
-@raw senari centre-a zentrum-a
-@raw senasi breast-a seno-a
-@raw senete ciento-a
-@raw senedo ascend-a aufsteigen-a ascender-a
-@raw seneno gift-a schenken-a regalar-a
-@raw seneri sender-a sender-a
-@raw senito accent-a akzent-a acento-a
-@raw seniko essential-a wesentlich-a esencial-a
-@raw senibo sensitive-a sensibel-a sensible-a
-@raw senini citation-a mención-a
-@raw senilo sensitivity-a sensibilität-a sensibilidad-a
-@raw seniri senior-a senior-a
-@raw seniso tennis-a tennis-a tenis-a
-@raw senivo extensive-a umfassend-a extenso-a
-@raw senobo sensor-a sensor-a sensor-a
-@raw senoro senator-a senator-a senador-a
-@raw senuro zero-a null-a cero-a
-@raw senuso census-a zählung-a censo-a
-@raw selo she-a sie-a ella-a
-@raw selake zeitlich-a
-@raw selado salary-a gehalt-a sueldo-a
-@raw selalo shelf-a regal-a estantería-a
-@raw selaro celebrity-a star-a celebridad-a
-@raw selafe itself-a
-@raw selepo spa-a wellness-a balneario-a
-@raw seleto smart-a intelligent-a inteligente-a
-@raw seleki select-a seleccionar-a
-@raw selebo celebration-a feiern-a celebración-a
-@raw seledi celebrated-a celebrado-a
-@raw selego accelerate-a beschleunigen-a acelerar-a
-@raw seleni rare-a selten-a
-@raw selero celebrate-a feiern-a celebrar-a
-@raw selevi jungle-a selva-a
-@raw selite split-a
-@raw seliko exclusively-a ausschliesslich-a exclusivamente-a
-@raw selibo slice-a scheibe-a rebanada-a
-@raw selidi slide-a folie-a
-@raw seligo spelling-a schreibweise-a ortografía-a
-@raw selino shine-a glanz-a brillo-a
-@raw seluno exhibition-a ausstellung-a exhibición-a
-@raw selulo cell-a zelle-a célula-a
-@raw seluse schluß-a
-@raw sero see-a sehen-a ver-a
-@raw serate cierto-a
-@raw serado closed-a geschlossen-a cerrado-a
-@raw serago strict-a streng-a estricto-a
-@raw serami stream-a arroyo-a
-@raw serano strange-a seltsam-a extraño-a
-@raw serare acercar-a
-@raw seraso stress-a streß-a estrés-a
-@raw seraho ray-a strahl-a rayo-a
-@raw sereto secret-a geheimnis-a secreto-a
-@raw sereke österreich-a
-@raw serebe stress-a
-@raw seredo spread-a verteilen-a difundir-a
-@raw serego strength-a stärke-a fortaleza-a
-@raw seremo ceremony-a feier-a ceremonia-a
-@raw sereno screen-a bildschirm-a pantalla-a
-@raw serero server-a server-a servidor-a
-@raw sereso express-a ausdrücken-a expresar-a
-@raw serevi screw-a schrauben-a
-@raw seripe strip-a
-@raw serito script-a schrift-a guión-a
-@raw seriko strike-a schlag-a huelga-a
-@raw seridi string-a cuerda-a
-@raw serigo spring-a frühjahr-a primavera-a
-@raw serino certainly-a sicherlich-a ciertamente-a
-@raw serili seriously-a seriamente-a
-@raw seriro exterior-a außenbereich-a exterior-a
-@raw serifo written-a schriftlich-a escrito-a
-@raw seriho stripe-a streifen-a raya-a
-@raw seromo electricity-a strom-a electricidad-a
-@raw serono extraordinary-a außergewöhnlich-a extraordinario-a
-@raw seruko outbreak-a ausbruch-a brote-a
-@raw seruge struggle-a
-@raw serule struggle-a
-@raw seso service-a service-a servicio-a
-@raw sesate esto-a
-@raw sesali societal-a gesellschaftlich-a
-@raw sesasi cease-a cesar-a
-@raw seseto assessment-a beurteilung-a evaluación-a
-@raw seseno exclude-a ausschließen-a excluir-a
-@raw sesito solid-a fest-a sólido-a
-@raw sesibo affordable-a preiswert-a accesible-a
-@raw sesino session-a sitzung-a sesión-a
-@raw sesifi specify-a precisar-a
-@raw sesopo spy-a spion-a espía-a
-@raw sesono extension-a ausbau-a extensión-a
-@raw sesoro advisor-a berater-a asesor-a
-@raw sesulo gay-a schwule-a homosexual-a
-@raw sesuri ensure-a sicherstellen-a
-@raw sefo safe-a sicher-a seguro-a
-@raw sefepo sheep-a schaf-a oveja-a
-@raw sefoto scent-a duft-a aroma-a
-@raw sevo know-a wissen-a saber-a
-@raw sevako weak-a schwach-a débil-a
-@raw sevano servant-a diener-a siervo-a
-@raw sevaro black-a schwarz-a negro-a
-@raw seveto seventh-a siebte-a séptimo-a
-@raw sevigo swing-a swing-a swing-a
-@raw sevile sevilla-a
-@raw seviso advice-a beratung-a asesoramiento-a
-@raw sevifo swift-a schneller-a veloz-a
-@raw sevolo twelve-a zwölf-a doce-a
-@raw seho series-a reihe-a serie-a
-@raw sehati toe-a zeh-a
-@raw sehede stehend-a
-@raw sehene aussehen-a
-@raw sehero foresee-a absehen-a prever-a
-@raw sehuto set-a set-a conjunto-a
-@raw sipo simply-a einfach-a simplemente-a
-@raw sipato sympathy-a sympathie-a simpatía-a
-@raw sipalo principal-a schulleiter-a principal-a
-@raw sipero recipient-a empfänger-a receptor-a
-@raw sipino shipping-a versand-a envío-a
-@raw sito city-a stadt-a ciudad-a
-@raw sitato seat-a sitz-a asiento-a
-@raw sitaro cite-a zitieren-a citar-a
-@raw sitedo excited-a aufgeregt-a emocionado-a
-@raw siteno excitement-a aufregung-a entusiasmo-a
-@raw sitiko side-a seitlich-a lateral-a
-@raw sitigo explicit-a eindeutig-a explícito-a
-@raw sitomo symptom-a symptom-a síntoma-a
-@raw siture situar-a
-@raw siko self-a sich-a se-a
-@raw sikato sixth-a sechste-a sexto-a
-@raw sikani fancy-a schick-a
-@raw sikali physically-a físicamente-a
-@raw sikaro scary-a unheimlich-a aterrador-a
-@raw sikene auszeichnen-a
-@raw sikeri secure-a sichern-a
-@raw sikipo skip-a überspringen-a omitir-a
-@raw sikiko psychological-a psychisch-a psicológico-a
-@raw sikire siquiera-a
-@raw sikogo psychologist-a psychologe-a psicólogo-a
-@raw sikuto circuit-a schaltung-a circuito-a
-@raw sikulo cycle-a zyklus-a ciclo-a
-@raw sikure circular-a
-@raw sibi sit-a sitzen-a
-@raw sibeti shift-a verschieben-a
-@raw sibeno slide-a schieben-a deslizar-a
-@raw sibere sierra-a
-@raw sibeso yes-a ja-a sí-a
-@raw sibolo symbol-a symbol-a símbolo-a
-@raw sido side-a seite-a lado-a
-@raw sidano citizenship-a staatsbürgerschaft-a ciudadanía-a
-@raw sidalo subsidiary-a niederlassung-a filial-a
-@raw sideto incident-a ereignis-a incidente-a
-@raw sidedo speed-a geschwindigkeit-a velocidad-a
-@raw sideno accident-a unfall-a accidente-a
-@raw sideso aids-a aids-a sida-a
-@raw sigo position-a position-a posición-a
-@raw sigate sight-a
-@raw sigano sign-a unterschreiben-a firmar-a
-@raw sigali signal-a signal-a
-@raw sigaro cigarette-a zigarette-a cigarrillo-a
-@raw sigegi victory-a sieg-a
-@raw sigeni sign-a señal-a
-@raw sigelo acronym-a abkürzung-a sigla-a
-@raw sigefo oxygen-a sauerstoff-a oxígeno-a
-@raw simo same-a gleich-a mismo-a
-@raw simato estimate-a schätzung-a estimado-a
-@raw simano estimate-a schätzen-a estimar-a
-@raw simalo simple-a einfacher-a simple-a
-@raw simelo sky-a himmel-a cielo-a
-@raw simero bedroom-a zimmer-a dormitorio-a
-@raw simiko sympathetic-a sympathisch-a simpático-a
-@raw simido shy-a schüchtern-a tímido-a
-@raw simime asimismo-a
-@raw sino without-a ohne-a sin-a
-@raw sinato passionate-a leidenschaftlich-a apasionado-a
-@raw sinadi sin-a pecado-a
-@raw sinago sing-a singen-a cantar-a
-@raw sinale signal-a
-@raw sinaro assassinate-a ermorden-a asesinar-a
-@raw sinaho close-a nähe-a cierre-a
-@raw sineto singing-a singen-a canto-a
-@raw sineni sink-a sinken-a
-@raw sinero singer-a sänger-a cantante-a
-@raw sinino exciting-a spannend-a emocionante-a
-@raw sinilo single-a single-a sencillo-a
-@raw sinovo snow-a schnee-a nieve-a
-@raw sinuno designation-a bezeichnung-a denominación-a
-@raw silo special-a besondere-a especial-a
-@raw silano shine-a strahlen-a brillar-a
-@raw silene zielen-a
-@raw sileri silver-a plateado-a
-@raw silito facilitate-a erleichtern-a facilitar-a
-@raw siliki pretty-a ziemlich-a
-@raw silimo socialism-a sozialismus-a socialismo-a
-@raw silisi socialist-a socialista-a
-@raw siludo shield-a schild-a escudo-a
-@raw siluho silence-a ruhe-a silencio-a
-@raw siro hard-a schwer-a difícil-a
-@raw siramo signature-a unterschrift-a firma-a
-@raw sireki approx-a ca-a
-@raw sirebo aspire-a anstreben-a aspirar-a
-@raw sirito shirt-a shirt-a camiseta-a
-@raw siriso syrian-a syrisch-a sirio-a
-@raw sirulo circle-a zirkel-a círculo-a
-@raw siso sense-a sinn-a sentido-a
-@raw sisati assistant-a auxiliar-a
-@raw sisano assistant-a assistent-a asistente-a
-@raw sisali fate-a schicksal-a
-@raw siseti existent-a existente-a
-@raw sisede vorsitzend-a
-@raw sisemi enthusiasm-a begeisterung-a
-@raw siseno existence-a existenz-a existencia-a
-@raw sisero swiss-a schweizer-a suizo-a
-@raw siseso assistance-a assistenz-a asistencia-a
-@raw sisido suicide-a selbstmord-a suicidio-a
-@raw sifo science-a wissenschaft-a ciencia-a
-@raw sifefi crooked-a schief-a
-@raw sifiko scientific-a wissenschaftlich-a científico-a
-@raw sifopi shop-a einkaufen-a
-@raw sifuti shift-a verschiebung-a
-@raw sivo positive-a positiv-a positivo-a
-@raw siviko civic-a bürgerlich-a cívico-a
-@raw sivilo civil-a zivil-a civil-a
-@raw sivoli meaningful-a sinnvoll-a
-@raw siho draw-a ziehen-a dibujar-a
-@raw sopo top-a spitze-a top-a
-@raw sopigi shopping-a einkauf-a
-@raw sopino spine-a wirbelsäule-a espina-a
-@raw soto site-a website-a sitio-a
-@raw sotaro endure-a ertragen-a soportar-a
-@raw soteni southern-a meridional-a
-@raw sotiri shot-a tiro-a
-@raw soko such-a solch-a tal-a
-@raw sokaro scare-a erschrecken-a asustar-a
-@raw sokeri soccer-a futbol-a
-@raw sobo scene-a szene-a escena-a
-@raw sobapo soap-a seife-a jabón-a
-@raw sobade sound-a
-@raw sobalo steal-a stehlen-a robar-a
-@raw sobivo obvious-a offensichtlich-a obvio-a
-@raw sobupo soup-a suppe-a sopa-a
-@raw sobute south-a
-@raw sode sondern-a
-@raw sodato soldier-a soldat-a soldado-a
-@raw sodase sodass-a
-@raw soduto south-a südlich-a sur-a
-@raw sogo song-a lied-a canción-a
-@raw sogane sogenannt-a
-@raw sogene versorgen-a
-@raw sogipo rope-a seil-a soga-a
-@raw sogiko zoo-a zoo-a zoológico-a
-@raw somo some-a einige-a alguno-a
-@raw somepi asleep-a dormido-a
-@raw somedi somebody-a irgendwer-a
-@raw somelo smell-a riechen-a oler-a
-@raw someri subdue-a someter-a
-@raw somevi somewhere-a irgendwo-a
-@raw somiti hence-a somit-a
-@raw somili smile-a sonreír-a
-@raw sono already-a schon-a ya-a
-@raw sonato consonant-a Konsonant-a consonante-a
-@raw sonage sonntag-a
-@raw sonare sonar-a
-@raw sonasi once-a sobald-a
-@raw sonelo shell-a hülle-a concha-a
-@raw sonido sound-a ton-a sonido-a
-@raw sonilo smile-a lächeln-a sonrisa-a
-@raw soli should-a sollen-a
-@raw solato isolate-a isolieren-a aislar-a
-@raw solado isolated-a isolieren-a aislado-a
-@raw solage solange-a
-@raw solari solar-a solar-a
-@raw soledo solitude-a einsamkeit-a soledad-a
-@raw solere soler-a
-@raw solito socialist-a sozialist-a socialista-a
-@raw solido solid-a fest-a sólido-a
-@raw soliro scholar-a gelehrter-a estudioso-a
-@raw soliso request-a anfordern-a solicitar-a
-@raw soluto absolute-a absolut-a absoluto-a
-@raw solulo absolutely-a absolut-a absolutamente-a
-@raw soro especially-a besonders-a especialmente-a
-@raw soragi shortage-a escasez-a
-@raw sorano sovereignty-a souveränität-a soberanía-a
-@raw sorale shortly-a
-@raw soreti sort-a sortieren-a
-@raw sorebi absorb-a absorber-a
-@raw soreni worry-a sorgen-a
-@raw sorero disorder-a erkrankung-a trastorno-a
-@raw soso society-a gesellschaft-a sociedad-a
-@raw sosato associate-a verknüpfen-a asociar-a
-@raw sosado associated-a verbunden-a asociado-a
-@raw soseto east-a osten-a oriente-a
-@raw soseno sustain-a aufrechterhalten-a sostener-a
-@raw sosito associate-a mitarbeiterin-a asociado-a
-@raw sosoto shoot-a schießen-a disparar-a
-@raw sofo on-a auf-a sobre-a
-@raw sofato soft-a weich-a suave-a
-@raw sofaro software-a software-a software-a
-@raw sofene sofern-a
-@raw sofero shore-a ufer-a orilla-a
-@raw sofiko sophisticated-a anspruchsvoll-a sofisticado-a
-@raw sofuko couch-a sofa-a sofá-a
-@raw sovo show-a zeigen-a mostrar-a
-@raw soveti soviet-a soviético-a
-@raw soveno sovereign-a souverän-a soberano-a
-@raw sovele soviel-a
-@raw sovite soweit-a
-@raw sovohe sowohl-a
-@raw soho store-a geschäft-a tienda-a
-@raw soheto set-a einstellen-a conjunto-a
-@raw supi support-a unterstützen-a
-@raw supale supply-a
-@raw supete supuesto-a
-@raw supeko suspect-a verdächtigen-a sospechar-a
-@raw supedi suspend-a suspender-a
-@raw supemo supermarket-a supermarkt-a supermercado-a
-@raw supeno suspension-a fahrwerk-a suspensión-a
-@raw supero super-a super-a super-a
-@raw supese supuesto-a
-@raw supido surprised-a erstaunt-a sorprendido-a
-@raw supiso supplies-a zubehör-a abastecimiento-a
-@raw supulo supply-a versorgung-a suministro-a
-@raw suto security-a sicherheit-a seguridad-a
-@raw sutado suitable-a passend-a apropiado-a
-@raw suteto southeast-a südosten-a sudeste-a
-@raw sutero supporter-a unterstützer-a partidario-a
-@raw suteso protection-a schutz-a protección-a
-@raw sutiti substitute-a sustituir-a
-@raw sutiri stir-a rühren-a
-@raw sutofo substance-a stoff-a sustancia-a
-@raw suki seek-a suchen-a
-@raw sukaro sugar-a zucker-a azúcar-a
-@raw sukeko search-a suche-a búsqueda-a
-@raw sukono succession-a nachfolge-a sucesión-a
-@raw sukoro score-a punktzahl-a puntuación-a
-@raw subo south-a süden-a sur-a
-@raw subeti subject-a sujeto-a
-@raw subene ausüben-a
-@raw subelo soil-a erdboden-a suelo-a
-@raw subevo subjective-a subjektiv-a subjetivo-a
-@raw subite suit-a
-@raw subiro climb-a klettern-a subir-a
-@raw sudo spend-a verbringen-a gastar-a
-@raw sudeme zudem-a
-@raw sudeni suddenly-a repentinamente-a
-@raw sudito suite-a suite-a suite-a
-@raw sudige zuständig-a
-@raw sugo century-a jahrhundert-a siglo-a
-@raw sugali accessible-a zugänglich-a
-@raw sugeko suck-a saugen-a chupar-a
-@raw sugeno suggestion-a empfehlung-a sugerencia-a
-@raw sugiri emerge-a surgir-a
-@raw sugugo extract-a auszug-a extracto-a
-@raw sumo together-a zusammen-a juntos-a
-@raw sumako smoke-a rauchen-a fumar-a
-@raw sumale zumal-a
-@raw sumare sumar-a
-@raw sumaso summarize-a zusammenfassen-a resumir-a
-@raw sumeli assemble-a zusammenstellen-a
-@raw sumero summary-a übersicht-a resumen-a
-@raw sumiri summit-a cumbre-a
-@raw sumoko smoke-a rauchen-a humo-a
-@raw suno student-a schüler-a estudiante-a
-@raw sunake zunächst-a
-@raw sunali substantial-a sustancial-a
-@raw sunini sunshine-a sonnenschein-a
-@raw sulo school-a schule-a escuela-a
-@raw sulade schuld-a
-@raw sularo insult-a beschimpfen-a insultar-a
-@raw suleti last-a zuletzt-a
-@raw suleko simultaneously-a zugleich-a simultáneamente-a
-@raw sulero shoulder-a schulter-a hombro-a
-@raw suleso sweet-a süß-a dulce-a
-@raw suliri supplier-a lieferant-a
-@raw suliso useless-a sinnlos-a inútil-a
-@raw suro strong-a stark-a fuerte-a
-@raw suralo usually-a normalerweise-a generalmente-a
-@raw suraro swear-a schwören-a jurar-a
-@raw surasi surprise-a überraschen-a
-@raw suravo survey-a umfrage-a encuesta-a
-@raw surego surge-a anstieg-a oleada-a
-@raw suremo supreme-a höchste-a supremo-a
-@raw sureni surgeon-a chirurg-a
-@raw sureli surely-a seguramente-a
-@raw surero surgery-a operation-a cirugía-a
-@raw surito suit-a anzug-a traje-a
-@raw surike zürich-a
-@raw surilo survival-a überleben-a supervivencia-a
-@raw suriso surprise-a überraschung-a sorpresa-a
-@raw surivo survive-a überleben-a sobrevivir-a
-@raw susi its-a sus-a
-@raw susave usw-a
-@raw suseni sufficient-a ausreichend-a
-@raw susiti substitute-a suplente-a
-@raw susibi sustainable-a sostenible-a
-@raw susiro supervisor-a aufsicht-a supervisor-a
-@raw sufo user-a nutzer-a usuario-a
-@raw sufalo coincidence-a zufall-a casualidad-a
-@raw sufaso surface-a fläche-a superficie-a
-@raw sufedo pleased-a zufrieden-a satisfecho-a
-@raw sufilo useful-a hilfreich-a útil-a
-@raw sufiro suffer-a erleiden-a sufrir-a
-@raw sufoge zufolge-a
-@raw suvo show-a show-a show-a
-@raw suvivo survivor-a überlebende-a sobreviviente-a
-@raw suvoro formerly-a zuvor-a antiguamente-a
-@raw suho suggest-a empfehlen-a sugerir-a
-@raw suhase zuhause-a
-@raw suhene zunehmen-a
-@raw suhono listening-a anhören-a escuchar-a
+@raw su dunona and-a und-a y-a
+@raw sapu nomuna support-a unterstützung-a apoyo-a
+@raw sapadi nomuna spd-a
+@raw sapamu nomuna steam-a dampf-a vapor-a
+@raw sapanu nomuna disappearance-a verschwinden-a desaparición-a
+@raw sapenu veraba disappoint-a enttäuschen-a decepcionar-a
+@raw sapeli veraba spell-a
+@raw saperu nomuna super-a super-a super-a
+@raw sapinu nomuna spin-a spin-a spin-a
+@raw sapoto nomuna spot-a spot-a
+@raw sapuhu nomuna shoe-a schuh-a zapato-a
+@raw sato detiva late-a spät-a
+@raw satati veraba state-a
+@raw satali detiva estatal-a
+@raw satepi veraba step-a
+@raw sateno nomuna sentiment-a einschätzung-a
+@raw satiku nomuna stick-a stock-a palo-a
+@raw satinu nomuna compensation-a ausgleich-a compensación-a
+@raw satifu veraba satisfy-a befriedigen-a satisfacer-a
+@raw satopu nomuna stop-a stopp-a parada-a
+@raw satonu nomuna stone-a stein-a stone-a
+@raw satuto nomuna statute-a estatuto-a
+@raw satuko detiva stuck-a atrapado-a
+@raw satudo veraba study-a estudiar-a
+@raw satusi tika tus-a
+@raw saku numera six-a sechs-a seis-a
+@raw sakalu nomuna scale-a maßstab-a escala-a
+@raw sakari veraba sacar-a
+@raw sakeno detiva saxon-a sachsen-a
+@raw sakesu nomuna chess-a schach-a ajedrez-a
+@raw sakinu nomuna skin-a haut-a piel-a
+@raw sakilu nomuna skill-a geschick-a habilidad-a
+@raw sakiro veraba shake-a sacudir-a
+@raw sakoro veraba score-a anotar-a
+@raw sakulu nomuna skull-a schädel-a cráneo-a
+@raw sabu veraba share-a teilen-a compartir-a
+@raw sabati nomuna saint-a
+@raw sabagi tika suyo-a
+@raw sabafi nomuna sea-a
+@raw sabero nomuna know-a saber-a
+@raw sabesi nomuna es-a
+@raw sabiti terona shit-a
+@raw sabisi veraba issue-a
+@raw saboro nomuna flavor-a sabor-a
+@raw sabuti veraba shut-a
+@raw sabudo detiva saudi-a saudí-a
+@raw sabugi nomuna salzburg-a
+@raw sabusi nomuna us-a
+@raw sadu veraba send-a schicken-a enviar-a
+@raw sadenu nomuna injury-a schaden-a herida-a
+@raw sadesi nomuna eso-a
+@raw sadiko detiva said-a dicho-a
+@raw sadisu nomuna dish-a speise-a platillo-a
+@raw sadori detiva salvador-a
+@raw sadulo veraba schedule-a programar-a
+@raw saduru nomuna suburb-a stadtteil-a suburbio-a
+@raw sadusu nomuna sauce-a sauce-a salsa-a
+@raw sagu nomuna situation-a lage-a situación-a
+@raw sagemu nomuna shame-a schande-a vergüenza-a
+@raw sageru detiva sour-a sauer-a agrio-a
+@raw sagilu veraba sail-a segeln-a navegar-a
+@raw samu veraba submit-a senden-a presentar-a
+@raw samagi nomuna samstag-a
+@raw samelu nomuna assembly-a versammlung-a asamblea-a
+@raw sameru nomuna shadow-a schatten-a sombra-a
+@raw samiki detiva sämtlich-a
+@raw samino veraba examine-a examinar-a
+@raw samolu nomuna sample-a probe-a muestra-a
+@raw sanu nomuna husband-a mann-a marido-a
+@raw sanati detiva sankt-a
+@raw sanaku nomuna snake-a schlange-a serpiente-a
+@raw sanedu nomuna sand-a sand-a arena-a
+@raw saneni veraba spannen-a
+@raw sanero nomuna share-a anteil-a
+@raw sanino nomuna sanction-a sanción-a
+@raw saniro detiva sanitary-a sanitario-a
+@raw sanisu nomuna ash-a asche-a ceniza-a
+@raw sanogu nomuna slope-a hang-a ladera-a
+@raw sanoru nomuna savings-a einsparung-a ahorro-a
+@raw salu detiva social-a sozial-a social-a
+@raw salatu nomuna salt-a salz-a sal-a
+@raw saladu nomuna salad-a salat-a ensalada-a
+@raw salani veraba schalten-a
+@raw salavu nomuna slave-a sklave-a esclavo-a
+@raw saleto nomuna jump-a salto-a
+@raw saleni veraba erzählen-a
+@raw saleru nomuna collector-a sammler-a coleccionista-a
+@raw saleso nomuna sales-a vertrieb-a
+@raw salitu nomuna satellite-a satellit-a satélite-a
+@raw saliku detiva usual-a üblich-a habitual-a
+@raw salidu nomuna output-a ausgang-a salida-a
+@raw salino deroba solo-a alleine-a
+@raw salivu detiva shallow-a oberflächlich-a superficial-a
+@raw salovu veraba swallow-a schlucken-a tragar-a
+@raw saludu nomuna greeting-a gruß-a saludo-a
+@raw salulu nomuna soul-a seele-a alma-a
+@raw salusi nomuna schluss-a
+@raw saru veraba start-a beginnen-a empezar-a
+@raw sarado detiva sacred-a sagrado-a
+@raw sarinu nomuna saying-a Spruch-a refrán-a
+@raw sarisu detiva sad-a traurig-a triste-a
+@raw sarufu detiva sharp-a scharf-a agudo-a
+@raw sasu nomuna season-a saison-a temporada-a
+@raw sasati deroba east-a
+@raw saseto nomuna asset-a activo-a
+@raw sasenu veraba swap-a austauschen-a intercambiar-a
+@raw saselu nomuna steel-a stahl-a acero-a
+@raw saseru nomuna disaster-a katastrophe-a desastre-a
+@raw sasito detiva east-a östlich-a
+@raw sasido deroba aside-a beiseite-a
+@raw sasigu detiva resident-a ansässig-a residente-a
+@raw sasinu detiva asian-a asiatisch-a asiático-a
+@raw sasisi veraba assist-a
+@raw safu nomuna space-a weltraum-a espacio-a
+@raw safeti nomuna safety-a
+@raw safeni veraba verschaffen-a
+@raw safero nomuna sphere-a esfera-a
+@raw safinu nomuna satisfaction-a befriedigung-a satisfacción-a
+@raw safopo nomuna shop-a shop-a
+@raw safunu nomuna abolition-a abschaffung-a supresión-a
+@raw safusi nomuna schuß-a
+@raw savu veraba save-a retten-a guardar-a
+@raw saveti dunona soweit-a
+@raw savedi nomuna schwede-a
+@raw savimu veraba swim-a schwimmen-a nadar-a
+@raw savoru nomuna saviour-a retter-a salvador-a
+@raw sahu deroba yeah-a ja-a sí-a
+@raw saheku detiva numerous-a zahlreich-a numeroso-a
+@raw saheno veraba count-a zählen-a
+@raw sepu detiva serious-a ernst-a serio-a
+@raw sepatu detiva separate-a trennen-a separado-a
+@raw sepabu detiva acceptable-a akzeptabel-a aceptable-a
+@raw sepanu nomuna acceptance-a akzeptanz-a aceptación-a
+@raw separu veraba separate-a trennen-a separar-a
+@raw sepeto nomuna sheet-a chapa-a
+@raw sepeku nomuna suspect-a verdächtig-a sospechoso-a
+@raw sepebi nomuna septiembre-a
+@raw sepimu nomuna exception-a ausnahme-a excepción-a
+@raw sepuno nomuna timing-a zeitpunkt-a
+@raw seto peposa since-a seit-a
+@raw setatu nomuna statue-a statue-a estatua-a
+@raw setadu nomuna stand-a stand-a stand-a
+@raw setagu nomuna stage-a bühne-a etapa-a
+@raw setani detiva certain-a
+@raw setalo deroba essentially-a fundamentalmente-a
+@raw setaro nomuna subway-a metro-a
+@raw setedi nomuna yesterday-a
+@raw setenu nomuna judgment-a urteil-a sentencia-a
+@raw setelo veraba settle-a begleichen-a
+@raw seteru detiva eastern-a ost-a oriental-a
+@raw seteso deroba secondly-a zweitens-a
+@raw setiki veraba stick-a
+@raw setigu nomuna witness-a zeuge-a testigo-a
+@raw setini nomuna setting-a
+@raw setisu nomuna scientist-a wissenschaftler-a científico-a
+@raw setoku nomuna stock-a bestand-a caldo-a
+@raw setoru veraba store-a speichern-a almacenar-a
+@raw setupu nomuna setup-a konfiguration-a configuración-a
+@raw setudo nomuna studio-a studio-a
+@raw setufo nomuna stuff-a zeug-a
+@raw seko veraba speak-a sprechen-a
+@raw sekadu nomuna certificate-a urkunde-a certificado-a
+@raw sekanu detiva nearby-a nahe-a cercano-a
+@raw sekalu nomuna sexuality-a sexualität-a sexualidad-a
+@raw sekaro detiva square-a cuadrado-a
+@raw sekasu detiva sexy-a sexy-a sexy-a
+@raw seketu detiva secret-a geheim-a secreto-a
+@raw sekeku veraba stretch-a strecken-a estirar-a
+@raw sekebu veraba stab-a stechen-a apuñalar-a
+@raw sekeni veraba stecken-a
+@raw sekelu nomuna sequel-a fortsetzung-a secuela-a
+@raw sekesu nomuna sequence-a ablauf-a secuencia-a
+@raw sekiti nomuna escrito-a
+@raw sekiki veraba strike-a
+@raw sekinu nomuna section-a abschnitt-a sección-a
+@raw sekisu detiva czech-a tschechisch-a checo-a
+@raw sekodi deroba second-a
+@raw sekoru nomuna sector-a branche-a sector-a
+@raw sekudu nomuna second-a sekunde-a segundo-a
+@raw sekunu nomuna subscription-a zeichnung-a suscripción-a
+@raw sekulu detiva sexual-a sexuell-a sexual-a
+@raw sekuru detiva secure-a sichern-a asegurado-a
+@raw sebo veraba set-a einstellen-a
+@raw sebaro detiva seeming-a scheinbar-a
+@raw sebeno veraba exhibit-a ausstellen-a
+@raw seberi deroba selber-a
+@raw sebisi detiva scheiß-a
+@raw sebolu nomuna onion-a zwiebel-a cebolla-a
+@raw sedo detiva second-a segundo-a
+@raw sedatu nomuna headquarters-a zentrale-a sede-a
+@raw sedaro detiva secondary-a secundario-a
+@raw sededu veraba exceed-a überschreiten-a exceder-a
+@raw sedemi deroba seitdem-a
+@raw sedeni detiva verscheiden-a
+@raw sederi veraba suceder-a
+@raw sedisu detiva swedish-a schwedisch-a sueco-a
+@raw sedunu nomuna broadcast-a sendung-a difusión-a
+@raw sedulu nomuna schedule-a zeitplan-a horario-a
+@raw segu nomuna research-a forschung-a investigación-a
+@raw segalu nomuna seal-a siegel-a sello-a
+@raw segetu nomuna segment-a segment-a segmento-a
+@raw segenu veraba assign-a zuordnen-a ceder-a
+@raw segeru veraba boost-a steigern-a impulsar-a
+@raw segidi detiva seguido-a
+@raw seginu nomuna tracking-a verfolgen-a seguimiento-a
+@raw seguru nomuna insurance-a versicherung-a seguro-a
+@raw semo veraba seem-a scheinen-a
+@raw sematu detiva systematic-a systematisch-a sistemático-a
+@raw semanu veraba sue-a verklagen-a demandar-a
+@raw semaro nomuna specimen-a exemplar-a
+@raw semeto deroba subsequently-a posteriormente-a
+@raw semedo nomuna seed-a semilla-a
+@raw semenu nomuna settlement-a siedlung-a asentamiento-a
+@raw semelu deroba extremely-a äußerst-a extremadamente-a
+@raw semeru nomuna semester-a semester-a semestre-a
+@raw senu deroba even-a sogar-a incluso-a
+@raw senatu nomuna cent-a cent-a centavo-a
+@raw senadu nomuna senate-a senat-a senado-a
+@raw senanu nomuna sensation-a empfindung-a sensación-a
+@raw senali nomuna central-a
+@raw senaro nomuna centre-a zentrum-a
+@raw senaso nomuna breast-a seno-a
+@raw seneti numera ciento-a
+@raw senedu veraba ascend-a aufsteigen-a ascender-a
+@raw senenu veraba gift-a schenken-a regalar-a
+@raw senero nomuna sender-a sender-a
+@raw senitu nomuna accent-a akzent-a acento-a
+@raw seniku detiva essential-a wesentlich-a esencial-a
+@raw senibu detiva sensitive-a sensibel-a sensible-a
+@raw senino nomuna citation-a mención-a
+@raw senilu nomuna sensitivity-a sensibilität-a sensibilidad-a
+@raw seniro detiva senior-a senior-a
+@raw senisu nomuna tennis-a tennis-a tenis-a
+@raw senivu detiva extensive-a umfassend-a extenso-a
+@raw senobu nomuna sensor-a sensor-a sensor-a
+@raw senoru nomuna senator-a senator-a senador-a
+@raw senuru numera zero-a null-a cero-a
+@raw senusu nomuna census-a zählung-a censo-a
+@raw selu ronona she-a sie-a ella-a
+@raw selaki detiva zeitlich-a
+@raw seladu nomuna salary-a gehalt-a sueldo-a
+@raw selalu nomuna shelf-a regal-a estantería-a
+@raw selaru nomuna celebrity-a star-a celebridad-a
+@raw selafi ronona itself-a
+@raw selepu nomuna spa-a wellness-a balneario-a
+@raw seletu detiva smart-a intelligent-a inteligente-a
+@raw seleko veraba select-a seleccionar-a
+@raw selebu nomuna celebration-a feiern-a celebración-a
+@raw seledo detiva celebrated-a celebrado-a
+@raw selegu veraba accelerate-a beschleunigen-a acelerar-a
+@raw seleno detiva rare-a selten-a
+@raw seleru veraba celebrate-a feiern-a celebrar-a
+@raw selevo nomuna jungle-a selva-a
+@raw seliti veraba split-a
+@raw seliku deroba exclusively-a ausschliesslich-a exclusivamente-a
+@raw selibu nomuna slice-a scheibe-a rebanada-a
+@raw selido nomuna slide-a folie-a
+@raw seligu nomuna spelling-a schreibweise-a ortografía-a
+@raw selinu nomuna shine-a glanz-a brillo-a
+@raw selunu nomuna exhibition-a ausstellung-a exhibición-a
+@raw selulu nomuna cell-a zelle-a célula-a
+@raw selusi nomuna schluß-a
+@raw seru veraba see-a sehen-a ver-a
+@raw serati tika cierto-a
+@raw seradu detiva closed-a geschlossen-a cerrado-a
+@raw seragu detiva strict-a streng-a estricto-a
+@raw seramo nomuna stream-a arroyo-a
+@raw seranu detiva strange-a seltsam-a extraño-a
+@raw serari veraba acercar-a
+@raw serasu nomuna stress-a streß-a estrés-a
+@raw serahu nomuna ray-a strahl-a rayo-a
+@raw seretu nomuna secret-a geheimnis-a secreto-a
+@raw sereki detiva österreich-a
+@raw serebi veraba stress-a
+@raw seredu veraba spread-a verteilen-a difundir-a
+@raw seregu nomuna strength-a stärke-a fortaleza-a
+@raw seremu nomuna ceremony-a feier-a ceremonia-a
+@raw serenu nomuna screen-a bildschirm-a pantalla-a
+@raw sereru nomuna server-a server-a servidor-a
+@raw seresu veraba express-a ausdrücken-a expresar-a
+@raw serevo veraba screw-a schrauben-a
+@raw seripi veraba strip-a
+@raw seritu nomuna script-a schrift-a guión-a
+@raw seriku nomuna strike-a schlag-a huelga-a
+@raw serido nomuna string-a cuerda-a
+@raw serigu nomuna spring-a frühjahr-a primavera-a
+@raw serinu deroba certainly-a sicherlich-a ciertamente-a
+@raw serilo deroba seriously-a seriamente-a
+@raw seriru nomuna exterior-a außenbereich-a exterior-a
+@raw serifu detiva written-a schriftlich-a escrito-a
+@raw serihu nomuna stripe-a streifen-a raya-a
+@raw seromu nomuna electricity-a strom-a electricidad-a
+@raw seronu detiva extraordinary-a außergewöhnlich-a extraordinario-a
+@raw seruku nomuna outbreak-a ausbruch-a brote-a
+@raw serugi nomuna struggle-a
+@raw seruli veraba struggle-a
+@raw sesu nomuna service-a service-a servicio-a
+@raw sesati nomuna esto-a
+@raw sesalo detiva societal-a gesellschaftlich-a
+@raw sesaso veraba cease-a cesar-a
+@raw sesetu nomuna assessment-a beurteilung-a evaluación-a
+@raw sesenu veraba exclude-a ausschließen-a excluir-a
+@raw sesitu detiva solid-a fest-a sólido-a
+@raw sesibu detiva affordable-a preiswert-a accesible-a
+@raw sesinu nomuna session-a sitzung-a sesión-a
+@raw sesifo veraba specify-a precisar-a
+@raw sesopu nomuna spy-a spion-a espía-a
+@raw sesonu nomuna extension-a ausbau-a extensión-a
+@raw sesoru nomuna advisor-a berater-a asesor-a
+@raw sesulu nomuna gay-a schwule-a homosexual-a
+@raw sesuro veraba ensure-a sicherstellen-a
+@raw sefu detiva safe-a sicher-a seguro-a
+@raw sefepu nomuna sheep-a schaf-a oveja-a
+@raw sefotu nomuna scent-a duft-a aroma-a
+@raw sevu veraba know-a wissen-a saber-a
+@raw sevaku detiva weak-a schwach-a débil-a
+@raw sevanu nomuna servant-a diener-a siervo-a
+@raw sevaru nomuna black-a schwarz-a negro-a
+@raw sevetu detiva seventh-a siebte-a séptimo-a
+@raw sevigu nomuna swing-a swing-a swing-a
+@raw sevili nomuna sevilla-a
+@raw sevisu nomuna advice-a beratung-a asesoramiento-a
+@raw sevifu detiva swift-a schneller-a veloz-a
+@raw sevolu numera twelve-a zwölf-a doce-a
+@raw sehu nomuna series-a reihe-a serie-a
+@raw sehato nomuna toe-a zeh-a
+@raw sehedi detiva stehend-a
+@raw seheni veraba aussehen-a
+@raw seheru veraba foresee-a absehen-a prever-a
+@raw sehutu nomuna set-a set-a conjunto-a
+@raw sipu deroba simply-a einfach-a simplemente-a
+@raw sipatu nomuna sympathy-a sympathie-a simpatía-a
+@raw sipalu nomuna principal-a schulleiter-a principal-a
+@raw siperu nomuna recipient-a empfänger-a receptor-a
+@raw sipinu nomuna shipping-a versand-a envío-a
+@raw situ nomuna city-a stadt-a ciudad-a
+@raw sitatu nomuna seat-a sitz-a asiento-a
+@raw sitaru veraba cite-a zitieren-a citar-a
+@raw sitedu detiva excited-a aufgeregt-a emocionado-a
+@raw sitenu nomuna excitement-a aufregung-a entusiasmo-a
+@raw sitiku detiva side-a seitlich-a lateral-a
+@raw sitigu detiva explicit-a eindeutig-a explícito-a
+@raw sitomu nomuna symptom-a symptom-a síntoma-a
+@raw situri veraba situar-a
+@raw siku ronona self-a sich-a se-a
+@raw sikatu detiva sixth-a sechste-a sexto-a
+@raw sikano detiva fancy-a schick-a
+@raw sikalo deroba physically-a físicamente-a
+@raw sikaru detiva scary-a unheimlich-a aterrador-a
+@raw sikeni veraba auszeichnen-a
+@raw sikero veraba secure-a sichern-a
+@raw sikipu veraba skip-a überspringen-a omitir-a
+@raw sikiku detiva psychological-a psychisch-a psicológico-a
+@raw sikiri nomuna siquiera-a
+@raw sikogu nomuna psychologist-a psychologe-a psicólogo-a
+@raw sikutu nomuna circuit-a schaltung-a circuito-a
+@raw sikulu nomuna cycle-a zyklus-a ciclo-a
+@raw sikuri veraba circular-a
+@raw sibo veraba sit-a sitzen-a
+@raw sibeto veraba shift-a verschieben-a
+@raw sibenu veraba slide-a schieben-a deslizar-a
+@raw siberi nomuna sierra-a
+@raw sibesu nomuna yes-a ja-a sí-a
+@raw sibolu nomuna symbol-a symbol-a símbolo-a
+@raw sidu nomuna side-a seite-a lado-a
+@raw sidanu nomuna citizenship-a staatsbürgerschaft-a ciudadanía-a
+@raw sidalu nomuna subsidiary-a niederlassung-a filial-a
+@raw sidetu nomuna incident-a ereignis-a incidente-a
+@raw sidedu nomuna speed-a geschwindigkeit-a velocidad-a
+@raw sidenu nomuna accident-a unfall-a accidente-a
+@raw sidesu nomuna aids-a aids-a sida-a
+@raw sigu nomuna position-a position-a posición-a
+@raw sigati nomuna sight-a
+@raw siganu veraba sign-a unterschreiben-a firmar-a
+@raw sigalo nomuna signal-a signal-a
+@raw sigaru nomuna cigarette-a zigarette-a cigarrillo-a
+@raw sigego nomuna victory-a sieg-a
+@raw sigeno nomuna sign-a señal-a
+@raw sigelu nomuna acronym-a abkürzung-a sigla-a
+@raw sigefu nomuna oxygen-a sauerstoff-a oxígeno-a
+@raw simu detiva same-a gleich-a mismo-a
+@raw simatu nomuna estimate-a schätzung-a estimado-a
+@raw simanu veraba estimate-a schätzen-a estimar-a
+@raw simalu detiva simple-a einfacher-a simple-a
+@raw simelu nomuna sky-a himmel-a cielo-a
+@raw simeru nomuna bedroom-a zimmer-a dormitorio-a
+@raw simiku detiva sympathetic-a sympathisch-a simpático-a
+@raw simidu detiva shy-a schüchtern-a tímido-a
+@raw simimi deroba asimismo-a
+@raw sinu peposa without-a ohne-a sin-a
+@raw sinatu detiva passionate-a leidenschaftlich-a apasionado-a
+@raw sinado nomuna sin-a pecado-a
+@raw sinagu veraba sing-a singen-a cantar-a
+@raw sinali veraba signal-a
+@raw sinaru veraba assassinate-a ermorden-a asesinar-a
+@raw sinahu nomuna close-a nähe-a cierre-a
+@raw sinetu nomuna singing-a singen-a canto-a
+@raw sineno veraba sink-a sinken-a
+@raw sineru nomuna singer-a sänger-a cantante-a
+@raw sininu detiva exciting-a spannend-a emocionante-a
+@raw sinilu nomuna single-a single-a sencillo-a
+@raw sinovu nomuna snow-a schnee-a nieve-a
+@raw sinunu nomuna designation-a bezeichnung-a denominación-a
+@raw silu detiva special-a besondere-a especial-a
+@raw silanu veraba shine-a strahlen-a brillar-a
+@raw sileni detiva zielen-a
+@raw silero detiva silver-a plateado-a
+@raw silitu veraba facilitate-a erleichtern-a facilitar-a
+@raw siliko detiva pretty-a ziemlich-a
+@raw silimu nomuna socialism-a sozialismus-a socialismo-a
+@raw siliso detiva socialist-a socialista-a
+@raw siludu nomuna shield-a schild-a escudo-a
+@raw siluhu nomuna silence-a ruhe-a silencio-a
+@raw siru detiva hard-a schwer-a difícil-a
+@raw siramu nomuna signature-a unterschrift-a firma-a
+@raw sireko deroba approx-a ca-a
+@raw sirebu veraba aspire-a anstreben-a aspirar-a
+@raw siritu nomuna shirt-a shirt-a camiseta-a
+@raw sirisu detiva syrian-a syrisch-a sirio-a
+@raw sirulu nomuna circle-a zirkel-a círculo-a
+@raw sisu nomuna sense-a sinn-a sentido-a
+@raw sisato detiva assistant-a auxiliar-a
+@raw sisanu nomuna assistant-a assistent-a asistente-a
+@raw sisalo nomuna fate-a schicksal-a
+@raw siseto detiva existent-a existente-a
+@raw sisedi nomuna vorsitzend-a
+@raw sisemo nomuna enthusiasm-a begeisterung-a
+@raw sisenu nomuna existence-a existenz-a existencia-a
+@raw siseru detiva swiss-a schweizer-a suizo-a
+@raw sisesu nomuna assistance-a assistenz-a asistencia-a
+@raw sisidu nomuna suicide-a selbstmord-a suicidio-a
+@raw sifu nomuna science-a wissenschaft-a ciencia-a
+@raw sifefo detiva crooked-a schief-a
+@raw sifiku detiva scientific-a wissenschaftlich-a científico-a
+@raw sifopo veraba shop-a einkaufen-a
+@raw sifuto nomuna shift-a verschiebung-a
+@raw sivu detiva positive-a positiv-a positivo-a
+@raw siviku detiva civic-a bürgerlich-a cívico-a
+@raw sivilu detiva civil-a zivil-a civil-a
+@raw sivolo detiva meaningful-a sinnvoll-a
+@raw sihu veraba draw-a ziehen-a dibujar-a
+@raw sopu nomuna top-a spitze-a top-a
+@raw sopigo nomuna shopping-a einkauf-a
+@raw sopinu nomuna spine-a wirbelsäule-a espina-a
+@raw sotu nomuna site-a website-a sitio-a
+@raw sotaru veraba endure-a ertragen-a soportar-a
+@raw soteno detiva southern-a meridional-a
+@raw sotiro nomuna shot-a tiro-a
+@raw soku tika such-a solch-a tal-a
+@raw sokaru veraba scare-a erschrecken-a asustar-a
+@raw sokero nomuna soccer-a futbol-a
+@raw sobu nomuna scene-a szene-a escena-a
+@raw sobapu nomuna soap-a seife-a jabón-a
+@raw sobadi veraba sound-a
+@raw sobalu veraba steal-a stehlen-a robar-a
+@raw sobivu detiva obvious-a offensichtlich-a obvio-a
+@raw sobupu nomuna soup-a suppe-a sopa-a
+@raw sobuti deroba south-a
+@raw sodi dunona sondern-a
+@raw sodatu nomuna soldier-a soldat-a soldado-a
+@raw sodasi dunona sodass-a
+@raw sodutu detiva south-a südlich-a sur-a
+@raw sogu nomuna song-a lied-a canción-a
+@raw sogani detiva sogenannt-a
+@raw sogeni veraba versorgen-a
+@raw sogipu nomuna rope-a seil-a soga-a
+@raw sogiku nomuna zoo-a zoo-a zoológico-a
+@raw somu tika some-a einige-a alguno-a
+@raw somepo detiva asleep-a dormido-a
+@raw somedo ronona somebody-a irgendwer-a
+@raw somelu veraba smell-a riechen-a oler-a
+@raw somero veraba subdue-a someter-a
+@raw somevo deroba somewhere-a irgendwo-a
+@raw somito deroba hence-a somit-a
+@raw somilo veraba smile-a sonreír-a
+@raw sonu deroba already-a schon-a ya-a
+@raw sonatu nomuna consonant-a Konsonant-a consonante-a
+@raw sonagi nomuna sonntag-a
+@raw sonari veraba sonar-a
+@raw sonaso dunona once-a sobald-a
+@raw sonelu nomuna shell-a hülle-a concha-a
+@raw sonidu nomuna sound-a ton-a sonido-a
+@raw sonilu nomuna smile-a lächeln-a sonrisa-a
+@raw solo veraba should-a sollen-a
+@raw solatu veraba isolate-a isolieren-a aislar-a
+@raw soladu detiva isolated-a isolieren-a aislado-a
+@raw solagi dunona solange-a
+@raw solaro detiva solar-a solar-a
+@raw soledu nomuna solitude-a einsamkeit-a soledad-a
+@raw soleri veraba soler-a
+@raw solitu nomuna socialist-a sozialist-a socialista-a
+@raw solidu nomuna solid-a fest-a sólido-a
+@raw soliru nomuna scholar-a gelehrter-a estudioso-a
+@raw solisu veraba request-a anfordern-a solicitar-a
+@raw solutu detiva absolute-a absolut-a absoluto-a
+@raw solulu deroba absolutely-a absolut-a absolutamente-a
+@raw soru deroba especially-a besonders-a especialmente-a
+@raw sorago nomuna shortage-a escasez-a
+@raw soranu nomuna sovereignty-a souveränität-a soberanía-a
+@raw sorali deroba shortly-a
+@raw soreto nomuna sort-a sortieren-a
+@raw sorebo veraba absorb-a absorber-a
+@raw soreno veraba worry-a sorgen-a
+@raw soreru nomuna disorder-a erkrankung-a trastorno-a
+@raw sosu nomuna society-a gesellschaft-a sociedad-a
+@raw sosatu veraba associate-a verknüpfen-a asociar-a
+@raw sosadu detiva associated-a verbunden-a asociado-a
+@raw sosetu nomuna east-a osten-a oriente-a
+@raw sosenu veraba sustain-a aufrechterhalten-a sostener-a
+@raw sositu nomuna associate-a mitarbeiterin-a asociado-a
+@raw sosotu veraba shoot-a schießen-a disparar-a
+@raw sofu peposa on-a auf-a sobre-a
+@raw sofatu detiva soft-a weich-a suave-a
+@raw sofaru nomuna software-a software-a software-a
+@raw sofeni dunona sofern-a
+@raw soferu nomuna shore-a ufer-a orilla-a
+@raw sofiku detiva sophisticated-a anspruchsvoll-a sofisticado-a
+@raw sofuku nomuna couch-a sofa-a sofá-a
+@raw sovu veraba show-a zeigen-a mostrar-a
+@raw soveto detiva soviet-a soviético-a
+@raw sovenu detiva sovereign-a souverän-a soberano-a
+@raw soveli tika soviel-a
+@raw soviti deroba soweit-a
+@raw sovohi dunona sowohl-a
+@raw sohu nomuna store-a geschäft-a tienda-a
+@raw sohetu detiva set-a einstellen-a conjunto-a
+@raw supo veraba support-a unterstützen-a
+@raw supali veraba supply-a
+@raw supeti detiva supuesto-a
+@raw supeku veraba suspect-a verdächtigen-a sospechar-a
+@raw supedo veraba suspend-a suspender-a
+@raw supemu nomuna supermarket-a supermarkt-a supermercado-a
+@raw supenu nomuna suspension-a fahrwerk-a suspensión-a
+@raw superu detiva super-a super-a super-a
+@raw supesi nomuna supuesto-a
+@raw supidu detiva surprised-a erstaunt-a sorprendido-a
+@raw supisu nomuna supplies-a zubehör-a abastecimiento-a
+@raw supulu nomuna supply-a versorgung-a suministro-a
+@raw sutu nomuna security-a sicherheit-a seguridad-a
+@raw sutadu detiva suitable-a passend-a apropiado-a
+@raw sutetu nomuna southeast-a südosten-a sudeste-a
+@raw suteru nomuna supporter-a unterstützer-a partidario-a
+@raw sutesu nomuna protection-a schutz-a protección-a
+@raw sutito veraba substitute-a sustituir-a
+@raw sutiro veraba stir-a rühren-a
+@raw sutofu nomuna substance-a stoff-a sustancia-a
+@raw suko veraba seek-a suchen-a
+@raw sukaru nomuna sugar-a zucker-a azúcar-a
+@raw sukeku nomuna search-a suche-a búsqueda-a
+@raw sukonu nomuna succession-a nachfolge-a sucesión-a
+@raw sukoru nomuna score-a punktzahl-a puntuación-a
+@raw subu nomuna south-a süden-a sur-a
+@raw subeto detiva subject-a sujeto-a
+@raw subeni veraba ausüben-a
+@raw subelu nomuna soil-a erdboden-a suelo-a
+@raw subevu detiva subjective-a subjektiv-a subjetivo-a
+@raw subiti veraba suit-a
+@raw subiru veraba climb-a klettern-a subir-a
+@raw sudu veraba spend-a verbringen-a gastar-a
+@raw sudemi deroba zudem-a
+@raw sudeno deroba suddenly-a repentinamente-a
+@raw suditu nomuna suite-a suite-a suite-a
+@raw sudigi detiva zuständig-a
+@raw sugu nomuna century-a jahrhundert-a siglo-a
+@raw sugalo detiva accessible-a zugänglich-a
+@raw sugeku veraba suck-a saugen-a chupar-a
+@raw sugenu nomuna suggestion-a empfehlung-a sugerencia-a
+@raw sugiro veraba emerge-a surgir-a
+@raw sugugu nomuna extract-a auszug-a extracto-a
+@raw sumu deroba together-a zusammen-a juntos-a
+@raw sumaku veraba smoke-a rauchen-a fumar-a
+@raw sumali dunona zumal-a
+@raw sumari veraba sumar-a
+@raw sumasu veraba summarize-a zusammenfassen-a resumir-a
+@raw sumelo veraba assemble-a zusammenstellen-a
+@raw sumeru nomuna summary-a übersicht-a resumen-a
+@raw sumiro nomuna summit-a cumbre-a
+@raw sumoku nomuna smoke-a rauchen-a humo-a
+@raw sunu nomuna student-a schüler-a estudiante-a
+@raw sunaki deroba zunächst-a
+@raw sunalo detiva substantial-a sustancial-a
+@raw sunino nomuna sunshine-a sonnenschein-a
+@raw sulu nomuna school-a schule-a escuela-a
+@raw suladi detiva schuld-a
+@raw sularu veraba insult-a beschimpfen-a insultar-a
+@raw suleto deroba last-a zuletzt-a
+@raw suleku deroba simultaneously-a zugleich-a simultáneamente-a
+@raw suleru nomuna shoulder-a schulter-a hombro-a
+@raw sulesu detiva sweet-a süß-a dulce-a
+@raw suliro nomuna supplier-a lieferant-a
+@raw sulisu detiva useless-a sinnlos-a inútil-a
+@raw suru detiva strong-a stark-a fuerte-a
+@raw suralu deroba usually-a normalerweise-a generalmente-a
+@raw suraru veraba swear-a schwören-a jurar-a
+@raw suraso veraba surprise-a überraschen-a
+@raw suravu nomuna survey-a umfrage-a encuesta-a
+@raw suregu nomuna surge-a anstieg-a oleada-a
+@raw suremu detiva supreme-a höchste-a supremo-a
+@raw sureno nomuna surgeon-a chirurg-a
+@raw surelo deroba surely-a seguramente-a
+@raw sureru nomuna surgery-a operation-a cirugía-a
+@raw suritu nomuna suit-a anzug-a traje-a
+@raw suriki nomuna zürich-a
+@raw surilu nomuna survival-a überleben-a supervivencia-a
+@raw surisu nomuna surprise-a überraschung-a sorpresa-a
+@raw surivu veraba survive-a überleben-a sobrevivir-a
+@raw suso ronona its-a sus-a
+@raw susavi deroba usw-a
+@raw suseno detiva sufficient-a ausreichend-a
+@raw susito nomuna substitute-a suplente-a
+@raw susibo detiva sustainable-a sostenible-a
+@raw susiru nomuna supervisor-a aufsicht-a supervisor-a
+@raw sufu nomuna user-a nutzer-a usuario-a
+@raw sufalu nomuna coincidence-a zufall-a casualidad-a
+@raw sufasu nomuna surface-a fläche-a superficie-a
+@raw sufedu detiva pleased-a zufrieden-a satisfecho-a
+@raw sufilu detiva useful-a hilfreich-a útil-a
+@raw sufiru veraba suffer-a erleiden-a sufrir-a
+@raw sufogi peposa zufolge-a
+@raw suvu nomuna show-a show-a show-a
+@raw suvivu nomuna survivor-a überlebende-a sobreviviente-a
+@raw suvoru deroba formerly-a zuvor-a antiguamente-a
+@raw suhu veraba suggest-a empfehlen-a sugerir-a
+@raw suhasi detiva zuhause-a
+@raw suheni detiva zunehmen-a
+@raw suhonu nomuna listening-a anhören-a escuchar-a
 
 ## ("f")
 
-@raw fo not-a nicht-a no-a
-@raw fapo fan-a fan-a fan-a
-@raw fato location-a ort-a ubicación-a
-@raw fatalo fatal-a fatal-a fatal-a
-@raw fatare faltar-a
-@raw fataso fantasy-a fantasie-a fantasía-a
-@raw fatilo fail-a scheitern-a fallar-a
-@raw fatuno manufacturing-a herstellung-a fabricación-a
-@raw fature feature-a
-@raw fako easy-a einfach-a fácil-a
-@raw fakeri manufacturer-a fabricante-a
-@raw fakino faction-a fraktion-a facción-a
-@raw fakilo file-a datei-a archivo-a
-@raw fakoro factor-a faktor-a factor-a
-@raw fakuto faculty-a fakultät-a facultad-a
-@raw fakume faktum-a
-@raw fakure manufacture-a
-@raw fabo able-a fähig-a capaz-a
-@raw fabake fake-a
-@raw fabale fairly-a
-@raw fabare fre-a
-@raw fabase face-a
-@raw fabeke fach-a
-@raw fabene auffallen-a
-@raw fabeso phase-a phase-a fase-a
-@raw fabito faith-a vertrauen-a fe-a
-@raw fabilo fall-a herbst-a caída-a
-@raw fabiri fair-a fair-a
-@raw fabofi off-a off-a
-@raw fabune fun-a
-@raw fabure fur-a
-@raw fado add-a hinzufügen-a añadir-a
-@raw fadene fällen-a
-@raw fadile file-a
-@raw fadire fire-a
-@raw fago wrong-a falsch-a equivocado-a
-@raw fageke umfangreich-a
-@raw fagure figure-a
-@raw fami far-a weit-a
-@raw famaso pharmacy-a apotheke-a farmacia-a
-@raw fameti fame-a berühmtheit-a
-@raw famero farmer-a landwirt-a campesino-a
-@raw fameso fair-a messe-a feria-a
-@raw famodo fashion-a mode-a moda-a
-@raw famoso famous-a berühmt-a famoso-a
-@raw fano french-a französisch-a francés-a
-@raw fanane finanz-a
-@raw fanaso fantastic-a phantastisch-a fantástico-a
-@raw fali fall-a fallen-a
-@raw falato flat-a flach-a plano-a
-@raw falago flag-a flagge-a bandera-a
-@raw falani flat-a plano-a
-@raw falaro familiar-a vertraut-a familiar-a
-@raw falasi false-a falso-a
-@raw falavi flaw-a falla-a
-@raw falebe ausfallen-a
-@raw falene gefallen-a
-@raw falere fallecer-a
-@raw falite facility-a
-@raw faligo striking-a auffällig-a llamativo-a
-@raw faloto fleet-a flotte-a flota-a
-@raw falodo flood-a flut-a inundación-a
-@raw falovo flow-a strömung-a flujo-a
-@raw faluro failure-a ausfall-a fracaso-a
-@raw faro free-a frei-a libre-a
-@raw farabi favorable-a favorable-a
-@raw farase phrase-a
-@raw fareto fat-a fett-a gordo-a
-@raw fareno experienced-a erfahren-a experimentado-a
-@raw fariti physician-a arzt-a
-@raw fariso fresh-a frisch-a fresco-a
-@raw faromo farm-a hof-a granja-a
-@raw faruli fault-a verschulden-a
-@raw faso almost-a fast-a casi-a
-@raw fasati fast-a rápido-a
-@raw faseni grasp-a fassen-a
-@raw fasito fit-a passen-a apto-a
-@raw fasido ease-a leichtigkeit-a facilidad-a
-@raw fasili easily-a fácilmente-a
-@raw fasiso emphasis-a betonung-a énfasis-a
-@raw fasuto fist-a faust-a puño-a
-@raw fafo lack-a mangel-a falta-a
-@raw fafari affair-a affäre-a
-@raw favo favor-a gunst-a favor-a
-@raw faviti favorite-a favorito-a
-@raw favote favourite-a
-@raw favoro favorite-a favorit-a favorito-a
-@raw faho fit-a passen-a encajar-a
-@raw faheni endanger-a gefährden-a
-@raw fepi offer-a bieten-a
-@raw feti often-a oft-a
-@raw fetage freitag-a
-@raw fetedi feed-a füttern-a
-@raw fetelo detect-a feststellen-a detectar-a
-@raw fetive efectivo-a
-@raw fetudo fraud-a betrug-a fraude-a
-@raw feko effect-a wirkung-a efecto-a
-@raw fekadi affected-a afectado-a
-@raw fekari fear-a fürchten-a
-@raw fekaso effectiveness-a wirksamkeit-a eficacia-a
-@raw feketi frequently-a frecuentemente-a
-@raw fekeno frequency-a frequenz-a frecuencia-a
-@raw fekele effectively-a
-@raw fekibo flexible-a flexibel-a flexible-a
-@raw fekino infection-a infektion-a infección-a
-@raw fekivo effective-a effektiv-a eficaz-a
-@raw fekono perfection-a perfektion-a perfección-a
-@raw fekuno frequent-a häufiger-a frecuente-a
-@raw febo border-a grenze-a frontera-a
-@raw febato float-a schweben-a flotar-a
-@raw febabe offenbar-a
-@raw febadi foe-a feind-a
-@raw febare februar-a
-@raw febeno repeal-a aufheben-a revocar-a
-@raw febere febrero-a
-@raw febino fine-a fein-a fino-a
-@raw febove fellow-a
-@raw febuge freiburg-a
-@raw fedo field-a feld-a campo-a
-@raw fedako feedback-a feedback-a retroalimentación-a
-@raw fedike friedrich-a
-@raw fego appearance-a auftritt-a aspecto-a
-@raw fegene festlegen-a
-@raw femo bed-a bett-a cama-a
-@raw femade fremd-a
-@raw femalo female-a weiblich-a femenino-a
-@raw femaro female-a weibchen-a hembra-a
-@raw feno learn-a lernen-a aprender-a
-@raw fenano confrontation-a konfrontation-a enfrentamiento-a
-@raw fenaro confront-a konfrontieren-a enfrentar-a
-@raw fenasi fence-a valla-a
-@raw fenene entfernen-a
-@raw feneso offense-a beleidigung-a ofensa-a
-@raw fenini feeding-a alimentación-a
-@raw fenivo offensive-a offensiv-a ofensivo-a
-@raw fenoni afternoon-a nachmittag-a
-@raw fenolo friendly-a freundlich-a amistoso-a
-@raw felo feel-a fühlen-a sentir-a
-@raw felaso flash-a blitz-a flash-a
-@raw feleno fly-a fliegen-a volar-a
-@raw felipi flip-a umdrehen-a
-@raw feliki peaceful-a friedlich-a
-@raw feligo flight-a flug-a vuelo-a
-@raw feliso happiness-a zufriedenheit-a felicidad-a
-@raw feloro flower-a blume-a flor-a
-@raw felovo flow-a fließen-a fluir-a
-@raw feluko escape-a flucht-a fuga-a
-@raw fero woman-a frau-a mujer-a
-@raw ferato fat-a fett-a grasa-a
-@raw ferake franco-a
-@raw ferago assignment-a auftrag-a asignación-a
-@raw ferame enfermo-a
-@raw ferane franz-a
-@raw ferare afuerar-a
-@raw feraso sentence-a strafe-a frase-a
-@raw feredo referendum-a referendum-a referéndum-a
-@raw fereno reference-a bezug-a referencia-a
-@raw fereso conference-a konferenz-a conferencia-a
-@raw ferige fertig-a
-@raw ferino federation-a vereinigung-a federación-a
-@raw feriri bottom-a inferior-a
-@raw feruto fort-a festung-a fuerte-a
-@raw ferude aufgrund-a
-@raw feso force-a gewalt-a fuerza-a
-@raw fesate fest-a
-@raw fesalo festival-a festival-a festival-a
-@raw fesare manifestar-a
-@raw fesasi essay-a aufsatz-a
-@raw feseti tight-a fest-a
-@raw fesere ofrecer-a
-@raw fesese francés-a
-@raw fesino confession-a bekenntnis-a confesión-a
-@raw fesilo professional-a professionell-a profesional-a
-@raw fesivo offensive-a offensive-a ofensiva-a
-@raw fefo sister-a schwester-a hermana-a
-@raw fevi few-a paar-a
-@raw fevero fever-a fieber-a fiebre-a
-@raw feho freedom-a freiheit-a libertad-a
-@raw feheni lack-a fehlen-a
-@raw fehelo feel-a fühlen-a sentir-a
-@raw fipo officer-a polizist-a oficial-a
-@raw fipeso fish-a fisch-a pez-a
-@raw fito picture-a bild-a foto-a
-@raw fitesi ft-a pies-a
-@raw fitino confirmation-a bestätigung-a confirmación-a
-@raw fiki direction-a richtung-a
-@raw fikabi fiscal-a fiscal-a
-@raw fikani significantly-a significativamente-a
-@raw fikalo prosecutor-a staatsanwaltschaft-a fiscal-a
-@raw fikare significar-a
-@raw fikaso fix-a korrigieren-a arreglar-a
-@raw fikido fluid-a flüssigkeit-a líquido-a
-@raw fikino fiction-a erfindung-a ficción-a
-@raw fibi official-a oficial-a
-@raw fido end-a ende-a fin-a
-@raw fidane empfinden-a
-@raw fidene stattfinden-a
-@raw fidigo finding-a finden-a hallazgo-a
-@raw figo fire-a feuer-a fuego-a
-@raw figare figurar-a
-@raw figero finger-a finger-a dedo-a
-@raw figuri figure-a figura-a
-@raw fimo film-a spielfilm-a cine-a
-@raw fimaro assert-a durchsetzen-a afirmar-a
-@raw fimene suficientemente-a
-@raw fino find-a finden-a encontrar-a
-@raw finato fifth-a fünfte-a quinto-a
-@raw finano financial-a finanziell-a financiero-a
-@raw finali semi-a halbfinale-a
-@raw finaso finance-a finanzierung-a finanzas-a
-@raw fineno invent-a erfinden-a inventar-a
-@raw finesi fitness-a aptitud-a
-@raw finito infinite-a unbegrenzt-a infinito-a
-@raw finisi finish-a acabado-a
-@raw finofi info-a info-a
-@raw filo movie-a film-a película-a
-@raw filame film-a
-@raw fileno fill-a füllen-a llenar-a
-@raw fileli faithful-a fiel-a
-@raw filero filter-a filter-a filtro-a
-@raw filisi finalize-a finalizar-a
-@raw filoso philosopher-a philosoph-a filósofo-a
-@raw filofo philosophy-a philosophie-a filosofía-a
-@raw firi first-a primero-a
-@raw firami firm-a firme-a
-@raw firemo firm-a firma-a bufete-a
-@raw firene profitieren-a
-@raw fireso freeze-a frieren-a congelar-a
-@raw fiso first-a zuerst-a primero-a
-@raw fisami officially-a oficialmente-a
-@raw fisalo official-a beamter-a funcionario-a
-@raw fiseno efficient-a effizient-a eficiente-a
-@raw fisele offiziell-a
-@raw fiseso efficiency-a effizienz-a eficiencia-a
-@raw fisiko physical-a körperlich-a físico-a
-@raw fisino fishing-a angeln-a pesca-a
-@raw fisilo artificial-a künstlich-a artificial-a
-@raw fisiso physics-a physik-a física-a
-@raw fifi kick-a treten-a
-@raw fifeto fifty-a fünfzig-a cincuenta-a
-@raw fivo five-a fünf-a cinco-a
-@raw fiho fight-a kämpfen-a luchar-a
-@raw fihedi fixed-a fijo-a
-@raw fihero fighter-a kämpfer-a luchador-a
-@raw fopo effort-a aufwand-a esfuerzo-a
-@raw foto continue-a fortsetzen-a continuar-a
-@raw fotafi photograph-a fotografieren-a
-@raw fotiko computing-a informatik-a informática-a
-@raw fotodo phd-a promotion-a doctorado-a
-@raw fotuno fortune-a reichtum-a fortuna-a
-@raw foko affect-a betreffen-a afectar-a
-@raw fokuso focus-a konzentrieren-a centrar-a
-@raw fobe embargo-a
-@raw fobade found-a
-@raw fodo food-a essen-a comida-a
-@raw fodene fordern-a
-@raw foduki fuck-a joder-a
-@raw fogo photo-a foto-a fotografía-a
-@raw fogane folgen-a
-@raw fogafo photographer-a fotograf-a fotógrafo-a
-@raw fogede folgend-a
-@raw fogene erfolgen-a
-@raw fomo form-a form-a forma-a
-@raw fomato format-a format-a formato-a
-@raw fomalo formal-a formal-a formal-a
-@raw fomare formar-a
-@raw fomeno phenomenon-a phänomen-a fenómeno-a
-@raw fomulo formula-a formel-a fórmula-a
-@raw fono phone-a telefon-a teléfono-a
-@raw folo full-a voll-a completo-a
-@raw foleni haunt-a verfolgen-a
-@raw folero flyer-a flieger-a volante-a
-@raw foliko consequently-a folglich-a consecuentemente-a
-@raw foro for-a für-a para-a
-@raw forate fort-a
-@raw foradi forward-a weiterleiten-a
-@raw forame form-a
-@raw forare informar-a
-@raw foraso force-a erzwingen-a forzar-a
-@raw forafi photography-a fotografie-a
-@raw foreto forest-a forst-a bosque-a
-@raw foregi foreign-a extranjero-a
-@raw foremi inform-a informieren-a
-@raw forero researcher-a forscher-a investigador-a
-@raw forite fort-a
-@raw foruto fruit-a frucht-a fruto-a
-@raw forugi wording-a formulierung-a
-@raw forumo forum-a forum-a foro-a
-@raw forulo formulate-a formulieren-a formular-a
-@raw foruso focus-a schwerpunkt-a concentración-a
-@raw foso success-a erfolg-a éxito-a
-@raw foseni enforcement-a durchsetzung-a
-@raw fofo park-a park-a parque-a
-@raw foferi offer-a oferta-a
-@raw fove forever-a
-@raw foho box-a box-a caja-a
-@raw fupe fuck-a
-@raw futo out-a raus-a fuera-a
-@raw futeri further-a weiter-a
-@raw futino funny-a lustig-a divertido-a
-@raw futuri future-a futuro-a
-@raw fuki back-a zurück-a
-@raw fukene funktionieren-a
-@raw fukigo refugee-a flüchtling-a refugiado-a
-@raw fukini fucking-a maldito-a
-@raw fubo football-a fußball-a fútbol-a
-@raw fubere fuer-a
-@raw fudo fund-a fonds-a fondo-a
-@raw fudare fundar-a
-@raw fudeno fundamental-a grundlegend-a fundamental-a
-@raw fudini funding-a financiación-a
-@raw fugo influence-a einfluß-a influencia-a
-@raw fugali ugly-a feo-a
-@raw fugene verfügen-a
-@raw fugige fucking-a
-@raw fugine fucking-a
-@raw fuguge verfügung-a
-@raw fumo feature-a funktion-a característica-a
-@raw funo front-a front-a frente-a
-@raw funadi fund-a finanzieren-a
-@raw funalo funeral-a beerdigung-a funeral-a
-@raw funare funcionar-a
-@raw funero founder-a gründer-a fundador-a
-@raw funini function-a función-a
-@raw funono functional-a funktionsfähig-a funcional-a
-@raw fulo feeling-a gefühl-a sentimiento-a
-@raw fulami fully-a completamente-a
-@raw fuleni fulfil-a erfüllen-a
-@raw furo four-a vier-a cuatro-a
-@raw furato fourth-a vierte-a cuarto-a
-@raw fureto forty-a vierzig-a cuarenta-a
-@raw furere frankfurter-a
-@raw furite fürst-a
-@raw furuno imposition-a einführung-a imposición-a
-@raw fuso foot-a fuß-a pie-a
-@raw fuseno offset-a ausgleichen-a compensar-a
-@raw fuselo fuel-a treibstoff-a combustible-a
-@raw fufo bit-a bit-a bit-a
-@raw fuvo district-a landkreis-a distrito-a
-@raw fuhi argentine-a argentino-a
-@raw fuheni lead-a führen-a
-@raw fuhoto fee-a gebühren-a cuota-a
+@raw fu deroba not-a nicht-a no-a
+@raw fapu nomuna fan-a fan-a fan-a
+@raw fatu nomuna location-a ort-a ubicación-a
+@raw fatalu detiva fatal-a fatal-a fatal-a
+@raw fatari veraba faltar-a
+@raw fatasu nomuna fantasy-a fantasie-a fantasía-a
+@raw fatilu veraba fail-a scheitern-a fallar-a
+@raw fatunu nomuna manufacturing-a herstellung-a fabricación-a
+@raw faturi veraba feature-a
+@raw faku detiva easy-a einfach-a fácil-a
+@raw fakero nomuna manufacturer-a fabricante-a
+@raw fakinu nomuna faction-a fraktion-a facción-a
+@raw fakilu nomuna file-a datei-a archivo-a
+@raw fakoru nomuna factor-a faktor-a factor-a
+@raw fakutu nomuna faculty-a fakultät-a facultad-a
+@raw fakumi nomuna faktum-a
+@raw fakuri veraba manufacture-a
+@raw fabu detiva able-a fähig-a capaz-a
+@raw fabaki detiva fake-a
+@raw fabali deroba fairly-a
+@raw fabari detiva fre-a
+@raw fabasi veraba face-a
+@raw fabeki nomuna fach-a
+@raw fabeni veraba auffallen-a
+@raw fabesu nomuna phase-a phase-a fase-a
+@raw fabitu nomuna faith-a vertrauen-a fe-a
+@raw fabilu nomuna fall-a herbst-a caída-a
+@raw fabiro detiva fair-a fair-a
+@raw fabofo nomuna off-a off-a
+@raw fabuni detiva fun-a
+@raw faburi nomuna fur-a
+@raw fadu veraba add-a hinzufügen-a añadir-a
+@raw fadeni veraba fällen-a
+@raw fadili veraba file-a
+@raw fadiri veraba fire-a
+@raw fagu detiva wrong-a falsch-a equivocado-a
+@raw fageki detiva umfangreich-a
+@raw faguri veraba figure-a
+@raw famo deroba far-a weit-a
+@raw famasu nomuna pharmacy-a apotheke-a farmacia-a
+@raw fameto nomuna fame-a berühmtheit-a
+@raw fameru nomuna farmer-a landwirt-a campesino-a
+@raw famesu nomuna fair-a messe-a feria-a
+@raw famodu nomuna fashion-a mode-a moda-a
+@raw famosu detiva famous-a berühmt-a famoso-a
+@raw fanu detiva french-a französisch-a francés-a
+@raw fanani nomuna finanz-a
+@raw fanasu detiva fantastic-a phantastisch-a fantástico-a
+@raw falo veraba fall-a fallen-a
+@raw falatu detiva flat-a flach-a plano-a
+@raw falagu nomuna flag-a flagge-a bandera-a
+@raw falano nomuna flat-a plano-a
+@raw falaru detiva familiar-a vertraut-a familiar-a
+@raw falaso detiva false-a falso-a
+@raw falavo nomuna flaw-a falla-a
+@raw falebi veraba ausfallen-a
+@raw faleni veraba gefallen-a
+@raw faleri veraba fallecer-a
+@raw faliti nomuna facility-a
+@raw faligu detiva striking-a auffällig-a llamativo-a
+@raw falotu nomuna fleet-a flotte-a flota-a
+@raw falodu nomuna flood-a flut-a inundación-a
+@raw falovu nomuna flow-a strömung-a flujo-a
+@raw faluru nomuna failure-a ausfall-a fracaso-a
+@raw faru detiva free-a frei-a libre-a
+@raw farabo detiva favorable-a favorable-a
+@raw farasi nomuna phrase-a
+@raw faretu detiva fat-a fett-a gordo-a
+@raw farenu detiva experienced-a erfahren-a experimentado-a
+@raw farito nomuna physician-a arzt-a
+@raw farisu detiva fresh-a frisch-a fresco-a
+@raw faromu nomuna farm-a hof-a granja-a
+@raw farulo nomuna fault-a verschulden-a
+@raw fasu deroba almost-a fast-a casi-a
+@raw fasato deroba fast-a rápido-a
+@raw faseno veraba grasp-a fassen-a
+@raw fasitu detiva fit-a passen-a apto-a
+@raw fasidu nomuna ease-a leichtigkeit-a facilidad-a
+@raw fasilo deroba easily-a fácilmente-a
+@raw fasisu nomuna emphasis-a betonung-a énfasis-a
+@raw fasutu nomuna fist-a faust-a puño-a
+@raw fafu nomuna lack-a mangel-a falta-a
+@raw fafaro nomuna affair-a affäre-a
+@raw favu nomuna favor-a gunst-a favor-a
+@raw favito detiva favorite-a favorito-a
+@raw favoti detiva favourite-a
+@raw favoru nomuna favorite-a favorit-a favorito-a
+@raw fahu veraba fit-a passen-a encajar-a
+@raw faheno veraba endanger-a gefährden-a
+@raw fepo veraba offer-a bieten-a
+@raw feto deroba often-a oft-a
+@raw fetagi nomuna freitag-a
+@raw fetedo veraba feed-a füttern-a
+@raw fetelu veraba detect-a feststellen-a detectar-a
+@raw fetivi detiva efectivo-a
+@raw fetudu nomuna fraud-a betrug-a fraude-a
+@raw feku nomuna effect-a wirkung-a efecto-a
+@raw fekado detiva affected-a afectado-a
+@raw fekaro veraba fear-a fürchten-a
+@raw fekasu nomuna effectiveness-a wirksamkeit-a eficacia-a
+@raw feketo deroba frequently-a frecuentemente-a
+@raw fekenu nomuna frequency-a frequenz-a frecuencia-a
+@raw fekeli deroba effectively-a
+@raw fekibu detiva flexible-a flexibel-a flexible-a
+@raw fekinu nomuna infection-a infektion-a infección-a
+@raw fekivu detiva effective-a effektiv-a eficaz-a
+@raw fekonu nomuna perfection-a perfektion-a perfección-a
+@raw fekunu detiva frequent-a häufiger-a frecuente-a
+@raw febu nomuna border-a grenze-a frontera-a
+@raw febatu veraba float-a schweben-a flotar-a
+@raw febabi detiva offenbar-a
+@raw febado nomuna foe-a feind-a
+@raw febari nomuna februar-a
+@raw febenu veraba repeal-a aufheben-a revocar-a
+@raw feberi nomuna febrero-a
+@raw febinu detiva fine-a fein-a fino-a
+@raw febovi detiva fellow-a
+@raw febugi nomuna freiburg-a
+@raw fedu nomuna field-a feld-a campo-a
+@raw fedaku nomuna feedback-a feedback-a retroalimentación-a
+@raw fediki nomuna friedrich-a
+@raw fegu nomuna appearance-a auftritt-a aspecto-a
+@raw fegeni veraba festlegen-a
+@raw femu nomuna bed-a bett-a cama-a
+@raw femadi detiva fremd-a
+@raw femalu detiva female-a weiblich-a femenino-a
+@raw femaru nomuna female-a weibchen-a hembra-a
+@raw fenu veraba learn-a lernen-a aprender-a
+@raw fenanu nomuna confrontation-a konfrontation-a enfrentamiento-a
+@raw fenaru veraba confront-a konfrontieren-a enfrentar-a
+@raw fenaso nomuna fence-a valla-a
+@raw feneni detiva entfernen-a
+@raw fenesu nomuna offense-a beleidigung-a ofensa-a
+@raw fenino nomuna feeding-a alimentación-a
+@raw fenivu detiva offensive-a offensiv-a ofensivo-a
+@raw fenono nomuna afternoon-a nachmittag-a
+@raw fenolu detiva friendly-a freundlich-a amistoso-a
+@raw felu veraba feel-a fühlen-a sentir-a
+@raw felasu nomuna flash-a blitz-a flash-a
+@raw felenu veraba fly-a fliegen-a volar-a
+@raw felipo veraba flip-a umdrehen-a
+@raw feliko detiva peaceful-a friedlich-a
+@raw feligu nomuna flight-a flug-a vuelo-a
+@raw felisu nomuna happiness-a zufriedenheit-a felicidad-a
+@raw feloru nomuna flower-a blume-a flor-a
+@raw felovu veraba flow-a fließen-a fluir-a
+@raw feluku nomuna escape-a flucht-a fuga-a
+@raw feru nomuna woman-a frau-a mujer-a
+@raw feratu nomuna fat-a fett-a grasa-a
+@raw feraki nomuna franco-a
+@raw feragu nomuna assignment-a auftrag-a asignación-a
+@raw ferami nomuna enfermo-a
+@raw ferani nomuna franz-a
+@raw ferari deroba afuerar-a
+@raw ferasu nomuna sentence-a satz-a frase-a
+@raw feredu nomuna referendum-a referendum-a referéndum-a
+@raw ferenu nomuna reference-a bezug-a referencia-a
+@raw feresu nomuna conference-a konferenz-a conferencia-a
+@raw ferigi peposa fertig-a
+@raw ferinu nomuna federation-a vereinigung-a federación-a
+@raw feriro detiva bottom-a inferior-a
+@raw ferutu nomuna fort-a festung-a fuerte-a
+@raw ferudi peposa aufgrund-a
+@raw fesu nomuna force-a gewalt-a fuerza-a
+@raw fesati peposa fest-a
+@raw fesalu nomuna festival-a festival-a festival-a
+@raw fesari veraba manifestar-a
+@raw fesaso nomuna essay-a aufsatz-a
+@raw feseto deroba tight-a fest-a
+@raw feseri veraba ofrecer-a
+@raw fesesi nomuna francés-a
+@raw fesinu nomuna confession-a bekenntnis-a confesión-a
+@raw fesilu detiva professional-a professionell-a profesional-a
+@raw fesivu nomuna offensive-a offensive-a ofensiva-a
+@raw fefu nomuna sister-a schwester-a hermana-a
+@raw fevo detiva few-a paar-a
+@raw feveru nomuna fever-a fieber-a fiebre-a
+@raw fehu nomuna freedom-a freiheit-a libertad-a
+@raw feheno veraba lack-a fehlen-a
+@raw fehelu nomuna feel-a fühlen-a sentir-a
+@raw fipu nomuna officer-a polizist-a oficial-a
+@raw fipesu nomuna fish-a fisch-a pez-a
+@raw fitu nomuna picture-a bild-a foto-a
+@raw fiteso nomuna ft-a pies-a
+@raw fitinu nomuna confirmation-a bestätigung-a confirmación-a
+@raw fiko nomuna direction-a richtung-a
+@raw fikabo detiva fiscal-a fiscal-a
+@raw fikano deroba significantly-a significativamente-a
+@raw fikalu nomuna prosecutor-a staatsanwaltschaft-a fiscal-a
+@raw fikari veraba significar-a
+@raw fikasu veraba fix-a korrigieren-a arreglar-a
+@raw fikidu nomuna fluid-a flüssigkeit-a líquido-a
+@raw fikinu nomuna fiction-a erfindung-a ficción-a
+@raw fibo detiva official-a oficial-a
+@raw fidu nomuna end-a ende-a fin-a
+@raw fidani veraba empfinden-a
+@raw fideni veraba stattfinden-a
+@raw fidigu nomuna finding-a finden-a hallazgo-a
+@raw figu nomuna fire-a feuer-a fuego-a
+@raw figari veraba figurar-a
+@raw figeru nomuna finger-a finger-a dedo-a
+@raw figuro nomuna figure-a figura-a
+@raw fimu nomuna film-a spielfilm-a cine-a
+@raw fimaru veraba assert-a durchsetzen-a afirmar-a
+@raw fimeni deroba suficientemente-a
+@raw finu veraba find-a finden-a encontrar-a
+@raw finatu detiva fifth-a fünfte-a quinto-a
+@raw finanu detiva financial-a finanziell-a financiero-a
+@raw finalo nomuna semi-a halbfinale-a
+@raw finasu nomuna finance-a finanzierung-a finanzas-a
+@raw finenu veraba invent-a erfinden-a inventar-a
+@raw fineso nomuna fitness-a aptitud-a
+@raw finitu detiva infinite-a unbegrenzt-a infinito-a
+@raw finiso nomuna finish-a acabado-a
+@raw finofo nomuna info-a info-a
+@raw filu nomuna movie-a film-a película-a
+@raw filami veraba film-a
+@raw filenu veraba fill-a füllen-a llenar-a
+@raw filelo detiva faithful-a fiel-a
+@raw fileru nomuna filter-a filter-a filtro-a
+@raw filiso veraba finalize-a finalizar-a
+@raw filosu nomuna philosopher-a philosoph-a filósofo-a
+@raw filofu nomuna philosophy-a philosophie-a filosofía-a
+@raw firo detiva first-a primero-a
+@raw firamo detiva firm-a firme-a
+@raw firemu nomuna firm-a firma-a bufete-a
+@raw fireni veraba profitieren-a
+@raw firesu veraba freeze-a frieren-a congelar-a
+@raw fisu deroba first-a zuerst-a primero-a
+@raw fisamo deroba officially-a oficialmente-a
+@raw fisalu nomuna official-a beamter-a funcionario-a
+@raw fisenu detiva efficient-a effizient-a eficiente-a
+@raw fiseli detiva offiziell-a
+@raw fisesu nomuna efficiency-a effizienz-a eficiencia-a
+@raw fisiku detiva physical-a körperlich-a físico-a
+@raw fisinu nomuna fishing-a angeln-a pesca-a
+@raw fisilu detiva artificial-a künstlich-a artificial-a
+@raw fisisu nomuna physics-a physik-a física-a
+@raw fifo veraba kick-a treten-a
+@raw fifetu numera fifty-a fünfzig-a cincuenta-a
+@raw fivu numera five-a fünf-a cinco-a
+@raw fihu veraba fight-a kämpfen-a luchar-a
+@raw fihedo detiva fixed-a fijo-a
+@raw fiheru nomuna fighter-a kämpfer-a luchador-a
+@raw fopu nomuna effort-a aufwand-a esfuerzo-a
+@raw fotu veraba continue-a fortsetzen-a continuar-a
+@raw fotafo nomuna photograph-a fotografieren-a
+@raw fotiku nomuna computing-a informatik-a informática-a
+@raw fotodu nomuna phd-a promotion-a doctorado-a
+@raw fotunu nomuna fortune-a reichtum-a fortuna-a
+@raw foku veraba affect-a betreffen-a afectar-a
+@raw fokusu veraba focus-a konzentrieren-a centrar-a
+@raw fobi nomuna embargo-a
+@raw fobadi veraba found-a
+@raw fodu nomuna food-a essen-a comida-a
+@raw fodeni veraba fordern-a
+@raw foduko terona fuck-a joder-a
+@raw fogu nomuna photo-a foto-a fotografía-a
+@raw fogani detiva folgen-a
+@raw fogafu nomuna photographer-a fotograf-a fotógrafo-a
+@raw fogedi detiva folgend-a
+@raw fogeni veraba erfolgen-a
+@raw fomu nomuna form-a form-a forma-a
+@raw fomatu nomuna format-a format-a formato-a
+@raw fomalu detiva formal-a formal-a formal-a
+@raw fomari veraba formar-a
+@raw fomenu nomuna phenomenon-a phänomen-a fenómeno-a
+@raw fomulu nomuna formula-a formel-a fórmula-a
+@raw fonu nomuna phone-a telefon-a teléfono-a
+@raw folu detiva full-a voll-a completo-a
+@raw foleno veraba haunt-a verfolgen-a
+@raw foleru nomuna flyer-a flieger-a volante-a
+@raw foliku deroba consequently-a folglich-a consecuentemente-a
+@raw foru peposa for-a für-a para-a
+@raw forati peposa fort-a
+@raw forado veraba forward-a weiterleiten-a
+@raw forami veraba form-a
+@raw forari veraba informar-a
+@raw forasu veraba force-a erzwingen-a forzar-a
+@raw forafo nomuna photography-a fotografie-a
+@raw foretu nomuna forest-a forst-a bosque-a
+@raw forego detiva foreign-a extranjero-a
+@raw foremo veraba inform-a informieren-a
+@raw foreru nomuna researcher-a forscher-a investigador-a
+@raw foriti deroba fort-a
+@raw forutu nomuna fruit-a frucht-a fruto-a
+@raw forugo nomuna wording-a formulierung-a
+@raw forumu nomuna forum-a forum-a foro-a
+@raw forulu veraba formulate-a formulieren-a formular-a
+@raw forusu nomuna focus-a schwerpunkt-a concentración-a
+@raw fosu nomuna success-a erfolg-a éxito-a
+@raw foseno nomuna enforcement-a durchsetzung-a
+@raw fofu nomuna park-a park-a parque-a
+@raw fofero nomuna offer-a oferta-a
+@raw fovi deroba forever-a
+@raw fohu nomuna box-a box-a caja-a
+@raw fupi veraba fuck-a
+@raw futu deroba out-a raus-a fuera-a
+@raw futero detiva further-a weiter-a
+@raw futinu detiva funny-a lustig-a divertido-a
+@raw futuro detiva future-a futuro-a
+@raw fuko peposa back-a zurück-a
+@raw fukeni veraba funktionieren-a
+@raw fukigu nomuna refugee-a flüchtling-a refugiado-a
+@raw fukino detiva fucking-a maldito-a
+@raw fubu nomuna football-a fußball-a fútbol-a
+@raw fuberi peposa fuer-a
+@raw fudu nomuna fund-a fonds-a fondo-a
+@raw fudari veraba fundar-a
+@raw fudenu detiva fundamental-a grundlegend-a fundamental-a
+@raw fudino nomuna funding-a financiación-a
+@raw fugu nomuna influence-a einfluß-a influencia-a
+@raw fugalo detiva ugly-a feo-a
+@raw fugeni veraba verfügen-a
+@raw fugigi terona fucking-a
+@raw fugini deroba fucking-a
+@raw fugugi nomuna verfügung-a
+@raw fumu nomuna feature-a funktion-a característica-a
+@raw funu nomuna front-a front-a frente-a
+@raw funado veraba fund-a finanzieren-a
+@raw funalu nomuna funeral-a beerdigung-a funeral-a
+@raw funari veraba funcionar-a
+@raw funeru nomuna founder-a gründer-a fundador-a
+@raw funino nomuna function-a función-a
+@raw funonu detiva functional-a funktionsfähig-a funcional-a
+@raw fulu nomuna feeling-a gefühl-a sentimiento-a
+@raw fulamo deroba fully-a completamente-a
+@raw fuleno veraba fulfil-a erfüllen-a
+@raw furu numera four-a vier-a cuatro-a
+@raw furatu nomuna fourth-a vierte-a cuarto-a
+@raw furetu numera forty-a vierzig-a cuarenta-a
+@raw fureri detiva frankfurter-a
+@raw furiti nomuna fürst-a
+@raw furunu nomuna imposition-a einführung-a imposición-a
+@raw fusu nomuna foot-a fuß-a pie-a
+@raw fusenu veraba offset-a ausgleichen-a compensar-a
+@raw fuselu nomuna fuel-a treibstoff-a combustible-a
+@raw fufu nomuna bit-a bit-a bit-a
+@raw fuvu nomuna district-a landkreis-a distrito-a
+@raw fuho detiva argentine-a argentino-a
+@raw fuheno detiva lead-a führen-a
+@raw fuhotu nomuna fee-a gebühren-a cuota-a
 
 ## ("v")
 
-@raw vo have-a haben-a haber-a
-@raw vapo wall-a wand-a pared-a
-@raw vapero wait-a warten-a espera-a
-@raw vapone weapon-a
-@raw vato wait-a warten-a esperar-a
-@raw vatalo advantage-a vorteil-a ventaja-a
-@raw vako watch-a ansehen-a mirar-a
-@raw vakafi campaigning-a wahlkampf-a
-@raw vakeno weaken-a schwächen-a debilitar-a
-@raw vakelo wake-a aufwachen-a estela-a
-@raw vakero wake-a wecken-a despertar-a
-@raw vakini walking-a wandern-a
-@raw vakuno vaccine-a impfung-a vacuna-a
-@raw vakuso vacuum-a vakuum-a vacío-a
-@raw vabo available-a vorhanden-a disponible-a
-@raw vabale way-a
-@raw vabilo availability-a verfügbarkeit-a disponibilidad-a
-@raw vabove wow-a
-@raw vado father-a vater-a padre-a
-@raw vadeni hike-a wandern-a
-@raw vadele wandel-a
-@raw vadive vivo-a
-@raw vadove owe-a
-@raw vago league-a liga-a liga-a
-@raw vagaro wage-a lohn-a salario-a
-@raw vageno cart-a wagen-a carro-a
-@raw vageso protestant-a evangelisch-a protestante-a
-@raw vami admittedly-a zwar-a
-@raw vani many-a vielen-a
-@raw vanane warrant-a
-@raw vanari advance-a avanzar-a
-@raw vanaso advance-a voraus-a avance-a
-@raw vaneti van-a camioneta-a
-@raw vanito width-a breite-a ancho-a
-@raw valo value-a wert-a valor-a
-@raw valati evaluate-a auswerten-a
-@raw valaki walk-a caminar-a
-@raw valari value-a valorar-a
-@raw valeto wallet-a geldbeutel-a cartera-a
-@raw valeki walk-a fußweg-a
-@raw valene valencia-a
-@raw valere valer-a
-@raw valeso overly-a allzu-a excesivamente-a
-@raw valido valid-a gültig-a válido-a
-@raw valivo alive-a lebend-a vivo-a
-@raw valodo wood-a wald-a madera-a
-@raw valolo valuable-a wertvoll-a valioso-a
-@raw varo water-a wasser-a agua-a
-@raw varato commodity-a ware-a mercancía-a
-@raw varabo variable-a variable-a variable-a
-@raw varano variant-a variante-a variante-a
-@raw vareto variety-a vielfalt-a variedad-a
-@raw varemo heating-a wärme-a calentamiento-a
-@raw vareno warn-a warnen-a advertir-a
-@raw varidi varied-a variado-a
-@raw varimo warm-a warm-a cálido-a
-@raw varino warning-a achtung-a aviso-a
-@raw variro vary-a variieren-a variar-a
-@raw varise various-a
-@raw varono variation-a variation-a variación-a
-@raw vaso what-a was-a qué-a
-@raw vasate waste-a
-@raw vaseti vast-a vasto-a
-@raw vasedo advanced-a erweitert-a avanzado-a
-@raw vaseno wash-a waschen-a lavar-a
-@raw vasito waste-a abfall-a residuo-a
-@raw vasino invasion-a invasion-a invasión-a
-@raw vafo sale-a verkauf-a venta-a
-@raw vavo award-a auszeichnung-a premio-a
-@raw vavegi away-a weg-a
-@raw vaveno lawn-a rasen-a césped-a
-@raw vahi why-a warum-a
-@raw vaheni select-a auswählen-a
-@raw vahome whom-a
-@raw vahose whose-a
-@raw vepo develop-a entwickeln-a desarrollar-a
-@raw vepane verpassen-a
-@raw veto old-a alt-a viejo-a
-@raw vetado understandable-a verständlich-a comprensible-a
-@raw vetagi everyday-a alltag-a
-@raw vetalo valley-a tal-a valle-a
-@raw veteno betray-a verraten-a traicionar-a
-@raw vetero weather-a wetter-a clima-a
-@raw vetosi infringement-a verstoß-a
-@raw veko week-a woche-a semana-a
-@raw vekako weakness-a schwäche-a debilidad-a
-@raw vekalo vertical-a senkrecht-a vertical-a
-@raw veketo wealth-a vermögen-a riqueza-a
-@raw vekedi weekend-a wochenende-a
-@raw vekege weltkrieg-a
-@raw vekene verstärken-a
-@raw vekeli switch-a wechseln-a
-@raw vekomo welcome-a willkommen-a bienvenido-a
-@raw vebi over-a vorbei-a
-@raw vebare wear-a
-@raw vebete verbreiten-a
-@raw vebeni disseminate-a verbreiten-a
-@raw vebiti prohibit-a verbieten-a
-@raw vebide verbinden-a
-@raw vebino wine-a wein-a vino-a
-@raw vebile weile-a
-@raw veboto ban-a verbot-a prohibición-a
-@raw vebugo advertising-a werbung-a publicidad-a
-@raw vedi over-a vorbei-a
-@raw vedako suspicion-a verdacht-a sospecha-a
-@raw vedene wenden-a
-@raw vederi neither-a weder-a
-@raw vedigo wedding-a hochzeit-a boda-a
-@raw vedine vecino-a
-@raw vedoro vendor-a verkäufer-a vendedor-a
-@raw vego way-a weg-a manera-a
-@raw vegare vengar-a
-@raw vegeno silence-a schweigen-a silenciar-a
-@raw vegehi weigh-a wiegen-a
-@raw vemi ever-a je-a
-@raw vemalo weekly-a wöchentlich-a semanal-a
-@raw vemeto wet-a feucht-a húmedo-a
-@raw vemino placement-a vermittlung-a colocación-a
-@raw vemuli presumably-a vermutlich-a
-@raw veno if-a wenn-a si-a
-@raw venalo eventually-a irgendwann-a eventualmente-a
-@raw venene verwenden-a
-@raw venele eventuell-a
-@raw venero winner-a sieger-a ganador-a
-@raw venito twenty-a zwanzig-a veinte-a
-@raw venige wenig-a
-@raw venuro adventure-a erlebnis-a aventura-a
-@raw velo well-a naja-a bien-a
-@raw velago publisher-a verlag-a editorial-a
-@raw velafo progression-a verlauf-a progresión-a
-@raw veleno violation-a verletzung-a infracción-a
-@raw velero developer-a entwickler-a promotor-a
-@raw velige jeweilig-a
-@raw velino revelation-a enthüllung-a revelación-a
-@raw velome welcome-a
-@raw veluni venue-a veranstaltungsort-a
-@raw vero very-a sehr-a muy-a
-@raw verago average-a durchschnittlich-a promedio-a
-@raw verano governance-a steuerung-a gobernación-a
-@raw veralo several-a mehrere-a varios-a
-@raw vereko comparison-a vergleich-a comparación-a
-@raw verego spread-a verbreitung-a propagación-a
-@raw vereno forgive-a vergeben-a perdonar-a
-@raw verese versetzen-a
-@raw vereho confer-a verleihen-a conferir-a
-@raw verito wheat-a getreide-a trigo-a
-@raw veriki waive-a verzichten-a
-@raw veridi everyday-a cotidiano-a
-@raw verifo verify-a verifizieren-a verificar-a
-@raw veroni zoom-a vergrößern-a
-@raw verusi versus-a versus-a
-@raw vese vez-a
-@raw vesati west-a west-a
-@raw veseto west-a westen-a oeste-a
-@raw veseno western-a westlich-a occidental-a
-@raw veselo vessel-a gefäß-a buque-a
-@raw vesere vencer-a
-@raw vesese veces-a
-@raw vesite west-a
-@raw vesiko surrender-a verzicht-a rendición-a
-@raw vesino neighbor-a nachbar-a vecino-a
-@raw vesomo awesome-a krass-a impresionante-a
-@raw vefo beautiful-a wunderschön-a hermoso-a
-@raw vefale westfalen-a
-@raw vefaro welfare-a tierschutz-a bienestar-a
-@raw veve wherever-a
-@raw vevele wieviel-a
-@raw vevero viewer-a betrachter-a espectador-a
-@raw vevolo evolve-a weiterentwickeln-a evolucionar-a
-@raw veho who-a wer-a quien-a
-@raw vehake weihnacht-a
-@raw vehano behavior-a verhalten-a comportamiento-a
-@raw vehebe wehren-a
-@raw vehene versehen-a
-@raw vehiko vehicle-a fahrzeug-a vehículo-a
-@raw vehiso white-a weiß-a blanca-a
-@raw vipo visit-a besuchen-a visitar-a
-@raw vito far-a weit-a lejano-a
-@raw vitano invitation-a einladung-a invitación-a
-@raw vitali vital-a vital-a
-@raw vitasi glance-a vistazo-a
-@raw viteko switch-a umschalten-a interruptor-a
-@raw vitere weiter-a
-@raw vitesi witness-a zeugen-a
-@raw viko which-a welcher-a cuál-a
-@raw vikene wirken-a
-@raw vikele entwickeln-a
-@raw vikore victoria-a
-@raw vibi wish-a wünschen-a
-@raw vido again-a wieder-a nuevamente-a
-@raw videko paradox-a widerspruch-a paradoja-a
-@raw videno evident-a offenkundig-a evidente-a
-@raw videli widely-a ampliamente-a
-@raw videso evidence-a nachweis-a evidencia-a
-@raw vidifo wildlife-a fauna-a fauna-a
-@raw vidomi wisdom-a sabiduría-a
-@raw vidose windows-a
-@raw vigo knowledge-a wissen-a conocimiento-a
-@raw vigago vintage-a jahrgang-a cosecha-a
-@raw vigeni compel-a zwingen-a
-@raw vigeso validity-a gültigkeit-a vigencia-a
-@raw vigevi view-a anzeigen-a
-@raw vimo movement-a bewegung-a movimiento-a
-@raw vino win-a gewinnen-a ganar-a
-@raw vinado wind-a wind-a viento-a
-@raw vinago wing-a flügel-a ala-a
-@raw vinede wind-a
-@raw vinene erwischen-a
-@raw vinero winter-a winter-a invierno-a
-@raw vinese viernes-a
-@raw vinovo window-a fenster-a ventana-a
-@raw vile viel-a
-@raw vilado wild-a wild-a salvaje-a
-@raw vilano surveillance-a überwachung-a vigilancia-a
-@raw vilafo village-a dorf-a villa-a
-@raw vileto violent-a heftig-a violento-a
-@raw viledo wild-a wild-a salvaje-a
-@raw vileni violence-a violencia-a
-@raw vilito willing-a bereit-a dispuesto-a
-@raw viligo voluntary-a freiwillig-a voluntario-a
-@raw viluli obviously-a obviamente-a
-@raw viro will-a werden-a ir-a
-@raw virene virgen-a
-@raw virudo virtue-a tugend-a virtud-a
-@raw virulo virtual-a virtuell-a virtual-a
-@raw viruso virus-a virus-a virus-a
-@raw viso white-a weiß-a blanco-a
-@raw visabi wise-a sabio-a
-@raw visani wish-a wünschen-a
-@raw viseto vice-a vizepräsident-a vicepresidente-a
-@raw visedo widespread-a verbreitet-a extendido-a
-@raw visene weisen-a
-@raw visero adviser-a beraterin-a consejero-a
-@raw visito visit-a besuch-a visita-a
-@raw visibo visible-a sichtbar-a visible-a
-@raw visigo hilarious-a witzig-a gracioso-a
-@raw visino vision-a sicht-a visión-a
-@raw visilo invisible-a unsichtbar-a invisible-a
-@raw visiro visitor-a besucher-a visitante-a
-@raw visumo visa-a visum-a visado-a
-@raw visulo visual-a optisch-a visual-a
-@raw vifo avoid-a vermeiden-a evitar-a
-@raw vivo view-a blick-a vista-a
-@raw vivino housing-a gehäuse-a vivienda-a
-@raw viho trip-a reise-a viaje-a
-@raw vihero traveler-a reisende-a viajero-a
-@raw vopi whole-a entero-a
-@raw voto content-a inhalt-a contenido-a
-@raw votare votar-a
-@raw votero voter-a wähler-a votante-a
-@raw votino voting-a abstimmung-a votación-a
-@raw voko work-a arbeiten-a trabajar-a
-@raw vokalo vocal-a lautstark-a vocal-a
-@raw vokene vollkommen-a
-@raw vokelo vowel-a Vokal-a vocal-a
-@raw vokigi working-a arbeitszeit-a
-@raw vokome vorkommen-a
-@raw vobo vote-a stimmen-a voto-a
-@raw vodo where-a wo-a donde-a
-@raw voderi wonder-a wundern-a
-@raw vodidi worldwide-a mundialmente-a
-@raw vodigo worthy-a würdig-a digno-a
-@raw voduke wodurch-a
-@raw vogo code-a code-a código-a
-@raw vogene vorliegen-a
-@raw vogeri worry-a sorgen-a
-@raw vomi vote-a stimmen-a
-@raw vomite womit-a
-@raw vono want-a wollen-a querer-a
-@raw volo probably-a wohl-a probablemente-a
-@raw volago submission-a vorlage-a sumisión-a
-@raw volaro violate-a verstoßen-a violar-a
-@raw volavo wave-a welle-a onda-a
-@raw voleko folk-a volk-a folk-a
-@raw voledo involved-a beteiligt-a involucrado-a
-@raw volige völlig-a
-@raw volino evolution-a evolution-a evolución-a
-@raw volofo wolf-a wolf-a lobo-a
-@raw voluno volunteer-a freiwillige-a voluntario-a
-@raw voro we-a wir-a nosotros-a
-@raw vorapi wrap-a envolver-a
-@raw vorati worth-a wert-a
-@raw vorado sword-a schwert-a espada-a
-@raw vorasi ahead-a voraus-a
-@raw vorafe worauf-a
-@raw vorede worried-a
-@raw voreno front-a vorne-a frente-a
-@raw vorehe vorsehen-a
-@raw voriti favourite-a favorita-a
-@raw voso voice-a stimme-a voz-a
-@raw vosito worship-a gottesdienst-a culto-a
-@raw vosiko caution-a vorsicht-a precaución-a
-@raw vofo wife-a ehefrau-a esposa-a
-@raw vofure wofür-a
-@raw vovo back-a rücken-a volver-a
-@raw vovufo allegation-a vorwurf-a alegación-a
-@raw voho factory-a werk-a fábrica-a
-@raw vohene vornehmen-a
-@raw voheri prior-a vorher-a
-@raw vupo campaign-a kampagne-a campaña-a
-@raw vuto genuine-a echt-a genuino-a
-@raw vutero anger-a wut-a ira-a
-@raw vuko attempt-a versuch-a intento-a
-@raw vubo doubt-a zweifel-a duda-a
-@raw vude would-a
-@raw vudero wonder-a wunder-a maravilla-a
-@raw vugo access-a zugang-a acceso-a
-@raw vumo victim-a opfer-a víctima-a
-@raw vuno young-a jung-a joven-a
-@raw vunadi wound-a wunde-a
-@raw vunalo vulnerable-a empfindlich-a vulnerable-a
-@raw vulo world-a welt-a mundo-a
-@raw vuro war-a krieg-a guerra-a
-@raw vuramo worm-a wurm-a gusano-a
-@raw vuso use-a verwendung-a uso-a
-@raw vusare vuestro-a
-@raw vufi publish-a veröffentlichen-a
-@raw vuvo channel-a kanal-a canal-a
-@raw vuho return-a rückkehr-a vuelta-a
+@raw vu veraba have-a haben-a haber-a
+@raw vapu nomuna wall-a wand-a pared-a
+@raw vaperu nomuna wait-a warten-a espera-a
+@raw vaponi nomuna weapon-a
+@raw vatu veraba wait-a warten-a esperar-a
+@raw vatalu nomuna advantage-a vorteil-a ventaja-a
+@raw vaku veraba watch-a ansehen-a mirar-a
+@raw vakafo nomuna campaigning-a wahlkampf-a
+@raw vakenu veraba weaken-a schwächen-a debilitar-a
+@raw vakelu nomuna wake-a aufwachen-a estela-a
+@raw vakeru veraba wake-a wecken-a despertar-a
+@raw vakino nomuna walking-a wandern-a
+@raw vakunu nomuna vaccine-a impfung-a vacuna-a
+@raw vakusu nomuna vacuum-a vakuum-a vacío-a
+@raw vabu detiva available-a vorhanden-a disponible-a
+@raw vabali deroba way-a
+@raw vabilu nomuna availability-a verfügbarkeit-a disponibilidad-a
+@raw vabovi terona wow-a
+@raw vadu nomuna father-a vater-a padre-a
+@raw vadeno veraba hike-a wandern-a
+@raw vadeli nomuna wandel-a
+@raw vadivi nomuna vivo-a
+@raw vadovi veraba owe-a
+@raw vagu nomuna league-a liga-a liga-a
+@raw vagaru nomuna wage-a lohn-a salario-a
+@raw vagenu nomuna cart-a wagen-a carro-a
+@raw vagesu detiva protestant-a evangelisch-a protestante-a
+@raw vamo deroba admittedly-a zwar-a
+@raw vano detiva many-a vielen-a
+@raw vanani veraba warrant-a
+@raw vanaro veraba advance-a avanzar-a
+@raw vanasu nomuna advance-a voraus-a avance-a
+@raw vaneto nomuna van-a camioneta-a
+@raw vanitu nomuna width-a breite-a ancho-a
+@raw valu nomuna value-a wert-a valor-a
+@raw valato veraba evaluate-a auswerten-a
+@raw valako veraba walk-a caminar-a
+@raw valaro veraba value-a valorar-a
+@raw valetu nomuna wallet-a geldbeutel-a cartera-a
+@raw valeko nomuna walk-a fußweg-a
+@raw valeni nomuna valencia-a
+@raw valeri veraba valer-a
+@raw valesu deroba overly-a allzu-a excesivamente-a
+@raw validu detiva valid-a gültig-a válido-a
+@raw valivu detiva alive-a lebend-a vivo-a
+@raw valodu nomuna wood-a wald-a madera-a
+@raw valolu detiva valuable-a wertvoll-a valioso-a
+@raw varu nomuna water-a wasser-a agua-a
+@raw varatu nomuna commodity-a ware-a mercancía-a
+@raw varabu nomuna variable-a variable-a variable-a
+@raw varanu nomuna variant-a variante-a variante-a
+@raw varetu nomuna variety-a vielfalt-a variedad-a
+@raw varemu nomuna heating-a wärme-a calentamiento-a
+@raw varenu veraba warn-a warnen-a advertir-a
+@raw varido detiva varied-a variado-a
+@raw varimu detiva warm-a warm-a cálido-a
+@raw varinu nomuna warning-a achtung-a aviso-a
+@raw variru veraba vary-a variieren-a variar-a
+@raw varisi detiva various-a
+@raw varonu nomuna variation-a variation-a variación-a
+@raw vasu ronona what-a was-a qué-a
+@raw vasati veraba waste-a
+@raw vaseto detiva vast-a vasto-a
+@raw vasedu detiva advanced-a erweitert-a avanzado-a
+@raw vasenu veraba wash-a waschen-a lavar-a
+@raw vasitu nomuna waste-a abfall-a residuo-a
+@raw vasinu nomuna invasion-a invasion-a invasión-a
+@raw vafu nomuna sale-a verkauf-a venta-a
+@raw vavu nomuna award-a auszeichnung-a premio-a
+@raw vavego peposa away-a weg-a
+@raw vavenu nomuna lawn-a rasen-a césped-a
+@raw vaho deroba why-a warum-a
+@raw vaheno detiva select-a auswählen-a
+@raw vahomi ronona whom-a
+@raw vahosi ronona whose-a
+@raw vepu veraba develop-a entwickeln-a desarrollar-a
+@raw vepani veraba verpassen-a
+@raw vetu detiva old-a alt-a viejo-a
+@raw vetadu detiva understandable-a verständlich-a comprensible-a
+@raw vetago nomuna everyday-a alltag-a
+@raw vetalu nomuna valley-a tal-a valle-a
+@raw vetenu veraba betray-a verraten-a traicionar-a
+@raw veteru nomuna weather-a wetter-a clima-a
+@raw vetoso nomuna infringement-a verstoß-a
+@raw veku nomuna week-a woche-a semana-a
+@raw vekaku nomuna weakness-a schwäche-a debilidad-a
+@raw vekalu detiva vertical-a senkrecht-a vertical-a
+@raw veketu nomuna wealth-a vermögen-a riqueza-a
+@raw vekedo nomuna weekend-a wochenende-a
+@raw vekegi nomuna weltkrieg-a
+@raw vekeni detiva verstärken-a
+@raw vekelo veraba switch-a wechseln-a
+@raw vekomu detiva welcome-a willkommen-a bienvenido-a
+@raw vebo peposa over-a vorbei-a
+@raw vebari veraba wear-a
+@raw vebeti detiva verbreiten-a
+@raw vebeno veraba disseminate-a verbreiten-a
+@raw vebito veraba prohibit-a verbieten-a
+@raw vebidi detiva verbinden-a
+@raw vebinu nomuna wine-a wein-a vino-a
+@raw vebili nomuna weile-a
+@raw vebotu nomuna ban-a verbot-a prohibición-a
+@raw vebugu nomuna advertising-a werbung-a publicidad-a
+@raw vedo deroba over-a vorbei-a
+@raw vedaku nomuna suspicion-a verdacht-a sospecha-a
+@raw vedeni veraba wenden-a
+@raw vedero dunona neither-a weder-a
+@raw vedigu nomuna wedding-a hochzeit-a boda-a
+@raw vedini detiva vecino-a
+@raw vedoru nomuna vendor-a verkäufer-a vendedor-a
+@raw vegu nomuna way-a weg-a manera-a
+@raw vegari veraba vengar-a
+@raw vegenu veraba silence-a schweigen-a silenciar-a
+@raw vegeho veraba weigh-a wiegen-a
+@raw vemo deroba ever-a je-a
+@raw vemalu detiva weekly-a wöchentlich-a semanal-a
+@raw vemetu detiva wet-a feucht-a húmedo-a
+@raw veminu nomuna placement-a vermittlung-a colocación-a
+@raw vemulo deroba presumably-a vermutlich-a
+@raw venu dunona if-a wenn-a si-a
+@raw venalu deroba eventually-a irgendwann-a eventualmente-a
+@raw veneni detiva verwenden-a
+@raw veneli detiva eventuell-a
+@raw veneru nomuna winner-a sieger-a ganador-a
+@raw venitu numera twenty-a zwanzig-a veinte-a
+@raw venigi tika wenig-a
+@raw venuru nomuna adventure-a erlebnis-a aventura-a
+@raw velu deroba well-a naja-a bien-a
+@raw velagu nomuna publisher-a verlag-a editorial-a
+@raw velafu nomuna progression-a verlauf-a progresión-a
+@raw velenu nomuna violation-a verletzung-a infracción-a
+@raw veleru nomuna developer-a entwickler-a promotor-a
+@raw veligi detiva jeweilig-a
+@raw velinu nomuna revelation-a enthüllung-a revelación-a
+@raw velomi terona welcome-a
+@raw veluno nomuna venue-a veranstaltungsort-a
+@raw veru deroba very-a sehr-a muy-a
+@raw verabu nomuna verb-a Verb-a verbo-a
+@raw veragu detiva average-a durchschnittlich-a promedio-a
+@raw veranu nomuna governance-a steuerung-a gobernación-a
+@raw veralu detiva several-a mehrere-a varios-a
+@raw vereku nomuna comparison-a vergleich-a comparación-a
+@raw veregu nomuna spread-a verbreitung-a propagación-a
+@raw verenu veraba forgive-a vergeben-a perdonar-a
+@raw veresi veraba versetzen-a
+@raw verehu veraba confer-a verleihen-a conferir-a
+@raw veritu nomuna wheat-a getreide-a trigo-a
+@raw veriko veraba waive-a verzichten-a
+@raw verido detiva everyday-a cotidiano-a
+@raw verifu veraba verify-a verifizieren-a verificar-a
+@raw verono veraba zoom-a vergrößern-a
+@raw veruso peposa versus-a versus-a
+@raw vesi nomuna vez-a
+@raw vesato detiva west-a west-a
+@raw vesetu nomuna west-a westen-a oeste-a
+@raw vesenu detiva western-a westlich-a occidental-a
+@raw veselu nomuna vessel-a gefäß-a buque-a
+@raw veseri veraba vencer-a
+@raw vesesi nomuna veces-a
+@raw vesiti deroba west-a
+@raw vesiku nomuna surrender-a verzicht-a rendición-a
+@raw vesinu nomuna neighbor-a nachbar-a vecino-a
+@raw vesomu detiva awesome-a krass-a impresionante-a
+@raw vefu detiva beautiful-a wunderschön-a hermoso-a
+@raw vefali nomuna westfalen-a
+@raw vefaru nomuna welfare-a tierschutz-a bienestar-a
+@raw vevi deroba wherever-a
+@raw veveli tika wieviel-a
+@raw veveru nomuna viewer-a betrachter-a espectador-a
+@raw vevolu veraba evolve-a weiterentwickeln-a evolucionar-a
+@raw vehu ronona who-a wer-a quien-a
+@raw vehaki nomuna weihnacht-a
+@raw vehanu nomuna behavior-a verhalten-a comportamiento-a
+@raw vehebi veraba wehren-a
+@raw veheni veraba versehen-a
+@raw vehiku nomuna vehicle-a fahrzeug-a vehículo-a
+@raw vehisu nomuna white-a weiß-a blanca-a
+@raw vipu veraba visit-a besuchen-a visitar-a
+@raw vitu detiva far-a weit-a lejano-a
+@raw vitanu nomuna invitation-a einladung-a invitación-a
+@raw vitalo detiva vital-a vital-a
+@raw vitaso nomuna glance-a vistazo-a
+@raw viteku nomuna switch-a umschalten-a interruptor-a
+@raw viteri peposa weiter-a
+@raw viteso veraba witness-a zeugen-a
+@raw viku tika which-a welcher-a cuál-a
+@raw vikeni veraba wirken-a
+@raw vikeli detiva entwickeln-a
+@raw vikori nomuna victoria-a
+@raw vibo veraba wish-a wünschen-a
+@raw vidu deroba again-a wieder-a nuevamente-a
+@raw videku nomuna paradox-a widerspruch-a paradoja-a
+@raw videnu detiva evident-a offenkundig-a evidente-a
+@raw videlo deroba widely-a ampliamente-a
+@raw videsu nomuna evidence-a nachweis-a evidencia-a
+@raw vidifu nomuna wildlife-a fauna-a fauna-a
+@raw vidomo nomuna wisdom-a sabiduría-a
+@raw vidosi nomuna windows-a
+@raw vigu nomuna knowledge-a wissen-a conocimiento-a
+@raw vigagu nomuna vintage-a jahrgang-a cosecha-a
+@raw vigeno veraba compel-a zwingen-a
+@raw vigesu nomuna validity-a gültigkeit-a vigencia-a
+@raw vigevo veraba view-a anzeigen-a
+@raw vimu nomuna movement-a bewegung-a movimiento-a
+@raw vinu veraba win-a gewinnen-a ganar-a
+@raw vinadu nomuna wind-a wind-a viento-a
+@raw vinagu nomuna wing-a flügel-a ala-a
+@raw vinedi veraba wind-a
+@raw vineni veraba erwischen-a
+@raw vineru nomuna winter-a winter-a invierno-a
+@raw vinesi nomuna viernes-a
+@raw vinovu nomuna window-a fenster-a ventana-a
+@raw vili tika viel-a
+@raw viladu detiva wild-a wild-a salvaje-a
+@raw vilanu nomuna surveillance-a überwachung-a vigilancia-a
+@raw vilafu nomuna village-a dorf-a villa-a
+@raw viletu detiva violent-a heftig-a violento-a
+@raw viledu nomuna wild-a wild-a salvaje-a
+@raw vileno nomuna violence-a violencia-a
+@raw vilitu detiva willing-a bereit-a dispuesto-a
+@raw viligu detiva voluntary-a freiwillig-a voluntario-a
+@raw vilulo deroba obviously-a obviamente-a
+@raw viru veraba will-a werden-a ir-a
+@raw vireni nomuna virgen-a
+@raw virudu nomuna virtue-a tugend-a virtud-a
+@raw virulu detiva virtual-a virtuell-a virtual-a
+@raw virusu nomuna virus-a virus-a virus-a
+@raw visu detiva white-a weiß-a blanco-a
+@raw visabo detiva wise-a sabio-a
+@raw visano nomuna wish-a wünschen-a
+@raw visetu nomuna vice-a vizepräsident-a vicepresidente-a
+@raw visedu detiva widespread-a verbreitet-a extendido-a
+@raw viseni veraba weisen-a
+@raw viseru nomuna adviser-a beraterin-a consejero-a
+@raw visitu nomuna visit-a besuch-a visita-a
+@raw visibu detiva visible-a sichtbar-a visible-a
+@raw visigu detiva hilarious-a witzig-a gracioso-a
+@raw visinu nomuna vision-a sicht-a visión-a
+@raw visilu detiva invisible-a unsichtbar-a invisible-a
+@raw visiru nomuna visitor-a besucher-a visitante-a
+@raw visumu nomuna visa-a visum-a visado-a
+@raw visulu detiva visual-a optisch-a visual-a
+@raw vifu veraba avoid-a vermeiden-a evitar-a
+@raw vivu nomuna view-a blick-a vista-a
+@raw vivinu nomuna housing-a gehäuse-a vivienda-a
+@raw vihu nomuna trip-a reise-a viaje-a
+@raw viheru nomuna traveler-a reisende-a viajero-a
+@raw vopo detiva whole-a entero-a
+@raw votu nomuna content-a inhalt-a contenido-a
+@raw votari veraba votar-a
+@raw voteru nomuna voter-a wähler-a votante-a
+@raw votinu nomuna voting-a abstimmung-a votación-a
+@raw voku veraba work-a arbeiten-a trabajar-a
+@raw vokalu detiva vocal-a lautstark-a vocal-a
+@raw vokeni detiva vollkommen-a
+@raw vokelu nomuna vowel-a Vokal-a vocal-a
+@raw vokigo nomuna working-a arbeitszeit-a
+@raw vokomi veraba vorkommen-a
+@raw vobu nomuna vote-a stimmen-a voto-a
+@raw vodu deroba where-a wo-a donde-a
+@raw vodero veraba wonder-a wundern-a
+@raw vodido deroba worldwide-a mundialmente-a
+@raw vodigu detiva worthy-a würdig-a digno-a
+@raw voduki deroba wodurch-a
+@raw vogu nomuna code-a code-a código-a
+@raw vogeni veraba vorliegen-a
+@raw vogero nomuna worry-a sorgen-a
+@raw vomo veraba vote-a stimmen-a
+@raw vomiti deroba womit-a
+@raw vonu veraba want-a wollen-a querer-a
+@raw volu deroba probably-a wohl-a probablemente-a
+@raw volagu nomuna submission-a vorlage-a sumisión-a
+@raw volaru veraba violate-a verstoßen-a violar-a
+@raw volavu nomuna wave-a welle-a onda-a
+@raw voleku nomuna folk-a volk-a folk-a
+@raw voledu detiva involved-a beteiligt-a involucrado-a
+@raw voligi detiva völlig-a
+@raw volinu nomuna evolution-a evolution-a evolución-a
+@raw volofu nomuna wolf-a wolf-a lobo-a
+@raw volunu nomuna volunteer-a freiwillige-a voluntario-a
+@raw voru ronona we-a wir-a nosotros-a
+@raw vorapo veraba wrap-a envolver-a
+@raw vorato detiva worth-a wert-a
+@raw voradu nomuna sword-a schwert-a espada-a
+@raw voraso peposa ahead-a voraus-a
+@raw vorafi deroba worauf-a
+@raw voredi detiva worried-a
+@raw vorenu deroba front-a vorne-a frente-a
+@raw vorehi veraba vorsehen-a
+@raw vorito nomuna favourite-a favorita-a
+@raw vosu nomuna voice-a stimme-a voz-a
+@raw vositu nomuna worship-a gottesdienst-a culto-a
+@raw vosiku nomuna caution-a vorsicht-a precaución-a
+@raw vofu nomuna wife-a ehefrau-a esposa-a
+@raw vofuri deroba wofür-a
+@raw vovu veraba back-a rücken-a volver-a
+@raw vovufu nomuna allegation-a vorwurf-a alegación-a
+@raw vohu nomuna factory-a werk-a fábrica-a
+@raw voheni veraba vornehmen-a
+@raw vohero deroba prior-a vorher-a
+@raw vupu nomuna campaign-a kampagne-a campaña-a
+@raw vutu detiva genuine-a echt-a genuino-a
+@raw vuteru nomuna anger-a wut-a ira-a
+@raw vuku nomuna attempt-a versuch-a intento-a
+@raw vubu nomuna doubt-a zweifel-a duda-a
+@raw vudi veraba would-a
+@raw vuderu nomuna wonder-a wunder-a maravilla-a
+@raw vugu nomuna access-a zugang-a acceso-a
+@raw vumu nomuna victim-a opfer-a víctima-a
+@raw vunu detiva young-a jung-a joven-a
+@raw vunado nomuna wound-a wunde-a
+@raw vunalu detiva vulnerable-a empfindlich-a vulnerable-a
+@raw vulu nomuna world-a welt-a mundo-a
+@raw vuru nomuna war-a krieg-a guerra-a
+@raw vuramu nomuna worm-a wurm-a gusano-a
+@raw vusu nomuna use-a verwendung-a uso-a
+@raw vusari tika vuestro-a
+@raw vufo veraba publish-a veröffentlichen-a
+@raw vuvu nomuna channel-a kanal-a canal-a
+@raw vuhu nomuna return-a rückkehr-a vuelta-a
 
 ## ("h")
 
-@raw ho he-a er-a él-a
-@raw hapi happen-a passieren-a
-@raw hapake hauptsache-a
-@raw hato holy-a heilig-a santo-a
-@raw hataro hate-a hassen-a odiar-a
-@raw hateno adhere-a einhalten-a adherir-a
-@raw hatere whatever-a
-@raw hateve whatever-a
-@raw hatigo sustained-a nachhaltig-a sostenido-a
-@raw hatiri hire-a contratar-a
-@raw haki act-a handeln-a
-@raw hakeni hack-a hacken-a
-@raw hakero hacker-a hacker-a pirata-a
-@raw hakeso axis-a achse-a eje-a
-@raw hakike hauptsächlich-a
-@raw habo hair-a haar-a pelo-a
-@raw habake ha-a
-@raw habadi hey-a hey-a
-@raw habame ha-a
-@raw habane ja-a
-@raw habale hallo-a
-@raw habare harry-a
-@raw habahe ah-a
-@raw habele hello-a
-@raw habehe eh-a
-@raw habito hit-a hit-a hit-a
-@raw habine hin-a
-@raw habiro inhabit-a bewohnen-a habitar-a
-@raw habihe ah-a
-@raw habope hop-a
-@raw habolo hi-a hallo-a hola-a
-@raw habohe oh-a
-@raw habune junio-a
-@raw habule julio-a
-@raw habuhe haha-a
-@raw hado capital-a hauptstadt-a capital-a
-@raw hadaro hardware-a hardware-a hardware-a
-@raw hadipo hip-a hip-a cadera-a
-@raw hadine hin-a
-@raw hadole hola-a
-@raw hagi beat-a schlagen-a
-@raw hagare hagar-a
-@raw hagero trailer-a anhänger-a tráiler-a
-@raw hamo hardly-a kaum-a apenas-a
-@raw hamedi half-a medio-a
-@raw hamelo hammer-a hammer-a martillo-a
-@raw hamero hunger-a hunger-a hambre-a
-@raw hamono harmony-a harmonie-a armonía-a
-@raw hamuni humour-a laune-a
-@raw hamuhe mühe-a
-@raw hano hand-a hand-a mano-a
-@raw hanato hunt-a jagd-a caza-a
-@raw hanade hand-a
-@raw hanalo handle-a handhaben-a manejar-a
-@raw hanahe nah-a
-@raw haneto hunt-a jagen-a cazar-a
-@raw hanedo cellphone-a handy-a celular-a
-@raw hanego dependent-a abhängig-a dependiente-a
-@raw haneno hang-a hängen-a colgar-a
-@raw hanulo handful-a handvoll-a puñado-a
-@raw halo talk-a reden-a hablar-a
-@raw halate halt-a
-@raw halabi half-a halb-a
-@raw halane erhalten-a
-@raw halare hallar-a
-@raw halafe half-a
-@raw halavi halfway-a halbwegs-a
-@raw haleti hold-a halt-a
-@raw halene unterhalten-a
-@raw halike inhaltlich-a
-@raw halilo harmful-a schädlich-a perjudicial-a
-@raw halono hall-a halle-a salón-a
-@raw haro hear-a hören-a escuchar-a
-@raw haradi hard-a duro-a
-@raw harase horas-a
-@raw harero craftsman-a handwerker-a artesano-a
-@raw harini flour-a harina-a
-@raw haruto hat-a hut-a sombrero-a
-@raw haso house-a haus-a casa-a
-@raw hasede hacienda-a
-@raw hasodo hatred-a haß-a odio-a
-@raw hafo back-a rücken-a espalda-a
-@raw hafeti detention-a haft-a
-@raw havo away-a weg-a lejos-a
-@raw havene heaven-a
-@raw havehe weh-a
-@raw haho charge-a gebühr-a cargo-a
-@raw haheno rooster-a hahn-a gallo-a
-@raw hahito habit-a gewohnheit-a hábito-a
-@raw hepo example-a beispiel-a ejemplo-a
-@raw hete heute-a
-@raw hetagi nowadays-a heutzutage-a
-@raw hetaro acre-a hektar-a hectárea-a
-@raw hetige heutig-a
-@raw heturo height-a körpergröße-a altura-a
-@raw heko fact-a tatsache-a hecho-a
-@raw hekare healthcare-a
-@raw hekero helicopter-a hubschrauber-a helicóptero-a
-@raw hekono done-a geschafft-a hecho-a
-@raw hekuto executive-a führungskraft-a ejecutivo-a
-@raw hebo hotel-a hotel-a hotel-a
-@raw hebade head-a
-@raw hebahe yeah-a
-@raw hebeni elevate-a erheben-a
-@raw hebine rhein-a
-@raw hebise heiß-a
-@raw hebuhi huh-a eh-a
-@raw hedo evening-a abend-a tarde-a
-@raw hedene herausfinden-a
-@raw hedero header-a überschrift-a cabecera-a
-@raw hedini headline-a schlagzeile-a
-@raw hego protect-a schützen-a proteger-a
-@raw hegene jährigen-a
-@raw hemi rather-a eher-a
-@raw hemeni diminish-a abnehmen-a
-@raw hemuko jewelry-a schmuck-a joya-a
-@raw heni when-a cuando-a
-@raw henako honorary-a ehrenamtlich-a honorario-a
-@raw henani enhance-a potenciar-a
-@raw henere whenever-a
-@raw henori honor-a ehren-a
-@raw henugo huge-a riesig-a enorme-a
-@raw helo help-a helfen-a ayudar-a
-@raw helato heat-a hitze-a calor-a
-@raw helade rheinland-a
-@raw helage jahrelang-a
-@raw helaro hero-a held-a héroe-a
-@raw heleko helmet-a helm-a casco-a
-@raw helene herstellen-a
-@raw helero helper-a helfer-a ayudante-a
-@raw helike ehrlich-a
-@raw helige ehemalig-a
-@raw helilo salvation-a heil-a salvación-a
-@raw hero here-a hier-a aquí-a
-@raw herabe hierbei-a
-@raw heradi ahead-a voraus-a
-@raw heragi heritage-a denkmalschutz-a
-@raw herase heraus-a
-@raw herafe herrschaft-a
-@raw hereno reign-a herrschen-a reinar-a
-@raw herere ejercer-a
-@raw herese hierzu-a
-@raw herefe herself-a
-@raw heriti hereby-a hiermit-a
-@raw herido wounded-a verwundet-a herido-a
-@raw herino hearing-a gehör-a audición-a
-@raw herilo hill-a berg-a cerro-a
-@raw heroge herzog-a
-@raw herore hervor-a
-@raw heruse heraus-a
-@raw heso heart-a herz-a corazón-a
-@raw hesaso heel-a absatz-a talón-a
-@raw hesavo heavy-a schwerer-a pesado-a
-@raw hesiso exercise-a übung-a ejercicio-a
-@raw hesivo comprehensive-a umfassenden-a exhaustivo-a
-@raw hesuno healthy-a gesund-a sano-a
-@raw hesuse jesús-a
-@raw hefo boss-a chef-a jefe-a
-@raw hefeto notebook-a heft-a cuaderno-a
-@raw hefuli helpful-a nützlich-a
-@raw hevo tv-a fernsehen-a televisión-a
-@raw hevere whoever-a
-@raw hevese jueves-a
-@raw hevili heavily-a fuertemente-a
-@raw heho daughter-a tochter-a hija-a
-@raw hipi hit-a golpear-a
-@raw hipeso hypothesis-a hypothese-a hipótesis-a
-@raw hito history-a geschichte-a historia-a
-@raw hitipi hint-a tipp-a
-@raw hitumi rhythm-a rhythmus-a
-@raw hiko likely-a wahrscheinlich-a probable-a
-@raw hibo participate-a beteiligen-a participar-a
-@raw hido unit-a einheit-a unidad-a
-@raw hideto hidden-a verborgen-a oculto-a
-@raw hideni hamper-a behindern-a
-@raw hidero hide-a verstecken-a ocultar-a
-@raw hige jährig-a
-@raw higalo highly-a höchst-a altamente-a
-@raw higaho high-a high-a alto-a
-@raw higehi high-a alto-a
-@raw himo army-a armee-a ejército-a
-@raw himefe himself-a
-@raw hine heißen-a
-@raw hinasi beyond-a hinaus-a
-@raw hinene hinweisen-a
-@raw hinero hinder-a hindern-a dificultar-a
-@raw hinese hinzu-a
-@raw hinike hinsicht-a
-@raw hili while-a mientras-a
-@raw hilate whilst-a
-@raw hileso ice-a eis-a hielo-a
-@raw hiro sir-a herr-a señor-a
-@raw hireno iron-a eisen-a hierro-a
-@raw hiriki historical-a histórico-a
-@raw hirise historisch-a
-@raw hiso behind-a hinter-a tras-a
-@raw hisike historic-a
-@raw hisoko hockey-a eishockey-a hockey-a
-@raw hisobo hobby-a hobby-a afición-a
-@raw hisoro historian-a historiker-a historiador-a
-@raw hifo help-a hilfe-a ayuda-a
-@raw hivo prevent-a verhindern-a impedir-a
-@raw hiho son-a sohn-a hijo-a
-@raw hihiti highlight-a höhepunkt-a
-@raw hopi hope-a hoffen-a
-@raw hopuno hope-a hoffnung-a esperanza-a
-@raw hoto amount-a höhe-a cantidad-a
-@raw hotodi hood-a haube-a
-@raw hoko high-a hoch-a alto-a
-@raw hokene höchstens-a
-@raw hokupo up-a hoch-a arriba-a
-@raw hobo hot-a heiß-a caliente-a
-@raw hoboke hook-a
-@raw hodo board-a vorstand-a junta-a
-@raw hogi home-a zuhause-a
-@raw homo home-a heimat-a hogar-a
-@raw homagi homepage-a homepage-a
-@raw homahi homage-a homenaje-a
-@raw hono belong-a gehören-a pertenecer-a
-@raw honadi workday-a jornada-a
-@raw honeti honestly-a sinceramente-a
-@raw honedi honesty-a honestidad-a
-@raw honesi honest-a sincero-a
-@raw honoro honor-a ehre-a honor-a
-@raw holi hold-a festhalten-a
-@raw holabo holiday-a urlaub-a vacaciones-a
-@raw holeni fetch-a holen-a
-@raw holesi timber-a holz-a
-@raw holoko hole-a loch-a agujero-a
-@raw horo hour-a stunde-a hora-a
-@raw horano horn-a horn-a cuerno-a
-@raw horaso horse-a pferd-a caballo-a
-@raw horeno oven-a ofen-a horno-a
-@raw horero listener-a zuhörer-a oyente-a
-@raw horibe horrible-a
-@raw horino honey-a liebling-a cariño-a
-@raw horilo awful-a schrecklich-a horrible-a
-@raw horiso horizon-a horizont-a horizonte-a
-@raw hororo horror-a horror-a horror-a
-@raw hosi anyway-a trotzdem-a
-@raw hosate host-a
-@raw hoseto host-a rechner-a anfitrión-a
-@raw hosilo hostile-a feindlich-a hostil-a
-@raw hofo loss-a verlust-a pérdida-a
-@raw hofalo hopefully-a hoffentlich-a ojalá-a
-@raw hofelo hell-a hölle-a infierno-a
-@raw hovo how-a woher-a cómo-a
-@raw hoveno young-a jung-a joven-a
-@raw hoho association-a verband-a asociación-a
-@raw hohale ojalá-a
-@raw hohode household-a
-@raw hupi up-a hoch-a
-@raw huto tough-a hart-a duro-a
-@raw hubo justice-a gerechtigkeit-a justicia-a
-@raw hudo authority-a behörde-a autoridad-a
-@raw hudedo hundred-a hundert-a cien-a
-@raw hugo judge-a richter-a juez-a
-@raw hugare juzgar-a
-@raw hugeto toy-a spielzeug-a juguete-a
-@raw hugoso gaming-a glücksspiel-a juegos-a
-@raw humi human-a humano-a
-@raw humani human-a humanos-a
-@raw humilo humble-a bescheiden-a humilde-a
-@raw humori humor-a humor-a
-@raw huno apartment-a wohnung-a piso-a
-@raw hunate junto-a
-@raw hunari hungry-a hambriento-a
-@raw hunero hunter-a jäger-a cazador-a
-@raw hulo popular-a beliebt-a popular-a
-@raw huro door-a tür-a puerta-a
-@raw hureti hurt-a verletzen-a
-@raw huriro flee-a flüchten-a huir-a
-@raw hurisi hurry-a prisa-a
-@raw huso hospital-a krankenhaus-a hospital-a
-@raw huseto adjustment-a anpassung-a ajuste-a
-@raw hufo medical-a medizinisch-a médico-a
-@raw huvo independent-a unabhängig-a independiente-a
-@raw huvevo egg-a ei-a huevo-a
-@raw huho radio-a radio-a radio-a
+@raw hu ronona he-a er-a él-a
+@raw hapo veraba happen-a passieren-a
+@raw hapaki nomuna hauptsache-a
+@raw hatu detiva holy-a heilig-a santo-a
+@raw hataru veraba hate-a hassen-a odiar-a
+@raw hatenu veraba adhere-a einhalten-a adherir-a
+@raw hateri ronona whatever-a
+@raw hatevi tika whatever-a
+@raw hatigu detiva sustained-a nachhaltig-a sostenido-a
+@raw hatiro veraba hire-a contratar-a
+@raw hako veraba act-a handeln-a
+@raw hakeno veraba hack-a hacken-a
+@raw hakeru nomuna hacker-a hacker-a pirata-a
+@raw hakesu nomuna axis-a achse-a eje-a
+@raw hakiki detiva hauptsächlich-a
+@raw habu nomuna hair-a haar-a pelo-a
+@raw habaki nomuna ha-a
+@raw habado terona hey-a hey-a
+@raw habami terona ha-a
+@raw habani terona ja-a
+@raw habali nomuna hallo-a
+@raw habari nomuna harry-a
+@raw habahi terona ah-a
+@raw habeli terona hello-a
+@raw habehi detiva eh-a
+@raw habitu nomuna hit-a hit-a hit-a
+@raw habini peposa hin-a
+@raw habiru veraba inhabit-a bewohnen-a habitar-a
+@raw habihi terona ah-a
+@raw habopi veraba hop-a
+@raw habolu terona hi-a hallo-a hola-a
+@raw habohi terona oh-a
+@raw habuni nomuna junio-a
+@raw habuli nomuna julio-a
+@raw habuhi terona haha-a
+@raw hadu nomuna capital-a hauptstadt-a capital-a
+@raw hadaru nomuna hardware-a hardware-a hardware-a
+@raw hadipu nomuna hip-a hip-a cadera-a
+@raw hadini deroba hin-a
+@raw hadoli patika hola-a
+@raw hago veraba beat-a schlagen-a
+@raw hagari veraba hagar-a
+@raw hageru nomuna trailer-a anhänger-a tráiler-a
+@raw hamu deroba hardly-a kaum-a apenas-a
+@raw hamedo numera half-a medio-a
+@raw hamelu nomuna hammer-a hammer-a martillo-a
+@raw hameru nomuna hunger-a hunger-a hambre-a
+@raw hamonu nomuna harmony-a harmonie-a armonía-a
+@raw hamuno nomuna humour-a laune-a
+@raw hamuhi nomuna mühe-a
+@raw hanu nomuna hand-a hand-a mano-a
+@raw hanatu nomuna hunt-a jagd-a caza-a
+@raw hanadi veraba hand-a
+@raw hanalu veraba handle-a handhaben-a manejar-a
+@raw hanahi terona nah-a
+@raw hanetu veraba hunt-a jagen-a cazar-a
+@raw hanedu nomuna cellphone-a handy-a celular-a
+@raw hanegu detiva dependent-a abhängig-a dependiente-a
+@raw hanenu veraba hang-a hängen-a colgar-a
+@raw hanulu nomuna handful-a handvoll-a puñado-a
+@raw halu veraba talk-a reden-a hablar-a
+@raw halati deroba halt-a
+@raw halabo detiva half-a halb-a
+@raw halani detiva erhalten-a
+@raw halari veraba hallar-a
+@raw halafi tika half-a
+@raw halavo deroba halfway-a halbwegs-a
+@raw haleto nomuna hold-a halt-a
+@raw haleni veraba unterhalten-a
+@raw haliki detiva inhaltlich-a
+@raw halilu detiva harmful-a schädlich-a perjudicial-a
+@raw halonu nomuna hall-a halle-a salón-a
+@raw haru veraba hear-a hören-a escuchar-a
+@raw harado deroba hard-a duro-a
+@raw harasi nomuna horas-a
+@raw hareru nomuna craftsman-a handwerker-a artesano-a
+@raw harino nomuna flour-a harina-a
+@raw harutu nomuna hat-a hut-a sombrero-a
+@raw hasu nomuna house-a haus-a casa-a
+@raw hasedi nomuna hacienda-a
+@raw hasodu nomuna hatred-a haß-a odio-a
+@raw hafu nomuna back-a rücken-a espalda-a
+@raw hafeto nomuna detention-a haft-a
+@raw havu deroba away-a weg-a lejos-a
+@raw haveni nomuna heaven-a
+@raw havehi deroba weh-a
+@raw hahu nomuna charge-a gebühr-a cargo-a
+@raw hahenu nomuna rooster-a hahn-a gallo-a
+@raw hahitu nomuna habit-a gewohnheit-a hábito-a
+@raw hepu nomuna example-a beispiel-a ejemplo-a
+@raw heti deroba heute-a
+@raw hetago deroba nowadays-a heutzutage-a
+@raw hetaru nomuna acre-a hektar-a hectárea-a
+@raw hetigi detiva heutig-a
+@raw heturu nomuna height-a körpergröße-a altura-a
+@raw heku nomuna fact-a tatsache-a hecho-a
+@raw hekari nomuna healthcare-a
+@raw hekeru nomuna helicopter-a hubschrauber-a helicóptero-a
+@raw hekonu detiva done-a geschafft-a hecho-a
+@raw hekutu nomuna executive-a führungskraft-a ejecutivo-a
+@raw hebu nomuna hotel-a hotel-a hotel-a
+@raw hebadi veraba head-a
+@raw hebahi terona yeah-a
+@raw hebeno veraba elevate-a erheben-a
+@raw hebini nomuna rhein-a
+@raw hebisi deroba heiß-a
+@raw hebuho terona huh-a eh-a
+@raw hedu nomuna evening-a abend-a tarde-a
+@raw hedeni veraba herausfinden-a
+@raw hederu nomuna header-a überschrift-a cabecera-a
+@raw hedino nomuna headline-a schlagzeile-a
+@raw hegu veraba protect-a schützen-a proteger-a
+@raw hegeni detiva jährigen-a
+@raw hemo deroba rather-a eher-a
+@raw hemeno veraba diminish-a abnehmen-a
+@raw hemuku nomuna jewelry-a schmuck-a joya-a
+@raw heno dunona when-a cuando-a
+@raw henaku detiva honorary-a ehrenamtlich-a honorario-a
+@raw henano veraba enhance-a potenciar-a
+@raw heneri deroba whenever-a
+@raw henoro veraba honor-a ehren-a
+@raw henugu detiva huge-a riesig-a enorme-a
+@raw helu veraba help-a helfen-a ayudar-a
+@raw helatu nomuna heat-a hitze-a calor-a
+@raw heladi nomuna rheinland-a
+@raw helagi detiva jahrelang-a
+@raw helaru nomuna hero-a held-a héroe-a
+@raw heleku nomuna helmet-a helm-a casco-a
+@raw heleni veraba herstellen-a
+@raw heleru nomuna helper-a helfer-a ayudante-a
+@raw heliki nomuna ehrlich-a
+@raw heligi detiva ehemalig-a
+@raw helilu nomuna salvation-a heil-a salvación-a
+@raw heru deroba here-a hier-a aquí-a
+@raw herabi deroba hierbei-a
+@raw herado deroba ahead-a voraus-a
+@raw herago nomuna heritage-a denkmalschutz-a
+@raw herasi peposa heraus-a
+@raw herafi nomuna herrschaft-a
+@raw herenu veraba reign-a herrschen-a reinar-a
+@raw hereri veraba ejercer-a
+@raw heresi deroba hierzu-a
+@raw herefi ronona herself-a
+@raw herito deroba hereby-a hiermit-a
+@raw heridu detiva wounded-a verwundet-a herido-a
+@raw herinu nomuna hearing-a gehör-a audición-a
+@raw herilu nomuna hill-a berg-a cerro-a
+@raw herogi nomuna herzog-a
+@raw herori peposa hervor-a
+@raw herusi deroba heraus-a
+@raw hesu nomuna heart-a herz-a corazón-a
+@raw hesasu nomuna heel-a absatz-a talón-a
+@raw hesavu detiva heavy-a schwerer-a pesado-a
+@raw hesisu nomuna exercise-a übung-a ejercicio-a
+@raw hesivu detiva comprehensive-a umfassenden-a exhaustivo-a
+@raw hesunu detiva healthy-a gesund-a sano-a
+@raw hesusi terona jesús-a
+@raw hefu nomuna boss-a chef-a jefe-a
+@raw hefetu nomuna notebook-a heft-a cuaderno-a
+@raw hefulo detiva helpful-a nützlich-a
+@raw hevu nomuna tv-a fernsehen-a televisión-a
+@raw heveri ronona whoever-a
+@raw hevesi nomuna jueves-a
+@raw hevilo deroba heavily-a fuertemente-a
+@raw hehu nomuna daughter-a tochter-a hija-a
+@raw hipo veraba hit-a golpear-a
+@raw hipesu nomuna hypothesis-a hypothese-a hipótesis-a
+@raw hitu nomuna history-a geschichte-a historia-a
+@raw hitipo nomuna hint-a tipp-a
+@raw hitumo nomuna rhythm-a rhythmus-a
+@raw hiku detiva likely-a wahrscheinlich-a probable-a
+@raw hibu veraba participate-a beteiligen-a participar-a
+@raw hidu nomuna unit-a einheit-a unidad-a
+@raw hidetu detiva hidden-a verborgen-a oculto-a
+@raw hideno veraba hamper-a behindern-a
+@raw hideru veraba hide-a verstecken-a ocultar-a
+@raw higi detiva jährig-a
+@raw higalu deroba highly-a höchst-a altamente-a
+@raw higahu nomuna high-a high-a alto-a
+@raw higeho deroba high-a alto-a
+@raw himu nomuna army-a armee-a ejército-a
+@raw himefi ronona himself-a
+@raw hini veraba heißen-a
+@raw hinaso peposa beyond-a hinaus-a
+@raw hineni veraba hinweisen-a
+@raw hineru veraba hinder-a hindern-a dificultar-a
+@raw hinesi peposa hinzu-a
+@raw hiniki nomuna hinsicht-a
+@raw hilo dunona while-a mientras-a
+@raw hilati dunona whilst-a
+@raw hilesu nomuna ice-a eis-a hielo-a
+@raw hiru nomuna sir-a herr-a señor-a
+@raw hirenu nomuna iron-a eisen-a hierro-a
+@raw hiriko detiva historical-a histórico-a
+@raw hirisi detiva historisch-a
+@raw hisu peposa behind-a hinter-a tras-a
+@raw hisiki detiva historic-a
+@raw hisoku nomuna hockey-a eishockey-a hockey-a
+@raw hisobu nomuna hobby-a hobby-a afición-a
+@raw hisoru nomuna historian-a historiker-a historiador-a
+@raw hifu nomuna help-a hilfe-a ayuda-a
+@raw hivu veraba prevent-a verhindern-a impedir-a
+@raw hihu nomuna son-a sohn-a hijo-a
+@raw hihito nomuna highlight-a höhepunkt-a
+@raw hopo veraba hope-a hoffen-a
+@raw hopunu nomuna hope-a hoffnung-a esperanza-a
+@raw hotu nomuna amount-a höhe-a cantidad-a
+@raw hotodo nomuna hood-a haube-a
+@raw hoku detiva high-a hoch-a alto-a
+@raw hokeni deroba höchstens-a
+@raw hokupu nomuna up-a hoch-a arriba-a
+@raw hobu detiva hot-a heiß-a caliente-a
+@raw hoboki veraba hook-a
+@raw hodu nomuna board-a vorstand-a junta-a
+@raw hogo deroba home-a zuhause-a
+@raw homu nomuna home-a heimat-a hogar-a
+@raw homago nomuna homepage-a homepage-a
+@raw homaho nomuna homage-a homenaje-a
+@raw honu veraba belong-a gehören-a pertenecer-a
+@raw honado nomuna workday-a jornada-a
+@raw honeto deroba honestly-a sinceramente-a
+@raw honedo nomuna honesty-a honestidad-a
+@raw honeso detiva honest-a sincero-a
+@raw honoru nomuna honor-a ehre-a honor-a
+@raw holo veraba hold-a festhalten-a
+@raw holabu nomuna holiday-a urlaub-a vacaciones-a
+@raw holeno veraba fetch-a holen-a
+@raw holeso nomuna timber-a holz-a
+@raw holoku nomuna hole-a loch-a agujero-a
+@raw horu nomuna hour-a stunde-a hora-a
+@raw horanu nomuna horn-a horn-a cuerno-a
+@raw horasu nomuna horse-a pferd-a caballo-a
+@raw horenu nomuna oven-a ofen-a horno-a
+@raw horeru nomuna listener-a zuhörer-a oyente-a
+@raw horibi detiva horrible-a
+@raw horinu nomuna honey-a liebling-a cariño-a
+@raw horilu detiva awful-a schrecklich-a horrible-a
+@raw horisu nomuna horizon-a horizont-a horizonte-a
+@raw hororu nomuna horror-a horror-a horror-a
+@raw hoso deroba anyway-a trotzdem-a
+@raw hosati veraba host-a
+@raw hosetu nomuna host-a rechner-a anfitrión-a
+@raw hosilu detiva hostile-a feindlich-a hostil-a
+@raw hofu nomuna loss-a verlust-a pérdida-a
+@raw hofalu deroba hopefully-a hoffentlich-a ojalá-a
+@raw hofelu nomuna hell-a hölle-a infierno-a
+@raw hovu deroba how-a woher-a cómo-a
+@raw hovenu nomuna young-a jung-a joven-a
+@raw hohu nomuna association-a verband-a asociación-a
+@raw hohali terona ojalá-a
+@raw hohodi nomuna household-a
+@raw hupo peposa up-a hoch-a
+@raw hutu detiva tough-a hart-a duro-a
+@raw hubu nomuna justice-a gerechtigkeit-a justicia-a
+@raw hudu nomuna authority-a behörde-a autoridad-a
+@raw hudedu numera hundred-a hundert-a cien-a
+@raw hugu nomuna judge-a richter-a juez-a
+@raw hugari veraba juzgar-a
+@raw hugetu nomuna toy-a spielzeug-a juguete-a
+@raw hugosu nomuna gaming-a glücksspiel-a juegos-a
+@raw humo detiva human-a humano-a
+@raw humano nomuna human-a humanos-a
+@raw humilu detiva humble-a bescheiden-a humilde-a
+@raw humoro nomuna humor-a humor-a
+@raw hunu nomuna apartment-a wohnung-a piso-a
+@raw hunati detiva junto-a
+@raw hunaro detiva hungry-a hambriento-a
+@raw huneru nomuna hunter-a jäger-a cazador-a
+@raw hulu detiva popular-a beliebt-a popular-a
+@raw huru nomuna door-a tür-a puerta-a
+@raw hureto veraba hurt-a verletzen-a
+@raw huriru veraba flee-a flüchten-a huir-a
+@raw huriso nomuna hurry-a prisa-a
+@raw husu nomuna hospital-a krankenhaus-a hospital-a
+@raw husetu nomuna adjustment-a anpassung-a ajuste-a
+@raw hufu detiva medical-a medizinisch-a médico-a
+@raw huvu detiva independent-a unabhängig-a independiente-a
+@raw huvevu nomuna egg-a ei-a huevo-a
+@raw huhu nomuna radio-a radio-a radio-a

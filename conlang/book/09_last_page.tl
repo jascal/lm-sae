@@ -20,5 +20,5 @@
 @prose
 
 (write (OBJ (book this)) (for you) (in (age first/ADJ (of talem))) before (SUBJ we))   # We wrote this book for you, in the first age of Talema.
-(write (OBJ (page next the)))                                                # Write the next page.
+(please (write (OBJ (page next the))) (to you))                             # Reader, please write the next page.
 (begin (SUBJ (tale your)))                                                   # Your tale begins.

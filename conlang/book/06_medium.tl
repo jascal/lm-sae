@@ -42,7 +42,8 @@
 (have (OBJ (root 980)) (SUBJ (consonant two)))                               # Two consonants give 980 roots.
 (have (OBJ (root 68600)) (SUBJ (consonant three)))                           # Three consonants give 68600 roots.
 (give (OBJ (root short the)) (DAT (word (that (say (SUBJ we)) often most))) (SUBJ we))   # We gave the short roots to the words we say most often.
-(prove (be short most (in (way this)) (SUBJ (word (of talem)))))            # Proved: this way, the words of Talema are the shortest.
+(prove (have (OBJ (root short most the)) (when/SCONJ (give (OBJ (root the)) (in (way this)) (SUBJ we))) (SUBJ (word (that (say (SUBJ we)) often most)))))   # Proved: when we give the roots this way, the words we say most often have the shortest roots.
+(open/ADJ (whether (be short most (of (language all)) (SUBJ talem))))       # Open: is Talema the shortest of all languages?
 
 ## (give (OBJ (root old a)) (DAT (word new a)) never)
 (give (OBJ (root old a)) (DAT (word new a)) never)                           # Never give an old root to a new word.
@@ -109,4 +110,4 @@
 @prose
 
 (finish not (SUBJ (book this)))                                              # This book is not finished.
-(write (OBJ (page next the)))                                                # Write the next page.
+(please (write (OBJ (page next the))))                                       # Please write the next page.

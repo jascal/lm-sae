@@ -179,7 +179,12 @@ def main() -> None:
     p.add_argument("--top", type=int, default=12000, help="lemmas kept per language")
     p.add_argument("--concepts", type=int, default=6000)
     p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--force", action="store_true", help="overwrite an existing lexicon (reassigns roots!)")
     a = p.parse_args()
+    if a.out.exists() and not a.force:
+        # The book's root law: a root is never reassigned. Rebuilding reshuffles every root, so the committed
+        # lexicon is frozen; correct senses by editing its rows, and add new words through conlang/book/coin.tsv.
+        raise SystemExit(f"{a.out} exists and is frozen (roots are never reassigned); use --force to rebuild anyway")
 
     F, role_rate = {}, defaultdict(float)
     for lang in ("en", "de", "es"):

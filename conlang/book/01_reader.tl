@@ -26,5 +26,5 @@
 
 (and (be small here (SUBJ (word the))) (be big (SUBJ (thought the))))     # Here the words are small, and the thoughts are big.
 (can (OBJ (hold (OBJ (thought big a)))) (SUBJ (word small a)))           # A small word can hold a big thought.
-(read slowly (with joy))                                                 # Read slowly, with joy.
+(please (read slowly (with joy)))                                        # Please read slowly, with joy.
 (welcome/INTJ)                                                           # Welcome.

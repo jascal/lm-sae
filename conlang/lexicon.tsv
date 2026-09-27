@@ -386,7 +386,7 @@ vov	VERB	back	rücken	volver	7.102e-04	2	0.423	6.042e-05	4.904e-05	6.008e-04
 riv	VERB	drive	fahren	conducir	7.101e-04	2	0.370	2.526e-04	3.905e-04	6.695e-05
 lak	ADJ	black	schwarz	negro|negros	7.082e-04	2	0.390	3.053e-04	2.350e-04	1.680e-04
 sem	VERB	seem	scheinen		7.012e-04	2	0.577	4.106e-04	2.906e-04	0.000e+00
-tum	NOUN	subject	gegenstand|betreff	tema|asunto|sujeto|asignatura|súbdito	6.998e-04	2	0.432	9.997e-05	4.424e-05	5.556e-04
+tum	NOUN	subject	subjekt	sujeto	6.998e-04	2	0.432	9.997e-05	4.424e-05	5.556e-04
 deg	NOUN	order	ordnung	orden|encargo|pedido	6.998e-04	2	0.375	3.310e-04	1.007e-04	2.681e-04
 del	NOUN	development	entwicklung	desarrollo	6.978e-04	2	0.280	2.462e-04	1.993e-04	2.523e-04
 pak	VERB			parecer	6.955e-04	2	0.286	0.000e+00	0.000e+00	6.955e-04
@@ -557,7 +557,7 @@ bot	NOUN	post	beitrag|pfosten	publicación|poste	5.080e-04	2	0.363	2.229e-04	1.8
 gat	NOUN	act	gesetz	acto|acta	5.072e-04	2	0.333	1.793e-04	1.651e-04	1.627e-04
 tiv	NOUN	activity	tätigkeit|aktivität	actividad	5.062e-04	2	0.351	1.715e-04	1.115e-04	2.232e-04
 fan	ADJ	french	französisch	francés	5.057e-04	2	0.369	1.373e-04	2.730e-04	9.550e-05
-let	NOUN	letter	schreiben|buchstabe	carta|letra	5.054e-04	2	0.414	1.504e-04	1.242e-04	2.308e-04
+let	NOUN	letter	buchstabe	letra	5.054e-04	2	0.414	1.504e-04	1.242e-04	2.308e-04
 nah	ADJ	close	nah|schließen		5.036e-04	2	0.552	2.014e-04	3.022e-04	0.000e+00
 dit	ADJ	direct	direkt	directo	5.033e-04	2	0.500	8.222e-05	3.190e-04	1.021e-04
 guk	PRON			mucho	5.031e-04	2	0.667	0.000e+00	0.000e+00	5.031e-04
@@ -646,7 +646,7 @@ dav	ADV		davon		4.441e-04	2	0.600	0.000e+00	4.441e-04	0.000e+00
 vig	NOUN	knowledge	wissen|kenntnis	conocimiento	4.431e-04	2	0.260	9.821e-05	2.269e-04	1.180e-04
 kip	ADJ		wirklich		4.428e-04	2	0.286	0.000e+00	4.428e-04	0.000e+00
 fon	NOUN	phone	telefon|telefonieren	teléfono	4.419e-04	2	0.756	2.548e-04	7.790e-05	1.092e-04
-rap	NOUN	rate	satz|rate	tasa	4.415e-04	2	0.488	2.159e-04	1.643e-04	6.123e-05
+rap	NOUN	rate	rate	tasa	4.415e-04	2	0.488	2.159e-04	1.643e-04	6.123e-05
 lip	NOUN	reality	realität|wirklichkeit	realidad	4.415e-04	2	0.264	9.182e-05	7.916e-05	2.705e-04
 pup	VERB	produce	produzieren	producir	4.407e-04	2	0.276	1.857e-04	5.825e-05	1.968e-04
 bod	ADP		de		4.402e-04	2	0.333	0.000e+00	4.402e-04	0.000e+00
@@ -1505,7 +1505,7 @@ halab	ADJ	half	halb		1.875e-04	3	0.780	1.836e-05	1.691e-04	0.000e+00
 kehan	NOUN	complaint	klage|beschwerde	denuncia|queja	1.873e-04	3	0.358	4.230e-05	6.534e-05	7.969e-05
 geder	NOUN	gender	geschlecht	género	1.873e-04	3	0.721	4.549e-05	4.383e-05	9.801e-05
 kakos	ADP	across			1.873e-04	3	0.600	1.873e-04	0.000e+00	0.000e+00
-feras	NOUN	sentence	strafe	frase	1.872e-04	3	0.532	5.747e-05	5.135e-05	7.833e-05
+feras	NOUN	sentence	satz	frase	1.872e-04	3	0.532	5.747e-05	5.135e-05	7.833e-05
 motiv	NOUN	motive	motiv	motivo	1.872e-04	3	1.000	1.571e-05	4.778e-05	1.237e-04
 daduk	ADV	thereby	dadurch		1.871e-04	3	0.780	1.194e-05	1.751e-04	0.000e+00
 raral	ADV	early	früher	temprano	1.870e-04	3	0.529	1.474e-04	7.186e-06	3.245e-05
@@ -3562,7 +3562,7 @@ miten	VERB	convey	vermitteln		6.134e-05	3	0.447	1.200e-05	4.934e-05	0.000e+00
 kador	NOUN			ecuador	6.133e-05	3	0.714	0.000e+00	0.000e+00	6.133e-05
 ferar	ADV			afuerar	6.133e-05	3	0.714	0.000e+00	0.000e+00	6.133e-05
 tesor	NOUN	treasure	schatz	tesoro	6.131e-05	3	0.634	2.211e-05	1.296e-05	2.624e-05
-topik	NOUN	topic		tópico	6.130e-05	3	1.000	5.524e-05	0.000e+00	6.063e-06
+topik	NOUN	topic	gegenstand|betreff	tópico|tema|asunto	6.130e-05	3	1.000	5.524e-05	0.000e+00	6.063e-06
 tirit	NUM	thirty	dreißig	treinta	6.130e-05	3	0.602	2.678e-05	8.378e-06	2.614e-05
 kanik	ADJ	mechanical	mechanisch	mecánico	6.130e-05	3	0.616	2.388e-05	1.581e-05	2.161e-05
 nabal	ADJ	unable		incapaz	6.126e-05	3	0.556	4.542e-05	0.000e+00	1.584e-05
