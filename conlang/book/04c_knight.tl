@@ -67,5 +67,5 @@
 
 @verse
 (read (OBJ (book every)))                                                    # Read every book.
-(believe (OBJ (sentence no)) (without (ask (know how (SUBJ it))))))       # Believe no sentence without asking how it knows.
+(believe (OBJ (sentence no)) (without (ask (know how (SUBJ it)))))       # Believe no sentence without asking how it knows.
 @prose

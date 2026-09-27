@@ -153,6 +153,8 @@ def build(files: list[Path], lex: Lex):
         for n, raw in enumerate(lines, 1):
             where = f"{f.name}:{n}"
             s = raw.strip()
+            if buf and (s.startswith("## ") or s.startswith("@")):
+                raise SystemExit(f"{f.name}:{start}: unbalanced parentheses (the tree runs into line {n})")
             if s.startswith("## "):
                 flush()
                 t = parse_trees(strip_comments(s[3:]), where)
@@ -182,8 +184,12 @@ def build(files: list[Path], lex: Lex):
                 if not buf:
                     flush()
                 continue
+            if not buf:
+                start = n
             buf.append(body)
             text = " ".join(buf)
+            if text.count(")") > text.count("("):
+                raise SystemExit(f"{f.name}:{start}: unbalanced parentheses (one ')' too many)")
             if text.count("(") == text.count(")"):
                 for tr in parse_trees(text, where):
                     words = spell(lex, tr, where)
@@ -198,6 +204,8 @@ def build(files: list[Path], lex: Lex):
                         pending_tree = False
                     para.append(sentence + " .")
                 buf = []
+        if buf:
+            raise SystemExit(f"{f.name}:{start}: unbalanced parentheses (the tree never closes)")
         flush()
     return md, sentences
 

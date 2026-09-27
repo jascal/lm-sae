@@ -154,6 +154,7 @@
 @raw ronon-u nomuna pronoun-a Pronomen-a pronombre-a
 @raw sarin-u nomuna saying-a Spruch-a refrán-a
 @raw silab-u nomuna syllable-a Silbe-a sílaba-a
+@raw sivan-u nomuna swan-a Schwan-a cisne-a
 @raw sonat-u nomuna consonant-a Konsonant-a consonante-a
 @raw verab-u nomuna verb-a Verb-a verbo-a
 @raw vokel-u nomuna vowel-a Vokal-a vocal-a
