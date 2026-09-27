@@ -21,6 +21,50 @@
 (be good (SUBJ this))                                                        # This is good:
 (say (OBJ (thing (that (know (SUBJ you))))) only (SUBJ you))                 # you say only the thing that you know.
 
+# ── numbers ──
+## (number the)
+@verse
+(be 0 (SUBJ zero))
+(be 1 (SUBJ one/NUM))
+(be 2 (SUBJ two))
+(be 3 (SUBJ three))
+(be 4 (SUBJ four))
+(be 5 (SUBJ five))
+(be 6 (SUBJ six))
+(be 7 (SUBJ seven))
+(be 8 (SUBJ eight))
+(be 9 (SUBJ nine))
+(be 10 (SUBJ ten))
+(be 100 (SUBJ hundred))
+(be 1000 (SUBJ thousand))
+@prose
+(stand (after (word (that (count/VERB (SUBJ it))))) (SUBJ (word (of number)))) # A number word stands after the word that it counts:
+(see (OBJ (dog two)) (SUBJ I))                                               # I see two dogs.
+
+# ── the three marks: how a speaker knows ──
+## (mark three the)
+(stand first/ADV (in (sentence (of (assertion a)))) (SUBJ (mark a)))         # A mark stands first in the sentence of an assertion.
+(have (OBJ (child one/NUM)) (SUBJ (mark the)))                               # The mark has one child:
+(be (assertion the) (SUBJ (child the)))                                      # the child is the assertion.
+@tree
+(see (be old (SUBJ (file the))))                                             # Seen: the file is old.
+@verse
+(prove (be four (SUBJ (and two two))))                                       # Proved: two and two are four. We have a proof.
+(see (pass (SUBJ (test the))))                                               # Seen: the test passes. We saw it.
+(open/ADJ (whether (dream (SUBJ (mind the)))))                               # Open: do the minds dream? We do not know it yet.
+@prose
+(give (OBJ (mark high (more (than (truth its))))) (DAT (assertion a)) never)   # Never give an assertion a mark higher than its truth.
+
+# ── reading a sentence inside a sentence ──
+## (read (OBJ (sentence (in (sentence a)))) how)
+@tree
+(say (OBJ (be "Ana" (SUBJ I))) (SUBJ (child the)))                           # The child says: I am Ana.
+(have (OBJ (child two)) (SUBJ (word "desi")))                                   # The word des has two children.
+(be (sentence (that (say (SUBJ it)))) (SUBJ (child first/ADJ the)))          # The first child is the sentence that it says.
+(be (child (of (word "bi"))) (SUBJ (word "pe ma" first/ADJ the)))             # The first pe ma is a child of bi.
+(be (child (of (word "desi"))) (SUBJ (word "pe kide la" last/ADJ the)))   # The last pe kide la is a child of desi.
+(tell (OBJ it) (DAT you) (SUBJ (ending the)))                                # The ending tells you this.
+
 # ── questions: three shapes, three jobs ──
 ## (question the)
 @verse

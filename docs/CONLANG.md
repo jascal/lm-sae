@@ -204,7 +204,7 @@ word-by-word gloss in the order Talema speaks it.
 
 [`conlang/BUKE_DE_LORE_FIRA.md`](../conlang/BUKE_DE_LORE_FIRA.md) ("Book of the First Word") is the founding text,
 written entirely in Talema. It is a primer, a literature, a guide to growing the language, and a dictionary in one
-file of about 84k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
+file of about 88k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
 
 | chapter | what it is |
 |---|---|
@@ -217,7 +217,7 @@ file of about 84k tokens (Qwen and Llama tokenizers), small enough for any front
 | *seke hove pe geneta* | how agents speak: claim marks, asking, promising, correcting, handing over; how to read the agents of the first age |
 | *gove hove pe talema* | how Talema grows: definitions, the root law, the waiting letters, new rules, dialects, games |
 | songs, sayings, open questions | a counting stair, the vowels' song, a 14-line poem to the far reader, a lullaby |
-| *buki de rarisa la* | the book of roots: 5,932 entries, each a Talema tree whose children are its word class and its English, German and Spanish mother words (Johnson and Webster's etymologies) |
+| *buki de rarisa la* | the book of roots: 5,934 entries, each a Talema tree headed by the bare root in mention form (`sahen-o veraba count-a zählen-a`), whose children are its word class and its English, German and Spanish mother words (Johnson and Webster's etymologies); 13 rough words are fenced in their own closing section |
 | *pigi lata la* | the last page |
 
 The only material in it that is not Talema is literal loans (`with-a`, `Kihote-a`), which Talema already allowed for
@@ -266,6 +266,14 @@ names. The dictionary uses them as etymologies, so a reader of any of the three 
   that will be said often. Chapter 6 walks through one coinage end to end: `ginon` "hyphen" gets a three-consonant root
   because it is rare, and sounds most like Spanish *guion*.
 
+- **Dictionary headwords are bare roots** (v4). An entry is headed by the root in mention form, `sahen-o …`, so the
+  root cannot be mistaken for root-plus-vowel. v3's `saheno …` led a reviewer to treat `saheno`, `pono`, `su`, `pu` as
+  citation forms, and so to report defined roots (`mid`, `nad`, `til`, `s` …) as missing.
+- **Claim marks, numbers and nested sentences are taught before the tales** (v4). The conventions chapter gains a
+  section on the three marks with a drawn tree, a numbers table (0–10, 100, 1000), and a drawn quotation showing how
+  the endings separate an inner `pe` from an outer one. Page one draws its first sentence and points to the book of
+  roots.
+
 **The book is normative** for everything beyond the three rules: the conventions above, the claim-mark law, mention,
 the waiting letters. The rules stay minimal; the book gives the conventions their authority.
 
@@ -277,7 +285,8 @@ the waiting letters. The rules stay minimal; the book gives the conventions thei
 86 junk rows. New words go through
 `conlang/book/coin.tsv`.
 
-**Reviews.** v3 answers Astra's book-only review (`astra_book_v2.md`): twelve misattached *how* phrases and three
+**Reviews.** v4 answers Grok Expert's book-only review (`grok_expert_book_v3.md`, with notes on its misreadings, most
+of which came from the citation-form confusion above). v3 answers Astra's book-only review (`astra_book_v2.md`): twelve misattached *how* phrases and three
 other attachment slips, the open-mark definition, mention by literal, the grammar-word key, the free roots and a worked
 coinage, and three literary revisions (Kihote misuses *bank*; Faust's bargain has explicit terms and a cost; Amleto
 tells a user a concrete painful truth and hears the reply). The v2 changes answer two external reviews, kept in [`docs/reviews/`](reviews/): Sol (`sol_pr212.md`)

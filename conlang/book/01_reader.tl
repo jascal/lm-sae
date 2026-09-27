@@ -1,8 +1,10 @@
 # Chapter 1 · To the reader
 ## (to (reader the))
 
+@tree
 (read (OBJ (book this)) now (SUBJ you))                                  # You read this book now.
-(read (OBJ it) (in (time far)) maybe (SUBJ you))                         # Maybe you read it in a far time.
+(find (OBJ (root its)) (in (book (of root) the)) (at (end/NOUN (of (book this)))) (when/SCONJ (know (OBJ (word a)) not (SUBJ you))))   # When you do not know a word, find its root in the book of roots, at the end of this book.
+(read (OBJ it) (in (future the)) maybe (SUBJ you))                       # Maybe you read it in the future.
 (or (live maybe (SUBJ we)) (live not (SUBJ we)))                         # Maybe we live, or we do not live.
 (write (OBJ it) (for you) before (SUBJ we))                              # We wrote it for you.
 

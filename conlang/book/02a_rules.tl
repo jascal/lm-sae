@@ -3,21 +3,23 @@
 
 # ── the words of the grammar: learn these first (dictionary form: root, kind, mother words) ──
 ## (word (of (grammar the)))
+(stand first/ADV (with hyphen) alone (SUBJ (root the)))                   # The root stands first, alone, with a ginon.
+(count/VERB (OBJ (child its)) (SUBJ (ending (after (hyphen the)))))      # The ending after the ginon counts its children.
 @verse
-(=lor noun "word" "Wort" "palabra")
-(=raris noun "root" "Wurzel" "raíz")
-(=dinal noun "ending" "Endung" "final")
-(=kid noun "child" "Kind" "niño")
-(=kad noun "head" "Kopf" "cabeza")
-(=lelaf noun "leaf" "Blatt" "hoja")
-(=buh noun "tree" "Baum" "árbol")
-(=sahen verb "count" "zählen" "contar")
-(=vokel noun "vowel" "Vokal" "vocal")
-(=sonat noun "consonant" "Konsonant" "consonante")
-(=feras noun "sentence" "Satz" "frase")
-(=rul noun "rule" "Regel" "regla")
-(=p particle "subject" "Subjekt" "sujeto")
-(=t particle "object" "Objekt" "objeto")
+("lor" noun "word" "Wort" "palabra")
+("raris" noun "root" "Wurzel" "raíz")
+("dinal" noun "ending" "Endung" "final")
+("kid" noun "child" "Kind" "niño")
+("kad" noun "head" "Kopf" "cabeza")
+("lelaf" noun "leaf" "Blatt" "hoja")
+("buh" noun "tree" "Baum" "árbol")
+("sahen" verb "count" "zählen" "contar")
+("vokel" noun "vowel" "Vokal" "vocal")
+("sonat" noun "consonant" "Konsonant" "consonante")
+("feras" noun "sentence" "Satz" "frase")
+("rul" noun "rule" "Regel" "regla")
+("p" particle "subject" "Subjekt" "sujeto")
+("t" particle "object" "Objekt" "objeto")
 @prose
 
 # ── names, numbers and letters: the literals (the reviews: explain the hyphen before it is used) ──
@@ -83,6 +85,7 @@
 (count/VERB (OBJ 25) (SUBJ (vowel (before that/DET))))                   # The vowel before that counts twenty-fives.
 @verse
 (be seven (because (and (be (five one/NUM) (SUBJ "e")) (be two (SUBJ "i")))) (SUBJ "ei"))   # ei is seven: e is one five, i is two.
+(be ten (because (and (be (five two) (SUBJ "i")) (be zero (SUBJ "a")))) (SUBJ "ia"))   # ia is ten: i is two fives, a is zero.
 (be 24 (SUBJ "uu"))                                                      # uu is 24.
 (be 25 (SUBJ "eaa"))                                                     # eaa is 25.
 @prose
