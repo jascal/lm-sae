@@ -870,6 +870,15 @@ talemi gage pona rule fura .
 pe ma seri te bofe la .  
 kebi ne tonage pona pe dileke keda . neni te si dileke keda taleme la pe lesere keda .
 
+## buke tera
+
+vi te buke masa pe talema . vi te buki pina susa pe vule keda .
+
+buke de vuli digala la .  
+buke de mamaka .
+
+ledi te buke tisa fisa . ribo te buki neva fore vule neva kena pe tada .
+
 ## pelene vana
 
 pele mite talema .
@@ -973,509 +982,6 @@ pefe tobe vi te gamare de vule la pe gamare de mide la .
 pefe bi vasa pe lore kase si nede pe vora vi fa pe vora .  
 pefe tobe ludi ne a-a pe ferasi lata la .
 
-## vuli digala la
-
-livi ne vule tova pe geneta .
-
-vuli de kiga la .  
-vuli digala la .
-
-vo te si mera lora nura pe vuli digala la . si bi veta pe lore vana bi neva pe benege tira .
-
-## lori veta mite benege neva
-
-tako te lore de kige veta fore kige neva pe English-a . dari te kigi sima la pe talema .
-
-bani te rohe ne voga pe lore bugek-a .  
-bani te lase de maneda pe lore sonel-a .  
-bani te vegi de bata tene manede tova pe lore pohip-a .  
-bani te ruve de bata pe lore seram-a .  
-bani te bini de bora ne buhe de voga pe lore ranik-a .  
-bani te bine ni rosa ka pe lore tilad-a .  
-bani te hure di serera ka pe lore peret-a .  
-bani te lore di leta vana pe lore serid-a .  
-bani te sigani mela ni maneda ka pe lore falag-a .  
-bani te luse de bata pe lore mob-a .  
-bani te rule kase kohi te gate susa pe geneta pe lore lit-a .
-
-garo te benege de vule tisa pape lore keda pe luse nake kapele tisa .
-
-## time unix-a
-
-saheni te sekude nake kepola pe time unix-a . bo momi fira de pare 1970-a ne UTC-a pe kepola . bo sima ne lase keda pe pesa .
-
-bi 1790000000-a pe mareke tisa .  
-moke so mula hudede geva dehe nevina .  
-vi te misene 1000-a pe sekude ka .  
-vi te sekude 86400-a pe dage ka .
-
-deso te time la ne time unix-a pe geneta . si keni te lede te pesa pe genete keda kagi nera pe pesa .
-
-## mere mite puna
-
-vi te peti mela ka pe mere soma . tehi tene si meri vopa la peti mela la pe puna . deso te meri vopa la fisa pe lore puna . deso te meri de peti mela la keda dana pone nake pona .
-
-bi puni senura geva pe 0.7-a .  
-bi puno tura pona fura pe 3.14-a .  
-bi punu senura senura senura pona pe 0.001-a .
-
-## si komura voga
-
-runi te poga pe komura . bi lore fore komura pe voga . livi ne fodera pe fakila . desi te vode live pe fakile la pe pefata . vi te fufe doha pe bahita . kepo te leti pina tira like nama pe so maneda pefata name ne voga . ribi te _-a fore safe ka .
-
-bi /home/ana/buke.md-a pe pefate de fakile tisa .  
-runi te manede git_status-a pe ma .
-
-mako te kopite ka hene kagi te voge la pe vora pe vora . govi ne raniki pina susa pe bore neva . ledo te difere la nore meriga pe riteka . merigo te ranike la dana vene page pe tebe keda .
-
-## sonele la
-
-ledi te manede la pe sonele la . vi te si gumeta falaga pe maneda . levo te salide de manede pona ge ninute de manedi neka la pe pohipa . deso te senura hene ludi vela pe pesa pe manede ka .
-
-rake nore rune te manede kase desira .  
-runi te rm_-rf_/-a nera .
-
-## si konuda sesa
-
-neveri te rekesa pe sesa . sadi te rekese ka pe kelete la . sadi te repose ka pe serere la . bi time tene si rekese la repose la pe latesa . bi time kase bore pe sese la pe dibida . maki te repike vana hene bi biga pe ladena . vaki te sese keda pe monira . seki hene seri te kigi faga ka pe pesa pe leruta .
-
-## si kulava sereta
-
-desi te serete ka nera . ribo te kulave ka ne regita nera . verele te bate kase ravela . pemi te hura pe kulava . garo te pesa nera pape pene kase nedi fa te pesa .
-
-## si moda mida
-
-bi reve de nurona pe moda . vi te lapera pe reve la . vi te geha pe lapere keda . desi te bo faga hova pe mode la pe hofa . sovi te vege ne kase gove pe hofe la pe radeta . kagu te gehe la ne vegi tera la hene tanine pe vora pe vora . bo mela dana pe hofe la . feno fa ne nerepa pe mode la . neveri nura pe pesa .
-
-ledi te tokena pe moda . vi te lemite ka pe konesa . seri te kigi keda ne konese la pe mode la . sero te kige dusene konese la fa pe pesa . bi lori fira de konese la pe romota . loko pane tokene tera mite tiha pe tokene keda . bi vetore de benege susa pe bedune de lore ka . kohu te lore selena masa hene bi hoka pe merara pe mode la . bi ferase kase si sobade rira be falasa pe lunina . vi te maraki sere-a kina pe lunina . ledo te fume ka ruse vetori lateta la pe poroba . bi poroba pe lenase de midi fura la . voni te kigi guta la pe mode mite lituna .
-
-## sidete ne sese ka
-
-Mira-a .  
-sere bi lanama pe sese la .  
-sere bo misene 900-a sete 1790001200-a pe latesa .  
-Lut-a .  
-runo te manede kubectl_get_pods-a vira pe ma .
-
-```
-sere
-    kerase
-        pe
-            repike
-                pona
-```
-
-sere kerase pe repike pona .  
-desi te bi fola pe kema pe regite la .  
-resagi te repike la pe ma .  
-sere bo misene 80-a nova pe latesa .  
-Mira-a .  
-pefe bo fola vaha pe kema .  
-Lut-a .  
-sere govi sine lemita pe kulake la .  
-mako te kopite ka mite lemite fore kulake la pe ma .  
-Mira-a .  
-revevo te pesa vira pe ma .  
-sere page pe tebe keda .  
-neseno te pesa nova pe ma .  
-Lut-a .  
-ribu te sidete la ne regita vira pe ma .  
-pefe tobe bi nuga pe lemite tisa .
-
-## lore de vuli digala la
-
-vo te benege de vule tisa ne luse tisa pe lore la .
-
-## si komura voga
-
-komur-u nomuna computer-a Computer-a computadora-a
-pog-u nomuna program-a Programm-a programa-a
-vog-u nomuna code-a Code-a código-a
-bat-u nomuna data-a Daten-a datos-a
-fakil-u nomuna file-a Datei-a archivo-a
-foder-u nomuna folder-a Ordner-a carpeta-a
-pefat-u nomuna path-a Pfad-a ruta-a
-bahit-u nomuna byte-a Byte-a byte-a
-fuf-u nomuna bit-a Bit-a bit-a
-kem-u nomuna memory-a Speicher-a memoria-a
-disek-u nomuna disk-a Festplatte-a disco-a
-rev-u nomuna network-a Netzwerk-a red-a
-tek-u nomuna internet-a Internet-a internet-a
-serer-u nomuna server-a Server-a servidor-a
-kelet-u nomuna client-a Client-a cliente-a
-rekes-u nomuna request-a Anfrage-a solicitud-a
-repos-u nomuna response-a Antwort-a respuesta-a
-rokol-u nomuna protocol-a Protokoll-a protocolo-a
-dores-u nomuna address-a Adresse-a dirección-a
-peret-u nomuna port-a Port-a puerto-a
-ros-u nomuna process-a Prozess-a proceso-a
-tilad-u nomuna thread-a Thread-a hilo-a
-karol-u nomuna queue-a Warteschlange-a cola-a
-kulak-u nomuna cache-a Cache-a caché-a
-regit-u nomuna log-a Protokolldatei-a registro-a
-bugek-u nomuna bug-a Fehler-a error-a
-rog-u nomuna version-a Version-a versión-a
-netal-u veraba install-a installieren-a instalar-a
-run-u veraba run-a ausführen-a ejecutar-a
-kopil-u veraba compile-a kompilieren-a compilar-a
-bud-u veraba build-a bauen-a construir-a
-nesen-u veraba deploy-a bereitstellen-a desplegar-a
-debug-u veraba debug-a debuggen-a depurar-a
-keras-u veraba crash-a abstürzen-a colapsar-a
-resag-u veraba restart-a neustarten-a reiniciar-a
-bakup-u nomuna backup-a Sicherung-a respaldo-a
-dabas-u nomuna database-a Datenbank-a base_de_datos-a
-mob-u nomuna table-a Tabelle-a tabla-a
-rovil-u nomuna row-a Zeile-a fila-a
-kolum-u nomuna column-a Spalte-a columna-a
-kosul-u nomuna query-a Abfrage-a consulta-a
-dekis-u nomuna index-a Index-a índice-a
-mesem-u nomuna schema-a Schema-a esquema-a
-nefak-u nomuna interface-a Schnittstelle-a interfaz-a
-funin-u nomuna function-a Funktion-a función-a
-varab-u nomuna variable-a Variable-a variable-a
-lokop-u nomuna loop-a Schleife-a bucle-a
-serid-u nomuna string-a Zeichenkette-a cadena-a
-neter-u nomuna integer-a Ganzzahl-a entero-a
-lus-u nomuna list-a Liste-a lista-a
-libar-u nomuna library-a Bibliothek-a biblioteca-a
-paket-u nomuna package-a Paket-a paquete-a
-deden-u nomuna dependency-a Abhängigkeit-a dependencia-a
-posor-u nomuna repository-a Repository-a repositorio-a
-ranik-u nomuna branch-a Zweig-a rama-a
-kopit-u nomuna commit-a Commit-a commit-a
-merig-u veraba merge-a zusammenführen-a fusionar-a
-revev-u nomuna review-a Überprüfung-a revisión-a
-difer-u nomuna diff-a Diff-a diferencia-a
-patak-u nomuna patch-a Patch-a parche-a
-relam-u nomuna release-a Veröffentlichung-a lanzamiento-a
-lises-u nomuna license-a Lizenz-a licencia-a
-## sonele la
-
-sonel-u nomuna shell-a Shell-a shell-a
-temal-u nomuna terminal-a Terminal-a terminal-a
-maned-u nomuna command-a Befehl-a comando-a
-gumet-u nomuna argument-a Argument-a argumento-a
-falag-u nomuna flag-a Flag-a opción-a
-pohip-u nomuna pipe-a Pipe-a tubería-a
-seram-u nomuna stream-a Strom-a flujo-a
-ninut-u nomuna input-a Eingabe-a entrada-a
-salid-u nomuna output-a Ausgabe-a salida-a
-pemis-u nomuna permission-a Berechtigung-a permiso-a
-mih-u nomuna environment-a Umgebung-a entorno-a
-serit-u nomuna script-a Skript-a script-a
-demol-u nomuna daemon-a Daemon-a demonio-a
-sigal-u nomuna signal-a Signal-a señal-a
-kotan-u nomuna container-a Container-a contenedor-a
-mug-u nomuna image-a Abbild-a imagen-a
-## si kulava seketa
-
-kulav-u nomuna key-a Schlüssel-a clave-a
-seret-u nomuna secret-a Geheimnis-a secreto-a
-pavor-u nomuna password-a Passwort-a contraseña-a
-verel-u veraba encrypt-a verschlüsseln-a cifrar-a
-hasiv-u nomuna hash-a Hash-a hash-a
-sekad-u nomuna certificate-a Zertifikat-a certificado-a
-## tima
-
-sekud-u nomuna second-a Sekunde-a segundo-a
-mut-u nomuna minute-a Minute-a minuto-a
-hor-u nomuna hour-a Stunde-a hora-a
-dag-u nomuna day-a Tag-a día-a
-misen-u nomuna millisecond-a Millisekunde-a milisegundo-a
-kepol-u nomuna epoch-a Epoche-a época-a
-marek-u nomuna timestamp-a Zeitstempel-a marca_de_tiempo-a
-dat-u nomuna date-a Datum-a fecha-a
-reloh-u nomuna clock-a Uhr-a reloj-a
-timup-u nomuna timeout-a Zeitüberschreitung-a tiempo_de_espera-a
-dalas-u nomuna deadline-a Frist-a plazo-a
-sedul-u nomuna schedule-a Zeitplan-a horario-a
-## si konuda sesa
-
-konud-u nomuna cloud-a Wolke-a nube-a
-ses-u nomuna service-a Dienst-a servicio-a
-luser-u nomuna cluster-a Cluster-a clúster-a
-noden-u nomuna node-a Knoten-a nodo-a
-gok-u nomuna region-a Region-a región-a
-laden-u nomuna load-a Last-a carga-a
-lates-u nomuna latency-a Latenz-a latencia-a
-banik-u nomuna bandwidth-a Bandbreite-a ancho_de_banda-a
-dibid-u nomuna uptime-a Betriebszeit-a disponibilidad-a
-sokal-u veraba scale-a skalieren-a escalar-a
-repik-u nomuna replica-a Replikat-a réplica-a
-torag-u nomuna storage-a Speicherung-a almacenamiento-a
-ket-u nomuna event-a Ereignis-a evento-a
-punet-u nomuna endpoint-a Endpunkt-a punto_final-a
-lemit-u nomuna limit-a Grenze-a límite-a
-kob-u nomuna cost-a Kosten-a costo-a
-monir-u veraba monitor-a überwachen-a monitorear-a
-lerut-u nomuna alert-a Alarm-a alerta-a
-sidet-u nomuna incident-a Vorfall-a incidente-a
-## si moda mida
-
-mod-u nomuna model-a Modell-a modelo-a
-laper-u nomuna layer-a Schicht-a capa-a
-nuron-u nomuna neuron-a Neuron-a neurona-a
-geh-u nomuna weight-a Gewicht-a peso-a
-pamer-u nomuna parameter-a Parameter-a parámetro-a
-radet-u nomuna gradient-a Gradient-a gradiente-a
-hof-u nomuna loss-a Verlust-a pérdida-a
-tanin-u veraba train-a trainieren-a entrenar-a
-nerep-u nomuna inference-a Inferenz-a inferencia-a
-kohut-u nomuna dataset-a Datensatz-a conjunto_de_datos-a
-labet-u nomuna label-a Label-a etiqueta-a
-pekin-u nomuna prediction-a Vorhersage-a predicción-a
-kuras-u nomuna accuracy-a Genauigkeit-a precisión-a
-bedun-u nomuna embedding-a Einbettung-a incrustación-a
-vetor-u nomuna vector-a Vektor-a vector-a
-mesin-u nomuna dimension-a Dimension-a dimensión-a
-tih-u nomuna attention-a Aufmerksamkeit-a atención-a
-rafor-u nomuna transformer-a Transformer-a transformador-a
-kones-u nomuna context-a Kontext-a contexto-a
-romot-u nomuna prompt-a Prompt-a instrucción-a
-merar-u nomuna temperature-a Temperatur-a temperatura-a
-samol-u nomuna sample-a Stichprobe-a muestra-a
-revad-u nomuna reward-a Belohnung-a recompensa-a
-lit-u nomuna policy-a Strategie-a política-a
-genet-u nomuna agent-a Agent-a agente-a
-torol-u nomuna tool-a Werkzeug-a herramienta-a
-lunin-u nomuna hallucination-a Halluzination-a alucinación-a
-litun-u nomuna alignment-a Ausrichtung-a alineación-a
-lutin-u nomuna evaluation-a Bewertung-a evaluación-a
-reres-u nomuna benchmark-a Benchmark-a referencia-a
-fum-u nomuna feature-a Merkmal-a característica-a
-porob-u nomuna probe-a Sonde-a sonda-a
-logit-u nomuna logit-a Logit-a logit-a
-robil-u nomuna probability-a Wahrscheinlichkeit-a probabilidad-a
-ribun-u nomuna distribution-a Verteilung-a distribución-a
-batek-u nomuna batch-a Stapel-a lote-a
-ponit-u nomuna checkpoint-a Checkpoint-a punto_de_control-a
-timir-u nomuna optimizer-a Optimierer-a optimizador-a
-koput-u nomuna compute-a Rechenleistung-a cómputo-a
-reran-u nomuna retrieval-a Abruf-a recuperación-a
-sonin-u nomuna reasoning-a Schlussfolgern-a razonamiento-a
-safet-u nomuna safety-a Sicherheit-a seguridad-a
-nereb-u nomuna interpretability-a Interpretierbarkeit-a interpretabilidad-a
-latet-u detiva latent-a latent-a latente-a
-## mamaka
-
-seko te mamaka sona pe talema . seki fisa pe kade la . saheni te kide susa pe dinale susa . ribu te mere la mite kade fira nora pe Łukasiewicz-a .
-
-```
-bi
-    fura
-    pe
-        si
-            tova
-            tova
-```
-
-bi fura pe si tova tova .
-
-## gate de mera
-
-fadi te kide susa pe lore sa . tako te kidi seda la ruse kidi fira la pe lore menosa . bo nare senura mite kide pona pe pesa . mutipi te kide susa pe lore mapora . diviro te kidi fira la pore kidi seda la pe lore dideda . bo rarisi pelasa la mite kide pona pe rarisa . deso te rarise vika mite kide tova pe kidi fira la . desi te guba pe lore ba .
-
-bi fura pe menosi geva tura .  
-bi si deha tova pe mapori tura fura .  
-bi tura pe didedi si deha tova fura .  
-bi so mula dehe tova fura pe povi tova deha .  
-bi tura pe rarise nevina .  
-bi tova pe rarisi tura doha .  
-bi menose fiva pe menosi tura doha .  
-bi didedi pona tova pe mada .
-
-nedo te sibole fore dega nera pe talema . desi te dege la pe dinale la .
-
-```
-mapori
-    si
-        pona
-        tova
-    tura
-```
-
-mapori si pona tova tura .
-
-```
-si
-    pona
-    mapori
-        tova
-        tura
-```
-
-si pona mapori tova tura .
-
-## si varaba funina
-
-kepo te leti pina tira like nama pe si varaba funina . bi kada pe funina . bi gumete susa pe kide susa .
-
-bi povi x-a tova pe f-e x-a .  
-bi si x-a y-a pe g-i x-a y-a .
-
-bi fiva pe si x-a tova . bi nonone la pe x-a . losene te katone la . bi tura pe x-a .
-
-## si sehuta lemena
-
-vi te lemena pe sehuta . vi te lemene kina pe sehuti lerera la . vi te lemeni keda de sehuti tova la pe niha . vo te lemene kase be ne sehute bita nura pe nereka . bi ne sehuti biga la pe lemeni keda de suseta .
-
-## gemeta
-
-vi te si bina lanela pe rinula . bi gabe 180-a pe masume de lanele de rinula . meti nera pe bini gekega tova .
-
-bi mapori pi-a povi r-a tova pe mare de sirula .  
-bi si povi a-a tova povi b-a tova pe povi c-a tova .
-
-## si bevesa satesa
-
-tehi fisa pe kasoma . bovo fa pe vora te tara . garo te nama pape kige ka pe defona . bi kige kase bovi ruse kasoma pe vora pe satesa . bi buhe de rana pe bevesa . bi marake de satesa pe lore bove-a . bi marake de vetuna pe lore pefe-a .
-
-## ludi nera pe pirime la
-
-bi pirima pe mere kase diviri pe si pona pesa nura . bove ludi nera pe pirime la . sovo te pesa nora pe Euclid-a .
-
-```
-bume
-    te
-        lude
-            pe
-                pirime
-                    la
-```
-
-bume te lude pe pirime la . make te rute de pirimi tala la . fadi te pona ge pesa . bi N-a pe mere tisa . bi pona pe redete de didedi N-a pirime keda . diviri te N-a pe pirime kina . bere vi te fakori pirima ka pe meri keda marore gahe pona . bo ne luse la fa pe fakore tisa . bi viruka pe tisa . bo falasa defa pe kige kase bume pe vora . ludi nera pe pirime la .
-
-bani te sine fida pe lore finit-a . bani te mite fida pe lore nilik-a . ledo te tara lovala vene ledi te Español-a pe tada .
-
-## vetune de Goldbach-a
-
-pefe bi masume de pirime tova pe mero vevena keda marore gahe tova . sere bi rira fore mero vevena keda nare mapori fura povi deha si deha doha . bovo te pesa doka pe nida . kebo mite marake pefe-a bise bevese la pe pesa .
-
-## kalula
-
-desi te neli hova kage pe funine la pe derita . bi masume de peti mela vana pe tegala . koroki te lemite susa pe sekesa . riku te pesa nera mika pe pesa .
-
-## si nasa robila
-
-bi tene si senura pona pe robila . bi didedi pona tova pe robile de sidi pona de moneda . bi didedi masume la mere de lemena pe reraga .
-
-saheni ne lore keda pe talema .
-
-## lore de vule mamaka
-
-vo te benege de vule tisa ne luse tisa pe lore la .
-
-## mera
-
-mer-u nomuna number-a Zahl-a número-a
-digit-u nomuna digit-a Ziffer-a dígito-a
-neter-u nomuna integer-a Ganzzahl-a entero-a
-beruk-u nomuna fraction-a Bruch-a fracción-a
-desil-u nomuna decimal-a Dezimalzahl-a decimal-a
-gativ-u detiva negative-a negativ-a negativo-a
-siv-u detiva positive-a positiv-a positivo-a
-pirim-u nomuna prime-a Primzahl-a primo-a
-veven-u detiva even-a gerade-a par-a
-dabod-u detiva odd-a ungerade-a impar-a
-ranal-u detiva rational-a rational-a racional-a
-rel-u detiva real-a reell-a real-a
-nitit-u nomuna infinity-a Unendlichkeit-a infinito-a
-finit-u detiva infinite-a unendlich-a infinito-a
-nilik-u detiva finite-a endlich-a finito-a
-## gate de mera
-
-menos-u peposa minus-a minus-a menos-a
-mapor-u peposa times-a mal-a por-a
-dided-u peposa divided-a geteilt-a dividido-a
-pov-u nomuna power-a Potenz-a potencia-a
-raris-u nomuna root-a Wurzel-a raíz-a
-masum-u nomuna sum-a Summe-a suma-a
-dif-u nomuna difference-a Differenz-a diferencia-a
-rut-u nomuna product-a Produkt-a producto-a
-kosit-u nomuna quotient-a Quotient-a cociente-a
-redet-u nomuna remainder-a Rest-a resto-a
-fakor-u nomuna factor-a Faktor-a factor-a
-mulip-u nomuna multiple-a Vielfaches-a múltiplo-a
-gub-u detiva equal-a gleich-a igual-a
-maror-u detiva greater-a größer-a mayor-a
-leges-u detiva less-a kleiner-a menor-a
-pelas-u nomuna square-a Quadrat-a cuadrado-a
-mutip-u veraba multiply-a multiplizieren-a multiplicar-a
-## si katona nonona
-
-katon-u nomuna equation-a Gleichung-a ecuación-a
-fomul-u nomuna formula-a Formel-a fórmula-a
-kesin-u nomuna expression-a Ausdruck-a expresión-a
-varab-u nomuna variable-a Variable-a variable-a
-kotat-u nomuna constant-a Konstante-a constante-a
-val-u nomuna value-a Wert-a valor-a
-funin-u nomuna function-a Funktion-a función-a
-losen-u veraba solve-a lösen-a resolver-a
-lug-u nomuna solution-a Lösung-a solución-a
-nonon-u nomuna unknown-a Unbekannte-a incógnita-a
-## si sehuta lemena
-
-sehut-u nomuna set-a Menge-a conjunto-a
-lemen-u nomuna element-a Element-a elemento-a
-suset-u nomuna subset-a Teilmenge-a subconjunto-a
-nih-u nomuna union-a Vereinigung-a unión-a
-nerek-u nomuna intersection-a Schnittmenge-a intersección-a
-lerer-u detiva empty-a leer-a vacío-a
-laton-u nomuna relation-a Relation-a relación-a
-sekes-u nomuna sequence-a Folge-a sucesión-a
-seh-u nomuna series-a Reihe-a serie-a
-matis-u nomuna matrix-a Matrix-a matriz-a
-vetor-u nomuna vector-a Vektor-a vector-a
-giraf-u nomuna graph-a Graph-a grafo-a
-raned-u nomuna edge-a Kante-a arista-a
-## gemeta
-
-gemet-u nomuna geometry-a Geometrie-a geometría-a
-pun-u nomuna point-a Punkt-a punto-a
-bin-u nomuna line-a Linie-a línea-a
-pulan-u nomuna plane-a Ebene-a plano-a
-lanel-u nomuna angle-a Winkel-a ángulo-a
-sirul-u nomuna circle-a Kreis-a círculo-a
-rinul-u nomuna triangle-a Dreieck-a triángulo-a
-radis-u nomuna radius-a Radius-a radio-a
-mar-u nomuna area-a Fläche-a área-a
-mum-u nomuna volume-a Volumen-a volumen-a
-lenit-u nomuna length-a Länge-a longitud-a
-disan-u nomuna distance-a Abstand-a distancia-a
-simet-u nomuna symmetry-a Symmetrie-a simetría-a
-gekeg-u detiva parallel-a parallel-a paralelo-a
-## si bevesa satesa
-
-kasom-u nomuna axiom-a Axiom-a axioma-a
-defon-u nomuna definition-a Definition-a definición-a
-sates-u nomuna theorem-a Satz-a teorema-a
-lanem-u nomuna lemma-a Lemma-a lema-a
-beves-u nomuna proof-a Beweis-a demostración-a
-vetun-u nomuna conjecture-a Vermutung-a conjetura-a
-bum-u veraba assume-a annehmen-a suponer-a
-viruk-u nomuna contradiction-a Widerspruch-a contradicción-a
-dukon-u nomuna induction-a Induktion-a inducción-a
-nepel-u nomuna counterexample-a Gegenbeispiel-a contraejemplo-a
-kis-u veraba exist-a existieren-a existir-a
-## kalula
-
-kalul-u nomuna calculus-a Analysis-a cálculo-a
-derit-u nomuna derivative-a Ableitung-a derivada-a
-tegal-u nomuna integral-a Integral-a integral-a
-rap-u nomuna rate-a Rate-a tasa-a
-tadig-u detiva continuous-a stetig-a continuo-a
-korok-u veraba approach-a annähern-a aproximar-a
-## si nasa robila
-
-robil-u nomuna probability-a Wahrscheinlichkeit-a probabilidad-a
-nas-u nomuna chance-a Zufall-a azar-a
-radim-u detiva random-a zufällig-a aleatorio-a
-rerag-u nomuna average-a Durchschnitt-a promedio-a
-medan-u nomuna median-a Median-a mediana-a
-varas-u nomuna variance-a Varianz-a varianza-a
-simat-u nomuna estimate-a Schätzung-a estimación-a
-moned-u nomuna coin-a Münze-a moneda-a
 ## buki de rarisa la
 
 bi buki de rarisa la pe tisa . teho fisa ne bine keda pe rarise ka . teho mite ginona liba pe pesa .
@@ -1490,7 +996,7 @@ bi kide susa pe si kite la lori mura la . saheni te tara pe dinale susa . tehi n
 
 sou p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a a-a e-a i-a o-a u-a .
 
-bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 6022-a pe buke tisa .
+bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5934-a pe buke tisa .
 
 ## p-a
 
@@ -1780,7 +1286,6 @@ piran-o nomuna inspiration-a inspiración-a
 piral-o detiva spiritual-a espiritual-a
 pires-i veraba press-a
 pirit-o nomuna spirit-a espíritu-a
-pirim-u nomuna prime-a Primzahl-a primo-a
 piros-u detiva pink-a rosa-a rosa-a
 pis-u nomuna price-a preis-a precio-a
 piset-o nomuna clue-a pista-a
@@ -1823,7 +1328,6 @@ ponan-i detiva spontan-a
 ponal-o detiva potential-a potencial-a
 ponet-o nomuna opponent-a adversario-a
 ponen-u nomuna component-a bestandteil-a componente-a
-ponit-u nomuna checkpoint-a Checkpoint-a punto_de_control-a
 ponil-u nomuna potential-a potenzial-a potencial-a
 ponor-i veraba sponsor-a
 pol-u detiva possible-a möglich-a posible-a
@@ -1845,7 +1349,6 @@ porer-u nomuna reporter-a reporter-a reportero-a
 porit-u nomuna priority-a priorität-a prioridad-a
 porin-u nomuna portion-a portion-a porción-a
 porot-u nomuna import-a import-a importación-a
-porob-u nomuna probe-a Sonde-a sonda-a
 porul-u nomuna pride-a stolz-a orgullo-a
 porur-o veraba pour-a verter-a
 pos-u nomuna police-a polizei-a policía-a
@@ -1859,7 +1362,6 @@ posin-u nomuna opposition-a widerstand-a oposición-a
 posil-u deroba possibly-a evtl-a posiblemente-a
 poson-u nomuna exposure-a exposition-a exposición-a
 posol-u nomuna pool-a schwimmbad-a piscina-a
-posor-u nomuna repository-a Repository-a repositorio-a
 pof-u nomuna percent-a prozent-a porcentaje-a
 pov-u nomuna power-a kraft-a potencia-a
 pover-u detiva powerful-a mächtig-a poderoso-a
@@ -1884,7 +1386,6 @@ pum-i dunona pues-a
 pumep-o veraba pump-a pumpen-a
 pun-u nomuna point-a punkt-a punto-a
 punak-o nomuna punk-a punk-a
-punet-u nomuna endpoint-a Endpunkt-a punto_final-a
 pul-i ronona cual-a
 pulan-u nomuna plane-a flugzeug-a avión-a
 pulik-u nomuna public-a öffentlichkeit-a públicas-a
@@ -2021,7 +1522,6 @@ teden-o nomuna tendency-a tendenz-a
 teder-o veraba cater-a atender-a
 tedit-o nomuna edit-a bearbeitung-a
 teg-u nomuna term-a begriff-a término-a
-tegal-u nomuna integral-a Integral-a integral-a
 tegen-i peposa entgegen-a
 tem-u nomuna system-a system-a sistema-a
 temat-i veraba attempt-a
@@ -2117,9 +1617,7 @@ tig-u detiva important-a wichtig-a importante-a
 tim-u nomuna time-a zeit-a tiempo-a
 timat-i detiva ultimate-a
 timal-u detiva optimal-a optimal-a óptimo-a
-timir-u nomuna optimizer-a Optimierer-a optimizador-a
 timis-u detiva optimistic-a optimistisch-a optimista-a
-timup-u nomuna timeout-a Zeitüberschreitung-a tiempo_de_espera-a
 timud-u detiva tired-a müde-a cansado-a
 timun-u nomuna consent-a zustimmung-a consentimiento-a
 timul-u veraba stimulate-a anregen-a estimular-a
@@ -2375,7 +1873,6 @@ kalif-o veraba qualify-a qualifizieren-a
 kalok-i veraba lock-a
 kalog-u nomuna catalogue-a katalog-a catálogo-a
 kalos-o deroba close-a nahe-a
-kalul-u nomuna calculus-a Analysis-a cálculo-a
 kaluf-u nomuna calling-a aufruf-a vocación-a
 kar-u veraba call-a nennen-a llamar-a
 karat-u nomuna chat-a chat-a charla-a
@@ -2397,7 +1894,6 @@ karit-u nomuna charity-a nächstenliebe-a caridad-a
 karil-u nomuna clay-a lehm-a barro-a
 karis-u nomuna corn-a mais-a maíz-a
 karon-o nomuna cartoon-a caricatura-a
-karol-u nomuna queue-a Warteschlange-a cola-a
 karug-u nomuna cargo-a ladung-a cargamento-a
 karus-o veraba cause-a verursachen-a
 kas-u dunona that-a dass-a que-a
@@ -2415,7 +1911,6 @@ kasin-u nomuna occasion-a gelegenheit-a ocasión-a
 kasil-u nomuna chair-a stuhl-a silla-a
 kasir-i nomuna castro-a
 kasok-u nomuna sock-a socke-a calcetín-a
-kasom-u nomuna axiom-a Axiom-a axioma-a
 kason-o nomuna chase-a persecución-a
 kasol-u nomuna castle-a burg-a castillo-a
 kasus-u nomuna clause-a klausel-a cláusula-a
@@ -2437,7 +1932,6 @@ kepet-u nomuna expert-a experte-a experto-a
 kepik-o detiva epic-a épico-a
 kepot-u nomuna export-a export-a exportación-a
 kepok-i tika poco-a
-kepol-u nomuna epoch-a Epoche-a época-a
 kepor-u veraba explode-a explodieren-a explotar-a
 ket-u nomuna event-a veranstaltung-a evento-a
 ketan-o nomuna extent-a umfang-a
@@ -2596,17 +2090,13 @@ kopar-u nomuna copy-a kopie-a copia-a
 kopet-o veraba complete-a completar-a
 kopen-u nomuna cooperation-a kooperation-a cooperación-a
 koper-u veraba compete-a konkurrieren-a competir-a
-kopit-u nomuna commit-a Commit-a commit-a
 kopin-u nomuna corruption-a korruption-a corrupción-a
-kopil-u veraba compile-a kompilieren-a compilar-a
 kopir-u veraba copy-a kopieren-a copiar-a
 kopon-u nomuna constituent-a komponente-a constituyente-a
 kopor-o veraba incorporate-a incorporar-a
-koput-u nomuna compute-a Rechenleistung-a cómputo-a
 kopul-u nomuna cop-a bulle-a poli-a
 kot-u nomuna court-a gericht-a corte-a
 kotap-u nomuna cap-a sockel-a tapa-a
-kotat-u nomuna constant-a Konstante-a constante-a
 kotag-u nomuna cottage-a landhaus-a cabaña-a
 kotan-u nomuna container-a container-a contenedor-a
 kotar-u nomuna counter-a schalter-a contador-a
@@ -2802,7 +2292,6 @@ kosen-o veraba comprise-a umfassen-a
 kosel-o deroba closely-a estrechamente-a
 koser-o veraba concern-a bedenken-a
 koses-u nomuna consensus-a konsens-a consenso-a
-kosit-u nomuna quotient-a Quotient-a cociente-a
 kosid-u veraba consolidate-a festigen-a consolidar-a
 kosim-u nomuna cousin-a cousin-a primo-a
 kosin-u nomuna awareness-a bewusstsein-a conciencia-a
@@ -2812,7 +2301,6 @@ kosol-u nomuna console-a konsole-a consola-a
 kosut-u nomuna coast-a küste-a costa-a
 kosum-u nomuna consumption-a konsum-a consumo-a
 kosun-u nomuna constitution-a verfassung-a constitución-a
-kosul-u nomuna query-a Abfrage-a consulta-a
 kosur-u nomuna consumer-a verbraucher-a consumidor-a
 kof-u nomuna county-a kreis-a condado-a
 kofar-i veraba confiar-a
@@ -2835,7 +2323,6 @@ koh-o veraba choose-a wählen-a
 kohal-o nomuna coal-a kohle-a
 kohav-u nomuna cave-a höhle-a cueva-a
 kohol-u nomuna alcohol-a alkohol-a alcohol-a
-kohut-u nomuna dataset-a Datensatz-a conjunto_de_datos-a
 kup-u nomuna couple-a paar-a pareja-a
 kupan-o nomuna occupancy-a ocupación-a
 kupar-u veraba occupy-a besetzen-a ocupar-a
@@ -2863,7 +2350,6 @@ kunit-o nomuna cut-a schnitt-a
 kunig-i detiva zukünftig-a
 kul-u detiva current-a aktuell-a actual-a
 kulat-u nomuna cult-a kult-a secta-a
-kulak-u nomuna cache-a Cache-a caché-a
 kulag-u nomuna circulation-a auflage-a circulación-a
 kulan-u nomuna speculation-a spekulation-a especulación-a
 kular-o detiva particular-a particular-a
@@ -2905,7 +2391,6 @@ bap-u nomuna bank-a bank-a banco-a
 bapan-u nomuna bread-a brot-a pan-a
 bat-u nomuna data-a datenschutz-a dato-a
 batar-i veraba bastar-a
-batek-u nomuna batch-a Stapel-a lote-a
 baten-i deroba bitten-a
 bater-u nomuna battery-a akku-a batería-a
 bates-u nomuna bath-a badezimmer-a bañera-a
@@ -2963,7 +2448,6 @@ bamel-o deroba barely-a escasamente-a
 ban-i veraba mean-a
 banen-u veraba dismantle-a abbauen-a desmantelar-a
 baner-u nomuna banner-a fahne-a pancarta-a
-banik-u nomuna bandwidth-a Bandbreite-a ancho_de_banda-a
 banil-u nomuna bail-a kaution-a fianza-a
 banon-o veraba abandon-a abandonar-a
 banor-u nomuna bankruptcy-a insolvenz-a quiebra-a
@@ -3014,7 +2498,6 @@ bavob-i deroba wobei-a
 bah-i ronona tanto-a
 bahar-u veraba download-a herunterladen-a bajar-a
 bahen-u nomuna railway-a bahn-a ferrocarril-a
-bahit-u nomuna byte-a Byte-a byte-a
 bahik-u nomuna bike-a fahrrad-a moto-a
 bahov-o nomuna low-a baja-a
 bep-u nomuna respect-a respekt-a respeto-a
@@ -3051,7 +2534,6 @@ bedes-u nomuna bye-a wiedersehen-a adiós-a
 bedik-i detiva selbstverständlich-a
 bedig-o detiva vivid-a lebendig-a
 bedin-o nomuna constraint-a bedingung-a
-bedun-u nomuna embedding-a Einbettung-a incrustación-a
 beg-i peposa wegen-a
 began-i veraba bergen-a
 begen-i veraba betragen-a
@@ -3115,7 +2597,6 @@ berif-u nomuna epistle-a brief-a epístola-a
 berob-o veraba rob-a berauben-a
 beron-u detiva brown-a braun-a marrón-a
 beros-u nomuna bronze-a bronze-a bronce-a
-beruk-u nomuna fraction-a Bruch-a fracción-a
 berun-i veraba berufen-a
 berur-u veraba bury-a begraben-a enterrar-a
 beruf-u nomuna occupation-a beruf-a profesión-a
@@ -3456,7 +2937,6 @@ debar-u detiva dear-a lieber-a querido-a
 debas-i nomuna deutsch-a
 deber-i nomuna dezember-a
 debut-u nomuna debut-a debüt-a debut-a
-debug-u veraba debug-a debuggen-a depurar-a
 ded-u veraba decide-a entscheiden-a decidir-a
 dedad-o veraba demand-a bedarf-a
 dedan-o nomuna defendant-a acusado-a
@@ -3486,7 +2966,6 @@ demik-o detiva academic-a académico-a
 demin-u nomuna demo-a demo-a demostración-a
 demok-u nomuna democracy-a demokratie-a democracia-a
 demon-o veraba demonstrate-a nachweisen-a
-demol-u nomuna daemon-a Daemon-a demonio-a
 den-u ronona someone-a jemand-a alguien-a
 denad-u nomuna donation-a spende-a donación-a
 denan-u veraba designate-a benennen-a designar-a
@@ -3527,7 +3006,6 @@ derek-u nomuna copyright-a copyright-a derechos-a
 dereb-i tika derselbe-a
 derer-i deroba andererseits-a
 deres-u nomuna dress-a kleidung-a vestido-a
-derit-u nomuna derivative-a Ableitung-a derivada-a
 derik-u nomuna drink-a trinken-a bebida-a
 derin-u nomuna description-a beschreibung-a descripción-a
 derir-u veraba decrease-a verringern-a disminuir-a
@@ -3560,7 +3038,6 @@ desik-u nomuna desk-a schreibtisch-a escritorio-a
 desid-o detiva destined-a destinado-a
 desig-i veraba design-a
 desin-o nomuna destination-a destino-a
-desil-u nomuna decimal-a Dezimalzahl-a decimal-a
 desir-u veraba destroy-a zerstören-a destruir-a
 desis-u veraba dismiss-a verwerfen-a despedir-a
 desif-u nomuna despair-a verzweiflung-a desesperación-a
@@ -3618,14 +3095,12 @@ dikul-u detiva ridiculous-a lächerlich-a ridículo-a
 dikus-u veraba discuss-a diskutieren-a discutir-a
 dib-i detiva lieb-a
 dibar-o nomuna diary-a tagebuch-a
-dibid-u nomuna uptime-a Betriebszeit-a disponibilidad-a
 dibil-u nomuna credibility-a glaubwürdigkeit-a credibilidad-a
 dibot-i nomuna idiot-a
 dibos-i tika dios-a
 dibud-i nomuna jude-a
 dibuh-u nomuna drawing-a zeichnen-a dibujo-a
 did-u nomuna condition-a zustand-a condición-a
-dided-u peposa divided-a geteilt-a dividido-a
 didor-u nomuna dictator-a diktator-a dictador-a
 didul-u detiva individual-a individuell-a individual-a
 dig-o deroba though-a allerdings-a
@@ -3633,7 +3108,6 @@ digat-u detiva disgusting-a ekelhaft-a desagradable-a
 digal-u detiva digital-a digital-a digital-a
 digas-o nomuna disgrace-a desgracia-a
 digen-o detiva indigenous-a indígena-a
-digit-u nomuna digit-a Ziffer-a dígito-a
 digid-u nomuna dignity-a würde-a dignidad-a
 digir-i veraba dirigir-a
 digod-o terona god-a dios-a
@@ -3680,7 +3154,6 @@ disab-u nomuna disability-a behinderung-a discapacidad-a
 disan-u nomuna distance-a abstand-a distancia-a
 disal-o detiva judicial-a judicial-a
 disar-i veraba diseñar-a
-disek-u nomuna disk-a Festplatte-a disco-a
 diseb-i nomuna diciembre-a
 dised-u detiva disabled-a behindert-a discapacitado-a
 disen-u nomuna disappointment-a enttäuschung-a decepción-a
@@ -3697,7 +3170,6 @@ disuk-o nomuna disgust-a asco-a
 dif-u nomuna difference-a unterschied-a diferencia-a
 difav-u nomuna jaw-a kiefer-a mandíbula-a
 difen-i tika diferente-a
-difer-u nomuna diff-a Diff-a diferencia-a
 difit-u nomuna difficulty-a schwierigkeit-a dificultad-a
 difik-o detiva difficult-a schwierig-a
 div-u veraba discover-a entdecken-a descubrir-a
@@ -3771,7 +3243,6 @@ dukad-u detiva educated-a ausgebildet-a educado-a
 dukar-u veraba educate-a erziehen-a educar-a
 dukas-i deroba durchaus-a
 dukiv-u detiva productive-a produktiv-a productivo-a
-dukon-u nomuna induction-a Induktion-a inducción-a
 dub-i deroba darüber-a
 dubek-u nomuna deck-a deck-a cubierta-a
 dubel-u nomuna duel-a duell-a duelo-a
@@ -3924,7 +3395,6 @@ gegim-o nomuna regime-a regime-a
 gem-u nomuna management-a verwaltung-a dirección-a
 geman-o detiva german-a alemán-a
 gemas-i peposa gemäß-a
-gemet-u nomuna geometry-a Geometrie-a geometría-a
 gemuk-o detiva cozy-a gemütlich-a
 gemus-u nomuna vegetable-a gemüse-a verdura-a
 gen-o veraba go-a gehen-a
@@ -4032,7 +3502,6 @@ gilin-u nomuna guideline-a richtlinie-a directriz-a
 gilog-o veraba log-a einloggen-a
 gir-u veraba follow-a folgen-a seguir-a
 girar-i veraba registrar-a
-giraf-u nomuna graph-a Graph-a grafo-a
 girid-o nomuna grid-a gitter-a
 girut-u nomuna twist-a wendung-a giro-a
 gis-u nomuna office-a amt-a oficina-a
@@ -4114,7 +3583,6 @@ map-u nomuna march-a märz-a marzo-a
 mapal-o deroba mainly-a hauptsächlich-a
 mapar-u nomuna map-a landkarte-a mapa-a
 mapin-u veraba aim-a zielen-a apuntar-a
-mapor-u peposa times-a mal-a por-a
 mat-u veraba eat-a essen-a comer-a
 matat-u detiva mathematical-a mathematisch-a matemático-a
 matek-u nomuna match-a treffer-a coincidencia-a
@@ -4125,7 +3593,6 @@ mater-i veraba meter-a
 matik-o veraba match-a coincidir-a
 matim-o nomuna aim-a puntería-a
 matin-u nomuna marketing-a marketing-a marketing-a
-matis-u nomuna matrix-a Matrix-a matriz-a
 matom-i nomuna tom-a
 mator-i nomuna motor-a
 matur-u nomuna amateur-a amateur-a aficionado-a
@@ -4213,7 +3680,6 @@ marak-u nomuna mark-a mark-a marca-a
 marad-u detiva married-a verheiratet-a casado-a
 marar-u veraba mark-a markieren-a marcar-a
 maret-o veraba mate-a paaren-a
-marek-u nomuna timestamp-a Zeitstempel-a marca_de_tiempo-a
 maren-u nomuna margin-a spielraum-a margen-a
 mares-i nomuna martes-a
 marit-u nomuna manuscript-a manuskript-a manuscrito-a
@@ -4223,7 +3689,6 @@ marin-u nomuna meat-a fleisch-a carne-a
 maril-i deroba primarily-a
 maris-u nomuna array-a matrix-a matriz-a
 marom-o nomuna rom-a rom-a
-maror-u detiva greater-a größer-a mayor-a
 marum-i deroba rum-a
 mas-u deroba more-a mehr-a más-a
 masat-u nomuna crew-a mannschaft-a tripulación-a
@@ -4262,7 +3727,6 @@ mebes-u nomuna membership-a mitgliedschaft-a pertenencia-a
 med-u nomuna money-a geld-a dinero-a
 medat-u detiva immediate-a unmittelbar-a inmediato-a
 medad-u nomuna moisture-a feuchtigkeit-a humedad-a
-medan-u nomuna median-a Median-a mediana-a
 medal-u nomuna medal-a medaille-a medalla-a
 meden-o nomuna amendment-a modificación-a
 medib-u detiva imperative-a unbedingt-a imprescindible-a
@@ -4281,7 +3745,6 @@ menas-u detiva immense-a immens-a inmenso-a
 menem-u nomuna enemy-a gegner-a enemigo-a
 menim-o nomuna meantime-a zwischenzeit-a
 menor-o detiva minor-a menor-a
-menos-u peposa minus-a minus-a menos-a
 menud-i detiva menudo-a
 mel-o detiva small-a kleiner-a
 meles-i ronona themselves-a
@@ -4301,12 +3764,10 @@ meres-o veraba memorize-a merken-a
 merit-o nomuna merit-a mérito-a
 merik-i detiva norteamericano-a
 merid-u nomuna mercy-a mitleid-a piedad-a
-merig-u veraba merge-a zusammenführen-a fusionar-a
 meril-u detiva imperial-a kaiserlich-a imperial-a
 meror-u nomuna improvement-a verbesserung-a mejora-a
 merum-i peposa rum-a
 mes-u deroba less-a weniger-a menos-a
-mesem-u nomuna schema-a Schema-a esquema-a
 mesen-u veraba implement-a umsetzen-a implementar-a
 meser-u veraba measure-a messen-a medir-a
 mesid-o detiva impressed-a beeindrucken-a
@@ -4383,7 +3844,6 @@ mis-o veraba miss-a vermissen-a
 misam-i nomuna mismo-a
 misar-u nomuna inspector-a kommissar-a comisario-a
 misem-i ronona mismo-a
-misen-u nomuna millisecond-a Millisekunde-a milisegundo-a
 miser-u nomuna mystery-a rätsel-a misterio-a
 misef-i ronona myself-a
 misin-u detiva missing-a fehlen-a desaparecido-a
@@ -4463,7 +3923,6 @@ mup-u nomuna sea-a meer-a mar-a
 mut-u nomuna minute-a minute-a minuto-a
 mutal-o detiva mutual-a mutuo-a
 muten-i veraba vermuten-a
-mutip-u veraba multiply-a multiplizieren-a multiplicar-a
 muk-u deroba much-a viel-a mucho-a
 mukal-u detiva musical-a musikalisch-a musical-a
 muker-i detiva münchner-a
@@ -4481,7 +3940,6 @@ munin-u nomuna ammunition-a munition-a munición-a
 mul-u numera thousand-a tausend-a mil-a
 mulat-i nomuna multa-a
 muler-i nomuna müller-a
-mulip-u nomuna multiple-a Vielfaches-a múltiplo-a
 mulik-o detiva probable-a vermutlich-a
 mulil-u detiva multiple-a mehrfach-a múltiple-a
 mur-u nomuna mother-a mutter-a madre-a
@@ -4596,7 +4054,6 @@ nep-u veraba accept-a annehmen-a aceptar-a
 nepan-u nomuna interpretation-a interpretation-a interpretación-a
 nepet-u veraba interpret-a interpretieren-a interpretar-a
 nepek-i nomuna nonrespect-a
-nepel-u nomuna counterexample-a Gegenbeispiel-a contraejemplo-a
 nepir-u veraba inspire-a begeistern-a inspirar-a
 nepis-i nomuna enterprise-a
 net-i tika nuestro-a
@@ -4608,7 +4065,6 @@ netar-i veraba sentar-a
 netek-o nomuna networking-a netzwerk-a
 neted-u detiva unexpected-a unerwartet-a inesperado-a
 neten-i veraba antreten-a
-neter-u nomuna integer-a Ganzzahl-a entero-a
 netit-u nomuna uncertainty-a unsicherheit-a incertidumbre-a
 netil-o detiva childish-a infantil-a
 netul-u detiva unfortunate-a unglücklich-a lamentable-a
@@ -4683,10 +4139,7 @@ nerat-u nomuna councillor-a stadtrat-a concejal-a
 neran-u detiva internal-a intern-a interno-a
 neral-u detiva wonderful-a wunderbar-a maravilloso-a
 nerar-u veraba integrate-a integrieren-a integrar-a
-nerep-u nomuna inference-a Inferenz-a inferencia-a
 neret-u veraba insert-a fügen-a insertar-a
-nerek-u nomuna intersection-a Schnittmenge-a intersección-a
-nereb-u nomuna interpretability-a Interpretierbarkeit-a interpretabilidad-a
 nered-o detiva interested-a interesado-a
 nereg-i deroba unterwegs-a
 neren-i veraba interessieren-a
@@ -4743,7 +4196,6 @@ nit-i detiva zweit-a
 nital-o detiva initial-a inicial-a
 nitet-u nomuna grandson-a enkel-a nieto-a
 niter-u nomuna knight-a Ritter-a caballero-a
-nitit-u nomuna infinity-a Unendlichkeit-a infinito-a
 nitut-u nomuna institute-a institut-a instituto-a
 nitug-u nomuna monitoring-a begleitung-a monitoreo-a
 nik-i detiva natürlich-a
@@ -4771,7 +4223,6 @@ ninok-u nomuna inch-a zoll-a centímetro-a
 ninut-u nomuna input-a eingabe-a aportación-a
 ninul-u nomuna peninsula-a halbinsel-a península-a
 nil-u nomuna animal-a tier-a animal-a
-nilik-u detiva finite-a endlich-a finito-a
 nir-u nomuna university-a universität-a universidad-a
 nirad-u nomuna entry-a eingang-a entrada-a
 nirag-o nomuna inquiry-a anfrage-a
@@ -4821,7 +4272,6 @@ non-u detiva nice-a schön-a lindo-a
 nonat-i peposa onto-a
 nonen-o nomuna announcement-a ankündigung-a
 nonim-u detiva anonymous-a anonym-a anónimo-a
-nonon-u nomuna unknown-a Unbekannte-a incógnita-a
 nol-u detiva spanish-a spanisch-a español-a
 nolav-u veraba involve-a einbeziehen-a implicar-a
 noled-o veraba acknowledge-a anerkennen-a
@@ -4872,7 +4322,6 @@ nul-u nomuna island-a insel-a isla-a
 nuler-u nomuna zero-a null-a cero-a
 nur-u deroba only-a nur-a solo-a
 nures-u nomuna nurse-a krankenschwester-a enfermera-a
-nuron-u nomuna neuron-a Neuron-a neurona-a
 nus-u veraba use-a verwenden-a usar-a
 nusal-u detiva unusual-a ungewöhnlich-a inusual-a
 nusen-i veraba nutzen-a
@@ -4897,11 +4346,9 @@ lapur-u nomuna lane-a spur-a carril-a
 lat-u detiva last-a letzte-a último-a
 latal-i detiva tall-a
 latar-i veraba plantear-a
-latet-u detiva latent-a latent-a latente-a
 laten-i veraba lauten-a
 latel-o deroba lately-a últimamente-a
 later-i nomuna elter-a
-lates-u nomuna latency-a Latenz-a latencia-a
 latik-u nomuna plastic-a plastik-a plástico-a
 latim-o nomuna last-a último-a
 latin-u detiva latin-a lateinisch-a latino-a
@@ -4971,7 +4418,6 @@ lanar-i veraba relacionar-a
 lanet-u nomuna planet-a planet-a planeta-a
 lanek-u nomuna blanket-a decke-a manta-a
 laned-i veraba land-a
-lanem-u nomuna lemma-a Lemma-a lema-a
 lanen-i veraba landen-a
 lanel-u nomuna angle-a winkel-a ángulo-a
 laner-u nomuna foreigner-a ausländer-a extranjero-a
@@ -5154,7 +4600,6 @@ litim-i detiva ultimo-a
 litin-u nomuna lighting-a beleuchtung-a iluminación-a
 litil-i peposa till-a
 litor-u detiva mandatory-a obligatorisch-a obligatorio-a
-litun-u nomuna alignment-a Ausrichtung-a alineación-a
 lik-u peposa like-a wie-a según-a
 likat-u detiva delicate-a heikel-a delicado-a
 likab-u detiva applicable-a anwendbar-a aplicable-a
@@ -5250,7 +4695,6 @@ log-o deroba long-a lange-a
 logen-o veraba apologize-a entschuldigen-a
 loger-u nomuna achievement-a verwirklichung-a logro-a
 logip-u nomuna logo-a logo-a logotipo-a
-logit-u nomuna logit-a Logit-a logit-a
 logik-u detiva logical-a logisch-a lógico-a
 logid-i peposa alongside-a
 lom-u nomuna application-a anwendung-a aplicación-a
@@ -5310,7 +4754,6 @@ lunak-u nomuna lunch-a mittag-a almuerzo-a
 lunar-u detiva revolutionary-a revolutionär-a revolucionario-a
 lunel-u nomuna tunnel-a tunnel-a túnel-a
 lunes-i nomuna lunes-a
-lunin-u nomuna hallucination-a Halluzination-a alucinación-a
 lunog-u nomuna lung-a lunge-a pulmón-a
 lul-u nomuna call-a anruf-a llamada-a
 lur-u nomuna course-a kurs-a curso-a
@@ -5319,7 +4762,6 @@ luran-u nomuna illustration-a illustration-a ilustración-a
 lus-u nomuna list-a liste-a lista-a
 lusat-o nomuna lust-a lust-a
 lusav-i peposa inklusive-a
-luser-u nomuna cluster-a Cluster-a clúster-a
 lusid-u detiva fluid-a flüssig-a líquido-a
 lusin-u nomuna conclusion-a fazit-a conclusión-a
 lusir-i veraba lucir-a
@@ -5374,14 +4816,12 @@ radat-u nomuna graduate-a diplom-a licenciado-a
 radab-o detiva pleasant-a agradable-a
 radan-u nomuna radiation-a strahlung-a radiación-a
 radar-u nomuna radar-a radar-a radar-a
-radet-u nomuna gradient-a Gradient-a gradiente-a
 radel-u nomuna wheel-a rad-a rueda-a
 rader-u veraba modify-a verändern-a modificar-a
 radig-i nomuna trading-a
 radim-u detiva random-a zufällig-a aleatorio-a
 radin-u nomuna tradition-a tradition-a tradición-a
 radil-u detiva traditional-a traditionell-a tradicional-a
-radis-u nomuna radius-a Radius-a radio-a
 rados-i detiva rose-a
 radut-i veraba graduate-a
 rag-u nomuna question-a frage-a pregunta-a
@@ -5474,7 +4914,6 @@ rafak-o nomuna graphic-a grafik-a
 rafet-u nomuna craft-a handwerk-a artesanía-a
 rafer-o veraba transfer-a übertragen-a
 rafik-u nomuna traffic-a verkehr-a tráfico-a
-rafor-u nomuna transformer-a Transformer-a transformador-a
 rav-u nomuna road-a straßenverkehr-a camino-a
 ravar-i veraba atravesar-a
 raven-o nomuna travel-a reisen-a
@@ -5497,7 +4936,6 @@ repeb-i nomuna repente-a
 repen-u detiva corresponding-a entsprechende-a correspondiente-a
 repel-o nomuna reply-a antworten-a
 reper-u veraba respect-a respektieren-a respetar-a
-repik-u nomuna replica-a Replikat-a réplica-a
 repin-u nomuna reception-a empfang-a recepción-a
 repir-u nomuna empire-a reich-a imperio-a
 repon-u veraba respond-a reagieren-a responder-a
@@ -5546,7 +4984,6 @@ rebin-i nomuna reino-a
 rebor-o nomuna resort-a resort-a
 red-u veraba lead-a führen-a liderar-a
 redal-i deroba real-a
-redet-u nomuna remainder-a Rest-a resto-a
 redek-o veraba reject-a abweisen-a
 reden-o veraba rejoice-a freuen-a
 reder-u nomuna referee-a schiedsrichter-a árbitro-a
@@ -5564,7 +5001,6 @@ regen-u detiva urgent-a dringend-a urgente-a
 regel-i veraba regeln-a
 reger-o veraba register-a anmelden-a
 reges-u nomuna comeback-a comeback-a regreso-a
-regit-u nomuna log-a Protokolldatei-a registro-a
 regim-o nomuna scheme-a régimen-a
 regin-o veraba rain-a regen-a
 regud-o nomuna foreground-a vordergrund-a
@@ -5626,11 +5062,9 @@ rer-i ronona her-a
 rerat-u nomuna aircraft-a luftfahrt-a aeronave-a
 rerak-u veraba restrict-a beschränken-a restringir-a
 rerag-u nomuna average-a durchschnitt-a promedio-a
-reran-u nomuna retrieval-a Abruf-a recuperación-a
 rerar-u veraba repair-a reparieren-a reparar-a
 reren-u nomuna representative-a vertretung-a representante-a
 rerer-u veraba reserve-a reservieren-a reservar-a
-reres-u nomuna benchmark-a Benchmark-a referencia-a
 rerit-o veraba rewrite-a umschreiben-a
 rerin-u nomuna preparation-a vorbereitung-a preparación-a
 reris-u nomuna rice-a reis-a arroz-a
@@ -5641,7 +5075,6 @@ rerun-u nomuna renewal-a verlängerung-a renovación-a
 res-u veraba receive-a erhalten-a recibir-a
 resat-o veraba arrest-a festnehmen-a
 resak-u nomuna rescue-a rettung-a rescate-a
-resag-u veraba restart-a neustarten-a reiniciar-a
 resan-o veraba tear-a reißen-a
 resar-u nomuna regret-a reue-a pesar-a
 resas-u nomuna replacement-a ersatz-a sustitución-a
@@ -5763,7 +5196,6 @@ rines-u nomuna princess-a prinzessin-a princesa-a
 rinip-i nomuna príncipe-a
 rinig-u nomuna ring-a ring-a anillo-a
 rinin-u nomuna printing-a druckerei-a imprenta-a
-rinul-u nomuna triangle-a Dreieck-a triángulo-a
 ril-u detiva original-a ursprünglich-a original-a
 rilat-u detiva bright-a hell-a brillante-a
 rilan-o detiva brilliant-a genial-a
@@ -5844,7 +5276,6 @@ romen-u nomuna promotion-a förderung-a promoción-a
 romer-u veraba promote-a fördern-a promover-a
 romes-u nomuna promise-a versprechen-a promesa-a
 romis-u veraba promise-a versprechen-a prometer-a
-romot-u nomuna prompt-a Prompt-a instrucción-a
 ron-u nomuna relationship-a beziehung-a relación-a
 ronat-o detiva front-a frontal-a
 ronal-o detiva royal-a königlich-a
@@ -5965,7 +5396,6 @@ satat-i veraba state-a
 satal-i detiva estatal-a
 satep-i veraba step-a
 saten-o nomuna sentiment-a einschätzung-a
-sates-u nomuna theorem-a Satz-a teorema-a
 satik-u nomuna stick-a stock-a palo-a
 satin-u nomuna compensation-a ausgleich-a compensación-a
 satif-u veraba satisfy-a befriedigen-a satisfacer-a
@@ -6333,7 +5763,6 @@ sim-u detiva same-a gleich-a mismo-a
 simat-u nomuna estimate-a schätzung-a estimado-a
 siman-u veraba estimate-a schätzen-a estimar-a
 simal-u detiva simple-a einfacher-a simple-a
-simet-u nomuna symmetry-a Symmetrie-a simetría-a
 simel-u nomuna sky-a himmel-a cielo-a
 simer-u nomuna bedroom-a zimmer-a dormitorio-a
 simik-u detiva sympathetic-a sympathisch-a simpático-a
@@ -6399,7 +5828,6 @@ sotar-u veraba endure-a ertragen-a soportar-a
 soten-o detiva southern-a meridional-a
 sotir-o nomuna shot-a tiro-a
 sok-u tika such-a solch-a tal-a
-sokal-u veraba scale-a skalieren-a escalar-a
 sokar-u veraba scare-a erschrecken-a asustar-a
 soker-o nomuna soccer-a futbol-a
 sob-u nomuna scene-a szene-a escena-a
@@ -6433,7 +5861,6 @@ sonar-i veraba sonar-a
 sonas-o dunona once-a sobald-a
 sonel-u nomuna shell-a hülle-a concha-a
 sonid-u nomuna sound-a ton-a sonido-a
-sonin-u nomuna reasoning-a Schlussfolgern-a razonamiento-a
 sonil-u nomuna smile-a lächeln-a sonrisa-a
 sol-o veraba should-a sollen-a
 solat-u veraba isolate-a isolieren-a aislar-a
@@ -6560,7 +5987,6 @@ suris-u nomuna surprise-a überraschung-a sorpresa-a
 suriv-u veraba survive-a überleben-a sobrevivir-a
 sus-o ronona its-a sus-a
 susav-i deroba usw-a
-suset-u nomuna subset-a Teilmenge-a subconjunto-a
 susen-o detiva sufficient-a ausreichend-a
 susit-o nomuna substitute-a suplente-a
 susib-o detiva sustainable-a sostenible-a
@@ -6837,7 +6263,6 @@ fob-i nomuna embargo-a
 fobad-i veraba found-a
 fod-u nomuna food-a essen-a comida-a
 foden-i veraba fordern-a
-foder-u nomuna folder-a Ordner-a carpeta-a
 fog-u nomuna photo-a foto-a fotografía-a
 fogan-i detiva folgen-a
 fogaf-u nomuna photographer-a fotograf-a fotógrafo-a
@@ -6972,7 +6397,6 @@ var-u nomuna water-a wasser-a agua-a
 varat-u nomuna commodity-a ware-a mercancía-a
 varab-u nomuna variable-a variable-a variable-a
 varan-u nomuna variant-a variante-a variante-a
-varas-u nomuna variance-a Varianz-a varianza-a
 varet-u nomuna variety-a vielfalt-a variedad-a
 varem-u nomuna heating-a wärme-a calentamiento-a
 varen-u veraba warn-a warnen-a advertir-a
@@ -7005,9 +6429,7 @@ vetag-o nomuna everyday-a alltag-a
 vetal-u nomuna valley-a tal-a valle-a
 veten-u veraba betray-a verraten-a traicionar-a
 veter-u nomuna weather-a wetter-a clima-a
-vetor-u nomuna vector-a Vektor-a vector-a
 vetos-o nomuna infringement-a verstoß-a
-vetun-u nomuna conjecture-a Vermutung-a conjetura-a
 vek-u nomuna week-a woche-a semana-a
 vekak-u nomuna weakness-a schwäche-a debilidad-a
 vekal-u detiva vertical-a senkrecht-a vertical-a
@@ -7068,7 +6490,6 @@ veral-u detiva several-a mehrere-a varios-a
 verek-u nomuna comparison-a vergleich-a comparación-a
 vereg-u nomuna spread-a verbreitung-a propagación-a
 veren-u veraba forgive-a vergeben-a perdonar-a
-verel-u veraba encrypt-a verschlüsseln-a cifrar-a
 veres-i veraba versetzen-a
 vereh-u veraba confer-a verleihen-a conferir-a
 verit-u nomuna wheat-a getreide-a trigo-a
@@ -7092,7 +6513,6 @@ vef-u detiva beautiful-a wunderschön-a hermoso-a
 vefal-i nomuna westfalen-a
 vefar-u nomuna welfare-a tierschutz-a bienestar-a
 vev-i deroba wherever-a
-veven-u detiva even-a gerade-a par-a
 vevel-i tika wieviel-a
 vever-u nomuna viewer-a betrachter-a espectador-a
 vevol-u veraba evolve-a weiterentwickeln-a evolucionar-a
@@ -7150,7 +6570,6 @@ vilig-u detiva voluntary-a freiwillig-a voluntario-a
 vilul-o deroba obviously-a obviamente-a
 vir-u veraba will-a werden-a ir-a
 viren-i nomuna virgen-a
-viruk-u nomuna contradiction-a Widerspruch-a contradicción-a
 virud-u nomuna virtue-a tugend-a virtud-a
 virul-u detiva virtual-a virtuell-a virtual-a
 virus-u nomuna virus-a virus-a virus-a
@@ -7329,7 +6748,6 @@ harin-o nomuna flour-a harina-a
 harut-u nomuna hat-a hut-a sombrero-a
 has-u nomuna house-a haus-a casa-a
 hased-i nomuna hacienda-a
-hasiv-u nomuna hash-a Hash-a hash-a
 hasod-u nomuna hatred-a haß-a odio-a
 haf-u nomuna back-a rücken-a espalda-a
 hafet-o nomuna detention-a haft-a

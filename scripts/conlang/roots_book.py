@@ -153,8 +153,9 @@ def main() -> None:
         print(f"{a.out}: {len(rel)} relators, {len(freq)} frequent words, {sum(not c[3] for c in coins)} coinages")
         return
     entries = {r: (cl, ws) for r, cl, ws in lex}
-    for r, cl, ws, _field in coins:
-        entries[r] = (cl, ws)
+    for r, cl, ws, is_field in coins:
+        if not is_field:                     # field words live in their volume's glossary (conlang/volumes/)
+            entries[r] = (cl, ws)
     rough = {r for r, (cl, ws) in entries.items() if ws and ws[0].lower() in ROUGH}
     out = [ROOTS_HEADER.replace("COUNT", str(len(entries)))]
     letter = None
