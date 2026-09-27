@@ -47,7 +47,7 @@ par	NOUN	year	jahr	año	6.631e-03	2	0.449	2.057e-03	2.528e-03	2.046e-03
 ser	VERB	see	sehen|siehe	ver	6.271e-03	2	0.474	2.181e-03	1.811e-03	2.279e-03
 gut	ADJ	good	gut		6.070e-03	2	0.679	2.596e-03	3.474e-03	0.000e+00
 von	VERB	want	wollen	querer	6.047e-03	2	0.367	1.720e-03	2.269e-03	2.058e-03
-tar	PRON	they	ihr	ellos	6.029e-03	2	0.333	5.389e-03	6.405e-04	0.000e+00
+tar	PRON	they	sie	ellos	6.029e-03	2	0.333	5.389e-03	6.405e-04	0.000e+00
 bar	ADP	near	bei|nahe	cerca	5.862e-03	2	0.335	1.639e-04	5.465e-03	2.326e-04
 mak	VERB	make	machen	make	5.836e-03	2	0.802	2.946e-03	2.885e-03	5.101e-06
 pas	SCONJ		daß		5.770e-03	2	0.667	0.000e+00	5.770e-03	0.000e+00
@@ -123,7 +123,7 @@ vul	NOUN	world	welt	mundo|mundial	2.242e-03	2	0.371	8.850e-04	5.544e-04	8.026e-0
 nad	PRON	nothing	nichts	nada	2.211e-03	2	0.511	3.962e-04	9.376e-04	8.769e-04
 pep	NOUN	people	leute	gente	2.202e-03	2	0.442	1.207e-03	1.982e-04	7.969e-04
 lin	ADJ	little	klein|wenig	pequeño|poquito|poco	2.195e-03	2	0.457	6.098e-04	1.220e-03	3.659e-04
-hov	ADV	how	woher|inwiefern	cómo	2.181e-03	2	0.921	1.937e-03	5.990e-05	1.843e-04
+hov	ADV	how	wie	cómo	2.181e-03	2	0.921	1.937e-03	5.990e-05	1.843e-04
 hup	ADP	up	hoch		2.181e-03	2	0.664	2.161e-03	1.932e-05	0.000e+00
 bor	NOUN	work	arbeit|arbeiten	trabajo|obra	2.172e-03	2	0.291	6.562e-04	4.938e-04	1.023e-03
 tag	PRON	something	etwas|sowas|irgendetwas	algo	2.155e-03	2	0.310	7.245e-04	5.642e-04	8.661e-04
@@ -311,7 +311,6 @@ rek	NOUN	right	rechte|richtig	derecho|derecha|correcto	8.599e-04	2	0.431	3.670e-
 lel	NOUN	level	ebene|stufe|niveau	nivel	8.484e-04	2	0.436	3.876e-04	1.602e-04	3.007e-04
 vak	VERB	watch	ansehen|anschauen	mirar	8.456e-04	2	0.436	3.995e-04	1.327e-04	3.135e-04
 dov	ADV	however	jedoch		8.383e-04	2	0.342	4.241e-04	4.142e-04	0.000e+00
-pip	CCONJ			e	8.371e-04	2	0.000	0.000e+00	0.000e+00	8.371e-04
 fen	VERB	learn	lernen|erfahren|erlernen	aprender	8.364e-04	2	0.346	2.937e-04	3.725e-04	1.703e-04
 nid	PRON	nobody	niemand	nadie	8.331e-04	2	0.558	9.943e-05	2.685e-04	4.652e-04
 kah	NOUN	class	klasse|baureihe	clase	8.280e-04	2	0.499	3.494e-04	1.787e-04	2.999e-04
@@ -346,7 +345,7 @@ pis	NOUN	price	preis	precio	7.724e-04	2	0.622	2.728e-04	2.613e-04	2.383e-04
 mur	NOUN	mother	mutter	madre	7.723e-04	2	0.503	2.175e-04	2.400e-04	3.148e-04
 hek	NOUN	fact	tatsache	hecho	7.694e-04	2	0.594	3.454e-04	6.413e-05	3.599e-04
 ton	ADJ	international	international	internacional|internacionales	7.655e-04	2	0.231	2.556e-04	2.265e-04	2.834e-04
-kit	NOUN	kind	art	amable	7.649e-04	2	0.402	3.204e-04	4.428e-04	1.762e-06
+kit	NOUN	kind	art	tipo|clase	7.649e-04	2	0.402	3.204e-04	4.428e-04	1.762e-06
 gol	NOUN	goal	ziel|zielsetzung	objetivo|gol|meta|portería	7.627e-04	2	0.393	2.278e-04	2.373e-04	2.976e-04
 sag	NOUN	situation	lage|situation	situación	7.614e-04	2	0.327	1.702e-04	3.262e-04	2.650e-04
 sok	DET	such	solch|solcher	tal	7.608e-04	2	0.525	1.827e-04	4.628e-04	1.154e-04
@@ -533,7 +532,6 @@ lur	NOUN	course	kurs|lehrgang	curso	5.318e-04	2	0.433	3.390e-04	7.954e-05	1.132e
 lon	ADV	down	unten	abajo	5.305e-04	2	0.354	3.278e-04	1.207e-04	8.198e-05
 nos	NOUN	news		noticia	5.297e-04	2	0.542	3.069e-04	0.000e+00	2.228e-04
 fot	VERB	continue	fortsetzen|weitermachen	continuar	5.290e-04	2	0.294	3.355e-04	3.737e-05	1.561e-04
-pod	NOUN		d		5.289e-04	2	0.333	0.000e+00	5.289e-04	0.000e+00
 gek	ADJ	exact	genau|genauer		5.270e-04	2	0.631	3.099e-05	4.960e-04	0.000e+00
 hol	VERB	hold	festhalten|halt		5.235e-04	2	0.691	4.587e-04	6.483e-05	0.000e+00
 lid	NOUN	land	grundstück	tierra	5.233e-04	2	0.338	2.019e-04	3.245e-05	2.890e-04
@@ -600,7 +598,6 @@ fos	NOUN	success	erfolg|erfolgsgeschichte	éxito	4.795e-04	2	0.248	1.346e-04	2.0
 fat	NOUN	location	ort	ubicación|localización|emplazamiento	4.790e-04	2	0.291	1.129e-04	3.183e-04	4.776e-05
 nit	ADJ		zweit		4.775e-04	2	0.400	0.000e+00	4.775e-04	0.000e+00
 hur	NOUN	door	tür|haustür	puerta	4.763e-04	2	0.416	1.726e-04	1.352e-04	1.685e-04
-pud	NOUN			d	4.763e-04	2	0.333	0.000e+00	0.000e+00	4.763e-04
 nuk	NOUN	luck	glück	suerte	4.748e-04	2	0.419	9.073e-05	2.059e-04	1.782e-04
 niv	PRON	anything	irgendwas		4.744e-04	2	0.275	3.962e-04	7.821e-05	0.000e+00
 pib	ADJ	private	privat	privado	4.737e-04	2	0.333	1.730e-04	1.489e-04	1.519e-04
@@ -608,7 +605,6 @@ dog	NOUN	dog	hund	perro|perrita	4.730e-04	2	0.435	2.057e-04	1.415e-04	1.258e-04
 tup	NOUN	culture	kultur	cultura	4.728e-04	2	0.333	1.370e-04	1.434e-04	1.923e-04
 dek	NOUN	director	leitung|direktor|direktorin|regisseurin	director|directora	4.724e-04	2	0.337	1.888e-04	1.177e-04	1.658e-04
 rok	VERB	break	brechen	romper	4.711e-04	2	0.370	2.569e-04	9.466e-05	1.195e-04
-pim	NOUN		m		4.709e-04	2	0.333	0.000e+00	4.709e-04	0.000e+00
 gal	ADJ	global	weltweit|global|globalen|globale	mundial|global	4.698e-04	2	0.343	9.943e-05	1.366e-04	2.338e-04
 tom	ADJ	former		antiguo|ex	4.692e-04	2	0.219	2.132e-04	0.000e+00	2.560e-04
 mip	ADJ	main		principal	4.687e-04	2	0.337	1.942e-04	0.000e+00	2.745e-04
@@ -804,7 +800,6 @@ pof	NOUN	percent	prozent	porcentaje	3.602e-04	2	0.229	1.286e-04	1.964e-04	3.524e
 mif	NOUN	material	material	material	3.597e-04	2	0.250	1.638e-04	8.433e-05	1.116e-04
 rup	NOUN	principle	prinzip|grundsatz	principio|principios	3.590e-04	2	0.273	5.030e-05	8.401e-05	2.246e-04
 sob	NOUN	scene	szene|tatort|schauplatz	escena	3.581e-04	2	0.297	1.465e-04	1.254e-04	8.612e-05
-tub	NOUN		b		3.573e-04	2	0.333	0.000e+00	3.573e-04	0.000e+00
 hut	ADJ	tough	hart	duro|rudo	3.566e-04	2	0.389	6.573e-05	1.711e-04	1.197e-04
 nod	NOUN	north	norden|nord	norte	3.562e-04	2	0.524	1.158e-04	8.650e-05	1.539e-04
 vaf	NOUN	sale	verkauf	venta	3.557e-04	2	0.322	1.867e-04	5.531e-05	1.137e-04
@@ -829,7 +824,6 @@ dom	NOUN	dollar	dollar	dólar	3.510e-04	2	0.400	1.107e-04	1.006e-04	1.397e-04
 lim	NOUN	crime	verbrechen|straftat|kriminalität	delito|crimen|delincuencia|criminalidad	3.508e-04	2	0.337	1.166e-04	7.091e-05	1.632e-04
 gom	NOUN	committee	ausschuß|komitee	comisión|comité	3.504e-04	2	0.296	1.234e-04	5.593e-05	1.710e-04
 hab	NOUN	hair	haar	pelo|cabello|peinado	3.502e-04	2	0.382	1.405e-04	9.395e-05	1.158e-04
-puv	NOUN		u		3.500e-04	2	0.000	0.000e+00	3.500e-04	0.000e+00
 rah	NOUN	contract	vertrag|arbeitsvertrag	contrato	3.498e-04	2	0.272	1.203e-04	1.346e-04	9.493e-05
 ruv	NOUN	river	fluß	río	3.494e-04	2	0.345	1.194e-04	4.657e-05	1.834e-04
 hos	ADV	anyway	trotzdem|sowieso|ohnehin		3.491e-04	2	0.218	4.600e-05	3.031e-04	0.000e+00
@@ -884,7 +878,6 @@ rub	NOUN	artist	künstler|künstlerin	artista	3.312e-04	2	0.152	1.226e-04	1.052e
 bah	PRON			tanto	3.311e-04	2	0.250	0.000e+00	0.000e+00	3.311e-04
 fud	NOUN	fund	fonds|fund	fondo	3.305e-04	2	0.602	1.243e-04	3.605e-05	1.702e-04
 vuh	NOUN	return	rückkehr|rückgabe	vuelta|retorno	3.305e-04	2	0.299	1.010e-04	4.086e-05	1.887e-04
-bok	NOUN		e		3.303e-04	2	0.000	0.000e+00	3.303e-04	0.000e+00
 gaf	ADP		statt		3.303e-04	2	0.250	0.000e+00	3.303e-04	0.000e+00
 bum	VERB	assume	übernehmen	asumir	3.303e-04	2	0.312	9.456e-05	1.702e-04	6.561e-05
 vib	VERB	wish	wünschen		3.302e-04	2	0.445	1.836e-04	1.467e-04	0.000e+00
@@ -929,7 +922,6 @@ lud	VERB	end	beenden		3.155e-04	2	0.286	2.377e-04	7.773e-05	0.000e+00
 bof	NOUN	sun	sonne	sol	3.149e-04	2	0.223	1.041e-04	8.378e-05	1.270e-04
 nuh	ADJ	enough	genügend	suficiente	3.142e-04	2	0.314	1.512e-04	3.580e-05	1.272e-04
 fef	NOUN	sister	schwester	hermana	3.140e-04	2	0.160	1.295e-04	9.028e-05	9.423e-05
-buf	NOUN		s		3.133e-04	2	0.000	0.000e+00	3.133e-04	0.000e+00
 duv	NOUN	discussion	diskussion	debate|discusión	3.127e-04	2	0.216	7.857e-05	9.502e-05	1.391e-04
 gif	NOUN	ship	schiff	barco|nave	3.120e-04	2	0.343	1.273e-04	9.698e-05	8.777e-05
 mih	NOUN	environment	umgebung|umwelt	ambiente|medioambiente	3.118e-04	2	0.168	9.455e-05	1.240e-04	9.325e-05
@@ -955,7 +947,6 @@ hiv	VERB	prevent	verhindern|vorbeugen	impedir|prevenir	3.046e-04	2	0.160	1.060e-
 vav	NOUN	award	auszeichnung	premio|galardón|premios	3.043e-04	2	0.188	1.420e-04	2.568e-05	1.366e-04
 vub	NOUN	doubt	zweifel|zweifeln	duda|dudar|dudas	3.043e-04	2	0.309	7.007e-05	5.979e-05	1.744e-04
 buh	NOUN	tree	baum	árbol	3.042e-04	2	0.205	1.339e-04	9.466e-05	7.554e-05
-huk	NOUN		c		3.041e-04	2	0.333	0.000e+00	3.041e-04	0.000e+00
 num	NOUN	nature	natur|naturschutz	naturaleza	3.034e-04	2	0.345	1.066e-04	1.136e-04	8.322e-05
 fum	NOUN	feature	funktion|feature	característica|largometraje	3.030e-04	2	0.219	1.077e-04	1.166e-04	7.876e-05
 vog	NOUN	code	code	código	3.030e-04	2	0.356	1.508e-04	4.692e-05	1.053e-04
@@ -1126,11 +1117,9 @@ marig	NOUN	marriage	ehe|heirat|eheschließung	matrimonio	2.512e-04	3	0.468	9.959
 deral	ADJ	federal		federal	2.511e-04	3	0.714	1.507e-04	0.000e+00	1.004e-04
 damed	NOUN	media		media	2.508e-04	3	0.600	2.232e-04	0.000e+00	2.758e-05
 fesil	ADJ	professional	professionell	profesional	2.506e-04	3	0.455	1.207e-04	4.067e-05	8.916e-05
-dabab	NOUN	d			2.500e-04	3	0.200	2.500e-04	0.000e+00	0.000e+00
 dirar	NOUN	journal	zeitschrift|journal|fachzeitschrift	diario	2.499e-04	3	0.535	7.502e-05	6.775e-05	1.072e-04
 nalis	NOUN	analysis	analyse	análisis	2.498e-04	3	0.675	9.762e-05	5.946e-05	9.274e-05
 disan	NOUN	distance	abstand|distanz	distancia	2.497e-04	3	0.650	8.656e-05	7.734e-05	8.579e-05
-kabab	NOUN			c	2.495e-04	3	0.200	0.000e+00	0.000e+00	2.495e-04
 veset	NOUN	west	westen|west	oeste|occidente	2.484e-04	3	0.700	7.994e-05	1.087e-04	5.974e-05
 kolek	VERB	collect	sammeln|abholen|einsammeln	recoger	2.482e-04	3	0.491	9.496e-05	9.521e-05	5.800e-05
 perat	VERB	operate	betreiben|operieren	operar	2.479e-04	3	0.576	1.084e-04	9.440e-05	4.505e-05
@@ -1138,7 +1127,6 @@ nirad	NOUN	entry	eingang|eintrag|einreise|eintragung	entrada	2.476e-04	3	0.478	5
 romer	VERB	promote	fördern|werben	promover|promocionar	2.476e-04	3	0.465	7.756e-05	9.827e-05	7.175e-05
 patop	ADJ	top	top		2.475e-04	3	0.600	1.933e-04	5.424e-05	0.000e+00
 hanen	VERB	hang	hängen|aufhängen	colgar	2.474e-04	3	0.645	9.717e-05	1.256e-04	2.470e-05
-habab	NOUN		h		2.473e-04	3	0.200	0.000e+00	2.473e-04	0.000e+00
 dagil	ADJ	daily	täglich	diario	2.473e-04	3	0.548	9.195e-05	1.026e-04	5.276e-05
 defen	NOUN	defense	verteidigung|verteidigungsministerium	defensa	2.473e-04	3	0.755	9.497e-05	3.213e-05	1.202e-04
 konom	NOUN	economy	volkswirtschaft	economía	2.472e-04	3	0.812	9.135e-05	7.052e-06	1.488e-04
@@ -1234,7 +1222,6 @@ gamog	ADP	among			2.277e-04	3	0.600	2.277e-04	0.000e+00	0.000e+00
 kenat	ADJ	cheap	günstig|billiger	barato	2.273e-04	3	0.418	8.205e-05	1.009e-04	4.429e-05
 saris	ADJ	sad	traurig	triste	2.270e-04	3	0.409	7.723e-05	6.942e-05	8.031e-05
 refus	VERB	refuse	ablehnen|weigern|verweigern	rechazar|denegar	2.269e-04	3	0.545	8.869e-05	8.199e-05	5.619e-05
-rabab	NOUN		r		2.260e-04	3	0.200	0.000e+00	2.260e-04	0.000e+00
 tobah	SCONJ	though			2.259e-04	3	0.600	2.259e-04	0.000e+00	0.000e+00
 peses	NOUN	species	gattung|spezies|tierart	especie	2.248e-04	3	0.580	7.901e-05	3.318e-05	1.126e-04
 horas	NOUN	horse	pferd	caballo	2.247e-04	3	0.390	9.472e-05	7.062e-05	5.934e-05
@@ -1390,7 +1377,6 @@ siluh	NOUN	silence	ruhe|stille	silencio	2.030e-04	3	0.452	2.678e-05	9.721e-05	7.
 setuf	NOUN	stuff	zeug|sachen		2.029e-04	3	0.745	1.555e-04	4.736e-05	0.000e+00
 pakut	NOUN	impact	auswirkung	impacto|repercusión	2.029e-04	3	0.423	9.538e-05	4.427e-05	6.323e-05
 dabar	NOUN	dr		dra	2.028e-04	3	0.400	1.942e-04	0.000e+00	8.658e-06
-sabab	NOUN			s	2.028e-04	3	0.200	0.000e+00	0.000e+00	2.028e-04
 rolus	ADJ	proud	stolz	orgulloso	2.027e-04	3	0.406	6.729e-05	9.238e-05	4.304e-05
 gates	VERB	guess	raten|erraten	adivinar	2.026e-04	3	0.580	1.683e-04	2.830e-05	6.069e-06
 dobel	ADJ	double	doppelt	doble	2.026e-04	3	0.676	8.781e-05	5.622e-05	5.859e-05
@@ -1434,7 +1420,6 @@ navit	VERB	invite	einladen	invitar	1.985e-04	3	0.434	6.823e-05	5.908e-05	7.118e-
 bokin	NOUN	construction	bau		1.982e-04	3	0.270	1.041e-04	9.410e-05	0.000e+00
 faris	ADJ	fresh	frisch	fresco	1.981e-04	3	0.669	6.802e-05	9.918e-05	3.088e-05
 derop	VERB	drop	ablegen		1.980e-04	3	0.732	1.774e-04	2.063e-05	0.000e+00
-nabab	NOUN		n		1.980e-04	3	0.200	0.000e+00	1.980e-04	0.000e+00
 vilit	ADJ	willing	bereit|gewillt	dispuesto	1.976e-04	3	0.411	5.859e-05	8.255e-05	5.649e-05
 seres	VERB	express	ausdrücken	expresar	1.976e-04	3	0.487	8.802e-05	2.419e-05	8.538e-05
 kadok	ADJ	ok	okay		1.976e-04	3	0.400	8.715e-05	1.104e-04	0.000e+00
@@ -1444,8 +1429,6 @@ lemel	NOUN	employee	arbeitnehmer	empleado|empleada	1.969e-04	3	0.452	1.074e-04	3
 naten	VERB	attend	teilnehmen	asistir	1.966e-04	3	0.404	9.531e-05	4.932e-05	5.201e-05
 rosim	ADJ	upcoming	kommenden	próximo	1.965e-04	3	0.644	2.444e-05	4.184e-06	1.678e-04
 fikar	VERB			significar	1.964e-04	3	0.500	0.000e+00	0.000e+00	1.964e-04
-labab	NOUN		l		1.964e-04	3	0.200	0.000e+00	1.964e-04	0.000e+00
-papap	NUM		ii		1.964e-04	3	0.000	0.000e+00	1.964e-04	0.000e+00
 huvev	NOUN	egg	ei	huevo	1.961e-04	3	0.367	6.741e-05	5.567e-05	7.307e-05
 mosel	ADV	mostly	meistens	principalmente|mayormente	1.961e-04	3	0.458	7.193e-05	5.171e-05	7.243e-05
 relas	VERB	replace	ersetzen	reemplazar	1.959e-04	3	0.571	9.776e-05	7.437e-05	2.380e-05
@@ -1484,7 +1467,6 @@ hofel	NOUN	hell	hölle|hell	infierno	1.904e-04	3	0.555	1.237e-04	3.928e-05	2.733
 posin	NOUN	opposition	widerstand|opposition	oposición	1.902e-04	3	0.463	4.151e-05	7.729e-05	7.136e-05
 merar	NOUN	temperature	temperatur	temperatura	1.902e-04	3	0.500	7.265e-05	6.969e-05	4.781e-05
 serin	ADV	certainly	sicherlich	ciertamente	1.900e-04	3	0.562	1.116e-04	5.668e-05	2.177e-05
-mabab	NOUN			m	1.899e-04	3	0.200	0.000e+00	0.000e+00	1.899e-04
 halat	ADV		halt		1.897e-04	3	0.800	0.000e+00	1.897e-04	0.000e+00
 super	ADJ	super	super	super	1.896e-04	3	1.000	7.048e-06	1.552e-04	2.733e-05
 sesit	ADJ	solid	fest|solide	sólido	1.894e-04	3	0.512	4.935e-05	1.175e-04	2.262e-05
@@ -1536,7 +1518,6 @@ volig	ADJ		völlig		1.836e-04	3	1.000	0.000e+00	1.836e-04	0.000e+00
 fulam	ADV	fully		completamente|plenamente	1.836e-04	3	0.413	8.660e-05	0.000e+00	9.701e-05
 pelat	NOUN	silver	silber	plata	1.835e-04	3	0.568	2.804e-05	3.917e-05	1.163e-04
 sevak	ADJ	weak	schwach	débil	1.835e-04	3	0.613	6.400e-05	8.369e-05	3.578e-05
-tabab	NOUN		t		1.834e-04	3	0.200	0.000e+00	1.834e-04	0.000e+00
 gator	NOUN	gate	tor		1.834e-04	3	0.600	5.524e-05	1.281e-04	0.000e+00
 nerin	NOUN	conversation	unterhaltung	conversación	1.834e-04	3	0.403	8.504e-05	3.112e-05	6.719e-05
 hirik	ADJ	historical		histórico	1.829e-04	3	0.588	5.468e-05	0.000e+00	1.283e-04
@@ -1612,7 +1593,6 @@ lirar	NOUN	literature	literatur	literatura	1.738e-04	3	0.556	4.654e-05	7.135e-05
 selik	ADV	exclusively	ausschliesslich|ausschließlich	exclusivamente	1.736e-04	3	0.435	1.942e-05	1.304e-04	2.386e-05
 lenir	NOUN	lie	lügen|lüge	mentira|miente	1.736e-04	3	0.386	4.779e-05	5.443e-05	7.136e-05
 nesig	VERB	investigate	untersuchen	investigar	1.735e-04	3	0.430	5.156e-05	6.099e-05	6.097e-05
-papep	NUM	iii	iii	iii	1.733e-04	3	0.000	4.765e-05	7.763e-05	4.802e-05
 rufen	VERB	shout	rufen		1.733e-04	3	0.899	1.742e-05	1.559e-04	0.000e+00
 kaner	NOUN	cancer	krebs	cáncer	1.733e-04	3	0.736	9.941e-05	2.651e-05	4.736e-05
 lelaf	NOUN	leaf	blatt	hoja	1.732e-04	3	0.411	6.044e-05	5.715e-05	5.560e-05
@@ -1638,7 +1618,6 @@ gagel	NOUN	angel	engel|angel	ángel	1.707e-04	3	0.600	5.178e-05	5.070e-05	6.819e
 vebug	NOUN	advertising	werbung|werbeagentur	publicidad	1.706e-04	3	0.432	3.872e-05	8.310e-05	4.876e-05
 dedik	VERB	dedicate	widmen	dedicar	1.706e-04	3	0.578	1.928e-05	4.234e-05	1.090e-04
 ferud	ADP		aufgrund		1.705e-04	3	0.500	0.000e+00	1.705e-04	0.000e+00
-kabas	NOUN	x			1.704e-04	3	0.400	1.704e-04	0.000e+00	0.000e+00
 vaker	VERB	wake	wecken|aufwachen	despertar	1.701e-04	3	0.450	6.731e-05	3.697e-05	6.583e-05
 sapuh	NOUN	shoe	schuh	zapato	1.700e-04	3	0.444	6.642e-05	6.992e-05	3.370e-05
 tanin	VERB	train	trainieren	entrenar	1.700e-04	3	0.530	1.098e-04	3.662e-05	2.360e-05
@@ -1700,7 +1679,6 @@ holok	NOUN	hole	loch	agujero|hueco|hoyo	1.634e-04	3	0.492	7.613e-05	4.508e-05	4.
 vorat	ADJ	worth	wert		1.633e-04	3	0.768	1.374e-04	2.589e-05	0.000e+00
 benen	VERB	denote	bezeichnen	denotar	1.633e-04	3	0.550	3.828e-06	1.581e-04	1.416e-06
 bavob	ADV		wobei		1.633e-04	3	0.600	0.000e+00	1.633e-04	0.000e+00
-vabab	NOUN		w		1.633e-04	3	0.200	0.000e+00	1.633e-04	0.000e+00
 pelen	NOUN	play	spielen	play	1.630e-04	3	0.448	1.215e-04	2.465e-05	1.690e-05
 kekag	NOUN	exchange	börse|austausch	intercambio	1.630e-04	3	0.367	7.901e-05	5.062e-05	3.339e-05
 nunit	VERB	unite	vereinen|vereinigen		1.629e-04	3	0.654	1.257e-04	3.720e-05	0.000e+00
@@ -1779,7 +1757,6 @@ dohar	NOUN	ear	ohr	oído|oreja	1.547e-04	3	0.431	5.558e-05	6.141e-05	3.775e-05
 genas	ADV	equally	ebenso|genauso|gleichermaßen	igualmente	1.547e-04	3	0.394	2.734e-05	8.488e-05	4.244e-05
 seket	ADJ	secret	geheim|heimlich	secreto	1.546e-04	3	0.614	5.571e-05	5.927e-05	3.960e-05
 relon	NOUN	resolution	auflösung|resolution	resolución	1.546e-04	3	0.455	4.900e-05	4.982e-05	5.574e-05
-kabaf	NOUN	c			1.545e-04	3	0.200	1.545e-04	0.000e+00	0.000e+00
 mapar	NOUN	map	landkarte	mapa|mapas	1.543e-04	3	0.595	9.352e-05	4.946e-06	5.586e-05
 sofar	NOUN	software	software	software	1.542e-04	3	0.714	6.573e-05	4.402e-05	4.443e-05
 raner	VERB	gather	versammeln	reunir	1.541e-04	3	0.522	5.969e-05	1.510e-05	7.930e-05
@@ -1799,7 +1776,6 @@ dusid	ADP	outside	außerhalb		1.530e-04	3	0.429	7.113e-05	8.188e-05	0.000e+00
 reser	VERB	deserve	verdient	merecer	1.528e-04	3	0.684	6.785e-05	2.847e-06	8.206e-05
 karag	VERB	charge			1.527e-04	3	0.800	1.527e-04	0.000e+00	0.000e+00
 lapil	NOUN		april		1.526e-04	3	0.600	0.000e+00	1.526e-04	0.000e+00
-pabab	NOUN		p		1.526e-04	3	0.200	0.000e+00	1.526e-04	0.000e+00
 geman	ADJ	german		alemán	1.526e-04	3	0.775	9.943e-05	0.000e+00	5.319e-05
 sidet	NOUN	incident	ereignis|vorfall|zwischenfall	incidente	1.525e-04	3	0.333	3.872e-05	8.626e-05	2.755e-05
 gareg	VERB	argue	streiten|argumentieren	argumentar	1.525e-04	3	0.448	8.984e-05	4.503e-05	1.765e-05
@@ -1823,7 +1799,6 @@ voren	ADV	front	vorne|vorn	frente	1.507e-04	3	0.648	5.561e-06	9.608e-05	4.902e-0
 bokat	NOUN	boat	boot	bote|embarcación	1.505e-04	3	0.684	7.711e-05	4.904e-05	2.432e-05
 veder	CCONJ	neither	weder		1.504e-04	3	0.884	3.480e-05	1.156e-04	0.000e+00
 kepan	VERB	expand	erweitern|expandieren	ampliar|expandir	1.504e-04	3	0.395	6.403e-05	5.068e-05	3.569e-05
-tabad	NOUN	t			1.501e-04	3	0.200	1.501e-04	0.000e+00	0.000e+00
 babil	NOUN			abril	1.501e-04	3	0.600	0.000e+00	0.000e+00	1.501e-04
 vekom	ADJ	welcome	willkommen	bienvenido	1.501e-04	3	0.570	5.192e-05	7.347e-05	2.467e-05
 setok	NOUN	stock	bestand|vorrat	caldo	1.501e-04	3	0.640	1.122e-04	3.160e-05	6.213e-06
@@ -1888,9 +1863,7 @@ vilet	ADJ	violent	heftig|gewalttätig|gewaltsam	violento	1.443e-04	3	0.397	3.214
 noveb	NOUN			noviembre	1.441e-04	3	0.625	0.000e+00	0.000e+00	1.441e-04
 vilad	ADJ	wild	wild	salvaje|silvestre	1.441e-04	3	0.682	4.899e-05	6.055e-05	3.451e-05
 fagur	VERB	figure			1.440e-04	3	0.800	1.440e-04	0.000e+00	0.000e+00
-papip	NOUN		o		1.438e-04	3	0.000	0.000e+00	1.438e-04	0.000e+00
 varen	VERB	warn	warnen	advertir|avisar	1.436e-04	3	0.560	2.857e-05	5.257e-05	6.248e-05
-kabes	NUM		x		1.434e-04	3	0.400	0.000e+00	1.434e-04	0.000e+00
 berad	NOUN	brand	marke|brand		1.432e-04	3	0.451	5.223e-05	9.099e-05	0.000e+00
 panir	NOUN	painting	gemälde|malerei	cuadro	1.432e-04	3	0.323	5.927e-05	3.395e-05	5.000e-05
 varin	NOUN	warning	achtung	aviso|advertencia	1.431e-04	3	0.439	5.014e-05	3.917e-05	5.379e-05
@@ -1929,8 +1902,6 @@ hofal	ADV	hopefully	hoffentlich	ojalá|ojala	1.403e-04	3	0.520	4.051e-05	6.508e-
 samel	NOUN	assembly	versammlung	asamblea	1.402e-04	3	0.556	4.542e-05	2.154e-05	7.325e-05
 nener	NOUN			enero	1.402e-04	3	0.800	0.000e+00	0.000e+00	1.402e-04
 gagos	NOUN			agosto	1.402e-04	3	0.600	0.000e+00	0.000e+00	1.402e-04
-babab	NOUN			b	1.402e-04	3	0.200	0.000e+00	0.000e+00	1.402e-04
-nabaf	NOUN			n	1.402e-04	3	0.200	0.000e+00	0.000e+00	1.402e-04
 pekiv	NOUN	perspective	perspektive	perspectiva	1.400e-04	3	0.500	4.917e-05	4.319e-05	4.764e-05
 litar	NOUN	military	militär	militar	1.396e-04	3	0.714	5.830e-05	3.331e-05	4.796e-05
 giner	NOUN	engineering	ingenieur|engineering	ingeniería|ingenieros	1.395e-04	3	0.461	7.042e-05	3.252e-05	3.652e-05
@@ -1982,7 +1953,6 @@ lihev	ADJ	live	live|wohnen		1.363e-04	3	0.556	5.413e-05	8.218e-05	0.000e+00
 malil	NOUN	evil	übel	mal|malvado	1.363e-04	3	0.517	3.507e-05	1.014e-05	9.104e-05
 nalek	NOUN	neck	hals|nacken	cuello	1.362e-04	3	0.423	4.765e-05	4.561e-05	4.292e-05
 desen	ADV		mindestens		1.361e-04	3	0.500	0.000e+00	1.361e-04	0.000e+00
-gabab	NOUN		g		1.361e-04	3	0.200	0.000e+00	1.361e-04	0.000e+00
 somev	ADV	somewhere	irgendwo		1.360e-04	3	0.439	6.138e-05	7.466e-05	0.000e+00
 matin	NOUN	marketing	marketing|vermarktung	marketing|comercialización|mercadeo|mercadotecnia	1.360e-04	3	0.521	6.729e-05	4.125e-05	2.746e-05
 foged	ADJ		folgend		1.359e-04	3	0.714	0.000e+00	1.359e-04	0.000e+00
@@ -1994,7 +1964,6 @@ torem	NOUN	storm	sturm|unwetter	tormenta	1.356e-04	3	0.513	5.435e-05	4.622e-05	3
 leker	ADJ	left	linker	izquierdo	1.353e-04	3	0.494	4.654e-05	4.283e-05	4.594e-05
 tohot	NOUN	tooth	zahn	diente|muela	1.351e-04	3	0.442	5.580e-05	3.603e-05	4.323e-05
 siker	VERB	secure	sichern		1.348e-04	3	0.736	5.634e-05	7.847e-05	0.000e+00
-pabad	NOUN	p			1.348e-04	3	0.200	1.348e-04	0.000e+00	0.000e+00
 salid	NOUN	output	ausgang	salida	1.348e-04	3	0.646	3.002e-05	2.066e-05	8.412e-05
 nenen	NOUN	independence	unabhängigkeit	independencia	1.348e-04	3	0.421	4.241e-05	1.870e-05	7.366e-05
 lativ	ADJ	relative	relativ	relativo|pariente	1.347e-04	3	0.703	1.204e-05	8.507e-05	3.761e-05
@@ -2005,7 +1974,6 @@ kohol	NOUN	alcohol	alkohol	alcohol	1.344e-04	3	0.714	4.542e-05	5.289e-05	3.608e-
 rilat	ADJ	bright	hell|strahlend	brillante|luminoso	1.344e-04	3	0.448	5.141e-05	3.900e-05	4.395e-05
 kamon	NOUN	champion	weltmeister|champion	campeón|campeona	1.343e-04	3	0.602	4.654e-05	3.332e-05	5.442e-05
 sepeb	NOUN			septiembre	1.342e-04	3	0.556	0.000e+00	0.000e+00	1.342e-04
-papop	CCONJ			u	1.342e-04	3	0.000	0.000e+00	0.000e+00	1.342e-04
 natir	ADJ	entire			1.341e-04	3	0.600	1.341e-04	0.000e+00	0.000e+00
 raris	NOUN	root	wurzel	raíz	1.341e-04	3	0.429	5.195e-05	2.940e-05	5.270e-05
 hokup	NOUN	up	hoch	arriba	1.340e-04	3	0.403	1.233e-04	7.727e-06	2.982e-06
@@ -2034,7 +2002,6 @@ tabav	NOUN		tv		1.325e-04	3	0.400	0.000e+00	1.325e-04	0.000e+00
 kabam	NOUN		km		1.325e-04	3	0.400	0.000e+00	1.325e-04	0.000e+00
 misem	PRON			mismo	1.324e-04	3	0.800	0.000e+00	0.000e+00	1.324e-04
 renat	NOUN	threat	bedrohung	amenaza	1.323e-04	3	0.491	6.573e-05	1.993e-05	4.662e-05
-vabad	NUM			vi	1.323e-04	3	0.200	0.000e+00	0.000e+00	1.323e-04
 komis	NOUN	commitment	engagement	compromiso	1.321e-04	3	0.395	3.703e-05	3.766e-05	5.745e-05
 meren	NOUN	emergency	notfall|notruf	emergencia	1.321e-04	3	0.513	6.264e-05	2.551e-05	4.397e-05
 bahik	NOUN	bike	fahrrad	moto|bici	1.321e-04	3	0.363	4.649e-05	4.618e-05	3.945e-05
@@ -2080,7 +2047,6 @@ vekel	VERB	switch	wechseln		1.287e-04	3	0.470	4.410e-05	8.458e-05	0.000e+00
 larag	NOUN	long		largo|larga	1.286e-04	3	0.788	3.972e-06	0.000e+00	1.246e-04
 rotes	NOUN	protest	protest	protesta	1.286e-04	3	0.714	3.861e-05	4.355e-05	4.642e-05
 reker	VERB	recover	erholen	recuperar	1.284e-04	3	0.584	4.935e-05	1.567e-05	6.340e-05
-habaf	NOUN	h			1.283e-04	3	0.200	1.283e-04	0.000e+00	0.000e+00
 hater	PRON	whatever			1.282e-04	3	0.625	1.282e-04	0.000e+00	0.000e+00
 sevis	NOUN	advice	beratung	asesoramiento|consejos	1.279e-04	3	0.458	8.635e-05	3.276e-05	8.737e-06
 fisel	ADJ		offiziell		1.278e-04	3	0.714	0.000e+00	1.278e-04	0.000e+00
@@ -2155,7 +2121,6 @@ patir	VERB	depart	abweichen	partir	1.229e-04	3	0.748	9.274e-06	6.083e-06	1.075e-
 tadat	NOUN	update	update	actualización	1.229e-04	3	0.517	6.339e-05	3.177e-05	2.769e-05
 hetig	ADJ		heutig		1.228e-04	3	0.833	0.000e+00	1.228e-04	0.000e+00
 manit	NOUN	humanity	menschheit|menschlichkeit	humanidad	1.228e-04	3	0.538	2.798e-05	4.246e-05	5.237e-05
-vabaf	NUM		v		1.228e-04	3	0.200	0.000e+00	1.228e-04	0.000e+00
 koles	ADJ	complex	komplex	complejo	1.227e-04	3	0.611	5.302e-05	3.704e-05	3.265e-05
 varat	NOUN	commodity	ware|rohstoff	mercancía	1.226e-04	3	0.454	1.407e-05	9.291e-05	1.560e-05
 nerik	NOUN	instruction	unterricht	instrucción	1.224e-04	3	0.399	4.151e-05	4.402e-05	3.688e-05
@@ -2233,8 +2198,6 @@ morov	NOUN	tomorrow			1.174e-04	3	0.714	1.174e-04	0.000e+00	0.000e+00
 fenol	ADJ	friendly	freundlich	amistoso	1.173e-04	3	0.480	4.935e-05	6.085e-05	7.090e-06
 subel	NOUN	soil	erdboden	suelo	1.173e-04	3	0.684	2.935e-05	3.427e-06	8.449e-05
 vagen	NOUN	cart	wagen|karren	carro	1.172e-04	3	0.645	1.380e-05	6.701e-05	3.638e-05
-papup	NUM	ii			1.172e-04	3	0.000	1.172e-04	0.000e+00	0.000e+00
-kabis	NUM			x	1.171e-04	3	0.400	0.000e+00	0.000e+00	1.171e-04
 raket	VERB	attract	anziehen	atraer	1.171e-04	3	0.353	5.063e-05	2.943e-05	3.702e-05
 kulep	NOUN	guilt		culpa|culpabilidad	1.170e-04	3	0.700	1.507e-05	0.000e+00	1.020e-04
 baban	ADJ	urban		urbano	1.170e-04	3	0.600	4.988e-05	0.000e+00	6.713e-05
@@ -2322,7 +2285,6 @@ viset	NOUN	vice	vizepräsident|vize|sitte	vicepresidente|vicio	1.118e-04	3	0.519
 sofat	ADJ	soft	weich	suave|blando	1.117e-04	3	0.482	5.346e-05	2.027e-05	3.799e-05
 divir	VERB	divide	aufteilen	dividir	1.117e-04	3	0.684	5.262e-05	1.304e-05	4.604e-05
 monat	VERB	mount	einbinden|montieren	montar	1.116e-04	3	0.554	5.862e-05	1.890e-05	3.410e-05
-dabaf	NOUN	j			1.116e-04	3	0.200	1.116e-04	0.000e+00	0.000e+00
 liral	ADV	literally		literalmente	1.116e-04	3	0.666	9.081e-05	0.000e+00	2.077e-05
 binan	NOUN	combination	kombination	combinación	1.114e-04	3	0.455	4.542e-05	4.020e-05	2.575e-05
 mater	VERB			meter	1.113e-04	3	0.800	0.000e+00	0.000e+00	1.113e-04
@@ -2413,7 +2375,6 @@ tarul	ADV	truly		verdaderamente	1.065e-04	3	0.659	8.325e-05	0.000e+00	2.326e-05
 malik	ADJ	male	männlich	masculino	1.065e-04	3	0.693	2.824e-05	5.324e-05	2.500e-05
 fugug	NOUN		verfügung		1.065e-04	3	0.556	0.000e+00	1.065e-04	0.000e+00
 remig	ADJ	remaining	übrig	restante	1.064e-04	3	0.396	7.942e-06	8.365e-05	1.482e-05
-vabag	NUM			v	1.064e-04	3	0.200	0.000e+00	0.000e+00	1.064e-04
 kosen	VERB	comprise	umfassen		1.062e-04	3	0.401	2.050e-05	8.571e-05	0.000e+00
 foduk	INTJ	fuck		joder|coño	1.062e-04	3	0.471	5.468e-05	0.000e+00	5.152e-05
 paren	ADV	apparently	scheinbar	aparentemente	1.061e-04	3	0.525	7.042e-05	7.657e-06	2.803e-05
@@ -2517,7 +2478,6 @@ buton	NOUN	button	knopf|button	botón	1.008e-04	3	0.795	5.117e-05	2.675e-05	2.29
 lelad	NOUN	lead	vorsprung|blei	plomo	1.008e-04	3	0.593	7.077e-05	2.055e-05	9.493e-06
 paser	NOUN	passenger	passagier	pasajero	1.007e-04	3	0.655	5.122e-05	1.615e-05	3.335e-05
 samag	NOUN		samstag		1.007e-04	3	0.714	0.000e+00	1.007e-04	0.000e+00
-kabag	NOUN		k		1.007e-04	3	0.200	0.000e+00	1.007e-04	0.000e+00
 kabah	NOUN		co		1.007e-04	3	0.200	0.000e+00	1.007e-04	0.000e+00
 sesen	VERB	exclude	ausschließen	excluir	1.007e-04	3	0.408	2.467e-05	6.523e-05	1.078e-05
 radim	ADJ	random	zufällig|willkürlich	aleatorio	1.006e-04	3	0.427	4.241e-05	5.621e-05	1.946e-06
@@ -2545,7 +2505,6 @@ vebit	VERB	prohibit	verbieten|untersagen		9.916e-05	3	0.469	1.745e-05	8.171e-05	
 resar	NOUN	regret	reue	pesar|arrepentimiento	9.909e-05	3	0.703	1.021e-05	4.603e-06	8.428e-05
 ketiv	ADJ	creative	kreativ	creativo	9.906e-05	3	0.714	4.442e-05	3.172e-05	2.293e-05
 felov	VERB	flow	fließen	fluir	9.906e-05	3	0.554	5.284e-05	3.926e-05	6.954e-06
-nabag	NUM		n		9.900e-05	3	0.200	0.000e+00	9.900e-05	0.000e+00
 pobad	NOUN	pound	pfund	libra	9.900e-05	3	0.483	6.116e-05	1.787e-05	1.997e-05
 vabov	INTJ	wow			9.895e-05	3	0.600	9.895e-05	0.000e+00	0.000e+00
 sikul	NOUN	cycle	zyklus	ciclo	9.893e-05	3	0.789	5.391e-05	8.425e-06	3.659e-05
@@ -2598,7 +2557,6 @@ fasat	ADV	fast		rápido	9.634e-05	3	0.692	7.905e-05	0.000e+00	1.729e-05
 sepat	ADJ	separate	trennen|separat	separado	9.628e-05	3	0.596	5.243e-05	2.861e-05	1.524e-05
 rakiv	ADJ	attractive	attraktiv	atractivo	9.622e-05	3	0.625	3.783e-05	3.779e-05	2.060e-05
 notis	VERB	notice			9.621e-05	3	1.000	9.621e-05	0.000e+00	0.000e+00
-kabem	NOUN		cm		9.620e-05	3	0.400	0.000e+00	9.620e-05	0.000e+00
 deraf	NOUN	draft	entwurf	borrador	9.613e-05	3	0.379	4.693e-05	4.023e-05	8.976e-06
 konis	VERB	consist		consistir	9.608e-05	3	0.632	4.614e-05	0.000e+00	4.994e-05
 ritig	NOUN	writing		escritura	9.600e-05	3	0.602	6.429e-05	0.000e+00	3.172e-05
@@ -2716,7 +2674,6 @@ higah	NOUN	high	high	alto|alta	9.053e-05	3	0.488	1.224e-05	4.295e-05	3.534e-05
 reven	NOUN	revenue	umsatz		9.053e-05	3	0.680	6.160e-05	2.892e-05	0.000e+00
 lalas	NOUN		anlaß		9.051e-05	3	0.600	0.000e+00	9.051e-05	0.000e+00
 pepap	PART		ja		9.044e-05	3	0.000	0.000e+00	9.044e-05	0.000e+00
-vabah	ADJ	w			9.040e-05	3	0.200	9.040e-05	0.000e+00	0.000e+00
 silit	VERB	facilitate	erleichtern	facilitar	9.021e-05	3	0.473	1.728e-05	2.904e-05	4.389e-05
 maneh	NOUN	handling	umgang|handhabung	manejo	9.021e-05	3	0.565	3.418e-06	5.476e-05	3.203e-05
 febab	ADJ		offenbar		9.019e-05	3	0.571	0.000e+00	9.019e-05	0.000e+00
@@ -2758,11 +2715,9 @@ kodin	NOUN	knee	knie	rodilla	8.901e-05	3	0.449	4.073e-05	2.651e-05	2.177e-05
 ragat	ADJ	straight	geradeaus	recto|heterosexual	8.900e-05	3	0.471	7.289e-05	4.402e-06	1.171e-05
 rolan	VERB	roll	rollen		8.898e-05	3	0.640	7.129e-05	1.769e-05	0.000e+00
 ritem	NOUN	criterion	kriterium	criterio	8.885e-05	3	0.585	1.728e-05	3.042e-05	4.115e-05
-pepep	NOUN	e			8.881e-05	3	0.000	8.881e-05	0.000e+00	0.000e+00
 nusun	NOUN	exploitation	nutzung|ausbeutung	explotación	8.872e-05	3	0.476	7.723e-06	5.414e-05	2.685e-05
 dapap	NOUN	daddy		papá|daddy	8.859e-05	3	0.536	2.556e-05	0.000e+00	6.303e-05
 kokud	VERB	conclude		concluir	8.858e-05	3	0.607	4.415e-05	0.000e+00	4.444e-05
-habag	NOUN			h	8.857e-05	3	0.200	0.000e+00	0.000e+00	8.857e-05
 minim	ADJ	minimum		mínimo	8.855e-05	3	0.926	2.278e-05	0.000e+00	6.576e-05
 domir	VERB	dominate	beherrschen|dominieren	dominar	8.851e-05	3	0.458	1.749e-05	4.605e-05	2.497e-05
 dabuf	ADV		drauf		8.835e-05	3	0.600	0.000e+00	8.835e-05	0.000e+00
@@ -2810,7 +2765,6 @@ dikal	ADJ	radical	radikal	radical	8.593e-05	3	0.714	2.388e-05	2.872e-05	3.333e-0
 dirib	VERB	distribute	vertreiben	distribuir	8.591e-05	3	0.466	3.389e-05	2.385e-05	2.816e-05
 minat	ADJ	administrative		administrativo	8.575e-05	3	0.385	3.147e-05	0.000e+00	5.428e-05
 remal	ADV		erstmals		8.567e-05	3	0.500	0.000e+00	8.567e-05	0.000e+00
-mabag	NOUN		mm		8.567e-05	3	0.200	0.000e+00	8.567e-05	0.000e+00
 daras	ADV		daraus		8.567e-05	3	0.833	0.000e+00	8.567e-05	0.000e+00
 pasor	NOUN	passport	paß	pasaporte	8.550e-05	3	0.627	1.619e-05	5.034e-05	1.897e-05
 disal	ADJ	judicial		judicial	8.549e-05	3	0.625	1.540e-05	0.000e+00	7.008e-05
@@ -2890,7 +2844,6 @@ moner	VERB	impose	verhängen|auferlegen	imponer	8.274e-05	3	0.526	1.261e-05	1.32
 donam	VERB	dream	träumen	soñar	8.272e-05	3	0.505	3.926e-05	1.722e-05	2.624e-05
 nidad	NOUN	entity		entidad	8.270e-05	3	0.497	2.514e-05	0.000e+00	5.756e-05
 sited	ADJ	excited	aufgeregt	emocionado|entusiasmado	8.270e-05	3	0.503	4.859e-05	1.917e-05	1.493e-05
-pepip	NUM			ii	8.268e-05	3	0.000	0.000e+00	0.000e+00	8.268e-05
 motil	ADJ	emotional	emotional	emotivo	8.265e-05	3	0.564	5.100e-05	2.525e-05	6.397e-06
 kobat	NOUN	tie	unentschieden|krawatte	empate|corbata	8.256e-05	3	0.282	4.760e-05	1.594e-05	1.902e-05
 rofen	VERB		eröffnen		8.252e-05	3	0.714	0.000e+00	8.252e-05	0.000e+00
@@ -3067,7 +3020,6 @@ bedin	NOUN	constraint	bedingung		7.662e-05	3	0.513	9.173e-06	6.745e-05	0.000e+00
 labet	NOUN	label	label	etiqueta	7.660e-05	3	0.639	3.494e-05	1.522e-05	2.644e-05
 matus	NOUN	mouse	maus|mäuse	ratón	7.657e-05	3	0.640	3.649e-05	2.777e-05	1.231e-05
 sekod	ADV	second			7.654e-05	3	0.833	7.654e-05	0.000e+00	0.000e+00
-fabab	NOUN	f			7.653e-05	3	0.200	7.653e-05	0.000e+00	0.000e+00
 hiren	NOUN	iron	eisen	hierro	7.651e-05	3	0.600	3.023e-05	1.562e-05	3.066e-05
 heras	ADP		heraus		7.650e-05	3	0.833	0.000e+00	7.650e-05	0.000e+00
 horil	ADJ	awful	schrecklich	horrible	7.645e-05	3	0.517	3.214e-05	5.538e-06	3.878e-05
@@ -3076,7 +3028,6 @@ kekas	NOUN		ex		7.644e-05	3	0.600	0.000e+00	7.644e-05	0.000e+00
 konum	VERB	consume	verbrauchen|konsumieren	consumir	7.642e-05	3	0.614	2.902e-05	1.547e-05	3.194e-05
 derek	NOUN	copyright	copyright|urheberrecht	derechos	7.638e-05	3	0.454	2.048e-05	1.618e-05	3.972e-05
 terob	NOUN	theft	diebstahl	robo	7.638e-05	3	0.447	1.507e-05	1.776e-05	4.356e-05
-sabad	NOUN		z		7.632e-05	3	0.200	0.000e+00	7.632e-05	0.000e+00
 denen	VERB	ponder	nachdenken	reflexionar	7.632e-05	3	0.484	2.500e-06	5.768e-05	1.613e-05
 botom	NOUN	bottom	unterseite		7.626e-05	3	0.937	7.085e-05	5.408e-06	0.000e+00
 roten	NOUN	protein	protein|proteine	proteína	7.625e-05	3	0.714	5.189e-05	1.027e-05	1.408e-05
@@ -3104,7 +3055,6 @@ moler	VERB	annoy	ärgern	molestar	7.561e-05	3	0.455	1.081e-05	2.103e-05	4.377e-0
 fikin	NOUN	fiction	erfindung|fiktion	ficción	7.560e-05	3	0.630	3.069e-05	2.105e-05	2.386e-05
 komun	VERB	communicate	kommunizieren	comunicar	7.556e-05	3	0.527	2.799e-05	1.534e-05	3.224e-05
 negat	VERB	negotiate	verhandeln|aushandeln	negociar	7.549e-05	3	0.423	2.287e-05	2.740e-05	2.522e-05
-fabad	NOUN			f	7.544e-05	3	0.200	0.000e+00	0.000e+00	7.544e-05
 lotal	ADV	totally			7.544e-05	3	0.800	7.544e-05	0.000e+00	0.000e+00
 matom	NOUN	tom			7.544e-05	3	0.600	7.544e-05	0.000e+00	0.000e+00
 derir	VERB	decrease	verringern	disminuir	7.543e-05	3	0.390	2.146e-05	2.002e-05	3.395e-05
@@ -3160,7 +3110,6 @@ meden	NOUN	amendment		modificación|enmienda	7.381e-05	3	0.401	3.516e-05	0.000e+
 heren	VERB	reign	herrschen	reinar	7.370e-05	3	0.691	1.778e-05	5.178e-05	4.139e-06
 kalos	ADV	close	nahe		7.369e-05	3	0.743	6.669e-05	6.996e-06	0.000e+00
 seram	NOUN	stream		arroyo	7.368e-05	3	0.571	5.853e-05	0.000e+00	1.515e-05
-vabak	NOUN		v		7.366e-05	3	0.200	0.000e+00	7.366e-05	0.000e+00
 tabev	NOUN			tv	7.366e-05	3	0.400	0.000e+00	0.000e+00	7.366e-05
 raven	NOUN	travel	reisen		7.362e-05	3	0.654	6.796e-05	5.668e-06	0.000e+00
 fogan	ADJ		folgen		7.361e-05	3	0.667	0.000e+00	7.361e-05	0.000e+00
@@ -3341,7 +3290,6 @@ dikat	ADJ	dense	dicht	denso	6.756e-05	3	0.615	1.094e-05	4.671e-05	9.920e-06
 femad	ADJ		fremd		6.754e-05	3	0.600	0.000e+00	6.754e-05	0.000e+00
 hurir	VERB	flee	flüchten	huir	6.753e-05	3	0.505	1.304e-05	1.446e-05	4.002e-05
 mebes	NOUN	membership	mitgliedschaft|beitritt	pertenencia|membresía	6.749e-05	3	0.414	3.292e-05	2.283e-05	1.174e-05
-babaf	NOUN	b			6.746e-05	3	0.200	6.746e-05	0.000e+00	0.000e+00
 digid	NOUN	dignity	würde	dignidad	6.739e-05	3	0.506	1.172e-05	2.008e-05	3.559e-05
 netek	NOUN	networking	netzwerk|vernetzung		6.734e-05	3	0.567	9.720e-06	5.762e-05	0.000e+00
 heref	PRON	herself			6.729e-05	3	0.714	6.729e-05	0.000e+00	0.000e+00
@@ -3382,16 +3330,12 @@ dadis	VERB	advise	beraten		6.622e-05	3	0.392	3.608e-05	3.014e-05	0.000e+00
 bahov	NOUN	low		baja	6.621e-05	3	0.567	1.086e-05	0.000e+00	5.535e-05
 beleg	VERB		belegen		6.611e-05	3	0.714	0.000e+00	6.611e-05	0.000e+00
 peden	NOUN	pen	feder	pluma|pen	6.605e-05	3	0.506	2.678e-05	1.860e-05	2.067e-05
-dabag	ADP			d	6.599e-05	3	0.200	0.000e+00	0.000e+00	6.599e-05
 gisar	NOUN	legislature	gesetzgeber|legislaturperiode|legislative	legislador|legislatura	6.596e-05	3	0.441	1.618e-05	1.968e-05	3.010e-05
 laven	NOUN	avenue	allee	avenida	6.584e-05	3	0.612	3.355e-05	9.045e-06	2.325e-05
 korok	VERB	approach	vorgehen		6.578e-05	3	0.390	3.682e-05	2.896e-05	0.000e+00
 loval	ADV	slowly		lentamente	6.574e-05	3	0.496	4.765e-05	0.000e+00	1.809e-05
 sidan	NOUN	citizenship	staatsbürgerschaft|bürgerschaft|staatsangehörigkeit	ciudadanía	6.574e-05	3	0.407	1.406e-05	1.958e-05	3.210e-05
 nonat	ADP	onto			6.573e-05	3	0.600	6.573e-05	0.000e+00	0.000e+00
-gabad	NOUN			g	6.570e-05	3	0.200	0.000e+00	0.000e+00	6.570e-05
-labaf	PART			l	6.560e-05	3	0.200	0.000e+00	0.000e+00	6.560e-05
-labag	NOUN			l	6.560e-05	3	0.200	0.000e+00	0.000e+00	6.560e-05
 tosen	VERB		stoßen		6.559e-05	3	0.833	0.000e+00	6.559e-05	0.000e+00
 magis	ADJ	magical	magisch	mágico	6.558e-05	3	0.791	1.853e-05	1.820e-05	2.886e-05
 sesor	NOUN	advisor	berater	asesor|asesora	6.558e-05	3	0.513	1.615e-05	2.640e-05	2.303e-05
@@ -3504,7 +3448,6 @@ renus	NOUN	resignation	kündigung|ausscheiden	renuncia|dimisión|resignación	6.
 kosat	ADV	constantly		constantemente	6.278e-05	3	0.488	3.783e-05	0.000e+00	2.495e-05
 fisam	ADV	officially		oficialmente	6.278e-05	3	0.525	3.783e-05	0.000e+00	2.495e-05
 ragon	NOUN	dragon	dragon	dragón	6.273e-05	3	0.833	4.274e-05	4.934e-06	1.505e-05
-kabak	NOUN			k	6.272e-05	3	0.200	0.000e+00	0.000e+00	6.272e-05
 setel	VERB	settle	begleichen|niederlassen		6.268e-05	3	0.748	5.675e-05	5.936e-06	0.000e+00
 gemus	NOUN	vegetable	gemüse	verdura	6.267e-05	3	0.569	2.546e-05	2.532e-05	1.189e-05
 manas	NOUN	means			6.263e-05	3	0.600	6.263e-05	0.000e+00	0.000e+00
@@ -3570,7 +3513,6 @@ filer	NOUN	filter	filter	filtro	6.123e-05	3	0.823	2.564e-05	1.600e-05	1.959e-05
 dariv	NOUN	drive	antrieb|laufwerk		6.118e-05	3	0.678	4.684e-05	1.433e-05	0.000e+00
 kusas	NOUN	prosecution	anklage|strafverfolgung	acusación|enjuiciamiento	6.116e-05	3	0.329	1.283e-05	2.070e-05	2.763e-05
 kamus	NOUN	campus	campus	campus	6.113e-05	3	0.833	3.435e-05	1.207e-05	1.471e-05
-mabah	NOUN	m			6.112e-05	3	0.200	6.112e-05	0.000e+00	0.000e+00
 vedak	NOUN	suspicion	verdacht|misstrauen	sospecha	6.106e-05	3	0.403	1.041e-05	3.529e-05	1.535e-05
 perig	NOUN	pig	schwein	cerdo	6.104e-05	3	0.437	2.630e-05	1.502e-05	1.972e-05
 leter	ADJ	latter	letztere		6.103e-05	3	0.777	4.441e-05	1.662e-05	0.000e+00
@@ -3584,7 +3526,6 @@ tatak	VERB	attach	befestigen|anhängen		6.072e-05	3	0.632	4.602e-05	1.471e-05	0.
 motir	VERB	motivate	motivieren	motivar	6.071e-05	3	0.588	1.784e-05	2.398e-05	1.889e-05
 butor	NOUN	bull	stier	toro	6.070e-05	3	0.486	2.444e-05	5.053e-06	3.121e-05
 dibud	NOUN		jude		6.070e-05	3	0.600	0.000e+00	6.070e-05	0.000e+00
-vabiv	NUM		iv		6.070e-05	3	0.400	0.000e+00	6.070e-05	0.000e+00
 gebak	VERB		gebrauchen		6.068e-05	3	0.556	0.000e+00	6.068e-05	0.000e+00
 komus	ADJ	communist		comunista	6.067e-05	3	0.625	2.332e-05	0.000e+00	3.734e-05
 koran	NOUN	conservation	erhaltung	conservación	6.066e-05	3	0.379	2.388e-05	1.183e-05	2.495e-05
@@ -3627,7 +3568,6 @@ febad	NOUN	foe	feind		5.984e-05	3	0.576	3.616e-06	5.623e-05	0.000e+00
 tesen	NOUN	teen		adolescente	5.977e-05	3	0.612	2.812e-05	0.000e+00	3.164e-05
 benon	VERB		beantworten		5.976e-05	3	0.455	0.000e+00	5.976e-05	0.000e+00
 tabet	CCONJ		et		5.974e-05	3	0.400	0.000e+00	5.974e-05	0.000e+00
-pepop	NOUN	y			5.971e-05	3	0.000	5.971e-05	0.000e+00	0.000e+00
 kagok	INTJ	ok			5.969e-05	3	0.400	5.969e-05	0.000e+00	0.000e+00
 leher	ADV	elsewhere	woanders|anderswo		5.966e-05	3	0.458	3.214e-05	2.752e-05	0.000e+00
 siris	ADJ	syrian	syrisch	sirio	5.965e-05	3	0.742	1.540e-05	1.858e-05	2.567e-05
@@ -3787,7 +3727,6 @@ ganen	VERB	supplement	ergänzen		5.590e-05	3	0.535	1.254e-05	4.336e-05	0.000e+00
 pepup	INTJ			ay	5.586e-05	3	0.000	0.000e+00	0.000e+00	5.586e-05
 tetik	ADJ	authentic	verbindlich|authentisch	auténtico	5.586e-05	3	0.559	1.228e-05	1.273e-05	3.085e-05
 felas	NOUN	flash	blitz	flash|destello	5.585e-05	3	0.645	3.147e-05	1.130e-05	1.308e-05
-davad	NOUN	dvd	dvd	dvd	5.581e-05	3	0.600	1.986e-05	2.709e-05	8.857e-06
 sabut	VERB	shut			5.579e-05	3	0.600	5.579e-05	0.000e+00	0.000e+00
 seget	NOUN	segment	segment	segmento	5.578e-05	3	0.714	3.097e-05	1.012e-05	1.469e-05
 tebil	ADV		teil		5.567e-05	3	0.800	0.000e+00	5.567e-05	0.000e+00
@@ -3833,7 +3772,6 @@ vetag	NOUN	everyday	alltag		5.479e-05	3	0.540	1.235e-05	4.244e-05	0.000e+00
 dahid	NOUN	aid	beihilfe		5.479e-05	3	0.567	4.908e-05	5.703e-06	0.000e+00
 depit	NOUN	deposit	einlage	depósito	5.471e-05	3	0.627	1.792e-05	6.662e-06	3.013e-05
 pasar	NOUN	pass	vergehen	pase|pasar	5.469e-05	3	0.593	1.524e-05	3.254e-06	3.619e-05
-mabim	NOUN	im			5.468e-05	3	0.400	5.468e-05	0.000e+00	0.000e+00
 vereg	NOUN	spread	verbreitung|verteilen	propagación	5.463e-05	3	0.380	1.922e-05	3.075e-05	4.652e-06
 kadis	VERB	kiss		kiss	5.463e-05	3	0.600	5.235e-05	0.000e+00	2.276e-06
 gehos	NOUN	ghost		fantasma	5.460e-05	3	0.460	3.782e-05	0.000e+00	1.678e-05
@@ -3989,7 +3927,6 @@ herer	VERB			ejercer	5.135e-05	3	0.714	0.000e+00	0.000e+00	5.135e-05
 febov	ADJ	fellow			5.134e-05	3	0.800	5.134e-05	0.000e+00	0.000e+00
 sofuk	NOUN	couch	sofa	sofá|sillón	5.133e-05	3	0.537	1.751e-05	1.668e-05	1.714e-05
 latar	VERB			plantear	5.127e-05	3	0.625	0.000e+00	0.000e+00	5.127e-05
-labil	ADJ	ill			5.127e-05	3	0.400	5.127e-05	0.000e+00	0.000e+00
 pasap	NOUN	shape			5.127e-05	3	0.600	5.127e-05	0.000e+00	0.000e+00
 kivet	ADJ	equivalent	gleichwertig	equivalente	5.127e-05	3	0.538	3.206e-05	4.580e-06	1.463e-05
 demin	NOUN	demo	demo	demostración|demo	5.126e-05	3	0.564	1.283e-05	2.414e-05	1.428e-05
@@ -4191,7 +4128,6 @@ ramus	NOUN	bouquet	strauß	ramo	4.811e-05	3	0.533	2.868e-06	1.526e-05	2.998e-05
 hohod	NOUN	household			4.799e-05	3	0.556	4.799e-05	0.000e+00	0.000e+00
 beher	NOUN		bewohner		4.793e-05	3	0.625	0.000e+00	4.793e-05	0.000e+00
 lotad	NOUN	loyalty	treue	lealtad|fidelidad	4.792e-05	3	0.435	1.652e-05	9.797e-06	2.161e-05
-pipap	ADV		o		4.792e-05	3	0.000	0.000e+00	4.792e-05	0.000e+00
 fugin	ADV	fucking			4.789e-05	3	0.667	4.789e-05	0.000e+00	0.000e+00
 mekar	NOUN		amerikaner		4.789e-05	3	0.500	0.000e+00	4.789e-05	0.000e+00
 gesut	NOUN	gesture	geste	gesto	4.788e-05	3	0.763	1.320e-05	9.395e-06	2.529e-05
@@ -4234,7 +4170,6 @@ derer	ADV		andererseits		4.721e-05	3	0.417	0.000e+00	4.721e-05	0.000e+00
 firam	ADJ	firm		firme	4.721e-05	3	0.800	8.101e-06	0.000e+00	3.911e-05
 tepik	NOUN	carpet	teppich	alfombra	4.720e-05	3	0.416	1.946e-05	1.640e-05	1.134e-05
 kalip	NOUN	clip	clip	clip	4.719e-05	3	0.800	3.259e-05	1.271e-05	1.899e-06
-pipep	ADJ		e		4.719e-05	3	0.000	0.000e+00	4.719e-05	0.000e+00
 dirit	NOUN	diversity		diversidad	4.718e-05	3	0.511	2.332e-05	0.000e+00	2.386e-05
 kalat	VERB	chat	chatten	charlar	4.718e-05	3	0.599	3.771e-05	2.479e-06	6.987e-06
 nedit	ADV	anytime	jederzeit		4.717e-05	3	0.404	1.730e-05	2.988e-05	0.000e+00
@@ -4402,7 +4337,6 @@ lamik	ADJ	islamic		islámico	4.439e-05	3	0.714	3.069e-05	0.000e+00	1.370e-05
 vekeg	NOUN		weltkrieg		4.438e-05	3	0.556	0.000e+00	4.438e-05	0.000e+00
 barus	NOUN	bush		arbusto	4.436e-05	3	0.587	3.872e-05	0.000e+00	5.636e-06
 dimer	NOUN	diameter	durchmesser	diámetro	4.435e-05	3	0.563	1.339e-05	2.044e-05	1.053e-05
-daked	NOUN		cd		4.434e-05	3	0.400	0.000e+00	4.434e-05	0.000e+00
 beveb	VERB	advertise	bewerben		4.432e-05	3	0.529	1.137e-05	3.295e-05	0.000e+00
 dabig	VERB	dig	graben		4.432e-05	3	0.575	4.019e-05	4.136e-06	0.000e+00
 venel	ADJ		eventuell		4.432e-05	3	0.625	0.000e+00	4.432e-05	0.000e+00
@@ -4480,7 +4414,6 @@ bekig	VERB		berücksichtigen		4.302e-05	3	0.385	0.000e+00	4.302e-05	0.000e+00
 keset	NOUN	orchestra	orchester	orquesta	4.301e-05	3	0.481	1.138e-05	1.905e-05	1.257e-05
 rager	NOUN	stranger	fremde	extraño	4.300e-05	3	0.507	3.435e-05	6.366e-06	2.286e-06
 tedit	NOUN	edit	bearbeitung		4.296e-05	3	0.562	2.353e-05	1.943e-05	0.000e+00
-pipip	CCONJ		y		4.295e-05	3	0.000	0.000e+00	4.295e-05	0.000e+00
 menar	NOUN	menu	menü|speisekarte	menú	4.295e-05	3	0.580	2.031e-05	1.279e-05	9.846e-06
 latal	ADJ	tall			4.293e-05	3	0.600	4.293e-05	0.000e+00	0.000e+00
 veser	VERB			vencer	4.291e-05	3	0.833	0.000e+00	0.000e+00	4.291e-05
@@ -4634,7 +4567,6 @@ supem	NOUN	supermarket	supermarkt	supermercado	4.096e-05	3	0.480	2.935e-06	2.323
 virud	NOUN	virtue	tugend	virtud	4.094e-05	3	0.703	1.309e-05	3.408e-06	2.444e-05
 degir	VERB	desire	begehren		4.093e-05	3	0.729	3.405e-05	6.875e-06	0.000e+00
 gahig	NOUN		jährige		4.092e-05	3	0.667	0.000e+00	4.092e-05	0.000e+00
-pipop	NOUN	o			4.092e-05	3	0.000	4.092e-05	0.000e+00	0.000e+00
 tabel	NOUN	spreadsheet	tabelle		4.087e-05	3	0.955	2.277e-06	3.860e-05	0.000e+00
 penag	NOUN	percentage	prozentsatz		4.087e-05	3	0.535	3.657e-05	4.295e-06	0.000e+00
 ganad	NOUN	cattle	vieh	ganado	4.086e-05	3	0.505	1.574e-05	7.644e-06	1.748e-05
@@ -4670,7 +4602,6 @@ daket	NOUN	jacket		chaqueta	4.053e-05	3	0.951	3.053e-05	0.000e+00	1.000e-05
 kesug	NOUN	crossing	kreuzung	cruce	4.053e-05	3	0.475	1.277e-05	1.183e-05	1.593e-05
 fosen	NOUN	enforcement	durchsetzung|vollzug		4.051e-05	3	0.419	3.147e-05	9.040e-06	0.000e+00
 nibod	PRON	anybody			4.051e-05	3	0.833	4.051e-05	0.000e+00	0.000e+00
-pipup	NOUN	q			4.051e-05	3	0.000	4.051e-05	0.000e+00	0.000e+00
 pemer	ADJ	premier			4.051e-05	3	0.714	4.051e-05	0.000e+00	0.000e+00
 mesid	ADJ	impressed	beeindrucken|beeindruckt		4.051e-05	3	0.364	1.564e-05	2.487e-05	0.000e+00
 rivin	NOUN	driving	fahren|autofahren	conducción	4.049e-05	3	0.421	1.874e-05	1.260e-05	9.137e-06
@@ -4719,7 +4650,6 @@ defev	ADJ	defensive	defensiv	defensivo	3.995e-05	3	0.625	2.678e-05	2.826e-06	1.0
 merit	NOUN	merit		mérito	3.994e-05	3	1.000	1.750e-05	0.000e+00	2.244e-05
 koses	NOUN	consensus	konsens|einvernehmen	consenso	3.993e-05	3	0.602	1.406e-05	1.071e-05	1.516e-05
 kesiv	ADJ	excessive	übermäßig	excesivo	3.991e-05	3	0.640	1.473e-05	7.823e-06	1.736e-05
-dabam	NOUN		dm		3.990e-05	3	0.400	0.000e+00	3.990e-05	0.000e+00
 novat	ADJ	innovative	innovativ	innovador	3.988e-05	3	0.585	1.406e-05	1.316e-05	1.266e-05
 makep	NOUN	makeup		maquillaje	3.987e-05	3	0.706	2.734e-05	0.000e+00	1.252e-05
 dikir	NOUN	dictionary	wörterbuch	diccionario	3.984e-05	3	0.451	1.172e-05	9.395e-06	1.873e-05
@@ -4732,7 +4662,6 @@ bolog	NOUN	biology	biologie	biología	3.970e-05	3	0.833	1.853e-05	1.104e-05	1.01
 dovan	ADJ	down	down	abajo	3.970e-05	3	0.670	1.320e-05	1.787e-05	8.630e-06
 tumeb	NOUN	thumb	daumen	pulgar	3.969e-05	3	0.593	1.685e-05	1.870e-05	4.145e-06
 luter	NOUN	leather		cuero	3.969e-05	3	0.642	2.500e-05	0.000e+00	1.469e-05
-babag	NUM	b			3.968e-05	3	0.200	3.968e-05	0.000e+00	0.000e+00
 kakas	ADV			acaso	3.968e-05	3	0.800	0.000e+00	0.000e+00	3.968e-05
 halan	ADJ		erhalten		3.967e-05	3	0.500	0.000e+00	3.967e-05	0.000e+00
 natis	NOUN	native	muttersprache|einheimische	nativo	3.966e-05	3	0.632	1.953e-05	1.234e-05	7.793e-06
@@ -4828,7 +4757,6 @@ lenin	NOUN	denial	ablehnung|verweigerung	negación	3.821e-05	3	0.434	1.090e-05	2
 lafig	ADJ		langfristig		3.818e-05	3	0.455	0.000e+00	3.818e-05	0.000e+00
 sifut	NOUN	shift	verschiebung		3.818e-05	3	0.708	3.114e-05	7.040e-06	0.000e+00
 terer	VERB	interfere	beeinträchtigen|einmischen	interferir	3.817e-05	3	0.374	1.309e-05	2.090e-05	4.180e-06
-sabah	ADP		z		3.816e-05	3	0.200	0.000e+00	3.816e-05	0.000e+00
 velin	NOUN	revelation	enthüllung	revelación|apocalipsis	3.816e-05	3	0.416	1.423e-05	5.360e-06	1.857e-05
 lotin	NOUN	clothing		vestimenta	3.814e-05	3	0.662	3.292e-05	0.000e+00	5.218e-06
 valek	NOUN	walk	fußweg		3.811e-05	3	0.678	3.080e-05	7.313e-06	0.000e+00
@@ -4850,7 +4778,6 @@ kapek	NOUN	pc			3.783e-05	3	0.400	3.783e-05	0.000e+00	0.000e+00
 fakum	NOUN		faktum		3.783e-05	3	0.833	0.000e+00	3.783e-05	0.000e+00
 monek	NOUN	monkey	affe	mono	3.783e-05	3	0.573	1.306e-05	6.070e-06	1.870e-05
 sager	ADJ	sour	sauer	agrio	3.778e-05	3	0.725	6.050e-06	2.964e-05	2.084e-06
-kabom	NOUN			cm	3.777e-05	3	0.400	0.000e+00	0.000e+00	3.777e-05
 lebir	VERB			leir	3.777e-05	3	0.800	0.000e+00	0.000e+00	3.777e-05
 bereh	VERB	overlook	übersehen		3.776e-05	3	0.422	1.651e-05	2.126e-05	0.000e+00
 fekib	ADJ	flexible	flexibel	flexible	3.776e-05	3	0.594	1.507e-05	1.670e-05	5.994e-06
@@ -4966,7 +4893,6 @@ larel	VERB	rely			3.618e-05	3	0.600	3.618e-05	0.000e+00	0.000e+00
 legen	VERB		verlegen		3.616e-05	3	0.625	0.000e+00	3.616e-05	0.000e+00
 teken	VERB		streichen		3.615e-05	3	0.625	0.000e+00	3.615e-05	0.000e+00
 vegeh	VERB	weigh	wiegen|wägen		3.610e-05	3	0.627	1.811e-05	1.799e-05	0.000e+00
-vafiv	NUM			iv	3.608e-05	3	0.400	0.000e+00	0.000e+00	3.608e-05
 sudit	NOUN	suite	suite	suite	3.605e-05	3	0.800	2.030e-05	9.182e-06	6.567e-06
 susib	ADJ	sustainable		sostenible|sustentable	3.604e-05	3	0.464	1.730e-05	0.000e+00	1.874e-05
 dirid	ADJ			dirigido	3.603e-05	3	0.714	0.000e+00	0.000e+00	3.603e-05
@@ -5161,7 +5087,6 @@ sasen	VERB	swap	austauschen	intercambiar	3.390e-05	3	0.415	2.611e-06	2.317e-05	8
 purut	NOUN	pursuit	verfolgung		3.385e-05	3	0.424	1.473e-05	1.912e-05	0.000e+00
 rehed	NOUN	remedy	abhilfe	remedio	3.385e-05	3	0.710	5.658e-06	4.816e-06	2.338e-05
 sikal	ADV	physically		físicamente	3.385e-05	3	0.607	2.232e-05	0.000e+00	1.153e-05
-milad	ADJ	mild	mild|milde		3.385e-05	3	0.800	1.562e-05	1.823e-05	0.000e+00
 fegen	VERB		festlegen		3.385e-05	3	0.556	0.000e+00	3.385e-05	0.000e+00
 babet	NOUN	beta	beta	beta	3.384e-05	3	0.600	1.763e-05	9.009e-06	7.197e-06
 kulat	NOUN	cult	kult	secta	3.383e-05	3	0.656	1.530e-05	1.040e-05	8.131e-06
@@ -5193,7 +5118,6 @@ dusis	NOUN	judiciary	justiz	judicatura|magistratura	3.353e-05	3	0.597	4.040e-06	
 torur	NOUN	torture		tortura	3.350e-05	3	0.833	1.574e-05	0.000e+00	1.776e-05
 disil	VERB	display			3.349e-05	3	0.800	3.349e-05	0.000e+00	0.000e+00
 denil	ADJ	residential		residencial	3.348e-05	3	0.455	2.388e-05	0.000e+00	9.602e-06
-gabaf	NOUN	g			3.348e-05	3	0.200	3.348e-05	0.000e+00	0.000e+00
 maris	NOUN	array	matrix	matriz	3.348e-05	3	0.621	1.406e-05	8.621e-06	1.079e-05
 falig	ADJ	striking	auffällig	llamativo	3.347e-05	3	0.540	7.053e-06	2.043e-05	5.988e-06
 hunar	ADJ	hungry		hambriento	3.346e-05	3	0.766	3.147e-05	0.000e+00	1.988e-06
@@ -5248,7 +5172,6 @@ henan	VERB	enhance		potenciar	3.293e-05	3	0.479	2.887e-05	0.000e+00	4.062e-06
 filis	VERB	finalize		finalizar	3.293e-05	3	0.562	1.439e-06	0.000e+00	3.149e-05
 soral	ADV	shortly			3.292e-05	3	0.800	3.292e-05	0.000e+00	0.000e+00
 hekar	NOUN	healthcare			3.292e-05	3	0.625	3.292e-05	0.000e+00	0.000e+00
-sabak	NOUN	z			3.292e-05	3	0.200	3.292e-05	0.000e+00	0.000e+00
 desaf	NOUN	defiance	mißachtung	desafío	3.291e-05	3	0.866	3.370e-06	3.183e-06	2.636e-05
 movil	NOUN	mobile	mobilfunk	móvil	3.290e-05	3	0.915	1.283e-06	4.556e-06	2.706e-05
 panet	ADJ	apparent		aparente	3.287e-05	3	0.571	2.332e-05	0.000e+00	9.542e-06
@@ -5297,7 +5220,6 @@ lipik	NOUN	glimpse	einblick		3.231e-05	3	0.407	7.209e-06	2.510e-05	0.000e+00
 heraf	NOUN		herrschaft		3.230e-05	3	0.714	0.000e+00	3.230e-05	0.000e+00
 legat	ADJ	legit	legal		3.230e-05	3	0.800	1.138e-05	2.092e-05	0.000e+00
 negal	ADJ	integral		integral	3.229e-05	3	0.625	1.018e-05	0.000e+00	2.212e-05
-mabap	NOUN			mm	3.229e-05	3	0.200	0.000e+00	0.000e+00	3.229e-05
 neden	NOUN			antecedente	3.224e-05	3	0.500	0.000e+00	0.000e+00	3.224e-05
 beded	ADJ		bedeutend		3.223e-05	3	0.556	0.000e+00	3.223e-05	0.000e+00
 kanok	ADV			anoche	3.221e-05	3	0.800	0.000e+00	0.000e+00	3.221e-05
@@ -5315,8 +5237,6 @@ nutes	NOUN	nut		nuez|tuerca	3.213e-05	3	0.622	2.344e-05	0.000e+00	8.697e-06
 kodir	VERB	coordinate	koordinieren	coordinar	3.212e-05	3	0.480	1.439e-05	5.849e-06	1.188e-05
 rosad	NOUN	metropolis	großstadt|metropole	metrópoli	3.209e-05	3	0.453	4.151e-06	2.344e-05	4.503e-06
 solit	NOUN	socialist	sozialist	socialista	3.209e-05	3	0.556	9.263e-06	6.969e-06	1.586e-05
-vabam	NOUN	v			3.208e-05	3	0.200	3.208e-05	0.000e+00	0.000e+00
-vaban	NUM	v			3.208e-05	3	0.200	3.208e-05	0.000e+00	0.000e+00
 lekok	NOUN	electronics	elektronik|elektrotechnik		3.208e-05	3	0.453	1.730e-05	1.478e-05	0.000e+00
 dabur	VERB	dare			3.205e-05	3	0.600	3.205e-05	0.000e+00	0.000e+00
 gonis	NOUN			protagonista	3.205e-05	3	0.455	0.000e+00	0.000e+00	3.205e-05
@@ -5356,7 +5276,6 @@ kalak	ADV	aka	aka|alias		3.177e-05	3	0.400	1.574e-05	1.603e-05	0.000e+00
 fehel	NOUN	feel	fühlen	sentir	3.176e-05	3	0.629	1.885e-05	8.233e-06	4.675e-06
 litil	ADP	till			3.176e-05	3	0.600	3.176e-05	0.000e+00	0.000e+00
 visan	NOUN	wish	wünschen		3.175e-05	3	0.587	2.769e-05	4.055e-06	0.000e+00
-babah	ADJ	b			3.174e-05	3	0.200	3.174e-05	0.000e+00	0.000e+00
 kokut	ADJ	consecutive		consecutivo	3.174e-05	3	0.500	1.685e-05	0.000e+00	1.489e-05
 bafen	VERB	abolish	abschaffen	abolir	3.174e-05	3	0.521	9.430e-06	2.055e-05	1.752e-06
 loter	NOUN	lottery	gewinnspiel|lotto	lotería	3.172e-05	3	0.712	1.116e-05	1.384e-05	6.719e-06
@@ -5480,7 +5399,6 @@ bemun	NOUN	endeavor	bemühung|bestreben	empeño	3.035e-05	3	0.448	6.383e-06	1.83
 talet	ADJ	talented	talentiert	talentoso	3.034e-05	3	0.610	2.232e-05	3.750e-06	4.274e-06
 fines	NOUN	fitness		aptitud	3.034e-05	3	0.765	2.734e-05	0.000e+00	3.002e-06
 dosin	NOUN	tin	dose|zinn	estaño	3.032e-05	3	0.499	1.194e-05	1.673e-05	1.650e-06
-dakid	NOUN	cd			3.032e-05	3	0.400	3.032e-05	0.000e+00	0.000e+00
 nahen	ADJ			ajeno	3.029e-05	3	0.800	0.000e+00	0.000e+00	3.029e-05
 lasol	ADJ	solo			3.028e-05	3	0.600	3.028e-05	0.000e+00	0.000e+00
 teren	ADJ	tender	zärtlich	tierno	3.028e-05	3	0.502	1.373e-05	3.491e-06	1.306e-05
@@ -5526,7 +5444,6 @@ bedig	ADJ	vivid	lebendig		2.996e-05	3	0.536	6.272e-06	2.369e-05	0.000e+00
 merik	ADJ			norteamericano	2.995e-05	3	0.385	0.000e+00	0.000e+00	2.995e-05
 sekal	NOUN	sexuality	sexualität	sexualidad	2.995e-05	3	0.490	1.041e-05	9.395e-06	1.014e-05
 kesat	NOUN	quest	streben		2.994e-05	3	0.598	2.076e-05	9.182e-06	0.000e+00
-mabat	INTJ	mm			2.993e-05	3	0.200	2.993e-05	0.000e+00	0.000e+00
 nodik	ADJ		nördlich		2.993e-05	3	0.714	0.000e+00	2.993e-05	0.000e+00
 falav	NOUN	flaw		falla	2.992e-05	3	0.630	4.442e-06	0.000e+00	2.548e-05
 deseg	NOUN	descent	abstieg|abstammung	ascendencia	2.991e-05	3	0.437	9.497e-06	1.637e-05	4.046e-06
@@ -5590,7 +5507,6 @@ selig	NOUN	spelling	schreibweise|rechtschreibung	ortografía	2.941e-05	3	0.392	9
 kelan	NOUN	clan	clan	clan	2.941e-05	3	0.800	1.356e-05	7.999e-06	7.849e-06
 milal	NOUN		mittelalter		2.940e-05	3	0.500	0.000e+00	2.940e-05	0.000e+00
 baket	NOUN	basket	einkaufswagen	canasta|cesta|basket	2.939e-05	3	0.579	1.306e-05	2.769e-06	1.357e-05
-sabal	NOUN	s			2.938e-05	3	0.200	2.938e-05	0.000e+00	0.000e+00
 filam	VERB	film			2.937e-05	3	0.800	2.937e-05	0.000e+00	0.000e+00
 ferig	ADP		fertig		2.937e-05	3	0.833	0.000e+00	2.937e-05	0.000e+00
 gabef	NOUN	grief	trauer		2.937e-05	3	0.455	1.339e-05	1.597e-05	0.000e+00
@@ -5734,7 +5650,6 @@ rukes	NOUN	setback	rückschlag	revés|contratiempo	2.811e-05	3	0.472	2.611e-06	5
 forit	ADV		fort		2.811e-05	3	0.800	0.000e+00	2.811e-05	0.000e+00
 safer	NOUN	sphere		esfera	2.811e-05	3	0.685	1.194e-05	0.000e+00	1.616e-05
 dudag	VERB	judge			2.810e-05	3	0.800	2.810e-05	0.000e+00	0.000e+00
-kaban	NUM	c			2.810e-05	3	0.200	2.810e-05	0.000e+00	0.000e+00
 pasim	NOUN	pity		lástima	2.809e-05	3	0.616	5.329e-06	0.000e+00	2.276e-05
 detet	NOUN	advancement	weiterentwicklung	adelanto	2.809e-05	3	0.328	8.682e-06	1.269e-05	6.719e-06
 lanab	VERB			planear	2.809e-05	3	0.571	0.000e+00	0.000e+00	2.809e-05
@@ -5879,7 +5794,6 @@ boren	NOUN	brake	bremse	freno	2.707e-05	3	0.500	8.861e-06	4.638e-06	1.357e-05
 dehen	ADJ	threatening	bedrohen|drohen		2.706e-05	3	0.517	3.460e-06	2.360e-05	0.000e+00
 selak	ADJ		zeitlich		2.706e-05	3	0.571	0.000e+00	2.706e-05	0.000e+00
 gurap	NOUN	grape	traube	uva	2.706e-05	3	0.457	1.158e-05	4.709e-06	1.076e-05
-kadas	ADJ			x	2.702e-05	3	0.400	0.000e+00	0.000e+00	2.702e-05
 timis	ADJ	optimistic	optimistisch	optimista	2.701e-05	3	0.543	8.269e-06	9.539e-06	9.204e-06
 naket	ADJ	intact	intakt|unversehrt	intacto	2.701e-05	3	0.479	1.066e-05	7.813e-06	8.538e-06
 varid	ADJ	varied		variado	2.701e-05	3	0.833	7.961e-06	0.000e+00	1.904e-05

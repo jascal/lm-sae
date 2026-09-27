@@ -9,7 +9,7 @@
 
 (say (OBJ it) (when/SCONJ (know not (SUBJ you))))                            # When you do not know, say it.
 (say (OBJ (how)) (when/SCONJ (know (SUBJ you))))                             # When you know, say how.
-(ask (OBJ (how (know (SUBJ it)))) (when/SCONJ (hear (OBJ (claim/NOUN a)) (SUBJ you))))   # When you hear a claim, ask how it knows.
+(ask (OBJ (know how (SUBJ it))) (when/SCONJ (hear (OBJ (assertion a)) (SUBJ you))))   # When you hear a claim, ask how it knows.
 (and (make/VERB (OBJ (word new))) (keep (OBJ (word old the))))               # Make new words, and keep the old words.
 (and (say (OBJ (thing true the))) (say (OBJ it) (with (voice kind/ADJ a))))  # Say the true thing, and say it with a kind voice.
 

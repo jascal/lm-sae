@@ -104,7 +104,7 @@
 @raw seru veraba see-a sehen-a ver-a
 @raw guto detiva good-a gut-a
 @raw vonu veraba want-a wollen-a querer-a
-@raw taru ronona they-a ihr-a ellos-a
+@raw taru ronona they-a sie-a ellos-a
 @raw maku veraba make-a machen-a make-a
 @raw sonu deroba already-a schon-a ya-a
 @raw garu veraba give-a geben-a dar-a
@@ -145,9 +145,11 @@
 @raw dinalu nomuna ending-a Endung-a final-a
 @raw dileku nomuna dialect-a Dialekt-a dialecto-a
 @raw dunonu nomuna conjunction-a Konjunktion-a conjunción-a
+@raw ginonu nomuna hyphen-a Bindestrich-a guion-a
 @raw niteru nomuna knight-a Ritter-a caballero-a
 @raw nomunu nomuna noun-a Nomen-a sustantivo-a
 @raw numeru nomuna numeral-a Zahlwort-a numeral-a
+@raw latoru nomuna relator-a Relator-a relator-a
 @raw raselu nomuna riddle-a Rätsel-a acertijo-a
 @raw rononu nomuna pronoun-a Pronomen-a pronombre-a
 @raw sarinu nomuna saying-a Spruch-a refrán-a

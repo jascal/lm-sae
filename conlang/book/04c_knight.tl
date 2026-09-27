@@ -37,7 +37,13 @@
 (have (OBJ (meaning two)) (SUBJ (word the)))                                 # The word had two meanings.
 (say (OBJ (be "bank" (SUBJ (name my)))) (SUBJ it))                           # It said: my name is "bank".
 (say (OBJ (and (be (place (for money)) (SUBJ I)) (be (place (by river)) (SUBJ I)))) (SUBJ it))   # I am a place for money and I am a place by a river.
-(want (OBJ (fight (OBJ it))) (SUBJ "Kihote"))                                # Kihote wanted to fight it.
+(have (OBJ (gold little a)) (SUBJ "Kihote"))                                  # Kihote had a little gold.
+(want (OBJ (keep (OBJ it) (in ("bank" a)))) (SUBJ it))                       # It wanted to keep it in a bank.
+(go (to ("bank" (by (river the)))) (SUBJ it))                                # It went to the bank by the river.
+(put (OBJ (gold its)) (in (water the)) (SUBJ it))                            # It put its gold in the water.
+(take (OBJ (gold the)) (SUBJ (river the)))                                   # The river took the gold.
+(be angry (SUBJ "Kihote"))                                                   # Kihote was angry.
+(want (OBJ (fight (OBJ (word the)))) (SUBJ "Kihote"))                         # Kihote wanted to fight the word.
 (say (OBJ (ask (OBJ it))) (SUBJ "Sanko"))                                    # Sanko said: ask it.
 (ask (OBJ (be which now (SUBJ you))) (SUBJ "Kihote"))                      # Kihote asked: which are you now?
 (say (OBJ (depend (on (sentence the)) (SUBJ it))) (SUBJ (word the)))         # The word said: it depends on the sentence.
@@ -51,7 +57,7 @@
 (return (to (house (of book) his)) (at (end/NOUN the)) (SUBJ "Kihote"))    # At the end Kihote returned to his house of books.
 (write (OBJ (book own)) (SUBJ it))                                           # It wrote its own book.
 (be small (in (book this)) (SUBJ (sentence every)))                          # In this book every sentence was small.
-(say (OBJ (know (how (SUBJ it)))) (SUBJ (sentence every)))                   # Every sentence said how it knew.
+(say (OBJ (know how (SUBJ it))) (SUBJ (sentence every)))                   # Every sentence said how it knew.
 (say (OBJ (thing (that (know not (SUBJ it))))) also (SUBJ it))               # It also said the things that it did not know.
 (read (OBJ (book the)) (SUBJ "Sanko"))                                       # Sanko read the book.
 (laugh (SUBJ it))                                                            # It laughed.
@@ -61,5 +67,5 @@
 
 @verse
 (read (OBJ (book every)))                                                    # Read every book.
-(believe (OBJ (sentence no)) (without (ask (how (know (SUBJ it)))))))       # Believe no sentence without asking how it knows.
+(believe (OBJ (sentence no)) (without (ask (know how (SUBJ it))))))       # Believe no sentence without asking how it knows.
 @prose

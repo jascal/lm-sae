@@ -59,7 +59,7 @@
 (be bad (SUBJ (rain the)))                                                   # The rain is bad.
 (say (OBJ (be good (for (flower the)) (SUBJ (rain the)))) (SUBJ "Ana"))      # Ana says: the rain is good for the flower.
 (say (OBJ (and (be bad (for I)) (be good (for (flower the))) (SUBJ it))) (SUBJ "Lut"))   # Lut says: bad for me and good for the flower.
-(say (OBJ (be (like that/DET) (thing many))) (SUBJ "Ana"))                  # Ana says: many things are like that.
+(say (OBJ (be (like that/DET) (SUBJ (thing many)))) (SUBJ "Ana"))                  # Ana says: many things are like that.
 
 ## (and think know)
 (see (OBJ (sun the)) (SUBJ I))                                               # I see the sun.
@@ -126,7 +126,7 @@
 (say (OBJ (because (have (OBJ (word (for (fly/VERB)))) now (SUBJ you)))) (SUBJ "Ana"))   # Ana says: because now you have a word for flying.
 
 ## (and very more like)
-(be like (I) very (SUBJ you))                                          # You are very like me.
+(be (like I) very (SUBJ you))                                          # You are very like me.
 (know (OBJ (word more)) tomorrow (SUBJ you))                                 # Tomorrow you know more words.
 (ask (OBJ (whether (tell (OBJ (tale a)) (DAT I) (SUBJ you)))) (SUBJ "Lut"))   # Lut asks: will you tell me a tale?
 (say (OBJ (tell (OBJ (tale five)) (DAT you) will (SUBJ I))) (SUBJ "Ana"))    # Ana says: I will tell you five tales.

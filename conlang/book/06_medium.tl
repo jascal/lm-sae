@@ -1,5 +1,5 @@
 # Chapter 6 · How Talema grows. New words, the root law, the waiting letters, new rules, dialects, games.
-## (grow (how (SUBJ talem)))
+## (grow how (SUBJ talem))
 
 (change never (SUBJ (rule three the)))                                       # The three rules never change.
 (grow (SUBJ (word the)))                                                     # The words grow.
@@ -13,14 +13,14 @@
 @verse
 (mean (OBJ (thing (that (want (SUBJ you))))) (SUBJ (word "X")))              # The word X means the thing that you want.
 @prose
-(mean (OBJ (language this)) (SUBJ (word talem)))                             # The word talem means this language.
-(mean (OBJ (letter (that (sing))) ) (SUBJ (word vowel)))                     # The word vokel means a letter that sings.
-(mean (OBJ (letter (that (sing not)))) (SUBJ (word consonant)))              # The word sonat means a letter that does not sing.
-(mean (OBJ (vowel (that (count/VERB (OBJ (child the)))))) (SUBJ (word ending/NOUN)))   # The word dinal means the vowels that count the children.
-(mean (OBJ (piece (of (word small a)) (that (read (SUBJ (mind a)))))) (SUBJ (word token)))   # The word token means a small piece of a word that a mind reads.
-(mean (OBJ (question (that (play)))) (SUBJ (word riddle)))                   # The word rasel means a question that plays.
-(mean (OBJ (person (of (book old)) (that (fight (for (good the)))))) (SUBJ (word knight)))   # The word niter means a person of old books who fights for the good.
-(mean (OBJ (talem (of (or (place a) (group a))))) (SUBJ (word dialect)))     # The word dilek means the Talema of a place or a group.
+(mean (OBJ (language this)) (SUBJ (word "talem")))                             # The word talem means this language.
+(mean (OBJ (letter (that (sing))) ) (SUBJ (word "vokel")))                     # The word vokel means a letter that sings.
+(mean (OBJ (letter (that (sing not)))) (SUBJ (word "sonat")))              # The word sonat means a letter that does not sing.
+(mean (OBJ (vowel (that (count/VERB (OBJ (child the)))))) (SUBJ (word "dinal")))   # The word dinal means the vowels that count the children.
+(mean (OBJ (piece (of (word small a)) (that (read (SUBJ (mind a)))))) (SUBJ (word "token")))   # The word token means a small piece of a word that a mind reads.
+(mean (OBJ (question (that (play)))) (SUBJ (word "rasel")))                   # The word rasel means a question that plays.
+(mean (OBJ (person (of (book old)) (that (fight (for (good the)))))) (SUBJ (word "niter")))   # The word niter means a person of old books who fights for the good.
+(mean (OBJ (talem (of (or (place a) (group a))))) (SUBJ (word "dilek")))     # The word dilek means the Talema of a place or a group.
 
 ## (law (of (root the)))
 (have (OBJ (law three)) (SUBJ (root new every)))                             # Every new root has three laws.
@@ -44,6 +44,29 @@
 (give (OBJ (root short the)) (DAT (word (that (say (SUBJ we)) often most))) (SUBJ we))   # We gave the short roots to the words we say most often.
 (prove (have (OBJ (root short most the)) (when/SCONJ (give (OBJ (root the)) (in (way this)) (SUBJ we))) (SUBJ (word (that (say (SUBJ we)) often most)))))   # Proved: when we give the roots this way, the words we say most often have the shortest roots.
 (open/ADJ (whether (be short most (of (language all)) (SUBJ talem))))       # Open: is Talema the shortest of all languages?
+
+## (root short (that (wait)))
+(be free (SUBJ (root short nine)))                                           # Nine short roots are free:
+@verse
+(and "pip" "pim" "pod" "pud" "puv" "tub" "bok" "buf" "huk")
+@prose
+(have (OBJ (word no)) (in (book any)) (SUBJ they))                           # They have no word in any book.
+(wait (for (word (that (say will often (SUBJ we))))) (SUBJ they))           # They wait for words that we will say often.
+
+## (make/VERB (OBJ (word "ginon")) how (SUBJ we))
+(need/VERB (OBJ (word (for (line small (between (and name ending/NOUN)))))) (SUBJ we))   # We needed a word for the small line between a name and its ending.
+(say (OBJ it) (with (word old)) first/ADV (SUBJ we))                         # First we said it with old words:
+@verse
+(line small)                                                                 # a small line.
+@prose
+(be (and "hyphen" "Bindestrich" "guion") (SUBJ (word mother its)))          # Its mother words are hyphen, Bindestrich, guion.
+(say (OBJ it) rarely (SUBJ we))                                              # We say it rarely.
+(have (OBJ (consonant three)) therefore (SUBJ (root its)))                   # Therefore its root has three consonants.
+(sound/VERB (like "guion") most (SUBJ "ginon"))                              # ginon sounds most like guion.
+(have (OBJ it) (in (book any)) (SUBJ (word no)))                             # No word had it in any book.
+(mean (OBJ (line small (between (and name ending/NOUN)))) (SUBJ (word "ginon")))   # The word ginon means the small line between a name and its ending.
+(stand (between (and "Ana" "a")) (in "Ana-a") (SUBJ hyphen))                 # In Ana-a, the ginon stands between Ana and a.
+(write (OBJ (word the)) (in (book (of root) the)) (SUBJ we))                 # We wrote the word in the book of roots.
 
 ## (give (OBJ (root old a)) (DAT (word new a)) never)
 (give (OBJ (root old a)) (DAT (word new a)) never)                           # Never give an old root to a new word.
@@ -96,11 +119,11 @@
 (die (SUBJ king))                                                            # The king dies.
 (game second the)                                                            # The second game:
 (say (OBJ (thing a)))                                                        # Say a thing,
-(change/VERB (OBJ (and (word SUBJ) (word OBJ))) then)                        # then change pe and te.
+(change/VERB (OBJ (and (word "pe") (word "te"))) then)                        # then change pe and te.
 (see (OBJ (dog the)) (SUBJ (child the)))                                     # The child sees the dog.
 (see (OBJ (child the)) (SUBJ (dog the)))                                     # The dog sees the child.
 (change/VERB (OBJ (word the)) not)                                          # The words did not change:
-(change/VERB only (SUBJ (and (word SUBJ) (word OBJ))))                      # only pe and te changed.
+(change/VERB only (SUBJ (and (word "pe") (word "te"))))                      # only pe and te changed.
 (game third the)                                                             # The third game:
 (write (OBJ (poem a)) (in (that (have (OBJ (child (like (number (of (line its)))))) (SUBJ (word first/ADJ (of (line every))))))))   # Write a poem in which the first word of every line has as many children as the number of its line.
 (game fourth the)                                                            # The fourth game:
