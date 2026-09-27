@@ -22,7 +22,7 @@
 @prose
 (be (and old often) (SUBJ (root short the)))                                 # The short roots are old and often said.
 (be (and young rare) (SUBJ (root long the)))                                 # The long roots are young or rare.
-(have (OBJ (root 5934)) (SUBJ (book this)))                                 # This book has 5934 roots.
+(have (OBJ (root 5935)) (SUBJ (book this)))                                 # This book has 5935 roots.
 
 
 ## ("p")
@@ -4820,6 +4820,7 @@
 @raw sinov-u nomuna snow-a schnee-a nieve-a
 @raw sinun-u nomuna designation-a bezeichnung-a denominación-a
 @raw sil-u detiva special-a besondere-a especial-a
+@raw silab-u nomuna syllable-a Silbe-a sílaba-a
 @raw silan-u veraba shine-a strahlen-a brillar-a
 @raw silen-i detiva zielen-a
 @raw siler-o detiva silver-a plateado-a

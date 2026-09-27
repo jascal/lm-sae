@@ -329,6 +329,14 @@ says how many of it (`dehe tova` = 20), and `s` adds (`si deha fura` = 14). `con
 voice kit: `scripts/conlang/speech.py` (respelling per voice language, number phrases), `.pls` lexicons for
 Italian, Spanish, English and IPA, and a system prompt for voice agents.
 
+**Speech v2** answers Astra's review of the kit (`docs/reviews/astra_speech_v1.md`). Chapter 2 now also teaches that
+every vowel is its own syllable (coined *silab*, syllable), that a one-consonant word at the end of a sentence leans
+on the word before, and that an ending is never reduced. `speech.py` says negatives with `menos` (`-5-a` → `menose
+fiva`), rejects a numeric literal with dependents, spells literals letter by letter in IPA, and writes
+`alphabet="ipa"` on every lexicon (the IPA lexicon's locale set by `--ipa-lang`). The kit README adds a JSON
+host-routing contract (`say` / `show` / `captions`, only `say` reaches TTS), platform notes, and the limits of each
+voice; `conlang/speech/LISTENING_TEST.md` is the audio test still to be run.
+
 **Intended readers.** The book targets current frontier models and better future ones; it is not simplified for
 weaker models. A MiniMax M3 review (`minimax_m3_book_v4.md`) read the endings as part-of-speech and tense suffixes
 and hallucinated most of its readings. v5 adopts only the two fixes that failure pointed to, because a frontier

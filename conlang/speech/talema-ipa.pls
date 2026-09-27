@@ -20,20 +20,20 @@
   <lexeme><grapheme>kase</grapheme><phoneme>ˈkase</phoneme></lexeme>
   <lexeme><grapheme>bo</grapheme><phoneme>bo</phoneme></lexeme>
   <lexeme><grapheme>na</grapheme><phoneme>na</phoneme></lexeme>
+  <lexeme><grapheme>vi</grapheme><phoneme>vi</phoneme></lexeme>
   <lexeme><grapheme>mite</grapheme><phoneme>ˈmite</phoneme></lexeme>
   <lexeme><grapheme>vora</grapheme><phoneme>ˈvoɾa</phoneme></lexeme>
-  <lexeme><grapheme>vi</grapheme><phoneme>vi</phoneme></lexeme>
   <lexeme><grapheme>tara</grapheme><phoneme>ˈtaɾa</phoneme></lexeme>
   <lexeme><grapheme>nomuna</grapheme><phoneme>ˈnomuna</phoneme></lexeme>
   <lexeme><grapheme>tisa</grapheme><phoneme>ˈtisa</phoneme></lexeme>
   <lexeme><grapheme>doge</grapheme><phoneme>ˈdoɡe</phoneme></lexeme>
-  <lexeme><grapheme>ferase</grapheme><phoneme>ˈfeɾase</phoneme></lexeme>
   <lexeme><grapheme>susa</grapheme><phoneme>ˈsusa</phoneme></lexeme>
+  <lexeme><grapheme>ferase</grapheme><phoneme>ˈfeɾase</phoneme></lexeme>
+  <lexeme><grapheme>buke</grapheme><phoneme>ˈbuke</phoneme></lexeme>
   <lexeme><grapheme>tova</grapheme><phoneme>ˈtova</phoneme></lexeme>
   <lexeme><grapheme>pona</grapheme><phoneme>ˈpona</phoneme></lexeme>
   <lexeme><grapheme>peposa</grapheme><phoneme>ˈpeposa</phoneme></lexeme>
   <lexeme><grapheme>mela</grapheme><phoneme>ˈmela</phoneme></lexeme>
-  <lexeme><grapheme>buke</grapheme><phoneme>ˈbuke</phoneme></lexeme>
   <lexeme><grapheme>vira</grapheme><phoneme>ˈviɾa</phoneme></lexeme>
   <lexeme><grapheme>vokele</grapheme><phoneme>ˈvokele</phoneme></lexeme>
   <lexeme><grapheme>mide</grapheme><phoneme>ˈmide</phoneme></lexeme>
@@ -44,16 +44,16 @@
   <lexeme><grapheme>tobe</grapheme><phoneme>ˈtobe</phoneme></lexeme>
   <lexeme><grapheme>vana</grapheme><phoneme>ˈvana</phoneme></lexeme>
   <lexeme><grapheme>kina</grapheme><phoneme>ˈkina</phoneme></lexeme>
+  <lexeme><grapheme>neva</grapheme><phoneme>ˈneva</phoneme></lexeme>
   <lexeme><grapheme>lori</grapheme><phoneme>ˈloɾi</phoneme></lexeme>
   <lexeme><grapheme>like</grapheme><phoneme>ˈlike</phoneme></lexeme>
   <lexeme><grapheme>buhe</grapheme><phoneme>ˈbuhe</phoneme></lexeme>
   <lexeme><grapheme>pape</grapheme><phoneme>ˈpape</phoneme></lexeme>
+  <lexeme><grapheme>talema</grapheme><phoneme>ˈtalema</phoneme></lexeme>
   <lexeme><grapheme>nova</grapheme><phoneme>ˈnova</phoneme></lexeme>
-  <lexeme><grapheme>neva</grapheme><phoneme>ˈneva</phoneme></lexeme>
   <lexeme><grapheme>veraba</grapheme><phoneme>ˈveɾaba</phoneme></lexeme>
   <lexeme><grapheme>dana</grapheme><phoneme>ˈdana</phoneme></lexeme>
   <lexeme><grapheme>fira</grapheme><phoneme>ˈfiɾa</phoneme></lexeme>
-  <lexeme><grapheme>talema</grapheme><phoneme>ˈtalema</phoneme></lexeme>
   <lexeme><grapheme>fura</grapheme><phoneme>ˈfuɾa</phoneme></lexeme>
   <lexeme><grapheme>tehi</grapheme><phoneme>ˈtehi</phoneme></lexeme>
   <lexeme><grapheme>veta</grapheme><phoneme>ˈveta</phoneme></lexeme>
@@ -64,35 +64,36 @@
   <lexeme><grapheme>so</grapheme><phoneme>so</phoneme></lexeme>
   <lexeme><grapheme>lelafe</grapheme><phoneme>ˈlelafe</phoneme></lexeme>
   <lexeme><grapheme>kade</grapheme><phoneme>ˈkade</phoneme></lexeme>
+  <lexeme><grapheme>fore</grapheme><phoneme>ˈfoɾe</phoneme></lexeme>
   <lexeme><grapheme>ludi</grapheme><phoneme>ˈludi</phoneme></lexeme>
   <lexeme><grapheme>deso</grapheme><phoneme>ˈdeso</phoneme></lexeme>
   <lexeme><grapheme>ronona</grapheme><phoneme>ˈɾonona</phoneme></lexeme>
-  <lexeme><grapheme>fore</grapheme><phoneme>ˈfoɾe</phoneme></lexeme>
   <lexeme><grapheme>sevi</grapheme><phoneme>ˈsevi</phoneme></lexeme>
   <lexeme><grapheme>hova</grapheme><phoneme>ˈhova</phoneme></lexeme>
   <lexeme><grapheme>sevo</grapheme><phoneme>ˈsevo</phoneme></lexeme>
-  <lexeme><grapheme>nera</grapheme><phoneme>ˈneɾa</phoneme></lexeme>
+  <lexeme><grapheme>fisa</grapheme><phoneme>ˈfisa</phoneme></lexeme>
   <lexeme><grapheme>dunona</grapheme><phoneme>ˈdunona</phoneme></lexeme>
   <lexeme><grapheme>raki</grapheme><phoneme>ˈɾaki</phoneme></lexeme>
   <lexeme><grapheme>bere</grapheme><phoneme>ˈbeɾe</phoneme></lexeme>
-  <lexeme><grapheme>fisa</grapheme><phoneme>ˈfisa</phoneme></lexeme>
+  <lexeme><grapheme>tera</grapheme><phoneme>ˈteɾa</phoneme></lexeme>
+  <lexeme><grapheme>nera</grapheme><phoneme>ˈneɾa</phoneme></lexeme>
   <lexeme><grapheme>sine</grapheme><phoneme>ˈsine</phoneme></lexeme>
   <lexeme><grapheme>vinade</grapheme><phoneme>ˈvinade</phoneme></lexeme>
   <lexeme><grapheme>rule</grapheme><phoneme>ˈɾule</phoneme></lexeme>
   <lexeme><grapheme>vaha</grapheme><phoneme>ˈvaha</phoneme></lexeme>
-  <lexeme><grapheme>tera</grapheme><phoneme>ˈteɾa</phoneme></lexeme>
   <lexeme><grapheme>bofe</grapheme><phoneme>ˈbofe</phoneme></lexeme>
   <lexeme><grapheme>dese</grapheme><phoneme>ˈdese</phoneme></lexeme>
   <lexeme><grapheme>garo</grapheme><phoneme>ˈɡaɾo</phoneme></lexeme>
   <lexeme><grapheme>bani</grapheme><phoneme>ˈbani</phoneme></lexeme>
   <lexeme><grapheme>ge</grapheme><phoneme>ɡe</phoneme></lexeme>
+  <lexeme><grapheme>buki</grapheme><phoneme>ˈbuki</phoneme></lexeme>
   <lexeme><grapheme>tesa</grapheme><phoneme>ˈtesa</phoneme></lexeme>
+  <lexeme><grapheme>ledi</grapheme><phoneme>ˈledi</phoneme></lexeme>
   <lexeme><grapheme>hase</grapheme><phoneme>ˈhase</phoneme></lexeme>
   <lexeme><grapheme>sonate</grapheme><phoneme>ˈsonate</phoneme></lexeme>
   <lexeme><grapheme>feta</grapheme><phoneme>ˈfeta</phoneme></lexeme>
   <lexeme><grapheme>mena</grapheme><phoneme>ˈmena</phoneme></lexeme>
   <lexeme><grapheme>lesere</grapheme><phoneme>ˈleseɾe</phoneme></lexeme>
-  <lexeme><grapheme>ledi</grapheme><phoneme>ˈledi</phoneme></lexeme>
   <lexeme><grapheme>nura</grapheme><phoneme>ˈnuɾa</phoneme></lexeme>
   <lexeme><grapheme>gamare</grapheme><phoneme>ˈɡamaɾe</phoneme></lexeme>
   <lexeme><grapheme>keni</grapheme><phoneme>ˈkeni</phoneme></lexeme>
@@ -108,9 +109,9 @@
   <lexeme><grapheme>vasa</grapheme><phoneme>ˈvasa</phoneme></lexeme>
   <lexeme><grapheme>rira</grapheme><phoneme>ˈɾiɾa</phoneme></lexeme>
   <lexeme><grapheme>relate</grapheme><phoneme>ˈɾelate</phoneme></lexeme>
-  <lexeme><grapheme>buki</grapheme><phoneme>ˈbuki</phoneme></lexeme>
   <lexeme><grapheme>keno</grapheme><phoneme>ˈkeno</phoneme></lexeme>
   <lexeme><grapheme>vene</grapheme><phoneme>ˈvene</phoneme></lexeme>
+  <lexeme><grapheme>vule</grapheme><phoneme>ˈvule</phoneme></lexeme>
   <lexeme><grapheme>nore</grapheme><phoneme>ˈnoɾe</phoneme></lexeme>
   <lexeme><grapheme>seki</grapheme><phoneme>ˈseki</phoneme></lexeme>
   <lexeme><grapheme>mosa</grapheme><phoneme>ˈmosa</phoneme></lexeme>
@@ -130,7 +131,7 @@
   <lexeme><grapheme>nage</grapheme><phoneme>ˈnaɡe</phoneme></lexeme>
   <lexeme><grapheme>tira</grapheme><phoneme>ˈtiɾa</phoneme></lexeme>
   <lexeme><grapheme>sima</grapheme><phoneme>ˈsima</phoneme></lexeme>
-  <lexeme><grapheme>vule</grapheme><phoneme>ˈvule</phoneme></lexeme>
+  <lexeme><grapheme>masa</grapheme><phoneme>ˈmasa</phoneme></lexeme>
   <lexeme><grapheme>kidi</grapheme><phoneme>ˈkidi</phoneme></lexeme>
   <lexeme><grapheme>mako</grapheme><phoneme>ˈmako</phoneme></lexeme>
   <lexeme><grapheme>marake</grapheme><phoneme>ˈmaɾake</phoneme></lexeme>
@@ -145,7 +146,6 @@
   <lexeme><grapheme>lata</grapheme><phoneme>ˈlata</phoneme></lexeme>
   <lexeme><grapheme>fiva</grapheme><phoneme>ˈfiva</phoneme></lexeme>
   <lexeme><grapheme>lora</grapheme><phoneme>ˈloɾa</phoneme></lexeme>
-  <lexeme><grapheme>masa</grapheme><phoneme>ˈmasa</phoneme></lexeme>
   <lexeme><grapheme>peke</grapheme><phoneme>ˈpeke</phoneme></lexeme>
   <lexeme><grapheme>sofe</grapheme><phoneme>ˈsofe</phoneme></lexeme>
   <lexeme><grapheme>taki</grapheme><phoneme>ˈtaki</phoneme></lexeme>
@@ -188,6 +188,7 @@
   <lexeme><grapheme>rake</grapheme><phoneme>ˈɾake</phoneme></lexeme>
   <lexeme><grapheme>raga</grapheme><phoneme>ˈɾaɡa</phoneme></lexeme>
   <lexeme><grapheme>buhi</grapheme><phoneme>ˈbuhi</phoneme></lexeme>
+  <lexeme><grapheme>ribo</grapheme><phoneme>ˈɾibo</phoneme></lexeme>
   <lexeme><grapheme>voni</grapheme><phoneme>ˈvoni</phoneme></lexeme>
   <lexeme><grapheme>labihe</grapheme><phoneme>ˈlabihe</phoneme></lexeme>
   <lexeme><grapheme>tini</grapheme><phoneme>ˈtini</phoneme></lexeme>
@@ -208,6 +209,7 @@
   <lexeme><grapheme>hera</grapheme><phoneme>ˈheɾa</phoneme></lexeme>
   <lexeme><grapheme>lese</grapheme><phoneme>ˈlese</phoneme></lexeme>
   <lexeme><grapheme>liba</grapheme><phoneme>ˈliba</phoneme></lexeme>
+  <lexeme><grapheme>pina</grapheme><phoneme>ˈpina</phoneme></lexeme>
   <lexeme><grapheme>nama</grapheme><phoneme>ˈnama</phoneme></lexeme>
   <lexeme><grapheme>sobadi</grapheme><phoneme>ˈsobadi</phoneme></lexeme>
   <lexeme><grapheme>gehe</grapheme><phoneme>ˈɡehe</phoneme></lexeme>
@@ -233,7 +235,6 @@
   <lexeme><grapheme>bare</grapheme><phoneme>ˈbaɾe</phoneme></lexeme>
   <lexeme><grapheme>veha</grapheme><phoneme>ˈveha</phoneme></lexeme>
   <lexeme><grapheme>lafa</grapheme><phoneme>ˈlafa</phoneme></lexeme>
-  <lexeme><grapheme>ribo</grapheme><phoneme>ˈɾibo</phoneme></lexeme>
   <lexeme><grapheme>tora</grapheme><phoneme>ˈtoɾa</phoneme></lexeme>
   <lexeme><grapheme>dahi</grapheme><phoneme>ˈdahi</phoneme></lexeme>
   <lexeme><grapheme>sinage</grapheme><phoneme>ˈsinaɡe</phoneme></lexeme>
@@ -260,7 +261,6 @@
   <lexeme><grapheme>ni</grapheme><phoneme>ni</phoneme></lexeme>
   <lexeme><grapheme>kepi</grapheme><phoneme>ˈkepi</phoneme></lexeme>
   <lexeme><grapheme>leti</grapheme><phoneme>ˈleti</phoneme></lexeme>
-  <lexeme><grapheme>pina</grapheme><phoneme>ˈpina</phoneme></lexeme>
   <lexeme><grapheme>bini</grapheme><phoneme>ˈbini</phoneme></lexeme>
   <lexeme><grapheme>sobado</grapheme><phoneme>ˈsobado</phoneme></lexeme>
   <lexeme><grapheme>lenisa</grapheme><phoneme>ˈlenisa</phoneme></lexeme>
@@ -279,6 +279,7 @@
   <lexeme><grapheme>nevina</grapheme><phoneme>ˈnevina</phoneme></lexeme>
   <lexeme><grapheme>sahene</grapheme><phoneme>ˈsahene</phoneme></lexeme>
   <lexeme><grapheme>dehe</grapheme><phoneme>ˈdehe</phoneme></lexeme>
+  <lexeme><grapheme>kena</grapheme><phoneme>ˈkena</phoneme></lexeme>
   <lexeme><grapheme>page</grapheme><phoneme>ˈpaɡe</phoneme></lexeme>
   <lexeme><grapheme>dureme</grapheme><phoneme>ˈduɾeme</phoneme></lexeme>
   <lexeme><grapheme>pene</grapheme><phoneme>ˈpene</phoneme></lexeme>
@@ -300,5 +301,4 @@
   <lexeme><grapheme>loki</grapheme><phoneme>ˈloki</phoneme></lexeme>
   <lexeme><grapheme>tipe</grapheme><phoneme>ˈtipe</phoneme></lexeme>
   <lexeme><grapheme>seka</grapheme><phoneme>ˈseka</phoneme></lexeme>
-  <lexeme><grapheme>maki</grapheme><phoneme>ˈmaki</phoneme></lexeme>
 </lexicon>
