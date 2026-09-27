@@ -96,9 +96,9 @@ def fhead(heads, deprel, upos):
     return _tree_dist(function_head(heads, deprel)[0])
 
 
-def _phrase_tree(heads, deprel, bar_levels: bool) -> np.ndarray:
+def _phrase_tree(heads, deprel, bar_levels: bool, func=FUNC) -> np.ndarray:
     """Leaf-to-leaf distances in a binary headed phrase-structure tree built from the function-head tree."""
-    fh, rel = function_head(heads, deprel)
+    fh, rel = function_head(heads, deprel, func)
     n = len(fh)
     kids = [[] for _ in range(n)]
     root = None
