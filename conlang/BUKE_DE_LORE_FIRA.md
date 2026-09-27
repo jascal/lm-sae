@@ -471,6 +471,36 @@ keni te be manede ka pe ferase sine tuma . mako te pesa kura pe lore les-a .
 
 bi buhi de lora ka pe ferasa . bi sibole fore sonide ka pe leta . bi lore nare pa pe tuma . bi lore nare ta pe beheta . bi numera pe senura . bi nomuna pe nulera . bi peposa pe ga . tehi nore veraba pe pata . nedo te pesa rarela pe talema . bi lori sima la pe si kasa pasa . ribo te lore daß-a ne timi veta la pe Deutsch-a . nuse te kasa . bani te nevera pe lore never-a . bani te nera pe lore ner-a . ledo te tara lovala vene ledi te English-a pe tada .
 
+## si kotesa bepa
+
+## voni sa viba
+
+voni te buke ka pe ma .  
+vibi te buke ka pe ma .  
+lese gari te buke ka pape ma .
+
+bo manede ka fa pe vibi te buke ka pe ma .
+
+## lesi sa raga
+
+lese lede te buke tisa .  
+lese hele te ma .  
+tobe keni te lede te buke tisa pe tada .  
+tobe keni te gari te buke ka pape ma pe tada .  
+tobe keni te toruke te hane tora pe ma .
+
+keni te refuse pe tada pe tada . topi hene refuse pe tada pe ma .
+
+## daki sa rasora
+
+dahi te tada pe ma .  
+risora .  
+bi guta pe vose kinade ka .
+
+## kotumi sa kotesa
+
+rideni tene tupe tova pe kotume ka . bi kotume ka pe kotesa .
+
 ## lori mela la
 
 mako te gepe biga ruse lore mela pe vora . sevo te lori mela la ne nage keda pe pene keda . keno te dese te gega mite lori mela la pe tada . bi relate de mogi fira la pe tisa .
