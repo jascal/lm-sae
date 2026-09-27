@@ -23,6 +23,7 @@ Talema is spelled phonemically: one letter, one sound, no silent letters.
 - **Literals**: the hyphen is silent and the ending is its own syllable: `Ana-a` is said "Ana a".
 - **Numbers** are said as Talema number phrases, even when written as digits: `14-a` is said `si deha fura`,
   `1492-a` is `su mula hudede fura dehe nevina tova` (book chapter 2c).
+- **Decimals** are said with `pun` ("point"): `0.7-a` is said `puni senura geva`.
 - **`.`** is a pause.
 
 ## Which voice

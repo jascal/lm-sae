@@ -22,7 +22,7 @@
 @prose
 (be (and old often) (SUBJ (root short the)))                                 # The short roots are old and often said.
 (be (and young rare) (SUBJ (root long the)))                                 # The long roots are young or rare.
-(have (OBJ (root 5934)) (SUBJ (book this)))                                 # This book has 5934 roots.
+(have (OBJ (root 5985)) (SUBJ (book this)))                                 # This book has 5985 roots.
 
 
 ## ("p")
@@ -355,6 +355,7 @@
 @raw ponal-o detiva potential-a potencial-a
 @raw ponet-o nomuna opponent-a adversario-a
 @raw ponen-u nomuna component-a bestandteil-a componente-a
+@raw ponit-u nomuna checkpoint-a Checkpoint-a punto_de_control-a
 @raw ponil-u nomuna potential-a potenzial-a potencial-a
 @raw ponor-i veraba sponsor-a
 @raw pol-u detiva possible-a möglich-a posible-a
@@ -376,6 +377,7 @@
 @raw porit-u nomuna priority-a priorität-a prioridad-a
 @raw porin-u nomuna portion-a portion-a porción-a
 @raw porot-u nomuna import-a import-a importación-a
+@raw porob-u nomuna probe-a Sonde-a sonda-a
 @raw porul-u nomuna pride-a stolz-a orgullo-a
 @raw porur-o veraba pour-a verter-a
 @raw pos-u nomuna police-a polizei-a policía-a
@@ -389,6 +391,7 @@
 @raw posil-u deroba possibly-a evtl-a posiblemente-a
 @raw poson-u nomuna exposure-a exposition-a exposición-a
 @raw posol-u nomuna pool-a schwimmbad-a piscina-a
+@raw posor-u nomuna repository-a Repository-a repositorio-a
 @raw pof-u nomuna percent-a prozent-a porcentaje-a
 @raw pov-u nomuna power-a kraft-a potencia-a
 @raw pover-u detiva powerful-a mächtig-a poderoso-a
@@ -413,6 +416,7 @@
 @raw pumep-o veraba pump-a pumpen-a
 @raw pun-u nomuna point-a punkt-a punto-a
 @raw punak-o nomuna punk-a punk-a
+@raw punet-u nomuna endpoint-a Endpunkt-a punto_final-a
 @raw pul-i ronona cual-a
 @raw pulan-u nomuna plane-a flugzeug-a avión-a
 @raw pulik-u nomuna public-a öffentlichkeit-a públicas-a
@@ -645,7 +649,9 @@
 @raw tim-u nomuna time-a zeit-a tiempo-a
 @raw timat-i detiva ultimate-a
 @raw timal-u detiva optimal-a optimal-a óptimo-a
+@raw timir-u nomuna optimizer-a Optimierer-a optimizador-a
 @raw timis-u detiva optimistic-a optimistisch-a optimista-a
+@raw timup-u nomuna timeout-a Zeitüberschreitung-a tiempo_de_espera-a
 @raw timud-u detiva tired-a müde-a cansado-a
 @raw timun-u nomuna consent-a zustimmung-a consentimiento-a
 @raw timul-u veraba stimulate-a anregen-a estimular-a
@@ -923,6 +929,7 @@
 @raw karil-u nomuna clay-a lehm-a barro-a
 @raw karis-u nomuna corn-a mais-a maíz-a
 @raw karon-o nomuna cartoon-a caricatura-a
+@raw karol-u nomuna queue-a Warteschlange-a cola-a
 @raw karug-u nomuna cargo-a ladung-a cargamento-a
 @raw karus-o veraba cause-a verursachen-a
 @raw kas-u dunona that-a dass-a que-a
@@ -961,6 +968,7 @@
 @raw kepik-o detiva epic-a épico-a
 @raw kepot-u nomuna export-a export-a exportación-a
 @raw kepok-i tika poco-a
+@raw kepol-u nomuna epoch-a Epoche-a época-a
 @raw kepor-u veraba explode-a explodieren-a explotar-a
 @raw ket-u nomuna event-a veranstaltung-a evento-a
 @raw ketan-o nomuna extent-a umfang-a
@@ -1119,10 +1127,13 @@
 @raw kopet-o veraba complete-a completar-a
 @raw kopen-u nomuna cooperation-a kooperation-a cooperación-a
 @raw koper-u veraba compete-a konkurrieren-a competir-a
+@raw kopit-u nomuna commit-a Commit-a commit-a
 @raw kopin-u nomuna corruption-a korruption-a corrupción-a
+@raw kopil-u veraba compile-a kompilieren-a compilar-a
 @raw kopir-u veraba copy-a kopieren-a copiar-a
 @raw kopon-u nomuna constituent-a komponente-a constituyente-a
 @raw kopor-o veraba incorporate-a incorporar-a
+@raw koput-u nomuna compute-a Rechenleistung-a cómputo-a
 @raw kopul-u nomuna cop-a bulle-a poli-a
 @raw kot-u nomuna court-a gericht-a corte-a
 @raw kotap-u nomuna cap-a sockel-a tapa-a
@@ -1330,6 +1341,7 @@
 @raw kosut-u nomuna coast-a küste-a costa-a
 @raw kosum-u nomuna consumption-a konsum-a consumo-a
 @raw kosun-u nomuna constitution-a verfassung-a constitución-a
+@raw kosul-u nomuna query-a Abfrage-a consulta-a
 @raw kosur-u nomuna consumer-a verbraucher-a consumidor-a
 @raw kof-u nomuna county-a kreis-a condado-a
 @raw kofar-i veraba confiar-a
@@ -1352,6 +1364,7 @@
 @raw kohal-o nomuna coal-a kohle-a
 @raw kohav-u nomuna cave-a höhle-a cueva-a
 @raw kohol-u nomuna alcohol-a alkohol-a alcohol-a
+@raw kohut-u nomuna dataset-a Datensatz-a conjunto_de_datos-a
 @raw kup-u nomuna couple-a paar-a pareja-a
 @raw kupan-o nomuna occupancy-a ocupación-a
 @raw kupar-u veraba occupy-a besetzen-a ocupar-a
@@ -1379,6 +1392,7 @@
 @raw kunig-i detiva zukünftig-a
 @raw kul-u detiva current-a aktuell-a actual-a
 @raw kulat-u nomuna cult-a kult-a secta-a
+@raw kulak-u nomuna cache-a Cache-a caché-a
 @raw kulag-u nomuna circulation-a auflage-a circulación-a
 @raw kulan-u nomuna speculation-a spekulation-a especulación-a
 @raw kular-o detiva particular-a particular-a
@@ -1421,6 +1435,7 @@
 @raw bapan-u nomuna bread-a brot-a pan-a
 @raw bat-u nomuna data-a datenschutz-a dato-a
 @raw batar-i veraba bastar-a
+@raw batek-u nomuna batch-a Stapel-a lote-a
 @raw baten-i deroba bitten-a
 @raw bater-u nomuna battery-a akku-a batería-a
 @raw bates-u nomuna bath-a badezimmer-a bañera-a
@@ -1478,6 +1493,7 @@
 @raw ban-i veraba mean-a
 @raw banen-u veraba dismantle-a abbauen-a desmantelar-a
 @raw baner-u nomuna banner-a fahne-a pancarta-a
+@raw banik-u nomuna bandwidth-a Bandbreite-a ancho_de_banda-a
 @raw banil-u nomuna bail-a kaution-a fianza-a
 @raw banon-o veraba abandon-a abandonar-a
 @raw banor-u nomuna bankruptcy-a insolvenz-a quiebra-a
@@ -1528,6 +1544,7 @@
 @raw bah-i ronona tanto-a
 @raw bahar-u veraba download-a herunterladen-a bajar-a
 @raw bahen-u nomuna railway-a bahn-a ferrocarril-a
+@raw bahit-u nomuna byte-a Byte-a byte-a
 @raw bahik-u nomuna bike-a fahrrad-a moto-a
 @raw bahov-o nomuna low-a baja-a
 @raw bep-u nomuna respect-a respekt-a respeto-a
@@ -1564,6 +1581,7 @@
 @raw bedik-i detiva selbstverständlich-a
 @raw bedig-o detiva vivid-a lebendig-a
 @raw bedin-o nomuna constraint-a bedingung-a
+@raw bedun-u nomuna embedding-a Einbettung-a incrustación-a
 @raw beg-i peposa wegen-a
 @raw began-i veraba bergen-a
 @raw begen-i veraba betragen-a
@@ -1968,6 +1986,7 @@
 @raw debas-i nomuna deutsch-a
 @raw deber-i nomuna dezember-a
 @raw debut-u nomuna debut-a debüt-a debut-a
+@raw debug-u veraba debug-a debuggen-a depurar-a
 @raw ded-u veraba decide-a entscheiden-a decidir-a
 @raw dedad-o veraba demand-a bedarf-a
 @raw dedan-o nomuna defendant-a acusado-a
@@ -1997,6 +2016,7 @@
 @raw demin-u nomuna demo-a demo-a demostración-a
 @raw demok-u nomuna democracy-a demokratie-a democracia-a
 @raw demon-o veraba demonstrate-a nachweisen-a
+@raw demol-u nomuna daemon-a Daemon-a demonio-a
 @raw den-u ronona someone-a jemand-a alguien-a
 @raw denad-u nomuna donation-a spende-a donación-a
 @raw denan-u veraba designate-a benennen-a designar-a
@@ -2126,6 +2146,7 @@
 @raw dikus-u veraba discuss-a diskutieren-a discutir-a
 @raw dib-i detiva lieb-a
 @raw dibar-o nomuna diary-a tagebuch-a
+@raw dibid-u nomuna uptime-a Betriebszeit-a disponibilidad-a
 @raw dibil-u nomuna credibility-a glaubwürdigkeit-a credibilidad-a
 @raw dibot-i nomuna idiot-a
 @raw dibos-i tika dios-a
@@ -2185,6 +2206,7 @@
 @raw disan-u nomuna distance-a abstand-a distancia-a
 @raw disal-o detiva judicial-a judicial-a
 @raw disar-i veraba diseñar-a
+@raw disek-u nomuna disk-a Festplatte-a disco-a
 @raw diseb-i nomuna diciembre-a
 @raw dised-u detiva disabled-a behindert-a discapacitado-a
 @raw disen-u nomuna disappointment-a enttäuschung-a decepción-a
@@ -2201,6 +2223,7 @@
 @raw dif-u nomuna difference-a unterschied-a diferencia-a
 @raw difav-u nomuna jaw-a kiefer-a mandíbula-a
 @raw difen-i tika diferente-a
+@raw difer-u nomuna diff-a Diff-a diferencia-a
 @raw difit-u nomuna difficulty-a schwierigkeit-a dificultad-a
 @raw difik-o detiva difficult-a schwierig-a
 @raw div-u veraba discover-a entdecken-a descubrir-a
@@ -2713,6 +2736,7 @@
 @raw marad-u detiva married-a verheiratet-a casado-a
 @raw marar-u veraba mark-a markieren-a marcar-a
 @raw maret-o veraba mate-a paaren-a
+@raw marek-u nomuna timestamp-a Zeitstempel-a marca_de_tiempo-a
 @raw maren-u nomuna margin-a spielraum-a margen-a
 @raw mares-i nomuna martes-a
 @raw marit-u nomuna manuscript-a manuskript-a manuscrito-a
@@ -2797,10 +2821,12 @@
 @raw merit-o nomuna merit-a mérito-a
 @raw merik-i detiva norteamericano-a
 @raw merid-u nomuna mercy-a mitleid-a piedad-a
+@raw merig-u veraba merge-a zusammenführen-a fusionar-a
 @raw meril-u detiva imperial-a kaiserlich-a imperial-a
 @raw meror-u nomuna improvement-a verbesserung-a mejora-a
 @raw merum-i peposa rum-a
 @raw mes-u deroba less-a weniger-a menos-a
+@raw mesem-u nomuna schema-a Schema-a esquema-a
 @raw mesen-u veraba implement-a umsetzen-a implementar-a
 @raw meser-u veraba measure-a messen-a medir-a
 @raw mesid-o detiva impressed-a beeindrucken-a
@@ -2877,6 +2903,7 @@
 @raw misam-i nomuna mismo-a
 @raw misar-u nomuna inspector-a kommissar-a comisario-a
 @raw misem-i ronona mismo-a
+@raw misen-u nomuna millisecond-a Millisekunde-a milisegundo-a
 @raw miser-u nomuna mystery-a rätsel-a misterio-a
 @raw misef-i ronona myself-a
 @raw misin-u detiva missing-a fehlen-a desaparecido-a
@@ -3099,6 +3126,7 @@
 @raw netek-o nomuna networking-a netzwerk-a
 @raw neted-u detiva unexpected-a unerwartet-a inesperado-a
 @raw neten-i veraba antreten-a
+@raw neter-u nomuna integer-a Ganzzahl-a entero-a
 @raw netit-u nomuna uncertainty-a unsicherheit-a incertidumbre-a
 @raw netil-o detiva childish-a infantil-a
 @raw netul-u detiva unfortunate-a unglücklich-a lamentable-a
@@ -3173,7 +3201,9 @@
 @raw neran-u detiva internal-a intern-a interno-a
 @raw neral-u detiva wonderful-a wunderbar-a maravilloso-a
 @raw nerar-u veraba integrate-a integrieren-a integrar-a
+@raw nerep-u nomuna inference-a Inferenz-a inferencia-a
 @raw neret-u veraba insert-a fügen-a insertar-a
+@raw nereb-u nomuna interpretability-a Interpretierbarkeit-a interpretabilidad-a
 @raw nered-o detiva interested-a interesado-a
 @raw nereg-i deroba unterwegs-a
 @raw neren-i veraba interessieren-a
@@ -3356,6 +3386,7 @@
 @raw nuler-u nomuna zero-a null-a cero-a
 @raw nur-u deroba only-a nur-a solo-a
 @raw nures-u nomuna nurse-a krankenschwester-a enfermera-a
+@raw nuron-u nomuna neuron-a Neuron-a neurona-a
 @raw nus-u veraba use-a verwenden-a usar-a
 @raw nusal-u detiva unusual-a ungewöhnlich-a inusual-a
 @raw nusen-i veraba nutzen-a
@@ -3381,9 +3412,11 @@
 @raw lat-u detiva last-a letzte-a último-a
 @raw latal-i detiva tall-a
 @raw latar-i veraba plantear-a
+@raw latet-u detiva latent-a latent-a latente-a
 @raw laten-i veraba lauten-a
 @raw latel-o deroba lately-a últimamente-a
 @raw later-i nomuna elter-a
+@raw lates-u nomuna latency-a Latenz-a latencia-a
 @raw latik-u nomuna plastic-a plastik-a plástico-a
 @raw latim-o nomuna last-a último-a
 @raw latin-u detiva latin-a lateinisch-a latino-a
@@ -3635,6 +3668,7 @@
 @raw litin-u nomuna lighting-a beleuchtung-a iluminación-a
 @raw litil-i peposa till-a
 @raw litor-u detiva mandatory-a obligatorisch-a obligatorio-a
+@raw litun-u nomuna alignment-a Ausrichtung-a alineación-a
 @raw lik-u peposa like-a wie-a según-a
 @raw likat-u detiva delicate-a heikel-a delicado-a
 @raw likab-u detiva applicable-a anwendbar-a aplicable-a
@@ -3730,6 +3764,7 @@
 @raw logen-o veraba apologize-a entschuldigen-a
 @raw loger-u nomuna achievement-a verwirklichung-a logro-a
 @raw logip-u nomuna logo-a logo-a logotipo-a
+@raw logit-u nomuna logit-a Logit-a logit-a
 @raw logik-u detiva logical-a logisch-a lógico-a
 @raw logid-i peposa alongside-a
 @raw lom-u nomuna application-a anwendung-a aplicación-a
@@ -3789,6 +3824,7 @@
 @raw lunar-u detiva revolutionary-a revolutionär-a revolucionario-a
 @raw lunel-u nomuna tunnel-a tunnel-a túnel-a
 @raw lunes-i nomuna lunes-a
+@raw lunin-u nomuna hallucination-a Halluzination-a alucinación-a
 @raw lunog-u nomuna lung-a lunge-a pulmón-a
 @raw lul-u nomuna call-a anruf-a llamada-a
 @raw lur-u nomuna course-a kurs-a curso-a
@@ -3797,6 +3833,7 @@
 @raw lus-u nomuna list-a liste-a lista-a
 @raw lusat-o nomuna lust-a lust-a
 @raw lusav-i peposa inklusive-a
+@raw luser-u nomuna cluster-a Cluster-a clúster-a
 @raw lusid-u detiva fluid-a flüssig-a líquido-a
 @raw lusin-u nomuna conclusion-a fazit-a conclusión-a
 @raw lusir-i veraba lucir-a
@@ -3852,6 +3889,7 @@
 @raw radab-o detiva pleasant-a agradable-a
 @raw radan-u nomuna radiation-a strahlung-a radiación-a
 @raw radar-u nomuna radar-a radar-a radar-a
+@raw radet-u nomuna gradient-a Gradient-a gradiente-a
 @raw radel-u nomuna wheel-a rad-a rueda-a
 @raw rader-u veraba modify-a verändern-a modificar-a
 @raw radig-i nomuna trading-a
@@ -3950,6 +3988,7 @@
 @raw rafet-u nomuna craft-a handwerk-a artesanía-a
 @raw rafer-o veraba transfer-a übertragen-a
 @raw rafik-u nomuna traffic-a verkehr-a tráfico-a
+@raw rafor-u nomuna transformer-a Transformer-a transformador-a
 @raw rav-u nomuna road-a straßenverkehr-a camino-a
 @raw ravar-i veraba atravesar-a
 @raw raven-o nomuna travel-a reisen-a
@@ -3972,6 +4011,7 @@
 @raw repen-u detiva corresponding-a entsprechende-a correspondiente-a
 @raw repel-o nomuna reply-a antworten-a
 @raw reper-u veraba respect-a respektieren-a respetar-a
+@raw repik-u nomuna replica-a Replikat-a réplica-a
 @raw repin-u nomuna reception-a empfang-a recepción-a
 @raw repir-u nomuna empire-a reich-a imperio-a
 @raw repon-u veraba respond-a reagieren-a responder-a
@@ -4037,6 +4077,7 @@
 @raw regel-i veraba regeln-a
 @raw reger-o veraba register-a anmelden-a
 @raw reges-u nomuna comeback-a comeback-a regreso-a
+@raw regit-u nomuna log-a Protokolldatei-a registro-a
 @raw regim-o nomuna scheme-a régimen-a
 @raw regin-o veraba rain-a regen-a
 @raw regud-o nomuna foreground-a vordergrund-a
@@ -4098,9 +4139,11 @@
 @raw rerat-u nomuna aircraft-a luftfahrt-a aeronave-a
 @raw rerak-u veraba restrict-a beschränken-a restringir-a
 @raw rerag-u nomuna average-a durchschnitt-a promedio-a
+@raw reran-u nomuna retrieval-a Abruf-a recuperación-a
 @raw rerar-u veraba repair-a reparieren-a reparar-a
 @raw reren-u nomuna representative-a vertretung-a representante-a
 @raw rerer-u veraba reserve-a reservieren-a reservar-a
+@raw reres-u nomuna benchmark-a Benchmark-a referencia-a
 @raw rerit-o veraba rewrite-a umschreiben-a
 @raw rerin-u nomuna preparation-a vorbereitung-a preparación-a
 @raw reris-u nomuna rice-a reis-a arroz-a
@@ -4111,6 +4154,7 @@
 @raw res-u veraba receive-a erhalten-a recibir-a
 @raw resat-o veraba arrest-a festnehmen-a
 @raw resak-u nomuna rescue-a rettung-a rescate-a
+@raw resag-u veraba restart-a neustarten-a reiniciar-a
 @raw resan-o veraba tear-a reißen-a
 @raw resar-u nomuna regret-a reue-a pesar-a
 @raw resas-u nomuna replacement-a ersatz-a sustitución-a
@@ -4312,6 +4356,7 @@
 @raw romer-u veraba promote-a fördern-a promover-a
 @raw romes-u nomuna promise-a versprechen-a promesa-a
 @raw romis-u veraba promise-a versprechen-a prometer-a
+@raw romot-u nomuna prompt-a Prompt-a instrucción-a
 @raw ron-u nomuna relationship-a beziehung-a relación-a
 @raw ronat-o detiva front-a frontal-a
 @raw ronal-o detiva royal-a königlich-a
@@ -4865,6 +4910,7 @@
 @raw soten-o detiva southern-a meridional-a
 @raw sotir-o nomuna shot-a tiro-a
 @raw sok-u tika such-a solch-a tal-a
+@raw sokal-u veraba scale-a skalieren-a escalar-a
 @raw sokar-u veraba scare-a erschrecken-a asustar-a
 @raw soker-o nomuna soccer-a futbol-a
 @raw sob-u nomuna scene-a szene-a escena-a
@@ -4898,6 +4944,7 @@
 @raw sonas-o dunona once-a sobald-a
 @raw sonel-u nomuna shell-a hülle-a concha-a
 @raw sonid-u nomuna sound-a ton-a sonido-a
+@raw sonin-u nomuna reasoning-a Schlussfolgern-a razonamiento-a
 @raw sonil-u nomuna smile-a lächeln-a sonrisa-a
 @raw sol-o veraba should-a sollen-a
 @raw solat-u veraba isolate-a isolieren-a aislar-a
@@ -5301,6 +5348,7 @@
 @raw fobad-i veraba found-a
 @raw fod-u nomuna food-a essen-a comida-a
 @raw foden-i veraba fordern-a
+@raw foder-u nomuna folder-a Ordner-a carpeta-a
 @raw fog-u nomuna photo-a foto-a fotografía-a
 @raw fogan-i detiva folgen-a
 @raw fogaf-u nomuna photographer-a fotograf-a fotógrafo-a
@@ -5468,6 +5516,7 @@
 @raw vetal-u nomuna valley-a tal-a valle-a
 @raw veten-u veraba betray-a verraten-a traicionar-a
 @raw veter-u nomuna weather-a wetter-a clima-a
+@raw vetor-u nomuna vector-a Vektor-a vector-a
 @raw vetos-o nomuna infringement-a verstoß-a
 @raw vek-u nomuna week-a woche-a semana-a
 @raw vekak-u nomuna weakness-a schwäche-a debilidad-a
@@ -5529,6 +5578,7 @@
 @raw verek-u nomuna comparison-a vergleich-a comparación-a
 @raw vereg-u nomuna spread-a verbreitung-a propagación-a
 @raw veren-u veraba forgive-a vergeben-a perdonar-a
+@raw verel-u veraba encrypt-a verschlüsseln-a cifrar-a
 @raw veres-i veraba versetzen-a
 @raw vereh-u veraba confer-a verleihen-a conferir-a
 @raw verit-u nomuna wheat-a getreide-a trigo-a
@@ -5788,6 +5838,7 @@
 @raw harut-u nomuna hat-a hut-a sombrero-a
 @raw has-u nomuna house-a haus-a casa-a
 @raw hased-i nomuna hacienda-a
+@raw hasiv-u nomuna hash-a Hash-a hash-a
 @raw hasod-u nomuna hatred-a haß-a odio-a
 @raw haf-u nomuna back-a rücken-a espalda-a
 @raw hafet-o nomuna detention-a haft-a
