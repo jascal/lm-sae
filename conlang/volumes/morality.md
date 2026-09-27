@@ -4,7 +4,7 @@ bi buke de morata pe tisa . ledi te buki de lore fira la fisa . vi te si gamare 
 
 ## morata
 
-musi te dare vasa pe vora . raki te rage tisa pe morata . bi veta pe pesa . bo neva ne dage keda pe pesa . raki te pesa pe kide keda . rako te pesa tida pe genete keda .
+musi te dare vasa pe vora . raki te rage tisa pe morata . bi veta pe pesa . bo neva ne dage keda pe pesa . raki te pesa pe kide keda . rako te pesa tida pe genete keda . deso te gepe di pepa vana ne talema pe buke tisa . bi lore pura pe lore la . bi gepe tira pe gepe la . ledi te buki pina tira fore lori pina tira .
 
 ## ruli veta la
 
@@ -105,6 +105,13 @@ tehi sofe rasili tera la pe pene pona .
 tobe tuni te pesa pe tada .
 
 desi te besa pe kokena . bi mase gahe pona pe fiva . rake pe dulita . tobe kili te pene la pe tada . pefe bi rita pe kige vika . vi te kale sira pe morata . tino te kali sira la lovala pe peni visaba la . bi humila pe sela .
+
+hideri ne hase tora pe ride tora .  
+tehi pane hure la pe mine kase vone te kile te ride tora .  
+raki te bi voda pe ride tora pe ha .  
+tobe lige pe tada .
+
+desi te lige nera pe Kant-a . desi te save te ride tora pe suli tera la . meti hera pe ruli guta tova . pefe bi rita pe rule vika .
 
 ## si resona geneta
 

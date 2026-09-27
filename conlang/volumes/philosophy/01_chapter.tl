@@ -14,6 +14,10 @@
 (have (OBJ (mark "pefe")) (SUBJ (answer many (of philosophy))))              # Many answers of philosophy have the mark pefe.
 (be bad not (SUBJ this))                                                     # This is not bad:
 (be (life (of philosophy)) (SUBJ (question the)))                            # the question is the life of philosophy.
+(say (OBJ (thought (of people many))) (in talem) (SUBJ (book this)))        # This book says the thoughts of many people in Talema.
+(be (word our) (SUBJ (word the)))                                            # The words are our words;
+(be (thought their) (SUBJ (thought the)))                                    # the thoughts are theirs.
+(read (OBJ (book own their)) (for (word own their)))                         # For their own words, read their own books.
 
 ## wonder/NOUN
 (say (OBJ (know (OBJ nothing) (SUBJ I))) (SUBJ "Socrates"))                  # Socrates said: I know nothing.

@@ -62,7 +62,12 @@ mako te kopite ka hene kagi te voge la pe vora pe vora . govi ne raniki pina sus
 ledi te manede la pe sonele la . vi te si gumeta falaga pe maneda . levo te salide de manede pona ge ninute de manedi neka la pe pohipa . deso te senura hene ludi vela pe pesa pe manede ka .
 
 rake nore rune te manede kase desira .  
-runi te rm_-rf_/-a nera .
+runi te rm_-rf_/-a nera .  
+delari te fakile keda pe pesa .  
+rake nore delari te kige ka pe tada .  
+rake nore pahe pe tada .  
+rake nore sadi te mage ka pe tada .  
+rake nore vufi te kige ka pe tada .
 
 ## si konuda sesa
 

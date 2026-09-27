@@ -32,6 +32,8 @@ vi te kide vana pe dunona .
 vi te kide vana pe dunina .  
 vi te kide tova pe likona .
 
+bi lore de negina pe lore f-a . bi lore de dunona pe lore s-a . bi lore de dunina pe lore dor-a . bi lore de likona pe lore ven-a . manamu te kite de lora tida ne gamara pe lore dunon-a .
+
 bo rira pe negina hene bi falasa pe kide susa . bo rira pe dunona hene bi rira pe kidi tala de pesa . bo rira pe dunina hene bi rira pe kidi pona de pesa . bu falasa nura pe likona hene si bi rira pe kidi fira la bi falasa pe kidi seda la . bo rira pe kivala hene vi te rade sima pe kidi tova susa .
 
 ```
@@ -116,6 +118,15 @@ bi morola pe mine soma .
 bi morola pe mine kina .
 
 bo negine de lami fira la pe lami tita la fa . bi bo morola fa pe mine soma pe negine la . bi radika pe morola . bi divida pe Socrates-a . garo te mopa pape divida pe radika . vi te domina pe katire keda . bi vule kase saheni ne pesa pe pesa pe pesa .
+
+lovi te pene soma pe pene keda .
+
+vi te benege tova pe ferase tisa . lovo te peni pina tira mika pe pene keda . lovo te peni sima la mika pe pene keda . garu te nama pape pene la pe tada fore benegi seda la .
+
+bi pena pe X-a .  
+lovi te X-a pe pene keda .
+
+pefe tobe nedi te rule fore tisa pe talema .
 
 ## falusa
 

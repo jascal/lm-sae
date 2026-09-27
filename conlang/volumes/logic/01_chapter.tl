@@ -44,6 +44,12 @@
 (have (OBJ (child many)) (SUBJ disjunction))                                 # Disjunction has many children: or.
 (have (OBJ (child two)) (SUBJ implication))                                  # Implication has two children: if.
 @prose
+(be (word (of negation)) (SUBJ (word "f")))                                  # f is the word of negation,
+(be (word (of conjunction)) (SUBJ (word "s")))                               # s is the word of conjunction,
+(be (word (of disjunction)) (SUBJ (word "dor")))                             # dor is the word of disjunction,
+(be (word (of implication)) (SUBJ (word "ven")))                             # and ven is the word of implication.
+(name/VERB (OBJ (kind/NOUN (of word))) too (in grammar) (SUBJ (word "dunon")))    # In grammar, the word dunon names a kind of word too.
+
 (be true (SUBJ negation) (when/SCONJ (be false (SUBJ (child its)))))         # A negation is true when its child is false.
 (be true (SUBJ conjunction) (when/SCONJ (be true (SUBJ (child all (of it))))))   # A conjunction is true when all of its children are true.
 (be true (SUBJ disjunction) (when/SCONJ (be true (SUBJ (child one/NUM (of it))))))   # A disjunction is true when one of its children is true.
@@ -114,6 +120,18 @@
 (give (OBJ property) (DAT individual) (SUBJ predicate))                      # A predicate gives an individual a property.
 (have (OBJ domain) (SUBJ (quantifier every)))                                # Every quantifier has a domain:
 (be (world (that (count/VERB (in it) (SUBJ it)))) (SUBJ it))                 # the world that it counts in.
+@verse
+(love (OBJ (person some)) (SUBJ (person every)))                             # Every person loves some person.
+@prose
+(have (OBJ (meaning two)) (SUBJ (sentence this)))                            # This sentence has two meanings:
+(love (OBJ (person own their)) maybe (SUBJ (person every)))                  # maybe every person loves their own person,
+(love (OBJ (person same the)) maybe (SUBJ (person every)))                   # maybe every person loves the same person.
+(give (OBJ name) (DAT (person the)) (SUBJ you) (for (meaning second/ADJ the)))   # For the second meaning, give the person a name:
+@verse
+(be person (SUBJ "X"))                                                       # X is a person.
+(love (OBJ "X") (SUBJ (person every)))                                       # Every person loves X.
+@prose
+(open/ADJ (whether (need/VERB (OBJ (rule (for this))) (SUBJ talem))))        # Open: does Talema need a rule for this?
 
 ## fallacy
 (be (argument (that (and (seem valid) (be valid not)))) (SUBJ fallacy))      # A fallacy is an argument that looks valid and is not valid.

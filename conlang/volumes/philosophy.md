@@ -11,7 +11,7 @@ keni te seve vasa pe vora .
 bi vasa pe mida .  
 musi te dare vasa pe vora .
 
-vi te marake pefe-a pe nuvi vana de filofa . bo bada fa pe tisa . bi life de filofa pe rage la .
+vi te marake pefe-a pe nuvi vana de filofa . bo bada fa pe tisa . bi life de filofa pe rage la . deso te gepe di pepa vana ne talema pe buke tisa . bi lore pura pe lore la . bi gepe tira pe gepe la . ledi te buki pina tira fore lori pina tira .
 
 ## vudera
 
