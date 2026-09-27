@@ -22,6 +22,19 @@
 ("t" particle "object" "Objekt" "objeto")
 @prose
 
+# ── how to find a word in the book of roots (v5: readers kept failing to strip the ending) ──
+## (find (OBJ (word a)) (in (book (of root) the)) how)
+(remove (OBJ (vowel (after (consonant last/ADJ the)))) (from (word the)))    # Take away the vowels after the last consonant.
+(be (root the) (SUBJ (thing (that (stay)))))                                 # What stays is the root.
+(find (OBJ it) (in (book (of root) the)))                                    # Find it in the book of roots.
+@verse
+(be "mog" (SUBJ (root (of "moge"))))                                         # The root of moge is mog: morning.
+(be "kin" (SUBJ (root (of "kina"))))                                         # The root of kina is kin: no.
+(be "has" (SUBJ (root (of "hase"))))                                         # The root of hase is has: house.
+(be "m" (SUBJ (root (of "ma"))))                                             # The root of ma is m: I.
+@prose
+(remove (OBJ (and hyphen (ending its))) (from (word (with hyphen))))         # From a word with a ginon, take away the ginon and its ending.
+
 # ── names, numbers and letters: the literals (the reviews: explain the hyphen before it is used) ──
 (keep (OBJ (letter own their)) (SUBJ (and name number (word (of (tongue other))))))   # Names, numbers and words of other tongues keep their own letters.
 (come (after they) (SUBJ (line small a)))                                    # After them comes a small line,
@@ -57,6 +70,14 @@
 @prose
 (count/VERB (OBJ (child (of (word the)))) (SUBJ (ending the)))       # The ending counts the children of the word.
 (hang (from (word the)) (SUBJ (child the)))                              # The children hang from the word.
+(tell (OBJ (and time number person (kind/NOUN (of word)))) never (SUBJ (ending the)))   # The ending never tells time, number, person or the kind of the word.
+(count/VERB (OBJ (child the)) only (SUBJ it))                            # It only counts the children.
+@verse
+(eat (SUBJ (dog the)))                                                   # The dog eats: mate, one child.
+(eat (OBJ bread) (SUBJ (dog the)))                                       # The dog eats bread: mati, two children.
+@prose
+(be same (SUBJ (and (word "mate") (word "mati"))))                       # mate and mati are the same word:
+(count/VERB (OBJ (child more)) only (SUBJ (word "mati")))                 # mati only counts more children.
 
 @verse
 ("Ana")                                                                  # Ana.

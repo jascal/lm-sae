@@ -285,6 +285,12 @@ the waiting letters. The rules stay minimal; the book gives the conventions thei
 86 junk rows. New words go through
 `conlang/book/coin.tsv`.
 
+**Intended readers.** The book targets current frontier models and better future ones; it is not simplified for
+weaker models. A MiniMax M3 review (`minimax_m3_book_v4.md`) read the endings as part-of-speech and tense suffixes
+and hallucinated most of its readings. v5 adopts only the two fixes that failure pointed to, because a frontier
+reviewer had stumbled at the same point: an early statement that the ending never marks time, number, person or word
+class, and a lookup procedure with worked examples (`moge` → `mog`, `kina` → `kin`).
+
 **Reviews.** v4 answers Grok Expert's book-only review (`grok_expert_book_v3.md`, with notes on its misreadings, most
 of which came from the citation-form confusion above). v3 answers Astra's book-only review (`astra_book_v2.md`): twelve misattached *how* phrases and three
 other attachment slips, the open-mark definition, mention by literal, the grammar-word key, the free roots and a worked
