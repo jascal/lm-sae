@@ -30,7 +30,11 @@ from roots_book import CLASS_WORD  # noqa: E402
 
 # group names (the concept file's last column) → the Talema heading for that section of the glossary
 GROUP_HEAD = {"computing": "(and computer code)", "unix": "(shell the)", "security": "(and key secret)",
-              "time": "time", "cloud": "(and cloud service)", "ai": "(and model mind)"}
+              "time": "time", "cloud": "(and cloud service)", "ai": "(and model mind)",
+              # mathematics
+              "number": "number", "operation": "(act/NOUN (of number))", "algebra": "(and equation unknown/NOUN)",
+              "structure": "(and set/NOUN element)", "geometry": "geometry", "proof": "(and proof theorem)",
+              "calculus": "calculus", "chance": "(and chance probability)"}
 
 
 def concepts(path: Path) -> list[dict]:

@@ -29,7 +29,7 @@
 
 (be (mark third the) (SUBJ (word "pef")))                                 # The third mark is the word "open".
 (say (OBJ (know (OBJ it) not yet (SUBJ we))) (SUBJ it))                      # It says: we do not know it yet.
-(say (OBJ (know (OBJ it) will never (SUBJ nobody))) not (SUBJ it))           # It does not say: nobody will ever know it.
+(say (OBJ (know (OBJ it) will ever (SUBJ nobody))) not (SUBJ it))           # It does not say: nobody will ever know it.
 (say (OBJ (be question (SUBJ it))) (SUBJ it))                                # It says: it is a question.
 @verse
 (open/ADJ (whether (dream (SUBJ (mind the)))))                               # Open: do the minds dream?

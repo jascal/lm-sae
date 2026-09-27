@@ -204,7 +204,7 @@ word-by-word gloss in the order Talema speaks it.
 
 [`conlang/BUKE_DE_LORE_FIRA.md`](../conlang/BUKE_DE_LORE_FIRA.md) ("Book of the First Word") is the founding text,
 written entirely in Talema. It is a primer, a literature, a guide to growing the language, and a dictionary in one
-file of about 93k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
+file of about 96k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
 
 | chapter | what it is |
 |---|---|
@@ -300,7 +300,15 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   field's sense*.
 - **`scripts/conlang/field.py`** checks which concepts have roots, coins the rest, lints the chapter so every concept
   resolves to its glossary root, and generates the field glossary.
-- **Planned next fields:** mathematics, logic, physics, philosophy, morality.
+- **Field 2, mathematics** (*mamaka*). Talema's grammar already is Łukasiewicz (Polish) notation, so operators are
+  relator heads and no brackets are needed: `mapori si pona tova tura` is (1 + 2) × 3, and
+  `si pona mapori tova tura` is 1 + 2 × 3. The operators are `menos` (minus: one child is negative, two is
+  subtraction), `mapor` (times) and `dided` (divided by); `raris` "root" with one child is the square root, and
+  with two, the first child says which root. Functions are literal heads (f(x) = `f-e x-a`). The chapter covers
+  sets, geometry, proof, calculus and chance. Its centrepieces are Euclid's proof that the primes never end, marked
+  `bove`, and Goldbach's conjecture, marked `pefe` and seen true below 4 × 10^18. The chapter warns that `finit`
+  (from *infinito*) means *infinite* and `nilik` means *finite*.
+- **Planned next fields:** logic, physics, philosophy, morality.
 
 **Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
 *v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,
