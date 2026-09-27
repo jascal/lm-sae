@@ -41,7 +41,11 @@ GROUP_HEAD = {"computing": "(and computer code)", "unix": "(shell the)", "securi
               # logic
               "truth": "(and true false)", "connective": "connective", "argument": "(and argument conclusion)",
               "quantifier": "(and quantifier predicate)", "limit": "(and paradox (limit/NOUN (of logic)))",
-              "fallacy": "fallacy", "rule": "(and rule symbol)"}
+              "fallacy": "fallacy", "rule": "(and rule symbol)",
+              # physics
+              "measure": "(and measurement theory)", "matter": "matter", "motion": "(and motion force)",
+              "energy": "energy", "field": "(and light wave)", "cosmos": "(and space universe)",
+              "quantum": "quantum"}
 
 
 def concepts(path: Path) -> list[dict]:
@@ -99,7 +103,8 @@ def cmd_coin(a) -> None:
 
 def cmd_lint(a) -> None:
     lex = author.Lex()
-    used = set(author.TOK.findall(a.chapter.read_text(encoding="utf-8")))
+    code = "\n".join(author.strip_comments(line) for line in a.chapter.read_text(encoding="utf-8").splitlines())
+    used = set(author.TOK.findall(code))                   # trees only: English comments are not concept keys
     bad = []
     for c in concepts(a.tsv):
         want = root_of(lex, c)
