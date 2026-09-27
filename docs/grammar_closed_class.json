@@ -1,0 +1,6 @@
+{
+  "en": ["the", "a", "an", "this", "that", "these", "those", "of", "to", "in", "on", "at", "for", "with", "from", "and", "or", "but", "if", "because", "i", "you", "he", "she", "it", "we", "they", "is", "are", "was", "were", "be", "have", "has", "do", "does", "not"],
+  "fr": ["le", "la", "les", "un", "une", "des", "de", "du", "à", "au", "aux", "dans", "sur", "pour", "avec", "et", "ou", "mais", "si", "je", "tu", "il", "elle", "nous", "vous", "ils", "elles", "est", "sont", "était", "être", "avoir", "ne", "pas"],
+  "de": ["der", "die", "das", "ein", "eine", "einer", "eines", "den", "dem", "des", "in", "auf", "mit", "zu", "von", "für", "und", "oder", "aber", "wenn", "ich", "du", "er", "sie", "es", "wir", "ihr", "ist", "sind", "war", "sein", "haben", "hat", "nicht"],
+  "es": ["el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del", "a", "al", "en", "por", "para", "con", "sin", "sobre", "y", "o", "pero", "si", "que", "porque", "yo", "tú", "él", "ella", "nosotros", "ellos", "ellas", "se", "es", "son", "era", "fue", "ser", "estar", "haber", "ha", "han", "no"]
+}

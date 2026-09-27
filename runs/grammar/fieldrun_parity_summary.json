@@ -1,0 +1,36 @@
+{
+ "model": "Qwen/Qwen2.5-0.5B-Instruct",
+ "layer": 12,
+ "per_lang": {
+  "en": {
+   "positions": 947,
+   "cos_mean": 0.9996494430648937,
+   "cos_min": 0.9981154834280094,
+   "word_positions": 869
+  },
+  "de": {
+   "positions": 1423,
+   "cos_mean": 0.9995276894331012,
+   "cos_min": 0.9973446949589834,
+   "word_positions": 868
+  },
+  "es": {
+   "positions": 1328,
+   "cos_mean": 0.9996093508168237,
+   "cos_min": 0.9977328978048565,
+   "word_positions": 929
+  },
+  "ja": {
+   "positions": 1341,
+   "cos_mean": 0.999583259510453,
+   "cos_min": 0.9976935764974123,
+   "word_positions": 997
+  },
+  "zh": {
+   "positions": 1060,
+   "cos_mean": 0.9996325007753645,
+   "cos_min": 0.9966913244101392,
+   "word_positions": 810
+  }
+ }
+}

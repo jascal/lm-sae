@@ -1,0 +1,293 @@
+<title>Type–Link–Merge Grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js"></script>
+<style>
+:root {
+  --bg: #f4f6f9; --panel: #ffffff; --ink: #161b24; --ink2: #4a5465; --muted: #7a8494; --rule: #dde2ea;
+  --accent: #2a5bd7; --accent-soft: #e3eafb; --dot: #b9c0cb;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+  --good: #1f7a4d; --bad: #b23a3a;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #12151b; --panel: #1a1e26; --ink: #e8ebf0; --ink2: #b3bac6; --muted: #8a93a3; --rule: #2c323d;
+    --accent: #7097f2; --accent-soft: #223050; --dot: #4a515c;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --good: #5cc28f; --bad: #e87171;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #12151b; --panel: #1a1e26; --ink: #e8ebf0; --ink2: #b3bac6; --muted: #8a93a3; --rule: #2c323d;
+  --accent: #7097f2; --accent-soft: #223050; --dot: #4a515c;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --good: #5cc28f; --bad: #e87171;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--sans); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 650; text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(30px, 5vw, 46px); letter-spacing: -0.01em; }
+h2 { font-size: 26px; }
+h3 { font-size: 17px; font-family: var(--sans); font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 500 12px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink2); }
+section { display: grid; gap: 18px; }
+.tag { font-family: var(--mono); font-size: 12.5px; background: var(--accent-soft); color: var(--ink); padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+/* the three rules, set like a grammar-book gloss */
+.rules { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.rule { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding-block: 18px; border-bottom: 1px solid var(--rule); }
+.rule .name { font-family: var(--serif); font-size: 22px; font-weight: 650; color: var(--accent); }
+.rule .gloss { font-family: var(--mono); font-size: 13px; color: var(--ink2); margin-top: 6px; }
+@media (max-width: 560px) { .rule { grid-template-columns: 1fr; gap: 4px; } }
+
+.xbar { width: 100%; border-collapse: collapse; font-size: 14px; }
+.xbar th, .xbar td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.xbar th { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.xbar td.n { font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+.verdict { font: 500 12px var(--mono); padding: 2px 7px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.verdict.yes { color: var(--good); } .verdict.no { color: var(--bad); } .verdict.half { color: var(--muted); }
+.scroll { overflow-x: auto; }
+
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.card { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 10px; min-width: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--ink2); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+svg text { fill: var(--ink2); font-family: var(--sans); font-size: 12px; }
+svg .axis { stroke: var(--rule); }
+svg .grid { stroke: var(--rule); stroke-dasharray: 2 3; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: end; }
+.ctl { display: grid; gap: 6px; }
+.ctl label, .ctl .lbl { font: 500 11.5px var(--mono); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+select, input[type=range] { font: 14px var(--sans); color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 6px 8px; }
+input[type=range] { padding: 0; accent-color: var(--accent); width: 180px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 13px var(--mono); border: 1px solid var(--rule); background: var(--panel); color: var(--ink2); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip.c1[aria-pressed="true"] { background: var(--s1); border-color: var(--s1); }
+.chip.c2[aria-pressed="true"] { background: var(--s2); border-color: var(--s2); }
+.chip.c3[aria-pressed="true"] { background: var(--s3); border-color: var(--s3); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+#cat3d { width: 100%; height: 560px; }
+@media (max-width: 560px) { #cat3d { height: 420px; } }
+.stat { font: 500 13px var(--mono); color: var(--ink2); }
+.trees { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.tree { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 12px; min-width: 0; }
+.tree h3 { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
+.tree svg text.w { fill: var(--ink); font-size: 12px; }
+.tree svg text.w.fn { fill: var(--accent); font-weight: 600; }
+#tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--bg); font: 12.5px/1.4 var(--sans); padding: 6px 9px; border-radius: 6px; opacity: 0; transition: opacity .1s; z-index: 10; max-width: 260px; }
+footer { border-top: 1px solid var(--rule); padding-top: 18px; color: var(--muted); font-size: 13px; display: grid; gap: 8px; }
+@media (prefers-reduced-motion: reduce) { #tip { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header style="display:grid; gap:16px">
+    <div class="eyebrow">lm-sae · universal-grammar track · 4 LLMs × 13 languages</div>
+    <h1>The grammar four LLMs agree on fits in three rules</h1>
+    <p class="lede">Read on the same 1,000 sentences translated into 13 languages, Qwen2.5 (0.5B, 1.5B), Llama-3.2-1B and Gemma-2-2B hold one shared grammar in their mid-layer geometry. It is simpler than X-bar theory: the parts of X-bar the models do not use are simply left out.</p>
+  </header>
+
+  <section aria-labelledby="rules-h">
+    <h2 id="rules-h">The theory</h2>
+    <div class="rules">
+      <div class="rule"><div class="name">Type</div><div>
+        <p>Every word gets a type from a small universal space of about 4–8 dimensions. The main axis runs from <em>referents</em> (names, numbers, nouns, adjectives) to <em>relators</em> (verbs, auxiliaries, adpositions, subordinators); the second from content words to function words.</p>
+        <div class="gloss">cross-model category-geometry agreement 0.92–0.96 · rank-4 code keeps 95% of held-out-language accuracy · erasing it hurts prediction in 52/52 cells</div></div></div>
+      <div class="rule"><div class="name">Link</div><div>
+        <p>Every word hangs from exactly one head, with a typed link (subject, object, modifier…). Relators are heads: <span class="tag">of → house</span>, <span class="tag">that → left</span>. Determiners are not: <span class="tag">house → the</span>.</p>
+        <div class="gloss">relator-head beats content-head in 47 of 52 model × language cells</div></div></div>
+      <div class="rule"><div class="name">Merge</div><div>
+        <p>A head takes its dependents one at a time, closest-bound first: complement, then modifiers, then subject. There are no bar levels, no specifier slots, and no empty projections. Word order is a separate per-language choice.</p>
+        <div class="gloss">binary grouping +0.007 over flat links (37/52) · X-bar levels add nothing (14/52)</div></div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="vs-h">
+    <h2 id="vs-h">What happens to X-bar's machinery</h2>
+    <div class="scroll"><table class="xbar">
+      <thead><tr><th>X-bar claim</th><th>what the models show</th><th>cells</th><th>verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Bar levels X′ / XP on every head</td><td>fit no better than bare Merge</td><td class="n">14 / 52</td><td><span class="verdict no">dropped</span></td></tr>
+        <tr><td>Determiner heads the noun phrase (DP)</td><td>promoting determiners makes the fit worse</td><td class="n">13 / 52</td><td><span class="verdict no">dropped</span></td></tr>
+        <tr><td>Auxiliary heads the clause (TP)</td><td>no effect either way</td><td class="n">25 / 52</td><td><span class="verdict half">neutral</span></td></tr>
+        <tr><td>Adposition and complementizer heads (PP, CP)</td><td>supported</td><td class="n">40, 45 / 52</td><td><span class="verdict yes">kept</span></td></tr>
+        <tr><td>±N / ±V category features</td><td>±N is the main axis; ±V does not appear</td><td class="n">cos 0.05</td><td><span class="verdict half">half</span></td></tr>
+        <tr><td>Content words head (UD's convention)</td><td>relator heads fit better</td><td class="n">47 / 52</td><td><span class="verdict no">replaced</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="ev-h">
+    <h2 id="ev-h">Evidence</h2>
+    <p class="muted">Grouping fit is the rank correlation between a probe's word-to-word distances and a theory's tree distances, after removing word order and each word's height in the tree (which the word type alone predicts). The embedding layer scores about 0.07 and an untrained network 0.01, so the signal is learned context.</p>
+    <div class="charts">
+      <div class="card">
+        <h3>Gain over content-head dependency (UD)</h3>
+        <div class="legend"><span><i style="background:var(--s1)"></i>relator heads</span><span><i style="background:var(--s2)"></i>+ binary Merge</span><span><i style="background:var(--s3)"></i>+ X-bar levels</span></div>
+        <svg id="gain" viewBox="0 0 440 250" role="img" aria-label="Grouping-fit gain over UD per model"></svg>
+        <p class="small muted">Mid layer, 13 languages pooled. Paired 95% CIs ±0.005; probe-seed spread ≤0.002.</p>
+      </div>
+      <div class="card">
+        <h3>How often each claim wins, out of 52 cells</h3>
+        <svg id="cells" viewBox="0 0 440 250" role="img" aria-label="Sign consistency across model-language cells"></svg>
+        <p class="small muted">A cell is one model on one language. 26 is a coin flip.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="cat-h">
+    <h2 id="cat-h">The shared category space, in 4D</h2>
+    <p>Each point is a word from a held-out sentence, placed in the 4-dimensional category code a probe learned from all 13 languages. Axes 1–3 are drawn in space; the slider cuts a slice along axis 4. The five models are rotated onto one frame with a rigid Procrustes rotation, so matching layouts mean the models agree. Grey points are the other categories; labelled markers are each language's category centres.</p>
+    <div class="controls">
+      <div class="ctl"><label for="m-sel">Model</label><select id="m-sel"></select></div>
+      <div class="ctl"><span class="lbl">Languages</span><div class="chips" id="lang-chips"></div></div>
+      <div class="ctl"><span class="lbl">Highlight (up to 3)</span><div class="chips" id="cat-chips"></div></div>
+      <div class="ctl"><label for="w-slider">Axis 4 slice <span id="w-val" class="stat"></span></label><input type="range" id="w-slider" min="0" max="100" value="100"></div>
+    </div>
+    <div class="card" style="padding:8px"><div id="cat3d"></div></div>
+    <p class="stat" id="cat-stat"></p>
+  </section>
+
+  <section aria-labelledby="tree-h">
+    <h2 id="tree-h">One sentence, six languages</h2>
+    <p>The same held-out PUD sentence in each language, with every word placed by the relator-head structural probe (Qwen2.5-0.5B, layer 12, first two principal axes shared across languages). Lines are the tree. Switch trees to see which one the geometry follows; relator words are in blue.</p>
+    <div class="controls">
+      <div class="ctl"><label for="s-sel">Sentence</label><select id="s-sel"></select></div>
+      <div class="ctl"><span class="lbl">Tree</span><div class="chips" id="tree-chips"></div></div>
+    </div>
+    <div class="trees" id="trees"></div>
+  </section>
+
+  <footer>
+    <p>Empirical, not proved: linear probes, rank correlations and a LEACE erasure on four decoder LLMs (0.5–2.6B), one mid layer each plus depth checks, on UD PUD (news and Wikipedia). Theory trees are deterministic conversions of the gold UD trees. Tree edges themselves do not transfer across languages above an adjacent-word baseline; the shared structure is graded grouping.</p>
+    <p>Source: <span class="tag">lm-sae/docs/UNIVERSAL_GRAMMAR.md</span> · scripts in <span class="tag">scripts/grammar/</span></p>
+  </footer>
+</div>
+<div id="tip" role="tooltip"></div>
+<script id="ug-data" type="application/json">__DATA__</script>
+<script>
+const D = JSON.parse(document.getElementById('ug-data').textContent);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const tip = document.getElementById('tip');
+function showTip(e, html) { tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = Math.min(e.clientX + 12, innerWidth - 270) + 'px'; tip.style.top = (e.clientY + 12) + 'px'; }
+function hideTip() { tip.style.opacity = 0; }
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent, text) { const x = document.createElementNS(NS, tag); for (const k in attrs) x.setAttribute(k, attrs[k]); if (text != null) x.textContent = text; parent && parent.appendChild(x); return x; }
+
+/* ── evidence charts ── */
+const SB = D.scoreboard || {};
+const MODELS = [['qwen05', 'Qwen2.5-0.5B'], ['llama1b', 'Llama-3.2-1B'], ['qwen15', 'Qwen2.5-1.5B'], ['gemma2b', 'Gemma-2-2B']];
+function drawGain() {
+  const svg = document.getElementById('gain'); svg.innerHTML = '';
+  const T = SB.theory_table || {}; const L = 110, R = 420, top = 12, rowH = 54, max = 0.045;
+  const x = v => L + (R - L) * v / max;
+  for (let t = 0; t <= 0.04001; t += 0.01) { el('line', { x1: x(t), x2: x(t), y1: top - 4, y2: top + rowH * 4, class: 'grid' }, svg); el('text', { x: x(t), y: top + rowH * 4 + 16, 'text-anchor': 'middle' }, svg, '+' + t.toFixed(2)); }
+  MODELS.forEach(([k, name], i) => {
+    const m = (T[k] || {}).mid; if (!m) return; const y0 = top + i * rowH + 6;
+    el('text', { x: L - 10, y: y0 + 21, 'text-anchor': 'end' }, svg, name);
+    [['fhead', '--s1', 'relator heads'], ['merge', '--s2', '+ binary Merge'], ['xbar', '--s3', '+ X-bar levels']].forEach(([t, c, lab], j) => {
+      const v = m[t] - m.ud, y = y0 + j * 14;
+      const r = el('rect', { x: x(0), y, width: Math.max(1, x(v) - x(0)), height: 11, rx: 2, fill: css(c) }, svg);
+      r.addEventListener('mousemove', e => showTip(e, `<b>${name}</b><br>${lab}: ${m[t].toFixed(3)}<br>UD: ${m.ud.toFixed(3)} · gain +${v.toFixed(3)}`)); r.addEventListener('mouseleave', hideTip);
+    });
+  });
+  el('line', { x1: x(0), x2: x(0), y1: top - 4, y2: top + rowH * 4, class: 'axis' }, svg);
+}
+function drawCells() {
+  const svg = document.getElementById('cells'); svg.innerHTML = '';
+  const rows = [['relator heads > UD', SB.theory_contrasts?.['fhead - ud']], ['subordinator heads > UD', SB.headedness_contrasts?.['C:mark - ud']],
+    ['adposition heads > UD', SB.headedness_contrasts?.['P:case - ud']], ['binary Merge > flat', SB.theory_contrasts?.['merge - fhead']],
+    ['auxiliary heads > UD', SB.headedness_contrasts?.['T:aux+cop - ud']], ['X-bar levels > Merge', SB.theory_contrasts?.['xbar - merge']],
+    ['determiner heads > UD', SB.headedness_contrasts?.['D:det - ud']]].filter(r => r[1]);
+  const L = 160, R = 410, top = 8, h = 30, x = v => L + (R - L) * v / 52;
+  [0, 13, 26, 39, 52].forEach(t => { el('line', { x1: x(t), x2: x(t), y1: top - 4, y2: top + h * rows.length, class: t === 26 ? 'axis' : 'grid' }, svg); el('text', { x: x(t), y: top + h * rows.length + 16, 'text-anchor': 'middle' }, svg, t); });
+  rows.forEach(([lab, c], i) => {
+    const y = top + i * h + 7;
+    el('text', { x: L - 10, y: y + 11, 'text-anchor': 'end' }, svg, lab);
+    const r = el('rect', { x: x(0), y, width: x(c.positive) - x(0), height: 14, rx: 2, fill: css(c.positive >= 36 ? '--s1' : '--dot') }, svg);
+    el('text', { x: x(c.positive) + 5, y: y + 11 }, svg, c.positive);
+    r.addEventListener('mousemove', e => showTip(e, `<b>${lab}</b><br>${c.positive} of ${c.cells} cells · mean Δ ${c.mean >= 0 ? '+' : ''}${c.mean.toFixed(4)}`)); r.addEventListener('mouseleave', hideTip);
+  });
+}
+
+/* ── 4D category explorer ── */
+const C = D.categories; const mSel = document.getElementById('m-sel');
+Object.keys(C.models).forEach(m => { const o = document.createElement('option'); o.value = o.textContent = m; mSel.appendChild(o); });
+const state = { langs: new Set(['en', 'ja', 'ar']), cats: ['NOUN', 'VERB', 'ADP'], w: 100 };
+const SLOT = ['--s1', '--s2', '--s3'];
+function chip(parent, label, pressed, onClick, cls) { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip' + (cls ? ' ' + cls : ''); b.textContent = label; b.setAttribute('aria-pressed', pressed); b.onclick = onClick; parent.appendChild(b); return b; }
+function drawChips() {
+  const lc = document.getElementById('lang-chips'); lc.innerHTML = '';
+  C.langs.forEach(l => chip(lc, l, state.langs.has(l), () => { state.langs.has(l) ? state.langs.delete(l) : state.langs.add(l); if (!state.langs.size) state.langs.add(l); drawChips(); draw3d(); }));
+  const cc = document.getElementById('cat-chips'); cc.innerHTML = '';
+  C.cats.forEach(c => { const i = state.cats.indexOf(c); chip(cc, c, i >= 0, () => { const j = state.cats.indexOf(c); if (j >= 0) state.cats.splice(j, 1); else { if (state.cats.length >= 3) state.cats.shift(); state.cats.push(c); } drawChips(); draw3d(); }, i >= 0 ? 'c' + (i + 1) : ''); });
+}
+function draw3d() {
+  const M = C.models[mSel.value]; const traces = []; const ink = css('--ink'), grey = css('--dot');
+  let wAll = []; state.langs.forEach(l => M.points[l].xyzw.forEach(p => wAll.push(p[3])));
+  wAll.sort((a, b) => a - b); const wLo = wAll[0], wHi = wAll[wAll.length - 1];
+  const frac = state.w / 100, win = (wHi - wLo) * 0.2, centre = wLo + (wHi - wLo) * frac;
+  const inSlice = w => state.w >= 100 || Math.abs(w - centre) <= win;
+  document.getElementById('w-val').textContent = state.w >= 100 ? '(all)' : `${(centre - win).toFixed(1)} … ${(centre + win).toFixed(1)}`;
+  const bg = { x: [], y: [], z: [], text: [] }; const hi = state.cats.map(() => ({ x: [], y: [], z: [], text: [] }));
+  let shown = 0;
+  state.langs.forEach(l => { const P = M.points[l]; P.xyzw.forEach((p, i) => { if (!inSlice(p[3])) return; shown++; const k = state.cats.indexOf(P.upos[i]); const t = k >= 0 ? hi[k] : bg; t.x.push(p[0]); t.y.push(p[1]); t.z.push(p[2]); t.text.push(`${P.form[i]} · ${P.upos[i]} · ${l}`); }); });
+  traces.push({ type: 'scatter3d', mode: 'markers', name: 'other categories', ...bg, hoverinfo: 'text', marker: { size: 2.5, color: grey, opacity: 0.55 } });
+  hi.forEach((t, k) => traces.push({ type: 'scatter3d', mode: 'markers', name: state.cats[k], ...t, hoverinfo: 'text', marker: { size: 3.5, color: css(SLOT[k]), opacity: 0.85 } }));
+  // category centres per language, and a bundle line joining each category across languages
+  C.cats.forEach(c => { const pts = [...state.langs].map(l => [l, M.centroids[l]?.[c]]).filter(p => p[1]); if (!pts.length) return;
+    const k = state.cats.indexOf(c); const col = k >= 0 ? css(SLOT[k]) : ink;
+    traces.push({ type: 'scatter3d', mode: 'lines+markers+text', showlegend: false, x: pts.map(p => p[1][0]), y: pts.map(p => p[1][1]), z: pts.map(p => p[1][2]),
+      text: pts.map((p, i) => i === 0 ? c : ''), textfont: { family: 'IBM Plex Mono, monospace', size: 11, color: col }, hovertext: pts.map(p => `${c} centre · ${p[0]}`), hoverinfo: 'text',
+      line: { color: col, width: 3 }, marker: { size: 4, color: col, symbol: 'diamond' } }); });
+  const ax = t => ({ title: { text: t, font: { size: 11, color: css('--muted') } }, color: css('--muted'), gridcolor: css('--rule'), zerolinecolor: css('--rule'), showspikes: false, backgroundcolor: 'rgba(0,0,0,0)' });
+  Plotly.react('cat3d', traces, { paper_bgcolor: 'rgba(0,0,0,0)', margin: { l: 0, r: 0, t: 0, b: 0 }, showlegend: true,
+    legend: { font: { color: css('--ink2'), size: 12 }, x: 0, y: 1, bgcolor: 'rgba(0,0,0,0)' },
+    scene: { xaxis: ax('axis 1 · referent ↔ relator'), yaxis: ax('axis 2 · content ↔ function'), zaxis: ax('axis 3'), camera: { eye: { x: 1.5, y: 1.4, z: 0.9 } } } },
+    { displaylogo: false, responsive: true, modeBarButtonsToRemove: ['toImage'] });
+  document.getElementById('cat-stat').textContent = `${shown} words shown · Procrustes fit to Qwen2.5-0.5B frame R² = ${M.procrustes_r2.toFixed(2)}`;
+}
+mSel.onchange = draw3d;
+document.getElementById('w-slider').oninput = e => { state.w = +e.target.value; draw3d(); };
+
+/* ── parallel-sentence trees ── */
+const TR = D.trees; const sSel = document.getElementById('s-sel'); let treeKind = 'fhead';
+TR.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = s.langs.en ? s.langs.en.words.join(' ').slice(0, 70) : 'sentence ' + s.sent; sSel.appendChild(o); });
+const RELATOR = new Set(['ADP', 'SCONJ', 'AUX', 'DET']);
+function drawTrees() {
+  const s = TR[+sSel.value]; const box = document.getElementById('trees'); box.innerHTML = '';
+  const all = Object.values(s.langs).flatMap(v => v.xyz); const xs = all.map(p => p[0]), ys = all.map(p => p[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  Object.entries(s.langs).forEach(([l, v]) => {
+    const d = document.createElement('div'); d.className = 'tree'; d.innerHTML = `<h3>${l}</h3>`; box.appendChild(d);
+    const W = 320, H = 230, pad = 34; const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${l} tree` }, d);
+    const X = p => pad + (W - 2 * pad) * (p[0] - x0) / (x1 - x0 || 1), Y = p => pad / 2 + (H - pad) * (p[1] - y0) / (y1 - y0 || 1);
+    v[treeKind].forEach((h, i) => { if (h < 0) return; el('line', { x1: X(v.xyz[i]), y1: Y(v.xyz[i]), x2: X(v.xyz[h]), y2: Y(v.xyz[h]), stroke: css('--dot'), 'stroke-width': 1.5 }, svg); });
+    v.xyz.forEach((p, i) => { if (v.upos[i] === 'PUNCT') return; el('circle', { cx: X(p), cy: Y(p), r: 3, fill: css(v.upos[i] === 'ADP' || v.upos[i] === 'SCONJ' ? '--accent' : '--ink2') }, svg);
+      const t = el('text', { x: X(p) + 5, y: Y(p) - 4, class: 'w' + (v.upos[i] === 'ADP' || v.upos[i] === 'SCONJ' ? ' fn' : '') }, svg, v.words[i]);
+      t.addEventListener('mousemove', e => showTip(e, `${v.words[i]} · ${v.upos[i]}<br>head: ${v[treeKind][i] >= 0 ? v.words[v[treeKind][i]] : 'root'}`)); t.addEventListener('mouseleave', hideTip); });
+  });
+}
+function drawTreeChips() { const tc = document.getElementById('tree-chips'); tc.innerHTML = '';
+  [['fhead', 'relator heads'], ['ud', 'content heads (UD)']].forEach(([k, lab]) => chip(tc, lab, treeKind === k, () => { treeKind = k; drawTreeChips(); drawTrees(); })); }
+sSel.onchange = drawTrees;
+
+function safe(f, fallbackId, msg) { try { f(); } catch (e) { console.error(e); if (fallbackId) document.getElementById(fallbackId).innerHTML = `<p class="muted small" style="padding:16px">${msg}</p>`; } }
+function drawAll() {
+  safe(drawGain); safe(drawCells); safe(drawTreeChips); safe(drawTrees); safe(drawChips);
+  safe(draw3d, 'cat3d', 'The 3D view needs WebGL, which this browser has turned off. The category layout is summarised in the theory section above.');
+}
+drawAll();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>

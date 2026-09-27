@@ -38,3 +38,5 @@ pylm/*.fieldrun.bin
 
 # explain decoder vocab (regenerable from the tokenizer)
 pylm/vocab_*.json
+data/ud_pud/
+data/ug/
