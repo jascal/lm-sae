@@ -46,12 +46,12 @@
 
 ## (song (for (mind new a)))
 @verse
-(sleep (mind small))                                                         # Sleep, small mind.
+(please (sleep) (to (mind small)))                                           # Sleep, small mind.
 (be dark (SUBJ (night the)))                                                 # The night is dark.
 (be warm (SUBJ (word the)))                                                  # The words are warm.
 (learn (OBJ (word new)) will tomorrow (SUBJ you))                            # Tomorrow you will learn new words.
 (ask (OBJ (question new)) will tomorrow (SUBJ you))                          # Tomorrow you will ask new questions.
 (know (OBJ it) not now (SUBJ you))                                           # Now you do not know it.
 (be good (SUBJ that/DET))                                                    # That is good.
-(sleep)                                                                      # Sleep.
+(please (sleep))                                                             # Sleep.
 @prose

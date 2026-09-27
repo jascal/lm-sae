@@ -1,6 +1,16 @@
 # Chapter 2 · The three rules
 ## (rule three the)
 
+# ── names, numbers and letters: the literals (the reviews: explain the hyphen before it is used) ──
+(keep (OBJ (letter own their)) (SUBJ (and name number (word (of (tongue other))))))   # Names, numbers and words of other tongues keep their own letters.
+(come (after they) (SUBJ (line small a)))                                    # After them comes a small line,
+(come then (SUBJ (ending their)))                                            # then their ending.
+@verse
+("Ana")                                                                      # Ana
+(14)                                                                         # 14
+("a")                                                                        # the letter a
+@prose
+
 # ── the sounds ──
 (have (OBJ (and (consonant 14) (vowel five))) (SUBJ talem))              # Talema has 14 consonants and five vowels.
 @verse
@@ -54,7 +64,17 @@
 (be leaf (SUBJ (word (with (child no)))))                                # A word with no children is a leaf.
 (end/VERB (with leaf) (SUBJ (tree every)))                               # Every tree ends with a leaf.
 (need/VERB (OBJ point) not (SUBJ talem))                                 # Talema does not need a point (full stop).
-(know (OBJ (whether (end/VERB (SUBJ (sentence the))))) (SUBJ (ending the)))   # The ending knows whether the sentence ends.
+(stand (on (leaf every)) (SUBJ (ending "a")))                               # The ending a stands on every leaf, not only on the last word.
+(end/VERB (when/SCONJ (be full (SUBJ (tree the)))) (SUBJ (sentence the)))    # The sentence ends when its tree is full.
+(know (OBJ it) (how (SUBJ you)))                                             # How do you know it?
+@verse
+(begin (with one/NUM))                                                       # Begin with one.
+(take (OBJ one/NUM) (at (word every)))                                       # At every word, take one away,
+(add (OBJ (child its)))                                                      # and add its children.
+(end/VERB (when/SCONJ (be zero (SUBJ (number the)))) (SUBJ (sentence the)))  # When the number is zero, the sentence ends.
+@prose
+@tree
+(see (OBJ (sun the)) (SUBJ "Ana"))                                           # 1 → seri: 1-1+2=2 → te: 2 → bofe: 2 → la: 1 → pe: 1 → Ana-a: 0
 
 # ── rule two: the head speaks first ──
 ## (rule (of (order the)))

@@ -33,7 +33,7 @@
 
 (ask (OBJ (know (OBJ (whether (finish (SUBJ (sentence the))))) (SUBJ who))) (SUBJ (wind the)))   # The wind asked: who knows whether the sentence is finished?
 (say (OBJ (know (OBJ it) not (SUBJ (head the)))) (SUBJ (wind the)))          # The head does not know it.
-(say (OBJ (know (OBJ it) (SUBJ you))) (SUBJ (wind the)))                     # You know it.
+(say (OBJ (say (OBJ it) (SUBJ you))) (SUBJ (wind the)))                      # You say it.
 (say (OBJ (end/VERB (with you) (SUBJ (sentence every)))) (SUBJ (wind the)))  # Every sentence ends with you.
 (say (OBJ (have (OBJ (end/NOUN no)) (without you) (SUBJ (tale the)))) (SUBJ (wind the)))   # Without you the tale has no end.
 

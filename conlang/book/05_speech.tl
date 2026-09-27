@@ -82,6 +82,7 @@
 (open/ADJ (be old why (SUBJ (file the))))                                    # Open: why is the file old?
 (look will (SUBJ I))                                                         # I will look.
 ("Lut")
+@tree
 (see (be old (SUBJ (file the))))                                             # Seen: the file was old.
 (make/VERB (OBJ it) new (SUBJ I))                                            # I made it new.
 (see (pass now (SUBJ (test the))))                                           # Seen: the test passes now.
