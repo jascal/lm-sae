@@ -32,3 +32,6 @@ safetensors>=0.4
 # Optional — only for the multilingual ops experiment (scripts/gemma/multilingual_ops.py), which streams
 # per-language Wikipedia. Not needed for the rest of the toolkit.
 datasets>=2.14
+
+# Optional — only for the Talema conlang lexicon (scripts/conlang/lexicon.py): per-language word frequencies.
+wordfreq>=3.1

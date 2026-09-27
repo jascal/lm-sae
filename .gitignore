@@ -40,3 +40,4 @@ pylm/*.fieldrun.bin
 pylm/vocab_*.json
 data/ud_pud/
 data/ug/
+data/lexicon/

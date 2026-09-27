@@ -1,0 +1,124 @@
+class	en	de	es	note
+DET	the	der	el	definite article (all genders and cases)
+DET	a	ein	uno	indefinite article
+DET	this	dieser	este
+DET	that	jener	ese|aquel
+DET	all	all	todo
+DET	some	einige	alguno
+DET	no	kein	ninguno
+DET	every	jeder	cada
+DET	other	ander	otro
+DET	which	welcher	cuál
+DET	such	solch	tal
+DET	both	beide	ambos
+DET	any	irgendein	cualquiera
+DET	each	jedes	cada_uno
+DET	own	eigen	propio
+PRON	i	ich	yo	possessive forms follow each treebank's lemma
+PRON	you	du	tú
+PRON	he	er	él	AnCora lemmatises ella as él
+PRON	she	sie	ella
+PRON	it	es	ello
+PRON	we	wir	nosotros
+PRON	they	ihr	ellos	de ihr = their/her (DET); plural 2nd person is rare in PUD
+PRON	my	mein	mi	possessive
+PRON	your	dein	tu	possessive
+PRON	his	sein	su	possessive; es su covers his/her/their
+PRON	one	man	uno_mismo
+PRON	who	wer	quien
+PRON	what	was	qué
+PRON	something	etwas	algo
+PRON	nothing	nichts	nada
+PRON	everything	alles	todo_lo
+PRON	self	sich	se	reflexive
+PRON	there	da	allí
+ADP	of	von	de
+ADP	in	in	en
+ADP	to	zu	a
+ADP	for	für	para
+ADP	on	auf	sobre
+ADP	with	mit	con
+ADP	at	an	en_a
+ADP	by	durch	por
+ADP	from	aus	desde
+ADP	about	über	acerca_de
+ADP	as	als	como
+ADP	into	hinein	dentro
+ADP	after	nach	después
+ADP	before	vor	antes
+ADP	between	zwischen	entre
+ADP	under	unter	bajo
+ADP	without	ohne	sin
+ADP	against	gegen	contra
+ADP	during	während	durante
+ADP	since	seit	desde_que
+ADP	until	bis	hasta
+ADP	through	über_hin	a_través
+ADP	like	wie	según
+ADP	around	um	alrededor
+ADP	toward	gegenüber	hacia
+ADP	near	bei	cerca
+ADP	behind	hinter	tras
+ADP	among	unter_den	entre_los
+CCONJ	and	und	y
+CCONJ	or	oder	o
+CCONJ	but	aber	pero
+CCONJ	nor	noch	ni
+SCONJ	that	dass	que
+SCONJ	if	wenn	si
+SCONJ	because	weil	porque
+SCONJ	while	während_dass	mientras
+SCONJ	although	obwohl	aunque
+SCONJ	whether	ob	si_acaso
+SCONJ	when	als_dass	cuando
+SCONJ	so	damit	para_que
+SCONJ	than	als_ob	que_comp
+VERB	be	sein	ser|estar
+VERB	have	haben	haber|tener	perfect auxiliary and possession
+VERB	do	tun	hacer
+VERB	will	werden	ir
+VERB	can	können	poder
+VERB	must	müssen	deber
+VERB	may	dürfen|mögen	
+VERB	want	wollen	querer
+VERB	should	sollen	haber_de
+VERB	stay	bleiben	quedar
+ADV	not	nicht	no
+ADV	also	auch	también
+ADV	so	so	así
+ADV	then	dann	entonces
+ADV	now	jetzt	ahora
+ADV	only	nur	solo
+ADV	very	sehr	muy
+ADV	more	mehr	más
+ADV	most	meist	mayor_parte
+ADV	still	noch_immer	todavía
+ADV	already	schon	ya
+ADV	here	hier	aquí
+ADV	there_adv	dort	ahí
+ADV	how	wie_adv	cómo
+ADV	where	wo	donde
+ADV	why	warum	por_qué
+ADV	when_adv	wann	cuándo
+ADV	again	wieder	otra_vez
+ADV	always	immer	siempre
+ADV	never	nie	nunca
+ADV	even	sogar	incluso
+ADV	just	gerade	justo
+ADV	well	gut_adv	bien
+ADV	too	zu_adv	demasiado
+ADV	however	jedoch	sin_embargo
+ADV	about_adv	etwa	cerca_de
+ADV	together	zusammen	juntos
+ADV	yet	doch	aún
+ADV	often	oft	a_menudo
+PART	to	zu_inf	a_inf	infinitive marker
+NUM	one	eins	uno_num
+NUM	two	zwei	dos
+NUM	three	drei	tres
+NUM	four	vier	cuatro
+NUM	five	fünf	cinco
+NUM	ten	zehn	diez
+NUM	hundred	hundert	cien
+NUM	thousand	tausend	mil
+NUM	million	million	millón
