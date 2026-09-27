@@ -205,6 +205,12 @@ parallel sentences as Merge trees, and *derives* each language's word-order para
 OV↔postposition correlation falls out of the counts. `tlm.py gate` proves the program's Link heads and Merge
 distances identical to the Python trees these measurements used, on all 13 × 1000 sentences.
 
+**A language built on it.** [CONLANG.md](CONLANG.md) describes Talema, a constructed language whose grammar is
+three exceptionless rules spelling the TLM form (relator particles, head-first Merge order, and an arity ending
+that makes the string self-bracketing). Its vocabulary is weighted by English, German and Spanish frequency. It
+round-trips all 3,000 en/de/es PUD trees exactly; its sources need 62–90 order rules and still misplace 7–12% of
+links.
+
 ## 6. Scope and open questions
 
 - Four decoder LLMs, 0.5–2.6 B parameters, one mid layer each (plus depth checks); linear probes. Larger models,

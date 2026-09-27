@@ -45,7 +45,7 @@ def read_conllu(path: Path) -> list[dict]:
                 cur["_mwt"].update({i: True for i in range(a - 1, b)})
                 continue
             i = int(c[0]) - 1
-            cur["words"].append({"form": c[1], "upos": c[3], "head": int(c[6]) - 1,
+            cur["words"].append({"form": c[1], "lemma": c[2], "upos": c[3], "head": int(c[6]) - 1,
                                  "deprel": c[7].split(":")[0], "mwt": i in cur["_mwt"]})
             if i not in cur["_mwt"]:
                 cur["surface"].append((c[1], [i]))

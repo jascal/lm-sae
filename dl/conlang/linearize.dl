@@ -1,0 +1,72 @@
+// The conlang's grammar: three rules that spell a Type–Link–Merge (TLM) tree as a string, and that a
+// reader can run backwards. Builds on dl/tlm/tlm.dl (included), which derives the UG form from UD input.
+//
+//   R1 LINK   every argument is introduced by a relator word. Adpositions and subordinators already are
+//             relators (TLM Link rule); a subject, object or indirect object gets a ROLE PARTICLE as its
+//             relator. Every other dependent is a bare modifier.            → encodes the link labels
+//   R2 ORDER  a head comes first, then its dependents in Merge order (complements, adjuncts, subject;
+//             nearest first). One head-direction choice, no exceptions.       → encodes the order
+//   R3 ARITY  every word ends in a vowel numeral giving its number of dependents
+//             (a e i o u = 0–4, base 5 above).                               → encodes the bracketing
+//
+// A labelled ordered tree needs exactly three kinds of information (labels, order, shape); each rule
+// encodes one of them with no exceptions, so none can be dropped without the string ceasing to determine
+// the tree. Word forms (concept → root) are the lexicon's job, not the grammar's (conlang/lexicon.tsv).
+//
+// Node ids: a word keeps its index i; the role particle introducing word d gets id d + 10000.
+
+#include "../tlm/tlm.dl"
+
+.decl role(r:symbol, particle:symbol)
+role("nsubj", "SUBJ"). role("csubj", "SUBJ"). role("expl", "SUBJ").
+role("obj", "OBJ"). role("ccomp", "OBJ"). role("xcomp", "OBJ").
+role("iobj", "DAT").
+
+// punctuation is not part of the UG form: leaves with UPOS PUNCT are dropped
+.decl dropped(s:number, i:number)
+dropped(s, i) :- word(s, i, _, "PUNCT", _, _), !link(s, _, i, _).
+
+// ═══ R1 · LINK: role particles become the relators of subjects and objects ═════════════════════════
+.decl particle(s:number, p:number, d:number, kind:symbol)
+particle(s, d + 10000, d, kind) :- link(s, d, h, r), h != 0, role(r, kind), !dropped(s, d).
+
+// the conlang tree: cparent(child, parent, merge key); the key orders siblings (TLM Merge order)
+.decl cparent(s:number, n:number, h:number, key:number)
+cparent(s, d, h, key) :- dep(s, h, d, key), !dropped(s, d), !particle(s, _, d, _).
+cparent(s, p, h, key) :- particle(s, p, d, _), dep(s, h, d, key).
+cparent(s, d, p, 0)   :- particle(s, p, d, _).
+.decl cnode(s:number, n:number)
+cnode(s, i) :- word(s, i, _, _, _, _), !dropped(s, i).
+cnode(s, p) :- particle(s, p, _, _).
+.decl croot(s:number, n:number)
+croot(s, i) :- link(s, i, 0, _).
+
+// ═══ R2 · ORDER: preorder (head first), siblings in Merge order ═══════════════════════════════════
+.decl cdesc(s:number, n:number, a:number)                   // a is n or an ancestor of n
+cdesc(s, n, n) :- cnode(s, n).
+cdesc(s, n, a) :- cparent(s, n, m, _), cdesc(s, m, a).
+.decl size(s:number, n:number, z:number)                    // nodes in n's subtree
+size(s, a, z) :- cnode(s, a), z = count : { cdesc(s, _n, a) }.
+.decl pos(s:number, n:number, p:number)                     // 0-based position in the sentence
+pos(s, r, 0) :- croot(s, r).
+pos(s, n, ph + 1 + off) :- cparent(s, n, h, k), pos(s, h, ph),
+    off = sum z : { cparent(s, m, h, km), km < k, size(s, m, z) }.
+
+// ═══ R3 · ARITY ═══════════════════════════════════════════════════════════════════════════════════
+.decl arity(s:number, n:number, a:number)
+arity(s, n, a) :- cnode(s, n), a = count : { cparent(s, _c, n, _k) }.
+
+// the spelled sentence: position, node, arity, and what the lexicon must spell
+.decl cword(s:number, p:number, n:number, arity:number, kind:symbol, lemma:symbol, upos:symbol)
+.output cword
+cword(s, p, n, a, "word", lem, u) :- pos(s, n, p), arity(s, n, a), word(s, n, lem, u, _, _).
+cword(s, p, n, a, kind, kind, "ROLE") :- pos(s, n, p), arity(s, n, a), particle(s, n, _, kind).
+.output cparent
+
+// ═══ checks (must be empty) ═══════════════════════════════════════════════════════════════════════
+.decl pos_clash(s:number, p:number)                          // positions are a permutation
+.output pos_clash
+pos_clash(s, p) :- pos(s, a, p), pos(s, b, p), a != b.
+.decl unplaced(s:number, n:number)
+.output unplaced
+unplaced(s, n) :- cnode(s, n), !pos(s, n, _).

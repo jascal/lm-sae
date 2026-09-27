@@ -1,0 +1,60 @@
+{
+ "languages": {
+  "en": {
+   "order_rules": 90,
+   "order_groups": 183,
+   "order_accuracy_with_those_rules": 0.9340175953079178,
+   "order_exceptions": 1170,
+   "order_entropy_bits_per_link": 0.23590770026664276,
+   "nonprojective_sentences": 0.047,
+   "morph_feature_values": 50,
+   "forms_per_lemma": 1.2048290830168205,
+   "lemmas_with_several_forms": 0.1587086272381986,
+   "lexicon_coverage": 0.9189615431275021,
+   "mean_word_letters_source": 4.731651097901249,
+   "mean_word_letters_conlang": 3.4762215692676026
+  },
+  "de": {
+   "order_rules": 86,
+   "order_groups": 155,
+   "order_accuracy_with_those_rules": 0.8784237799669723,
+   "order_exceptions": 2135,
+   "order_entropy_bits_per_link": 0.36423893333869356,
+   "nonprojective_sentences": 0.135,
+   "morph_feature_values": 49,
+   "forms_per_lemma": 1.2454625940681718,
+   "lemmas_with_several_forms": 0.15449313855688357,
+   "lexicon_coverage": 0.8594036020076764,
+   "mean_word_letters_source": 5.751048125184529,
+   "mean_word_letters_conlang": 3.3644225877564864
+  },
+  "es": {
+   "order_rules": 62,
+   "order_groups": 147,
+   "order_accuracy_with_those_rules": 0.9340769269244236,
+   "order_exceptions": 1318,
+   "order_entropy_bits_per_link": 0.2368353036080301,
+   "nonprojective_sentences": 0.063,
+   "morph_feature_values": 57,
+   "forms_per_lemma": 1.4203714124929656,
+   "lemmas_with_several_forms": 0.23607203151378728,
+   "lexicon_coverage": 0.9311131860151468,
+   "mean_word_letters_source": 4.769945015043055,
+   "mean_word_letters_conlang": 3.269479900933511
+  }
+ },
+ "conlang": {
+  "order_rules": 1,
+  "order_accuracy": 1.0,
+  "order_exceptions": 0,
+  "order_entropy_bits_per_link": 0.0,
+  "nonprojective_sentences": 0.0,
+  "morph_feature_values": 0,
+  "forms_per_lemma": 1.0,
+  "grammar_rules": 3
+ },
+ "convergence": {
+  "root_bag_jaccard_mean": 0.38129608122107145,
+  "note": "Jaccard of concept roots between the en/de/es versions of each PUD sentence"
+ }
+}
