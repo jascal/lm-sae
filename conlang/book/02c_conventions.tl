@@ -40,6 +40,17 @@
 @prose
 (stand (after (word (that (count/VERB (SUBJ it))))) (SUBJ (word (of number)))) # A number word stands after the word that it counts:
 (see (OBJ (dog two)) (SUBJ I))                                               # I see two dogs.
+(say (OBJ (number (of it))) (SUBJ (number (under (number big a)))))          # A number under a big number says how many of it.
+(add (OBJ (part its)) (SUBJ (word and)))                                     # The word s adds its parts.
+@verse
+(be (and ten four) (SUBJ 14))                                                # 14 is si deha fura.
+(be (ten two) (SUBJ 20))                                                     # 20 is dehe tova.
+(be (and (ten two) four) (SUBJ 24))                                          # 24 is si dehe tova fura.
+(be (hundred three) (SUBJ 300))                                              # 300 is hudede tura.
+(be (and thousand (hundred four) (ten nine) two) (SUBJ 1492))                # 1492 is su mula hudede fura dehe nevina tova.
+@prose
+(write (OBJ number) (with (letter (of number))) can (SUBJ you))              # You can write a number with digits,
+(but (say (OBJ it) (with (word (of number)))))                               # but say it with number words.
 
 # ── the three marks: how a speaker knows ──
 ## (mark three the)

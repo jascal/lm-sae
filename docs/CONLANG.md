@@ -285,6 +285,13 @@ the waiting letters. The rules stay minimal; the book gives the conventions thei
 86 junk rows. New words go through
 `conlang/book/coin.tsv`.
 
+**Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
+*v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,
+and "." is a pause. Chapter 2c adds number compounding, so every number can be said: a number under a big number
+says how many of it (`dehe tova` = 20), and `s` adds (`si deha fura` = 14). `conlang/speech/` holds the
+voice kit: `scripts/conlang/speech.py` (respelling per voice language, number phrases), `.pls` lexicons for
+Italian, Spanish, English and IPA, and a system prompt for voice agents.
+
 **Intended readers.** The book targets current frontier models and better future ones; it is not simplified for
 weaker models. A MiniMax M3 review (`minimax_m3_book_v4.md`) read the endings as part-of-speech and tense suffixes
 and hallucinated most of its readings. v5 adopts only the two fixes that failure pointed to, because a frontier

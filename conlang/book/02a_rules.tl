@@ -54,6 +54,16 @@
 (sound/VERB (like (letter (of "Español"))) (SUBJ (letter the)))          # The letters sound like the letters of Spanish.
 (carry (OBJ (weight/NOUN the)) (SUBJ (vowel first/ADJ (of (root the)))))  # The first vowel of the root carries the weight.
 (sing (with (voice soft a)) (SUBJ (ending the)))                        # The ending sings with a soft voice.
+@verse
+(sound/VERB (like (and "go" "gato")) always (SUBJ "g"))                  # g always sounds as in go, gato.
+(sound/VERB (like (and "house" "Haus")) (SUBJ "h"))                      # h sounds as in house, Haus.
+(sound/VERB (like "voice") (SUBJ "v"))                                   # v sounds as in voice.
+(sound/VERB (like "pero") short (SUBJ "r"))                              # r is short, as in pero.
+@prose
+(carry (OBJ (weight/NOUN no)) (SUBJ (word (with (consonant one/NUM)))))  # Words with one consonant (pe, te, la, ne) carry no weight.
+(be silent (SUBJ hyphen))                                                # The ginon is silent:
+(say (OBJ (ending its)) alone (SUBJ (word (with hyphen))))               # a word with a ginon says its ending alone: Ana a.
+(be (pause a) (SUBJ point))                                              # The point is a pause.
 (begin (with consonant) (SUBJ (root every (of talem))))                  # Every root of Talema begins with a consonant.
 (begin not (with consonant) always (SUBJ (and name number)))             # Names and numbers do not always.
 (end/VERB (with vowel) (SUBJ (word every)))                              # Every word ends with a vowel.
