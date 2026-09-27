@@ -4,7 +4,8 @@ Talema is spelled phonemically (docs/CONLANG.md §1), but off-the-shelf TTS voic
 language's letter rules. This module turns written Talema into a string a given voice will pronounce as
 Talema, and exports the same knowledge as W3C pronunciation dictionaries (.pls) and an IPA table:
 
-  number(n)            the Talema number phrase for n, e.g. 1492 → "so mula hudede fura dehe nevina tova"
+  number(n)            the Talema number phrase for n, e.g. 1492 → "su mula hudede fura dehe nevina tova"
+  decimal(s)           a decimal: 0.7 → "puni senura geva" (pun, "point", heads the whole part and each digit)
   spoken(text, voice)  written Talema → what to send to a TTS voice ("es", "it", "en" or "ipa")
   pls                  write .pls dictionaries (alias respellings per voice, and IPA) for the most frequent words
   ipa                  print the letter table
@@ -71,6 +72,20 @@ def number(n: int) -> str:
     return " ".join(_spell(number_tree(n)))
 
 
+POINT = "pun"
+
+
+def decimal_tree(text: str):
+    """A decimal: pun ("point") heads the whole part, then each digit after the point, one by one:
+    0.7 → puni senura geva; 3.14 → puno tura pona fura. One tree, like every number phrase."""
+    whole, frac = text.split(".")
+    return (POINT, [number_tree(int(whole or 0))] + [(UNITS[int(d)], []) for d in frac])
+
+
+def decimal(text: str) -> str:
+    return " ".join(_spell(decimal_tree(text)))
+
+
 # ── written → spoken ──────────────────────────────────────────────────────────────────────────────────────
 def _split(word: str) -> tuple[str, str]:
     """(root, ending) of a native word."""
@@ -121,7 +136,9 @@ def _respell(word: str, voice: str) -> str:
     nv = sum(ch in VOWS for ch in word)
     if voice == "es" and st is not None and nv >= 2:
         # Spanish stresses the second-to-last vowel of a vowel-final word; mark the root's first vowel when it differs
-        vowel_positions = [i for i, ch in enumerate(w) if ch in VOWS]
+        # the u of gue/gui is silent (it only keeps g hard), so it is not a vowel for stress
+        vowel_positions = [i for i, ch in enumerate(w) if ch in VOWS
+                           and not (ch == "u" and i and w[i - 1] == "g" and i + 1 < len(w) and w[i + 1] in "ei")]
         first = vowel_positions[0]
         if first != vowel_positions[-2]:
             w = w[:first] + {"a": "á", "e": "é", "i": "í", "o": "ó", "u": "ú"}[w[first]] + w[first + 1:]
@@ -137,8 +154,8 @@ def spoken(text: str, voice: str = "es") -> str:
         if "-" in tok:
             base, end = tok.rsplit("-", 1)
             base = base.replace("_", " ")
-            if base.isdigit():
-                phrase = number(int(base))
+            if base.isdigit() or re.fullmatch(r"\d*\.\d+", base):
+                phrase = number(int(base)) if base.isdigit() else decimal(base)
                 words = phrase.split() + ([] if end == "a" else [end])
                 out.extend(_respell(w, voice) if w not in VOWS else w for w in words)
             else:
@@ -181,7 +198,7 @@ def main() -> None:
     q.add_argument("text")
     q.add_argument("--voice", default="es", choices=["es", "it", "en", "ipa"])
     q = sub.add_parser("number")
-    q.add_argument("n", type=int)
+    q.add_argument("n", help="an integer, or a decimal such as 0.7")
     q = sub.add_parser("pls")
     q.add_argument("--top", type=int, default=300)
     q.add_argument("--out", type=Path, default=ROOT / "conlang" / "speech")
@@ -190,7 +207,7 @@ def main() -> None:
     if a.cmd == "say":
         print(spoken(a.text, a.voice))
     elif a.cmd == "number":
-        print(number(a.n))
+        print(decimal(a.n) if "." in a.n else number(int(a.n)))
     elif a.cmd == "ipa":
         for c in CONS + VOWS:
             print(f"{c}\t/{IPA[c]}/")

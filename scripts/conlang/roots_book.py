@@ -110,7 +110,7 @@ def entry(root: str, cls: str, words: list[str]) -> str:
 
 
 def load(max_rows: int):
-    rows = [l.split("\t") for l in (ROOT / "conlang" / "lexicon.tsv").read_text(encoding="utf-8").splitlines()[1:]]
+    rows = [line.split("\t") for line in (ROOT / "conlang" / "lexicon.tsv").read_text(encoding="utf-8").splitlines()[1:]]
     lex, skipped = [], 0
     for c in rows[:max_rows]:
         root, cl, en, de, es = c[:5]
@@ -126,7 +126,7 @@ def load(max_rows: int):
     for line in (ROOT / "conlang" / "book" / "coin.tsv").read_text(encoding="utf-8").splitlines()[1:]:
         if line.strip():
             c = (line.split("\t") + [""] * 7)[:7]
-            coins.append((c[1], c[2] or "NOUN", [w for w in (c[0], c[4], c[5]) if w]))
+            coins.append((c[1], c[2] or "NOUN", [w for w in (c[0], c[4], c[5]) if w], c[6].startswith("field:")))
     return lex, coins, skipped
 
 
@@ -147,12 +147,13 @@ def main() -> None:
         text = (FIRST_HEADER.replace("KINDS", kinds)
                 .replace("RELATORS", "\n".join(entry(*e) for e in rel))
                 .replace("FREQUENT", "\n".join(entry(*e) for e in freq))
-                .replace("COINS", "\n".join(entry(*e) for e in sorted(coins, key=lambda e: key(e[0])))))
+                .replace("COINS", "\n".join(entry(*e[:3]) for e in sorted(coins, key=lambda e: key(e[0]))
+                                             if not e[3])))   # field words are taught in their field chapters
         a.out.write_text(text, encoding="utf-8")
-        print(f"{a.out}: {len(rel)} relators, {len(freq)} frequent words, {len(coins)} coinages")
+        print(f"{a.out}: {len(rel)} relators, {len(freq)} frequent words, {sum(not c[3] for c in coins)} coinages")
         return
     entries = {r: (cl, ws) for r, cl, ws in lex}
-    for r, cl, ws in coins:
+    for r, cl, ws, _field in coins:
         entries[r] = (cl, ws)
     rough = {r for r, (cl, ws) in entries.items() if ws and ws[0].lower() in ROUGH}
     out = [ROOTS_HEADER.replace("COUNT", str(len(entries)))]

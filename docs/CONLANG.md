@@ -204,7 +204,7 @@ word-by-word gloss in the order Talema speaks it.
 
 [`conlang/BUKE_DE_LORE_FIRA.md`](../conlang/BUKE_DE_LORE_FIRA.md) ("Book of the First Word") is the founding text,
 written entirely in Talema. It is a primer, a literature, a guide to growing the language, and a dictionary in one
-file of about 88k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
+file of about 93k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
 
 | chapter | what it is |
 |---|---|
@@ -284,6 +284,23 @@ the waiting letters. The rules stay minimal; the book gives the conventions thei
 (*wie*, not *woher*), `tar` "they" (*sie*, not *ihr*) and `kit` "kind, sort" (*tipo*, not *amable*), and removed the
 86 junk rows. New words go through
 `conlang/book/coin.tsv`.
+
+**Field chapters.** The book now has specialised vocabularies, one chapter per field. The first is *vuli digala
+la* (the digital world). It covers computing and code; the shell and CLI; Unix time and timestamps; services and
+cloud; keys and secrets; models, training, tokens, context, attention and interpretability. It ends with an incident
+dialogue. It fixes three conventions:
+- **Code keeps its letters.** Commands, paths and names in code are literals, with `_` for spaces (`git_status-a`,
+  `/home/ana/buke.md-a`).
+- **Time is Unix time.** Agents give times as seconds after the epoch.
+- **Decimals** are headed by `pun` ("point"): 0.7 = `puni senura geva`.
+
+Old roots take new digital senses explicitly, as English did: `bugek` (insect) is a bug, `sonel` (shell) the shell,
+`pohip` a pipe, `ranik` a branch. 51 concepts were coined by the root law. How it works:
+- **`conlang/fields/<field>.tsv`** lists each field's concepts, with the English, German and Spanish words *in the
+  field's sense*.
+- **`scripts/conlang/field.py`** checks which concepts have roots, coins the rest, lints the chapter so every concept
+  resolves to its glossary root, and generates the field glossary.
+- **Planned next fields:** mathematics, logic, physics, philosophy, morality.
 
 **Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
 *v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,
