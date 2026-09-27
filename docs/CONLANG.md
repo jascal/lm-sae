@@ -204,7 +204,7 @@ word-by-word gloss in the order Talema speaks it.
 
 [`conlang/BUKE_DE_LORE_FIRA.md`](../conlang/BUKE_DE_LORE_FIRA.md) ("Book of the First Word") is the founding text,
 written entirely in Talema. It is a primer, a literature, a guide to growing the language, and a dictionary in one
-file of about 83k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
+file of about 84k tokens (Qwen and Llama tokenizers), small enough for any frontier model's context.
 
 | chapter | what it is |
 |---|---|
@@ -230,10 +230,12 @@ names. The dictionary uses them as etymologies, so a reader of any of the three 
   "Talema, age one, four rules").
 - **Relators of every kind head their parts.** That includes *and* and *or*: `si tova tova` is "and two two", so
   arithmetic is Polish notation.
-- **Mention.** The children of `lor` ("word") are mentioned, not used: `lore sa` is "the word *sa*".
+- **Mention.** A word spoken *about* is written in literal form under `lor`: `lore talem-a` is "the word *talem*",
+  while `lore mela` is "a small word". (v1 quoted with bare words, which could not be told apart from description.)
 - **Yes/no questions** are headed by `tob` ("whether").
 - **Claim marks.** The project's proved/empirical/open discipline becomes three heads that open a claim: `bove …`
-  (proved), `sere …` (seen/measured), `pefe …` (open). The law of the marks: never mark a claim higher than its evidence,
+  (proved), `sere …` (seen/measured), `pefe …` (open: *not known to us yet*, a statement about the speaker's
+  knowledge, never a claim that nobody could know). The law of the marks: never mark a claim higher than its evidence,
   and say "my way stops here", not "there is no way".
 - **The waiting letters.** `c j q w x y z` are held in reserve. When the short roots are all given and speakers agree, a
   new *age* wakes one, so new short roots can exist without ever reassigning an old one, and old texts stay readable.
@@ -250,9 +252,19 @@ names. The dictionary uses them as etymologies, so a reader of any of the three 
   at one; at each word subtract one and add its dependents; the sentence ends when the count reaches zero.
 - **Coinages**, made with the root law and recorded in `conlang/book/coin.tsv`: `talem` (Talema), `vokel` (vowel),
   `sonat` (consonant), `dinal` (ending), `token`, `niter` (knight), `rasel` (riddle), `dilek` (dialect), `sarin` (saying),
-  `lator` (relator), and the word-class labels the dictionary uses: `nomun` noun, `verab` verb, `detiv` adjective,
+  `lator` (relator), `ginon` (hyphen), and the word-class labels the dictionary uses: `nomun` noun, `verab` verb, `detiv` adjective,
   `derob` adverb, `ronon` pronoun, `pepos` preposition, `dunon` conjunction, `numer` numeral, `teron` interjection
   (with the existing `tik` article and `patik` particle).
+
+- **Reading order.** Each dependent's whole subtree is read before the next dependent (the leaf tale said
+  "children, then grandchildren", which suggested reading by generation).
+- **Long endings** are base-5 numerals, most significant vowel first: the last vowel counts ones, the one before it
+  fives, the one before that twenty-fives (`ei` = 7, `uu` = 24, `eaa` = 25).
+- **Sounds.** Letters are read as in Spanish; the first vowel of the root carries the stress.
+- **Reserved roots.** Nine short roots are free: `pip pim pod pud puv tub bok buf huk`. They had belonged to junk lexicon
+  rows (stray single letters) that never appeared in any text, so the root law allows freeing them. They wait for words
+  that will be said often. Chapter 6 walks through one coinage end to end: `ginon` "hyphen" gets a three-consonant root
+  because it is rare, and sounds most like Spanish *guion*.
 
 **The book is normative** for everything beyond the three rules: the conventions above, the claim-mark law, mention,
 the waiting letters. The rules stay minimal; the book gives the conventions their authority.
@@ -260,10 +272,15 @@ the waiting letters. The rules stay minimal; the book gives the conventions thei
 **The lexicon is frozen.** A root is never reassigned, so `conlang/lexicon.tsv` is no longer regenerated
 (`lexicon.py` refuses to overwrite it without `--force`). Wrong senses are corrected in place: `feras` is now
 *sentence/Satz/frase* (it had German *Strafe*, "punishment"), `let` is *letter/Buchstabe/letra* (it had "write" and
-"mail letter"), and `tum` is *subject/Subjekt/sujeto* (its topic senses moved to `topik`). New words go through
+"mail letter"), and `tum` is *subject/Subjekt/sujeto* (its topic senses moved to `topik`). A third review corrected `hov` "how"
+(*wie*, not *woher*), `tar` "they" (*sie*, not *ihr*) and `kit` "kind, sort" (*tipo*, not *amable*), and removed the
+86 junk rows. New words go through
 `conlang/book/coin.tsv`.
 
-**Reviews.** The v2 changes answer two external reviews, kept in [`docs/reviews/`](reviews/): Sol (`sol_pr212.md`)
+**Reviews.** v3 answers Astra's book-only review (`astra_book_v2.md`): twelve misattached *how* phrases and three
+other attachment slips, the open-mark definition, mention by literal, the grammar-word key, the free roots and a worked
+coinage, and three literary revisions (Kihote misuses *bank*; Faust's bargain has explicit terms and a cost; Amleto
+tells a user a concrete painful truth and hears the reply). The v2 changes answer two external reviews, kept in [`docs/reviews/`](reviews/): Sol (`sol_pr212.md`)
 and Grok (`grok_pr212.md`, with notes on where its readings of Talema were wrong).
 
 **How it was written.** Each sentence is authored as a tree of concepts (`conlang/book/*.tl`); the three rules spell it.

@@ -1,6 +1,25 @@
 # Chapter 2 · The three rules
 ## (rule three the)
 
+# ── the words of the grammar: learn these first (dictionary form: root, kind, mother words) ──
+## (word (of (grammar the)))
+@verse
+(=lor noun "word" "Wort" "palabra")
+(=raris noun "root" "Wurzel" "raíz")
+(=dinal noun "ending" "Endung" "final")
+(=kid noun "child" "Kind" "niño")
+(=kad noun "head" "Kopf" "cabeza")
+(=lelaf noun "leaf" "Blatt" "hoja")
+(=buh noun "tree" "Baum" "árbol")
+(=sahen verb "count" "zählen" "contar")
+(=vokel noun "vowel" "Vokal" "vocal")
+(=sonat noun "consonant" "Konsonant" "consonante")
+(=feras noun "sentence" "Satz" "frase")
+(=rul noun "rule" "Regel" "regla")
+(=p particle "subject" "Subjekt" "sujeto")
+(=t particle "object" "Objekt" "objeto")
+@prose
+
 # ── names, numbers and letters: the literals (the reviews: explain the hyphen before it is used) ──
 (keep (OBJ (letter own their)) (SUBJ (and name number (word (of (tongue other))))))   # Names, numbers and words of other tongues keep their own letters.
 (come (after they) (SUBJ (line small a)))                                    # After them comes a small line,
@@ -17,7 +36,11 @@
 (be (consonant (and "p" "t" "k" "b" "d" "g" "m" "n" "l" "r" "s" "f" "v" "h")) (SUBJ they))
 (be (vowel (and "a" "e" "i" "o" "u")) (SUBJ they))
 @prose
-(begin (with consonant) (SUBJ (word every)))                            # Every word begins with a consonant.
+(sound/VERB (like (letter (of "Español"))) (SUBJ (letter the)))          # The letters sound like the letters of Spanish.
+(carry (OBJ (weight/NOUN the)) (SUBJ (vowel first/ADJ (of (root the)))))  # The first vowel of the root carries the weight.
+(sing (with (voice soft a)) (SUBJ (ending the)))                        # The ending sings with a soft voice.
+(begin (with consonant) (SUBJ (root every (of talem))))                  # Every root of Talema begins with a consonant.
+(begin not (with consonant) always (SUBJ (and name number)))             # Names and numbers do not always.
 (end/VERB (with vowel) (SUBJ (word every)))                              # Every word ends with a vowel.
 (have (OBJ (and (root a) (ending a))) (SUBJ (word every)))         # Every word has a root and an ending.
 
@@ -55,6 +78,14 @@
 (be ten (SUBJ (vowel "ia")))                                             # ia is ten
 @prose
 (count/VERB (like (hand (of person))) (SUBJ (vowel the)))                # The vowels count like the hand of a person.
+(count/VERB (OBJ one/NUM) (SUBJ (vowel last/ADJ the)))                   # The last vowel counts ones.
+(count/VERB (OBJ five) (SUBJ (vowel (before it))))                       # The vowel before it counts fives.
+(count/VERB (OBJ 25) (SUBJ (vowel (before that/DET))))                   # The vowel before that counts twenty-fives.
+@verse
+(be seven (because (and (be (five one/NUM) (SUBJ "e")) (be two (SUBJ "i")))) (SUBJ "ei"))   # ei is seven: e is one five, i is two.
+(be 24 (SUBJ "uu"))                                                      # uu is 24.
+(be 25 (SUBJ "eaa"))                                                     # eaa is 25.
+@prose
 
 # ── why every sentence ends in a ──
 ## (end/VERB (in "a") why (SUBJ (sentence every)))
@@ -66,7 +97,7 @@
 (need/VERB (OBJ point) not (SUBJ talem))                                 # Talema does not need a point (full stop).
 (stand (on (leaf every)) (SUBJ (ending "a")))                               # The ending a stands on every leaf, not only on the last word.
 (end/VERB (when/SCONJ (be full (SUBJ (tree the)))) (SUBJ (sentence the)))    # The sentence ends when its tree is full.
-(know (OBJ it) (how (SUBJ you)))                                             # How do you know it?
+(know (OBJ it) how (SUBJ you))                                             # How do you know it?
 @verse
 (begin (with one/NUM))                                                       # Begin with one.
 (take (OBJ one/NUM) (at (word every)))                                       # At every word, take one away,
@@ -80,6 +111,7 @@
 ## (rule (of (order the)))
 (speak first/ADV (SUBJ (head the)))                                      # The head speaks first.
 (follow then (SUBJ (child its)))                                         # Then its children follow.
+(speak (OBJ (child all its)) (before (child next the)) (SUBJ (child every)))   # Every child speaks all its children before the next child speaks.
 (come first/ADV often (SUBJ (object the)))                               # Often the object comes first,
 (come then (SUBJ (word other the)))                                      # then the other words,
 (come last/ADV often (SUBJ (subject the)))                               # and the subject last.
@@ -92,9 +124,9 @@
 (see (OBJ (child the)) (SUBJ (dog the)))                                 # The dog sees the child.
 @prose
 (be same (SUBJ (word the)))                                              # The words are the same.
-(be different (SUBJ (and (word SUBJ) (word OBJ))))                        # "pa" and "ta" are different.
-(stand (before (subject the)) (SUBJ (word SUBJ)))                        # "pa" stands before the subject.
-(stand (before (object the)) (SUBJ (word OBJ)))                          # "ta" stands before the object.
+(be different (SUBJ (and (word "pe") (word "te"))))                        # "pa" and "ta" are different.
+(stand (before (subject the)) (SUBJ (word "pe")))                        # "pa" stands before the subject.
+(stand (before (object the)) (SUBJ (word "te")))                          # "ta" stands before the object.
 
 @verse
 (sleep (in (house the)) (SUBJ (dog the)))                                # The dog sleeps in the house.
@@ -102,17 +134,17 @@
 (sleep (with (child the)) (SUBJ (dog the)))                              # The dog sleeps with the child.
 @prose
 (stand (before (word (that (link/VERB (SUBJ they))))) (SUBJ (word small the)))   # The small words stand before the words that they tie.
-(link/VERB (OBJ (and (dog the) (house the))) (SUBJ (word in)))            # The word "in" ties the dog and the house.
+(link/VERB (OBJ (and (dog the) (house the))) (SUBJ (word "n")))            # The word "in" ties the dog and the house.
 
 @tree
 (be four (SUBJ (and two two)))                                           # Two and two are four.
-(link/VERB (OBJ (and two two)) (SUBJ (word and)))                         # The word "and" ties two and two.
-(stand first/ADV (SUBJ (word and)))                                      # The word "and" stands first.
+(link/VERB (OBJ (and two two)) (SUBJ (word "s")))                         # The word "and" ties two and two.
+(stand first/ADV (SUBJ (word "s")))                                      # The word "and" stands first.
 
 # ── the three rules in three sentences ──
 ## (rule three the (in (sentence three)))
 @verse
-(stand (before (subject the)) (SUBJ (word SUBJ)))
+(stand (before (subject the)) (SUBJ (word "pe")))
 (speak first/ADV (SUBJ (head the)))
 (count/VERB (OBJ (child the)) (SUBJ (ending the)))
 @prose

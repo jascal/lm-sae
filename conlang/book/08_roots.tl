@@ -16,7 +16,7 @@
 @prose
 (be (and old often) (SUBJ (root short the)))                                 # The short roots are old and often said.
 (be (and young rare) (SUBJ (root long the)))                                 # The long roots are young or rare.
-(have (OBJ (root 5929)) (SUBJ (book this)))                                 # This book has 5929 roots.
+(have (OBJ (root 5931)) (SUBJ (book this)))                                 # This book has 5931 roots.
 
 
 ## ("p")
@@ -490,7 +490,7 @@
 @raw taleru nomuna workshop-a werkstatt-a taller-a
 @raw taliki detiva staatlich-a
 @raw talinu detiva italian-a italienisch-a italiano-a
-@raw taru ronona they-a ihr-a ellos-a
+@raw taru ronona they-a sie-a ellos-a
 @raw tarapu nomuna trap-a falle-a trampa-a
 @raw taratu nomuna throat-a kehle-a garganta-a
 @raw tarako nomuna task-a tarea-a
@@ -1057,7 +1057,7 @@
 @raw keheni veraba kehren-a
 @raw kipi detiva wirklich-a
 @raw kipanu veraba clean-a aufräumen-a limpiar-a
-@raw kitu nomuna kind-a art-a amable-a
+@raw kitu nomuna kind-a art-a tipo-a
 @raw kiteku nomuna architect-a architekt-a arquitecto-a
 @raw kiku nomuna church-a kirche-a iglesia-a
 @raw kikalo deroba quickly-a rápidamente-a
@@ -2523,6 +2523,7 @@
 @raw gineni veraba eignen-a
 @raw gineru nomuna engineering-a ingenieur-a ingeniería-a
 @raw ginigi veraba einigen-a
+@raw ginonu nomuna hyphen-a Bindestrich-a guion-a
 @raw gilu nomuna girl-a mädchen-a chica-a
 @raw gilato detiva legislative-a legislativo-a
 @raw gilasu nomuna glass-a glas-a vaso-a
@@ -3388,6 +3389,7 @@
 @raw lativu detiva relative-a relativ-a relativo-a
 @raw latopu nomuna laptop-a laptop-a portátil-a
 @raw latono nomuna relation-a relation-a
+@raw latoru nomuna relator-a Relator-a relator-a
 @raw latunu nomuna cloth-a tuch-a paño-a
 @raw laku detiva black-a schwarz-a negro-a
 @raw lakani detiva latinoamericano-a
@@ -5956,7 +5958,7 @@
 @raw hofu nomuna loss-a verlust-a pérdida-a
 @raw hofalu deroba hopefully-a hoffentlich-a ojalá-a
 @raw hofelu nomuna hell-a hölle-a infierno-a
-@raw hovu deroba how-a woher-a cómo-a
+@raw hovu deroba how-a wie-a cómo-a
 @raw hovenu nomuna young-a jung-a joven-a
 @raw hohu nomuna association-a verband-a asociación-a
 @raw hohali terona ojalá-a

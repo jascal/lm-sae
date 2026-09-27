@@ -27,7 +27,7 @@
 (whether (sleep (SUBJ (dog the))))                                           # Does the dog sleep?
 @prose
 (ask (SUBJ it))                                                              # It asks.
-(stand alone (SUBJ (word whether)))                                          # The word tob stands alone:
+(stand alone (SUBJ (word "tob")))                                          # The word tob stands alone:
 (be question (SUBJ (sentence the)))                                          # the sentence is a question.
 @verse
 (know (OBJ (whether (sleep (SUBJ (dog the))))) not (SUBJ I))                 # I do not know whether the dog sleeps.
@@ -37,7 +37,7 @@
 @verse
 (open/ADJ (whether (sleep (SUBJ (dog the)))))                                # Open: does the dog sleep?
 @prose
-(say (OBJ (know (OBJ it) (SUBJ nobody))) (SUBJ it))                          # It says: nobody knows it.
+(say (OBJ (know (OBJ it) not yet (SUBJ we))) (SUBJ it))                      # It says: we do not know it yet.
 (be (mark a) (SUBJ it))                                                      # It is a mark.
 
 @verse
@@ -74,12 +74,12 @@
 (please (read (OBJ (book this))) (to (reader the)))                          # Reader, read this book!
 @prose
 (can (OBJ (be (command a))) (SUBJ (sentence (without subject))))             # A sentence without a subject can be a command.
-(make/VERB (OBJ it) sure (SUBJ (word please)))                               # The word les makes it sure.
+(make/VERB (OBJ it) sure (SUBJ (word "les")))                               # The word les makes it sure.
 
 # ── words that are easy to confuse ──
 ## (word (that (look/VERB same)))
 (be (tree (of word) a) (SUBJ sentence))                                      # A sentence (feras) is a tree of words.
-(be (sign (for (sound a))) (SUBJ letter))                                    # A letter (let) is a sign for a sound.
+(be (symbol (for (sound a))) (SUBJ letter))                                  # A letter (let) is a symbol for a sound.
 (be (word (under SUBJ)) (SUBJ subject))                                      # The subject (tum) is the word under pe.
 (be (word (under OBJ)) (SUBJ object))                                        # The object (behet) is the word under te.
 (be numeral (SUBJ zero))                                                     # senur is a numeral: zero dogs.
@@ -87,3 +87,9 @@
 (be preposition (SUBJ to))                                                   # g is a preposition: to the house.
 (stand (before verb) (SUBJ to/PART))                                         # pat stands before a verb: to go.
 (need/VERB (OBJ it) rarely (SUBJ talem))                                     # Talema rarely needs it.
+(be (word same the) (SUBJ (and =kas =pas)))                                  # kas and pas are the same word:
+(write (OBJ (word "daß")) (in (time old the)) (SUBJ "Deutsch"))              # German wrote daß in the old time.
+(use/VERB (OBJ =kas))                                                        # Use kas.
+(mean (OBJ answer/VERB) (SUBJ (word "never")))                               # The word never means "answer".
+(mean (OBJ never) (SUBJ (word "ner")))                                       # The word ner means "never".
+(read (OBJ they) slowly (if (read (OBJ "English") (SUBJ you))))              # If you read English, read them slowly.

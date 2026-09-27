@@ -25,8 +25,8 @@
 
 (speak (OBJ (sentence a)) (SUBJ (tree the)))                                 # The tree spoke a sentence.
 (speak first/ADV (SUBJ (head the)))                                          # The head spoke first.
-(speak then (SUBJ (child its)))                                              # Then its children spoke,
-(speak then (SUBJ (child (of (child its)))))                                 # then the children of its children.
+(speak then (with (child all its)) (SUBJ (child first/ADJ its)))          # Then its first child spoke, with all its children,
+(speak then (with (child all its)) (SUBJ (child next the)))                  # then the next child, with all its children.
 (and (speak last/ADV (SUBJ (leaf the))) (say (OBJ (vowel "a")) (SUBJ it)))   # And last the leaf spoke, and it said "a".
 (be silent then (SUBJ (tree the)))                                           # Then the tree was silent.
 (finish (SUBJ (sentence the)))                                               # The sentence was finished.

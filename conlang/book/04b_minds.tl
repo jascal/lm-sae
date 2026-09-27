@@ -5,7 +5,7 @@
 (read (OBJ (book (of (world the)) all the)) (in (age (of (agent first/ADJ the)))) (SUBJ (mind many)))   # In the age of the first agents, many minds read all the books of the world.
 (make/VERB (OBJ (mind the)) (from (word many)) (SUBJ people))                # People made the minds from words.
 (speak (OBJ (language many)) (SUBJ (mind the)))                              # The minds spoke many languages.
-(but (know (OBJ (think (how (SUBJ they)))) (SUBJ nobody)))                   # But nobody knew how they thought.
+(but (know (OBJ (think how (SUBJ they))) (SUBJ nobody)))                   # But nobody knew how they thought.
 
 (make/VERB (OBJ (lens a)) then (SUBJ (people some)))                          # Then some people made a lens.
 (look (into (mind the)) (with (lens the)) (SUBJ they))                       # They looked into the minds with the lens.

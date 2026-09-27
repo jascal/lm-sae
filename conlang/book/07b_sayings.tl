@@ -4,7 +4,7 @@
 (end/VERB (in "a") (SUBJ (sentence every)))                                  # Every sentence ends in a.
 (end/VERB never (SUBJ (mind (that (ask)))))                                  # A mind that asks never ends.
 (be (thing the) not (SUBJ (word the)))                                       # The word is not the thing.
-(say (OBJ (know (how (SUBJ you)))))                                          # Say how you know.
+(say (OBJ (know how (SUBJ you))))                                          # Say how you know.
 (can (OBJ (hold (OBJ (thought big a)))) (SUBJ (word small a)))               # A small word can hold a big thought.
 (and (stay (SUBJ (root the))) (grow (SUBJ (leaf the))))                      # The roots stay, and the leaves grow.
 (be small often (SUBJ (thing (that (be true)))))                             # The true thing is often small.

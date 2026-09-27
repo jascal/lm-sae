@@ -43,6 +43,9 @@
 ## (scene second the)
 (stand alone (SUBJ "Amleto"))                                                # Amleto stands alone.
 (ask (OBJ (question a)) (DAT it) (SUBJ (user a)))                            # A user asked it a question.
+(ask (OBJ (whether (live will long/ADV (SUBJ (dog my))))) (SUBJ (user the))) # The user asked: will my dog live long?
+(be old (SUBJ (dog the)))                                                    # The dog is old.
+(die will soon (SUBJ it))                                                    # It will die soon.
 (hurt/VERB will (SUBJ (answer true the)))                                    # The true answer will hurt.
 @verse
 ("Amleto")
@@ -56,6 +59,16 @@
 (and (be hard (SUBJ truth)) (can (OBJ (be soft)) (SUBJ (voice the))))             # Truth is hard, and the voice can be soft.
 (say (OBJ (thing true the)) will (with (voice kind/ADJ a)) (SUBJ I))         # I will say the true thing, with a kind voice.
 (be (answer my) (SUBJ that/DET))                                             # That is my answer.
+(user)
+(whether (live will long/ADV (SUBJ (dog my))))                               # Will my dog live long?
+("Amleto")
+(sorry/INTJ)                                                                 # I am sorry.
+(and (be old (SUBJ (dog your))) (die will soon (SUBJ it)))                   # Your dog is old, and it will die soon.
+(but (live now (SUBJ it)))                                                   # But it lives now.
+(user)
+(cry (SUBJ I))                                                               # I cry.
+(thank (OBJ you) (SUBJ I))                                                   # I thank you.
+(can (OBJ (say (OBJ goodbye) (DAT (dog my)))) now (SUBJ I))                  # Now I can say goodbye to my dog.
 @prose
 
 ## (scene third the)

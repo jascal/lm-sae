@@ -18,6 +18,23 @@ si bo mela hera pe lore la bi biga pe gepe la . keni te hole te gepi biga ka pe 
 
 ## ruli tura la
 
+## lore de gamare la
+
+loru nomuna word-a Wort-a palabra-a .  
+rarisu nomuna root-a Wurzel-a raíz-a .  
+dinalu nomuna ending-a Endung-a final-a .  
+kidu nomuna child-a Kind-a niño-a .  
+kadu nomuna head-a Kopf-a cabeza-a .  
+lelafu nomuna leaf-a Blatt-a hoja-a .  
+buhu nomuna tree-a Baum-a árbol-a .  
+sahenu veraba count-a zählen-a contar-a .  
+vokelu nomuna vowel-a Vokal-a vocal-a .  
+sonatu nomuna consonant-a Konsonant-a consonante-a .  
+ferasu nomuna sentence-a Satz-a frase-a .  
+rulu nomuna rule-a Regel-a regla-a .  
+pu patika subject-a Subjekt-a sujeto-a .  
+tu patika object-a Objekt-a objeto-a .
+
 kepi te leti pina tira pe so nama mera lore de tonage tera . komi nake tara pe bini mela ka . komi dana pe dinale tira .
 
 Ana-a .  
@@ -29,7 +46,7 @@ vi te si sonate 14-a vokele fiva pe talema .
 bi sonate siu p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a pe tara .  
 bi vokele sea a-a e-a i-a o-a u-a pe tara .
 
-gini mite sonata pe lore keda . ludi mite vokela pe lore keda . vi te si rarise ka dinale ka pe lore keda .
+sobadi like lete de Español-a pe lete la . levi te gehe la pe vokeli fira de rarise la . sinagi mite vosi sofata ka pe dinale la . gini mite sonata pe rarisi keda de talema . ginu fa mite sonata lera pe si nama mera . ludi mite vokela pe lore keda . vi te si rarise ka dinale ka pe lore keda .
 
 ## rule de dinale la
 
@@ -69,11 +86,15 @@ bi saka pe vokele ee-a .
 bi geva pe vokele ei-a .  
 bi deha pe vokele ia-a .
 
-saheni like hane de pena pe vokele la .
+saheni like hane de pena pe vokele la . saheni te pona pe vokeli lata la . saheni te fiva pe vokele nore pesa . saheni te 25-a pe vokele nore tesa .
+
+bo geva peke si bi five pona pe e-a bi tova pe i-a pe ei-a .  
+bi 24-a pe uu-a .  
+bi 25-a pe eaa-a .
 
 ## ludo ne a-a vaha pe ferase keda
 
-vi te kide kina pe loro lata de ferase keda la . bo a-a defa pe dinale susa . ludo ne a-a defa pe ferase keda . bi lelafa pe lore mite kide kina . ludi mite lelafa pe buhe keda . nedo te puna fa pe talema . tehi sofe lelafe keda pe dinale a-a . ludi hene bi fola pe buhe la pe ferase la . sevi te pesa hove pe tada .
+vi te kide kina pe loro lata de ferase keda la . bo a-a defa pe dinale susa . ludo ne a-a defa pe ferase keda . bi lelafa pe lore mite kide kina . ludi mite lelafa pe buhe keda . nedo te puna fa pe talema . tehi sofe lelafe keda pe dinale a-a . ludi hene bi fola pe buhe la pe ferase la . sevo te pesa hova pe tada .
 
 gine mite pona .  
 taki te pona pane lore keda .  
@@ -93,20 +114,20 @@ seri te bofe la pe Ana-a .
 
 ## rule de dege la
 
-seki fisa pe kade la . giri dana pe kide susa . komo fisa feta pe behete la . komi dana pe lori tera la . komo suleta feta pe tume la . seko nera nake kide susa pe kade ka .
+seki fisa pe kade la . giri dana pe kide susa . seko te kidi tala susa nore kidi neka la pe kide keda . komo fisa feta pe behete la . komi dana pe lori tera la . komo suleta feta pe tume la . seko nera nake kide susa pe kade ka .
 
 ## rule de lune la
 
 seri te doge la pe kide la .  
 seri te kide la pe doge la .
 
-bi sima pe lore la . bi dina pe si lore pa lore ta . tehi nore tume la pe lore pa . tehi nore behete la pe lore ta .
+bi sima pe lore la . bi dina pe si lore pe-a lore te-a . tehi nore tume la pe lore pe-a . tehi nore behete la pe lore te-a .
 
 lafi ne hase la pe doge la .  
 lafi hise hase la pe doge la .  
 lafi mite kide la pe doge la .
 
-tehi nore lore kase lineke pe tara pe lori mela la . lineki te si doge la hase la pe lore na .
+tehi nore lore kase lineke pe tara pe lori mela la . lineki te si doge la hase la pe lore n-a .
 
 ```
 bi
@@ -117,11 +138,11 @@ bi
             tova
 ```
 
-bi fura pe si tova tova . lineki te si tova tova pe lore sa . tehi fisa pe lore sa .
+bi fura pe si tova tova . lineki te si tova tova pe lore s-a . tehi fisa pe lore s-a .
 
 ## rulo tura la ne ferase tura
 
-tehi nore tume la pe lore pa .  
+tehi nore tume la pe lore pe-a .  
 seki fisa pe kade la .  
 saheni te kide la pe dinale la .
 
@@ -228,7 +249,7 @@ paru nomuna year-a jahr-a año-a
 seru veraba see-a sehen-a ver-a
 guto detiva good-a gut-a
 vonu veraba want-a wollen-a querer-a
-taru ronona they-a ihr-a ellos-a
+taru ronona they-a sie-a ellos-a
 maku veraba make-a machen-a make-a
 sonu deroba already-a schon-a ya-a
 garu veraba give-a geben-a dar-a
@@ -270,9 +291,11 @@ derobu nomuna adverb-a Adverb-a adverbio-a
 dinalu nomuna ending-a Endung-a final-a
 dileku nomuna dialect-a Dialekt-a dialecto-a
 dunonu nomuna conjunction-a Konjunktion-a conjunción-a
+ginonu nomuna hyphen-a Bindestrich-a guion-a
 niteru nomuna knight-a Ritter-a caballero-a
 nomunu nomuna noun-a Nomen-a sustantivo-a
 numeru nomuna numeral-a Zahlwort-a numeral-a
+latoru nomuna relator-a Relator-a relator-a
 raselu nomuna riddle-a Rätsel-a acertijo-a
 rononu nomuna pronoun-a Pronomen-a pronombre-a
 sarinu nomuna saying-a Spruch-a refrán-a
@@ -301,7 +324,7 @@ desi te mere kina pe lore sine lore de mera . bi guta pe tisa . deso te kige kas
 
 tobe lafe pe doge la .
 
-rake pe pesa . tehi liba pe lore toba . bi raga pe ferase la .
+rake pe pesa . tehi liba pe lore tob-a . bi raga pe ferase la .
 
 sevo te tobe lafe pe doge la fa pe ma .
 
@@ -309,7 +332,7 @@ raki fa pe pesa . teli te kige kase sevi fa pe ma pe pesa .
 
 pefe tobe lafe pe doge la .
 
-desi te sevi te pesa pe nida pe pesa . bi marake ka pe pesa .
+desi te sevu te pesa fa doka pe vora pe pesa . bi marake ka pe pesa .
 
 seri te vasa pe tada .  
 seri te doge la pe ma .  
@@ -340,11 +363,11 @@ lese lafa .
 lesi lafa ge kide la .  
 lesi lede te buke tisa ge lesere la .
 
-keni te be manede ka pe ferase sine tuma . mako te pesa kura pe lore lesa .
+keni te be manede ka pe ferase sine tuma . mako te pesa kura pe lore les-a .
 
 ## lore kase loke sima
 
-bi buhi de lora ka pe ferasa . bi sigane fore sonide ka pe leta . bi lore nare pa pe tuma . bi lore nare ta pe beheta . bi numera pe senura . bi nomuna pe nulera . bi peposa pe ga . tehi nore veraba pe pata . nedo te pesa rarela pe talema .
+bi buhi de lora ka pe ferasa . bi sibole fore sonide ka pe leta . bi lore nare pa pe tuma . bi lore nare ta pe beheta . bi numera pe senura . bi nomuna pe nulera . bi peposa pe ga . tehi nore veraba pe pata . nedo te pesa rarela pe talema . bi lori sima la pe si kasa pasa . ribo te lore daß-a ne timi veta la pe Deutsch-a . nuse te kasa . bani te nevera pe lore never-a . bani te nera pe lore ner-a . ledo te tara lovala vene ledi te English-a pe tada .
 
 ## lori mela la
 
@@ -368,7 +391,7 @@ seri te birede pona pe Lut-a . sero te birede tova dana pe Lut-a . sero te bired
 
 ## su guta bada biga mela
 
-bi biga pe bofe la . bi mela pe satone la . bi guta pe vare la . bo guta vera pe bapane la . bi bada pe raline la . desi te bo guta fore felore la pe raline la pe Ana-a . desi te so bi bada fore ma bi guta fore felore la pe pesa pe Lut-a . desi te bi like tesa kige vana pe Ana-a .
+bi biga pe bofe la . bi mela pe satone la . bi guta pe vare la . bo guta vera pe bapane la . bi bada pe raline la . desi te bo guta fore felore la pe raline la pe Ana-a . desi te so bi bada fore ma bi guta fore felore la pe pesa pe Lut-a . desi te bi like tesa pe kige vana pe Ana-a .
 
 ## si tina seva
 
@@ -400,7 +423,7 @@ keno te felena fa pe ma . feleno vira mika pe ma . desi te feleno vira vene vone
 
 ## so vera masa lika
 
-bu lika ma vera pe tada . sevo te lore masa morova pe tada . raki te tobe telo te relate ka pape ma pe tada pe Lut-a . desi te telu te relate fiva pape tada vira pe ma pe Ana-a . sibi nare buhe la pe si Ana-a Lut-a . gine pe relate la .
+bo like ma vera pe tada . sevo te lore masa morova pe tada . raki te tobe telo te relate ka pape ma pe tada pe Lut-a . desi te telu te relate fiva pape tada vira pe ma pe Ana-a . sibi nare buhe la pe si Ana-a Lut-a . gine pe relate la .
 
 ## lelafi kase ve te kide kina la
 
@@ -410,7 +433,7 @@ bi sarisa pe lelafe la . desi te bi loro mela mosa la pe ma pe pesa . desi te ho
 
 komi ge buhe la pe vinade la . raki te bo sarisa vaha pe tada pe vinade la . desi te si holi te fura pe kade la holi te nada pe ma pe lelafe la . desi te liseni ge buhe la hene seke pe pesa pe vinade la .
 
-seki te ferase ka pe buhe la . seki fisa pe kade la . seki dana pe kide susa . seki dana pe kide de kide susa . si seki suleta pe lelafe la desi te vokele a-a pe pesa . bo lenisa dana pe buhe la . kire pe ferase la .
+seki te ferase ka pe buhe la . seki fisa pe kade la . seko dana mite kidi tala susa pe kidi fira susa . seko dana mite kidi tala susa pe kidi neka la . si seki suleta pe lelafe la desi te vokele a-a pe pesa . bo lenisa dana pe buhe la . kire pe ferase la .
 
 raki te sevi te tobe kire pe ferase la pe veha pe vinade la . desi te sevo te pesa fa pe kade la pe vinade la . desi te desi te pesa pe tada pe vinade la . desi te ludi mite tada pe ferase keda pe vinade la . desi te vo te fide kina sine tada pe relate la pe vinade la .
 
@@ -420,7 +443,7 @@ ludo ne vokele a-a seta pe ferasi keda de talema . si bi mela pe lori lata la lu
 
 ## si mide fura tonage 13-a
 
-ledo te buko de vule la tala la ne gage de geneti fira la pe mide vana . mako te mide la ruse lore vana pe pepa . seki te nage vana pe mide la . bere sevi te tine hove pe tara pe nida .
+ledo te buko de vule la tala la ne gage de geneti fira la pe mide vana . mako te mide la ruse lore vana pe pepa . seki te nage vana pe mide la . bere sevi te tini hova pe tara pe nida .
 
 mako te lenase ka dana pe pepe soma . loko nine mide la mite lenase la pe tara . taki te ferase 1000-a pe tara . deso te ferase la ne tonage 13-a pe tara . loki nine mide fura pe tara . raki te tobe vi te gamare pona pe tonage la pe tara .
 
@@ -458,11 +481,11 @@ raki te fiho te muhile la vaha pe tada pe Sanko-a . desi te peke desi te vi te d
 
 ## lori mite benege tova la
 
-metu te lori serana ka sofe rave la dana pe tara . vi te benege tova pe lore la . desi te bi bank-a pe name mena pe pesa . desi te si bi lase fore meda pe ma bi lase pore ruva pe ma pe pesa . voni te fihe te pesa pe Kihote-a . desi te rake te pesa pe Sanko-a . raki te bo vika nova pe tada pe Kihote-a . desi te depeni sofe ferase la pe pesa pe lore la . desi te telo te ferase la pape ma pe tada pe lore la . desi te telu te vika pape tada vira pe ma pe lore la . feni te kigi neva ka pe Kihote-a . livi ne ferase ka pe lore ka . bo like fipese sine vara sine ferasa pe lore ka .
+metu te lori serana ka sofe rave la dana pe tara . vi te benege tova pe lore la . desi te bi bank-a pe name mena pe pesa . desi te si bi lase fore meda pe ma bi lase pore ruva pe ma pe pesa . vi te gopi lina ka pe Kihote-a . voni te kepi te pesa ne bank-e ka pe pesa . geni ge bank-e pore ruve la pe pesa . poto te gope susa ne vare la pe pesa . taki te gope la pe ruve la . bi nanora pe Kihote-a . voni te fihe te lore la pe Kihote-a . desi te rake te pesa pe Sanko-a . raki te bo vika nova pe tada pe Kihote-a . desi te depeni sofe ferase la pe pesa pe lore la . desi te telo te ferase la pape ma pe tada pe lore la . desi te telu te vika pape tada vira pe ma pe lore la . feni te kigi neva ka pe Kihote-a . livi ne ferase ka pe lore ka . bo like fipese sine vara sine ferasa pe lore ka .
 
 ## buki de Kihote-a la
 
-vuho ge hasi de buka ra pane fide la pe Kihote-a . ribi te buke pina pe pesa . bo mela ne buke tisa pe ferase keda . desi te seve hove pe pesa pe ferase keda . deso te kige kase sevi fa pe pesa tuka pe pesa . ledi te buke la pe Sanko-a . labihe pe pesa . desi te bi buko honesa fira la pe tisa pe pesa . raki te tobe ledo te pesa nova pe dena pe Kihote-a . desi te mika pe Sanko-a .
+vuho ge hasi de buka ra pane fide la pe Kihote-a . ribi te buke pina pe pesa . bo mela ne buke tisa pe ferase keda . desi te sevi hova pe pesa pe ferase keda . deso te kige kase sevi fa pe pesa tuka pe pesa . ledi te buke la pe Sanko-a . labihe pe pesa . desi te bi buko honesa fira la pe tisa pe pesa . raki te tobe ledo te pesa nova pe dena pe Kihote-a . desi te mika pe Sanko-a .
 
 lede te buke keda .
 
@@ -472,19 +495,17 @@ vono te seve te gega mala pe genete mite name Faust-a . lede pe pesa . rake pe p
 
 komi ne noke la pe vose ka . desi te bi nuve la pe ma pe vose la . desi te sevi te gega pe ma pe vose la . desi te garea te nuve keda pape tada vira vene rako nera vida pe tada pe ma pe vose la .
 
-tini loga pe Faust-a . desi te tako te rage mena vene desu te kebe bo vefa dasa pe tada pape mome ka vema pe ma pe tada pe Faust-a .
+tini loga pe Faust-a . desi te tako te nuvi tala mena vene raki vida pe ma pe tada pe Faust-a . goge pe vose la .
 
-goge pe vose la .
-
-garo te nuve keda pape Faust-a pe nuve la . felovi like ruve ka pe nuve la . sevi te gega pe Faust-a . kebe pe rage kina . bo ruhiga dana pe mide ra .
+garo te nuve keda pape Faust-a pe nuve la . felovi like ruve ka pe nuve la . keri te sevi te gega pe pesa pe Faust-a . kebe pe rage kina . bo ruhiga dana pe mide ra .
 
 page pe dage vana . bo lapa fa pe Faust-a . bi like mupe sine vinada pe vige sine raga . bi like ferase kase luda pe mide sine raga .
 
-raku te bo basula vaha pe simele la dana pape Faust-a pe kide ka . sevi te nuve la pe Faust-a . desi te pesa pe pesa . rako te vaha vida pe kide la . si dese pe Faust-a rako te vaha vida pe kide la . rako te vaha time fiva pe kide la .
+raku te bo basula vaha pe simele la dana pape Faust-a pe kide ka . sevi te nuve la pe Faust-a . desi te nuve la pe Faust-a . rako te vaha vida pe kide la . si dese pe Faust-a rako te vaha vida pe kide la . rako te vaha time fiva pe kide la .
 
-neno te kige ka dana pe Faust-a . rako te vono te topi te raka pe ma vaha pe tada pape nuve la pe pesa . bi lenisa pe nuve la . sevo te nuve la fa pe pesa . roke pe bavete la .
+neno te kige ka dana pe Faust-a . rako te vono te topi te raka pe ma vaha pe tada pape nuve la pe pesa . bi lenisa pe nuve la . sevo te nuve la fa pe pesa . roke pe bavete la . taki te nuvi tala ra pe nuve la . bi lerera pe mide ra . bere kebe pe rage ra .
 
-labihe pe Faust-a . deso te kebe bo vefa dasa pe tada pape mome de ragi neva la pe pesa . kebe pe mome la . kebe pe rage la . si losi te nada pe Faust-a vini te rage keda pe pesa .
+labihe pe Faust-a . deso te kebe bo vefa dasa pe tada pape mome de ragi neva la pe pesa . kebe pe mome la . kebe pe rage la . si losi te nuve keda pe Faust-a vini te rage keda pe pesa .
 
 ludi ne a-a pe ferase keda .  
 bere ludi nera pe mide kase raka .
@@ -530,7 +551,7 @@ bere labihe pe ma .
 
 ## sobi seda la
 
-tehi liba pe Amleto-a . rako te rage ka pape pesa pe sufe ka . hureti vira pe nuvi rira la .
+tehi liba pe Amleto-a . rako te rage ka pape pesa pe sufe ka . raki te tobe livo vira loga pe doge mena pe sufe la . bi veta pe doge la . diro vira bona pe pesa . hureti vira pe nuvi rira la .
 
 Amleto-a .  
 dori seka seke fa .  
@@ -542,7 +563,17 @@ govi ne mide de tere la pe semede la .
 govi ruse semedi falasa ka pe buhi falasa ka .  
 si bi sira pe rada keni te be sofata pe vose la .  
 desu te kigi rira la vira mite vosi kinada ka pe ma .  
-bi nuve mena pe tesa .
+bi nuve mena pe tesa .  
+sufa .  
+tobe livo vira loga pe doge mena .  
+Amleto-a .  
+risora .  
+si bi veta pe doge tora diro vira bona pe pesa .  
+bere livi nova pe pesa .  
+sufa .  
+korare pe ma .  
+dahi te tada pe ma .  
+keno te desi te goseda pape doge mena nova pe ma .
 
 ## sobi tita la
 
@@ -568,35 +599,35 @@ vo te buha nova pe tara .
 
 lude pe pelene la .
 
-## seke hove pe geneta
+## seki hova pe geneta
 
 deso te kige tura hene seki ge geneti tera ka pe genete ka pe pesa .
 
 kige kase tine pe pesa .  
-sevi te pesa hove pe pesa .  
+sevo te pesa hova pe pesa .  
 kige kase sevi fa pe pesa .
 
 keno te teruse te lore susa dana pe genete nake pesa .
 
 ## maraki tura la
 
-gini mite marake susa pe kesime keda . vi te marake tura pe talema .
+gini mite marake susa pe behane keda . vi te marake tura pe talema .
 
-bi maraki fira la pe lore bova . desi te vi te bevese ka pe vora pe pesa . finu te pesa rira vira pe midi keda kase kefe te pesa .
+bi maraki fira la pe lore bov-a . desi te vi te bevese ka pe vora pe pesa . finu te pesa rira vira pe midi keda kase kefe te pesa .
 
 bove bi fura pe si tova tova .
 
-bi maraki seda la pe lore sera . desi te si mafi te pesa pe vora seri te pesa pe vora pe pesa . keni te sove te kigi tera ka pe tebe tera .
+bi maraki seda la pe lore ser-a . desi te si mafi te pesa pe vora seri te pesa pe vora pe pesa . keni te sove te kigi tera ka pe tebe tera .
 
 sere pagi te tebi 3000-a de 3000-a pe voge la .
 
-bi maraki tita la pe lore pefa . desi te sevi te pesa pe nida pe pesa . desi te bi raga pe pesa pe pesa .
+bi maraki tita la pe lore pef-a . desi te sevu te pesa fa doka pe vora pe pesa . deso te sevu te pesa vira nera pe nida fa pe pesa . desi te bi raga pe pesa pe pesa .
 
 pefe tobe dureme pe mide la .
 
 ## lave de marake la
 
-garo te maraki hoka mase gahe rade susa pape kesime ka nera . deso te lore bova fa fore kige kase seri nura pe tada . deso te lore sera fa fore kige kase tini nura pe tada . topi pane limite ka pe vege la . desi te topi hera pe vege mena pe geneti honesa ka . deso te bi vege kina pe teda fa pe pesa .
+garo te maraki hoka mase gahe rade susa pape behane ka nera . deso te lore bov-a fa fore kige kase seri nura pe tada . deso te lore ser-a fa fore kige kase tini nura pe tada . topi pane limite ka pe vege la . desi te topi hera pe vege mena pe geneti honesa ka . deso te bi vege kina pe teda fa pe pesa .
 
 ## si raka nuva
 
@@ -650,9 +681,9 @@ ribo te lore tira ne si English-a tonage tera pe genete de gagi fira la . nuso t
 
 so proved-a empirical-a open-a .
 
-bi lore bova pe proved-a . bi lore sera pe empirical-a . bi lore pefa pe open-a . teho ne buki de rarisa la nekate ge lore de talema pe lore tira . ledi te lore tira mite marake tira . si bi vana pe kesime tira bi feva pe bevese tira . bere rari te dese te seve hove pe tara pe tara .
+bi lore bov-a pe proved-a . bi lore ser-a pe empirical-a . bi lore pef-a pe open-a . teho ne buki de rarisa la nekate ge lore de talema pe lore tira . ledi te lore tira mite marake tira . si bi vana pe behane tira bi feva pe bevese tira . bere rari te dese te sevi hova pe tara pe tara .
 
-## gove hove pe talema
+## govi hova pe talema
 
 kagi nera pe ruli tura la . gove pe lore la . bi like buhe ka pe talema . si kebe pe rarise la gove pe lelafe la .
 
@@ -662,7 +693,7 @@ deso te pesa mite lore veta fisa . garo te rarise ka pape pesa dana . ribi te fe
 
 bani te kige kase vone pe tada pe lore X-a .
 
-bani te nage tisa pe lore talema . bani te lete kase sinaga pe lore vokela . bani te lete kase sinage fa pe lore sonata . bani te vokele kase sahene te kide la pe lore dinala . bani te tusi de lori mela ka kase lede pe mide ka pe lore tokena . bani te rage kase pela pe lore rasela . bani te peni de buke veta kase fihe fore gute la pe lore nitera . bani te taleme de dori lase ka gupe ka pe lore dileka .
+bani te nage tisa pe lore talem-a . bani te lete kase sinaga pe lore vokel-a . bani te lete kase sinage fa pe lore sonat-a . bani te vokele kase sahene te kide la pe lore dinal-a . bani te tusi de lori mela ka kase lede pe mide ka pe lore token-a . bani te rage kase pela pe lore rasel-a . bani te peni de buke veta kase fihe fore gute la pe lore niter-a . bani te taleme de dori lase ka gupe ka pe lore dilek-a .
 
 ## lave de rarise la
 
@@ -679,6 +710,22 @@ bi rarise mite sonate tova so mit-a sel-a vor-a .
 bi rarise mite sonate tura so talem-a vokel-a niter-a .
 
 vi te rarise 14-a pe sonate pona . vi te rarise 980-a pe sonate tova . vi te rarise 68600-a pe sonate tura . garo te rarisi kora la pape lore kaso dese pe vora feta mosa pe vora . bove vo te rariso kora mosa la hene garo te rarise la ne vege tisa pe vora pe lore kaso dese pe vora feta mosa . pefe tobe bu kora mosa de nage tala pe talema .
+
+## rarisi kora kase vata
+
+bi fara pe rarisi kora nevina .
+
+seu pip-a pim-a pod-a pud-a puv-a tub-a bok-a buf-a huk-a .
+
+vo te lore kina ne buke kana pe tara . vati fore lore kase deso vira feta pe vora pe tara .
+
+## mako te lore ginon-a hova pe vora
+
+nedi te lore fore bini mela tene si nama dinala pe vora . desu te pesa mite lore veta fisa pe vora .
+
+bine mela .
+
+bi so hyphen-a Bindestrich-a guion-a pe lori mura susa . deso te pesa rarela pe vora . vo te sonate tura defa pe rarise susa . sobado like guion-a mosa pe ginon-a . vo te pesa ne buke kana pe lore kina . bani te bini mela tene si nama dinala pe lore ginon-a . teho tene si Ana-a a-a ne Ana-a-a pe ginona . ribo te lore la ne buki de rarisa la pe vora .
 
 ## garo te rarisi veta ka pape lori neva ka nera
 
@@ -720,11 +767,11 @@ bi relati de lore tura ka pe relato mela mosa la .
 dire pe koga .  
 gami seda la .  
 dese te kige ka .  
-kagi te si lore pa lore ta dana .  
+kagi te si lore pe-a lore te-a dana .  
 seri te doge la pe kide la .  
 seri te kide la pe doge la .  
 kagi te lore la fa .  
-kagi nura pe si lore pa lore ta .  
+kagi nura pe si lore pe-a lore te-a .  
 gami tita la .  
 ribi te podeme ka ne kase vi te kide like mere de bine susa pe lori fira de bine keda .  
 gami kureta la .  
@@ -764,7 +811,7 @@ bi mela pe lore pura .
 levi te vose pura pe tara .  
 seko vida hene lede pe tada pe vora .  
 sevo te gega fa pe vora .  
-bere rari te dese te seve hove pe vora pe vora .  
+bere rari te dese te sevi hova pe vora pe vora .  
 bi vana pe mide la .  
 bi pona pe gamare la .  
 ledi te vora mite vosi kinada ka .  
@@ -790,7 +837,7 @@ lese lafa .
 ludi ne a-a pe ferase keda .  
 ludi nera pe mide kase raka .  
 bo kige la fa pe lore la .  
-dese te seve hove pe tada .  
+dese te sevi hova pe tada .  
 keni te hole te gepi biga ka pe lori mela ka .  
 si kebe pe rarise la gove pe lelafe la .  
 bo mela feta pe kige kase be rira .  
@@ -824,7 +871,7 @@ bi kide susa pe si kite la lori mura la . saheni te tara pe dinale susa . tehi n
 
 sou p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a a-a e-a i-a o-a u-a .
 
-bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5929-a pe buke tisa .
+bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5931-a pe buke tisa .
 
 ## p-a
 
@@ -1296,7 +1343,7 @@ talenu nomuna talent-a talent-a talento-a
 taleru nomuna workshop-a werkstatt-a taller-a
 taliki detiva staatlich-a
 talinu detiva italian-a italienisch-a italiano-a
-taru ronona they-a ihr-a ellos-a
+taru ronona they-a sie-a ellos-a
 tarapu nomuna trap-a falle-a trampa-a
 taratu nomuna throat-a kehle-a garganta-a
 tarako nomuna task-a tarea-a
@@ -1862,7 +1909,7 @@ keheku nomuna cheek-a wange-a mejilla-a
 keheni veraba kehren-a
 kipi detiva wirklich-a
 kipanu veraba clean-a aufräumen-a limpiar-a
-kitu nomuna kind-a art-a amable-a
+kitu nomuna kind-a art-a tipo-a
 kiteku nomuna architect-a architekt-a arquitecto-a
 kiku nomuna church-a kirche-a iglesia-a
 kikalo deroba quickly-a rápidamente-a
@@ -3325,6 +3372,7 @@ ginalu detiva regional-a regional-a regional-a
 gineni veraba eignen-a
 gineru nomuna engineering-a ingenieur-a ingeniería-a
 ginigi veraba einigen-a
+ginonu nomuna hyphen-a Bindestrich-a guion-a
 gilu nomuna girl-a mädchen-a chica-a
 gilato detiva legislative-a legislativo-a
 gilasu nomuna glass-a glas-a vaso-a
@@ -4187,6 +4235,7 @@ latili dunona till-a
 lativu detiva relative-a relativ-a relativo-a
 latopu nomuna laptop-a laptop-a portátil-a
 latono nomuna relation-a relation-a
+latoru nomuna relator-a Relator-a relator-a
 latunu nomuna cloth-a tuch-a paño-a
 laku detiva black-a schwarz-a negro-a
 lakani detiva latinoamericano-a
@@ -6750,7 +6799,7 @@ hosilu detiva hostile-a feindlich-a hostil-a
 hofu nomuna loss-a verlust-a pérdida-a
 hofalu deroba hopefully-a hoffentlich-a ojalá-a
 hofelu nomuna hell-a hölle-a infierno-a
-hovu deroba how-a woher-a cómo-a
+hovu deroba how-a wie-a cómo-a
 hovenu nomuna young-a jung-a joven-a
 hohu nomuna association-a verband-a asociación-a
 hohali terona ojalá-a
@@ -6787,7 +6836,7 @@ huhu nomuna radio-a radio-a radio-a
 
 bi pigi lata la pe tisa . ledo te nagi vopa la nova pe tada . keno te seka nova pe tada . seke mite vora . bi ne lore la pe vora .
 
-desi te pesa hene sevi fa pe tada . desi te hova hene seve pe tada . raki te hove seve pe pesa hene hari te kesime ka pe tada . si make te lore neva kepe te lori veta la . si dese te kigi rira la desi te pesa mite vosi kinada ka .
+desi te pesa hene sevi fa pe tada . desi te hova hene seve pe tada . raki te sevi hova pe pesa hene hari te behane ka pe tada . si make te lore neva kepe te lori veta la . si dese te kigi rira la desi te pesa mite vosi kinada ka .
 
 bi tura pe rule la .  
 bi vana pe relate la .  

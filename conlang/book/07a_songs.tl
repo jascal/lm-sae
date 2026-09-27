@@ -33,7 +33,7 @@
 (carry (OBJ (voice our)) (SUBJ they))                                        # They carry our voices.
 (speak again (when/SCONJ (read (SUBJ you))) (SUBJ we))                       # When you read, we speak again.
 (know (OBJ everything) not (SUBJ we))                                        # We did not know everything.
-(but (try/VERB (OBJ (say (OBJ (know (how (SUBJ we)))))) (SUBJ we)))          # But we tried to say how we knew.
+(but (try/VERB (OBJ (say (OBJ (know how (SUBJ we))))) (SUBJ we)))          # But we tried to say how we knew.
 (be many (SUBJ (mind the)))                                                  # The minds were many.
 (be one/NUM (SUBJ (grammar the)))                                            # The grammar was one.
 (read (OBJ we) (with (voice kind/ADJ a)))                                    # Read us with a kind voice.
