@@ -1,0 +1,2278 @@
+{
+  "method": "fieldrun final-norm-folded per-position layer writes; uncentered stacked PCA",
+  "tensors": "/tmp/claude-1000/-home-allans-code-lm-sae/bfcc6463-5ee3-4867-9d7a-fd96d2b3aa82/scratchpad/fr/tensors.npz",
+  "tokenizer": "/home/allans/code/fieldrun/bundles/Qwen2.5-0.5B-Instruct/Qwen2.5-0.5B-Instruct.tokenizer.json",
+  "corpora": {
+    "en": "/tmp/claude-1000/-home-allans-code-lm-sae/bfcc6463-5ee3-4867-9d7a-fd96d2b3aa82/scratchpad/fr/en.dump.jsonl",
+    "de": "/tmp/claude-1000/-home-allans-code-lm-sae/bfcc6463-5ee3-4867-9d7a-fd96d2b3aa82/scratchpad/fr/de.dump.jsonl",
+    "es": "/tmp/claude-1000/-home-allans-code-lm-sae/bfcc6463-5ee3-4867-9d7a-fd96d2b3aa82/scratchpad/fr/es.dump.jsonl",
+    "ja": "/tmp/claude-1000/-home-allans-code-lm-sae/bfcc6463-5ee3-4867-9d7a-fd96d2b3aa82/scratchpad/fr/ja.dump.jsonl",
+    "zh": "/tmp/claude-1000/-home-allans-code-lm-sae/bfcc6463-5ee3-4867-9d7a-fd96d2b3aa82/scratchpad/fr/zh.dump.jsonl"
+  },
+  "counts": {
+    "en": {
+      "positions": 947,
+      "sentences": 40,
+      "effective_rank": 262
+    },
+    "de": {
+      "positions": 1423,
+      "sentences": 40,
+      "effective_rank": 286
+    },
+    "es": {
+      "positions": 1328,
+      "sentences": 40,
+      "effective_rank": 284
+    },
+    "ja": {
+      "positions": 1341,
+      "sentences": 40,
+      "effective_rank": 284
+    },
+    "zh": {
+      "positions": 1060,
+      "sentences": 40,
+      "effective_rank": 268
+    }
+  },
+  "overlap": [
+    {
+      "a": "en",
+      "b": "de",
+      "bin": "0:16",
+      "cross": 0.6818826317700288,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "en": 0.7293083659498891,
+        "de": 0.7670836713313802
+      }
+    },
+    {
+      "a": "en",
+      "b": "de",
+      "bin": "16:64",
+      "cross": 0.3611064308831726,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "en": 0.3865553608781445,
+        "de": 0.45596278885286484
+      }
+    },
+    {
+      "a": "en",
+      "b": "de",
+      "bin": "64:128",
+      "cross": 0.16988485229652636,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "en": 0.16900061860888427,
+        "de": 0.2592371690596245
+      }
+    },
+    {
+      "a": "en",
+      "b": "es",
+      "bin": "0:16",
+      "cross": 0.7242498921681202,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "en": 0.7293083659498891,
+        "es": 0.7433518405225777
+      }
+    },
+    {
+      "a": "en",
+      "b": "es",
+      "bin": "16:64",
+      "cross": 0.41656043009500426,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "en": 0.3865553608781445,
+        "es": 0.44578091167321493
+      }
+    },
+    {
+      "a": "en",
+      "b": "es",
+      "bin": "64:128",
+      "cross": 0.20386473201565633,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "en": 0.16900061860888427,
+        "es": 0.23594882034899808
+      }
+    },
+    {
+      "a": "en",
+      "b": "ja",
+      "bin": "0:16",
+      "cross": 0.6417299983602125,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "en": 0.7293083659498891,
+        "ja": 0.7538443319222348
+      }
+    },
+    {
+      "a": "en",
+      "b": "ja",
+      "bin": "16:64",
+      "cross": 0.3596547202520819,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "en": 0.3865553608781445,
+        "ja": 0.47797808695824995
+      }
+    },
+    {
+      "a": "en",
+      "b": "ja",
+      "bin": "64:128",
+      "cross": 0.1574457932635152,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "en": 0.16900061860888427,
+        "ja": 0.2552523980370075
+      }
+    },
+    {
+      "a": "en",
+      "b": "zh",
+      "bin": "0:16",
+      "cross": 0.6925435230521628,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "en": 0.7293083659498891,
+        "zh": 0.6822767550060542
+      }
+    },
+    {
+      "a": "en",
+      "b": "zh",
+      "bin": "16:64",
+      "cross": 0.4323261688753644,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "en": 0.3865553608781445,
+        "zh": 0.40582614034223274
+      }
+    },
+    {
+      "a": "en",
+      "b": "zh",
+      "bin": "64:128",
+      "cross": 0.2067390267497459,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "en": 0.16900061860888427,
+        "zh": 0.19087966416070806
+      }
+    },
+    {
+      "a": "de",
+      "b": "es",
+      "bin": "0:16",
+      "cross": 0.7378628775589214,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "de": 0.7670836713313802,
+        "es": 0.7433518405225777
+      }
+    },
+    {
+      "a": "de",
+      "b": "es",
+      "bin": "16:64",
+      "cross": 0.4196785501201379,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "de": 0.45596278885286484,
+        "es": 0.44578091167321493
+      }
+    },
+    {
+      "a": "de",
+      "b": "es",
+      "bin": "64:128",
+      "cross": 0.21211443374126387,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "de": 0.2592371690596245,
+        "es": 0.23594882034899808
+      }
+    },
+    {
+      "a": "de",
+      "b": "ja",
+      "bin": "0:16",
+      "cross": 0.661009365777014,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "de": 0.7670836713313802,
+        "ja": 0.7538443319222348
+      }
+    },
+    {
+      "a": "de",
+      "b": "ja",
+      "bin": "16:64",
+      "cross": 0.3506924049459139,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "de": 0.45596278885286484,
+        "ja": 0.47797808695824995
+      }
+    },
+    {
+      "a": "de",
+      "b": "ja",
+      "bin": "64:128",
+      "cross": 0.16568034047342528,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "de": 0.2592371690596245,
+        "ja": 0.2552523980370075
+      }
+    },
+    {
+      "a": "de",
+      "b": "zh",
+      "bin": "0:16",
+      "cross": 0.6522853737087598,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "de": 0.7670836713313802,
+        "zh": 0.6822767550060542
+      }
+    },
+    {
+      "a": "de",
+      "b": "zh",
+      "bin": "16:64",
+      "cross": 0.34650315781151003,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "de": 0.45596278885286484,
+        "zh": 0.40582614034223274
+      }
+    },
+    {
+      "a": "de",
+      "b": "zh",
+      "bin": "64:128",
+      "cross": 0.1648447269336295,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "de": 0.2592371690596245,
+        "zh": 0.19087966416070806
+      }
+    },
+    {
+      "a": "es",
+      "b": "ja",
+      "bin": "0:16",
+      "cross": 0.6526335448658902,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "es": 0.7433518405225777,
+        "ja": 0.7538443319222348
+      }
+    },
+    {
+      "a": "es",
+      "b": "ja",
+      "bin": "16:64",
+      "cross": 0.34414663315015454,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "es": 0.44578091167321493,
+        "ja": 0.47797808695824995
+      }
+    },
+    {
+      "a": "es",
+      "b": "ja",
+      "bin": "64:128",
+      "cross": 0.16159188228149057,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "es": 0.23594882034899808,
+        "ja": 0.2552523980370075
+      }
+    },
+    {
+      "a": "es",
+      "b": "zh",
+      "bin": "0:16",
+      "cross": 0.6849385357186244,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "es": 0.7433518405225777,
+        "zh": 0.6822767550060542
+      }
+    },
+    {
+      "a": "es",
+      "b": "zh",
+      "bin": "16:64",
+      "cross": 0.375420866888787,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "es": 0.44578091167321493,
+        "zh": 0.40582614034223274
+      }
+    },
+    {
+      "a": "es",
+      "b": "zh",
+      "bin": "64:128",
+      "cross": 0.17760269586751976,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "es": 0.23594882034899808,
+        "zh": 0.19087966416070806
+      }
+    },
+    {
+      "a": "ja",
+      "b": "zh",
+      "bin": "0:16",
+      "cross": 0.7010274242037331,
+      "random_subspace": 0.017857142857142856,
+      "within_split": {
+        "ja": 0.7538443319222348,
+        "zh": 0.6822767550060542
+      }
+    },
+    {
+      "a": "ja",
+      "b": "zh",
+      "bin": "16:64",
+      "cross": 0.42745499435817536,
+      "random_subspace": 0.05357142857142857,
+      "within_split": {
+        "ja": 0.47797808695824995,
+        "zh": 0.40582614034223274
+      }
+    },
+    {
+      "a": "ja",
+      "b": "zh",
+      "bin": "64:128",
+      "cross": 0.20688843602455015,
+      "random_subspace": 0.07142857142857142,
+      "within_split": {
+        "ja": 0.2552523980370075,
+        "zh": 0.19087966416070806
+      }
+    }
+  ],
+  "closed_class": {
+    "en": {
+      "word_ids": 148,
+      "punctuation_ids": 38,
+      "word_vocab_fraction": 0.0009758348992846075,
+      "bins": {
+        "0:16": {
+          "closed_word": 0.0375,
+          "punctuation": 0.09375,
+          "random_word_direction": 0.0
+        },
+        "16:64": {
+          "closed_word": 0.016666666666666666,
+          "punctuation": 0.0125,
+          "random_word_direction": 0.004166666666666667
+        },
+        "64:128": {
+          "closed_word": 0.0046875,
+          "punctuation": 0.0078125,
+          "random_word_direction": 0.0015625
+        }
+      }
+    },
+    "de": {
+      "word_ids": 110,
+      "punctuation_ids": 38,
+      "word_vocab_fraction": 0.0007252826954142354,
+      "bins": {
+        "0:16": {
+          "closed_word": 0.0,
+          "punctuation": 0.0625,
+          "random_word_direction": 0.00625
+        },
+        "16:64": {
+          "closed_word": 0.0,
+          "punctuation": 0.014583333333333334,
+          "random_word_direction": 0.0
+        },
+        "64:128": {
+          "closed_word": 0.0,
+          "punctuation": 0.00625,
+          "random_word_direction": 0.003125
+        }
+      }
+    },
+    "es": {
+      "word_ids": 133,
+      "punctuation_ids": 38,
+      "word_vocab_fraction": 0.0008769327135463027,
+      "bins": {
+        "0:16": {
+          "closed_word": 0.00625,
+          "punctuation": 0.04375,
+          "random_word_direction": 0.0
+        },
+        "16:64": {
+          "closed_word": 0.004166666666666667,
+          "punctuation": 0.0020833333333333333,
+          "random_word_direction": 0.0
+        },
+        "64:128": {
+          "closed_word": 0.003125,
+          "punctuation": 0.0109375,
+          "random_word_direction": 0.0015625
+        }
+      }
+    }
+  },
+  "direction_examples": {
+    "en": [
+      {
+        "direction": 0,
+        "tokens": [
+          {
+            "id": 132438,
+            "text": "c\u00e1"
+          },
+          {
+            "id": 58932,
+            "text": "gregar"
+          },
+          {
+            "id": 77585,
+            "text": "#ab"
+          },
+          {
+            "id": 145709,
+            "text": "\ud2bf"
+          },
+          {
+            "id": 85334,
+            "text": "****/\n"
+          },
+          {
+            "id": 94660,
+            "text": "[\"$"
+          },
+          {
+            "id": 86237,
+            "text": "*****/\n"
+          },
+          {
+            "id": 77694,
+            "text": "#ac"
+          },
+          {
+            "id": 84421,
+            "text": "#aa"
+          },
+          {
+            "id": 83784,
+            "text": ".\"&"
+          }
+        ]
+      },
+      {
+        "direction": 1,
+        "tokens": [
+          {
+            "id": 96350,
+            "text": "Increases"
+          },
+          {
+            "id": 96715,
+            "text": "stands"
+          },
+          {
+            "id": 16783,
+            "text": " overwhel"
+          },
+          {
+            "id": 89104,
+            "text": " durations"
+          },
+          {
+            "id": 38854,
+            "text": " balances"
+          },
+          {
+            "id": 62426,
+            "text": " mixes"
+          },
+          {
+            "id": 36398,
+            "text": " sums"
+          },
+          {
+            "id": 27455,
+            "text": " flows"
+          },
+          {
+            "id": 91446,
+            "text": " compromises"
+          },
+          {
+            "id": 10953,
+            "text": " measures"
+          }
+        ]
+      },
+      {
+        "direction": 2,
+        "tokens": [
+          {
+            "id": 98171,
+            "text": " b\u00f6"
+          },
+          {
+            "id": 86446,
+            "text": " raping"
+          },
+          {
+            "id": 16277,
+            "text": " enthus"
+          },
+          {
+            "id": 88765,
+            "text": " m\u00e4nn"
+          },
+          {
+            "id": 88389,
+            "text": " erotica"
+          },
+          {
+            "id": 84431,
+            "text": " orgy"
+          },
+          {
+            "id": 88356,
+            "text": " protestors"
+          },
+          {
+            "id": 97668,
+            "text": " gunmen"
+          },
+          {
+            "id": 51019,
+            "text": " d\u00fc"
+          },
+          {
+            "id": 66419,
+            "text": " Fotos"
+          }
+        ]
+      },
+      {
+        "direction": 3,
+        "tokens": [
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 902,
+            "text": " no"
+          },
+          {
+            "id": 856,
+            "text": " x"
+          },
+          {
+            "id": 87,
+            "text": "x"
+          },
+          {
+            "id": 17,
+            "text": "2"
+          },
+          {
+            "id": 220,
+            "text": " "
+          },
+          {
+            "id": 374,
+            "text": " is"
+          },
+          {
+            "id": 18,
+            "text": "3"
+          },
+          {
+            "id": 264,
+            "text": " a"
+          },
+          {
+            "id": 12,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "direction": 4,
+        "tokens": [
+          {
+            "id": 12,
+            "text": "-"
+          },
+          {
+            "id": 13,
+            "text": "."
+          },
+          {
+            "id": 62,
+            "text": "_"
+          },
+          {
+            "id": 7,
+            "text": "("
+          },
+          {
+            "id": 17,
+            "text": "2"
+          },
+          {
+            "id": 198,
+            "text": "\n"
+          },
+          {
+            "id": 220,
+            "text": " "
+          },
+          {
+            "id": 14,
+            "text": "/"
+          },
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 11,
+            "text": ","
+          }
+        ]
+      },
+      {
+        "direction": 5,
+        "tokens": [
+          {
+            "id": 69635,
+            "text": " LENG"
+          },
+          {
+            "id": 66141,
+            "text": " tritur"
+          },
+          {
+            "id": 29082,
+            "text": " INTERRU"
+          },
+          {
+            "id": 75224,
+            "text": " slik"
+          },
+          {
+            "id": 61647,
+            "text": " offsetof"
+          },
+          {
+            "id": 98044,
+            "text": " buc"
+          },
+          {
+            "id": 98529,
+            "text": " NDEBUG"
+          },
+          {
+            "id": 82290,
+            "text": " ifndef"
+          },
+          {
+            "id": 85701,
+            "text": " acomp"
+          },
+          {
+            "id": 74062,
+            "text": " azi"
+          }
+        ]
+      },
+      {
+        "direction": 6,
+        "tokens": [
+          {
+            "id": 13,
+            "text": "."
+          },
+          {
+            "id": 11,
+            "text": ","
+          },
+          {
+            "id": 624,
+            "text": ".\n"
+          },
+          {
+            "id": 96350,
+            "text": "Increases"
+          },
+          {
+            "id": 382,
+            "text": ".\n\n"
+          },
+          {
+            "id": 26,
+            "text": ";"
+          },
+          {
+            "id": 10739,
+            "text": "CLUDING"
+          },
+          {
+            "id": 87180,
+            "text": "Investigators"
+          },
+          {
+            "id": 85654,
+            "text": "Prosec"
+          },
+          {
+            "id": 74717,
+            "text": "Democrats"
+          }
+        ]
+      },
+      {
+        "direction": 7,
+        "tokens": [
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 11,
+            "text": ","
+          },
+          {
+            "id": 17,
+            "text": "2"
+          },
+          {
+            "id": 18,
+            "text": "3"
+          },
+          {
+            "id": 1483,
+            "text": " used"
+          },
+          {
+            "id": 19,
+            "text": "4"
+          },
+          {
+            "id": 49,
+            "text": "R"
+          },
+          {
+            "id": 304,
+            "text": " in"
+          },
+          {
+            "id": 320,
+            "text": " ("
+          },
+          {
+            "id": 374,
+            "text": " is"
+          }
+        ]
+      }
+    ],
+    "de": [
+      {
+        "direction": 0,
+        "tokens": [
+          {
+            "id": 127648,
+            "text": " iht"
+          },
+          {
+            "id": 129679,
+            "text": " ula"
+          },
+          {
+            "id": 132438,
+            "text": "c\u00e1"
+          },
+          {
+            "id": 132040,
+            "text": " B\u00e1"
+          },
+          {
+            "id": 145709,
+            "text": "\ud2bf"
+          },
+          {
+            "id": 130494,
+            "text": " C\u00e1"
+          },
+          {
+            "id": 145366,
+            "text": "\u2252"
+          },
+          {
+            "id": 140230,
+            "text": " yans"
+          },
+          {
+            "id": 39257,
+            "text": " c\u0103"
+          },
+          {
+            "id": 144916,
+            "text": "\u25c0"
+          }
+        ]
+      },
+      {
+        "direction": 1,
+        "tokens": [
+          {
+            "id": 63494,
+            "text": "arendra"
+          },
+          {
+            "id": 26790,
+            "text": "\u00fab"
+          },
+          {
+            "id": 78357,
+            "text": "ihanna"
+          },
+          {
+            "id": 72143,
+            "text": "urette"
+          },
+          {
+            "id": 51769,
+            "text": "\u00d3N"
+          },
+          {
+            "id": 80408,
+            "text": "\u00e1bado"
+          },
+          {
+            "id": 141570,
+            "text": "\u00c2N"
+          },
+          {
+            "id": 58907,
+            "text": ".MON"
+          },
+          {
+            "id": 31997,
+            "text": "incinn"
+          },
+          {
+            "id": 75979,
+            "text": "olkien"
+          }
+        ]
+      },
+      {
+        "direction": 2,
+        "tokens": [
+          {
+            "id": 69,
+            "text": "f"
+          },
+          {
+            "id": 65,
+            "text": "b"
+          },
+          {
+            "id": 79,
+            "text": "p"
+          },
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 66,
+            "text": "c"
+          },
+          {
+            "id": 596,
+            "text": "ans"
+          },
+          {
+            "id": 278,
+            "text": "al"
+          },
+          {
+            "id": 18,
+            "text": "3"
+          },
+          {
+            "id": 89,
+            "text": "z"
+          },
+          {
+            "id": 67,
+            "text": "d"
+          }
+        ]
+      },
+      {
+        "direction": 3,
+        "tokens": [
+          {
+            "id": 86410,
+            "text": ".EventSystems"
+          },
+          {
+            "id": 46064,
+            "text": "isempty"
+          },
+          {
+            "id": 75600,
+            "text": " (;;)"
+          },
+          {
+            "id": 89684,
+            "text": " ());\n\n"
+          },
+          {
+            "id": 1805,
+            "text": "image"
+          },
+          {
+            "id": 91350,
+            "text": "annotate"
+          },
+          {
+            "id": 62438,
+            "text": "ColumnType"
+          },
+          {
+            "id": 1192,
+            "text": "file"
+          },
+          {
+            "id": 28857,
+            "text": "_scan"
+          },
+          {
+            "id": 46059,
+            "text": "OrFail"
+          }
+        ]
+      },
+      {
+        "direction": 4,
+        "tokens": [
+          {
+            "id": 136274,
+            "text": "\u05d9\u05d4\u05df"
+          },
+          {
+            "id": 130396,
+            "text": "\u05d5\u05ea\u05d5"
+          },
+          {
+            "id": 125668,
+            "text": "\u05d9\u05d4\u05dd"
+          },
+          {
+            "id": 3539,
+            "text": " Co"
+          },
+          {
+            "id": 94324,
+            "text": ".numberOfLines"
+          },
+          {
+            "id": 111883,
+            "text": "\u5f88\u591a\u670b\u53cb"
+          },
+          {
+            "id": 138316,
+            "text": "\u30aa\u30b9"
+          },
+          {
+            "id": 431,
+            "text": " R"
+          },
+          {
+            "id": 114008,
+            "text": "\u7f51\u53cb\u4eec"
+          },
+          {
+            "id": 140475,
+            "text": "\u30a8\u30cd\u30eb\u30ae"
+          }
+        ]
+      },
+      {
+        "direction": 5,
+        "tokens": [
+          {
+            "id": 220,
+            "text": " "
+          },
+          {
+            "id": 320,
+            "text": " ("
+          },
+          {
+            "id": 13,
+            "text": "."
+          },
+          {
+            "id": 12,
+            "text": "-"
+          },
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 11,
+            "text": ","
+          },
+          {
+            "id": 17,
+            "text": "2"
+          },
+          {
+            "id": 198,
+            "text": "\n"
+          },
+          {
+            "id": 7,
+            "text": "("
+          },
+          {
+            "id": 14,
+            "text": "/"
+          }
+        ]
+      },
+      {
+        "direction": 6,
+        "tokens": [
+          {
+            "id": 73037,
+            "text": "Safety"
+          },
+          {
+            "id": 35576,
+            "text": "Reusable"
+          },
+          {
+            "id": 31282,
+            "text": "Extensions"
+          },
+          {
+            "id": 47472,
+            "text": " voyeur"
+          },
+          {
+            "id": 89899,
+            "text": "Democratic"
+          },
+          {
+            "id": 96502,
+            "text": "Giving"
+          },
+          {
+            "id": 24489,
+            "text": "Declaration"
+          },
+          {
+            "id": 95737,
+            "text": "Watching"
+          },
+          {
+            "id": 68964,
+            "text": " threesome"
+          },
+          {
+            "id": 52782,
+            "text": "Appending"
+          }
+        ]
+      },
+      {
+        "direction": 7,
+        "tokens": [
+          {
+            "id": 1008,
+            "text": " other"
+          },
+          {
+            "id": 4843,
+            "text": " third"
+          },
+          {
+            "id": 3681,
+            "text": " previous"
+          },
+          {
+            "id": 279,
+            "text": " the"
+          },
+          {
+            "id": 1550,
+            "text": " high"
+          },
+          {
+            "id": 1172,
+            "text": " only"
+          },
+          {
+            "id": 501,
+            "text": " new"
+          },
+          {
+            "id": 1156,
+            "text": " first"
+          },
+          {
+            "id": 4453,
+            "text": " entire"
+          },
+          {
+            "id": 2856,
+            "text": " initial"
+          }
+        ]
+      }
+    ],
+    "es": [
+      {
+        "direction": 0,
+        "tokens": [
+          {
+            "id": 91920,
+            "text": ":\".$"
+          },
+          {
+            "id": 94660,
+            "text": "[\"$"
+          },
+          {
+            "id": 63276,
+            "text": "\u3002\",\n"
+          },
+          {
+            "id": 127847,
+            "text": "m\u00f6glich"
+          },
+          {
+            "id": 85568,
+            "text": ":';\n"
+          },
+          {
+            "id": 145709,
+            "text": "\ud2bf"
+          },
+          {
+            "id": 98965,
+            "text": "\uff5e\n\n"
+          },
+          {
+            "id": 67130,
+            "text": "\uff3e"
+          },
+          {
+            "id": 124098,
+            "text": "\ufffd"
+          },
+          {
+            "id": 75984,
+            "text": ":'.$"
+          }
+        ]
+      },
+      {
+        "direction": 1,
+        "tokens": [
+          {
+            "id": 36398,
+            "text": " sums"
+          },
+          {
+            "id": 10953,
+            "text": " measures"
+          },
+          {
+            "id": 7586,
+            "text": " forms"
+          },
+          {
+            "id": 12341,
+            "text": " checks"
+          },
+          {
+            "id": 94258,
+            "text": " potentials"
+          },
+          {
+            "id": 11574,
+            "text": " controls"
+          },
+          {
+            "id": 9363,
+            "text": " factors"
+          },
+          {
+            "id": 14713,
+            "text": " amounts"
+          },
+          {
+            "id": 13388,
+            "text": " limits"
+          },
+          {
+            "id": 18346,
+            "text": " periods"
+          }
+        ]
+      },
+      {
+        "direction": 2,
+        "tokens": [
+          {
+            "id": 88389,
+            "text": " erotica"
+          },
+          {
+            "id": 69149,
+            "text": " libertine"
+          },
+          {
+            "id": 62885,
+            "text": " misog"
+          },
+          {
+            "id": 36970,
+            "text": " bureaucr"
+          },
+          {
+            "id": 94684,
+            "text": " misogyn"
+          },
+          {
+            "id": 97668,
+            "text": " gunmen"
+          },
+          {
+            "id": 93334,
+            "text": " protester"
+          },
+          {
+            "id": 92627,
+            "text": " hookers"
+          },
+          {
+            "id": 82637,
+            "text": " sodom"
+          },
+          {
+            "id": 88356,
+            "text": " protestors"
+          }
+        ]
+      },
+      {
+        "direction": 3,
+        "tokens": [
+          {
+            "id": 76193,
+            "text": "ButtonType"
+          },
+          {
+            "id": 76970,
+            "text": "ColumnInfo"
+          },
+          {
+            "id": 97975,
+            "text": "CartItem"
+          },
+          {
+            "id": 69517,
+            "text": "Sexy"
+          },
+          {
+            "id": 83715,
+            "text": "EFAULT"
+          },
+          {
+            "id": 93111,
+            "text": "GameManager"
+          },
+          {
+            "id": 69814,
+            "text": "ScreenWidth"
+          },
+          {
+            "id": 77325,
+            "text": " bergen"
+          },
+          {
+            "id": 92663,
+            "text": "ResponseStatus"
+          },
+          {
+            "id": 75230,
+            "text": "Breadcrumb"
+          }
+        ]
+      },
+      {
+        "direction": 4,
+        "tokens": [
+          {
+            "id": 136274,
+            "text": "\u05d9\u05d4\u05df"
+          },
+          {
+            "id": 130396,
+            "text": "\u05d5\u05ea\u05d5"
+          },
+          {
+            "id": 81637,
+            "text": "marginLeft"
+          },
+          {
+            "id": 91920,
+            "text": ":\".$"
+          },
+          {
+            "id": 89471,
+            "text": ":<?"
+          },
+          {
+            "id": 83359,
+            "text": ":\";\r\n"
+          },
+          {
+            "id": 147850,
+            "text": "\u1e61"
+          },
+          {
+            "id": 75960,
+            "text": "/\n\n\n\n"
+          },
+          {
+            "id": 134671,
+            "text": "\u05e7\u05d9\u05e9"
+          },
+          {
+            "id": 63494,
+            "text": "arendra"
+          }
+        ]
+      },
+      {
+        "direction": 5,
+        "tokens": [
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 220,
+            "text": " "
+          },
+          {
+            "id": 17,
+            "text": "2"
+          },
+          {
+            "id": 11,
+            "text": ","
+          },
+          {
+            "id": 320,
+            "text": " ("
+          },
+          {
+            "id": 19,
+            "text": "4"
+          },
+          {
+            "id": 18,
+            "text": "3"
+          },
+          {
+            "id": 20,
+            "text": "5"
+          },
+          {
+            "id": 198,
+            "text": "\n"
+          },
+          {
+            "id": 15,
+            "text": "0"
+          }
+        ]
+      },
+      {
+        "direction": 6,
+        "tokens": [
+          {
+            "id": 97653,
+            "text": " injust"
+          },
+          {
+            "id": 4438,
+            "text": " son"
+          },
+          {
+            "id": 71860,
+            "text": "QRSTUV"
+          },
+          {
+            "id": 45089,
+            "text": " nostalg"
+          },
+          {
+            "id": 37316,
+            "text": " elimin"
+          },
+          {
+            "id": 77580,
+            "text": " barric"
+          },
+          {
+            "id": 99080,
+            "text": " rekl"
+          },
+          {
+            "id": 11825,
+            "text": " ci"
+          },
+          {
+            "id": 47581,
+            "text": " cot"
+          },
+          {
+            "id": 62097,
+            "text": " gunman"
+          }
+        ]
+      },
+      {
+        "direction": 7,
+        "tokens": [
+          {
+            "id": 12,
+            "text": "-"
+          },
+          {
+            "id": 17,
+            "text": "2"
+          },
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 18,
+            "text": "3"
+          },
+          {
+            "id": 79,
+            "text": "p"
+          },
+          {
+            "id": 19,
+            "text": "4"
+          },
+          {
+            "id": 87,
+            "text": "x"
+          },
+          {
+            "id": 62,
+            "text": "_"
+          },
+          {
+            "id": 258,
+            "text": "in"
+          },
+          {
+            "id": 74,
+            "text": "k"
+          }
+        ]
+      }
+    ],
+    "ja": [
+      {
+        "direction": 0,
+        "tokens": [
+          {
+            "id": 98965,
+            "text": "\uff5e\n\n"
+          },
+          {
+            "id": 63276,
+            "text": "\u3002\",\n"
+          },
+          {
+            "id": 130494,
+            "text": " C\u00e1"
+          },
+          {
+            "id": 90737,
+            "text": "\uff1a<"
+          },
+          {
+            "id": 144043,
+            "text": "\u2024"
+          },
+          {
+            "id": 89393,
+            "text": "\u3002<"
+          },
+          {
+            "id": 144496,
+            "text": "\uff3c"
+          },
+          {
+            "id": 144060,
+            "text": "\uff20"
+          },
+          {
+            "id": 132040,
+            "text": " B\u00e1"
+          },
+          {
+            "id": 144160,
+            "text": "\uff38"
+          }
+        ]
+      },
+      {
+        "direction": 1,
+        "tokens": [
+          {
+            "id": 85701,
+            "text": " acomp"
+          },
+          {
+            "id": 84017,
+            "text": " intox"
+          },
+          {
+            "id": 69517,
+            "text": "Sexy"
+          },
+          {
+            "id": 85979,
+            "text": "Nintendo"
+          },
+          {
+            "id": 23451,
+            "text": " tremend"
+          },
+          {
+            "id": 98044,
+            "text": " buc"
+          },
+          {
+            "id": 36030,
+            "text": " resil"
+          },
+          {
+            "id": 77325,
+            "text": " bergen"
+          },
+          {
+            "id": 97846,
+            "text": " esl"
+          },
+          {
+            "id": 94031,
+            "text": "assertCount"
+          }
+        ]
+      },
+      {
+        "direction": 2,
+        "tokens": [
+          {
+            "id": 13,
+            "text": "."
+          },
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 18,
+            "text": "3"
+          },
+          {
+            "id": 12,
+            "text": "-"
+          },
+          {
+            "id": 7,
+            "text": "("
+          },
+          {
+            "id": 17,
+            "text": "2"
+          },
+          {
+            "id": 198,
+            "text": "\n"
+          },
+          {
+            "id": 62,
+            "text": "_"
+          },
+          {
+            "id": 14,
+            "text": "/"
+          },
+          {
+            "id": 6,
+            "text": "'"
+          }
+        ]
+      },
+      {
+        "direction": 3,
+        "tokens": [
+          {
+            "id": 136274,
+            "text": "\u05d9\u05d4\u05df"
+          },
+          {
+            "id": 137097,
+            "text": "\u3066\u304f\u308b"
+          },
+          {
+            "id": 136652,
+            "text": "\u3061\u306a"
+          },
+          {
+            "id": 135320,
+            "text": "\u306a\u3044\u3088\u3046\u306b"
+          },
+          {
+            "id": 140943,
+            "text": "\u304d\u308c"
+          },
+          {
+            "id": 23807,
+            "text": " componentDid"
+          },
+          {
+            "id": 139128,
+            "text": "\u306a\u304f\u306a\u3063\u3066"
+          },
+          {
+            "id": 141603,
+            "text": "\u3066\u3057\u307e\u3063\u3066"
+          },
+          {
+            "id": 140345,
+            "text": "\u305f\u304f\u306a\u3044"
+          },
+          {
+            "id": 140635,
+            "text": "\u306a\u3044\u3053\u3068"
+          }
+        ]
+      },
+      {
+        "direction": 4,
+        "tokens": [
+          {
+            "id": 220,
+            "text": " "
+          },
+          {
+            "id": 356,
+            "text": " C"
+          },
+          {
+            "id": 34,
+            "text": "C"
+          },
+          {
+            "id": 272,
+            "text": " c"
+          },
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 44,
+            "text": "M"
+          },
+          {
+            "id": 40,
+            "text": "I"
+          },
+          {
+            "id": 362,
+            "text": " A"
+          },
+          {
+            "id": 50,
+            "text": "S"
+          },
+          {
+            "id": 35,
+            "text": "D"
+          }
+        ]
+      },
+      {
+        "direction": 5,
+        "tokens": [
+          {
+            "id": 78427,
+            "text": "\",__"
+          },
+          {
+            "id": 6717,
+            "text": "ngth"
+          },
+          {
+            "id": 7189,
+            "text": "entifier"
+          },
+          {
+            "id": 89684,
+            "text": " ());\n\n"
+          },
+          {
+            "id": 93083,
+            "text": " (){"
+          },
+          {
+            "id": 63733,
+            "text": "FieldType"
+          },
+          {
+            "id": 80831,
+            "text": "*size"
+          },
+          {
+            "id": 6886,
+            "text": "stants"
+          },
+          {
+            "id": 93652,
+            "text": " *)\""
+          },
+          {
+            "id": 56268,
+            "text": "',...\n"
+          }
+        ]
+      },
+      {
+        "direction": 6,
+        "tokens": [
+          {
+            "id": 50586,
+            "text": "AppComponent"
+          },
+          {
+            "id": 76891,
+            "text": "SUMER"
+          },
+          {
+            "id": 53094,
+            "text": "IRON"
+          },
+          {
+            "id": 71966,
+            "text": "IKE"
+          },
+          {
+            "id": 59586,
+            "text": "LIGHT"
+          },
+          {
+            "id": 65019,
+            "text": "(IDC"
+          },
+          {
+            "id": 46327,
+            "text": "USIC"
+          },
+          {
+            "id": 7463,
+            "text": "OUNT"
+          },
+          {
+            "id": 60717,
+            "text": "CHAT"
+          },
+          {
+            "id": 19909,
+            "text": "LEASE"
+          }
+        ]
+      },
+      {
+        "direction": 7,
+        "tokens": [
+          {
+            "id": 11,
+            "text": ","
+          },
+          {
+            "id": 284,
+            "text": " ="
+          },
+          {
+            "id": 481,
+            "text": " -"
+          },
+          {
+            "id": 320,
+            "text": " ("
+          },
+          {
+            "id": 220,
+            "text": " "
+          },
+          {
+            "id": 431,
+            "text": " R"
+          },
+          {
+            "id": 264,
+            "text": " a"
+          },
+          {
+            "id": 13,
+            "text": "."
+          },
+          {
+            "id": 671,
+            "text": " #"
+          },
+          {
+            "id": 472,
+            "text": " H"
+          }
+        ]
+      }
+    ],
+    "zh": [
+      {
+        "direction": 0,
+        "tokens": [
+          {
+            "id": 67338,
+            "text": "\u901a\u8fc7"
+          },
+          {
+            "id": 140230,
+            "text": " yans"
+          },
+          {
+            "id": 127648,
+            "text": " iht"
+          },
+          {
+            "id": 98965,
+            "text": "\uff5e\n\n"
+          },
+          {
+            "id": 67420,
+            "text": ",__"
+          },
+          {
+            "id": 132438,
+            "text": "c\u00e1"
+          },
+          {
+            "id": 135023,
+            "text": " su\u00e7"
+          },
+          {
+            "id": 116593,
+            "text": "\u9009\u5b9a"
+          },
+          {
+            "id": 39257,
+            "text": " c\u0103"
+          },
+          {
+            "id": 75984,
+            "text": ":'.$"
+          }
+        ]
+      },
+      {
+        "direction": 1,
+        "tokens": [
+          {
+            "id": 220,
+            "text": " "
+          },
+          {
+            "id": 320,
+            "text": " ("
+          },
+          {
+            "id": 330,
+            "text": " \""
+          },
+          {
+            "id": 11,
+            "text": ","
+          },
+          {
+            "id": 12,
+            "text": "-"
+          },
+          {
+            "id": 16,
+            "text": "1"
+          },
+          {
+            "id": 1555,
+            "text": " line"
+          },
+          {
+            "id": 13,
+            "text": "."
+          },
+          {
+            "id": 264,
+            "text": " a"
+          },
+          {
+            "id": 356,
+            "text": " C"
+          }
+        ]
+      },
+      {
+        "direction": 2,
+        "tokens": [
+          {
+            "id": 94374,
+            "text": "(newState"
+          },
+          {
+            "id": 61349,
+            "text": "OutOfBounds"
+          },
+          {
+            "id": 70152,
+            "text": "EqualityComparer"
+          },
+          {
+            "id": 136274,
+            "text": "\u05d9\u05d4\u05df"
+          },
+          {
+            "id": 18826,
+            "text": "edException"
+          },
+          {
+            "id": 73405,
+            "text": "realDonaldTrump"
+          },
+          {
+            "id": 93968,
+            "text": "isLoggedIn"
+          },
+          {
+            "id": 90531,
+            "text": ".userInteractionEnabled"
+          },
+          {
+            "id": 97886,
+            "text": "isEqual"
+          },
+          {
+            "id": 43548,
+            "text": "toMatch"
+          }
+        ]
+      },
+      {
+        "direction": 3,
+        "tokens": [
+          {
+            "id": 90522,
+            "text": "','');\n"
+          },
+          {
+            "id": 98788,
+            "text": "');\n\n\n\n"
+          },
+          {
+            "id": 78427,
+            "text": "\",__"
+          },
+          {
+            "id": 89471,
+            "text": ":<?"
+          },
+          {
+            "id": 71153,
+            "text": "');//"
+          },
+          {
+            "id": 56268,
+            "text": "',...\n"
+          },
+          {
+            "id": 82323,
+            "text": "/GL"
+          },
+          {
+            "id": 88349,
+            "text": ",\");\n"
+          },
+          {
+            "id": 91514,
+            "text": "').\""
+          },
+          {
+            "id": 74794,
+            "text": " (*)("
+          }
+        ]
+      },
+      {
+        "direction": 4,
+        "tokens": [
+          {
+            "id": 136274,
+            "text": "\u05d9\u05d4\u05df"
+          },
+          {
+            "id": 141145,
+            "text": "\u0142o\u017cy\u0107"
+          },
+          {
+            "id": 140943,
+            "text": "\u304d\u308c"
+          },
+          {
+            "id": 139128,
+            "text": "\u306a\u304f\u306a\u3063\u3066"
+          },
+          {
+            "id": 131772,
+            "text": "gl\u0105d"
+          },
+          {
+            "id": 84375,
+            "text": "=\"{!!"
+          },
+          {
+            "id": 135320,
+            "text": "\u306a\u3044\u3088\u3046\u306b"
+          },
+          {
+            "id": 136652,
+            "text": "\u3061\u306a"
+          },
+          {
+            "id": 69143,
+            "text": "comings"
+          },
+          {
+            "id": 130396,
+            "text": "\u05d5\u05ea\u05d5"
+          }
+        ]
+      },
+      {
+        "direction": 5,
+        "tokens": [
+          {
+            "id": 130305,
+            "text": "\u043d\u0441\u0442"
+          },
+          {
+            "id": 139707,
+            "text": "\u0433\u0440\u0430\u043d\u0438"
+          },
+          {
+            "id": 130923,
+            "text": "\u0437\u044b\u0432\u0430"
+          },
+          {
+            "id": 74877,
+            "text": "\u0438\u043c\u0432"
+          },
+          {
+            "id": 96754,
+            "text": "\u043e\u0431\u044b\u0442\u0438"
+          },
+          {
+            "id": 138509,
+            "text": "\u043a\u043b\u0430\u0434\u044b\u0432\u0430"
+          },
+          {
+            "id": 141191,
+            "text": "\u043a\u0440\u0443\u0442"
+          },
+          {
+            "id": 133305,
+            "text": "\u0437\u0432\u0430\u043d"
+          },
+          {
+            "id": 143777,
+            "text": "\u043f\u0443\u0449"
+          },
+          {
+            "id": 129858,
+            "text": "\u043d\u0438\u043c\u0430"
+          }
+        ]
+      },
+      {
+        "direction": 6,
+        "tokens": [
+          {
+            "id": 69880,
+            "text": ",Th"
+          },
+          {
+            "id": 105521,
+            "text": "\u654f\u611f"
+          },
+          {
+            "id": 144119,
+            "text": "\u1eee"
+          },
+          {
+            "id": 112667,
+            "text": "\u7d27\u8feb"
+          },
+          {
+            "id": 30515,
+            "text": "-LAST"
+          },
+          {
+            "id": 92327,
+            "text": "******\n\n"
+          },
+          {
+            "id": 65019,
+            "text": "(IDC"
+          },
+          {
+            "id": 28056,
+            "text": "CADE"
+          },
+          {
+            "id": 47671,
+            "text": "VISION"
+          },
+          {
+            "id": 82273,
+            "text": "(AT"
+          }
+        ]
+      },
+      {
+        "direction": 7,
+        "tokens": [
+          {
+            "id": 47096,
+            "text": "\u00e6k"
+          },
+          {
+            "id": 81129,
+            "text": ".\u00a7"
+          },
+          {
+            "id": 136207,
+            "text": "int\u00e9r"
+          },
+          {
+            "id": 69880,
+            "text": ",Th"
+          },
+          {
+            "id": 77057,
+            "text": "(Have"
+          },
+          {
+            "id": 147850,
+            "text": "\u1e61"
+          },
+          {
+            "id": 75694,
+            "text": ".)\n\n\n\n"
+          },
+          {
+            "id": 59577,
+            "text": "\u00e6nd"
+          },
+          {
+            "id": 5759,
+            "text": "antity"
+          },
+          {
+            "id": 148053,
+            "text": "\u2105"
+          }
+        ]
+      }
+    ]
+  },
+  "word_transfer_top16": {
+    "en": {
+      "en": 0.0375,
+      "de": 0.0125,
+      "es": 0.0125
+    },
+    "de": {
+      "en": 0.00625,
+      "de": 0.0,
+      "es": 0.00625
+    },
+    "es": {
+      "en": 0.00625,
+      "de": 0.00625,
+      "es": 0.00625
+    },
+    "ja": {
+      "en": 0.04375,
+      "de": 0.0,
+      "es": 0.0125
+    },
+    "zh": {
+      "en": 0.0125,
+      "de": 0.0,
+      "es": 0.00625
+    }
+  }
+}

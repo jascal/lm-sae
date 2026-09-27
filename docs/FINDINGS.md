@@ -140,6 +140,12 @@ we decompiled its **structure** (`core_basis_decompile.py` + `core_grammar.py`, 
   not a sufficient composition program. This refines "the core is a tiny rank-r object" the way the recoverability
   sweep refined "compression is variance-greedy" — the optimistic form holds for one metric and breaks under the
   stricter one.
+- **The categorial scaffold is universal across languages AND models** ([UNIVERSAL_GRAMMAR.md](UNIVERSAL_GRAMMAR.md)).
+  On UD PUD (13 languages, parallel), four LLMs (Qwen2.5-0.5B/1.5B, Llama-3.2-1B, Gemma-2-2B) share a ~4–8-dim
+  category code (cross-model centroid RSA 0.92–0.96; causally used, LEACE erasure fitted without the target language
+  hurts prediction in 52/52 cells). Their mid-layer geometry prefers relator-headed dependency structure over UD
+  (47/52 cells), with binary Merge a small refinement and X-bar bar levels adding nothing: a three-rule
+  "Type–Link–Merge" grammar, simpler than X-bar. Empirical; linear probes; 0.5–2.6 B decoders.
 - **Made runnable (pylm).** A flat-file **grammar** idiom decompiles the scaffold ([pylm track](PYLM_TRACK.md)), but
   adds ~nothing to the *token*-level decompilable fraction (49.0→49.5%) — grammar is categorial; the n-gram modes
   already absorb it. The un-decompiled ~50% is content that is **neither n-gram nor relational fact** — the entangled
