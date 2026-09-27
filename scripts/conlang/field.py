@@ -37,7 +37,11 @@ GROUP_HEAD = {"computing": "(and computer code)", "unix": "(shell the)", "securi
               # mathematics
               "number": "number", "operation": "(act/NOUN (of number))", "algebra": "(and equation unknown/NOUN)",
               "structure": "(and set/NOUN element)", "geometry": "geometry", "proof": "(and proof theorem)",
-              "calculus": "calculus", "chance": "(and chance probability)"}
+              "calculus": "calculus", "chance": "(and chance probability)",
+              # logic
+              "truth": "(and true false)", "connective": "connective", "argument": "(and argument conclusion)",
+              "quantifier": "(and quantifier predicate)", "limit": "(and paradox (limit/NOUN (of logic)))",
+              "fallacy": "fallacy", "rule": "(and rule symbol)"}
 
 
 def concepts(path: Path) -> list[dict]:

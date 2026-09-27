@@ -336,6 +336,7 @@ rasel-u nomuna riddle-a Rätsel-a acertijo-a
 ronon-u nomuna pronoun-a Pronomen-a pronombre-a
 sarin-u nomuna saying-a Spruch-a refrán-a
 silab-u nomuna syllable-a Silbe-a sílaba-a
+sivan-u nomuna swan-a Schwan-a cisne-a
 sonat-u nomuna consonant-a Konsonant-a consonante-a
 verab-u nomuna verb-a Verb-a verbo-a
 vokel-u nomuna vowel-a Vokal-a vocal-a
@@ -600,7 +601,8 @@ metu te lori serana ka sofe rave la dana pe tara . vi te benege tova pe lore la 
 
 vuho ge hasi de buka ra pane fide la pe Kihote-a . ribi te buke pina pe pesa . bo mela ne buke tisa pe ferase keda . desi te sevi hova pe pesa pe ferase keda . deso te kige kase sevi fa pe pesa tuka pe pesa . ledi te buke la pe Sanko-a . labihe pe pesa . desi te bi buko honesa fira la pe tisa pe pesa . raki te tobe ledo te pesa nova pe dena pe Kihote-a . desi te mika pe Sanko-a .
 
-lede te buke keda .
+lede te buke keda .  
+keri te ferase kina sine rake sevi hova pe pesa .
 
 ## bavete la
 
@@ -876,7 +878,8 @@ kebi ne tonage pona pe dileke keda . neni te si dileke keda taleme la pe lesere 
 vi te buke masa pe talema . vi te buki pina susa pe vule keda .
 
 buke de vuli digala la .  
-buke de mamaka .
+buke de mamaka .  
+buke de gogika .
 
 ledi te buke tisa fisa . ribo te buki neva fore vule neva kena pe tada .
 
@@ -997,7 +1000,7 @@ bi kide susa pe si kite la lori mura la . saheni te tara pe dinale susa . tehi n
 
 sou p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a a-a e-a i-a o-a u-a .
 
-bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5935-a pe buke tisa .
+bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5936-a pe buke tisa .
 
 ## p-a
 
@@ -5818,6 +5821,7 @@ sifik-u detiva scientific-a wissenschaftlich-a científico-a
 sifop-o veraba shop-a einkaufen-a
 sifut-o nomuna shift-a verschiebung-a
 siv-u detiva positive-a positiv-a positivo-a
+sivan-u nomuna swan-a Schwan-a cisne-a
 sivik-u detiva civic-a bürgerlich-a cívico-a
 sivil-u detiva civil-a zivil-a civil-a
 sivol-o detiva meaningful-a sinnvoll-a

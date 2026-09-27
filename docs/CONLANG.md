@@ -291,8 +291,8 @@ fields are added:
   growth, songs, the book of roots and the last page. Its growth chapter lists the volumes and tells the reader to
   read the core first.
 - **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
-  first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens) and `mathematics.md`
-  (~3k).
+  first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens), `mathematics.md`
+  (~3k) and `logic.md` (~2.5k).
 
 Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
 lints, builds and checks every book in one command.
@@ -320,7 +320,20 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   sets, geometry, proof, calculus and chance. Its centrepieces are Euclid's proof that the primes never end, marked
   `bove`, and Goldbach's conjecture, marked `pefe` and seen true below 4 × 10^18. The chapter warns that `finit`
   (from *infinito*) means *infinite* and `nilik` means *finite*.
-- **Planned next fields:** logic, physics, philosophy, morality.
+- **Field 3, logic** (*gogik*). Polish notation was invented for logic, so connectives are relator heads whose
+  ending counts the statements they join: negation `f` (one child), conjunction `s` and disjunction `dor` (many),
+  implication `ven` (two). The same `s` adds numbers and joins statements. The endings replace brackets:
+  `fa si …` is ¬(A ∧ B) and `si fa … …` is (¬A) ∧ B. The chapter teaches truth tables in prose; necessary, possible
+  and impossible as truth in every, some and no world; syllogism and modus ponens; deduction, induction and
+  abduction mapped onto the claim marks (`bove`, `sere`, `pefe`) with the black swan as induction's
+  counterexample; quantifiers; affirming the consequent, circular arguments, authority and bias; the liar
+  (a good Talema sentence with no truth value), Gödel and Turing marked proved; Datalog-style facts, rules and a
+  query; use and mention (the word `sinov` mentioned as a literal, `sinov-a`, against its use), Tarski's truth rule, and models. The chapter
+  warns that `posib` means *impossible* (`pol` is *possible*). 20 concepts were coined; *incompleteness* was not
+  coined, because its root would have read as "complete", so it is said as a phrase.
+  Writing it exposed a silent bug: `author.py` let a tree with one `)` too many swallow the lines after it, and
+  one such tree had cut the last sentences of the knight tale from the core. `author.py` now refuses unbalanced trees.
+- **Planned next fields:** physics, philosophy, morality.
 
 **Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
 *v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,

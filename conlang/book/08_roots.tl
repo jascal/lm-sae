@@ -22,7 +22,7 @@
 @prose
 (be (and old often) (SUBJ (root short the)))                                 # The short roots are old and often said.
 (be (and young rare) (SUBJ (root long the)))                                 # The long roots are young or rare.
-(have (OBJ (root 5935)) (SUBJ (book this)))                                 # This book has 5935 roots.
+(have (OBJ (root 5936)) (SUBJ (book this)))                                 # This book has 5936 roots.
 
 
 ## ("p")
@@ -4854,6 +4854,7 @@
 @raw sifop-o veraba shop-a einkaufen-a
 @raw sifut-o nomuna shift-a verschiebung-a
 @raw siv-u detiva positive-a positiv-a positivo-a
+@raw sivan-u nomuna swan-a Schwan-a cisne-a
 @raw sivik-u detiva civic-a bürgerlich-a cívico-a
 @raw sivil-u detiva civil-a zivil-a civil-a
 @raw sivol-o detiva meaningful-a sinnvoll-a
