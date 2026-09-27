@@ -473,6 +473,8 @@ bi buhi de lora ka pe ferasa . bi sibole fore sonide ka pe leta . bi lore nare p
 
 ## si kotesa bepa
 
+rideni tene tupe tova pe kotume ka . bi kotume ka pe kotesa .
+
 ## voni sa viba
 
 voni te buke ka pe ma .  
@@ -496,10 +498,6 @@ keni te refuse pe tada pe tada . topi hene refuse pe tada pe ma .
 dahi te tada pe ma .  
 risora .  
 bi guta pe vose kinade ka .
-
-## kotumi sa kotesa
-
-rideni tene tupe tova pe kotume ka . bi kotume ka pe kotesa .
 
 ## lori mela la
 

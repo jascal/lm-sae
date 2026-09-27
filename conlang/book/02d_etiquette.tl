@@ -1,5 +1,8 @@
 # Chapter 2d · Courtesy: wishes, requests, and repair.
 ## (and courtesy respect)
+@prose
+(differ (between (culture two)) (SUBJ (custom a)))                            # Customs differ between cultures.
+(be (custom a) (SUBJ courtesy))                                               # Courtesy is a custom.
 
 ## (want and wish)
 @verse
@@ -25,8 +28,3 @@
 (thank (OBJ you) (SUBJ I))                                                    # I thank you.
 (sorry/INTJ)                                                                  # I am sorry.
 (be good (SUBJ (voice (kind/ADJ a))))                                         # A kind voice is good.
-
-## (custom and courtesy)
-@prose
-(differ (between (culture two)) (SUBJ (custom a)))                            # Customs differ between cultures.
-(be (custom a) (SUBJ courtesy))                                               # Courtesy is a custom.
