@@ -50,6 +50,13 @@
 @verse
 (be (consonant (and "p" "t" "k" "b" "d" "g" "m" "n" "l" "r" "s" "f" "v" "h")) (SUBJ they))
 (be (vowel (and "a" "e" "i" "o" "u")) (SUBJ they))
+# Each vowel has a spoken name, so a reader can hear a letter named without seeing it written.
+@verse
+(call (vowel-first) (vowel first/ADJ))                                # vanam is the name of the first vowel
+(call (vowel-second) (vowel second/ADJ))                              # venam is the name of the second vowel
+(call (vowel-third) (vowel third/ADJ))                                # vinam is the name of the third vowel
+(call (vowel-fourth) (vowel fourth/ADJ))                              # vonam is the name of the fourth vowel
+(call (vowel-fifth) (vowel fifth/ADJ))                                # vunam is the name of the fifth vowel
 @prose
 (sound/VERB (like (letter (of "Español"))) (SUBJ (letter the)))          # The letters sound like the letters of Spanish.
 (carry (OBJ (weight/NOUN the)) (SUBJ (vowel first/ADJ (of (root the)))))  # The first vowel of the root carries the weight.

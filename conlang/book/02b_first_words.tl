@@ -157,5 +157,10 @@
 @raw sivan-u nomuna swan-a Schwan-a cisne-a
 @raw sonat-u nomuna consonant-a Konsonant-a consonante-a
 @raw feler-u nomuna feather-a Feder-a pluma-a
+@raw vanam-u nomuna vowel-first-a Vokal-erste-a vocal-primera-a
+@raw venam-u nomuna vowel-second-a Vokal-zweite-a vocal-segunda-a
 @raw verab-u nomuna verb-a Verb-a verbo-a
+@raw vinam-u nomuna vowel-third-a Vokal-dritte-a vocal-tercera-a
 @raw vokel-u nomuna vowel-a Vokal-a vocal-a
+@raw vonam-u nomuna vowel-fourth-a Vokal-vierte-a vocal-cuarta-a
+@raw vunam-u nomuna vowel-fifth-a Vokal-fünfte-a vocal-quinta-a

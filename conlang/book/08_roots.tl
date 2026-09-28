@@ -22,7 +22,7 @@
 @prose
 (be (and old often) (SUBJ (root short the)))                                 # The short roots are old and often said.
 (be (and young rare) (SUBJ (root long the)))                                 # The long roots are young or rare.
-(have (OBJ (root 5937)) (SUBJ (book this)))                                 # This book has 5937 roots.
+(have (OBJ (root 5942)) (SUBJ (book this)))                                 # This book has 5942 roots.
 
 
 ## ("p")
@@ -5417,6 +5417,7 @@
 @raw vages-u detiva protestant-a evangelisch-a protestante-a
 @raw vam-o deroba admittedly-a zwar-a
 @raw van-o detiva many-a vielen-a
+@raw vanam-u nomuna vowel-first-a Vokal-erste-a vocal-primera-a
 @raw vanan-i veraba warrant-a
 @raw vanar-o veraba advance-a avanzar-a
 @raw vanas-u nomuna advance-a voraus-a avance-a
@@ -5508,6 +5509,7 @@
 @raw vemin-u nomuna placement-a vermittlung-a colocación-a
 @raw vemul-o deroba presumably-a vermutlich-a
 @raw ven-u dunona if-a wenn-a si-a
+@raw venam-u nomuna vowel-second-a Vokal-zweite-a vocal-segunda-a
 @raw venal-u deroba eventually-a irgendwann-a eventualmente-a
 @raw venen-i detiva verwenden-a
 @raw venel-i detiva eventuell-a
@@ -5595,6 +5597,7 @@
 @raw vin-u veraba win-a gewinnen-a ganar-a
 @raw vinad-u nomuna wind-a wind-a viento-a
 @raw vinag-u nomuna wing-a flügel-a ala-a
+@raw vinam-u nomuna vowel-third-a Vokal-dritte-a vocal-tercera-a
 @raw vined-i veraba wind-a
 @raw vinen-i veraba erwischen-a
 @raw viner-u nomuna winter-a winter-a invierno-a
@@ -5658,6 +5661,7 @@
 @raw vom-o veraba vote-a stimmen-a
 @raw vomit-i deroba womit-a
 @raw von-u veraba want-a wollen-a querer-a
+@raw vonam-u nomuna vowel-fourth-a Vokal-vierte-a vocal-cuarta-a
 @raw vol-u deroba probably-a wohl-a probablemente-a
 @raw volag-u nomuna submission-a vorlage-a sumisión-a
 @raw volar-u veraba violate-a verstoßen-a violar-a
@@ -5699,6 +5703,7 @@
 @raw vum-u nomuna victim-a opfer-a víctima-a
 @raw vun-u detiva young-a jung-a joven-a
 @raw vunad-o nomuna wound-a wunde-a
+@raw vunam-u nomuna vowel-fifth-a Vokal-fünfte-a vocal-quinta-a
 @raw vunal-u detiva vulnerable-a empfindlich-a vulnerable-a
 @raw vul-u nomuna world-a welt-a mundo-a
 @raw vur-u nomuna war-a krieg-a guerra-a
