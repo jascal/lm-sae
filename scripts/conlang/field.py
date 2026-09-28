@@ -50,6 +50,9 @@ GROUP_HEAD = {"computing": "(and computer code)", "unix": "(shell the)", "securi
               "wonder": "wonder/NOUN", "being": "(and being change)", "knowing": "(and knowledge doubt)",
               "mind": "(and mind self)", "language": "language",
               # morality
+              "meal": "meal", "bread": "bread", "meat": "meat", "plant": "vegetable", "fruit": "fruit",
+              "drink": "drink/NOUN", "sweet": "(and sugar salt)", "table": "table", "kitchen": "kitchen",
+              "restaurant": "restaurant",
               "good": "(and good/NOUN evil)", "virtue": "virtue", "trust": "(and promise/NOUN trust/NOUN)",
               "harm": "harm", "person": "(and dignity person)", "theory": "consequence"}
 

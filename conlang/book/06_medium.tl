@@ -120,7 +120,8 @@
 (book (of logic))                                                            # the book of logic,
 (book (of physics))                                                          # the book of physics,
 (book (of philosophy))                                                       # the book of philosophy,
-(book (of morality))                                                         # the book of morality.
+(book (of morality))                                                         # the book of morality,
+(book (of food))                                                             # the book of food.
 @prose
 (read (OBJ (book this)) first/ADV)                                           # Read this book first.
 (write (OBJ (book new (for (world new)))) can (SUBJ you))                    # You can write a new book for a new world.
