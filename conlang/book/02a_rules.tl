@@ -142,7 +142,7 @@
 (be leaf (SUBJ (word (with (child no)))))                                # A word with no children is a leaf.
 (end/VERB (with leaf) (SUBJ (tree every)))                               # Every tree ends with a leaf.
 (need/VERB (OBJ point) not (SUBJ talem))                                 # Talema does not need a point (full stop).
-(stand (on (leaf every)) not (only (word last/ADJ)) (SUBJ (ending "a")))   # The ending a stands on every leaf, not only on the last word.
+(stand (on (leaf every)) (only not (word last/ADJ)) (SUBJ (ending "a")))   # The ending a stands on every leaf, not only on the last word.
 (end/VERB (when/SCONJ (be full (SUBJ (tree the)))) (SUBJ (sentence the)))    # The sentence ends when its tree is full.
 (know (OBJ it) how (SUBJ you))                                             # How do you know it?
 @verse
