@@ -193,3 +193,8 @@ boil	loken	VERB		kochen	hervir	field: food (kitchen)
 fry	fater	VERB		braten	freír	field: food (kitchen)
 roast	rasat	VERB		rösten	asar	field: food (kitchen)
 waiter	vaner	NOUN		Kellner	camarero	field: food (restaurant)
+vowel-first	vanam	NOUN		Vokal-erste	vocal-primera	the name of the first vowel, a; the coinage law has no source word for a language's own letter-names, so these follow the -nam suffix convention (cf. nomun, sarin)
+vowel-second	venam	NOUN		Vokal-zweite	vocal-segunda	the name of the second vowel, e
+vowel-third	vinam	NOUN		Vokal-dritte	vocal-tercera	the name of the third vowel, i
+vowel-fourth	vonam	NOUN		Vokal-vierte	vocal-cuarta	the name of the fourth vowel, o
+vowel-fifth	vunam	NOUN		Vokal-fünfte	vocal-quinta	the name of the fifth vowel, u

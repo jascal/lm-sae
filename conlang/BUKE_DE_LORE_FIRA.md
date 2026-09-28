@@ -69,6 +69,12 @@ vi te si sonate 14-a vokele fiva pe talema .
 bi sonate siu p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a pe tara .  
 bi vokele sea a-a e-a i-a o-a u-a pe tara .
 
+kari vanama vokele fira .  
+kari venama vokele seda .  
+kari vinama vokele tita .  
+kari vonama vokele kureta .  
+kari vunama vokele finata .
+
 sobadi like lete de Español-a pe lete la . levi te gehe la pe vokeli fira de rarise la . sinagi mite vosi sofata ka pe dinale la .
 
 sobado like si go-a gato-a lera pe g-a .  
@@ -339,8 +345,13 @@ silab-u nomuna syllable-a Silbe-a sílaba-a
 sivan-u nomuna swan-a Schwan-a cisne-a
 sonat-u nomuna consonant-a Konsonant-a consonante-a
 feler-u nomuna feather-a Feder-a pluma-a
+vanam-u nomuna vowel-first-a Vokal-erste-a vocal-primera-a
+venam-u nomuna vowel-second-a Vokal-zweite-a vocal-segunda-a
 verab-u nomuna verb-a Verb-a verbo-a
+vinam-u nomuna vowel-third-a Vokal-dritte-a vocal-tercera-a
 vokel-u nomuna vowel-a Vokal-a vocal-a
+vonam-u nomuna vowel-fourth-a Vokal-vierte-a vocal-cuarta-a
+vunam-u nomuna vowel-fifth-a Vokal-fünfte-a vocal-quinta-a
 ## desi te masa hova
 
 ## si tima mera
@@ -1033,7 +1044,7 @@ bi kide susa pe si kite la lori mura la . saheni te tara pe dinale susa . tehi n
 
 sou p-a t-a k-a b-a d-a g-a m-a n-a l-a r-a s-a f-a v-a h-a a-a e-a i-a o-a u-a .
 
-bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5937-a pe buke tisa .
+bi si veta feta pe rarisi kora la . bi si vuna selena pe rarisi laga la . vi te rarise 5942-a pe buke tisa .
 
 ## p-a
 
@@ -6415,6 +6426,7 @@ vagen-u nomuna cart-a wagen-a carro-a
 vages-u detiva protestant-a evangelisch-a protestante-a
 vam-o deroba admittedly-a zwar-a
 van-o detiva many-a vielen-a
+vanam-u nomuna vowel-first-a Vokal-erste-a vocal-primera-a
 vanan-i veraba warrant-a
 vanar-o veraba advance-a avanzar-a
 vanas-u nomuna advance-a voraus-a avance-a
@@ -6506,6 +6518,7 @@ vemet-u detiva wet-a feucht-a húmedo-a
 vemin-u nomuna placement-a vermittlung-a colocación-a
 vemul-o deroba presumably-a vermutlich-a
 ven-u dunona if-a wenn-a si-a
+venam-u nomuna vowel-second-a Vokal-zweite-a vocal-segunda-a
 venal-u deroba eventually-a irgendwann-a eventualmente-a
 venen-i detiva verwenden-a
 venel-i detiva eventuell-a
@@ -6593,6 +6606,7 @@ vim-u nomuna movement-a bewegung-a movimiento-a
 vin-u veraba win-a gewinnen-a ganar-a
 vinad-u nomuna wind-a wind-a viento-a
 vinag-u nomuna wing-a flügel-a ala-a
+vinam-u nomuna vowel-third-a Vokal-dritte-a vocal-tercera-a
 vined-i veraba wind-a
 vinen-i veraba erwischen-a
 viner-u nomuna winter-a winter-a invierno-a
@@ -6656,6 +6670,7 @@ voger-o nomuna worry-a sorgen-a
 vom-o veraba vote-a stimmen-a
 vomit-i deroba womit-a
 von-u veraba want-a wollen-a querer-a
+vonam-u nomuna vowel-fourth-a Vokal-vierte-a vocal-cuarta-a
 vol-u deroba probably-a wohl-a probablemente-a
 volag-u nomuna submission-a vorlage-a sumisión-a
 volar-u veraba violate-a verstoßen-a violar-a
@@ -6697,6 +6712,7 @@ vug-u nomuna access-a zugang-a acceso-a
 vum-u nomuna victim-a opfer-a víctima-a
 vun-u detiva young-a jung-a joven-a
 vunad-o nomuna wound-a wunde-a
+vunam-u nomuna vowel-fifth-a Vokal-fünfte-a vocal-quinta-a
 vunal-u detiva vulnerable-a empfindlich-a vulnerable-a
 vul-u nomuna world-a welt-a mundo-a
 vur-u nomuna war-a krieg-a guerra-a
