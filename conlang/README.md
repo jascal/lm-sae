@@ -4,6 +4,10 @@ A constructed language whose grammar is three exceptionless rules converting to 
 Type–Link–Merge form of [docs/UNIVERSAL_GRAMMAR.md](../docs/UNIVERSAL_GRAMMAR.md). Its vocabulary is drawn from
 English, German and Spanish, weighted by frequency. Full specification: [docs/CONLANG.md](../docs/CONLANG.md).
 
+**Published dataset:** [github.com/jascal/talema](https://github.com/jascal/talema) (to be mirrored as the Hugging Face
+dataset `jallanscott/talema`) holds the books, every sentence with its tree, English, and German/Spanish machine
+translations, and the lexicon. Regenerate it with `.venv/bin/python scripts/conlang/export.py --out ../talema`.
+
 | file | what |
 |---|---|
 | **`BUKE_DE_LORE_FIRA.md`** | ***Buke de lore fira*, the founding text, written in Talema** (primer, first words, conventions, tales, play, songs, how-to-grow, book of roots; ~88k tokens) |
