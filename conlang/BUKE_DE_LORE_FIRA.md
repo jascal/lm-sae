@@ -136,7 +136,7 @@ bi 25-a pe eaa-a .
 
 ## ludo ne a-a vaha pe ferase keda
 
-vi te kide kina pe loro lata de ferase keda la . bo a-a defa pe dinale susa . ludo ne a-a defa pe ferase keda . bi lelafa pe lore mite kide kina . ludi mite lelafa pe buhe keda . nedo te puna fa pe talema . tehi sofe lelafe keda pe dinale a-a . ludi hene bi fola pe buhe la pe ferase la . sevo te pesa hova pe tada .
+vi te kide kina pe loro lata de ferase keda la . bo a-a defa pe dinale susa . ludo ne a-a defa pe ferase keda . bi lelafa pe lore mite kide kina . ludi mite lelafa pe buhe keda . nedo te puna fa pe talema . tehu sofe lelafe keda fa nure lore lata pe dinale a-a . ludi hene bi fola pe buhe la pe ferase la . sevo te pesa hova pe tada .
 
 gine mite pona .  
 taki te pona pane lore keda .  
@@ -906,7 +906,7 @@ roko te lesere la nera pe rule ka . ledi te dinale la pe lesere la . saheni te k
 
 ## dileke la
 
-bi fara pe dege de kide la . tehi bare kade la pe kidi fira la . seku fisa nore kade la ne dileke soma pe tume la . bi ruli fura la pe tisa . deso te rule susa pane begine susa pe tefe ne dileke ka .
+bi fara pe dege de kide la . tehi bare kade la pe kidi fira la . seku fisa nore kade la ne dileke soma pe tume la . bi ruli kureta la pe tisa . deso te rule susa pane begine susa pe tefe ne dileke ka .
 
 talemi gage pona rule fura .
 
