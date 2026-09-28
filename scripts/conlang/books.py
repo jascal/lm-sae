@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PY = sys.executable
 S = ROOT / "scripts" / "conlang"
 # the Talema words that name each field's world, for its glossary heading
-FIELD_HEAD = {"digital": "digital/ADJ the", "mathematics": "mathematics", "logic": "logic", "physics": "physics", "philosophy": "philosophy", "morality": "morality"}
+FIELD_HEAD = {"digital": "digital/ADJ the", "mathematics": "mathematics", "logic": "logic", "physics": "physics", "food": "(and food drink/NOUN)", "philosophy": "philosophy", "morality": "morality"}
 
 
 def run(*args: str) -> str:

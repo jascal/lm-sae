@@ -911,7 +911,8 @@ buke de mamaka .
 buke de gogika .  
 buke de fisisa .  
 buke de filofa .  
-buke de morata .
+buke de morata .  
+buke de foda .
 
 ledi te buke tisa fisa . ribo te buki neva fore vule neva kena pe tada .
 

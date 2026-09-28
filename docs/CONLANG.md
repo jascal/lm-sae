@@ -293,7 +293,7 @@ fields are added:
 - **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
   first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens), `mathematics.md`
   (~3k), `logic.md` (~3k), `physics.md` (~2.5k) and
-  `philosophy.md` (~2k) and `morality.md` (~2k).
+  `philosophy.md` (~2k), `morality.md` (~2k) and `food.md` (~2k).
 
 Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
 lints, builds and checks every book in one command.
@@ -360,7 +360,15 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
 - **Sense check.** `books.py` now warns when a role particle hangs under a noun head. It found eight verbs in the
   core and digital books that had resolved to their noun roots (*dream*, *point*, *return*, *measure*, *review*,
   *work*) and misplaced brackets in the logic and physics volumes; all fixed.
-- **Planned next fields:** open (candidates: biology, economics, music, law).
+- **Field 7, food and eating** (*fod*). The frequency-built lexicon had most food words (71 of 95 checked) but
+  lacked everyday table and kitchen words that are rare in the corpora it was weighted from: *sandwich*, *fork*,
+  *spoon*, *banana*, *snack*, *dessert*, *boil*, *fry*, *waiter* and others, 22 coined here. The chapter covers
+  meals, the four tastes, the tale of the Earl of Sandwich (marked "maybe a tale"), fruit and vegetables, the
+  table, a recipe as a list of steps, a restaurant dialogue, and eating together. `order` (to order food) was not
+  used, because the lexicon's `dader` is the commanding sense; the chapter says "ask for". *lettuce* was not coined
+  (its root would join `salat` salt, `salad` and `salut` salty); the chapter warns about those three.
+- **Planned next fields:** open. Everyday domains are the likeliest gaps (clothing, the home, the body, animals):
+  run `field.py check` on a concept list before assuming a word exists.
 
 **Speaking** (v6). Chapter 2 gives the letters where they differ from Spanish (*g* always hard, *h* as in *house*,
 *v* as in *voice*, a short tapped *r*). It also says that one-consonant words are unstressed, the hyphen is silent,
