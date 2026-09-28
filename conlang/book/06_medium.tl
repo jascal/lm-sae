@@ -102,7 +102,7 @@
 (be free (SUBJ (order (of (child the)))))                                    # The order of the children is free:
 (stand (near (head the)) (SUBJ (child first/ADJ the)))                       # the first child stands near the head.
 (speak first/ADV (before (head the)) (in (dialect some)) (SUBJ (subject the)))   # In some dialects the subject speaks first, before the head.
-(be (rule four the) (SUBJ this))                                             # This is the fourth rule.
+(be (rule fourth the) (SUBJ this))                                            # This is the fourth rule.
 (say (OBJ (rule its)) (at (beginning its)) (SUBJ (text (in (dialect a)))))   # A text in a dialect says its rules at its beginning.
 @verse
 (talem (age one/NUM) (rule four))                                            # Talema, age one, four rules.

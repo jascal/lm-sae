@@ -60,9 +60,9 @@
 @tree
 (see (be old (SUBJ (file the))))                                             # Seen: the file is old.
 @verse
-(prove (be four (SUBJ (and two two))))                                       # Proved: two and two are four. We have a proof.
-(see (pass (SUBJ (test the))))                                               # Seen: the test passes. We saw it.
-(open/ADJ (whether (dream/VERB (SUBJ (mind the)))))                               # Open: do the minds dream? We do not know it yet.
+(prove (be four (SUBJ (and two two))))                                       # Proved: two and two are four.
+(see (pass (SUBJ (test the))))                                               # Seen: the test passes.
+(open/ADJ (whether (dream/VERB (SUBJ (mind the)))))                           # Open: do the minds dream?
 @prose
 (give (OBJ (mark high (more (than (truth its))))) (DAT (assertion a)) never)   # Never give an assertion a mark higher than its truth.
 
