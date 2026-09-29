@@ -41,7 +41,6 @@
 ("Nima")
 (come early/ADV never (SUBJ you))                                            # You never come early.
 ("Tomas")
-(whether (never/ADV))                                                        # Never?
 (well/ADV)                                                                   # Well.
 (maybe/ADV)                                                                  # Maybe.
 @prose

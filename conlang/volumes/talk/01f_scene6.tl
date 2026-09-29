@@ -27,7 +27,7 @@
 ("Yuki")
 (be glad (because (have (OBJ (book a)) (SUBJ I))) (SUBJ I))                  # I am glad because I have a book.
 ("Sol")
-(book a)                                                                     # A book!
+(please (give (OBJ it) (DAT I)))                                             # Please give it to me.
 (whether (be good (SUBJ it)))                                                # Is it good?
 ("Yuki")
 (know (OBJ it) not (SUBJ I))                                                 # I do not know.

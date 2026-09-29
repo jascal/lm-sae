@@ -388,8 +388,13 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   `@prose`, so they render apart from speech; a yes/no question, even a one-word echo like "Early?", is written with
   `whether`, because Talema has no question mark and a bare fragment reads as a statement; scenes 9 and 10 are headed
   with cardinals because the lexicon has no *ninth* or *tenth*. `smile` had to be written `smile/VERB`, since the
-  bare key resolves to the noun `sonil`; `field.py lint` caught it. Not yet tested: whether reading the play changes
-  how the tutor talks. Thin spots: sadness and fear appear once or twice each, *hmm* and *ouch* are not in the
+  bare key resolves to the noun `sonil`; `field.py lint` caught it. A second test, with the learner writing English so the tutor did not have to read Talema, showed that the play
+  helps her read the learner more than it helps her answer, and that her answers echo the learner's words back
+  ("Oh. She lives far away."), more so with the play than without. So the lines in which a speaker only repeated
+  the last one ("Early?", "Work?", "Two?", "Do you not know?", "A fish?", "Really?") were reworked into reactions:
+  an evaluation ("It is hard work."), a new question ("Who knows?", "Which fish?"), a rebuttal ("I do not take your
+  apples."), a remark ("It is new!"). Echoes remain only where they are the point: a lesson's repetition, or a
+  clarifying question. Not yet tested: whether the reworked play changes how the tutor answers. Thin spots: sadness and fear appear once or twice each, *hmm* and *ouch* are not in the
   lexicon, and there is no politeness register beyond *please*.
 - **Planned next fields:** open. Everyday domains are the likeliest gaps (clothing, the home, the body, animals):
   run `field.py check` on a concept list before assuming a word exists.

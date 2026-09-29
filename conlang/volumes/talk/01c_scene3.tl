@@ -22,7 +22,7 @@
 ("Nima")
 (know (OBJ it) not (SUBJ I))                                                 # I do not know.
 ("Ada")
-(whether (know (OBJ it) not (SUBJ you)))                                     # Do you not know?
+(know (OBJ it) (SUBJ who))                                                   # Who knows?
 ("Nima")
 (know (OBJ it) (SUBJ nobody))                                                # Nobody knows.
 ("Ada")
@@ -30,7 +30,7 @@
 ("Nima")
 (maybe/ADV)                                                                  # Maybe.
 ("Lena")
-(maybe/ADV)                                                                  # Maybe.
+(be (answer good a) (SUBJ it))                                               # It is a good answer.
 ("Ada")
 (whether (can (OBJ (have (OBJ (apple a)) (SUBJ I))) (SUBJ I)))               # Can I have an apple?
 ("Lena")

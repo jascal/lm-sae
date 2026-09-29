@@ -11,7 +11,7 @@
 ("Sol")
 (come early/ADV (SUBJ you))                                                  # You come early.
 ("Nima")
-(whether (early/ADV))                                                        # Early?
+(sleep not (SUBJ I))                                                         # I did not sleep.
 (be (and wet cold) (SUBJ I))                                                 # I am wet and cold.
 ("Sol")
 (oh/INTJ)                                                                    # Oh.
@@ -23,8 +23,7 @@
 (thanks/NOUN)                                                                # Thanks.
 (have (OBJ (work/NOUN a)) (SUBJ I))                                          # I have work.
 ("Sol")
-(whether (work/NOUN))                                                        # Work?
-(whether (in (rain the)))                                                    # In the rain?
+(be (work/NOUN hard a) (SUBJ it))                                            # It is hard work.
 ("Nima")
 (wait/VERB not (SUBJ (apple the)))                                           # The apples do not wait.
 ("Sol")
@@ -49,7 +48,7 @@
 ("Nima")
 (be proud (SUBJ you))                                                        # You are proud.
 ("Sol")
-(whether (really/ADV))                                                       # Really?
+(yes/INTJ)                                                                   # Yes.
 (be proud (SUBJ I))                                                          # I am proud.
 (be good (SUBJ (bread my)))                                                  # My bread is good.
 @prose

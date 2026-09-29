@@ -25,13 +25,13 @@
 ("Nima")
 (because (move always (SUBJ I)))                                             # Because I always move.
 ("Sol")
-(whether (move always (SUBJ you)))                                           # Do you always move?
+(know (OBJ it) not (SUBJ I))                                                 # I did not know.
 ("Nima")
-(yes/INTJ)                                                                   # Yes!
+(know (OBJ it) now (SUBJ you))                                               # Now you know.
 (move (when/SCONJ (come (SUBJ you))) (SUBJ I))                               # When you come, I move.
 (take (OBJ (apple my)) (if (move not (SUBJ I))) (SUBJ you))                  # If I do not move, you take my apples.
 ("Sol")
-(whether (take (OBJ (apple your)) (SUBJ I)))                                 # Do I take your apples?
+(take (OBJ (apple your)) not (SUBJ I))                                       # I do not take your apples.
 (buy (OBJ (apple your)) (SUBJ I))                                            # I buy your apples!
 ("Ada")
 (be angry why (SUBJ you))                                                    # Why are you angry?

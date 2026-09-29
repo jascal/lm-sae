@@ -21,7 +21,7 @@
 (ask (OBJ (fish the)) (SUBJ she))                                            # She asked the fish.
 ("Tomas")
 (huh/INTJ)                                                                   # Huh?
-(whether (fish a))                                                           # A fish?
+(fish which/DET)                                                             # Which fish?
 ("Rosa")
 (say (OBJ (have (OBJ it) (SUBJ I))) (SUBJ (fish the)))                       # The fish said: I have it.
 ("Ada")
@@ -69,8 +69,7 @@
 ("Nima")
 (be glad (because (be here (SUBJ we))) (SUBJ I))                             # I am glad because we are here.
 ("Sol")
-(whether (be glad (SUBJ you)))                                               # Are you glad?
-(whether (really/ADV))                                                       # Really?
+(be new (SUBJ it))                                                           # It is new!
 ("Nima")
 (tell (OBJ it) not (to (person any)))                                        # Do not tell anyone.
 ("Sol")

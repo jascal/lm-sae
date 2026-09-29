@@ -11,7 +11,8 @@
 ("Yuki")
 (be new also (SUBJ I))                                                       # I am new too.
 ("Deniz")
-(person new two)                                                             # Two new people!
+(good/ADJ)                                                                   # Good.
+(be new together (SUBJ we))                                                  # We are new together.
 ("Sol")
 (welcome/INTJ (to "Deniz"))                                                  # Welcome, Deniz.
 ("Deniz")

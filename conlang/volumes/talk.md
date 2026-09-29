@@ -42,7 +42,7 @@ habele ge Sol-a .
 Sol-a .  
 komi rarala pe tada .  
 Nima-a .  
-tobe rarala .  
+lafi fa pe ma .  
 bi si vemeta kolada pe ma .  
 Sol-a .  
 poha .  
@@ -54,8 +54,7 @@ hanaha .
 daka .  
 vi te bore ka pe ma .  
 Sol-a .  
-tobe bora .  
-tobe ne raline la .  
+bi bori sira ka pe pesa .  
 Nima-a .  
 vati fa pe lapele la .  
 Sol-a .  
@@ -80,7 +79,7 @@ sevi te pesa pe ma .
 Nima-a .  
 bi rolusa pe tada .  
 Sol-a .  
-tobe rala .  
+besa .  
 bi rolusa pe ma .  
 bi guta pe bapane mena .
 
@@ -151,11 +150,9 @@ bi vasa pe pise la .
 Sol-a .  
 monede tova .  
 Tomas-a .  
-tobe tova .  
 bi kenera pe pesa .  
 Sol-a .  
-tobe kenera .  
-bi varima pe bapane tisa .  
+bi bapani varima ka pe pesa .  
 Tomas-a .  
 monede mana .  
 Sol-a .  
@@ -168,7 +165,6 @@ habama .
 bi mini sira ka pe tada .  
 bi si monede mana tode ka pe pisi fore tada la .  
 Tomas-a .  
-tobe tode ka .  
 vela .  
 vi te tode mana pe ma .  
 Sol-a .  
@@ -241,7 +237,7 @@ vaha .
 Nima-a .  
 sevo te pesa fa pe ma .  
 Ada-a .  
-tobe sevo te pesa fa pe tada .  
+sevi te pesa pe veha .  
 Nima-a .  
 sevi te pesa pe nida .  
 Ada-a .  
@@ -249,7 +245,7 @@ sevi te pesa pe bofe la .
 Nima-a .  
 mika .  
 Lena-a .  
-mika .  
+bi nuvi guta ka pe pesa .  
 Ada-a .  
 tobe keni te vi te lapele ka pe ma pe ma .  
 Lena-a .  
@@ -417,7 +413,6 @@ komu rarala vira morova pe ma .
 Nima-a .  
 komo rarala nera pe tada .  
 Tomas-a .  
-tobe nera .  
 vela .  
 mika .
 
@@ -474,7 +469,7 @@ bo golada vaha pe tada .
 Yuki-a .  
 bo golada peke vi te buke ka pe ma pe ma .  
 Sol-a .  
-buke ka .  
+lese gari te pesa pape ma .  
 tobe bi guta pe pesa .  
 Yuki-a .  
 sevo te pesa fa pe ma .  
@@ -604,7 +599,8 @@ keli te tabafa pe ma .
 Yuki-a .  
 bo neva tuka pe ma .  
 Deniz-a .  
-peni neva tova .  
+guta .  
+bo neva suma pe vora .  
 Sol-a .  
 velome ge Deniz-a .  
 Deniz-a .  
@@ -719,13 +715,13 @@ bo lase ka nura pe pesa .
 Nima-a .  
 peke movi lera pe ma .  
 Sol-a .  
-tobe movi lera pe tada .  
+sevo te pesa fa pe ma .  
 Nima-a .  
-besa .  
+sevo te pesa nova pe tada .  
 movi hene kome pe tada pe ma .  
 tako te lapele mena vene movi fa pe ma pe tada .  
 Sol-a .  
-tobe taki te lapele tora pe ma .  
+tako te lapele tora fa pe ma .  
 kabi te lapele tora pe ma .  
 Ada-a .  
 bo nanora vaha pe tada .  
@@ -883,7 +879,7 @@ Rosa-a .
 raki te fipese la pe sela .  
 Tomas-a .  
 hebuha .  
-tobe fipese ka .  
+fipese vika .  
 Rosa-a .  
 desi te vi te pesa pe ma pe fipese la .  
 Ada-a .  
@@ -931,8 +927,7 @@ lese sibe bare ma .
 Nima-a .  
 bo golada peke bi hera pe vora pe ma .  
 Sol-a .  
-tobe bi golada pe tada .  
-tobe rala .  
+bi neva pe pesa .  
 Nima-a .  
 telo te pesa fa ge pene kana .  
 Sol-a .  

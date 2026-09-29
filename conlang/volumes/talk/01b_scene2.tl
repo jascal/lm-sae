@@ -22,11 +22,9 @@
 ("Sol")
 (coin two)                                                                   # Two coins.
 ("Tomas")
-(whether (two/NUM))                                                          # Two?
 (be expensive (SUBJ it))                                                     # It is expensive.
 ("Sol")
-(whether (expensive/ADJ))                                                    # Expensive?
-(be warm (SUBJ (bread this)))                                                # This bread is warm.
+(be (bread warm a) (SUBJ it))                                                # It is warm bread.
 ("Tomas")
 (coin one)                                                                   # One coin.
 ("Sol")
@@ -39,7 +37,6 @@
 (be (man/NOUN hard a) (SUBJ you))                                            # You are a hard man.
 (be (and (coin one) (story a)) (SUBJ (price (for you) the)))                 # The price for you is one coin and a story.
 ("Tomas")
-(whether (story/NOUN a))                                                     # A story?
 (well/ADV)                                                                   # Well.
 (have (OBJ (story/NOUN one)) (SUBJ I))                                       # I have one.
 ("Sol")
