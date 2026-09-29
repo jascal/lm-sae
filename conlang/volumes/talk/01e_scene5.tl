@@ -71,4 +71,3 @@
 (fish)                                                                       # Fish.
 @prose
 (close (SUBJ (market the)))                                                  # The market closes.
-(end/VERB (SUBJ (play/NOUN the)))                                            # The play ends.

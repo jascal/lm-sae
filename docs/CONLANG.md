@@ -371,15 +371,21 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   another. Across the core and the earlier volumes only 1.2% of sentences held an interjection, and just 4 of the
   lexicon's 37 interjection roots (*please*, *sorry*, *yes*, *welcome*) appeared in any sentence at all, so a reader
   had *hey*, *okay*, *oh*, *well* and *maybe* in the dictionary and no example of one in use. This volume is a play
-  in five scenes (a market in the rain) with eight speakers and a dog: 136 turns of short exchange that use hello and
+  in six scenes (a market in the rain) with eight speakers and a dog: 190 turns of short exchange that use hello and
   goodbye, please, thanks and sorry, yes, nah and okay, oh, ah, wow and huh, well, maybe and really, feelings, and
   every question word. All 116 of its concepts already had roots; none was coined. Conventions: a turn opens with the
   speaker's name as a literal on its own line, as in the two earlier exchanges; stage directions are `@prose`, so they
   render apart from speech; and a yes/no question, even a one-word echo like "Early?", is written with `whether`,
   because Talema has no question mark and a bare fragment reads as a statement. `smile` had to be written
-  `smile/VERB`, since the bare key resolves to the noun `sonil`; `field.py lint` caught it. Not tested: whether
-  reading the play changes how a tutor built on these books talks. Thin spots: one *because*, and no *if*, *I think*
-  or *I want you to*, which a fuller version should add.
+  `smile/VERB`, since the bare key resolves to the noun `sonil`; `field.py lint` caught it. The sixth scene was
+  written after a test of a tutor built on these books (jascal/talema, `avatar/experiments/`): given a looser prompt
+  she used small words freely but misplaced them ("I am glad" got a bare "Yes."; "Why?" got "Sorry. I was wrong."). So
+  its exchanges pair the things a learner says with a fitting answer: a feeling gets a reaction ("I am glad" is
+  "Good! Why are you glad?"), a *why* gets a *because*, "I want an apple" gets "Which apple?", "Is it good?" gets two
+  opinions and a joke, a *sorry* is waved away ("Do not be sorry"), a *thanks* is "It is nothing", "I am tired" is
+  answered with a seat and an apple, and goodbye gets "Come again." It also adds *because* (5 in all), *I think* (3),
+  *I want you to read it with me*, and an *if*. Not yet tested: whether reading the play changes how the tutor talks.
+  Thin spots: only one *if*, three *I think*, and few feelings beyond glad, tired, happy and proud.
 - **Planned next fields:** open. Everyday domains are the likeliest gaps (clothing, the home, the body, animals):
   run `field.py check` on a concept list before assuming a word exists.
 

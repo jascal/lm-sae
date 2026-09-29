@@ -19,7 +19,7 @@
 (hear (OBJ (person other/DET the)) (SUBJ we))                                # and we hear the other person.
 
 ## (play/NOUN (of (market the)))
-(be (play/NOUN a (in (scene five))) (SUBJ this))                             # This is a play in five scenes.
+(be (play/NOUN a (in (scene six))) (SUBJ this))                              # This is a play in six scenes.
 @verse
 (person (of (play/NOUN the)))                                                # The persons of the play:
 ("Sol" (baker a))                                                            # Sol, a baker.

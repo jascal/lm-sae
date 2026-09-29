@@ -16,7 +16,7 @@ heli te hale pe vora pe lore tisa . raki te tobe hale pe pene tera pe vora . har
 
 ## pelene de kake la
 
-bi peleni ka ne sobe fiva pe tisa .
+bi peleni ka ne sobe saka pe tisa .
 
 pene de pelene la .  
 Sol-e badere ka .  
@@ -444,7 +444,151 @@ hale pe Kofi-a .
 Kofi-a .  
 fipesa .
 
-lise pe kake la . lude pe pelene la .
+lise pe kake la .
+
+## sobi sikata la
+
+bi doseka pe kake la . komi rarala pe Tomas-a .
+
+Sol-a .  
+bi rarala pe tada .  
+Tomas-a .  
+besa .  
+tini te bi lada pe raline la pe ma .  
+Nima-a .  
+kero te pesa fa pe ma .  
+Kofi-a .  
+fipesa .  
+Sol-a .  
+habama .
+
+kome pe Yuki-a . vi te buke ka pe sela .
+
+Yuki-a .  
+bi golada pe ma .  
+Sol-a .  
+guta .  
+bo golada vaha pe tada .  
+Yuki-a .  
+bo golada peke vi te buke ka pe ma pe ma .  
+Sol-a .  
+buke ka .  
+tobe bi guta pe pesa .  
+Yuki-a .  
+sevo te pesa fa pe ma .  
+voni te ledo te pesa mite ma pe tada pe ma .  
+Sol-a .  
+besa .  
+lese sibe hera .  
+Tomas-a .  
+vela .  
+tini te bi guta pe pesa pe ma .  
+Nima-a .  
+tini te bo guta fa pe pesa pe ma .  
+Sol-a .  
+vaha .  
+Nima-a .  
+peke vi te lapele kina pe pesa .  
+Sol-a .  
+habama .  
+ribu te lapela ne pesa vira pe vora .  
+Nima-a .  
+kafoka .  
+bo guta mika pe pesa .
+
+komi mite Ada-a pe Lena-a .
+
+Ada-a .  
+habela .  
+voni te lapele ka pe ma .  
+Nima-a .  
+lapele vika .  
+Ada-a .  
+lapeli roda la .  
+Nima-a .  
+bi roda pe lapele tala .  
+Ada-a .  
+lapele tisa .  
+Nima-a .  
+take te pesa .  
+Ada-a .  
+bi vasa pe tisa .  
+Yuki-a .  
+buke ka .  
+Ada-a .  
+ledi vaha pe tada .  
+Yuki-a .  
+peke voni te sevi te lore la pe ma pe ma .  
+Ada-a .  
+vaha .  
+Yuki-a .  
+peke bi neva pe ma .  
+Ada-a .  
+vaha .
+
+labihe pe Yuki-a .
+
+Yuki-a .  
+sevu te lore la fa vene bi neva pe tada pe tada .  
+Lena-a .  
+nuge ge Ada-a .
+
+loki te lore ka pe Yuki-a .
+
+Yuki-a .  
+risora .  
+sevo te lore tisa fa pe ma .  
+Lena-a .  
+bi rasora fa .  
+lore vika .  
+Yuki-a .  
+lore tisa .  
+Tomas-a .  
+poha .  
+bani te ralina pe lore tisa .  
+Yuki-a .  
+habiha .  
+ralina .  
+daka .  
+Tomas-a .  
+bi nada pe pesa .  
+Ada-a .  
+sevo te pesa tuka pe ma .  
+Sol-a .  
+habama .  
+Yuki-a .  
+bi timuda pe ma .  
+Lena-a .  
+lese sibe hera .  
+Nima-a .  
+take te lapele ka .  
+Yuki-a .  
+daka .  
+Nima-a .  
+bi febina pe pesa .  
+mata .  
+Yuki-a .  
+ledu te pesa mika hera pe ma .  
+Sol-a .  
+bi pidi guta ka pe pesa .  
+Yuki-a .  
+dake ge pene keda .  
+goseda .  
+Sol-a .  
+gosede ge Yuki-a .  
+kome vida .  
+Lena-a .  
+seru te tada morova vira pe ma .  
+Tomas-a .  
+bo rarala vira pe ma .  
+Nima-a .  
+bo lada vira pe tada .  
+Tomas-a .  
+mika .  
+Kofi-a .  
+fipesa .
+
+labihe pe kake la . lude pe pelene la .
 
 ## lore de vule nerina
 
