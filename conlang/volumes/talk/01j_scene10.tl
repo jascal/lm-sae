@@ -16,8 +16,7 @@
 (look (for it) (in (river the)) (SUBJ she))                                  # She looked for it in the river.
 (say (OBJ nothing) (SUBJ (river the)))                                       # The river said nothing.
 ("Ada")
-(wow/INTJ)                                                                   # Wow.
-(be what then)                                                               # What then?
+(wow/INTJ (be what then))                                                    # Wow, what then?
 ("Rosa")
 (ask (OBJ (fish the)) (SUBJ she))                                            # She asked the fish.
 ("Tomas")
@@ -44,7 +43,7 @@
 ("Kofi")
 (yes/INTJ)                                                                   # Yes.
 ("Sol")
-(wow/INTJ)                                                                   # Wow.
+(wow/INTJ (to "Kofi"))                                                       # Wow, Kofi.
 ("Ada")
 (huh/INTJ)                                                                   # Huh?
 ("Kofi")
@@ -102,8 +101,7 @@
 ("Kofi")
 (night good (to (person every)))                                             # Good night, everyone.
 ("Sol")
-(wow/INTJ)                                                                   # Wow.
-(talk/VERB (SUBJ "Kofi"))                                                    # Kofi talks.
+(wow/INTJ (talk/VERB (SUBJ "Kofi")))                                         # Wow, Kofi talks.
 @prose
 (be small (SUBJ (fire the)))                                                 # The fire is small.
 (be long (SUBJ (night the)))                                                 # The night is long.

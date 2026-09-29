@@ -878,8 +878,7 @@ loso te vose rera mala pe fere ka .
 loko fore pesa ne ruve la pe sela .  
 desi te nada pe ruve la .  
 Ada-a .  
-vabova .  
-bi vasa dana .  
+vabove bi vasa dana .  
 Rosa-a .  
 raki te fipese la pe sela .  
 Tomas-a .  
@@ -906,7 +905,7 @@ tobi bi rira pe pesa ge Kofi-a .
 Kofi-a .  
 besa .  
 Sol-a .  
-vabova .  
+vabove ge Kofi-a .  
 Ada-a .  
 hebuha .  
 Kofi-a .  
@@ -964,8 +963,7 @@ kero te pesa fa pe ma .
 Kofi-a .  
 noki guta ge pene keda .  
 Sol-a .  
-vabova .  
-hale pe Kofi-a .
+vabove hale pe Kofi-a .
 
 bi mela pe fige la . bi laga pe noke la . lude pe pelene la .
 
