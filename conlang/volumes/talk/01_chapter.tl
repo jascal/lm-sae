@@ -19,7 +19,7 @@
 (hear (OBJ (person other/DET the)) (SUBJ we))                                # and we hear the other person.
 
 ## (play/NOUN (of (market the)))
-(be (play/NOUN a (in (scene six))) (SUBJ this))                              # This is a play in six scenes.
+(be (play/NOUN a (in (scene ten))) (SUBJ this))                              # This is a play in ten scenes.
 @verse
 (person (of (play/NOUN the)))                                                # The persons of the play:
 ("Sol" (baker a))                                                            # Sol, a baker.
@@ -30,5 +30,7 @@
 ("Lena" (mother (of "Ada") the))                                             # Lena, the mother of Ada.
 ("Yuki" (stranger a))                                                        # Yuki, a stranger.
 ("Omar" (boy a (with (dog a))))                                              # Omar, a boy with a dog.
+("Rosa" (woman old a))                                                        # Rosa, an old woman.
+("Deniz" (man/NOUN young a (with tea)))                                     # Deniz, a young man with tea.
 ("Pip" (dog small the))                                                      # Pip, the small dog.
 @prose

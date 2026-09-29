@@ -144,4 +144,3 @@
 (fish)                                                                       # Fish.
 @prose
 (laugh/VERB (SUBJ (market the)))                                             # The market laughs.
-(end/VERB (SUBJ (play/NOUN the)))                                            # The play ends.

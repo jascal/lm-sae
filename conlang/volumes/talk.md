@@ -16,7 +16,7 @@ heli te hale pe vora pe lore tisa . raki te tobe hale pe pene tera pe vora . har
 
 ## pelene de kake la
 
-bi peleni ka ne sobe saka pe tisa .
+bi peleni ka ne sobe deha pe tisa .
 
 pene de pelene la .  
 Sol-e badere ka .  
@@ -27,6 +27,8 @@ Ada-e gili mela ka .
 Lena-e muri de Ada-a la .  
 Yuki-e ragere ka .  
 Omar-e mubi ka mite doge ka .  
+Rosa-e feri veta ka .  
+Deniz-e mino vuna ka mite tabafa .  
 Pip-e dogi mela la .
 
 ## sobi fira la
@@ -588,7 +590,384 @@ mika .
 Kofi-a .  
 fipesa .
 
-labihe pe kake la . lude pe pelene la .
+labihe pe kake la .
+
+## sobi seveta la
+
+komi mite tabafa pe Deniz-a .
+
+Sol-a .  
+bi veha pe tada .  
+Deniz-a .  
+bi Deniz-a pe name mena .  
+keli te tabafa pe ma .  
+Yuki-a .  
+bo neva tuka pe ma .  
+Deniz-a .  
+peni neva tova .  
+Sol-a .  
+velome ge Deniz-a .  
+Deniz-a .  
+tobe voni te tabafa pe tada .  
+Sol-a .  
+besa .  
+lesa .  
+Nima-a .  
+hanaha .  
+daka .  
+Deniz-a .  
+bi hoba pe tabafe tisa .  
+Tomas-a .  
+tobe bi sulesa pe pesa .  
+Deniz-a .  
+bo sulesa lina pe pesa .  
+Tomas-a .  
+guta .  
+tini te voni te tabafe tova pe ma pe ma .
+
+garo te tabafe tova pape Tomas-a pe Deniz-a . rineki te tabafa pe Sol-a .
+
+Sol-a .  
+bi guta pe tabafe tora .  
+Deniz-a .  
+daka .  
+bi kinada pe tada .  
+Sol-a .  
+bo kinada fa pe ma .  
+bi kolada pe ma .  
+Deniz-a .  
+take te tabafe masa .
+
+kome pe Rosa-a .
+
+Rosa-a .  
+hari te bi rarala pe tada pe ma .  
+Tomas-a .  
+bi rira pe pesa .  
+Rosa-a .  
+nedi te seri te pesa pe ma pe ma .  
+Tomas-a .  
+loka .  
+bi rarala pe ma .  
+Rosa-a .  
+bo lada mika pe bofe la .  
+bi vasa pe tisa .  
+Deniz-a .  
+tabafa .
+
+rineki te tabafa pe Rosa-a .
+
+Rosa-a .  
+bi guta pe tabafe tisa .  
+Deniz-a .  
+dahi te tada pe ma .  
+Rosa-a .  
+dahi te ma fa .  
+dahe te tabafe la .  
+Deniz-a .  
+habama .  
+tobe voni te geno ge ruve la morova pe tada pe tada .  
+Sol-a .  
+voni te pesa pe ma .  
+bere vi te bore ka pe ma .  
+Rosa-a .  
+komo vira vene fali fa pe raline la pe ma .  
+Tomas-a .  
+komo vira vene kome pe Rosa-a pe ma .  
+Rosa-a .  
+tobe bo rarala vira pe tada .  
+Tomas-a .  
+mika .  
+Nima-a .  
+mike dage tera .  
+Deniz-a .  
+guta .  
+dagi tera dana .  
+Deniz-a .  
+tobi voni te tabafa pe tada ge Kofi-a .  
+Kofi-a .  
+fipesa .  
+Deniz-a .  
+tobe tabafe fipesa .  
+Sol-a .  
+hanaha .  
+habama .
+
+## sobi gitava la
+
+poto te bakete ra ne lase de Nima-a pe Sol-a .
+
+Nima-a .  
+bi lase mena pe tisa .  
+Sol-a .  
+bo lase tora fa pe pesa .  
+bi lase de kake la pe pesa .  
+Nima-a .  
+loke te marake la .  
+Sol-a .  
+sero te marake ka fa pe ma .  
+Nima-a .  
+bi teda pe marake la .  
+Sol-a .  
+poha .  
+sero te pesa nova pe ma .  
+Nima-a .  
+bi nanora pe ma .  
+Sol-a .  
+bo nanora vaha pe tada .  
+bo lase ka nura pe pesa .  
+Nima-a .  
+peke movi lera pe ma .  
+Sol-a .  
+tobe movi lera pe tada .  
+Nima-a .  
+besa .  
+movi hene kome pe tada pe ma .  
+tako te lapele mena vene movi fa pe ma pe tada .  
+Sol-a .  
+tobe taki te lapele tora pe ma .  
+kabi te lapele tora pe ma .  
+Ada-a .  
+bo nanora vaha pe tada .  
+Nima-a .  
+sevo te pesa fa pe ma .  
+Ada-a .  
+lese dese te risora .  
+Lena-a .  
+nuge ge Ada-a .  
+Sol-a .  
+bi rita pe Ada-a .  
+risora .  
+bano te pesa fa pe ma .  
+Nima-a .  
+tobe bano te pesa nova pe tada .  
+Sol-a .  
+besa .  
+voni te hele pe ma pe ma .  
+Nima-a .  
+move te bakete tora .
+
+movi te bakete ra pe Sol-a .
+
+Nima-a .  
+daka .  
+Sol-a .  
+tobe bo nanora tila pe tada .  
+Nima-a .  
+bo nanora lina pe ma .  
+Sol-a .  
+vaha .  
+Nima-a .  
+peke desi te risora pe tada .  
+keno te bi nanora pe ma fa pe ma .  
+Sol-a .  
+habama .  
+desu te risora ne dage keda vira pe ma .  
+Tomas-a .  
+tini te bi timuda pe tade tova pe ma .  
+Rosa-a .  
+tini te bi rolusa pe tade tova pe ma .  
+Kofi-a .  
+fipesa .  
+Sol-a .  
+gogi mite ma pe Kofi-a .  
+Nima-a .  
+gogi mite nida pe Kofi-a .
+
+## sobe nevina
+
+sibi mite Rosa-a pe Yuki-a .
+
+Yuki-a .  
+lese tenaki te farase ka pape ma .  
+Rosa-a .  
+farase vika .  
+Yuki-a .  
+deso te bi hunara pe ma hova pe ma .  
+Rosa-a .  
+dese te bi hunara pe ma .  
+Yuki-a .  
+bi hunara pe ma .  
+Rosa-a .  
+guta .  
+desi nova te voni te bapana pe ma .  
+Yuki-a .  
+voni te bapana pe ma .  
+Rosa-a .  
+besa .  
+deso te pesa vida lovala .  
+Yuki-a .  
+hebuha .  
+neno te pesa fa pe ma .  
+Rosa-a .  
+bi faka pe pesa .  
+lore mana .  
+lisena .  
+bapana .  
+Yuki-a .  
+bapana .  
+Rosa-a .  
+guta .  
+tobe neni te pesa pe tada .  
+Yuki-a .  
+neno te pesa lina pe ma .  
+Rosa-a .  
+bi rita pe tada .  
+dese te vone te bapana .  
+Yuki-a .  
+bi hunara pe bapane la .  
+Rosa-a .  
+habama .  
+bo hunara fa pe bapane la .  
+bi hunara pe tada .  
+Yuki-a .  
+poha .  
+bi hunara pe ma .  
+bo hunara fa pe bapane la .  
+risora .  
+Rosa-a .  
+bi rasora fa .  
+bi rohi guta ka pe pesa .
+
+kome pe Deniz-a .
+
+Deniz-a .  
+sevi te lore mana pe ma .  
+tabafa .  
+Rosa-a .  
+bi lori guta ka pe pesa .  
+Ada-a .  
+sevi te lore vana pe ma .  
+Rosa-a .  
+lore vika .  
+Ada-a .  
+vaha .  
+vaha .  
+vaha .  
+Rosa-a .  
+bi lore mana pe pesa .  
+Ada-a .  
+bi lori mena guta pe pesa .  
+Yuki-a .  
+tobe sevi te pesa pe ma .  
+Rosa-a .  
+sevo te pesa vene deso te pesa ne dage keda pe tada pe tada .  
+Yuki-a .  
+desu te pesa ne dage keda vira pe ma .  
+Rosa-a .  
+rake vene gese pe tada .  
+Yuki-a .  
+rako te tada vira pe ma .  
+dake ge Rosa-a .  
+Rosa-a .  
+dahi te ma fa .  
+voki harada pe tada .
+
+## sobe deha
+
+fale pe noke la . lise pe kake la . sibi bare fige ka pe pene keda .
+
+Omar-a .  
+tele te tode ka .  
+Rosa-a .  
+tobe voni te tode ka pe tada .  
+Omar-a .  
+besa .  
+Rosa-a .  
+loso te vose rera mala pe fere ka .  
+loko fore pesa ne ruve la pe sela .  
+desi te nada pe ruve la .  
+Ada-a .  
+vabova .  
+bi vasa dana .  
+Rosa-a .  
+raki te fipese la pe sela .  
+Tomas-a .  
+hebuha .  
+tobe fipese ka .  
+Rosa-a .  
+desi te vi te pesa pe ma pe fipese la .  
+Ada-a .  
+bi dafida pe ma .  
+Lena-a .  
+bi dafida fa .  
+bi hera pe ma .  
+Rosa-a .  
+bo tode ka nura pe pesa .  
+Ada-a .  
+tobe bi rira pe pesa .  
+Rosa-a .  
+sevo te pesa fa pe ma .  
+mika .  
+garo te pesa pape sela pe fipese la .  
+sinago ne dage keda nova pe sela .  
+Sol-a .  
+tobi bi rira pe pesa ge Kofi-a .  
+Kofi-a .  
+besa .  
+Sol-a .  
+vabova .  
+Ada-a .  
+hebuha .  
+Kofi-a .  
+fipesa .  
+Omar-a .  
+bi sarisa pe ma .  
+Lena-a .  
+bo sarisa vaha pe tada .  
+Omar-a .  
+peke bi timuda pe Pip-a .  
+peli fa pe ha .  
+Rosa-a .  
+lafi ne noke la pe doge keda .  
+Omar-a .  
+tobe bo febina vira pe ha .  
+Rosa-a .  
+tini te bi febina pe ha pe ma .  
+bo timuda nura pe ha .  
+Omar-a .  
+daka .  
+Sol-a .  
+lese sibe bare ma .  
+Nima-a .  
+bo golada peke bi hera pe vora pe ma .  
+Sol-a .  
+tobe bi golada pe tada .  
+tobe rala .  
+Nima-a .  
+telo te pesa fa ge pene kana .  
+Sol-a .  
+habama .  
+telu te pesa vira ge pene keda pe ma .  
+Tomas-a .  
+bi timuda pe ma .  
+Rosa-a .  
+lafe dana .  
+Lena-a .  
+bi lada pe pesa .  
+kome ge Ada-a .  
+Ada-a .  
+lese teli te todi mana masa pape ma .  
+Rosa-a .  
+morova .  
+Ada-a .  
+kafoka .  
+noki guta ge Rosa-a .  
+Nima-a .  
+lafe vela .  
+Sol-a .  
+seru te tada ne moge la vira pe ma .  
+Tomas-a .  
+bo rarala vira pe ma .  
+Nima-a .  
+kero te pesa fa pe ma .  
+Kofi-a .  
+noki guta ge pene keda .  
+Sol-a .  
+vabova .  
+hale pe Kofi-a .
+
+bi mela pe fige la . bi laga pe noke la . lude pe pelene la .
 
 ## lore de vule nerina
 
