@@ -192,7 +192,7 @@ risora .
 Tomas-a .  
 vi te monedi mela kina pe ma .  
 Sol-a .  
-habade ge Nima-a .  
+habele ge Nima-a .  
 tobe vi te kama pe tada .  
 Nima-a .  
 vi te pesa pe ma .  
@@ -342,7 +342,7 @@ tope ge Pip-a .
 taki te bapane ka pe Pip-a .
 
 Sol-a .  
-habada .  
+habade topa .  
 bapane mena .  
 vi te doge tisa pe veha .  
 Omar-a .  

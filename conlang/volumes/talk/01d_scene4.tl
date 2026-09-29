@@ -55,7 +55,7 @@
 (take (OBJ (bread a)) (SUBJ "Pip"))                                          # Pip takes a bread.
 @verse
 ("Sol")
-(hey/INTJ)                                                                   # Hey!
+(hey/INTJ (stop/VERB))                                                       # Hey, stop!
 (bread my)                                                                   # My bread!
 (have (OBJ (dog this)) (SUBJ who))                                           # Who has this dog?
 ("Omar")

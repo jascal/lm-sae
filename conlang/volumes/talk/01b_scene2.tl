@@ -65,7 +65,7 @@
 ("Tomas")
 (have (OBJ (coin small no)) (SUBJ I))                                        # I have no small coin.
 ("Sol")
-(hey/INTJ (to "Nima"))                                                       # Hey, Nima!
+(hello/INTJ (to "Nima"))                                                     # Hello, Nima!
 (whether (have (OBJ change/NOUN) (SUBJ you)))                                # Do you have change?
 ("Nima")
 (have (OBJ it) (SUBJ I))                                                     # I have it.
