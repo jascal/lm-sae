@@ -54,7 +54,10 @@ GROUP_HEAD = {"computing": "(and computer code)", "unix": "(shell the)", "securi
               "drink": "drink/NOUN", "sweet": "(and sugar salt)", "table": "table", "kitchen": "kitchen",
               "restaurant": "restaurant",
               "good": "(and good/NOUN evil)", "virtue": "virtue", "trust": "(and promise/NOUN trust/NOUN)",
-              "harm": "harm", "person": "(and dignity person)", "theory": "consequence"}
+              "harm": "harm", "person": "(and dignity person)", "theory": "consequence",
+              # conversation
+              "greeting": "greeting", "reaction": "reaction", "stance": "(and maybe/ADV think/VERB)",
+              "feeling": "feeling", "question": "question/NOUN", "market": "market/NOUN"}
 
 
 def concepts(path: Path) -> list[dict]:

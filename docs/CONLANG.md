@@ -293,7 +293,7 @@ fields are added:
 - **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
   first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens), `mathematics.md`
   (~3k), `logic.md` (~3k), `physics.md` (~2.5k) and
-  `philosophy.md` (~2k), `morality.md` (~2k) and `food.md` (~2k).
+  `philosophy.md` (~2k), `morality.md` (~2k), `food.md` (~2k) and `talk.md` (~4k).
 
 Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
 lints, builds and checks every book in one command.
@@ -367,6 +367,35 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   table, a recipe as a list of steps, a restaurant dialogue, and eating together. `order` (to order food) was not
   used, because the lexicon's `dader` is the commanding sense; the chapter says "ask for". *lettuce* was not coined
   (its root would join `salat` salt, `salad` and `salut` salty); the chapter warns about those three.
+- **Field 8, conversation** (*nerin*). The other volumes tell, define and prove; none has people talking to one
+  another. Across the core and the earlier volumes only 1.2% of sentences held an interjection, and just 4 of the
+  lexicon's 37 interjection roots (*please*, *sorry*, *yes*, *welcome*) appeared in any sentence at all, so a reader
+  had *hey*, *okay*, *oh*, *well* and *maybe* in the dictionary and no example of one in use. This volume is a play in
+  ten scenes (a market, from a wet morning to a night by a fire) with ten speakers and a dog: 331 turns of short
+  exchange. Scenes 1-5 are the first version: greetings and small words, a bargain, a child who asks why, a stranger
+  and a dog, the end of a day. Scenes 6-10 were written after tests of a tutor built on these books (jascal/talema,
+  `avatar/experiments/`): given a looser prompt she used small words freely but misplaced them ("I am glad" got a
+  bare "Yes."; "Why?" got "Sorry. I was wrong."). So they pair what a learner says with a fitting answer: a feeling
+  gets a reaction ("I am glad" is "Good! Why are you glad?"; "I am sad" is "Why are you sad?" and a seat), a *why*
+  gets a *because*, "I want an apple" gets "Which apple?", "Is it good?" gets two opinions and a joke, a *sorry* is
+  waved away, a *thanks* is "It is nothing" or "Do not thank me", "I do not understand" gets a simpler repeat, and
+  goodbye gets "Come again." Scene 6 is a morning with a book and a word she does not know; 7, hospitality (offers
+  taken and refused, a compliment turned into a joke, plans made with *if*); 8, a quarrel and its repair; 9, a
+  lesson, with a mistake turned into a joke and short praise; 10, a story with listeners who react, a fear and a
+  sadness that are comforted, and good nights. In all it has 9 *because* clauses, 6 *if*, 7 *I think*,
+  and *I want you to read it with me*. All 116 of its concepts already had roots; none was coined. Conventions: a turn
+  opens with the speaker's name as a literal on its own line, as in the two earlier exchanges; stage directions are
+  `@prose`, so they render apart from speech; a yes/no question, even a one-word echo like "Early?", is written with
+  `whether`, because Talema has no question mark and a bare fragment reads as a statement; scenes 9 and 10 are headed
+  with cardinals because the lexicon has no *ninth* or *tenth*. `smile` had to be written `smile/VERB`, since the
+  bare key resolves to the noun `sonil`; `field.py lint` caught it. A second test, with the learner writing English so the tutor did not have to read Talema, showed that the play
+  helps her read the learner more than it helps her answer, and that her answers echo the learner's words back
+  ("Oh. She lives far away."), more so with the play than without. So the lines in which a speaker only repeated
+  the last one ("Early?", "Work?", "Two?", "Do you not know?", "A fish?", "Really?") were reworked into reactions:
+  an evaluation ("It is hard work."), a new question ("Who knows?", "Which fish?"), a rebuttal ("I do not take your
+  apples."), a remark ("It is new!"). Echoes remain only where they are the point: a lesson's repetition, or a
+  clarifying question. Not yet tested: whether the reworked play changes how the tutor answers. Thin spots: sadness and fear appear once or twice each, *hmm* and *ouch* are not in the
+  lexicon, and there is no politeness register beyond *please*.
 - **Planned next fields:** open. Everyday domains are the likeliest gaps (clothing, the home, the body, animals):
   run `field.py check` on a concept list before assuming a word exists.
 

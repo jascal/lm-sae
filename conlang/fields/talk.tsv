@@ -1,0 +1,117 @@
+en	de	es	class	group
+hello			INTJ	greeting
+hey		hey	INTJ	greeting
+welcome			INTJ	greeting
+goodbye	abschied	despedida	NOUN	greeting
+bye		adiós	INTJ	greeting
+please	bitte		INTJ	greeting
+thanks	dank	gracias	NOUN	greeting
+thank	danken		VERB	greeting
+sorry			INTJ	greeting
+excuse	entschuldigung	excusa	NOUN	greeting
+pardon		perdón	NOUN	greeting
+morning	morgen	mañana	NOUN	greeting
+night	nacht	noche	NOUN	greeting
+again	wieder	nuevamente	ADV	greeting
+tomorrow			NOUN	greeting
+today		hoy	NOUN	greeting
+yes	ja	sí	INTJ	reaction
+nah			INTJ	reaction
+okay			INTJ	reaction
+oh	ach		INTJ	reaction
+ah			INTJ	reaction
+wow			INTJ	reaction
+huh		eh	INTJ	reaction
+ha			INTJ	reaction
+well	naja	bien	ADV	reaction
+sure	klar	claro	ADJ	reaction
+fine	fein	fino	ADJ	reaction
+stop	aufhören	detener	VERB	reaction
+wait	warten	esperar	VERB	reaction
+maybe	vielleicht	quizás	ADV	stance
+perhaps	möglicherweise	quizá	ADV	stance
+really	wirklich	realmente	ADV	stance
+actually	eigentlich		ADV	stance
+think	denken	pensar	VERB	stance
+guess	raten	adivinar	VERB	stance
+seem	scheinen		VERB	stance
+know	wissen	saber	VERB	stance
+believe	glauben	creer	VERB	stance
+want	wollen	querer	VERB	stance
+enjoy	genießen	disfrutar	VERB	stance
+love	lieben	amar	VERB	stance
+hope	hoffen		VERB	stance
+need	brauchen	necesitar	VERB	stance
+mean			VERB	stance
+mistake	fehler	error	NOUN	stance
+right	richtig	correcto	ADJ	stance
+wrong	falsch	equivocado	ADJ	stance
+true	wahr	cierto	ADJ	stance
+happy	glücklich	feliz	ADJ	feeling
+glad	froh	contento	ADJ	feeling
+sad	traurig	triste	ADJ	feeling
+angry	böse	enfadado	ADJ	feeling
+tired	müde	cansado	ADJ	feeling
+hungry		hambriento	ADJ	feeling
+cold	kalt	frío	ADJ	feeling
+wet	feucht	húmedo	ADJ	feeling
+surprised	erstaunt	sorprendido	ADJ	feeling
+funny	lustig	divertido	ADJ	feeling
+proud	stolz	orgulloso	ADJ	feeling
+afraid			ADJ	feeling
+laugh		reír	VERB	feeling
+smile		sonreír	VERB	feeling
+joke	witz	broma	NOUN	feeling
+what	was	qué	PRON	question
+who	wer	quien	PRON	question
+why	warum		ADV	question
+how	wie	cómo	ADV	question
+where	wo	donde	ADV	question
+when		cuando	SCONJ	question
+which	welcher	cuál	DET	question
+whether	ob		SCONJ	question
+market	markt	mercado	NOUN	market
+stand	stand	stand	NOUN	market
+buy	kaufen	comprar	VERB	market
+sell	verkaufen	vender	VERB	market
+price	preis	precio	NOUN	market
+cheap	günstig	barato	ADJ	market
+expensive	teuer	caro	ADJ	market
+coin	münze	moneda	NOUN	market
+money	geld	dinero	NOUN	market
+pay	zahlen	pagar	VERB	market
+change	änderung	cambio	NOUN	market
+count	zählen		VERB	market
+apple	apfel	manzana	NOUN	market
+bread	brot	pan	NOUN	market
+fish	fisch	pez	NOUN	market
+cheese	käse	queso	NOUN	market
+basket	einkaufswagen	canasta	NOUN	market
+bag	tasche	bolsa	NOUN	market
+heavy	schwerer	pesado	ADJ	market
+fresh	frisch	fresco	ADJ	market
+sweet	süß	dulce	ADJ	market
+enough	genug		ADV	market
+more	mehr	más	ADV	market
+less	weniger	menos	ADV	market
+rain	regen	lluvia	NOUN	market
+hat	hut	sombrero	NOUN	market
+dog	hund	perro	NOUN	market
+child	kind	niño	NOUN	market
+friend	freund	amigo	NOUN	market
+neighbor	nachbar	vecino	NOUN	market
+story	meldung		NOUN	market
+carry		llevar	VERB	market
+lose	verlieren	perder	VERB	market
+find	finden	encontrar	VERB	market
+look	schauen		VERB	market
+listen	anhören		VERB	market
+tell			VERB	market
+give	geben	dar	VERB	market
+take	nehmen	tomar	VERB	market
+come	kommen		VERB	market
+go	gehen		VERB	market
+sit	sitzen		VERB	market
+stay	bleiben	quedar	VERB	market
+help	helfen	ayudar	VERB	market
+name	name	nombre	NOUN	market

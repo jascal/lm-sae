@@ -6,7 +6,12 @@ of that English line (Helsinki-NLP opus-mt), marked as such. The dictionaries (b
 lexicon with the trilingual source words of every root.
 
   .venv/bin/python scripts/conlang/export.py --out ../talema            # sentences + lexicon + books + sources
-  .venv/bin/python scripts/conlang/export.py --out ../talema --no-mt    # skip the machine translations
+  .venv/bin/python scripts/conlang/export.py --out ../talema --no-mt    # translate nothing new (keeps existing ones)
+  .venv/bin/python scripts/conlang/export.py --out ../talema --retranslate   # translate every line again
+
+A line already translated in <out>/data/sentences.jsonl keeps its translation, and only new English lines go
+through the model. Retranslating everything is not idempotent: the model batches its input, so adding lines can
+re-roll a borderline one (a German line flipped into a hallucinated Parliament sentence that way).
 """
 from __future__ import annotations
 
@@ -127,6 +132,7 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--no-mt", action="store_true")
+    p.add_argument("--retranslate", action="store_true", help="ignore the translations already in --out")
     a = p.parse_args()
     lex = author.Lex()
     (a.out / "data").mkdir(parents=True, exist_ok=True)
@@ -149,11 +155,21 @@ def main() -> None:
     if bad:
         sys.exit(f"{bad} exported sentences are not in their built book")
 
-    todo = sorted({r["en"] for r in recs if r["en"]})
+    have = {}                                        # (language, English line) -> the translation already published
+    prev = a.out / "data" / "sentences.jsonl"
+    if prev.exists() and not a.retranslate:
+        for old in prev.read_text(encoding="utf-8").splitlines():
+            r = json.loads(old)
+            for lang in MT:
+                if r.get("en") and r.get(f"{lang}_mt"):
+                    have.setdefault((lang, r["en"]), r[f"{lang}_mt"])
+    translated = 0
     for lang, model in MT.items():
-        tr = dict(zip(todo, translate(todo, model))) if not a.no_mt else {}
+        todo = sorted({r["en"] for r in recs if r["en"] and (lang, r["en"]) not in have})
+        tr = dict(zip(todo, translate(todo, model))) if todo and not a.no_mt else {}
+        translated += len(todo)
         for r in recs:
-            r[f"{lang}_mt"] = tr.get(r["en"], "")
+            r[f"{lang}_mt"] = tr.get(r["en"]) or have.get((lang, r["en"]), "")
     with (a.out / "data" / "sentences.jsonl").open("w", encoding="utf-8") as fh:
         for r in recs:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
@@ -171,7 +187,7 @@ def main() -> None:
     for r in recs:
         kinds[r["kind"]] = kinds.get(r["kind"], 0) + 1
     print(f"{len(recs)} sentences ({kinds}); {sum(1 for r in recs if r['en'])} with English; "
-          f"{len(todo)} distinct English lines translated; {len(lx)} lexicon entries")
+          f"{translated} translations made (per language: only lines not already in {a.out.name}); {len(lx)} lexicon entries")
 
 
 if __name__ == "__main__":
