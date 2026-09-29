@@ -293,7 +293,7 @@ fields are added:
 - **`conlang/volumes/<field>.md`**, one volume per field: a Talema title page ("read the Book of the First Word
   first"), the field chapter, and its glossary. Current volumes: `digital.md` (~4k tokens), `mathematics.md`
   (~3k), `logic.md` (~3k), `physics.md` (~2.5k) and
-  `philosophy.md` (~2k), `morality.md` (~2k) and `food.md` (~2k).
+  `philosophy.md` (~2k), `morality.md` (~2k), `food.md` (~2k) and `talk.md` (~4k).
 
 Field coinages live in their volume's glossary, not the core book of roots. `scripts/conlang/books.py` regenerates,
 lints, builds and checks every book in one command.
@@ -367,6 +367,19 @@ Old roots take new digital senses explicitly, as English did: `bugek` (insect) i
   table, a recipe as a list of steps, a restaurant dialogue, and eating together. `order` (to order food) was not
   used, because the lexicon's `dader` is the commanding sense; the chapter says "ask for". *lettuce* was not coined
   (its root would join `salat` salt, `salad` and `salut` salty); the chapter warns about those three.
+- **Field 8, conversation** (*nerin*). The other volumes tell, define and prove; none has people talking to one
+  another. Across the core and the earlier volumes only 1.2% of sentences held an interjection, and just 4 of the
+  lexicon's 37 interjection roots (*please*, *sorry*, *yes*, *welcome*) appeared in any sentence at all, so a reader
+  had *hey*, *okay*, *oh*, *well* and *maybe* in the dictionary and no example of one in use. This volume is a play
+  in five scenes (a market in the rain) with eight speakers and a dog: 136 turns of short exchange that use hello and
+  goodbye, please, thanks and sorry, yes, nah and okay, oh, ah, wow and huh, well, maybe and really, feelings, and
+  every question word. All 116 of its concepts already had roots; none was coined. Conventions: a turn opens with the
+  speaker's name as a literal on its own line, as in the two earlier exchanges; stage directions are `@prose`, so they
+  render apart from speech; and a yes/no question, even a one-word echo like "Early?", is written with `whether`,
+  because Talema has no question mark and a bare fragment reads as a statement. `smile` had to be written
+  `smile/VERB`, since the bare key resolves to the noun `sonil`; `field.py lint` caught it. Not tested: whether
+  reading the play changes how a tutor built on these books talks. Thin spots: one *because*, and no *if*, *I think*
+  or *I want you to*, which a fuller version should add.
 - **Planned next fields:** open. Everyday domains are the likeliest gaps (clothing, the home, the body, animals):
   run `field.py check` on a concept list before assuming a word exists.
 
