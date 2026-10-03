@@ -132,3 +132,11 @@ only the opcode-table / layer-sweep are Gemma-specific — the disassembler and 
 | `gemma_layer_sweep.py` | QK content-opcode legibility **across depth** (Gemma Scope; Gemma-only). |
 | `arch_config.py` | per-architecture knobs (RMSNorm gain offset, QK scale, SAE availability). |
 | `scope_loader.py` | portable Gemma Scope SAE resolver (explicit path → HF cache → download). |
+
+## `tpr/` — binding vs atoms (McCoy et al. 2026 TPR test)
+Pre-registered in [`docs/TPR_VS_SAE.md`](../docs/TPR_VS_SAE.md).
+
+| script | role |
+|--------|------|
+| `tpr_vs_sae.py` | GPT-2 period encodings of LIST / SVO stimuli. Compares a supervised TPR dictionary, the atomic / additive / bag nulls and TopK SAEs on structure readout, FVU and splice KL, with withheld (filler, role) pairs → `runs/tpr/tpr_vs_sae_summary.json` |
+| `latent_null.py` | **post-hoc** control for P4: permutation noise floor plus a split-half held-out conjunction test of SAE latents → `runs/tpr/latent_null_summary.json` |
