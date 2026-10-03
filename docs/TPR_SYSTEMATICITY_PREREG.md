@@ -142,3 +142,142 @@ lr 1e-3, batch 512, 4,000 steps, decoder columns unit-normed. They are analysed 
 
 ---
 *End of pre-registration.*
+
+## Results
+
+### gpt2 (layers [3, 6, 9], primary 6)
+
+**LIST**: test strata n_w = 0/1/2/≥3: [3933, 1758, 279, 30].
+
+| layer | arm | n_w = 0 | n_w = 1 | n_w = 2 | n_w ≥ 3 |
+|---|---|---|---|---|---|
+| 3 | real | 0.551 (n=3933) | 0.439 (n=1758) | 0.308 (n=279) | 0.300 (n=30) |
+| 3 | tpr (λ=0.0001, 3-seed mean) | 0.338 (n=3933) | 0.133 (n=1758) | 0.048 (n=279) | 0.000 (n=30) |
+| 3 | atomic | 0.580 (n=3933) | 0.003 (n=1758) | 0.000 (n=279) | 0.000 (n=30) |
+| 6* | real | 0.613 (n=3933) | 0.531 (n=1758) | 0.419 (n=279) | 0.367 (n=30) |
+| 6* | tpr (λ=0, 3-seed mean) | 0.403 (n=3933) | 0.157 (n=1758) | 0.054 (n=279) | 0.000 (n=30) |
+| 6* | atomic | 0.643 (n=3933) | 0.002 (n=1758) | 0.000 (n=279) | 0.000 (n=30) |
+| 9 | real | 0.637 (n=3933) | 0.532 (n=1758) | 0.444 (n=279) | 0.333 (n=30) |
+| 9 | tpr (λ=0, 3-seed mean) | 0.364 (n=3933) | 0.120 (n=1758) | 0.033 (n=279) | 0.000 (n=30) |
+| 9 | atomic | 0.656 (n=3933) | 0.000 (n=1758) | 0.000 (n=279) | 0.000 (n=30) |
+
+- **P2-strict** (primary layer): n_w=0 0.403, n_w≥1 0.140 → **FAIL**
+- **P2-paper**: n_w=2: 15/279 vs 1/2! = 0.500, p = 1; n_w=3: 0/30 vs 1/3! = 0.167, p = 1 → **FAIL**
+- TPR seed range by stratum: {'0': [0.40427154302597046, 0.40401729941368103, 0.40071192383766174], '1': [0.15813423693180084, 0.15813423693180084, 0.1535836160182953], '2': [0.05376344174146652, 0.05376344174146652, 0.05376344174146652], '3': [0.0, 0.0, 0.0]}; λ selection (seen-pair validation): {'0.0': 0.4387291967868805, '0.0001': 0.42813917994499207, '0.001': 0.40544629096984863, '0.01': 0.2950075566768646}
+
+| SAE width | eligible | conjunctive | permutation null | planted additive | ReLU-additive (diag.) |
+|---|---:|---:|---:|---:|---:|
+| 1024 | 887 | 0.897 | 0.000 | 0.000 | 0.000 |
+| 8192 | 1397 | 0.849 | 0.000 | 0.000 | 0.001 |
+
+- **P4′**: specific=True, passes=True, refuting=False → **PASS**
+
+**SVO**: test strata n_w = 0/1/2/≥3: [2264, 1477, 259, 0].
+
+| layer | arm | n_w = 0 | n_w = 1 | n_w = 2 | n_w ≥ 3 |
+|---|---|---|---|---|---|
+| 3 | real | 0.998 (n=2264) | 1.000 (n=1477) | 1.000 (n=259) | — |
+| 3 | tpr (λ=0, 3-seed mean) | 0.998 (n=2264) | 0.177 (n=1477) | 0.030 (n=259) | — |
+| 3 | atomic | 0.998 (n=2264) | 0.000 (n=1477) | 0.000 (n=259) | — |
+| 6* | real | 0.994 (n=2264) | 0.993 (n=1477) | 1.000 (n=259) | — |
+| 6* | tpr (λ=0, 3-seed mean) | 0.996 (n=2264) | 0.197 (n=1477) | 0.046 (n=259) | — |
+| 6* | atomic | 0.996 (n=2264) | 0.002 (n=1477) | 0.000 (n=259) | — |
+| 9 | real | 0.974 (n=2264) | 0.983 (n=1477) | 0.988 (n=259) | — |
+| 9 | tpr (λ=0, 3-seed mean) | 0.984 (n=2264) | 0.237 (n=1477) | 0.067 (n=259) | — |
+| 9 | atomic | 0.984 (n=2264) | 0.003 (n=1477) | 0.000 (n=259) | — |
+
+- **P2-strict** (primary layer): n_w=0 0.996, n_w≥1 0.175 → **FAIL**
+- **P2-paper**: n_w=2: 12/259 vs 1/2! = 0.500, p = 1 → **FAIL**
+- TPR seed range by stratum: {'0': [0.9960247278213501, 0.9960247278213501, 0.9960247278213501], '1': [0.13540960848331451, 0.13540960848331451, 0.32092079520225525], '2': [0.019305018708109856, 0.019305018708109856, 0.10038609802722931]}; λ selection (seen-pair validation): {'0.0': 0.9972972869873047, '0.0001': 0.9972972869873047, '0.001': 0.9972972869873047, '0.01': 0.9621621370315552}
+
+| SAE width | eligible | conjunctive | permutation null | planted additive | ReLU-additive (diag.) |
+|---|---:|---:|---:|---:|---:|
+| 1024 | 764 | 0.669 | 0.001 | 0.000 | 0.021 |
+| 8192 | 1038 | 0.732 | 0.006 | 0.000 | 0.026 |
+
+- **P4′**: specific=True, passes=True, refuting=False → **PASS**
+
+### Qwen/Qwen2.5-0.5B (layers [6, 12, 18], primary 12)
+
+**LIST**: test strata n_w = 0/1/2/≥3: [3933, 1758, 279, 30].
+
+| layer | arm | n_w = 0 | n_w = 1 | n_w = 2 | n_w ≥ 3 |
+|---|---|---|---|---|---|
+| 6 | real | 0.562 (n=3933) | 0.458 (n=1758) | 0.380 (n=279) | 0.233 (n=30) |
+| 6 | tpr (λ=0.0001, 3-seed mean) | 0.332 (n=3933) | 0.115 (n=1758) | 0.019 (n=279) | 0.000 (n=30) |
+| 6 | atomic | 0.595 (n=3933) | 0.001 (n=1758) | 0.000 (n=279) | 0.000 (n=30) |
+| 12* | real | 0.638 (n=3933) | 0.530 (n=1758) | 0.462 (n=279) | 0.367 (n=30) |
+| 12* | tpr (λ=0.0001, 3-seed mean) | 0.419 (n=3933) | 0.191 (n=1758) | 0.050 (n=279) | 0.000 (n=30) |
+| 12* | atomic | 0.682 (n=3933) | 0.000 (n=1758) | 0.000 (n=279) | 0.000 (n=30) |
+| 18 | real | 0.645 (n=3933) | 0.548 (n=1758) | 0.462 (n=279) | 0.367 (n=30) |
+| 18 | tpr (λ=0, 3-seed mean) | 0.430 (n=3933) | 0.169 (n=1758) | 0.047 (n=279) | 0.011 (n=30) |
+| 18 | atomic | 0.705 (n=3933) | 0.003 (n=1758) | 0.000 (n=279) | 0.000 (n=30) |
+
+- **P2-strict** (primary layer): n_w=0 0.419, n_w≥1 0.169 → **FAIL**
+- **P2-paper**: n_w=2: 14/279 vs 1/2! = 0.500, p = 1; n_w=3: 0/30 vs 1/3! = 0.167, p = 1 → **FAIL**
+- TPR seed range by stratum: {'0': [0.4202898442745209, 0.4182557761669159, 0.4172387421131134], '1': [0.19567690789699554, 0.19340158998966217, 0.18430034816265106], '2': [0.05017921328544617, 0.05734767019748688, 0.04301075264811516], '3': [0.0, 0.0, 0.0]}; λ selection (seen-pair validation): {'0.0': 0.4447806477546692, '0.0001': 0.44780635833740234, '0.001': 0.4387291967868805, '0.01': 0.31013616919517517}
+
+| SAE width | eligible | conjunctive | permutation null | planted additive | ReLU-additive (diag.) |
+|---|---:|---:|---:|---:|---:|
+| 1024 | 890 | 0.791 | 0.000 | 0.000 | 0.000 |
+| 8192 | 1453 | 0.685 | 0.000 | 0.000 | 0.001 |
+
+- **P4′**: specific=True, passes=True, refuting=False → **PASS**
+
+**SVO**: test strata n_w = 0/1/2/≥3: [2264, 1477, 259, 0].
+
+| layer | arm | n_w = 0 | n_w = 1 | n_w = 2 | n_w ≥ 3 |
+|---|---|---|---|---|---|
+| 6 | real | 0.988 (n=2264) | 0.993 (n=1477) | 0.985 (n=259) | — |
+| 6 | tpr (λ=0, 3-seed mean) | 0.994 (n=2264) | 0.185 (n=1477) | 0.013 (n=259) | — |
+| 6 | atomic | 0.994 (n=2264) | 0.005 (n=1477) | 0.000 (n=259) | — |
+| 12* | real | 0.991 (n=2264) | 0.990 (n=1477) | 0.996 (n=259) | — |
+| 12* | tpr (λ=0, 3-seed mean) | 0.997 (n=2264) | 0.186 (n=1477) | 0.026 (n=259) | — |
+| 12* | atomic | 0.997 (n=2264) | 0.003 (n=1477) | 0.000 (n=259) | — |
+| 18 | real | 0.984 (n=2264) | 0.984 (n=1477) | 0.996 (n=259) | — |
+| 18 | tpr (λ=0, 3-seed mean) | 0.998 (n=2264) | 0.272 (n=1477) | 0.046 (n=259) | — |
+| 18 | atomic | 0.998 (n=2264) | 0.001 (n=1477) | 0.000 (n=259) | — |
+
+- **P2-strict** (primary layer): n_w=0 0.997, n_w≥1 0.162 → **FAIL**
+- **P2-paper**: n_w=2: 7/259 vs 1/2! = 0.500, p = 1 → **FAIL**
+- TPR seed range by stratum: {'0': [0.9973497986793518, 0.9973497986793518, 0.9973497986793518], '1': [0.15098172426223755, 0.15098172426223755, 0.25592416524887085], '2': [0.0154440151527524, 0.0154440151527524, 0.04633204638957977]}; λ selection (seen-pair validation): {'0.0': 0.9945945739746094, '0.0001': 0.9945945739746094, '0.001': 0.9945945739746094, '0.01': 0.9891892075538635}
+
+| SAE width | eligible | conjunctive | permutation null | planted additive | ReLU-additive (diag.) |
+|---|---:|---:|---:|---:|---:|
+| 1024 | 946 | 0.794 | 0.006 | 0.004 | 0.022 |
+| 8192 | 1312 | 0.766 | 0.006 | 0.002 | 0.030 |
+
+- **P4′**: specific=True, passes=True, refuting=False → **PASS**
+
+### Verdicts (GPT-2 small, primary layer, by the pre-registered rules)
+
+- Systematic binding: **refuted**.
+- Conjunctive SAE latents: **established**.
+
+
+## Reading (interpretation; not part of the pre-registered verdicts)
+
+- **The information is present; the TPR composition is not.**
+  - On contexts with withheld pairs, the unpacking decoder fed **real** encodings stays near its seen-pair level:
+    GPT-2 L6 LIST 0.531 / 0.419 at n_w = 1 / 2 vs 0.613 at n_w = 0; SVO ≈ 1.0 throughout.
+  - The L2,1 TPR, fit only on seen pairs, collapses there (LIST 0.157 / 0.054; SVO 0.197 / 0.046). At n_w = 2 it is
+    an order of magnitude *below* the paper's 1/2! baseline.
+  - So GPT-2 does encode the unseen (filler, role) pairs. But their encoding is **not** the bilinear composition
+    `W(f ⊗ r)` of the filler and role vectors that the seen pairs determine. In the paper's terms, the
+    representational test of systematic binding fails at this site, and the same holds for Qwen2.5-0.5B.
+- **λ selection did not rescue P2.** The seen-pair validation chose λ ∈ {0, 1e-4} everywhere; larger λ only hurt.
+  This was the pre-registered criterion. Choosing λ by withheld-pair accuracy would be post hoc and is not reported.
+- **Conjunctive latents are robust.** Every model × family × width passes P4′ with the specificity control at ≈ 0.
+  The ReLU-thresholded additive diagnostic stays ≤ 0.03, so sparse nonlinearity alone does not produce the effect.
+  This replaces v1's failed P4 with a pre-registered pass.
+- **Consistency.** Both findings fit one picture: GPT-2 small binds fillers to roles **conjunctively**, with
+  pair-specific structure that SAEs mirror as conjunctive latents. That structure is not a systematic tensor-product
+  code that generalizes to unseen pairs. Whether this causes the forge tax remains `open` (§4).
+
+**Implementation notes.**
+- The summaries are written per model, as `runs/tpr/systematicity_v2_{gpt2,Qwen2.5-0.5B}_summary.json`, rather than
+  the single file named in §5.
+- `--smoke` runs (stimulus seed 999, tiny sizes) were used only to find bugs, before the script was committed
+  (`752ccab`). This pre-registration was pushed earlier (`615bc13`).
+- Results render from the summaries with `scripts/tpr/report_systematicity_v2.py`.
+
