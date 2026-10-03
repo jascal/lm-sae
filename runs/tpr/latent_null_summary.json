@@ -1,0 +1,91 @@
+{
+  "tag": "empirical",
+  "post_hoc": true,
+  "layer": 6,
+  "families": {
+    "LIST": {
+      "1024": {
+        "n_latents": 924,
+        "conjunctive_frac": 0.829004329004329,
+        "null_n": 924,
+        "null_median": 0.9149014855439812,
+        "null_q95": 0.9323339975783819,
+        "null_conjunctive_frac": 1.0,
+        "conjunctive_above_null_frac": 0.0,
+        "observed_median": 0.743763462140882,
+        "split_half": {
+          "n": 924,
+          "conjunctive_heldout_frac": 0.8863636363636364,
+          "median_gain": 0.558333976872253
+        },
+        "split_half_shuffled": {
+          "n": 924,
+          "conjunctive_heldout_frac": 0.0,
+          "median_gain": -0.8844951940305054
+        }
+      },
+      "8192": {
+        "n_latents": 1439,
+        "conjunctive_frac": 0.9305072967338429,
+        "null_n": 1439,
+        "null_median": 0.9151747588469492,
+        "null_q95": 0.93324321893627,
+        "null_conjunctive_frac": 1.0,
+        "conjunctive_above_null_frac": 0.0,
+        "observed_median": 0.7619669069872648,
+        "split_half": {
+          "n": 1439,
+          "conjunctive_heldout_frac": 0.8582348853370396,
+          "median_gain": 0.5411410489007655
+        },
+        "split_half_shuffled": {
+          "n": 1439,
+          "conjunctive_heldout_frac": 0.0,
+          "median_gain": -0.8860421743633717
+        }
+      }
+    },
+    "SVO": {
+      "1024": {
+        "n_latents": 746,
+        "conjunctive_frac": 0.12466487935656836,
+        "null_n": 746,
+        "null_median": 0.43098560366027877,
+        "null_q95": 0.5602416404706025,
+        "null_conjunctive_frac": 0.17962466487935658,
+        "conjunctive_above_null_frac": 0.0,
+        "observed_median": 0.09764299879620125,
+        "split_half": {
+          "n": 746,
+          "conjunctive_heldout_frac": 0.675603217158177,
+          "median_gain": 0.26468327674152314
+        },
+        "split_half_shuffled": {
+          "n": 746,
+          "conjunctive_heldout_frac": 0.0,
+          "median_gain": -0.26429574215161533
+        }
+      },
+      "8192": {
+        "n_latents": 1070,
+        "conjunctive_frac": 0.12897196261682242,
+        "null_n": 1070,
+        "null_median": 0.43052595974777247,
+        "null_q95": 0.5552360834576178,
+        "null_conjunctive_frac": 0.202803738317757,
+        "conjunctive_above_null_frac": 0.002803738317757009,
+        "observed_median": 0.2143195689465724,
+        "split_half": {
+          "n": 1070,
+          "conjunctive_heldout_frac": 0.7616822429906542,
+          "median_gain": 0.4051752734386103
+        },
+        "split_half_shuffled": {
+          "n": 1070,
+          "conjunctive_heldout_frac": 0.0009345794392523365,
+          "median_gain": -0.2579491116164757
+        }
+      }
+    }
+  }
+}
