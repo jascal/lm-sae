@@ -127,8 +127,13 @@ post-hoc noise check**. Shuffling each latent's activations across contexts give
 on LIST (0.91) than the real latents (0.74–0.76). On a sparse grid, noise alone looks conjunctive, so the
 pre-registered LIST "pass" (0.67–0.93 conjunctive) is an artifact.
 
-A post-hoc **split-half** test replaces it. Half A's raw cell means are compared with half A's additive fit at
-predicting half B's cell means (layer 6, `runs/tpr/latent_null_summary.json`):
+On SVO the pre-registered statistic gives only 0.13–0.18 conjunctive, below the 0.5 threshold. On LIST its
+apparent pass does not survive the null. **Pre-registered P4 therefore fails.**
+
+A different test, a **split-half** comparison, was written *after* that failure. It is **not** a result: it is an
+`open` follow-up, and its threshold and its definition of "conjunctive" were chosen after seeing the data. It needs
+its own pre-registration before it can support anything. It compares half A's raw cell means with half A's additive
+fit at predicting half B's cell means (layer 6, `runs/tpr/latent_null_summary.json`):
 
 | SAE | LIST conjunctive (held out) | LIST shuffled | SVO conjunctive (held out) | SVO shuffled |
 |---|---:|---:|---:|---:|
@@ -154,9 +159,12 @@ predicting half B's cell means (layer 6, `runs/tpr/latent_null_summary.json`):
   - It is roughly tied at L3 (0.067 vs 0.064) and above at L11 (0.085 vs 0.071).
   - The SAE reaches or exceeds `tpr` from width 1024 (≈5× / 20× the parameters).
   - `atomic`, at 2.8× `tpr`'s parameters on LIST, is the best symbolic dictionary in-distribution.
-- **P4 — holds under the post-hoc split-half test; the pre-registered statistic was uninformative.** Most active
-  latents of 1024- and 8192-wide SAEs carry genuine filler × role conjunctions on held-out data (LIST ≈0.86–0.89,
-  SVO ≈0.68–0.76; 0% when shuffled). Tagged **post hoc**.
+- **P4 — FAILS.**
+  - The pre-registered interaction-share statistic is below threshold on SVO (0.13–0.18).
+  - It scores *higher* under the permutation null than on real latents on LIST (0.91 vs 0.74–0.76), so it does not
+    measure conjunction there.
+  - The later split-half test (LIST 0.86–0.89, SVO 0.68–0.76, shuffled ≈0) is an `open` follow-up, not a repair of
+    P4. It does not change this verdict.
 
 ## Reading for lm-sae
 
@@ -166,16 +174,19 @@ predicting half B's cell means (layer 6, `runs/tpr/latent_null_summary.json`):
    - The nulls show binding is required.
    - But the fitted TPR barely generalizes to unseen pairs. GPT-2 small's period encodings behave more like
      "role-bound, partly pair-specific" than like a clean systematic TPR.
-2. **This is a candidate mechanism for the forge-tax width pathology (open).**
-   - SAE latents on structured inputs are mostly conjunctive (held-out test), which is option 2b.
-   - The SAE matches the 76k-parameter TPR's structure readout only at ~20× the parameters.
-   - That is the "one latent per conjunction" cost `THEORY_PROBLEM.md` §2 would predict if representations bind.
-   - Two templated families on one model do not establish the forge-tax link. Tag: `open`.
+2. **A forge-tax mechanism is a hypothesis, not a result here (open).**
+   - The evidence actually obtained is P3: the SAE matches the 76k-parameter TPR's structure readout only at ~20× the
+     parameters.
+   - The pre-registered test of *why* (P4: conjunctive latents, option 2b) **failed**.
+   - The post-hoc split-half numbers suggest conjunctive latents, but they are an un-preregistered follow-up.
+   - Two templated families on one model would not establish the forge-tax link even if P4 had passed.
 3. **FVU is not the right score.** SAEs reconstruct far more variance (FVU 0.03–0.07 vs 0.15–0.3) while carrying
    *less* structure at matched size. A dictionary compared on FVU alone would get the ranking backwards.
 
 ## Next (not run; each would be a new pre-registration)
 
+- Pre-register the split-half conjunction test (definition of "conjunctive", threshold, null, layers) and run it on
+  fresh stimuli/seeds.
 - Add the paper's L2,1 regularizer and a nonlinear unpacking decoder, then re-test P2.
 - Factored SAE: an unsupervised bilinear dictionary (learned role × filler codes), compared with TopK at equal
   parameters on natural text, measuring the cov95 forge tax directly.
